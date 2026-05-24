@@ -1,0 +1,17 @@
+
+> temp_nextjs@0.1.0 dev
+> next dev --port 3001
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://88.196.159.230:3001
+✓ Ready in 494ms
+
+ GET /remonditeenused-tallinnas/siseviimistlustood 200 in 2.5s (next.js: 227ms, application-code: 2.3s)
+ GET /remonditeenused-tallinnas/siseviimistlustood 200 in 286ms (next.js: 7ms, application-code: 279ms)
+ GET /remonditeenused-tallinnas/sanitaarremont-ja-umberehitus 200 in 148ms (next.js: 41ms, application-code: 107ms)
+ GET /puhastusteenused/ehitusjargne-koristus 200 in 151ms (next.js: 44ms, application-code: 107ms)
+ GET /puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine 200 in 138ms (next.js: 38ms, application-code: 100ms)
+ GET /puhastusteenused/desinfitseerimine 200 in 149ms (next.js: 52ms, application-code: 97ms)
+ GET /koristusteenus/valikoristus/kojameheteenus-seo-naidis 200 in 153ms (next.js: 43ms, application-code: 109ms)
+ GET /remonditeenused-tallinnas/katuse-remont 200 in 156ms (next.js: 40ms, application-code: 115ms)
