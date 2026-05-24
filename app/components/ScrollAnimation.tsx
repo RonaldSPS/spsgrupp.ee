@@ -44,7 +44,6 @@ export default function ScrollAnimation({
     <div
       ref={ref}
       className="scroll-animate"
-      style={{ opacity: 0, transform: 'translateY(30px)' }}
     >
       {children}
     </div>

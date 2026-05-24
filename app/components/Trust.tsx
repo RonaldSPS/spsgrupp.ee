@@ -15,7 +15,7 @@ const services = [
   },
   {
     title: "Puhastusteenused ja eritööd",
-    image: "/puhastusteenused.jpg",
+    image: "/puhastusteenused2.jpg",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a5 5 0 0 0-5 5c0 2.76 5 9 5 9s5-6.24 5-9a5 5 0 0 0-5-5z" />
