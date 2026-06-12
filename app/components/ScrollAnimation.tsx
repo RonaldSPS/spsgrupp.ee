@@ -23,7 +23,7 @@ export default function ScrollAnimation({
             const el = ref.current;
             if (el) {
               setTimeout(() => {
-                el.classList.add("animate-" + animation);
+                el.classList.add("scroll-visible");
               }, delay);
             }
             observer.unobserve(entry.target);

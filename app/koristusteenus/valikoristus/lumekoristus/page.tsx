@@ -248,8 +248,9 @@ export default function Lumekoristus() {
                 fikseeritud hinnaga.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <Link
+                <a
                   href="#pakkumine"
+                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
                   className="btn-primary text-[15px] py-2.5 px-4"
                 >
                   Küsi lumekoristuse pakkumist
@@ -264,7 +265,7 @@ export default function Lumekoristus() {
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -282,26 +283,17 @@ export default function Lumekoristus() {
                   662 3328
                 </Link>
               </div>
-              <nav
-                aria-label="Breadcrumb"
-                className="flex items-center gap-2 text-white/80 text-[15px] mt-2"
-              >
-                <a
-                  href="/"
-                  className="text-white/80 no-underline hover:text-white transition-colors"
-                >
-                  Avaleht
-                </a>
+
+              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <a
-                  href="/#teenused"
-                  className="text-white/80 no-underline hover:text-white transition-colors"
-                >
-                  Koristusteenused
-                </a>
+                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <span className="text-white/50">/</span>
+                <a href="/koristusteenus/valikoristus" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Lumekoristus</span>
               </nav>
+
             </div>
           </div>
         </section>

@@ -118,13 +118,17 @@ export default function Koristusteenus() {
                 Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja kvaliteedikontrol. Hind alates <strong className="text-white font-medium">1.2€/m²</strong>.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a
+                  href="#pakkumine"
+                  className="btn-primary text-[15px] py-2.5 px-4"
+                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+                >
                   Küsi tasuta koristusteenuse pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link href="tel:6623328" className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -132,13 +136,15 @@ export default function Koristusteenus() {
                   662 3328
                 </Link>
               </div>
+
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <a href="/#teenused" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenused</a>
+                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Koristusteenus</span>
               </nav>
+
             </div>
           </div>
         </section>
@@ -182,16 +188,17 @@ export default function Koristusteenus() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { bold: "Kontorikoristus", desc: "büroode igapäevane hooldus, kohandatud IT-keskkonnale" },
-                { bold: "Kaubanduspindade koristus", desc: "poed, kaubanduskeskused, esindused" },
-                { bold: "Tootmishoonete koristus", desc: "tööstuspinnad, laod, tootmiskeskkond" },
-                { bold: "Koolide ja lasteaedade koristamine", desc: "tervishoiukeskne lähenemine" },
+                { bold: "Kontorikoristus", desc: "büroode igapäevane hooldus, kohandatud IT-keskkonnale", href: "/koristusteenus/kontori-koristus" },
+                { bold: "Kaubanduspindade koristus", desc: "poed, kaubanduskeskused, esindused", href: "/koristusteenus/kaubanduspindade-koristus" },
+                { bold: "Tootmishoonete koristus", desc: "tööstuspinnad, laod, tootmiskeskkond", href: "/koristusteenus/tootmishoonete-koristus" },
+                { bold: "Koolide ja lasteaedade koristamine", desc: "tervishoiukeskne lähenemine", href: "/koristusteenus/koolide-koristamine" },
                 { bold: "Esindus- ja vastuvõtupindade erihooldus", desc: "" },
                 { bold: "Ühiskasutatavate alade hooldus", desc: "koridorid, trepikojad, liftid" },
                 { bold: "Sanitaarruumide desinfitseerimine", desc: "tarvikutega varustamine" },
                 { bold: "Paindlik graafik", desc: "iga päev, 2–5x nädalas või soovitud sagedusega" },
-              ].map((item, i) => (
-                <div key={i} className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer">
+              ].map((item, i) => {
+                const cardContent = (
+                  <>
                   <div className="text-[#5a6474] text-[15px] mb-2">
                     <span className="font-mono inline-block border-b border-[#5a6474] pb-px pr-5">
                       {String(i + 1).padStart(2, "0")}.
@@ -201,8 +208,26 @@ export default function Koristusteenus() {
                     <strong className="text-[#17345a] block mb-1">{item.bold}</strong>
                     {item.desc ? <span className="text-[#5a6474]">{item.desc}</span> : null}
                   </div>
-                </div>
-              ))}
+                  </>
+                );
+
+                return item.href ? (
+                  <Link
+                    key={i}
+                    href={item.href}
+                    className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer no-underline"
+                  >
+                    {cardContent}
+                  </Link>
+                ) : (
+                  <div
+                    key={i}
+                    className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer"
+                  >
+                    {cardContent}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

@@ -117,13 +117,13 @@ export default function EhitusprahiAravedu() {
                 Kiire ja seadusandlusele vastav ehitusjäätmete äravedu. Sorteerimine, konteinerite tarne 24h jooksul, transport ja dokumentatsioon ühest kohast.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
                   Küsi ehitusprahi äraveo pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -134,20 +134,13 @@ export default function EhitusprahiAravedu() {
                   662 3328
                 </Link>
               </div>
-              <div className="text-white/70 text-[15px] font-light mb-3">
-                Konteinerid 24h jooksul <span className="text-white/40 mx-2">|</span> Sorteerimine kohapeal <span className="text-white/40 mx-2">|</span> Seaduslik käitlus <span className="text-white/40 mx-2">|</span> Jäätmekaardid <span className="text-white/40 mx-2">|</span> 24/7 reageerimine
-              </div>
+
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Avaleht
-                </a>
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <a href="/#teenused" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Teenused
-                </a>
-                <span className="text-white/50">/</span>
-                <span className="text-white/90">Ehitusprahi äravedu</span>
+                <a href="/ehitusprahi-aravedu" className="text-white/80 no-underline hover:text-white transition-colors">Ehitusprahi äravedu</a>
               </nav>
+
             </div>
           </div>
         </section>
@@ -380,13 +373,13 @@ export default function EhitusprahiAravedu() {
                     Ehitusjäätmete segajäätmetena käitlemine on oluliselt kallim kui sorteerimine. Meie kohapealne sorteerimine võib säästa 30–50% käitluskulusid.
                   </p>
                   <div className="mt-6">
-                    <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                    <a onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
                       Küsi ehitusprahi äraveo pakkumist
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
                       </svg>
-                    </Link>
+                    </a>
                   </div>
                 </div>
 

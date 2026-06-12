@@ -63,11 +63,8 @@ export default function RootLayout({
     <html
       lang="et"
       className={`${ubuntu.variable} ${geistMono.variable} h-full antialiased no-js`}
+      suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.remove("no-js")` }} />
-        <noscript><style>{`.scroll-animate{opacity:1!important;transform:none!important}`}</style></noscript>
-      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

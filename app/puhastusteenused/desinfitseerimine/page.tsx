@@ -116,13 +116,13 @@ export default function Desinfitseerimine() {
                 Vähendab haiguspäevi kuni 30%. Elektrostaatilised pihustid, UV-C seadmed, sertifitseeritud vahendid. Ohutud inimestele ja tehnikale.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
                   Küsi desinfitseerimise pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -133,20 +133,15 @@ export default function Desinfitseerimine() {
                   662 3328
                 </Link>
               </div>
-              <div className="text-white/70 text-[15px] font-light mb-3">
-                EL sertifitseeritud vahendid <span className="text-white/40 mx-2">|</span> UV-C tehnika <span className="text-white/40 mx-2">|</span> Elektrostaatiline pihustus <span className="text-white/40 mx-2">|</span> Ohutu inimestele
-              </div>
+
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Avaleht
-                </Link>
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <Link href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Puhastusteenused
-                </Link>
+                <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Desinfitseerimine</span>
               </nav>
+
             </div>
           </div>
         </section>
@@ -367,13 +362,13 @@ export default function Desinfitseerimine() {
                     Regulaarne desinfitseerimine (kord kuus või kvartalis) on soodsam kui ühekordsed teenused.
                   </p>
 
-                  <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4 inline-flex">
+                  <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 inline-flex">
                     Küsi desinfitseerimise pakkumist
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
                     </svg>
-                  </Link>
+                  </a>
                 </div>
 
                 <Hinnakalkulaator />
@@ -391,13 +386,13 @@ export default function Desinfitseerimine() {
                 Tuleme kohale, hindame vajadusi ja koostame desinfitseerimisplaani. Kiire reageerimine viirusepuhangute puhul.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-3 px-6">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-3 px-6">
                   Küsi pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white border-[#17345a] text-[#17345a] hover:bg-[#17345a] hover:text-white text-[15px] py-3 px-6"

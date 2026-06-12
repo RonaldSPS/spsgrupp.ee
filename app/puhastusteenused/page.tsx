@@ -82,14 +82,14 @@ const miksMeieKaardid = [
 ];
 
 const teenuseSisuKaardid = [
-  { bold: "Vaipade keemiline puhastus, allergeenide ja plekkide eemaldamine", desc: "" },
-  { bold: "Põrandate süvapuhastus ja poleerimine", desc: "" },
-  { bold: "Ehitusjärgne koristus. Tolm, ehituspraht, valmistame pinnad üleandmiseks ette", desc: "" },
-  { bold: "Suitsu- ja tulekahjustuste puhastamine, tahma- ja lõhnaeemaldus", desc: "" },
-  { bold: "Eskalaatorite süvapuhastus, kaubanduskeskused", desc: "" },
-  { bold: "Desinfitseerimine, viiruste- ja bakteriaalne kaitse", desc: "" },
-  { bold: "Akende ja klaasfassaadide professionaalne pesu", desc: "" },
-  { bold: "Fassaadipesu ja välispindade puhastus", desc: "" },
+  { bold: "Vaipade keemiline puhastus, allergeenide ja plekkide eemaldamine", desc: "", href: "/puhastusteenused/vaipade-puhastus" },
+  { bold: "Põrandate süvapuhastus ja poleerimine", desc: "", href: "/puhastusteenused/porandate-hooldus" },
+  { bold: "Ehitusjärgne koristus. Tolm, ehituspraht, valmistame pinnad üleandmiseks ette", desc: "", href: "/puhastusteenused/ehitusjargne-koristus" },
+  { bold: "Suitsu- ja tulekahjustuste puhastamine, tahma- ja lõhnaeemaldus", desc: "", href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
+  { bold: "Eskalaatorite süvapuhastus, kaubanduskeskused", desc: "", href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
+  { bold: "Desinfitseerimine, viiruste- ja bakteriaalne kaitse", desc: "", href: "/puhastusteenused/desinfitseerimine" },
+  { bold: "Akende ja klaasfassaadide professionaalne pesu", desc: "", href: "/koristusteenus/valikoristus/akende-pesu" },
+  { bold: "Fassaadipesu ja välispindade puhastus", desc: "", href: "/koristusteenus/valikoristus/fassaadipesu" },
 ];
 
 export default function Puhastusteenused() {
@@ -134,13 +134,17 @@ export default function Puhastusteenused() {
                 Kui tavaline koristus ei piisa. Põrandate süvapuhastus, vaipade keemiline pesu, ehitusjärgne koristus, tulekahjustuste taastamine ja professionaalne desinfitseerimine.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a
+                  href="#pakkumine"
+                  className="btn-primary text-[15px] py-2.5 px-4"
+                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+                >
                   Küsi puhastusteenuse pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -151,16 +155,13 @@ export default function Puhastusteenused() {
                   662 3328
                 </Link>
               </div>
-              <div className="text-white/70 text-[15px] font-light mb-3">
-                Erivahendid ja -tehnika <span className="text-white/40 mx-2">|</span> ISO 9001 &amp; 14001 <span className="text-white/40 mx-2">|</span> Kindlustatud teenus <span className="text-white/40 mx-2">|</span> 20+ aastat kogemust
-              </div>
+
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Avaleht
-                </a>
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Puhastusteenused</span>
               </nav>
+
             </div>
           </div>
         </section>
@@ -201,18 +202,39 @@ export default function Puhastusteenused() {
                 <TwoToneHeading text="Millistele puhastustöödele oleme spetsialiseerunud?" />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[900px] mx-auto">
-                {teenuseSisuKaardid.map((item, i) => (
-                  <div
-                    key={i}
-                    className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer flex items-start gap-3"
-                  >
-                    <span className="text-[#2d9e6b] font-bold text-[18px] flex-shrink-0 mt-0.5">✓</span>
-                    <span className="text-[15px] text-[#2f353f] leading-[1.6]">
-                      <strong className="text-[#17345a]">{item.bold}</strong>
-                    </span>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {teenuseSisuKaardid.map((item, i) => {
+                  const cardContent = (
+                    <>
+                    <div className="text-[#5a6474] text-[15px] mb-2">
+                      <span className="font-mono inline-block border-b border-[#5a6474] pb-px pr-5">
+                        {String(i + 1).padStart(2, "0")}.
+                      </span>
+                    </div>
+                    <div className="text-[#2f353f] text-[15px] leading-[1.6]">
+                      <strong className="text-[#17345a] block mb-1">{item.bold}</strong>
+                      {item.desc ? <span className="text-[#5a6474]">{item.desc}</span> : null}
+                    </div>
+                    </>
+                  );
+
+                  return item.href ? (
+                    <Link
+                      key={i}
+                      href={item.href}
+                      className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer no-underline"
+                    >
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <div
+                      key={i}
+                      className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer"
+                    >
+                      {cardContent}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>

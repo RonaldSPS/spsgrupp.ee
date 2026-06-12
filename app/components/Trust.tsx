@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import TwoToneHeading from "./TwoToneHeading";
@@ -223,9 +225,9 @@ export default function Trust() {
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">
               Kõik vahendid ja tarvikud on hinna sees.
             </p>
-            <Link href="#pakkumine" aria-label="Vaata lähemalt regulaarse koristusteenuse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+            <a href="#pakkumine" aria-label="Vaata lähemalt regulaarse koristusteenuse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
               Vaata lähemalt <span aria-hidden="true">→</span>
-            </Link>
+            </a>
           </div>
 
           {/* Column 2 */}
@@ -259,9 +261,9 @@ export default function Trust() {
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">
               Kiirreageerimine 24/7 ootamatute olukordade jaoks.
             </p>
-            <Link href="#pakkumine" aria-label="Vaata lähemalt puhastusteenuste ja eritööde kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+            <a href="#pakkumine" aria-label="Vaata lähemalt puhastusteenuste ja eritööde kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
               Vaata lähemalt <span aria-hidden="true">→</span>
-            </Link>
+            </a>
           </div>
 
           {/* Column 3 */}
@@ -295,9 +297,9 @@ export default function Trust() {
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">
               Üks leping, mis katab kõik hooajad ja vajadused.
             </p>
-            <Link href="#pakkumine" aria-label="Vaata lähemalt välikoristuse ja territooriumi hoolduse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+            <a href="#pakkumine" aria-label="Vaata lähemalt välikoristuse ja territooriumi hoolduse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
               Vaata lähemalt <span aria-hidden="true">→</span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

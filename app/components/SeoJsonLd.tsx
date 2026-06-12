@@ -56,16 +56,10 @@ export default function SeoJsonLd({ serviceName, serviceDescription, serviceUrl,
     itemListElement: breadcrumbs,
   };
 
-  const orgSchema = {
-    "@context": "https://schema.org",
-    ...ORGANIZATION,
-  };
-
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
       {faq && faq.length > 0 && (
         <script
           type="application/ld+json"
