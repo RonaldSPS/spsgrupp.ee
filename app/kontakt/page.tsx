@@ -289,7 +289,7 @@ export default function KontaktLeht() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="bg-[#f8fafc] p-5 rounded-2xl transition-all duration-300 border-2 border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-[#eef7fc] cursor-pointer"
+                    className="bg-[#f8fafc] p-5 rounded-2xl transition-colors duration-300 border-2 border-transparent hover:bg-[#eef7fc]"
                   >
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -357,7 +357,7 @@ export default function KontaktLeht() {
                     ].map((item, i) => (
                       <div
                         key={i}
-                        className="bg-[#ffffff78] backdrop-blur-[5px] p-4 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer flex items-center gap-3"
+                        className="bg-[#ffffff78] backdrop-blur-[5px] p-4 rounded-xl transition-colors duration-300 border border-transparent hover:bg-white/80 flex items-center gap-3"
                       >
                         <svg
                           width="16"

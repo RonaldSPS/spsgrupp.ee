@@ -164,7 +164,7 @@ export default function TuleMeileToolePage() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="bg-[#ffffff78] backdrop-blur-[5px] p-4 rounded-xl transition-all duration-300 border border-transparent hover:scale-105 hover:shadow-lg hover:border-[#85cbe9] hover:bg-white/60 cursor-pointer"
+                    className="bg-[#ffffff78] backdrop-blur-[5px] p-4 rounded-xl transition-colors duration-300 border border-transparent hover:bg-white/80"
                   >
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-[#eef7fc]">
@@ -206,7 +206,7 @@ export default function TuleMeileToolePage() {
                     ].map((stat, i) => (
                       <div
                         key={i}
-                        className="bg-white rounded-2xl p-6 text-center transition-all duration-300 hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9] cursor-pointer"
+                        className="bg-white rounded-2xl p-6 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
                       >
                         <div className="text-[clamp(28px,3.5vw,40px)] font-bold text-[#17345a] mb-2">{stat.number}</div>
                         <div className="text-[15px] text-[#5a6474]">{stat.label}</div>
