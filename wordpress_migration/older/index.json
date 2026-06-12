@@ -1,0 +1,233 @@
+{
+  "sourceBackup": "January 11, 2022",
+  "total": 24,
+  "articles": 14,
+  "imageOnly": 10,
+  "empty": 0,
+  "featuredImages": {
+    "wordpress": 24,
+    "inferred": 0,
+    "missing": 0
+  },
+  "shortcodeRemainders": [],
+  "quoteFormRemainders": [],
+  "missingMedia": [],
+  "posts": [
+    {
+      "id": 2412,
+      "title": "Survepesu – mitmekülgne abimees",
+      "slug": "survepesu-mitmekulgne-abimees",
+      "date": "2021-08-31 12:23:29",
+      "featuredImage": "/blog-media/2021/03/fassaadi.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2408,
+      "title": "Miks tellida ehitusjärgne koristus?",
+      "slug": "miks-tellida-ehitusjargne-koristus",
+      "date": "2021-08-31 12:20:38",
+      "featuredImage": "/blog-media/2021/08/ehitusjärgne-koristus.jpeg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2392,
+      "title": "Kontori hoolduskoristus",
+      "slug": "kontori-hoolduskoristus",
+      "date": "2021-07-29 15:44:03",
+      "featuredImage": "/blog-media/2021/07/Kontori-hoolduskoristus.jpeg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2387,
+      "title": "Koristamine on tüütu? Appi tuleb koristusteenus",
+      "slug": "koristamine-on-tuutu-appi-tuleb-koristusteenus",
+      "date": "2021-07-29 15:41:54",
+      "featuredImage": "/blog-media/2021/07/Koristamine.jpeg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2383,
+      "title": "Vaipade puhastus kodus ja ettevõttes",
+      "slug": "vaipade-puhastus-kodus-ja-ettevottes",
+      "date": "2021-07-29 15:40:45",
+      "featuredImage": "/blog-media/2021/07/Vaipade-puhastus.jpeg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2326,
+      "title": "Miks teha kodus suurpuhastus?",
+      "slug": "miks-teha-kodus-suurpuhastus",
+      "date": "2021-06-14 14:46:29",
+      "featuredImage": "/blog-media/2021/06/suurpuhastus-1_1200.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2319,
+      "title": "Kuidas põranda eest õigesti hoolt kanda?",
+      "slug": "kuidas-poranda-eest-oigesti-hoolt-kanda",
+      "date": "2021-06-14 14:34:27",
+      "featuredImage": "/blog-media/2021/06/Vars.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2292,
+      "title": "Kontori koristuse ja puhta töökeskkonna olulisus",
+      "slug": "kontori-koristuse-ja-puhta-tookeskkonna-olulisus",
+      "date": "2021-04-27 11:55:13",
+      "featuredImage": "/blog-media/2021/04/office.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2285,
+      "title": "Kodune akende pesu: kuidas aknad särama lüüa?",
+      "slug": "kodune-akende-pesu-kuidas-aknad-sarama-luua",
+      "date": "2021-04-27 11:46:39",
+      "featuredImage": "/blog-media/2021/04/Window-Cleaning-1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 2131,
+      "title": "Tee ruumides viirustele üks-null",
+      "slug": "tee-ruumides-viirustele-uks-null",
+      "date": "2020-11-24 13:15:40",
+      "featuredImage": "/blog-media/2020/11/13481570t1h6e64.png",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 1621,
+      "title": "Tipp ja Täpp koristusäris - Eesti Ekspress - Delfi",
+      "slug": "tipp-ja-tapp-koristusaris-eesti-ekspress-delfi",
+      "date": "2017-10-16 08:30:05",
+      "featuredImage": "/blog-media/2017/10/tiptap.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 1624,
+      "title": "Meie töötaja palk olgu kõrgem tegevusala keskmisest",
+      "slug": "meie-tootaja-palk-olgu-korgem-tegevusala-keskmisest",
+      "date": "2017-10-16 08:29:12",
+      "featuredImage": "/blog-media/2017/10/palk.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 1640,
+      "title": "Kontori koristamisteenus ähvardab kallineda - Äripäev",
+      "slug": "kontori-koristamisteenus-ahvardab-kallineda-aripaev",
+      "date": "2017-10-16 08:28:21",
+      "featuredImage": "/blog-media/2017/10/offis.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 1636,
+      "title": "Ise koristada pole enam moes - Äripäev",
+      "slug": "ise-koristada-pole-enam-moes-aripaev",
+      "date": "2017-10-16 08:23:55",
+      "featuredImage": "/blog-media/2017/10/ise.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article"
+    },
+    {
+      "id": 1603,
+      "title": "Edukad kinnisvarahaldajad ja -hooldajad aastal 2016",
+      "slug": "edukad-kinnisvarahaldajad-ja-hooldajad-aastal-2016",
+      "date": "2017-10-12 12:26:58",
+      "featuredImage": "/blog-media/2017/10/kinnisvarahaldajad.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1617,
+      "title": "Edukad kinnisvarahaldajad ja -hooldajad aastal 2015",
+      "slug": "edukad-kinnisvarahaldajad-ja-hooldajad-aastal-2015",
+      "date": "2017-10-12 12:24:00",
+      "featuredImage": "/blog-media/2017/10/kinnisvarahaldajad2016.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1669,
+      "title": "Konkurentsivõimelisim mikroettevõte 2016",
+      "slug": "konkurentsivoimelisim-mikroettevote-2016",
+      "date": "2017-10-12 12:06:57",
+      "featuredImage": "/blog-media/2017/10/konkurss.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1665,
+      "title": "Kinnisvarahaldajate ja-hooldajate TOP:võitis puhastusfirma SPS Grupp",
+      "slug": "kinnisvarahaldajate-ja-hooldajate-topvoitis-puhastusfirma-sps-grupp",
+      "date": "2017-10-12 12:04:36",
+      "featuredImage": "/blog-media/2017/10/kinnisvara.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1662,
+      "title": "Eesti Parimad Ettevõtted 2016 Gala",
+      "slug": "eesti-parimad-ettevotted-2016-gala",
+      "date": "2017-10-12 12:01:34",
+      "featuredImage": "/blog-media/2017/10/ettevotlusnadal.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1659,
+      "title": "Aasta ettevõte 2016 ettevõtted - Personaliuudised",
+      "slug": "aasta-ettevote-2016-ettevotted-personaliuudised",
+      "date": "2017-10-12 11:55:47",
+      "featuredImage": "/blog-media/2017/10/personaliuudised.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1656,
+      "title": "Konkurentsivõimelisim mikroettevõte 2016 Aasta nominent",
+      "slug": "konkurentsivoimelisim-mikroettevote-2016-aasta-nominent",
+      "date": "2017-10-12 11:53:13",
+      "featuredImage": "/blog-media/2017/10/konkurss.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1653,
+      "title": "Hooldus- ja haldusfirmade TOP: võitlus palga- ja hinnasurvega - Äripäev",
+      "slug": "hooldus-ja-haldusfirmade-top-voitlus-palga-ja-hinnasurvega-aripaev",
+      "date": "2017-10-12 11:48:18",
+      "featuredImage": "/blog-media/2017/10/koristaja.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1647,
+      "title": "Kõige konkurentsivõimelisem mikroettevõte 2016",
+      "slug": "sps-grupp-ou-konkurentsivoimelisim-mikroettevote-2016",
+      "date": "2017-10-12 11:41:22",
+      "featuredImage": "/blog-media/2017/10/eestiparimad3.png",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    },
+    {
+      "id": 1643,
+      "title": "Kinnisvarahaldajate TOP - Ehitusuudised",
+      "slug": "kinnisvarahaldajate-top-ehitusuudised",
+      "date": "2017-10-12 08:32:06",
+      "featuredImage": "/blog-media/2017/10/top.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "image-only"
+    }
+  ]
+}

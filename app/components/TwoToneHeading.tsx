@@ -11,22 +11,8 @@ export default function TwoToneHeading({ text, className = "" }: TwoToneHeadingP
 
   return (
     <h2 className={`section-title ${className}`}>
-      <span style={{ 
-        fontFamily: 'Ubuntu', 
-        fontWeight: 400, 
-        color: 'var(--navy)',
-        display: 'block'
-      }}>
-        {firstHalf}
-      </span>
-      <span style={{ 
-        fontFamily: 'Ubuntu', 
-        fontWeight: 600, 
-        color: 'var(--sky-text)',
-        display: 'block'
-      }}>
-        {secondHalf}
-      </span>
+      <span className="two-tone-heading-primary">{firstHalf}</span>
+      <span className="two-tone-heading-accent">{secondHalf}</span>
     </h2>
   );
 }

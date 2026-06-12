@@ -83,7 +83,7 @@ export default function Hero() {
             border: "1px solid rgba(133, 203, 233, 0.2)"
           }}
         >
-          <h1 className="text-[clamp(28px,4.2vw,56px)] leading-[1.12] -tracking-[1px] mb-[18px]" style={{ fontFamily: 'Ubuntu', fontWeight: 400, color: 'white' }}>
+          <h1 className="text-[clamp(28px,4.2vw,56px)] leading-[1.12] -tracking-[1px] mb-[18px]" style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: 'white' }}>
             Koristusfirma<br />
             <span className="text-[#3abeff]" style={{ fontWeight: 600 }}>ärikliendile</span>
           </h1>

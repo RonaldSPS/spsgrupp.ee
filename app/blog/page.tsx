@@ -44,17 +44,14 @@ export default function BlogArchive() {
                 className="group block rounded-[16px] overflow-hidden border border-[rgba(23,52,90,0.08)] bg-white shadow-sm hover:shadow-md transition-all"
               >
                 <div className="relative h-[200px] bg-[#eef7fc]">
-                  <Image src={post.image} alt={post.title} fill className="object-cover" sizes="33vw" />
+                  <Image src={post.featuredImage} alt={post.title} fill className="object-cover" sizes="33vw" />
                 </div>
                 <div className="p-5">
-                  <span className="text-[12px] font-semibold text-[#3abeff] bg-[#eef7fc] px-2.5 py-0.5 rounded-full">
-                    {post.category}
-                  </span>
                   <h2 className="text-[17px] font-bold text-[#17345a] mt-2 mb-2 leading-snug group-hover:text-[#3abeff] transition-colors">
                     {post.title}
                   </h2>
                   <p className="text-[15px] text-[#2f353f] leading-relaxed line-clamp-3">{post.excerpt}</p>
-                  <div className="text-[13px] text-[#5a6474] mt-3">{formatDate(post.date)}</div>
+                  <div className="text-[15px] text-[#5a6474] mt-3">{formatDate(post.date)}</div>
                 </div>
               </Link>
             ))}
