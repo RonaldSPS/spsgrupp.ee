@@ -114,13 +114,13 @@ export default function EhitusjargneKoristus() {
                 Objekt valmis üleandmiseks 24–48 tunni jooksul. Ehitustolm, praht, värvitilgad, kleebised ja tsemendijäägid kaovad. Kombineeritud teenus koos prahi äraveoga.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
                   Küsi ehitusjärgse koristuse pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -131,20 +131,15 @@ export default function EhitusjargneKoristus() {
                   662 3328
                 </Link>
               </div>
-              <div className="text-white/70 text-[15px] font-light mb-3">
-                24–48h reageerimine <span className="text-white/40 mx-2">|</span> Jäätmekäitlus <span className="text-white/40 mx-2">|</span> Kindlustatud <span className="text-white/40 mx-2">|</span> Ehituskogemus
-              </div>
+
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Avaleht
-                </a>
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">
-                  Puhastusteenused
-                </a>
+                <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Ehitusjärgne koristus</span>
               </nav>
+
             </div>
           </div>
         </section>

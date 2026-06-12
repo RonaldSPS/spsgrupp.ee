@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import TwoToneHeading from "./TwoToneHeading";
 
@@ -56,9 +58,9 @@ export default function Testimonials() {
                   <div className="text-[15px] text-[#5a6474]">{t.location}</div>
                 </div>
               </div>
-              <Link href="#pakkumine" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline mt-4 transition-all hover:text-[#17345a] hover:gap-2.5">
+              <a href="#pakkumine" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline mt-4 transition-all hover:text-[#17345a] hover:gap-2.5" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
                 Soovid sama tulemust? Küsi pakkumist <span aria-hidden="true">→</span>
-              </Link>
+              </a>
             </div>
           ))}
         </div>
@@ -73,7 +75,7 @@ export default function Testimonials() {
               className="w-full h-auto"
               style={{ borderRadius: "24px" }}
             >
-              <track kind="captions" src="" label="Eesti" />
+              {/* <track kind="captions" src="" label="Eesti" /> */}
             </video>
           </div>
         </div>

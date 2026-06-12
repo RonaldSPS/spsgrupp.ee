@@ -89,6 +89,7 @@ export default function Navbar() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuTimeout, setMenuTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
 
   const handleMouseEnter = () => {
     if (menuTimeout) clearTimeout(menuTimeout);
@@ -223,13 +224,14 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link
+          <a
             href="#pakkumine"
             className="bg-[#17345a] text-white no-underline py-2 px-5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#1e4a7a] hover:-translate-y-0.5"
             style={{ boxShadow: "0 2px 12px rgba(23,52,90,0.07)" }}
+            onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
           >
             Küsi pakkumist
-          </Link>
+          </a>
         </li>
       </ul>
       </div>
@@ -275,61 +277,101 @@ export default function Navbar() {
                     <div>
                       <div className="text-lg font-bold text-[#17345a] mb-4">{link.label}</div>
                       <div className="grid grid-cols-1 gap-4">
-                        {megaMenuData.columns.map((col, colIdx) => (
-                          <div key={colIdx}>
-                            <div className="text-base font-semibold text-[#17345a] mb-3">
-                              {col.href ? (
-                                <Link href={col.href} onClick={() => setMobileMenuOpen(false)} className={`no-underline ${pathname === col.href ? "text-[#1e4a7a] font-bold" : "text-[#17345a]"}`}>
-                                  {col.title}
-                                </Link>
-                              ) : (
-                                col.title
-                              )}
-                            </div>
-                            {col.subSections ? (
-                              col.subSections.map((sub, subIdx) => (
-                                <div key={subIdx} className={subIdx > 0 ? "mt-3" : ""}>
-                                  {"href" in sub ? (
-                                    <Link href={(sub as typeof sub & { href: string }).href} className="block text-[15px] font-medium text-[#5a6474] mb-1 px-3 no-underline hover:text-[#17345a]" onClick={() => setMobileMenuOpen(false)}>
-                                      {sub.title}
-                                    </Link>
-                                  ) : (
-                                    <div className="text-[15px] font-medium text-[#5a6474] mb-1 px-3">
-                                      {(sub as { title: string; items: { label: string; href: string }[] }).title}
-                                    </div>
-                                  )}
-                                  <ul className="flex flex-col gap-1">
-                                    {sub.items.map((item, itemIdx) => (
-                                      <li key={itemIdx}>
-                                        <Link 
-                                          href={item.href} 
-                                          className={`block py-2 px-3 rounded-lg hover:bg-gray-100 ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`}
-                                          onClick={() => setMobileMenuOpen(false)}
-                                        >
-                                          {item.label}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))
-                            ) : col.items ? (
-                              <ul className="flex flex-col gap-1 pl-3">
-                                {col.items.map((item, itemIdx) => (
-                                  <li key={itemIdx}>
-                                      <Link 
-                                        href={item.href} 
-                                        className={`block py-2 px-3 rounded-lg hover:bg-gray-100 ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`}
-                                        onClick={() => setMobileMenuOpen(false)}
-                                      >
-                                        {item.label}
-                                      </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            ) : null}
-                          </div>
-                        ))}
+                        {/* Koristusteenused */}
+                        <div>
+                          <button
+                            className="text-base font-bold text-[#17345a] mb-1 flex items-center gap-1 bg-transparent border-none cursor-pointer w-full text-left px-0"
+                            onClick={() => setExpandedSections(prev => ({ ...prev, Koristusteenused: !prev.Koristusteenused }))}
+                          >
+                            <span className="flex-1">Koristusteenused</span>
+                            <svg className={`w-3.5 h-3.5 transition-transform ${expandedSections.Koristusteenused ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M3 5l3 3 3-3" />
+                            </svg>
+                          </button>
+                          {expandedSections.Koristusteenused && (
+                            <ul className="flex flex-col gap-1 pl-3">
+                              {megaMenuData.columns[0].subSections?.[0].items.map((item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link href={item.href} className={`block py-2 px-3 rounded-lg hover:bg-gray-100 ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={() => setMobileMenuOpen(false)}>
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+
+                        {/* Puhastusteenused */}
+                        <div>
+                          <button
+                            className="text-base font-bold text-[#17345a] mb-1 flex items-center gap-1 bg-transparent border-none cursor-pointer w-full text-left px-0"
+                            onClick={() => setExpandedSections(prev => ({ ...prev, Puhastusteenused: !prev.Puhastusteenused }))}
+                          >
+                            <span className="flex-1">Puhastusteenused</span>
+                            <svg className={`w-3.5 h-3.5 transition-transform ${expandedSections.Puhastusteenused ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M3 5l3 3 3-3" />
+                            </svg>
+                          </button>
+                          {expandedSections.Puhastusteenused && (
+                            <ul className="flex flex-col gap-1 pl-3">
+                              {megaMenuData.columns[1].subSections?.[0].items.map((item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link href={item.href} className={`block py-2 px-3 rounded-lg hover:bg-gray-100 ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={() => setMobileMenuOpen(false)}>
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+
+                        {/* Välikoristus */}
+                        <div>
+                          <button
+                            className="text-base font-bold text-[#17345a] mb-1 flex items-center gap-1 bg-transparent border-none cursor-pointer w-full text-left px-0"
+                            onClick={() => setExpandedSections(prev => ({ ...prev, Välikoristus: !prev.Välikoristus }))}
+                          >
+                            <span className="flex-1">Välikoristus</span>
+                            <svg className={`w-3.5 h-3.5 transition-transform ${expandedSections.Välikoristus ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M3 5l3 3 3-3" />
+                            </svg>
+                          </button>
+                          {expandedSections.Välikoristus && (
+                            <ul className="flex flex-col gap-1 pl-3">
+                              {megaMenuData.columns[0].subSections?.[1].items.map((item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link href={item.href} className={`block py-2 px-3 rounded-lg hover:bg-gray-100 ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={() => setMobileMenuOpen(false)}>
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+
+                        {/* Remonditeenused */}
+                        <div>
+                          <button
+                            className="text-base font-bold text-[#17345a] mb-1 flex items-center gap-1 bg-transparent border-none cursor-pointer w-full text-left px-0"
+                            onClick={() => setExpandedSections(prev => ({ ...prev, Remonditeenused: !prev.Remonditeenused }))}
+                          >
+                            <span className="flex-1">Remonditeenused</span>
+                            <svg className={`w-3.5 h-3.5 transition-transform ${expandedSections.Remonditeenused ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M3 5l3 3 3-3" />
+                            </svg>
+                          </button>
+                          {expandedSections.Remonditeenused && (
+                            <ul className="flex flex-col gap-1 pl-3">
+                              {megaMenuData.columns[2].items?.map((item, itemIdx) => (
+                                <li key={itemIdx}>
+                                  <Link href={item.href} className={`block py-2 px-3 rounded-lg hover:bg-gray-100 ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={() => setMobileMenuOpen(false)}>
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ) : (
@@ -347,13 +389,13 @@ export default function Navbar() {
 
             {/* CTA and contact */}
             <div className="mt-8 pt-6 border-t border-gray-100">
-              <Link 
+              <a 
                 href="#pakkumine"
                 className="block w-full text-center bg-[#17345a] text-white py-3 px-5 rounded-lg font-medium mb-4"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); setMobileMenuOpen(false); }}
               >
                 Küsi pakkumist
-              </Link>
+              </a>
               <a href="tel:6623328" className="block text-center text-[#2f353f] py-2">
                 662 3328
               </a>

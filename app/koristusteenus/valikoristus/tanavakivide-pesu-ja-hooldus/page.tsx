@@ -247,8 +247,9 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                 täitmine. Kestev tulemus.
               </p>
               <div className="flex gap-[10px] mb-[18px] animate-fade-up">
-                <Link
+                <a
                   href="#pakkumine"
+                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
                   className="btn-primary text-[15px] py-2.5 px-4"
                 >
                   Küsi tänavakivide pesu pakkumist
@@ -263,7 +264,7 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -282,39 +283,16 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                 </Link>
               </div>
 
-              {/* Trust indicators */}
-              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[15px] text-white/80 font-light mb-[24px]">
-                <span>Kõrgsurvepesurid</span>
-                <span className="text-white/40">|</span>
-                <span>Öko-vahendid</span>
-                <span className="text-white/40">|</span>
-                <span>Umbrohu eemaldus</span>
-                <span className="text-white/40">|</span>
-                <span>Vuukide hooldus</span>
-                <span className="text-white/40">|</span>
-                <span>Kestev tulemus</span>
-              </div>
-
-              <nav
-                aria-label="Breadcrumb"
-                className="flex items-center gap-2 text-white/80 text-[15px]"
-              >
-                <Link
-                  href="/"
-                  className="text-white/80 no-underline hover:text-white transition-colors"
-                >
-                  Avaleht
-                </Link>
+              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <Link
-                  href="/#teenused"
-                  className="text-white/80 no-underline hover:text-white transition-colors"
-                >
-                  Koristusteenused
-                </Link>
+                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <span className="text-white/50">/</span>
+                <a href="/koristusteenus/valikoristus" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Tänavakivide pesu ja hooldus</span>
               </nav>
+
             </div>
           </div>
         </section>
@@ -538,8 +516,9 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                   </p>
 
                   <div className="mt-6">
-                    <Link
+                    <a
                       href="#pakkumine"
+                      onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
                       className="btn-primary text-[15px] py-2.5 px-4 inline-flex items-center gap-2"
                     >
                       Küsi tänavakivide pesu pakkumist
@@ -554,7 +533,7 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
                       </svg>
-                    </Link>
+                    </a>
                   </div>
                 </div>
 

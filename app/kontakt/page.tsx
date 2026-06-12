@@ -154,11 +154,13 @@ export default function KontaktLeht() {
                     662 3328
                   </Link>
                 </div>
-                <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px]">
-                  <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
-                  <span className="text-white/50">/</span>
-                  <span className="text-white/90">Kontakt</span>
-                </nav>
+
+              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px]">
+                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <span className="text-white/50">/</span>
+                <span className="text-white/90">Kontakt</span>
+              </nav>
+
               </div>
 
               {/* Right column - floating contact chips */}

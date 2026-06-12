@@ -197,16 +197,16 @@ export default function Valikoristus() {
                 Fassaadipesu, aknapesu, graffiti eemaldamine, tänavakivide hooldus ja 24/7 lumekoristus. Teie hoone välimus loob esimese mulje. Tagame, et see oleks alati laitmatu.
               </p>
               <div className="flex gap-[10px] mb-[18px] animate-fade-up">
-                <Link
-                  href="#pakkumine"
-                  className="btn-primary text-[15px] py-2.5 px-4"
+                <a
+                  onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer"
                 >
                   Küsi välikoristuse pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -217,22 +217,10 @@ export default function Valikoristus() {
                   662 3328
                 </Link>
               </div>
-
-              {/* Trust indicators */}
-              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[15px] text-white/80 font-light mb-[24px]">
-                <span>24/7 talvine valmisolek</span>
-                <span className="text-white/40">|</span>
-                <span>Kõrgtöödeks sertifitseeritud</span>
-                <span className="text-white/40">|</span>
-                <span>Kindlustatud</span>
-                <span className="text-white/40">|</span>
-                <span>200+ objekti igakuiselt</span>
-              </div>
-
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px]">
                 <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
-                <a href="/#teenused" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenused</a>
+                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Välikoristus</span>
               </nav>
@@ -415,16 +403,16 @@ export default function Valikoristus() {
                 </p>
 
                 <div className="mt-6">
-                  <Link
-                    href="#pakkumine"
-                    className="btn-primary text-[15px] py-2.5 px-4"
+                  <a
+                    onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }}
+                    className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer"
                   >
                     Küsi välikoristuse personaalset pakkumist
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
                     </svg>
-                  </Link>
+                  </a>
                 </div>
               </div>
 

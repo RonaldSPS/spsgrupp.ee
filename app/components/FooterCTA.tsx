@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export default function FooterCTA({ title, description }: { title?: string; description?: string }) {
@@ -15,16 +17,17 @@ export default function FooterCTA({ title, description }: { title?: string; desc
         </p>
         
         <div className="flex gap-3.5 justify-center flex-wrap">
-          <Link
+          <a
             href="#pakkumine"
             className="btn-primary bg-[#85cbe9] text-[#17345a] hover:bg-[#5ab5da]"
+            onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
           >
             Küsi tasuta pakkumist
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>
-          </Link>
+          </a>
           <Link
             href="tel:6623328"
             className="btn-outline bg-transparent border border-white/25 text-white hover:bg-white/8"

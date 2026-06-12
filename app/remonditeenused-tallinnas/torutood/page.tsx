@@ -156,13 +156,13 @@ export default function TorutoodLeht() {
                 Vee-, kanalisatsiooni- ja küttesüsteemide paigaldus, hooldus ja avariiremont. Kogenud torulukksepad, kindlustatud tööd, 24h reageerimine.
               </p>
               <div className="flex flex-wrap gap-[10px] mb-[24px] animate-fade-up">
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
                   Küsi torutööde pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
                 <Link
                   href="tel:6623328"
                   className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4"
@@ -173,9 +173,7 @@ export default function TorutoodLeht() {
                   662 3328
                 </Link>
               </div>
-              <div className="text-white/70 text-[15px] font-light mb-3">
-                Kogenud torulukksepad <span className="text-white/40 mx-2">|</span> 24h avariireageerimine <span className="text-white/40 mx-2">|</span> Kindlustatud <span className="text-white/40 mx-2">|</span> Garantii <span className="text-white/40 mx-2">|</span> Dokumentatsioon
-              </div>
+
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
                 <span className="text-white/50">/</span>
@@ -183,6 +181,7 @@ export default function TorutoodLeht() {
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Torutööd</span>
               </nav>
+
             </div>
           </div>
         </section>
@@ -324,13 +323,13 @@ export default function TorutoodLeht() {
                 <p className="text-[15px] text-[#5a6474] leading-[1.7] mb-8">
                   Suuremate projektide puhul anname alati kinnishinna. Tasuta kohapealne hindamine.
                 </p>
-                <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
                   Küsi torutööde pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
                   </svg>
-                </Link>
+                </a>
               </div>
             </div>
           </section>
@@ -387,9 +386,9 @@ export default function TorutoodLeht() {
         <ScrollAnimation animation="fade-up">
           <section className="bg-white pb-[40px]">
             <div className="max-w-[1280px] mx-auto px-[5%] flex flex-wrap justify-center gap-3">
-              <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+              <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
                 Küsi pakkumist
-              </Link>
+              </a>
               <Link href="tel:6623328" className="btn-outline text-[15px] py-2.5 px-4">
                 662 3328 — 24/7
               </Link>
