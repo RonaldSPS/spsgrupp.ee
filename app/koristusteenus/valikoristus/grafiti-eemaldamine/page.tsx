@@ -11,6 +11,7 @@ import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 
 const floatingChips = [
   {
@@ -668,6 +669,20 @@ export default function GrafitiEemaldamine() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS graffiti eemaldab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Fotod ja hindamine", "Dokumenteerime ja hindame pinna."],
+            ["Meetodi valik", "Valime lahusti, surve või käsitöö."],
+            ["Eemaldus", "Eemaldame graffiti võimalikult pinnasäästlikult."],
+            ["Järelpesu", "Puhastame tööala."],
+            ["Kaitse soovitus", "Soovitame anti-graffiti kaitset riskialadele."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

@@ -11,6 +11,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -375,6 +376,20 @@ export default function EhitusjargneKoristus() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS ehitusjärgse koristuse teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Objekti info", "Täpsustame ruumid ja remondi ulatuse."],
+            ["Tööde jaotus", "Määrame jäme- ja lõppkoristuse vajaduse."],
+            ["Teostus", "Puhastame pinnad süsteemselt ülevalt alla."],
+            ["Detailid", "Eemaldame kleebised ja jäägid."],
+            ["Üleandmine", "Kontrollime valmisolekut koos tellijaga."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

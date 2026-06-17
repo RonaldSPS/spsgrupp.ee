@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const faqItems = [
   {
@@ -324,6 +325,20 @@ export default function MuruniitmineLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS muruniitmise teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ala ülevaatus", "Hindame niidetava ala ja takistused."],
+            ["Sagedus", "Lepime kokku hooajalise graafiku."],
+            ["Niitmine", "Teeme töö kokkulepitud ajal."],
+            ["Servad", "Trimmerdame vajalikud kohad."],
+            ["Järelpuhastus", "Puhastame käiguteed niitejääkidest."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

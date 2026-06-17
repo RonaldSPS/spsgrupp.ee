@@ -11,6 +11,7 @@ import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import Hinnakalkulaator from "../components/Hinnakalkulaator";
 import SeoJsonLd from "../components/SeoJsonLd";
+import Tooprotsess from "../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -426,6 +427,20 @@ export default function RemonditeenusedTallinnas() {
             </div>
           </div>
         </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS remonditeenuseid korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Vajaduse kaardistus", "Täpsustame tööde ulatuse ja prioriteedid."],
+            ["Objekti ülevaatus", "Hindame tehnilist seisu ja ligipääsu."],
+            ["Tööplaan", "Koostame ajakava ja vastutuse."],
+            ["Teostus", "Korraldame tööd kokkulepitud etappides."],
+            ["Üleandmine", "Kontrollime tulemuse ja teeme vajadusel järelkoristuse."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

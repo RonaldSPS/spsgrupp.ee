@@ -1,4 +1,5 @@
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 import OutdoorServicePage, { type OutdoorServicePageData } from "../_components/OutdoorServicePage";
 
 const data: OutdoorServicePageData = {
@@ -80,7 +81,19 @@ export default function LehtedeKoristamine() {
         ]}
         faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
-      <OutdoorServicePage data={data} />
+      <OutdoorServicePage data={data} tooprotsess={
+        <Tooprotsess
+          title="Kuidas SPS lehekoristuse korraldab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Ala hindamine", "Vaatame üle puud, teed ja kogunemiskohad."],
+            ["Töömeetod", "Valime riisumise, puhumise või tehnika."],
+            ["Kogumine", "Kogume lehed kokkulepitud kohta."],
+            ["Äravedu", "Vajadusel korraldame äraveo."],
+            ["Kordusgraafik", "Suurte puude korral lepime kokku korduva töö."],
+          ]}
+        />
+      } />
     </>
   );
 }

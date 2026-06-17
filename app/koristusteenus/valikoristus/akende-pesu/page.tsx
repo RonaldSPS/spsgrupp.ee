@@ -11,6 +11,7 @@ import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 
 const floatingChips = [
   {
@@ -564,6 +565,20 @@ export default function AkendePesu() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS aknapesu korraldab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Pindade ülevaatus", "Hindame klaaspindade mahu ja ligipääsu."],
+            ["Meetodi valik", "Valime tõstuki, teleskoopvarre või muu lahenduse."],
+            ["Tööaja kokkulepe", "Planeerime töö nii, et see ei segaks kliente ega töötajaid."],
+            ["Pesu ja kontroll", "Teeme töö ning kontrollime triipudevaba tulemust."],
+            ["Hooldusgraafik", "Soovi korral lepime kokku korduva pesurütmi."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

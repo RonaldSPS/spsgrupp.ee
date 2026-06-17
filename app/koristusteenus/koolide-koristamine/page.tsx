@@ -11,6 +11,8 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import TestimonialCards from "../../components/TestimonialCards";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const koolideFAQ = [
   {
@@ -377,7 +379,7 @@ export default function KoolideKoristamine() {
         </section>
         </ScrollAnimation>
 
-        {/* Sotsiaalne tõestus — Case study */}
+        {/* Sotsiaalne tõestus */}
         <ScrollAnimation animation="fade-up">
         <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
           <div className="max-w-[1280px] mx-auto px-[5%]">
@@ -386,41 +388,37 @@ export default function KoolideKoristamine() {
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
-                Case study
+                Klientide tagasiside
               </div>
-              <TwoToneHeading text="Tervishoiukeskne lähenemine töös" />
+              <TwoToneHeading text="Mida ütlevad meie koolikliendid" />
             </div>
 
-            <div className="max-w-[900px] mx-auto">
-              {/* Testimonial card */}
-              <div className="bg-white rounded-2xl p-10 mb-8 text-center transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                <div className="flex gap-[3px] mb-4 text-[#f59e0b] justify-center">
-                  {[...Array(5)].map((_, j) => (
-                    <span key={j} className="text-[15px]">★</span>
-                  ))}
-                </div>
-                <p className="text-[16px] leading-[1.8] text-[#2d3748] mb-6 font-light italic max-w-[700px] mx-auto">
-                  "Pidev koristuskvaliteedi jälgimine tagab ka tervislikuma õpikeskkonna ja tervemad lapsed."
-                </p>
-                <div className="flex items-center gap-3 justify-center">
-                  <div className="w-10.5 h-10.5 rounded-full bg-[#eef7fc] flex items-center justify-center text-[15px] font-bold text-[#17345a]">
-                    T
-                  </div>
-                  <div>
-                    <div className="text-[15px] font-medium text-[#17345a]">Tehnikakõrgkooli arendusprorektor Tarmo</div>
-                  </div>
-                </div>
-              </div>
+            <TestimonialCards testimonials={[
+              {
+                quote: "Soovime avaldada tunnustust koolimaja koristusega tegelevale meeskonnale väga hea töö eest. Koolimaja on olnud puhas, korras ja hooldatud ning on näha, et koristustöid tehakse järjepidevalt ja kohusetundlikult.",
+                shortQuote: "Koolimaja on olnud puhas, korras ja hooldatud. Puhtus ja korrashoid mõjutavad igapäevaselt nii õpilaste, õpetajate kui ka kogu personali heaolu.",
+                author: "Kalev", initials: "K", logo: "/arvamused-logod/kalev.png",
+              },
+              {
+                quote: "Soovin jagada positiivset tagasisidet koolimaja koristuse kohta. Koolimaja on puhas, korras ja hästi hooldatud. Puhtus ja kord loovad meeldiva õpi- ja töökeskkonna nii õpilastele kui ka personalile.",
+                shortQuote: "Koolimaja on puhas, korras ja hästi hooldatud. Puhtus ja kord loovad meeldiva õpi- ja töökeskkonna.",
+                author: "Pille", initials: "P", logo: "/arvamused-logod/pille.png",
+              },
+              {
+                quote: "Pidev koristuskvaliteedi jälgimine tagab ka tervislikuma õpikeskkonna ja tervemad lapsed.",
+                shortQuote: "Pidev koristuskvaliteedi jälgimine tagab tervislikuma õpikeskkonna ja tervemad lapsed.",
+                author: "Tehnikakõrgkooli arendusprorektor Tarmo", initials: "T",
+              },
+            ]} />
 
-              {/* Case study description */}
+            {/* Case study + video */}
+            <div className="mt-12 max-w-[900px] mx-auto">
               <div className="bg-white rounded-2xl p-10 transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
                 <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light">
                   <strong className="text-[#17345a]">Tehnikakõrgkooli lahendus:</strong> 2800 õpilasega kooli kaardistasime kriitilised alad (peakoridorid, söökla, WC-ruumid, spordisaal). Rakendasime hommikuse desinfitseerimisprotokolli ja õhtuse sügava sanitaarhoolduse. 6 nädala jooksul vähenesid haiguspäevad oluliselt.
                 </p>
               </div>
-
-              {/* Video */}
-              <div className="mt-12 w-full md:w-3/4 mx-auto">
+              <div className="mt-8 w-full md:w-3/4 mx-auto">
                 <div className="rounded-3xl overflow-hidden shadow-lg">
                   <video
                     src="/SPS-TarmoSildberg.mp4"
@@ -428,14 +426,27 @@ export default function KoolideKoristamine() {
                     poster="/TarmoHero.jpg"
                     className="w-full h-auto"
                     style={{ borderRadius: "24px" }}
-                  >
-                    {/* <track kind="captions" src="" label="Eesti" /> */}
-                  </video>
+                  />
                 </div>
               </div>
             </div>
           </div>
         </section>
+        </ScrollAnimation>
+
+        {/* Tööprotsess */}
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS koolikoristuse käivitab?"
+          intro="Haridusasutuse koristus algab päevakava, liikumisteede ja hügieeniriskide kaardistamisest."
+          steps={[
+            ["Ruumide ja päevakava ülevaatus", "Kaardistame klassid, sööklad, spordisaalid, sanitaarruumid, sissepääsud ja õppetöö ajad."],
+            ["Hügieenipunktide määramine", "Märgime pinnad ja alad, mis vajavad sagedasemat puhastust või desinfitseerimist."],
+            ["Tööplaani koostamine", "Kirjeldame hommikused, päevased, õhtused ja perioodilised tööd ning vastutuse."],
+            ["Meeskonna juhendamine", "Teenindajad saavad juhised lastega keskkonnas liikumiseks, vahendite kasutamiseks ja suhtluseks."],
+            ["Kontroll ja tagasiside", "Objektijuht jälgib tööde täitmist ja kohandab sagedust vastavalt kooli tegelikule kasutusele."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

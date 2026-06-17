@@ -11,6 +11,7 @@ import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 
 const floatingChips = [
   {
@@ -567,6 +568,20 @@ export default function Lumekoristus() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS lumekoristuse käivitab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Objekti kaardistus", "Märgime parklad, teed, trepid ja prioriteedid."],
+            ["Hooajaleping", "Lepime kokku valmisoleku ja reageerimise."],
+            ["Ilmajälgimine", "Jälgime sadu ja libedusriski."],
+            ["Tööde teostus", "Puhastame ja teeme libedusetõrje."],
+            ["Korduvad kontrollid", "Vajadusel naaseme suurte sadude ajal."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

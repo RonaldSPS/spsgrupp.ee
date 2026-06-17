@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const faqItems = [
   {
@@ -327,6 +328,20 @@ export default function LammutustoodLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS lammutustööde teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ülevaatus", "Täpsustame eemaldatavad osad."],
+            ["Kaitse", "Kaitseme alles jäävad pinnad."],
+            ["Lammutus", "Teeme töö kontrollitult."],
+            ["Äravedu", "Korraldame jäätmed ja transpordi."],
+            ["Üleandmine", "Jätame pinna järgmiseks tööks valmis."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

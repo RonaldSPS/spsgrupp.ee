@@ -11,6 +11,8 @@ import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import Hinnakalkulaator from "../components/Hinnakalkulaator";
 import SeoJsonLd from "../components/SeoJsonLd";
+import TestimonialCards from "../components/TestimonialCards";
+import Tooprotsess from "../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -344,6 +346,49 @@ export default function Puhastusteenused() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        {/* Sotsiaalne tõestus */}
+        <ScrollAnimation animation="fade-up">
+        <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+          <div className="max-w-[1280px] mx-auto px-[5%]">
+            <div className="text-center mb-14">
+              <div className="section-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Klientide tagasiside
+              </div>
+              <TwoToneHeading text="Mida ütlevad meie puhastusteenuste kliendid" />
+            </div>
+            <TestimonialCards testimonials={[
+              {
+                quote: "Soovime avaldada suurt tunnustust eritööde brigaadile väga hästi tehtud töö eest. Tööd olid läbi mõeldud, korralikult planeeritud ja professionaalselt teostatud. Kogu protsess sujus ladusalt.",
+                shortQuote: "Tööd olid läbi mõeldud, korralikult planeeritud ja professionaalselt teostatud. Kogu protsess sujus ladusalt.",
+                author: "Juta", initials: "J", logo: "/arvamused-logod/juta.png",
+              },
+              {
+                quote: "Palun edastage meie tänusõnad meeskonnale. Puhastustööd said tehtud korrektselt ja kokkulepitud mahus. Oleme tehtud puhastustööga rahul ning hindame kvaliteetset ja usaldusväärset teenust.",
+                shortQuote: "Puhastustööd said tehtud korrektselt ja kokkulepitud mahus. Oleme tehtud puhastustööga rahul.",
+                author: "Reet", initials: "R", logo: "/arvamused-logod/reet.png",
+              },
+            ]} />
+          </div>
+        </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS puhastusteenuseid korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Objekti ülevaatus", "Täpsustame pinna, mustuse ja ligipääsu."],
+            ["Meetodi valik", "Valime tehnika, vahendid ja tööde järjestuse."],
+            ["Ajakava", "Planeerime töö nii, et see segaks kasutajaid võimalikult vähe."],
+            ["Teostus", "Teeme töö kokkulepitud ulatuses."],
+            ["Üleandmine", "Kontrollime tulemuse ja lepime vajadusel kokku hooldusrütmi."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

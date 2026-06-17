@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const serviceItems = [
   "Ventilatsioonisüsteemide projekteerimine (uued ja renoveerimine)",
@@ -314,6 +315,20 @@ export default function VentilatsioonideEhitusJaHooldusLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS ventilatsioonitööde teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Probleemi kirjeldus", "Täpsustame sümptomid ja ruumi kasutuse."],
+            ["Ülevaatus", "Hindame süsteemi ja ligipääsu."],
+            ["Tööplaan", "Pakume sobiva lahenduse."],
+            ["Teostus", "Teeme hoolduse, remondi või paigalduse."],
+            ["Kontroll", "Anname soovitused edasiseks hoolduseks."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

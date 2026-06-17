@@ -11,6 +11,8 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import TestimonialCards from "../../components/TestimonialCards";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFaqItems = [
   {
@@ -374,6 +376,55 @@ export default function TootmishooneteKoristus() {
             </div>
           </div>
         </section>
+        </ScrollAnimation>
+
+        {/* Sotsiaalne tõestus */}
+        <ScrollAnimation animation="fade-up">
+        <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+          <div className="max-w-[1280px] mx-auto px-[5%]">
+            <div className="text-center mb-14">
+              <div className="section-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Klientide tagasiside
+              </div>
+              <TwoToneHeading text="Mida ütlevad meie tootmis- ja laokliendid" />
+            </div>
+            <TestimonialCards testimonials={[
+              {
+                quote: "Täname tehtud töö ja panustatud pingutuse eest. Lao ja tootmiskoristuse tööd said korrektselt tehtud, koostöö sujus hästi ning jäime lõpptulemusega rahule.",
+                shortQuote: "Lao ja tootmiskoristuse tööd said korrektselt tehtud, koostöö sujus hästi ning jäime lõpptulemusega rahule.",
+                author: "Heigar", initials: "H", logo: "/arvamused-logod/heigar.png",
+              },
+              {
+                quote: "Soovin avaldada tunnustust väga hea koristusteenuse eest. Nii ladu kui ka kontoriruumid on puhtad, korras ja hästi hooldatud. Tehtud töö kvaliteet on olnud järjepidevalt kõrgel tasemel.",
+                shortQuote: "Nii ladu kui ka kontoriruumid on puhtad, korras ja hästi hooldatud. Tehtud töö kvaliteet on olnud järjepidevalt kõrgel tasemel.",
+                author: "Katri", initials: "K", logo: "/arvamused-logod/katri.png",
+              },
+              {
+                quote: "SPS Grupp on olnud meie jaoks usaldusväärne koostööpartner. Nii tootmis-, lao- kui ka kontoriruumide korrashoid on olnud järjepidevalt kõrgel tasemel.",
+                shortQuote: "Nii tootmis-, lao- kui ka kontoriruumide korrashoid on olnud järjepidevalt kõrgel tasemel.",
+                author: "Heido", initials: "H", logo: "/arvamused-logod/heido.png",
+              },
+            ]} />
+          </div>
+        </section>
+        </ScrollAnimation>
+
+        {/* Tööprotsess */}
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS tööstushoone koristuse käivitab?"
+          intro="Tootmispinna puhul algab teenus riskide ja töövoo mõistmisest. Alles siis saab valida inimesed, seadmed ja graafiku."
+          steps={[
+            ["Tootmisrütmi kaardistus", "Selgitame välja tööajad, seisakud, ohualad, liikumisteed ja alad, kuhu ligipääs on piiratud."],
+            ["Mustuse ja pindade hindamine", "Hindame põrandakatteid, õli- või tolmukoormust, seadmete ümbrust ja vajalikke puhastusmeetodeid."],
+            ["Ohutu tööplaani koostamine", "Kirjeldame alad, sageduse, seadmed, isikukaitsevahendid ja tööohutuse nõuded."],
+            ["Meeskonna juhendamine", "Teenindajad saavad objekti eripära, liikumise, vahendite ja kliendi sisereeglite juhised."],
+            ["Kontroll ja täpsustamine", "Objektijuht hindab esimesi tulemusi ning korrigeerib sagedust või meetodit vastavalt tegelikule töömahule."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

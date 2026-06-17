@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const faqItems = [
   {
@@ -326,6 +327,20 @@ export default function SiseviimistlustoodLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS siseviimistlustööde teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ülevaatus", "Hindame pindade seisukorda."],
+            ["Tööplaan", "Lepime kokku materjalid ja etapid."],
+            ["Ettevalmistus", "Kaitseme pinnad ja parandame aluspinnad."],
+            ["Viimistlus", "Teostame kokkulepitud tööd."],
+            ["Üleandmine", "Kontrollime tulemuse ja koristame tööala."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const elektritoodFAQ = [
   {
@@ -516,6 +517,20 @@ export default function ElektritoodLeht() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS elektritööde teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Probleemi kirjeldus", "Täpsustame töö vajaduse."],
+            ["Ülevaatus", "Hindame olukorra kohapeal."],
+            ["Pakkumine", "Kirjeldame tööde ulatuse."],
+            ["Teostus", "Teeme töö kokkulepitud ajal."],
+            ["Kontroll", "Anname töö üle ja selgitame tulemust."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

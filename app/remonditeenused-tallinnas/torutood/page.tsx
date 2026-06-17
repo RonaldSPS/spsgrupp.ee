@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const torutoodFAQ = [
   {
@@ -374,6 +375,20 @@ export default function TorutoodLeht() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS torutööde teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Probleemi kirjeldus", "Täpsustame rikke või töö ulatuse."],
+            ["Kohapealne kontroll", "Hindame ligipääsu ja vajalikke materjale."],
+            ["Lahendus", "Teeme paranduse või paigalduse."],
+            ["Test", "Kontrollime toimivust."],
+            ["Järelkorraldus", "Vajadusel planeerime koristuse või taastamise."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

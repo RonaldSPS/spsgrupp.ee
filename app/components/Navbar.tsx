@@ -7,8 +7,12 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "#teenused", label: "Teenused" },
-  { href: "/tule-meile-toole", label: "Tule tööle" },
-  { href: "/sps-grupp", label: "SPS Grupp" },
+  { href: "/tule-meile-toole", label: "Tule tööle", subItems: [
+    { href: "/tule-meile-toole#pakkumised", label: "Aktiivsed tööpakkumised" },
+  ]},
+  { href: "/sps-grupp", label: "SPS Grupp", subItems: [
+    { href: "/sps-grupp/arvamused", label: "Arvamused" },
+  ]},
   { href: "/blog", label: "Blogi" },
   { href: "/kontakt", label: "Kontakt" },
 ];
@@ -87,6 +91,8 @@ export default function Navbar() {
   const isServicePage = pathname.startsWith("/koristusteenus") || pathname.startsWith("/remonditeenused-tallinnas") || pathname.startsWith("/puhastusteenused") || pathname.startsWith("/ehitusprahi-aravedu");
   const [scrolled, setScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const [tooleDropdownOpen, setTooleDropdownOpen] = useState(false);
+  const [spsDropdownOpen, setSpsDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuTimeout, setMenuTimeout] = useState<NodeJS.Timeout | null>(null);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
@@ -98,6 +104,26 @@ export default function Navbar() {
 
   const handleMouseLeave = () => {
     const timeout = setTimeout(() => setMegaMenuOpen(false), 200);
+    setMenuTimeout(timeout);
+  };
+
+  const handleTooleEnter = () => {
+    if (menuTimeout) clearTimeout(menuTimeout);
+    setTooleDropdownOpen(true);
+  };
+
+  const handleTooleLeave = () => {
+    const timeout = setTimeout(() => setTooleDropdownOpen(false), 200);
+    setMenuTimeout(timeout);
+  };
+
+  const handleSpsEnter = () => {
+    if (menuTimeout) clearTimeout(menuTimeout);
+    setSpsDropdownOpen(true);
+  };
+
+  const handleSpsLeave = () => {
+    const timeout = setTimeout(() => setSpsDropdownOpen(false), 200);
     setMenuTimeout(timeout);
   };
 
@@ -194,6 +220,34 @@ export default function Navbar() {
                       </div>
                     ))}
                   </div>
+              </div>
+            ) : "subItems" in link && link.subItems ? (
+              <div 
+                className="relative"
+                onMouseEnter={link.href === "/tule-meile-toole" ? handleTooleEnter : handleSpsEnter}
+                onMouseLeave={link.href === "/tule-meile-toole" ? handleTooleLeave : handleSpsLeave}
+              >
+                <Link
+                  href={link.href}
+                  className="text-[#17345a] no-underline text-[15px] font-medium transition-all hover:text-[#17345a] relative"
+                >
+                  {link.label}
+                </Link>
+                <div 
+                  className={`absolute left-0 top-full mt-2 bg-white rounded-xl shadow-md border border-[rgba(23,52,90,0.08)] py-2 min-w-[220px] transition-opacity duration-200 ${(link.href === "/tule-meile-toole" ? tooleDropdownOpen : spsDropdownOpen) ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+                  onMouseEnter={() => link.href === "/tule-meile-toole" ? setTooleDropdownOpen(true) : setSpsDropdownOpen(true)}
+                  onMouseLeave={() => link.href === "/tule-meile-toole" ? setTooleDropdownOpen(false) : setSpsDropdownOpen(false)}
+                >
+                  {link.subItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-5 py-2.5 text-[15px] text-[#2f353f] hover:bg-[#eef7fc] hover:text-[#17345a] transition-colors whitespace-nowrap"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             ) : (
               <Link
@@ -372,6 +426,28 @@ export default function Navbar() {
                             </ul>
                           )}
                         </div>
+                      </div>
+                    </div>
+                  ) : "subItems" in link && link.subItems ? (
+                    <div className="mb-4">
+                      <Link 
+                        href={link.href} 
+                        className="block py-3 text-lg font-medium text-[#2f353f] border-b border-gray-100"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                      <div className="pl-4 pt-1">
+                        {link.subItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className="block py-2.5 text-[15px] text-[#5a6474] hover:text-[#17345a] transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   ) : (

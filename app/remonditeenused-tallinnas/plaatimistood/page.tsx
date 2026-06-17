@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const serviceItems = [
   "Sanitaarruumide plaatimine (seinad ja põrandad)",
@@ -332,6 +333,20 @@ export default function PlaatimistoodLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS plaatimistööde teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Mõõdistus", "Hindame pinna ja materjali."],
+            ["Ettevalmistus", "Teeme aluspinna valmis."],
+            ["Paigaldus", "Paigaldame plaadid plaani järgi."],
+            ["Vuukimine", "Viimistleme vuugid ja nurgad."],
+            ["Üleandmine", "Kontrollime tulemuse ja koristame tööala."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

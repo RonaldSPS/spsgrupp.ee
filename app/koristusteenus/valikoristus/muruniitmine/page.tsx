@@ -1,4 +1,5 @@
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 import OutdoorServicePage, { type OutdoorServicePageData } from "../_components/OutdoorServicePage";
 
 const data: OutdoorServicePageData = {
@@ -80,7 +81,19 @@ export default function Muruniitmine() {
         ]}
         faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
-      <OutdoorServicePage data={data} />
+      <OutdoorServicePage data={data} tooprotsess={
+        <Tooprotsess
+          title="Kuidas SPS muruniitmise graafiku koostab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Ala ülevaatus", "Hindame niidetava ala ja takistused."],
+            ["Sageduse kokkulepe", "Lepime kokku hooajalise rütmi."],
+            ["Servatööd", "Määrame trimmerdamise ulatuse."],
+            ["Niitmine", "Teostame töö graafiku järgi."],
+            ["Järelpuhastus", "Puhastame teed ja sissepääsud murujääkidest."],
+          ]}
+        />
+      } />
     </>
   );
 }

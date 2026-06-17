@@ -11,6 +11,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -372,6 +373,20 @@ export default function PorandateHooldus() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS põrandate hoolduse teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Pinna kontroll", "Selgitame materjali ja kulumise."],
+            ["Meetodi valik", "Määrame pesu, eemaldamise ja kaitse vajaduse."],
+            ["Tööde teostus", "Teeme masinpesu ja hoolduse etappide kaupa."],
+            ["Kuivamine", "Planeerime kasutuspausi."],
+            ["Hooldusrütm", "Anname soovituse järgmise hoolduse kohta."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

@@ -10,6 +10,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -375,6 +376,20 @@ export default function Desinfitseerimine() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS desinfitseerimise teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Riskide kaardistus", "Täpsustame pinnad ja kasutuskoormuse."],
+            ["Puhastus", "Vajadusel puhastame pinna enne desinfitseerimist."],
+            ["Desinfitseerimine", "Kasutame kokkulepitud vahendeid ja meetodit."],
+            ["Mõjuaeg", "Arvestame vahendi toimimiseks vajalikku aega."],
+            ["Graafik", "Soovitame sobiva korduse vajadusel."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

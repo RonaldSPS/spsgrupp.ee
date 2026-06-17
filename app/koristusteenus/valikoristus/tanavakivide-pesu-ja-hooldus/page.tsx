@@ -11,6 +11,7 @@ import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 
 const floatingChips = [
   {
@@ -589,6 +590,20 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS tänavakivide pesu teeb?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Pinna hindamine", "Vaatame üle kivide tüübi, vuugid, umbrohu ja määrdumise."],
+            ["Meetodi valik", "Valime surve, harjad ja puhastusvahendid."],
+            ["Pesu ja umbrohutõrje", "Puhastame pinnad ja töötleme vuugid."],
+            ["Vuukide täitmine", "Vajadusel täidame vuugid uuesti."],
+            ["Kaitse soovitus", "Soovitame kaitsekihti pikema tulemuse jaoks."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

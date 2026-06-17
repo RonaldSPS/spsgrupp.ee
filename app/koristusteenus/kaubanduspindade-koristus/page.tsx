@@ -12,6 +12,8 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import TestimonialCards from "../../components/TestimonialCards";
+import Tooprotsess from "../../components/Tooprotsess";
 
 export default function KaubanduspindadeKoristus() {
   const faqItems = [
@@ -375,6 +377,55 @@ export default function KaubanduspindadeKoristus() {
             </div>
           </div>
         </section>
+        </ScrollAnimation>
+
+        {/* Sotsiaalne tõestus */}
+        <ScrollAnimation animation="fade-up">
+        <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+          <div className="max-w-[1280px] mx-auto px-[5%]">
+            <div className="text-center mb-14">
+              <div className="section-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Klientide tagasiside
+              </div>
+              <TwoToneHeading text="Mida ütlevad meie äripindade kliendid" />
+            </div>
+            <TestimonialCards testimonials={[
+              {
+                quote: "Soovin anda tunnustavat tagasisidet puhastusteenuse kohta. Kontori ja logistika ning üldpindade koristus jätavad väga hea ja korrastatud mulje. Pinnad on puhtad, ruumid korras ning on näha, et koristustöid tehakse hoolikalt.",
+                shortQuote: "Kontori ja logistika ning üldpindade koristus jätavad väga hea ja korrastatud mulje. Pinnad on puhtad, ruumid korras.",
+                author: "Mati", initials: "M", logo: "/arvamused-logod/mati.png",
+              },
+              {
+                quote: "Soovin anda positiivset tagasisidet koristusteenuse kohta. Ruumid on korras, puhtad ja hästi hoitud ning teenus toimib stabiilselt. Hindame seda, et koristuse kvaliteet on püsinud ühtlane.",
+                shortQuote: "Ruumid on korras, puhtad ja hästi hoitud ning teenus toimib stabiilselt. Koristuse kvaliteet on püsinud ühtlane.",
+                author: "Kersti", initials: "K", logo: "/arvamused-logod/kersti.png",
+              },
+              {
+                quote: "Palun edastage meie tänusõnad koristajale. Selline hoolikas ja kvaliteetne töö jääb klientidele silma ning väärib tunnustust.",
+                shortQuote: "Selline hoolikas ja kvaliteetne töö jääb klientidele silma ning väärib tunnustust.",
+                author: "Kätlin", initials: "K", logo: "/arvamused-logod/katlin.png",
+              },
+            ]} />
+          </div>
+        </section>
+        </ScrollAnimation>
+
+        {/* Tööprotsess */}
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS kaubanduspinna koristuse käivitab?"
+          intro="Alustame sellest, millal pind on kõige koormatum, millised alad on kliendile nähtavad ja millal saab teha sügavamaid töid."
+          steps={[
+            ["Külastuskoormuse hindamine", "Vaatame üle tipptunnid, sissepääsud, sanitaarruumid, klaaspinnad ja müügiala liikumisrajad."],
+            ["Päeva- ja öögraafik", "Jagame tööd nähtava päevakoristuse, sulgemisjärgse hoolduse ja perioodiliste eritööde vahel."],
+            ["Teenindusstandard", "Lepime kokku vormi, käitumise, reageerimise ja suhtluse, sest koristaja võib töötada klientide vahetus läheduses."],
+            ["Käivitamine", "Alustame graafikuga ja jälgime esimestel nädalatel, kas sagedus vastab tegelikule külastuskoormusele."],
+            ["Kvaliteedikontroll", "Objektijuht kontrollib nähtavaid alasid, tööde täitmist ja korduvate probleemide lahendamist."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

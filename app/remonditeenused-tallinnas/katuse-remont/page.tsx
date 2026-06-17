@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const serviceItems = [
   "Katuse ülevaatus ja seisukorra hindamine",
@@ -316,6 +317,20 @@ export default function KatuseRemontLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS katuse remondi teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Probleemi kirjeldus", "Täpsustame lekke või kahjustuse."],
+            ["Ülevaatus", "Hindame katuse seisukorda."],
+            ["Lahendus", "Pakume remondi ulatuse."],
+            ["Teostus", "Teeme kokkulepitud parandused."],
+            ["Soovitus", "Anname edasise hoolduse soovituse."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const serviceItems = [
   "Olemasoleva sanitaarruumi lammutus ja jäätmete äravedu",
@@ -334,6 +335,20 @@ export default function SanitaarremontJaUmberehitusLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS sanitaarremondi teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ülevaatus", "Hindame ruumi seisukorda ja tehnilist vajadust."],
+            ["Tööplaan", "Koostame etapid ja materjalid."],
+            ["Lammutus ja ettevalmistus", "Eemaldame vana lahenduse vajadusel."],
+            ["Remont", "Teeme tehnilised ja viimistlustööd."],
+            ["Üleandmine", "Kontrollime toimivust ja puhtust."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

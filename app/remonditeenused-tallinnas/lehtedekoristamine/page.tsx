@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const faqItems = [
   {
@@ -324,6 +325,20 @@ export default function LehtedekoristamineLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS lehtede koristuse teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Kinnistu ülevaatus", "Täpsustame alad ja lehemassi."],
+            ["Graafik", "Lepime kokku ühekordse või korduva koristuse."],
+            ["Koristus", "Kogume lehed kokku."],
+            ["Äravedu", "Vajadusel viime lehed ära."],
+            ["Järelkontroll", "Kontrollime sissepääsud ja käiguteed."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

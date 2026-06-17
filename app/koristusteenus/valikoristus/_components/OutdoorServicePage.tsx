@@ -10,6 +10,7 @@ import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
+import { type ReactNode } from "react";
 
 type ServiceCard = {
   bold: string;
@@ -110,7 +111,7 @@ function ReasonIcon({ index }: { index: number }) {
   return icons[index % icons.length];
 }
 
-export default function OutdoorServicePage({ data }: { data: OutdoorServicePageData }) {
+export default function OutdoorServicePage({ data, tooprotsess }: { data: OutdoorServicePageData; tooprotsess?: ReactNode }) {
   return (
     <>
       <Navbar />
@@ -292,6 +293,12 @@ export default function OutdoorServicePage({ data }: { data: OutdoorServicePageD
             </div>
           </section>
         </ScrollAnimation>
+
+        {tooprotsess && (
+        <ScrollAnimation animation="fade-up">
+          {tooprotsess}
+        </ScrollAnimation>
+        )}
 
         <ScrollAnimation animation="fade-up">
           <FooterCTA title={data.footerTitle} description={data.footerDescription} />

@@ -11,6 +11,7 @@ import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 
 const floatingChips = [
   {
@@ -573,6 +574,20 @@ export default function Fassaadipesu() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS fassaadipesu ette valmistab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Materjali hindamine", "Selgitame välja fassaadi tüübi ja seisundi."],
+            ["Mustuse hindamine", "Vaatame üle sool, samblik, saaste ja üldmäärdumine."],
+            ["Meetodi valik", "Valime surve, vahendi ja ligipääsu."],
+            ["Töö teostus", "Puhastame pinna kokkulepitud ulatuses."],
+            ["Kaitse soovitus", "Vajadusel soovitame kaitsekihti pikema tulemuse jaoks."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

@@ -12,6 +12,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -379,6 +380,20 @@ export default function VaipadePuhastus() {
           </section>
         </ScrollAnimation>
 
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS vaipade puhastuse teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ülevaatus", "Hindame vaiba tüüpi ja mustuse taset."],
+            ["Eeltöötlus", "Töötleme plekid ja käigurajad."],
+            ["Põhipuhastus", "Teeme süvapuhastuse sobiva meetodiga."],
+            ["Kuivamine", "Planeerime kasutuspausi."],
+            ["Järelkontroll", "Vaatame tulemuse üle ja anname hooldussoovituse."],
+          ]}
+        />
+        </ScrollAnimation>
 
         {/* Lõpu CTA */}
         <ScrollAnimation animation="fade-up">

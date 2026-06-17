@@ -4,10 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import Testimonials from "../../components/Testimonials";
+import TestimonialCards from "../../components/TestimonialCards";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
 import ContactForm from "../../components/ContactForm";
+import Tooprotsess from "../../components/Tooprotsess";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
@@ -362,8 +363,64 @@ export default function KontoriKoristus() {
         </section>
         </ScrollAnimation>
 
-        {/* Sotsiaalne tõestus - Using Testimonials component */}
-        <Testimonials />
+        {/* Sotsiaalne tõestus */}
+        <ScrollAnimation animation="fade-up">
+        <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+          <div className="max-w-[1280px] mx-auto px-[5%]">
+            <div className="text-center mb-14">
+              <div className="section-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                </svg>
+                Klientide tagasiside
+              </div>
+              <TwoToneHeading text="Mida ütlevad meie kontorikliendid" />
+            </div>
+            <TestimonialCards testimonials={[
+              {
+                quote: "Soovin edastada tänusõnad ja kiituse väga hea kontorikoristuse eest. Üldine tagasiside on väga positiivne, kontor on puhas, korras ja hästi hooldatud. On näha, et tööd tehakse hoolikalt ning kvaliteedile pööratakse tähelepanu.",
+                shortQuote: "Üldine tagasiside on väga positiivne, kontor on puhas, korras ja hästi hooldatud.",
+                author: "Paul", initials: "P", logo: "/arvamused-logod/paul.png",
+              },
+              {
+                quote: "Soovin edastada erakordselt positiivse tagasiside kontorikoristuse kohta. Kontor on alati väga puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel ning see on leidnud positiivset tähelepanu ka meie töötajate seas.",
+                shortQuote: "Kontor on alati väga puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel.",
+                author: "Elis", initials: "E", logo: "/arvamused-logod/elis.png",
+              },
+              {
+                quote: "Soovin jagada positiivset tagasisidet kontori koristuse kohta. Kontoriruumid on olnud puhtad ja korras ning üldine mulje on väga hea. Oleme puhastusteenuse kvaliteedi ja töö tulemusega väga rahul.",
+                shortQuote: "Kontoriruumid on olnud puhtad ja korras ning üldine mulje on väga hea.",
+                author: "Ingrid", initials: "I", logo: "/arvamused-logod/ingrid.png",
+              },
+              {
+                quote: "Puhas ja korrastatud kontor loob parema töökeskkonna nii töötajatele kui ka külastajatele. SPS Grupp on aidanud meil seda taset järjepidevalt hoida. Teenus on professionaalne, kvaliteetne ja hästi korraldatud.",
+                shortQuote: "Puhas ja korrastatud kontor loob parema töökeskkonna. SPS Grupp on aidanud meil seda taset järjepidevalt hoida.",
+                author: "Kaiti", initials: "K", logo: "/arvamused-logod/kaiti.png",
+              },
+              {
+                quote: "Suur aitäh koristajale, et ta pani eilsest üritusest jäänud mustad nõud nõudepesumasinasse. Hommikul tuli vastu puhas ja korras kööginurk. Sellised väikesed, kuid väga tähelepanelikud teod jäävad silma ning näitavad hoolivust ja professionaalset suhtumist.",
+                shortQuote: "Suur aitäh koristajale — hommikul tuli vastu puhas ja korras kööginurk. Sellised tähelepanelikud teod jäävad silma.",
+                author: "Käthlin", initials: "K", logo: "/arvamused-logod/kathlin.png",
+              },
+            ]} />
+          </div>
+        </section>
+        </ScrollAnimation>
+
+        {/* Tööprotsess */}
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS kontorikoristuse käivitab?"
+          intro="Parem teenus algab enne esimest koristuskorda. SPS kaardistab kõigepealt, kuidas teie kontor päriselt töötab, ja ehitab tööplaani selle põhjal."
+          steps={[
+            ["Objekti ülevaatus", "Vaatame üle ruumide suuruse, kasutuskoormuse, põrandatüübid, sanitaarruumid, ligipääsu ja tööajad."],
+            ["Tööplaani koostamine", "Kirjeldame alad, sageduse, igapäevased ja perioodilised tööd ning vastutava kontaktisiku."],
+            ["Meeskonna ettevalmistus", "Määrame objektile sobiva väljaõppega teenindajad, puhastusvahendid ja vajalikud seadmed."],
+            ["Teenuse käivitamine", "Alustame kokkulepitud graafiku järgi ja täpsustame esimestel nädalatel töömahtu tegeliku kasutuse põhjal."],
+            ["Kvaliteedikontroll", "Objektijuht kontrollib tulemust, kogub tagasisidet ja lahendab puudused enne, kui neist saab korduv probleem."],
+          ]}
+        />
+        </ScrollAnimation>
 
         {/* Lõpu CTA - Tellige tasuta kontorikoristuse analüüs */}
         <ScrollAnimation animation="fade-up">

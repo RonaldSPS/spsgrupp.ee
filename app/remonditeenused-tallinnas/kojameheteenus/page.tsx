@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const faqItems = [
   {
@@ -326,6 +327,20 @@ export default function KojameheteenusLeht() {
 
         <ScrollAnimation animation="fade-up">
           <FAQ items={faqItems} />
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS kojamehe teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Objekti ülevaatus", "Kaardistame väliala ja sissepääsud."],
+            ["Graafik", "Lepime kokku sageduse ja hooajatööd."],
+            ["Teostus", "Hooldame kinnistut kokkulepitud rütmis."],
+            ["Lisatööd", "Korraldame vajadusel lehed, lumi või pesu."],
+            ["Kontroll", "Anname tagasisidet probleemidest."],
+          ]}
+        />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

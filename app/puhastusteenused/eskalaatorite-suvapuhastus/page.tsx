@@ -12,6 +12,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -370,6 +371,20 @@ export default function EskalaatoriteSuvapuhastus() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS eskalaatorite süvapuhastuse teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ajakava", "Lepime kokku sobiva tööaja."],
+            ["Ettevalmistus", "Piirame tööala ja valmistame pinnad ette."],
+            ["Puhastus", "Puhastame astmed, sooned ja külgpinnad."],
+            ["Kuivatus", "Jälgime, et pind jääks kasutuskõlblik."],
+            ["Üleandmine", "Kontrollime tulemuse objektijuhiga."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

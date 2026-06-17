@@ -11,6 +11,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const floatingChips = [
   {
@@ -453,6 +454,20 @@ export default function Valikoristus() {
             </div>
           </div>
         </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS välikoristuse hooldusplaani koostab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Objekti ülevaatus", "Vaatame üle sissepääsud, parklad, fassaadid, kõnniteed ja hooajalised riskid."],
+            ["Tööde jaotus", "Eristame regulaarsed, hooajalised ja vajaduspõhised tööd."],
+            ["Graafiku kokkulepe", "Määrame sageduse ja reageerimise tingimused."],
+            ["Teenuse käivitamine", "Meeskond alustab tööplaani järgi."],
+            ["Järelkontroll", "Objektijuht jälgib tööde täitmist ja vajadusel korrigeerib graafikut."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

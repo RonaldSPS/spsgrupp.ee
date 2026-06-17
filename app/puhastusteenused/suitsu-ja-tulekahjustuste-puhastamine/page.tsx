@@ -11,6 +11,7 @@ import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -373,6 +374,20 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS suitsu- ja tulekahjustuste puhastamise teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Ülevaatus", "Hindame kahjustuse ulatust."],
+            ["Meetodi valik", "Määrame pindadele sobiva puhastusviisi."],
+            ["Testpuhastus", "Vajadusel kontrollime meetodit väiksel alal."],
+            ["Põhitöö", "Puhastame kokkulepitud pinnad."],
+            ["Soovitus", "Anname ülevaate järgmistest sammudest."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lopu CTA */}

@@ -11,6 +11,7 @@ import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import Hinnakalkulaator from "../components/Hinnakalkulaator";
 import SeoJsonLd from "../components/SeoJsonLd";
+import Tooprotsess from "../components/Tooprotsess";
 
 const customFAQ = [
   {
@@ -387,6 +388,20 @@ export default function EhitusprahiAravedu() {
               </div>
             </div>
           </section>
+        </ScrollAnimation>
+
+        <ScrollAnimation animation="fade-up">
+        <Tooprotsess
+          title="Kuidas SPS ehitusprahi äraveo teenust korraldab?"
+          intro="Selge protsess teeb teenuse tellimise lihtsamaks ja annab mõlemale poolele ühise arusaama kvaliteedist, ajakavast ja vastutusest."
+          steps={[
+            ["Info kogumine", "Täpsustame jäätmete tüübi, koguse ja asukoha."],
+            ["Ligipääsu hindamine", "Arvestame korruseid, lifti, parkimist ja kandmisteed."],
+            ["Pakkumine", "Kirjeldame tööde ulatuse ja hinna."],
+            ["Äravedu", "Korraldame kandmise ja transpordi."],
+            ["Järelkorrastus", "Vajadusel teeme koristuse pärast äravedu."],
+          ]}
+        />
         </ScrollAnimation>
 
         {/* Lõpu CTA */}

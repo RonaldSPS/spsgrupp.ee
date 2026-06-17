@@ -1,4 +1,5 @@
 import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
 import OutdoorServicePage, { type OutdoorServicePageData } from "../_components/OutdoorServicePage";
 
 const data: OutdoorServicePageData = {
@@ -80,7 +81,19 @@ export default function KojameheTeenus() {
         ]}
         faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
-      <OutdoorServicePage data={data} />
+      <OutdoorServicePage data={data} tooprotsess={
+        <Tooprotsess
+          title="Kuidas SPS kojamehe teenuse käivitab?"
+          intro="SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+          steps={[
+            ["Objekti ülevaatus", "Vaatame üle alad ja ligipääsud."],
+            ["Tööde nimekiri", "Paneme kirja igapäevased ja hooajalised tööd."],
+            ["Graafik", "Lepime kokku sageduse."],
+            ["Teenuse algus", "Meeskond alustab graafiku järgi."],
+            ["Tagasiside", "Täpsustame töömahtu vajaduse järgi."],
+          ]}
+        />
+      } />
     </>
   );
 }

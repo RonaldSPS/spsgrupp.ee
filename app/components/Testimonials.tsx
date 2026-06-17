@@ -1,26 +1,32 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import TwoToneHeading from "./TwoToneHeading";
 
 const testimonials = [
   {
     quote: "Oleme väga rahul, kuidas meil toimetab tänane koristaja SPS'ist ja loodame, et ta jätkab oma tööd sama hästi.",
+    shortQuote: "Oleme väga rahul, kuidas meil toimetab koristaja SPS'ist. Võrreldes eelmiste teenusepakkujatega nagu öö ja päev.",
     author: "Teledyne Flir",
     location: "Tallinn",
     initials: "TF",
+    logo: "/logod/teledyne.png",
   },
   {
     quote: "Tahame kiita puhastusteenindajat. Võrreldes eelmiste teenusepakkujatega nagu öö ja päev! Viisakad & positiivsed. Ning WC-s on ka nüüd alati kõik tarvikud olemas.",
+    shortQuote: "Tahame kiita puhastusteenindajat. Viisakad & positiivsed. Ning WC-s on alati kõik tarvikud olemas.",
     author: "Maiki Nautras",
     location: "General Services Specialist, AS Norma",
     initials: "M",
+    logo: "/arvamused-logod/maiki.png",
   },
   {
     quote: "Võrreldes eelmise teenusepakkujaga on SPS Grupi koristusteenus tunduvalt parem — põrandad on alati läikivad ja kontoripind hästi hoolitsetud.",
+    shortQuote: "SPS Grupi koristusteenus on tunduvalt parem — põrandad on alati läikivad ja kontoripind hästi hoolitsetud.",
     author: "Norma",
     location: "",
     initials: "N",
+    logo: "/logod/norma.png",
   },
 ];
 
@@ -40,25 +46,48 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="testimonial-card" style={{ transitionDelay: `${i * 0.1}s` }}>
+            <div
+              key={i}
+              className="bg-white rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 border border-[rgba(23,52,90,0.06)]"
+              style={{
+                boxShadow: "0 4px 24px rgba(23,52,90,0.10)",
+                transitionDelay: `${i * 0.05}s`,
+              }}
+            >
               <div className="flex gap-[3px] mb-4 text-[#f59e0b]">
                 {[...Array(5)].map((_, j) => (
                   <span key={j} className="text-[15px]">★</span>
                 ))}
               </div>
-              <p className="text-[15px] leading-[1.8] text-[#2d3748] mb-[22px] font-light italic">
-                "{t.quote}"
+              <p className="text-[15px] leading-[1.8] text-[#2d3748] mb-5 font-light italic flex-1">
+                "{t.shortQuote}"
               </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10.5 h-10.5 rounded-full bg-[#eef7fc] flex items-center justify-center text-[15px] font-bold text-[#17345a]">
-                  {t.initials}
+
+              <div className="flex justify-center mb-3">
+                <div className="h-20 flex items-center justify-center">
+                  <Image
+                    src={t.logo}
+                    alt={t.author}
+                    width={240}
+                    height={80}
+                    className="object-contain max-h-20 w-auto"
+                    style={{ maxWidth: "240px" }}
+                  />
                 </div>
-                <div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="min-w-0 text-center w-full">
                   <div className="text-[15px] font-medium text-[#17345a]">{t.author}</div>
                   <div className="text-[15px] text-[#5a6474]">{t.location}</div>
                 </div>
               </div>
-              <a href="#pakkumine" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline mt-4 transition-all hover:text-[#17345a] hover:gap-2.5" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
+
+              <a
+                href="#pakkumine"
+                className="inline-flex items-center justify-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline mt-4 pt-4 border-t border-[rgba(23,52,90,0.06)] transition-all hover:text-[#17345a] hover:gap-2.5"
+                onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+              >
                 Soovid sama tulemust? Küsi pakkumist <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -74,9 +103,7 @@ export default function Testimonials() {
               poster="/TarmoHero.jpg"
               className="w-full h-auto"
               style={{ borderRadius: "24px" }}
-            >
-              {/* <track kind="captions" src="" label="Eesti" /> */}
-            </video>
+            />
           </div>
         </div>
       </div>
