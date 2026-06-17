@@ -211,7 +211,7 @@ export default async function TooleAnnouncementPage({ params }: Props) {
                   {a.salary > 0 && (
                     <div>
                       <div className="text-[#5a6474] mb-0.5">Töötasu</div>
-                      <div className="text-[#2d9e6b] font-bold text-[18px]">alates {a.salary} {a.salaryUnit}</div>
+                      <div className="text-[#3abeff] font-bold text-[18px]">alates {a.salary} {a.salaryUnit}</div>
                       {a.salaryDetails && <div className="text-[#5a6474]">{a.salaryDetails}</div>}
                     </div>
                   )}

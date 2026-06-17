@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { promises as fs } from "fs"
 import path from "path"
 
@@ -58,7 +58,7 @@ export async function GET() {
   return NextResponse.json(data)
 }
 
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
   const body = await request.json()
   const { id, fields } = body as { id: string; fields: Partial<Announcement> }
   if (!id) return NextResponse.json({ error: "id required" }, { status: 400 })
@@ -107,9 +107,8 @@ export async function PUT(request: Request) {
   return NextResponse.json({ success: true, announcement: idx >= 0 ? data.announcements[idx] : data.announcements[data.announcements.length - 1] })
 }
 
-export async function DELETE(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const id = searchParams.get("id")
+export async function DELETE(request: NextRequest) {
+  const id = request.nextUrl.searchParams.get("id")
   if (!id) return NextResponse.json({ error: "id required" }, { status: 400 })
 
   const data = await readData()

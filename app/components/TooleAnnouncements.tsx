@@ -34,7 +34,7 @@ export default function TooleAnnouncements() {
 
   if (loading) {
     return (
-      <section id="pakkumised" className="py-[100px] bg-white">
+      <section id="pakkumised" className="py-[100px] bg-white scroll-mt-[100px]">
         <div className="max-w-[1280px] mx-auto px-[5%]">
           <h2 className="text-[clamp(26px,3.2vw,50px)] font-bold text-[#17345a] mb-2 text-center">Aktiivsed tööpakkumised</h2>
           <p className="text-[16px] text-[#5a6474] text-center mb-10">Laadin...</p>
@@ -46,7 +46,7 @@ export default function TooleAnnouncements() {
   if (announcements.length === 0) return null
 
   return (
-    <section id="pakkumised" className="py-[100px] bg-white">
+    <section id="pakkumised" className="py-[100px] bg-white scroll-mt-[100px]">
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="text-center mb-14">
           <div className="section-tag">
@@ -69,7 +69,7 @@ export default function TooleAnnouncements() {
               key={a.id}
               className="group rounded-[16px] border border-[rgba(23,52,90,0.08)] bg-white shadow-md hover:shadow-lg transition-all flex flex-col"
             >
-              <div className="p-5 flex-1">
+              <div className="p-7 flex-1">
                 <h3 className="text-[17px] font-bold text-[#17345a] mb-3 leading-snug">
                   {a.title}
                 </h3>
@@ -98,7 +98,7 @@ export default function TooleAnnouncements() {
                   )}
                 </div>
               </div>
-              <div className="p-5 pt-0">
+              <div className="p-7 pt-0">
                 <Link
                   href={`/tule-meile-toole/${a.slug}`}
                   className="inline-flex items-center gap-2 bg-[#3abeff] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#2ba8e8] transition-colors"
