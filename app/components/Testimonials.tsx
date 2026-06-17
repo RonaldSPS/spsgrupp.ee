@@ -21,12 +21,12 @@ const testimonials = [
     logo: "/arvamused-logod/maiki.png",
   },
   {
-    quote: "Võrreldes eelmise teenusepakkujaga on SPS Grupi koristusteenus tunduvalt parem — põrandad on alati läikivad ja kontoripind hästi hoolitsetud.",
-    shortQuote: "SPS Grupi koristusteenus on tunduvalt parem — põrandad on alati läikivad ja kontoripind hästi hoolitsetud.",
-    author: "Norma",
-    location: "",
-    initials: "N",
-    logo: "/logod/norma.png",
+    quote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on alati puhtad ja esinduslikud.",
+    shortQuote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on alati puhtad ja esinduslikud.",
+    author: "Ericsson",
+    location: "Tallinn",
+    initials: "ER",
+    logo: "/logod/ericsson.png",
   },
 ];
 

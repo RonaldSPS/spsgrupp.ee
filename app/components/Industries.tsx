@@ -1,61 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import TwoToneHeading from "./TwoToneHeading";
-
-// Fallback gradients in case images don't load
-const fallbackGradients = [
-  "linear-gradient(135deg, #1e4a7a 0%, #17345a 50%, #0f1f33 100%)",
-  "linear-gradient(135deg, #2d5a87 0%, #1e3d5c 50%, #0f2533 100%)",
-  "linear-gradient(135deg, #3d6a87 0%, #2a4a5c 50%, #1a2a33 100%)",
-  "linear-gradient(135deg, #4a7a87 0%, #335a5c 50%, #1f3333 100%)",
-  "linear-gradient(135deg, #5a8a87 0%, #3d5a5c 50%, #253333 100%)",
-  "linear-gradient(135deg, #6a9a87 0%, #4d5a4c 50%, #2b332b 100%)",
-];
 
 const industries = [
   {
     title: "Kontorid ja äripinnad",
-    subtitle: "500+ ettevõtet",
+    subtitle: "Igapäevane töörahu",
     badge: "Kontorihooldus",
-    text: "Regulaarne ja usaldusväärne kontori koristus kõikidele ettevõtetele. Paindlik graafik ja kvaliteedikontroll.",
+    text: "Kontoris peab puhtus olema märkamatu osa tööpäevast. SPS seab graafiku nii, et lauad, köögid, koosolekuruumid ja sanitaarruumid püsivad korras ilma pideva meeldetuletamiseta.",
     image: "/images/industries/kontorid-1600x920.webp",
   },
   {
-    title: "Kaubanduskeskused",
-    subtitle: "15+ keskust",
-    badge: "Kaubanduspinna hooldus",
-    text: "Kõrge külastatavusega pindade hooldus. Öine teenus ja kiire reageerimine.",
+    title: "Kaubanduspinnad",
+    subtitle: "Esinduslik kliendiala",
+    badge: "Kaubandus",
+    text: "Kaubanduspinnal muutub mustus kiiresti nähtavaks. Seetõttu vaatame koos läbi sissepääsud, põrandad, klaaspinnad, sanitaarruumid ja tööde ajastuse.",
     image: "/images/industries/kaubanduskeskused-1600x920.webp",
   },
   {
-    title: "Tootmis- ja laopinnad",
-    subtitle: "100 000+ m²",
-    badge: "Tööstuspinna hooldus",
-    text: "Spetsialne teenus tööstus- ja laopindadele. Väga tõhusus ja OHES vastavus.",
-    image: "/images/industries/kontorid-1600x920.webp", // placeholder
+    title: "Tootmis- ja laohooned",
+    subtitle: "Tööohutus ja kord",
+    badge: "Tööstuspinnad",
+    text: "Tootmishoones ei piisa kodusest loogikast. SPS arvestab masinate, tolmu, liikumisteede, ladude ja eri tsoonidega, et koristus toetaks töökorraldust.",
+    image: "/tootmishoonete-koristus.jpg",
   },
   {
     title: "Hotellid ja restoranid",
-    subtitle: "50+ asutust",
-    badge: "Hotelliteenindus",
-    text: "24/7 teenus ja kõrged sanitaarnõuded. Sertifitseeritud personal.",
+    subtitle: "Kõrge ootusega külalised",
+    badge: "Teenindus",
+    text: "Külaline hindab puhtust hetkega. Hooldus peab olema täpne, diskreetne ja ajastatud nii, et teenindus ei katkeks.",
     image: "/images/industries/hotellid-1600x920.webp",
   },
   {
-    title: "Tervishoiuasutused",
-    subtitle: "20+ kliinikat",
-    badge: "Meditsiiniline puhastus",
-    text: "Meditsiinilise taseme desinfitseerimine ja steriliseerimine.",
-    image: "/images/industries/kontorid-1600x920.webp", // placeholder
+    title: "Tervishoiu- ja hooldusasutused",
+    subtitle: "Hügieen on usaldus",
+    badge: "Desinfitseerimine",
+    text: "Tundlikes ruumides on oluline meetod, sagedus ja dokumenteeritud vastutus. SPS aitab luua rütmi, mis toetab töötajate ja külastajate turvatunnet.",
+    image: "/desinfitseerimine-1.jpg",
   },
   {
-    title: "Haridusasutused",
-    subtitle: "30+ kooli",
-    badge: "Kooliteenindus",
-    text: "Turvaline ja lastesõbralik puhastusteenus. Öised graafikud.",
-    image: "/images/industries/kontorid-1600x920.webp", // placeholder
+    title: "Koolid ja lasteaiad",
+    subtitle: "Palju liikumist iga päev",
+    badge: "Haridusasutused",
+    text: "Haridusasutuses muutub päevane koormus kiiresti. SPS vaatab eraldi klassid, rühmaruumid, saalid, garderoobid ja sanitaarruumid, et hooldus oleks realistlik.",
+    image: "/koolide-koristamine4.jpg",
   },
 ];
 
@@ -73,7 +63,6 @@ export default function Industries() {
     }
   };
 
-  // Auto-advance slider every 3000ms
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isAnimating) {
@@ -82,7 +71,7 @@ export default function Industries() {
         setIsAnimating(true);
         setTimeout(() => setIsAnimating(false), 400);
       }
-    }, 3000);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, [isAnimating, active]);
@@ -90,27 +79,24 @@ export default function Industries() {
   return (
     <section className="industries-section py-[100px] bg-white" id="valdkonnad">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        <div className="text-center mb-14">
-          <div className="section-tag">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-            </svg>
-            Valdkonnad
+        <div className="grid grid-cols-1 lg:grid-cols-[0.72fr_1.28fr] gap-12 items-end mb-12">
+          <div>
+            <div className="section-tag">Valdkonnad</div>
+            <TwoToneHeading text="Valdkonnad, mida teenindame" />
           </div>
-          <TwoToneHeading text="Valdkonnad, mida teenindame" />
-          <p className="section-intro mx-auto mt-0">
-            Teenindame laias valikus tööstus- ja ärihooneid koos kvaliteedikontrolliga.
+          <p className="text-[17px] text-[#2f353f] leading-[1.8] font-light lg:pb-2">
+            Igal pinnal on oma rütm. Kontoris on oluline diskreetsus, kaubanduses kiirus, tootmises tööohutus ja koolis päevane koormus. SPSi väärtus on see, et sama meeskond suudab tööplaani kohandada ruumi järgi.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {/* Sidebar buttons */}
-          <div className="flex flex-col gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6">
+          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
             {industries.map((ind, i) => (
               <button
-                key={i}
+                key={ind.title}
+                type="button"
                 onClick={() => handleSetActive(i)}
-                className={`industry-btn ${active === i ? "active" : ""}`}
+                className={`industry-btn min-w-[240px] md:min-w-0 ${active === i ? "active" : ""}`}
               >
                 <span className="industry-btn-title">{ind.title}</span>
                 <span className="industry-btn-sub">{ind.subtitle}</span>
@@ -118,9 +104,7 @@ export default function Industries() {
             ))}
           </div>
 
-          {/* Content card - slider with overlay effect */}
-          <div className="col-span-1 md:col-span-3 relative rounded-[20px] overflow-hidden h-[400px] md:h-[460px]">
-            {/* Previous image (stays in place) */}
+          <div className="relative rounded-[8px] overflow-hidden min-h-[470px] bg-[#17345a]">
             <div className="absolute inset-0">
               <Image
                 src={industries[prevActive].image}
@@ -128,35 +112,32 @@ export default function Industries() {
                 fill
                 sizes="(max-width: 768px) 100vw, 75vw"
                 className="object-cover"
-                priority
                 style={{ color: "#2d3748" }}
               />
             </div>
-            
-            {/* New image slides over */}
-            <div
-              key={active}
-              className={`absolute inset-0 ${isAnimating ? 'animate-slide-over' : ''}`}
-            >
+
+            <div key={active} className={`absolute inset-0 ${isAnimating ? "animate-slide-over" : ""}`}>
               <Image
                 src={industries[active].image}
                 alt={industries[active].title}
                 fill
                 sizes="(max-width: 768px) 100vw, 75vw"
                 className="object-cover"
-                priority
                 style={{ color: "#2d3748" }}
               />
             </div>
-            
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <span className="inline-block bg-white/20 backdrop-blur-[8px] px-3.5 py-1.5 rounded-full text-[15px] font-semibold text-white mb-3">
+
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0f1f33]/88 via-[#0f1f33]/22 to-transparent pointer-events-none" />
+            <div className="absolute left-0 right-0 bottom-0 p-6 md:p-9">
+              <span className="inline-flex bg-white/18 backdrop-blur-[8px] px-3.5 py-1.5 rounded-full text-[15px] font-semibold text-white mb-4">
                 {industries[active].badge}
               </span>
-              <h3 className="text-[28px] font-bold text-white mb-2">{industries[active].title}</h3>
-              <p className="text-[15px] text-white/80 leading-[1.6] max-w-[400px]">{industries[active].text}</p>
+              <h3 className="text-[30px] md:text-[38px] leading-[1.12] font-bold text-white mb-4">
+                {industries[active].title}
+              </h3>
+              <p className="text-[17px] text-white/88 leading-[1.7] max-w-[620px]">
+                {industries[active].text}
+              </p>
             </div>
           </div>
         </div>

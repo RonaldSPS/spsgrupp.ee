@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import FooterCTA from "../../components/FooterCTA"
 import type { Metadata } from "next"
-import { blogPosts, getPostBySlug, getRelatedPosts } from "../data"
+import { blogPosts, getPostBySlugWithEdits, getRelatedPosts } from "../data"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlugWithEdits(slug)
   if (!post) return {}
   return {
     title: post.title + " | SPS Grupp Blogi",
@@ -40,7 +40,7 @@ function formatDate(d: string) {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlugWithEdits(slug)
   if (!post) notFound()
 
   const related = getRelatedPosts(post)

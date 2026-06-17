@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import FooterCTA from "../components/FooterCTA"
 import type { Metadata } from "next"
-import { blogPosts } from "./data"
+import { getBlogPostsWithEdits } from "./data"
 
 export const metadata: Metadata = {
   title: "Blogi | SPS Grupp",
@@ -16,7 +16,8 @@ function formatDate(d: string) {
   return new Date(d).toLocaleDateString("et-EE", { year: "numeric", month: "long", day: "numeric" })
 }
 
-export default function BlogArchive() {
+export default async function BlogArchive() {
+  const blogPosts = await getBlogPostsWithEdits()
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

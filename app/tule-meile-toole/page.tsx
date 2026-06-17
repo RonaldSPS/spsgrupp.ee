@@ -8,6 +8,7 @@ import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import CareerForm from "../components/CareerForm";
 import SeoJsonLd from "../components/SeoJsonLd";
+import TooleAnnouncements from "../components/TooleAnnouncements";
 
 export default function TuleMeileToolePage() {
   return (
@@ -229,6 +230,9 @@ export default function TuleMeileToolePage() {
             </div>
           </section>
         </ScrollAnimation>
+
+        {/* Active Job Announcements */}
+        <TooleAnnouncements />
 
         {/* Career Form */}
         <ScrollAnimation animation="fade-up">

@@ -312,6 +312,7 @@ export default function ArvamusedPage() {
         <section
           className="hero-section min-h-[50vh] max-h-[550px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           aria-label="Arvamused"
+          style={{ background: "url('/images/arvamused.jpg') center/cover no-repeat" }}
         >
           <div className="grid grid-cols-1 gap-[30px] items-start max-w-[1280px] mx-auto w-full relative z-10">
             <div
@@ -331,7 +332,7 @@ export default function ArvamusedPage() {
                 <span className="text-[#3abeff]">arvamused ja tagasiside</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] font-light">
-                {totalCount} klienti jagavad oma kogemust SPS Grupi koristusteenustega. Meie klientide rahulolu on parim tunnustus.
+                Meie klientide rahulolu on parim tunnustus.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
@@ -353,29 +354,6 @@ export default function ArvamusedPage() {
             </div>
           </div>
         </section>
-
-        {/* Summary stats */}
-        <ScrollAnimation animation="fade-up">
-          <section className="py-[80px] bg-[#eceef1]">
-            <div className="max-w-[1280px] mx-auto px-[5%]">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto text-center">
-                {[
-                  { number: String(totalCount), label: "kliendi arvamust" },
-                  { number: String(categories.length), label: "teenuse kategooriat" },
-                  { number: "20+", label: "aastat kogemust" },
-                ].map((stat, i) => (
-                  <div
-                    key={i}
-                    className="bg-white rounded-2xl p-8 transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
-                  >
-                    <div className="text-[clamp(32px,4vw,48px)] font-bold text-[#17345a] mb-2">{stat.number}</div>
-                    <div className="text-[15px] text-[#5a6474]">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </ScrollAnimation>
 
         {/* Testimonials by category */}
         <ScrollAnimation animation="fade-up">

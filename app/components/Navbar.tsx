@@ -99,6 +99,8 @@ export default function Navbar() {
 
   const handleMouseEnter = () => {
     if (menuTimeout) clearTimeout(menuTimeout);
+    setTooleDropdownOpen(false);
+    setSpsDropdownOpen(false);
     setMegaMenuOpen(true);
   };
 
@@ -109,6 +111,8 @@ export default function Navbar() {
 
   const handleTooleEnter = () => {
     if (menuTimeout) clearTimeout(menuTimeout);
+    setMegaMenuOpen(false);
+    setSpsDropdownOpen(false);
     setTooleDropdownOpen(true);
   };
 
@@ -119,6 +123,8 @@ export default function Navbar() {
 
   const handleSpsEnter = () => {
     if (menuTimeout) clearTimeout(menuTimeout);
+    setMegaMenuOpen(false);
+    setTooleDropdownOpen(false);
     setSpsDropdownOpen(true);
   };
 
