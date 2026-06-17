@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 
 interface Announcement {
@@ -16,6 +17,7 @@ interface Announcement {
 }
 
 export default function AdminTooleList() {
+  const router = useRouter()
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
   const [loading, setLoading] = useState(true)
 
@@ -52,7 +54,7 @@ export default function AdminTooleList() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, fields: { title: "Uus tööpakkumine", active: true, slug: "uus-toopakkumine-" + Date.now() } }),
     })
-    fetchData()
+    router.push(`/spsadmn/toole/${id}`)
   }
 
   return (
