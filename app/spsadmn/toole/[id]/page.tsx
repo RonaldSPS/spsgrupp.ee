@@ -131,7 +131,38 @@ export default function AdminTooleEdit() {
         if (found) {
           setForm(found)
         } else {
-          router.push("/spsadmn/toole")
+          const idSlug = "uus-toopakkumine-" + Date.now()
+          const newAnnouncement: Announcement = {
+            id,
+            title: "",
+            subtitle: "",
+            publishedDate: new Date().toISOString().split("T")[0],
+            offerNumber: "",
+            company: "SP Service OÜ",
+            registryCode: "11312978",
+            website: "https://spsgrupp.ee/",
+            companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele. SP Service OÜ kuulub SPS Grupp OÜ alla.",
+            tasks: "",
+            requirements: "",
+            benefits: "",
+            location: "",
+            vacancies: 1,
+            salary: 0,
+            salaryUnit: "EUR",
+            salaryDetails: "",
+            workTime: "",
+            workTimeDetails: "",
+            contractType: "",
+            startDate: "",
+            applicationDeadline: "",
+            contactName: "Jelena Smirnov",
+            contactRole: "Personalispetsialist",
+            contactPhone: "+372 662 3328",
+            contactEmail: "personal@spsgrupp.ee",
+            active: true,
+            slug: idSlug,
+          }
+          setForm(newAnnouncement)
         }
       })
       .finally(() => setLoading(false))

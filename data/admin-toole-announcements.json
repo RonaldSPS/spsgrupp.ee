@@ -179,6 +179,36 @@
       "contactEmail": "personal@spsgrupp.ee",
       "active": true,
       "slug": "uus-toopakkumine-1781706709943"
+    },
+    {
+      "id": "toole-1781707126185",
+      "title": "Uus tööpakkumine",
+      "subtitle": "",
+      "publishedDate": "2026-06-17",
+      "offerNumber": "",
+      "company": "SP Service OÜ",
+      "registryCode": "11312978",
+      "website": "https://spsgrupp.ee/",
+      "companyDescription": "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele. SP Service OÜ kuulub SPS Grupp OÜ alla.",
+      "tasks": "",
+      "requirements": "",
+      "benefits": "",
+      "location": "",
+      "vacancies": 1,
+      "salary": 0,
+      "salaryUnit": "EUR",
+      "salaryDetails": "",
+      "workTime": "",
+      "workTimeDetails": "",
+      "contractType": "",
+      "startDate": "",
+      "applicationDeadline": "",
+      "contactName": "Jelena Smirnov",
+      "contactRole": "Personalispetsialist",
+      "contactPhone": "+372 662 3328",
+      "contactEmail": "personal@spsgrupp.ee",
+      "active": true,
+      "slug": "uus-toopakkumine-1781707126185"
     }
   ]
 }

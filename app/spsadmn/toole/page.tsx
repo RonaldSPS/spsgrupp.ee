@@ -47,13 +47,8 @@ export default function AdminTooleList() {
     fetchData()
   }
 
-  const createNew = async () => {
+  const createNew = () => {
     const id = "toole-" + Date.now()
-    await fetch("/api/spsadmn/toole", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, fields: { title: "Uus tööpakkumine", active: true, slug: "uus-toopakkumine-" + Date.now() } }),
-    })
     router.push(`/spsadmn/toole/${id}`)
   }
 
