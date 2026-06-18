@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/blog/8-kusimust-enne-koristuslepingu-solmimist",
+        destination: "/blog/kaheksa-kusimust-enne-koristuslepingu-solmimist",
+        permanent: true,
+      },
+      {
         source: "/valikoristus/lumekoristus",
         destination: "/koristusteenus/valikoristus/lumekoristus",
         permanent: true,
