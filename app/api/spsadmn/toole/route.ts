@@ -30,6 +30,7 @@ interface Announcement {
   contactName: string
   contactRole: string
   contactPhone: string
+  contactPhone2: string
   contactEmail: string
   active: boolean
   slug: string
@@ -78,10 +79,10 @@ export async function PUT(request: NextRequest) {
       company: "SP Service OÜ",
       registryCode: "11312978",
       website: "https://spsgrupp.ee/",
-      companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele. SP Service OÜ kuulub SPS Grupp OÜ alla.",
+      companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele.",
       tasks: "",
-      requirements: "",
-      benefits: "",
+      requirements: "<ul><li>Korrektsus ja kohusetundlikkus</li><li>Hea füüsiline vorm ja tervis</li><li>Valmisolek töötada graafiku alusel</li><li>Ausus ja usaldusväärsus</li><li>Iseseisvus ja omaalgatusvõime</li><li>Eesti keele oskus suhtlustasandil</li></ul>",
+      benefits: "<p><strong>Pakume Sulle:</strong></p><ul><li>Väljaõpet ja täiendkoolitusi</li><li>Õigeaegset töötasu</li><li>Kaasaegseid ja ergonoomilisi töövahendeid</li><li>Tunnustust pikaajalise panuse eest</li><li>Rahalist toetust erijuhtudel</li><li>Sotsiaalset kaitset ja kindlustunnet</li><li>Tervisekontrolli vastavalt töö iseloomule</li><li>Mugavaid ja kvaliteetseid tööriideid</li></ul>",
       location: "",
       vacancies: 1,
       salary: 0,
@@ -91,10 +92,11 @@ export async function PUT(request: NextRequest) {
       workTimeDetails: "",
       contractType: "",
       startDate: "",
-      applicationDeadline: "",
+      applicationDeadline: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split("T")[0],
       contactName: "Jelena Smirnov",
       contactRole: "Personalispetsialist",
-      contactPhone: "+372 662 3328",
+      contactPhone: "56 820 520",
+      contactPhone2: "6623 328",
       contactEmail: "personal@spsgrupp.ee",
       active: true,
       slug: "",

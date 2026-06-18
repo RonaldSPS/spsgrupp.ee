@@ -30,6 +30,7 @@ interface Announcement {
   contactName: string
   contactRole: string
   contactPhone: string
+  contactPhone2: string
   contactEmail: string
   active: boolean
   slug: string
@@ -132,6 +133,8 @@ export default function AdminTooleEdit() {
           setForm(found)
         } else {
           const idSlug = "uus-toopakkumine-" + Date.now()
+          const oneMonthLater = new Date()
+          oneMonthLater.setMonth(oneMonthLater.getMonth() + 1)
           const newAnnouncement: Announcement = {
             id,
             title: "",
@@ -141,10 +144,10 @@ export default function AdminTooleEdit() {
             company: "SP Service OÜ",
             registryCode: "11312978",
             website: "https://spsgrupp.ee/",
-            companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele. SP Service OÜ kuulub SPS Grupp OÜ alla.",
+            companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele.",
             tasks: "",
-            requirements: "",
-            benefits: "",
+            requirements: "<ul><li>Korrektsus ja kohusetundlikkus</li><li>Hea füüsiline vorm ja tervis</li><li>Valmisolek töötada graafiku alusel</li><li>Ausus ja usaldusväärsus</li><li>Iseseisvus ja omaalgatusvõime</li><li>Eesti keele oskus suhtlustasandil</li></ul>",
+            benefits: "<p><strong>Pakume Sulle:</strong></p><ul><li>Väljaõpet ja täiendkoolitusi</li><li>Õigeaegset töötasu</li><li>Kaasaegseid ja ergonoomilisi töövahendeid</li><li>Tunnustust pikaajalise panuse eest</li><li>Rahalist toetust erijuhtudel</li><li>Sotsiaalset kaitset ja kindlustunnet</li><li>Tervisekontrolli vastavalt töö iseloomule</li><li>Mugavaid ja kvaliteetseid tööriideid</li></ul>",
             location: "",
             vacancies: 1,
             salary: 0,
@@ -154,10 +157,11 @@ export default function AdminTooleEdit() {
             workTimeDetails: "",
             contractType: "",
             startDate: "",
-            applicationDeadline: "",
+            applicationDeadline: oneMonthLater.toISOString().split("T")[0],
             contactName: "Jelena Smirnov",
             contactRole: "Personalispetsialist",
-            contactPhone: "+372 662 3328",
+            contactPhone: "56 820 520",
+            contactPhone2: "6623 328",
             contactEmail: "personal@spsgrupp.ee",
             active: true,
             slug: idSlug,
@@ -202,6 +206,53 @@ export default function AdminTooleEdit() {
             rows={rows}
             className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] resize-y"
           />
+        </div>
+      )
+    }
+    if (field === "applicationDeadline" || field === "startDate") {
+      return (
+        <div>
+          <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+          <input
+            type="date"
+            value={String(form[field] ?? "")}
+            onChange={(e) => updateField(field, e.target.value)}
+            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
+          />
+        </div>
+      )
+    }
+    if (field === "location") {
+      const districts = ["Lasnamäe", "Mustamäe", "Kesklinn", "Õismäe", "Kristiine", "Pirita", "Nõmme", "Haabersti", "Põhja-Tallinn", "Tallinn", "Maardu", "Rae vald"]
+      const currentValue = String(form[field] ?? "")
+      const showCustom = currentValue !== "" && !districts.includes(currentValue)
+      return (
+        <div>
+          <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+          <select
+            value={showCustom ? "__custom__" : (districts.includes(currentValue) ? currentValue : "")}
+            onChange={(e) => {
+              if (e.target.value === "__custom__") {
+                updateField(field, " ")
+              } else {
+                updateField(field, e.target.value)
+              }
+            }}
+            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] bg-white"
+          >
+            <option value="">Vali asukoht...</option>
+            {districts.map((d) => <option key={d} value={d}>{d}</option>)}
+            <option value="__custom__">Muu (kirjuta ise)...</option>
+          </select>
+          {showCustom && (
+            <input
+              type="text"
+              value={currentValue}
+              onChange={(e) => updateField(field, e.target.value)}
+              placeholder="Kirjuta asukoht..."
+              className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] mt-2"
+            />
+          )}
         </div>
       )
     }
@@ -271,13 +322,6 @@ export default function AdminTooleEdit() {
             <Field label="Avaldamiskuupäev" field="publishedDate" />
             <Field label="Pakkumise number" field="offerNumber" />
             <Field label="Aktiivne (näidatakse lehel)" field="active" />
-          </div>
-
-          <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5 space-y-4">
-            <h2 className="text-[18px] font-bold text-[#17345a]">Ettevõtte info</h2>
-            <Field label="Ettevõte" field="company" />
-            <Field label="Registrikood" field="registryCode" />
-            <Field label="Koduleht" field="website" />
             <Field type="textarea" rows={4} label="Ettevõtte kirjeldus" field="companyDescription" />
           </div>
 
@@ -286,7 +330,8 @@ export default function AdminTooleEdit() {
             <Field label="Kandideerimise tähtaeg" field="applicationDeadline" />
             <Field label="Kontaktisik" field="contactName" />
             <Field label="Kontaktisiku roll" field="contactRole" />
-            <Field label="Telefon" field="contactPhone" />
+            <Field label="Telefon (Jelena)" field="contactPhone" />
+            <Field label="Telefon (üldnumber)" field="contactPhone2" />
             <Field label="E-post" field="contactEmail" />
           </div>
         </div>
@@ -303,7 +348,6 @@ export default function AdminTooleEdit() {
             <Field label="Palga täpsustus" field="salaryDetails" />
             <Field label="Tööaeg" field="workTime" />
             <Field label="Tööaja täpsustus" field="workTimeDetails" />
-            <Field label="Lepingu kestus" field="contractType" />
             <Field label="Tööle asumise aeg" field="startDate" />
           </div>
 

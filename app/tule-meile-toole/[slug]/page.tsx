@@ -33,6 +33,7 @@ interface Announcement {
   contactName: string
   contactRole: string
   contactPhone: string
+  contactPhone2: string
   contactEmail: string
   active: boolean
   slug: string
@@ -165,6 +166,9 @@ export default async function TooleAnnouncementPage({ params }: Props) {
                     <p>
                       <strong>Telefon:</strong>{" "}
                       <a href={`tel:${a.contactPhone.replace(/\s/g, "")}`} className="text-[#17345a] font-medium">{a.contactPhone}</a>
+                      {a.contactPhone2 && (
+                        <>, <a href={`tel:${a.contactPhone2.replace(/\s/g, "")}`} className="text-[#17345a] font-medium">{a.contactPhone2}</a></>
+                      )}
                     </p>
                   )}
                   {a.contactEmail && (
@@ -225,12 +229,6 @@ export default async function TooleAnnouncementPage({ params }: Props) {
                     <div>
                       <div className="text-[#5a6474] mb-0.5">Tööaja täpsustus</div>
                       <div className="text-[#17345a]">{a.workTimeDetails}</div>
-                    </div>
-                  )}
-                  {a.contractType && (
-                    <div>
-                      <div className="text-[#5a6474] mb-0.5">Lepingu kestus</div>
-                      <div className="text-[#17345a] font-medium">{a.contractType}</div>
                     </div>
                   )}
                   {a.startDate && (
