@@ -24,7 +24,6 @@ interface Announcement {
   salaryDetails: string
   workTime: string
   workTimeDetails: string
-  contractType: string
   startDate: string
   applicationDeadline: string
   contactName: string
@@ -68,7 +67,9 @@ export async function PUT(request: NextRequest) {
   const idx = data.announcements.findIndex((a: Announcement) => a.id === id)
 
   if (idx >= 0) {
-    data.announcements[idx] = { ...data.announcements[idx], ...fields }
+    const updated = { ...data.announcements[idx], ...fields }
+    data.announcements.splice(idx, 1)
+    data.announcements.unshift(updated)
   } else {
     const newAnnouncement: Announcement = {
       id,
@@ -90,7 +91,6 @@ export async function PUT(request: NextRequest) {
       salaryDetails: "",
       workTime: "",
       workTimeDetails: "",
-      contractType: "",
       startDate: "",
       applicationDeadline: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split("T")[0],
       contactName: "Jelena Smirnov",
@@ -102,7 +102,7 @@ export async function PUT(request: NextRequest) {
       slug: "",
       ...fields,
     }
-    data.announcements.push(newAnnouncement)
+    data.announcements.unshift(newAnnouncement)
   }
 
   await writeData(data)

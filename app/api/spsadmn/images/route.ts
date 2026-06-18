@@ -3,6 +3,8 @@ import { promises as fs } from "fs"
 import path from "path"
 import sharp from "sharp"
 
+export const runtime = "nodejs"
+
 const PUBLIC_DIR = path.join(process.cwd(), "public")
 const ALLOWED_EXT = new Set([".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg", ".bmp", ".ico"])
 const UPLOAD_DIR = path.join(PUBLIC_DIR, "uploads")
@@ -79,13 +81,26 @@ export async function POST(request: Request) {
     })
   }
 
+  const MAX_WIDTH = 1920
+  const MAX_HEIGHT = 1920
+  const MAX_FILE_SIZE = 50 * 1024 * 1024
+
+  if (buffer.length > MAX_FILE_SIZE) {
+    return NextResponse.json({ error: "File too large, max 50MB" }, { status: 400 })
+  }
+
   const image = sharp(buffer)
   const metadata = await image.metadata()
 
-  const MAX_WIDTH = 1920
   let pipeline = image
-  if (metadata.width && metadata.width > MAX_WIDTH) {
-    pipeline = pipeline.resize({ width: MAX_WIDTH, withoutEnlargement: true })
+  const needsResize = (metadata.width && metadata.width > MAX_WIDTH) || (metadata.height && metadata.height > MAX_HEIGHT)
+  if (needsResize) {
+    pipeline = pipeline.resize({
+      width: MAX_WIDTH,
+      height: MAX_HEIGHT,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
   }
 
   const fileName = `${timestamp}_${baseName}.webp`

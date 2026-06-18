@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
@@ -16,10 +16,32 @@ interface Announcement {
   slug: string
 }
 
+function formatDate(dateStr: string): string {
+  const months = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni", "juuli", "august", "september", "oktoober", "november", "detsember"]
+  const d = new Date(dateStr)
+  return `${String(d.getDate()).padStart(2, "0")}. ${months[d.getMonth()]} ${d.getFullYear()}`
+}
+
 export default function AdminTooleList() {
   const router = useRouter()
   const [announcements, setAnnouncements] = useState<Announcement[]>([])
   const [loading, setLoading] = useState(true)
+  const [locationFilter, setLocationFilter] = useState("")
+  const [sortDir, setSortDir] = useState<"desc" | "asc">("desc")
+
+  const districts = ["Lasnamäe", "Mustamäe", "Kesklinn", "Õismäe", "Kristiine", "Pirita", "Nõmme", "Haabersti", "Põhja-Tallinn", "Tallinn", "Maardu", "Rae vald"]
+
+  const sorted = useMemo(() => {
+    let arr = [...announcements]
+    if (locationFilter) {
+      arr = arr.filter((a) => a.location === locationFilter)
+    }
+    arr.sort((a, b) => {
+      const cmp = a.publishedDate.localeCompare(b.publishedDate)
+      return sortDir === "desc" ? -cmp : cmp
+    })
+    return arr
+  }, [announcements, locationFilter, sortDir])
 
   const fetchData = () => {
     fetch("/api/spsadmn/toole")
@@ -57,7 +79,28 @@ export default function AdminTooleList() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-[32px] font-bold text-[#17345a] mb-2">Tööpakkumised</h1>
-          <p className="text-[15px] text-[#5a6474]">Halda Tule tööle lehe kuulutusi</p>
+          <div className="flex items-center gap-3">
+            <p className="text-[15px] text-[#5a6474]">Halda Tule tööle lehe kuulutusi</p>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setSortDir((d) => d === "desc" ? "asc" : "desc")}
+                className="flex items-center gap-1.5 text-[15px] px-3 py-1.5 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] text-[#17345a] font-medium hover:bg-[#f8fafc] transition-colors"
+              >
+                Kuupäev
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={sortDir === "desc" ? "rotate-180" : ""} style={{ transition: "transform 0.2s" }}>
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              <select
+                value={locationFilter}
+                onChange={(e) => setLocationFilter(e.target.value)}
+                className="text-[15px] px-3 py-1.5 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] text-[#17345a] font-medium cursor-pointer hover:bg-[#f8fafc] transition-colors outline-none"
+              >
+                <option value="">Kõik asukohad</option>
+                {districts.map((d) => <option key={d} value={d}>{d}</option>)}
+              </select>
+            </div>
+          </div>
         </div>
         <button
           onClick={createNew}
@@ -79,8 +122,8 @@ export default function AdminTooleList() {
       ) : (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] overflow-hidden">
           <div className="divide-y divide-[rgba(23,52,90,0.06)]">
-            {announcements.map((a) => (
-              <div key={a.id} className="flex items-center gap-4 px-6 py-4 hover:bg-[#f8fafc] transition-colors">
+            {sorted.map((a) => (
+              <div key={a.id} className={`flex items-center gap-4 px-6 py-4 transition-colors ${a.active ? "hover:bg-[#f8fafc]" : "bg-[#f0f2f5] hover:bg-[#e8eaed]"}`}>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <Link
@@ -99,7 +142,7 @@ export default function AdminTooleList() {
                     </button>
                   </div>
                   <p className="text-[15px] text-[#5a6474] truncate">
-                    {a.location} {a.salary > 0 ? `| alates ${a.salary} ${a.salaryUnit}` : ""}
+                    {a.location} {a.salary > 0 ? `| alates ${a.salary} ${a.salaryUnit}` : ""} | Avaldatud {formatDate(a.publishedDate)}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">

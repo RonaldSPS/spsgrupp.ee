@@ -27,7 +27,6 @@ interface Announcement {
   salaryDetails: string
   workTime: string
   workTimeDetails: string
-  contractType: string
   startDate: string
   applicationDeadline: string
   contactName: string

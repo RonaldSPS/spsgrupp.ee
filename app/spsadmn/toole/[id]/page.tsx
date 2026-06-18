@@ -24,7 +24,6 @@ interface Announcement {
   salaryDetails: string
   workTime: string
   workTimeDetails: string
-  contractType: string
   startDate: string
   applicationDeadline: string
   contactName: string
@@ -115,6 +114,117 @@ function RichTextEditor({ value, onChange, label }: { value: string; onChange: (
   )
 }
 
+interface FieldProps {
+  label: string
+  field: keyof Announcement
+  type?: string
+  rows?: number
+  form: Announcement
+  updateField: (field: keyof Announcement, value: string | number | boolean) => void
+}
+
+function Field({ label, field, type = "text", rows, form, updateField }: FieldProps) {
+  if (type === "textarea" && rows) {
+    return (
+      <div>
+        <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+        <textarea
+          value={String(form[field] ?? "")}
+          onChange={(e) => updateField(field, e.target.value)}
+          rows={rows}
+          className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] resize-y"
+        />
+      </div>
+    )
+  }
+  if (field === "applicationDeadline" || field === "startDate") {
+    return (
+      <div>
+        <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+        <input
+          type="date"
+          value={String(form[field] ?? "")}
+          onChange={(e) => updateField(field, e.target.value)}
+          className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
+        />
+      </div>
+    )
+  }
+  if (field === "location") {
+    const districts = ["Lasnamäe", "Mustamäe", "Kesklinn", "Õismäe", "Kristiine", "Pirita", "Nõmme", "Haabersti", "Põhja-Tallinn", "Tallinn", "Maardu", "Rae vald"]
+    const currentValue = String(form[field] ?? "")
+    const showCustom = currentValue !== "" && !districts.includes(currentValue)
+    return (
+      <div>
+        <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+        <select
+          value={showCustom ? "__custom__" : (districts.includes(currentValue) ? currentValue : "")}
+          onChange={(e) => {
+            if (e.target.value === "__custom__") {
+              updateField(field, " ")
+            } else {
+              updateField(field, e.target.value)
+            }
+          }}
+          className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] bg-white"
+        >
+          <option value="">Vali asukoht...</option>
+          {districts.map((d) => <option key={d} value={d}>{d}</option>)}
+          <option value="__custom__">Muu (kirjuta ise)...</option>
+        </select>
+        {showCustom && (
+          <input
+            type="text"
+            value={currentValue}
+            onChange={(e) => updateField(field, e.target.value)}
+            placeholder="Kirjuta asukoht..."
+            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] mt-2"
+          />
+        )}
+      </div>
+    )
+  }
+  if (field === "active") {
+    return (
+      <div>
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={!!form[field]}
+            onChange={(e) => updateField(field, e.target.checked)}
+            className="w-5 h-5 rounded border-[rgba(23,52,90,0.2)] text-[#2d9e6b] focus:ring-[#2d9e6b]"
+          />
+          <span className="text-[15px] font-medium text-[#17345a]">{label}</span>
+        </label>
+      </div>
+    )
+  }
+  if (type === "number") {
+    return (
+      <div>
+        <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+        <input
+          type="number"
+          value={String(form[field] ?? 0)}
+          onChange={(e) => updateField(field, Number(e.target.value))}
+          className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
+        />
+      </div>
+    )
+  }
+  return (
+    <div>
+      <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
+      <input
+        type="text"
+        value={String(form[field] ?? "")}
+        onChange={(e) => updateField(field, e.target.value)}
+        className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
+      />
+    </div>
+  )
+}
+
 export default function AdminTooleEdit() {
   const params = useParams()
   const router = useRouter()
@@ -155,7 +265,6 @@ export default function AdminTooleEdit() {
             salaryDetails: "",
             workTime: "",
             workTimeDetails: "",
-            contractType: "",
             startDate: "",
             applicationDeadline: oneMonthLater.toISOString().split("T")[0],
             contactName: "Jelena Smirnov",
@@ -195,108 +304,6 @@ export default function AdminTooleEdit() {
     return <div className="flex items-center justify-center h-[60vh]"><p className="text-[15px] text-[#5a6474]">Laadin...</p></div>
   }
 
-  const Field = ({ label, field, type = "text", rows }: { label: string; field: keyof Announcement; type?: string; rows?: number }) => {
-    if (type === "textarea" && rows) {
-      return (
-        <div>
-          <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
-          <textarea
-            value={String(form[field] ?? "")}
-            onChange={(e) => updateField(field, e.target.value)}
-            rows={rows}
-            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] resize-y"
-          />
-        </div>
-      )
-    }
-    if (field === "applicationDeadline" || field === "startDate") {
-      return (
-        <div>
-          <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
-          <input
-            type="date"
-            value={String(form[field] ?? "")}
-            onChange={(e) => updateField(field, e.target.value)}
-            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
-          />
-        </div>
-      )
-    }
-    if (field === "location") {
-      const districts = ["Lasnamäe", "Mustamäe", "Kesklinn", "Õismäe", "Kristiine", "Pirita", "Nõmme", "Haabersti", "Põhja-Tallinn", "Tallinn", "Maardu", "Rae vald"]
-      const currentValue = String(form[field] ?? "")
-      const showCustom = currentValue !== "" && !districts.includes(currentValue)
-      return (
-        <div>
-          <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
-          <select
-            value={showCustom ? "__custom__" : (districts.includes(currentValue) ? currentValue : "")}
-            onChange={(e) => {
-              if (e.target.value === "__custom__") {
-                updateField(field, " ")
-              } else {
-                updateField(field, e.target.value)
-              }
-            }}
-            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] bg-white"
-          >
-            <option value="">Vali asukoht...</option>
-            {districts.map((d) => <option key={d} value={d}>{d}</option>)}
-            <option value="__custom__">Muu (kirjuta ise)...</option>
-          </select>
-          {showCustom && (
-            <input
-              type="text"
-              value={currentValue}
-              onChange={(e) => updateField(field, e.target.value)}
-              placeholder="Kirjuta asukoht..."
-              className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] mt-2"
-            />
-          )}
-        </div>
-      )
-    }
-    if (field === "active") {
-      return (
-        <div>
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={!!form[field]}
-              onChange={(e) => updateField(field, e.target.checked)}
-              className="w-5 h-5 rounded border-[rgba(23,52,90,0.2)] text-[#2d9e6b] focus:ring-[#2d9e6b]"
-            />
-            <span className="text-[15px] font-medium text-[#17345a]">{label}</span>
-          </label>
-        </div>
-      )
-    }
-    if (type === "number") {
-      return (
-        <div>
-          <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
-          <input
-            type="number"
-            value={String(form[field] ?? 0)}
-            onChange={(e) => updateField(field, Number(e.target.value))}
-            className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
-          />
-        </div>
-      )
-    }
-    return (
-      <div>
-        <label className="block text-[15px] font-medium text-[#17345a] mb-1">{label}</label>
-        <input
-          type="text"
-          value={String(form[field] ?? "")}
-          onChange={(e) => updateField(field, e.target.value)}
-          className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
-        />
-      </div>
-    )
-  }
-
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -305,6 +312,22 @@ export default function AdminTooleEdit() {
           <p className="text-[15px] text-[#5a6474]">ID: {form.id}</p>
         </div>
         <div className="flex items-center gap-3">
+          <a
+            href={`/tule-meile-toole/${form.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[15px] text-[#3abeff] py-2.5 px-5 rounded-xl border border-[#3abeff] font-medium hover:bg-[#3abeff] hover:text-white transition-colors"
+          >
+            Vaata kuulutust
+          </a>
+          <a
+            href="/tule-meile-toole#pakkumised"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[15px] text-[#5a6474] py-2.5 px-5 rounded-xl border border-[rgba(23,52,90,0.15)] font-medium hover:bg-[#f8fafc] transition-colors"
+          >
+            Vaata koondvaadet
+          </a>
           {saved && <span className="text-[15px] text-[#2d9e6b] font-medium">Salvestatud!</span>}
           <button onClick={handleSave} disabled={saving} className="bg-[#17345a] text-white py-2.5 px-6 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors disabled:opacity-60">
             {saving ? "Salvestan..." : "Salvesta"}
@@ -316,39 +339,39 @@ export default function AdminTooleEdit() {
         <div className="space-y-4">
           <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5 space-y-4">
             <h2 className="text-[18px] font-bold text-[#17345a]">Põhiinfo</h2>
-            <Field label="Ametinimetus" field="title" />
-            <Field label="Alapealkiri / asukoht lühidalt" field="subtitle" />
-            <Field label="Slug (URL)" field="slug" />
-            <Field label="Avaldamiskuupäev" field="publishedDate" />
-            <Field label="Pakkumise number" field="offerNumber" />
-            <Field label="Aktiivne (näidatakse lehel)" field="active" />
-            <Field type="textarea" rows={4} label="Ettevõtte kirjeldus" field="companyDescription" />
+            <Field form={form} updateField={updateField} label="Ametinimetus" field="title" />
+            <Field form={form} updateField={updateField} label="Alapealkiri / asukoht lühidalt" field="subtitle" />
+            <Field form={form} updateField={updateField} label="Slug (URL)" field="slug" />
+            <Field form={form} updateField={updateField} label="Avaldamiskuupäev" field="publishedDate" />
+            <Field form={form} updateField={updateField} label="Pakkumise number" field="offerNumber" />
+            <Field form={form} updateField={updateField} label="Aktiivne (näidatakse lehel)" field="active" />
+            <Field form={form} updateField={updateField} type="textarea" rows={4} label="Ettevõtte kirjeldus" field="companyDescription" />
           </div>
 
           <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5 space-y-4">
             <h2 className="text-[18px] font-bold text-[#17345a]">Kandideerimisinfo</h2>
-            <Field label="Kandideerimise tähtaeg" field="applicationDeadline" />
-            <Field label="Kontaktisik" field="contactName" />
-            <Field label="Kontaktisiku roll" field="contactRole" />
-            <Field label="Telefon (Jelena)" field="contactPhone" />
-            <Field label="Telefon (üldnumber)" field="contactPhone2" />
-            <Field label="E-post" field="contactEmail" />
+            <Field form={form} updateField={updateField} label="Kandideerimise tähtaeg" field="applicationDeadline" />
+            <Field form={form} updateField={updateField} label="Kontaktisik" field="contactName" />
+            <Field form={form} updateField={updateField} label="Kontaktisiku roll" field="contactRole" />
+            <Field form={form} updateField={updateField} label="Telefon (Jelena)" field="contactPhone" />
+            <Field form={form} updateField={updateField} label="Telefon (üldnumber)" field="contactPhone2" />
+            <Field form={form} updateField={updateField} label="E-post" field="contactEmail" />
           </div>
         </div>
 
         <div className="space-y-4">
           <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5 space-y-4">
             <h2 className="text-[18px] font-bold text-[#17345a]">Töökoha andmed</h2>
-            <Field label="Asukoht" field="location" />
-            <Field type="number" label="Vabade kohtade arv" field="vacancies" />
+            <Field form={form} updateField={updateField} label="Asukoht" field="location" />
+            <Field form={form} updateField={updateField} type="number" label="Vabade kohtade arv" field="vacancies" />
             <div className="grid grid-cols-2 gap-3">
-              <Field type="number" label="Töötasu (bruto)" field="salary" />
-              <Field label="Ühik" field="salaryUnit" />
+              <Field form={form} updateField={updateField} type="number" label="Töötasu (bruto)" field="salary" />
+              <Field form={form} updateField={updateField} label="Ühik" field="salaryUnit" />
             </div>
-            <Field label="Palga täpsustus" field="salaryDetails" />
-            <Field label="Tööaeg" field="workTime" />
-            <Field label="Tööaja täpsustus" field="workTimeDetails" />
-            <Field label="Tööle asumise aeg" field="startDate" />
+            <Field form={form} updateField={updateField} label="Palga täpsustus" field="salaryDetails" />
+            <Field form={form} updateField={updateField} label="Tööaeg" field="workTime" />
+            <Field form={form} updateField={updateField} label="Tööaja täpsustus" field="workTimeDetails" />
+            <Field form={form} updateField={updateField} label="Tööle asumise aeg" field="startDate" />
           </div>
 
           <div className="space-y-4">
