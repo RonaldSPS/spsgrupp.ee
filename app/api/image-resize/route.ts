@@ -51,8 +51,7 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Dynamic import sharp
-    const sharp = require("sharp");
+    const sharp = eval("require('sharp')");
 
     const configs = imageConfigs[location];
     const results: string[] = [];
