@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["sharp"],
   turbopack: {
     root: process.cwd(),
   },
@@ -39,6 +40,11 @@ const nextConfig: NextConfig = {
       {
         source: "/valikoristus/lumekoristus",
         destination: "/koristusteenus/valikoristus/lumekoristus",
+        permanent: true,
+      },
+      {
+        source: "/blog/8-kusimust-enne-koristuslepingu-solmimist",
+        destination: "/blog/kaheksa-kusimust-enne-koristuslepingu-solmimist",
         permanent: true,
       },
     ];
