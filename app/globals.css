@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+@media (prefers-reduced-motion: reduce) {
+  .logo-scroll-track {
+    animation: none;
+  }
+  .testimonial-scroll-track {
+    animation: none;
+  }
+  .animate-float {
+    animation: none;
+  }
+  .animate-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scroll-animate {
+    transform: translateY(0);
+    transition: none;
+  }
+}
+
 @layer utilities {
   .text-custom-gray {
     color: #2f353f;
@@ -115,6 +136,15 @@ body {
 }
 
 @keyframes logoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes testimonialScroll {
   0% {
     transform: translateX(0);
   }
@@ -669,6 +699,11 @@ footer {
 
 .logo-scroll-track {
   animation: logoScroll 160s linear infinite;
+}
+
+.testimonial-scroll-track {
+  animation: testimonialScroll 60s linear infinite;
+  will-change: transform;
 }
 
 /* Responsive */

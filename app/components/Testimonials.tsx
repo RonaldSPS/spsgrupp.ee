@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import TwoToneHeading from "./TwoToneHeading"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
@@ -21,48 +21,16 @@ function pick(count: number): TestimonialData[] {
 }
 
 const TOTAL = 7
-const CARD_W = 309
 const GAP = 10
-const STEP_PX = 0.5
 
 export default function Testimonials() {
   const [items, setItems] = useState<TestimonialData[]>([])
-  const trackRef = useRef<HTMLDivElement>(null)
-  const offsetRef = useRef(0)
-  const rafRef = useRef(0)
 
   useEffect(() => setItems(pick(TOTAL)), [])
 
-  useEffect(() => {
-    if (items.length === 0) return
-    const setWidth = CARD_W + GAP
-    const totalSetWidth = setWidth * TOTAL
-
-    let lastTime = performance.now()
-
-    const scroll = (now: number) => {
-      const dt = now - lastTime
-      lastTime = now
-      offsetRef.current += (STEP_PX * dt) / 16.67
-
-      if (offsetRef.current >= totalSetWidth) {
-        offsetRef.current -= totalSetWidth
-      }
-
-      if (trackRef.current) {
-        trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`
-      }
-
-      rafRef.current = requestAnimationFrame(scroll)
-    }
-
-    rafRef.current = requestAnimationFrame(scroll)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [items])
-
   if (items.length === 0) return null
 
-  const quad = [...items, ...items, ...items, ...items]
+  const duo = [...items, ...items]
 
   return (
     <section className="testimonials-section py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
@@ -77,9 +45,9 @@ export default function Testimonials() {
           <TwoToneHeading text="Mida ütlevad meie kliendid" />
         </div>
 
-        <div className="overflow-hidden">
-          <div ref={trackRef} className="flex" style={{ gap: `${GAP}px`, willChange: "transform" }}>
-            {quad.map((t, i) => (
+        <div className="overflow-hidden w-full">
+          <div className="testimonial-scroll-track flex items-center w-max" style={{ gap: `${GAP}px` }}>
+            {duo.map((t, i) => (
               <div key={i} className="shrink-0 w-[340px] md:w-[309px] self-stretch [&>div]:h-full">
                 <TestimonialCards testimonials={[t]} cols={1} />
               </div>
