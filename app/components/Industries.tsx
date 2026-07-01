@@ -112,7 +112,7 @@ export default function Industries() {
                 fill
                 sizes="(max-width: 768px) 100vw, 75vw"
                 className="object-cover"
-                style={{ color: "#2d3748" }}
+                style={{  }}
               />
             </div>
 
@@ -123,7 +123,7 @@ export default function Industries() {
                 fill
                 sizes="(max-width: 768px) 100vw, 75vw"
                 className="object-cover"
-                style={{ color: "#2d3748" }}
+                style={{  }}
               />
             </div>
 

@@ -228,7 +228,7 @@ export default function SeasonalServicesBlock() {
                 width={400}
                 height={533}
                 className="w-full h-full object-cover"
-                style={{ color: "#2d3748" }}
+                style={{ }}
               />
               {/* Värviline overlay riba pildi all servas */}
               <div className="absolute bottom-0 left-0 right-0 flex h-2">

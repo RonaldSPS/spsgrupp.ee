@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 
 const FloatingChip = ({
   iconClass,
@@ -30,16 +29,8 @@ export default function Hero() {
     <section
       className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[200px] sm:pt-[140px] md:pt-[100px] pb-[40px] sm:pb-[60px]"
       aria-label="Avaleht"
+      style={{ background: "url('/FrontHeroCar.jpg') center/cover no-repeat" }}
     >
-      <Image
-        src="/FrontHeroCar.jpg"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover -z-10"
-      />
-
       <div className="absolute top-[140px] right-[5%] flex gap-[12px] sm:gap-[20px] z-20">
         <FloatingChip
           iconClass="chip-icon-blue"

@@ -159,7 +159,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
                 width={640}
                 height={460}
                 className="w-full h-auto"
-                style={{ color: "#2d3748" }}
+                style={{ }}
               />
             </div>
 
@@ -202,7 +202,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
-                style={{ color: "#2d3748" }}
+                style={{ }}
               />
             </div>
             <div className="mb-4">
@@ -238,7 +238,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
-                style={{ color: "#2d3748" }}
+                style={{ }}
               />
             </div>
             <div className="mb-4">
@@ -274,7 +274,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
-                style={{ color: "#2d3748" }}
+                style={{ }}
               />
             </div>
             <div className="mb-4">

@@ -112,7 +112,7 @@ export default function Footer() {
                 alt="SPS Grupp — koristusfirma"
                 width={38}
                 height={38}
-                style={{ width: "auto", height: "38px", color: "#2d3748" }}
+                style={{ width: "auto", height: "38px" }}
               />
             </Link>
 
@@ -197,7 +197,7 @@ export default function Footer() {
                 alt="Hästi juhitud ettevõte"
                 width={120}
                 height={120}
-                style={{ width: "auto", height: "auto", color: "#2d3748" }}
+                style={{ width: "auto", height: "auto" }}
               />
             </a>
           </div>

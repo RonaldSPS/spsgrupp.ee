@@ -52,7 +52,7 @@ export default function Logos() {
                 width={90}
                 height={50}
                 className="object-contain"
-                style={{ color: "#2d3748" }}
+                style={{ }}
               />
             </div>
           ))}
