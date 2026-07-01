@@ -108,11 +108,6 @@ export default async function BlogPostPage({ params }: Props) {
 
             <aside className="space-y-6">
               <div className="bg-[#eef7fc] rounded-[16px] p-6">
-                <h3 className="text-[16px] font-bold text-[#17345a] mb-2">Autor</h3>
-                <p className="text-[15px] text-[#2f353f]">SPS Grupp</p>
-              </div>
-
-              <div className="bg-[#eef7fc] rounded-[16px] p-6">
                 <h3 className="text-[16px] font-bold text-[#17345a] mb-2">Avaldatud</h3>
                 <p className="text-[15px] text-[#2f353f]">{formatDate(post.date)}</p>
               </div>

@@ -1,36 +1,69 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import TwoToneHeading from "./TwoToneHeading";
+import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
+import TwoToneHeading from "./TwoToneHeading"
+import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
 
-const testimonials = [
-  {
-    quote: "Oleme väga rahul, kuidas meil toimetab tänane koristaja SPS'ist ja loodame, et ta jätkab oma tööd sama hästi.",
-    shortQuote: "Oleme väga rahul, kuidas meil toimetab koristaja SPS'ist. Võrreldes eelmiste teenusepakkujatega nagu öö ja päev.",
-    author: "Teledyne Flir",
-    location: "Tallinn",
-    initials: "TF",
-    logo: "/logod/teledyne.png",
-  },
-  {
-    quote: "Tahame kiita puhastusteenindajat. Võrreldes eelmiste teenusepakkujatega nagu öö ja päev! Viisakad & positiivsed. Ning WC-s on ka nüüd kõik tarvikud olemas.",
-    shortQuote: "Tahame kiita puhastusteenindajat. Viisakad & positiivsed. Ning WC-s on kõik tarvikud olemas.",
-    author: "Maiki Nautras",
-    location: "General Services Specialist, AS Norma",
-    initials: "M",
-    logo: "/arvamused-logod/maiki.png",
-  },
-  {
-    quote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on puhtad ja esinduslikud.",
-    shortQuote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on puhtad ja esinduslikud.",
-    author: "Ericsson",
-    location: "Tallinn",
-    initials: "ER",
-    logo: "/logod/ericsson.png",
-  },
-];
+const pool: TestimonialData[] = [
+  { shortQuote: "Kontor on puhas, korras ja hästi hooldatud.", author: "Paul", initials: "P", logo: "/arvamused-logod/paul.png", quote: "" },
+  { shortQuote: "Kontor on puhas ja hooldatud.", author: "Elis", initials: "E", logo: "/arvamused-logod/elis.png", quote: "" },
+  { shortQuote: "Kontoriruumid on olnud puhtad ja korras.", author: "Ingrid", initials: "I", logo: "/arvamused-logod/ingrid.png", quote: "" },
+  { shortQuote: "Puhas ja korrastatud kontor loob parema töökeskkonna.", author: "Kaiti", initials: "K", logo: "/arvamused-logod/kaiti.png", quote: "" },
+  { shortQuote: "Lao ja tootmiskoristuse tööd said korrektselt tehtud.", author: "Heigar", initials: "H", logo: "/arvamused-logod/heigar.png", quote: "" },
+  { shortQuote: "Nii ladu kui ka kontoriruumid on puhtad ja hästi hooldatud.", author: "Katri", initials: "K", logo: "/arvamused-logod/katri.png", quote: "" },
+  { shortQuote: "Koristuse kvaliteet on järjepidevalt kõrgel tasemel.", author: "Heido", initials: "H", logo: "/arvamused-logod/heido.png", quote: "" },
+]
+
+function pick(count: number): TestimonialData[] {
+  const shuffled = [...pool].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, count)
+}
+
+const TOTAL = 7
+const CARD_W = 309
+const GAP = 10
+const STEP_PX = 0.5
 
 export default function Testimonials() {
+  const [items, setItems] = useState<TestimonialData[]>([])
+  const trackRef = useRef<HTMLDivElement>(null)
+  const offsetRef = useRef(0)
+  const rafRef = useRef(0)
+
+  useEffect(() => setItems(pick(TOTAL)), [])
+
+  useEffect(() => {
+    if (items.length === 0) return
+    const setWidth = CARD_W + GAP
+    const totalSetWidth = setWidth * TOTAL
+
+    let lastTime = performance.now()
+
+    const scroll = (now: number) => {
+      const dt = now - lastTime
+      lastTime = now
+      offsetRef.current += (STEP_PX * dt) / 16.67
+
+      if (offsetRef.current >= totalSetWidth) {
+        offsetRef.current -= totalSetWidth
+      }
+
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`
+      }
+
+      rafRef.current = requestAnimationFrame(scroll)
+    }
+
+    rafRef.current = requestAnimationFrame(scroll)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [items])
+
+  if (items.length === 0) return null
+
+  const quad = [...items, ...items, ...items, ...items]
+
   return (
     <section className="testimonials-section py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
       <div className="max-w-[1280px] mx-auto px-[5%]">
@@ -44,57 +77,28 @@ export default function Testimonials() {
           <TwoToneHeading text="Mida ütlevad meie kliendid" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 border border-[rgba(23,52,90,0.06)]"
-              style={{
-                boxShadow: "0 4px 24px rgba(23,52,90,0.10)",
-                transitionDelay: `${i * 0.05}s`,
-              }}
-            >
-              <div className="flex gap-[3px] mb-4 text-[#f59e0b]">
-                {[...Array(5)].map((_, j) => (
-                  <span key={j} className="text-[15px]">★</span>
-                ))}
+        <div className="overflow-hidden">
+          <div ref={trackRef} className="flex" style={{ gap: `${GAP}px`, willChange: "transform" }}>
+            {quad.map((t, i) => (
+              <div key={i} className="shrink-0 w-[340px] md:w-[309px] self-stretch [&>div]:h-full">
+                <TestimonialCards testimonials={[t]} cols={1} />
               </div>
-              <p className="text-[15px] leading-[1.8] text-[#2d3748] mb-5 font-light italic flex-1">
-                &quot;{t.shortQuote}&quot;
-              </p>
-
-              <div className="flex justify-center mb-3">
-                <div className="h-20 flex items-center justify-center">
-                  <Image
-                    src={t.logo}
-                    alt={t.author}
-                    width={240}
-                    height={80}
-                    className="object-contain max-h-20 w-auto"
-                    style={{ maxWidth: "240px" }}
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="min-w-0 text-center w-full">
-                  <div className="text-[15px] font-medium text-[#17345a]">{t.author}</div>
-                  <div className="text-[15px] text-[#5a6474]">{t.location}</div>
-                </div>
-              </div>
-
-              <a
-                href="#pakkumine"
-                className="inline-flex items-center justify-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline mt-4 pt-4 border-t border-[rgba(23,52,90,0.06)] transition-all hover:text-[#17345a] hover:gap-2.5"
-                onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
-              >
-                Soovid sama tulemust? Küsi pakkumist <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Video section */}
+        <div className="text-center mt-10">
+          <Link
+            href="/sps-grupp/arvamused"
+            className="inline-flex items-center gap-2 bg-[#17345a] text-white py-3 px-6 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors"
+          >
+            Vaata kõiki arvamusi
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+            </svg>
+          </Link>
+        </div>
+
         <div className="mt-16 w-full md:w-3/4 mx-auto">
           <div className="rounded-3xl overflow-hidden shadow-lg">
             <video
@@ -109,5 +113,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  );
+  )
 }

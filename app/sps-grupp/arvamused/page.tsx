@@ -382,7 +382,7 @@ export default function ArvamusedPage() {
                     </Link>
                   </div>
 
-                  <TestimonialCards testimonials={category.testimonials} />
+                  <TestimonialCards testimonials={category.testimonials} cols={3} />
                 </div>
               ))}
             </div>

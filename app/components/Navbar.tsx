@@ -179,7 +179,7 @@ export default function Navbar() {
                     aria-haspopup="true"
                     className={`text-[#17345a] text-[15px] font-medium transition-all hover:text-[#17345a] cursor-pointer bg-transparent border-none flex items-center h-full py-0 no-underline ${isServicePage ? "font-bold" : ""}`}
                     style={isServicePage ? { borderBottom: "2px solid #3abeff" } : undefined}
-                    onClick={(e) => { e.preventDefault(); setMegaMenuOpen(!megaMenuOpen); setTooleDropdownOpen(false); setSpsDropdownOpen(false) }}
+                    onClick={() => { setMegaMenuOpen(!megaMenuOpen); setTooleDropdownOpen(false); setSpsDropdownOpen(false) }}
                     onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setMegaMenuOpen(!megaMenuOpen); setTooleDropdownOpen(false); setSpsDropdownOpen(false) } if (e.key === "Escape") closeAllDesktop() }}
                     onMouseEnter={() => { setTooleDropdownOpen(false); setSpsDropdownOpen(false); setMegaMenuOpen(true) }}
                   >
@@ -239,7 +239,7 @@ export default function Navbar() {
                     aria-controls={link.href === "/tule-meile-toole" ? "toole-dropdown" : "sps-dropdown"}
                     aria-haspopup="true"
                     className="text-[#17345a] no-underline text-[15px] font-medium transition-all hover:text-[#17345a] relative"
-                    onClick={(e) => { e.preventDefault(); const isToole = link.href === "/tule-meile-toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } }}
+                    onClick={() => { const isToole = link.href === "/tule-meile-toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } }}
                     onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); const isToole = link.href === "/tule-meile-toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } } if (e.key === "Escape") closeAllDesktop() }}
                     onMouseEnter={() => { setMegaMenuOpen(false); if (link.href === "/tule-meile-toole") { setSpsDropdownOpen(false); setTooleDropdownOpen(true) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(true) } }}
                   >

@@ -12,15 +12,16 @@ export interface TestimonialData {
 
 interface Props {
   testimonials: TestimonialData[];
+  cols?: number;
 }
 
-export default function TestimonialCards({ testimonials }: Props) {
+export default function TestimonialCards({ testimonials, cols }: Props) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className={`grid grid-cols-1 gap-6 ${cols === 2 ? "md:grid-cols-2" : cols === 3 ? "md:grid-cols-2 lg:grid-cols-3" : ""}`}>
       {testimonials.map((t, i) => (
         <div
           key={i}
-          className="bg-white rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 border border-[rgba(23,52,90,0.06)]"
+          className="bg-white rounded-2xl p-8 flex flex-col transition-all duration-300 hover:-translate-y-1 border border-[rgba(23,52,90,0.06)] h-full"
           style={{
             boxShadow: "0 4px 24px rgba(23,52,90,0.10)",
             transitionDelay: `${i * 0.05}s`,
@@ -38,14 +39,13 @@ export default function TestimonialCards({ testimonials }: Props) {
           {/* Logo row - prominently above author */}
           {t.logo ? (
             <div className="flex justify-center mb-3">
-              <div className="h-14 flex items-center justify-center">
+              <div className="h-16 w-[200px] relative flex items-center justify-center">
                 <Image
                   src={t.logo}
                   alt={t.author}
-                  width={180}
-                  height={56}
-                  className="object-contain max-h-14 w-auto"
-                  style={{ maxWidth: "180px" }}
+                  fill
+                  sizes="200px"
+                  className="object-contain"
                 />
               </div>
             </div>
