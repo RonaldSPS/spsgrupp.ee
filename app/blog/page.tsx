@@ -9,6 +9,13 @@ import { getBlogPostsWithEdits } from "./data"
 export const metadata: Metadata = {
   title: "Blogi | SPS Grupp",
   description: "SPS Grupi blogi: artiklid ja uudised koristusteenuste kohta.",
+  keywords: "koristusblogi, puhastusteenused blogi, koristusfirma artiklid, SPS Grupp blogi",
+  openGraph: {
+    title: "Blogi | SPS Grupp",
+    description: "SPS Grupi blogi: artiklid ja uudised koristusteenuste kohta.",
+    type: "website",
+    locale: "et_EE",
+  },
   alternates: { canonical: "https://spsgrupp.ee/blog" },
 }
 

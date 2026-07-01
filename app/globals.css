@@ -48,6 +48,21 @@ body {
   overflow-x: hidden;
 }
 
+*:focus-visible {
+  outline: 2px solid #3abeff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Scroll animation base state - elements start lower */
 .scroll-animate {
   transform: translateY(50px);
@@ -280,7 +295,6 @@ body {
   display: flex; align-items: center;
   padding: 100px 5% 60px;
   position: relative; overflow: hidden;
-  background: url('/FrontHero.jpg') center/cover no-repeat;
 }
 
 .hero-content-frosted {
@@ -296,10 +310,17 @@ body {
 .floating-chip {
   background: var(--white);
   border-radius: 14px;
-  padding: 14px 18px;
+  padding: 10px 12px;
   box-shadow: var(--shadow-md);
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 10px;
   border: 1px solid rgba(23,52,90,0.05);
+}
+
+@media (min-width: 640px) {
+  .floating-chip {
+    padding: 14px 18px;
+    gap: 12px;
+  }
 }
 
 .chip-icon-blue { background: var(--sky-pale); }
@@ -669,7 +690,7 @@ footer {
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .hero-section { min-height: auto; max-height: none; padding: 100px 5% 40px; }
+  .hero-section { min-height: auto; max-height: none; padding: 140px 4% 40px; }
   .hero-floating-chips { display: none !important; }
   .services-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
@@ -678,4 +699,11 @@ footer {
   .footer-grid { grid-template-columns: 1fr; }
   .industries-grid { grid-template-columns: 1fr; }
   .logo-scroll-track { animation: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-section { padding: 150px 3% 36px; }
+  .floating-chip { padding: 8px 10px; gap: 6px; font-size: 15px; }
+  .floating-chip .text-\[18px\] { font-size: 15px !important; }
+  .floating-chip .text-\[15px\] { font-size: 15px !important; }
 }

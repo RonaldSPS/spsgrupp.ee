@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://spsgrupp.ee"),
   title: "SPS Grupp",
-  description: "SPS Grupp — Hasti juhitud ettevõte",
+  description: "SPS Grupp — Hästi juhitud ettevõte",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
@@ -65,7 +65,16 @@ export default function RootLayout({
       className={`${ubuntu.variable} ${geistMono.variable} h-full antialiased no-js`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[10000] focus:bg-[#17345a] focus:text-white focus:px-5 focus:py-3 focus:rounded-lg focus:text-[15px] focus:font-medium focus:outline-none focus:ring-2 focus:ring-[#3abeff] focus:ring-offset-2"
+        >
+          Otse sisu juurde
+        </a>
+        <div id="main-content" tabIndex={-1} />
+        {children}
+      </body>
     </html>
   );
 }

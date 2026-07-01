@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kojamehe teenus Tallinnas | SPS Grupp",
+  title: "Kojameheteenus — välikoristus | SPS Grupp",
   description:
-    "Kojamehe teenus ärikinnistutele ja korteriühistutele. Sissepääsude, kõnniteede, prügialade ja hooneümbruse regulaarne korrashoid.",
+    "Kojameheteenus ärikinnistutele ja korteriühistutele. Sissepääsude, kõnniteede, prügialade ja hooneümbruse regulaarne korrashoid Tallinnas.",
   keywords:
-    "kojamehe teenus, kojamees, kinnistu hooldus, väliala korrashoid, kojamehe teenus tallinnas",
+    "kojamehe teenus, kojamees, kinnistu hooldus, väliala korrashoid, välikoristus tallinnas",
   openGraph: {
-    title: "Kojamehe teenus Tallinnas | SPS Grupp",
+    title: "Kojameheteenus — välikoristus | SPS Grupp",
     description:
-      "Regulaarne kojamehe teenus kinnistu igapäevaseks ja hooajaliseks korrashoiuks.",
+      "Regulaarne kojameheteenus kinnistu igapäevaseks ja hooajaliseks korrashoiuks Tallinnas.",
     type: "website",
     locale: "et_EE",
   },

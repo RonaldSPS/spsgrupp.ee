@@ -19,15 +19,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={38} height={38} style={{ color: "#2d3748" }} />
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#teenused" className="text-[#17345a] text-sm font-medium hover:text-[#5ab5da] transition-colors">Teenused</Link>
-          <Link href="#kliendid" className="text-[#17345a] text-sm font-medium hover:text-[#5ab5da] transition-colors">Tule tööle</Link>
-          <Link href="#garantii" className="text-[#17345a] text-sm font-medium hover:text-[#5ab5da] transition-colors">SPS Grupp</Link>
-          <Link href="#kkk" className="text-[#17345a] text-sm font-medium hover:text-[#5ab5da] transition-colors">Kontakt</Link>
+          <Link href="#teenused" className="text-[#17345a] text-[15px] font-medium hover:text-[#5ab5da] transition-colors">Teenused</Link>
+          <Link href="#kliendid" className="text-[#17345a] text-[15px] font-medium hover:text-[#5ab5da] transition-colors">Tule tööle</Link>
+          <Link href="#garantii" className="text-[#17345a] text-[15px] font-medium hover:text-[#5ab5da] transition-colors">SPS Grupp</Link>
+          <Link href="#kkk" className="text-[#17345a] text-[15px] font-medium hover:text-[#5ab5da] transition-colors">Kontakt</Link>
           <Link href="tel:6623328" className="text-[#17345a] font-medium flex items-center gap-1.5">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             662 3328
           </Link>
-          <Link href="#pakkumine" className="bg-[#17345a] text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#1e4a7a] transition-colors">Küsi pakkumist</Link>
+          <Link href="#pakkumine" className="bg-[#17345a] text-white px-5 py-2 rounded-lg text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors">Küsi pakkumist</Link>
         </div>
       </div>
     </nav>
@@ -39,13 +39,13 @@ const Hero = () => (
   <section id="avaleht" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50">
     <div className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
       <div className="order-2 md:order-1">
-        <span className="inline-block text-[#5ab5da] text-xs font-semibold tracking-wider uppercase mb-4">Koristusteenused ärikliendile</span>
+        <span className="inline-block text-[#5ab5da] text-[15px] font-semibold tracking-wider uppercase mb-4">Koristusteenused ärikliendile</span>
         <h1 className="text-5xl md:text-6xl font-light text-[#17345a] leading-tight mb-6">
           Puhtus, millele<br />
           <span className="font-semibold">saate kindel olla</span>
         </h1>
         <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
-          Hooldame igakuiselt üle <strong className="text-[#17345a] font-medium">500 000m²</strong> kontori-, kaubandus- ja tootmispinda Harjumaal. ISO sertifitseeritud kvaliteet.
+          Hooldame iga päev üle <strong className="text-[#17345a] font-medium">miljoni m²</strong> kontori-, kaubandus- ja tootmispinda Harjumaal. ISO sertifitseeritud kvaliteet.
         </p>
         <div className="flex gap-3">
           <Link href="#pakkumine" className="bg-[#17345a] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1e4a7a] transition-all hover:-translate-y-0.5 shadow-lg shadow-[#17345a]/20">Küsi pakkumist</Link>
@@ -64,7 +64,7 @@ const Hero = () => (
             </div>
             <div>
               <div className="text-2xl font-bold text-[#17345a]">20+</div>
-              <div className="text-sm text-gray-500">aastat kogemust</div>
+              <div className="text-[15px] text-gray-500">aastat kogemust</div>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ const Hero = () => (
 const Logos = () => (
   <section id="kliendid" className="py-16 bg-white border-y border-gray-100">
     <div className="max-w-7xl mx-auto px-6">
-      <p className="text-center text-sm text-gray-400 uppercase tracking-wider mb-8">Usaldavad meid</p>
+      <p className="text-center text-[15px] text-gray-400 uppercase tracking-wider mb-8">Usaldavad meid</p>
       <div className="overflow-hidden">
         <div className="flex gap-16 animate-scroll">
           {["Ericsson", "Maxima", "MyFitness", "Nordic Hotels", "Taltech", "Eften", "Elering", "Hobby Hall"].map((logo, i) => (
@@ -101,7 +101,7 @@ const Services = () => {
     <section id="teenused" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-[#5ab5da] text-xs font-semibold uppercase tracking-wider">Meie teenused</span>
+          <span className="text-[#5ab5da] text-[15px] font-semibold uppercase tracking-wider">Meie teenused</span>
           <h2 className="text-4xl font-light text-[#17345a] mt-3 mb-4">Lahendused igale vajadusele</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Pakume täisteenust alates igapäevasest koristusest kuni keerukate eritöödeni.</p>
         </div>
@@ -127,7 +127,7 @@ const Testimonials = () => (
   <section id="kliendid-arvustused" className="py-24 bg-gray-50">
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-16">
-        <span className="text-[#5ab5da] text-xs font-semibold uppercase tracking-wider">Tagasiside</span>
+        <span className="text-[#5ab5da] text-[15px] font-semibold uppercase tracking-wider">Tagasiside</span>
         <h2 className="text-4xl font-light text-[#17345a] mt-3">Mida kliendid räägivad</h2>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
@@ -138,10 +138,10 @@ const Testimonials = () => (
         ].map((t, i) => (
           <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
             <div className="flex gap-1 mb-4 text-[#f59e0b]">★★★★★</div>
-            <p className="text-gray-700 leading-relaxed mb-6 italic">"{t.quote}"</p>
+            <p className="text-gray-700 leading-relaxed mb-6 italic">&quot;{t.quote}&quot;</p>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#eef7fc] flex items-center justify-center text-[#17345a] font-semibold">{t.author[0]}</div>
-              <div className="text-sm font-medium text-[#17345a]">{t.author}</div>
+              <div className="text-[15px] font-medium text-[#17345a]">{t.author}</div>
             </div>
           </div>
         ))}
@@ -157,14 +157,14 @@ const Industries = () => {
     <section id="valdkonnad" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-[#5ab5da] text-xs font-semibold uppercase tracking-wider">Valdkonnad</span>
+          <span className="text-[#5ab5da] text-[15px] font-semibold uppercase tracking-wider">Valdkonnad</span>
           <h2 className="text-4xl font-light text-[#17345a] mt-3">Teenindame erinevaid sektoreid</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {industries.map((ind, i) => (
             <div key={i} className="p-6 rounded-xl border border-gray-100 text-center hover:border-[#17345a] hover:shadow-lg transition-all cursor-default">
               <div className="text-3xl mb-2">🏢</div>
-              <div className="text-sm font-medium text-[#17345a]">{ind}</div>
+              <div className="text-[15px] font-medium text-[#17345a]">{ind}</div>
             </div>
           ))}
         </div>
@@ -179,22 +179,22 @@ const Trust = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div>
-          <span className="text-[#85cbe9] text-xs font-semibold uppercase tracking-wider">Miks meie?</span>
-          <h2 className="text-4xl font-light mt-3 mb-6">Usaldavad 500+ ettevõtet</h2>
+          <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider">Miks meie?</span>
+          <h2 className="text-4xl font-light mt-3 mb-6">Usaldavad üle 100 ettevõtte</h2>
           <p className="text-white/80 leading-relaxed mb-8">
             SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 20 aasta. 
-            Igakuiselt hooldame üle poole miljoni ruutmeetri äripindu.
+            Iga päev hooldame üle miljoni ruutmeetri äripindu.
           </p>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { num: "500k", label: "m² kuus" },
+              { num: "üle miljoni", label: "m² iga päev" },
               { num: "200+", label: "Töötajat" },
-              { num: "500+", label: "Klienti" },
+              { num: "üle 100", label: "Klienti" },
               { num: "20+", label: "Aastat" },
             ].map((stat, i) => (
               <div key={i} className="bg-white/10 backdrop-blur-sm p-4 rounded-xl">
                 <div className="text-2xl font-bold text-[#85cbe9]">{stat.num}</div>
-                <div className="text-sm text-white/60">{stat.label}</div>
+                <div className="text-[15px] text-white/60">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -207,12 +207,12 @@ const Trust = () => (
               </div>
               <div>
                 <div className="font-semibold">ISO 9001 + ISO 14001</div>
-                <div className="text-sm text-white/60">Sertifitseeritud kvaliteet</div>
+                <div className="text-[15px] text-white/60">Sertifitseeritud kvaliteet</div>
               </div>
             </div>
             <div className="space-y-3">
-              {["Kvaliteedi garantii", "Kindlustatud teenused", "24/7 tugi"].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 text-sm">
+              {["Kindlustatud teenused", "24/7 tugi"].map((item, i) => (
+                <div key={i} className="flex items-center gap-3 text-[15px]">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85cbe9" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
                   <span className="text-white/80">{item}</span>
                 </div>
@@ -227,13 +227,11 @@ const Trust = () => (
 
 // Minimalist Contact Form
 const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", company: "", message: "" });
-
   return (
     <section id="pakkumine" className="py-24 bg-white">
       <div className="max-w-2xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-[#5ab5da] text-xs font-semibold uppercase tracking-wider">Pakkumine</span>
+          <span className="text-[#5ab5da] text-[15px] font-semibold uppercase tracking-wider">Pakkumine</span>
           <h2 className="text-4xl font-light text-[#17345a] mt-3 mb-4">Küsi tasuta pakkumist</h2>
           <p className="text-gray-600">Vastame 24 tunni jooksul</p>
         </div>
@@ -267,7 +265,7 @@ const FAQ = () => {
     <section id="kkk" className="py-24 bg-gray-50">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
-          <span className="text-[#5ab5da] text-xs font-semibold uppercase tracking-wider">KKK</span>
+          <span className="text-[#5ab5da] text-[15px] font-semibold uppercase tracking-wider">KKK</span>
           <h2 className="text-4xl font-light text-[#17345a] mt-3">Korduma kippuvad küsimused</h2>
         </div>
         <div className="space-y-3">
@@ -295,11 +293,11 @@ const Footer = () => (
       <div className="grid md:grid-cols-4 gap-12 mb-12">
         <div>
           <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={38} height={38} className="mb-4" style={{ color: "#2d3748" }} />
-          <p className="text-white/60 text-sm leading-relaxed">Professionaalne koristusteenus ärikliendile.</p>
+          <p className="text-white/60 text-[15px] leading-relaxed">Professionaalne koristusteenus ärikliendile.</p>
         </div>
         <div>
           <h4 className="font-semibold mb-4">Teenused</h4>
-          <ul className="space-y-2 text-sm text-white/60">
+          <ul className="space-y-2 text-[15px] text-white/60">
             <li><Link href="#" className="hover:text-white transition-colors">Kontori koristus</Link></li>
             <li><Link href="#" className="hover:text-white transition-colors">Kaubanduspinnad</Link></li>
             <li><Link href="#" className="hover:text-white transition-colors">Tootmishooned</Link></li>
@@ -307,7 +305,7 @@ const Footer = () => (
         </div>
         <div>
           <h4 className="font-semibold mb-4">Ettevõte</h4>
-          <ul className="space-y-2 text-sm text-white/60">
+          <ul className="space-y-2 text-[15px] text-white/60">
             <li><Link href="#" className="hover:text-white transition-colors">Meist</Link></li>
             <li><Link href="#" className="hover:text-white transition-colors">Tule tööle</Link></li>
             <li><Link href="#" className="hover:text-white transition-colors">Kontakt</Link></li>
@@ -315,14 +313,14 @@ const Footer = () => (
         </div>
         <div>
           <h4 className="font-semibold mb-4">Kontakt</h4>
-          <ul className="space-y-2 text-sm text-white/60">
+          <ul className="space-y-2 text-[15px] text-white/60">
             <li>Mustamäe tee 46, Tallinn</li>
             <li><a href="tel:6623328" className="hover:text-white transition-colors">662 3328</a></li>
             <li><a href="mailto:info@spsgrupp.ee" className="hover:text-white transition-colors">info@spsgrupp.ee</a></li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 pt-8 text-center text-sm text-white/40">
+      <div className="border-t border-white/10 pt-8 text-center text-[15px] text-white/40">
         © {new Date().getFullYear()} SPS Grupp. Kõik õigused kaitstud.
       </div>
     </div>

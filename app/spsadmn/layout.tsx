@@ -10,21 +10,57 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [authenticated, setAuthenticated] = useState(false)
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [submitting, setSubmitting] = useState(false)
+  const [checking, setChecking] = useState(true)
 
   useEffect(() => {
-    const auth = sessionStorage.getItem("admin-auth")
-    if (auth === "true") setAuthenticated(true)
+    fetch("/api/spsadmn/toole")
+      .then((r) => {
+        if (r.ok) {
+          setAuthenticated(true)
+        }
+      })
+      .catch(() => {})
+      .finally(() => setChecking(false))
   }, [])
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (password === "spsadmin2026") {
-      sessionStorage.setItem("admin-auth", "true")
-      setAuthenticated(true)
-      setError("")
-    } else {
-      setError("Vale parool")
+    setSubmitting(true)
+    setError("")
+    try {
+      const res = await fetch("/api/spsadmn/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      })
+      if (res.ok) {
+        setAuthenticated(true)
+      } else {
+        const data = await res.json().catch(() => ({ error: "Vale parool" }))
+        setError(data.error || "Vale parool")
+      }
+    } catch {
+      setError("Ühenduse viga. Proovi uuesti.")
+    } finally {
+      setSubmitting(false)
     }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/spsadmn/logout", { method: "POST" })
+    } catch {}
+    setAuthenticated(false)
+    router.push("/spsadmn")
+  }
+
+  if (checking) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#eceef1]">
+        <p className="text-[15px] text-[#5a6474]">Laadin...</p>
+      </div>
+    )
   }
 
   if (!authenticated) {
@@ -44,9 +80,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           />
           <button
             type="submit"
-            className="w-full bg-[#17345a] text-white py-3 px-5 rounded-xl text-[16px] font-medium hover:bg-[#1e4a7a] transition-colors"
+            disabled={submitting}
+            className="w-full bg-[#17345a] text-white py-3 px-5 rounded-xl text-[16px] font-medium hover:bg-[#1e4a7a] transition-colors disabled:opacity-50"
           >
-            Sisene
+            {submitting ? "Sisenen..." : "Sisene"}
           </button>
         </form>
       </div>
@@ -83,10 +120,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
         <div className="p-4 border-t border-white/10">
           <button
-            onClick={() => {
-              sessionStorage.removeItem("admin-auth")
-              setAuthenticated(false)
-            }}
+            onClick={handleLogout}
             className="w-full text-left px-4 py-2 rounded-xl text-[15px] hover:bg-white/10 transition-colors flex items-center gap-2"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

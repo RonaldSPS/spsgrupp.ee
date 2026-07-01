@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import TwoToneHeading from "./TwoToneHeading";
 
 const services = [
@@ -95,7 +94,7 @@ const certChips = [
         <polyline points="22 4 12 14.01 9 11.01" />
       </svg>
     ),
-    title: "Kvaliteedi garantii",
+    title: "Kindlustatud teenus",
   },
   {
     icon: (
@@ -124,12 +123,12 @@ export default function Trust() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           {/* Left - Text */}
           <div>
-            <TwoToneHeading text="Miks usaldavad meid 500+ ettevõtet?" />
+            <TwoToneHeading text="Miks usaldavad meid üle 100 ettevõtte?" />
             <p className="text-[16px] text-[#2f353f] leading-[1.8] mb-7 font-light">
-              Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõttetele üle 20 aasta. Meie 
+Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 20 aasta. Meie 
               eesmärk on pakkuda koristusteenust, mis lähtub iga ettevõtte vajadustest personaalselt. 
-              Igas kuus hooldame üle poole miljoni ruutmeetri äripindu. Meil töötab üle 200 töötaja 
-              ning suudame leida optimaalse lahenduse nii suurtele, kui ka väga suurtele ettevõtetele.
+              Iga päev hooldame üle miljoni ruutmeetri äripindu. Meil töötab üle 200 töötaja 
+              ning suudame leida optimaalse lahenduse nii suurtele kui ka väga suurtele ettevõtetele.
             </p>
             
             <div className="grid grid-cols-2 gap-3.5">

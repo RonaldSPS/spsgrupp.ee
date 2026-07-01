@@ -27,35 +27,36 @@ export default function AdminBlogEdit() {
   const contentRef = useRef<HTMLDivElement>(null)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
-  const [post, setPost] = useState<BlogPost | null>(null)
   const [imageBrowserOpen, setImageBrowserOpen] = useState(false)
   const [imageBrowserForFeatured, setImageBrowserForFeatured] = useState(false)
-  const [formData, setFormData] = useState({
-    title: "",
-    slug: "",
-    featuredImage: "",
-    excerpt: "",
+
+  const foundPost = blogPosts.find((p: BlogPost) => String(p.id) === id) ?? null
+
+  const [formData, setFormData] = useState(() => {
+    if (!foundPost) return { title: "", slug: "", featuredImage: "", excerpt: "" }
+    return {
+      title: foundPost.title,
+      slug: foundPost.slug,
+      featuredImage: foundPost.featuredImage,
+      excerpt: foundPost.excerpt,
+    }
   })
-  const [loading, setLoading] = useState(true)
+  const loadingInit = foundPost !== null
+  const [loading, setLoading] = useState(loadingInit)
 
   useEffect(() => {
-    const found = blogPosts.find((p: BlogPost) => String(p.id) === id)
-    if (!found) {
-      router.push("/spsadmn/blog")
-      return
-    }
-    setPost(found)
+    if (!foundPost) return
 
     fetch("/api/spsadmn/blog")
       .then((r) => r.json())
       .then((data) => {
         const edits = data.posts?.[id]
-        const content = edits?.contentHtml ?? found.contentHtml
+        const content = edits?.contentHtml ?? foundPost.contentHtml
         setFormData({
-          title: edits?.title ?? found.title,
-          slug: edits?.slug ?? found.slug,
-          featuredImage: edits?.featuredImage ?? found.featuredImage,
-          excerpt: edits?.excerpt ?? found.excerpt,
+          title: edits?.title ?? foundPost.title,
+          slug: edits?.slug ?? foundPost.slug,
+          featuredImage: edits?.featuredImage ?? foundPost.featuredImage,
+          excerpt: edits?.excerpt ?? foundPost.excerpt,
         })
         if (contentRef.current) {
           contentRef.current.innerHTML = content
@@ -63,17 +64,23 @@ export default function AdminBlogEdit() {
       })
       .catch(() => {
         setFormData({
-          title: found.title,
-          slug: found.slug,
-          featuredImage: found.featuredImage,
-          excerpt: found.excerpt,
+          title: foundPost.title,
+          slug: foundPost.slug,
+          featuredImage: foundPost.featuredImage,
+          excerpt: foundPost.excerpt,
         })
         if (contentRef.current) {
-          contentRef.current.innerHTML = found.contentHtml
+          contentRef.current.innerHTML = foundPost.contentHtml
         }
       })
       .finally(() => setLoading(false))
-  }, [id, router])
+  }, [id, foundPost, router])
+
+  useEffect(() => {
+    if (foundPost === null && !loading) {
+      router.push("/spsadmn/blog")
+    }
+  }, [foundPost, loading, router])
 
   const execCmd = useCallback((cmd: string, val?: string) => {
     document.execCommand(cmd, false, val)
@@ -104,7 +111,7 @@ export default function AdminBlogEdit() {
     setSaving(false)
   }
 
-  if (loading || !post) {
+  if (loading || !foundPost) {
     return (
       <div className="flex items-center justify-center h-[60vh]">
         <p className="text-[15px] text-[#5a6474]">Laadin...</p>
@@ -117,7 +124,7 @@ export default function AdminBlogEdit() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-[32px] font-bold text-[#17345a]">Muuda artiklit</h1>
-          <p className="text-[15px] text-[#5a6474]">ID: {post.id}</p>
+          <p className="text-[15px] text-[#5a6474]">ID: {foundPost.id}</p>
         </div>
         <div className="flex items-center gap-3">
           {saved && <span className="text-[15px] text-[#2d9e6b] font-medium">Salvestatud!</span>}
@@ -295,6 +302,7 @@ export default function AdminBlogEdit() {
             </div>
             {formData.featuredImage && (
               <div className="mt-3 rounded-xl overflow-hidden bg-[#eef7fc] h-[120px] relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={formData.featuredImage} alt="" className="w-full h-full object-cover" />
               </div>
             )}

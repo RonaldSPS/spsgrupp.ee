@@ -58,7 +58,7 @@ export default function TootmishooneteKoristus() {
           className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Tootmishoonete koristus"
-          style={{ background: "url('/tootmishoonete-koristus.jpg') center/cover no-repeat" }}
+          style={{ background: "url('/tootmishoonete-koristus.webp') center/cover no-repeat" }}
         >
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
@@ -140,7 +140,7 @@ export default function TootmishooneteKoristus() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>

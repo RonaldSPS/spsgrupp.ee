@@ -33,13 +33,13 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center gap-2 list-none">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="text-[#17345a] no-underline text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#17345a]/5 transition-all">
+              <Link href={link.href} className="text-[#17345a] no-underline text-[15px] font-semibold px-4 py-2 rounded-lg hover:bg-[#17345a]/5 transition-all">
                 {link.label}
               </Link>
             </li>
           ))}
           <li>
-            <Link href="#pakkumine" className="bg-gradient-to-r from-[#17345a] to-[#2d9e6b] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-xl hover:shadow-[#17345a]/30 transition-all hover:-translate-y-0.5">
+            <Link href="#pakkumine" className="bg-gradient-to-r from-[#17345a] to-[#2d9e6b] text-white px-6 py-2.5 rounded-full text-[15px] font-semibold hover:shadow-xl hover:shadow-[#17345a]/30 transition-all hover:-translate-y-0.5">
               Küsi pakkumist
             </Link>
           </li>
@@ -63,14 +63,14 @@ const Hero = () => (
       <div className="text-white">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-lg rounded-full px-5 py-2.5 mb-6 border border-white/20">
           <span className="w-2 h-2 bg-[#5ab5da] rounded-full animate-ping"></span>
-          <span className="text-sm font-medium">20+ aastat kogemust</span>
+          <span className="text-[15px] font-medium">20+ aastat kogemust</span>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
           Puhtus,<br />
           <span className="bg-gradient-to-r from-[#5ab5da] to-[#2d9e6b] bg-clip-text text-transparent">mis inspireerib</span>
         </h1>
         <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
-          Hooldame <strong className="text-white font-semibold">500 000m²</strong> äripindu. 
+          Hooldame <strong className="text-white font-semibold">üle miljoni m²</strong> äripindu iga päev. 
           Innovatiivne lähenemine, sertifitseeritud kvaliteet.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -96,8 +96,8 @@ const Hero = () => (
               <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-7 h-7"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <div className="text-2xl font-bold text-[#17345a]">500k m²</div>
-              <div className="text-sm text-gray-500">kuus</div>
+              <div className="text-2xl font-bold text-[#17345a]">üle miljoni m²</div>
+              <div className="text-[15px] text-gray-500">iga päev</div>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ const Hero = () => (
             </div>
             <div>
               <div className="text-2xl font-bold text-[#17345a]">ISO</div>
-              <div className="text-sm text-gray-500">9001 + 14001</div>
+              <div className="text-[15px] text-gray-500">9001 + 14001</div>
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@ const Hero = () => (
 const Logos = () => (
   <section id="kliendid" className="py-20 bg-gradient-to-r from-[#f8f9fa] via-white to-[#f0f4f8] overflow-hidden">
     <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
-      <p className="text-sm font-semibold text-[#17345a] uppercase tracking-wider">Meid usaldavad</p>
+      <p className="text-[15px] font-semibold text-[#17345a] uppercase tracking-wider">Meid usaldavad</p>
     </div>
     <div className="overflow-hidden">
       <div className="flex gap-20 animate-scroll">
@@ -151,7 +151,7 @@ const Services = () => {
       
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <span className="inline-block bg-gradient-to-r from-[#17345a] to-[#5ab5da] bg-clip-text text-transparent text-sm font-bold uppercase tracking-wider mb-4">Teenused</span>
+          <span className="inline-block bg-gradient-to-r from-[#17345a] to-[#5ab5da] bg-clip-text text-transparent text-[15px] font-bold uppercase tracking-wider mb-4">Teenused</span>
           <h2 className="text-5xl md:text-6xl font-bold text-[#17345a] mb-6">Lahendused, mis <span className="bg-gradient-to-r from-[#5ab5da] to-[#2d9e6b] bg-clip-text text-transparent">töötavad</span></h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">Täisteenus alates igapäevasest koristusest kuni keerukate eritöödeni.</p>
         </div>
@@ -186,24 +186,24 @@ const Testimonials = () => (
     
     <div className="relative max-w-7xl mx-auto px-6">
       <div className="text-center mb-20">
-        <span className="text-[#85cbe9] text-sm font-bold uppercase tracking-wider mb-4 inline-block">Tagasiside</span>
+        <span className="text-[#85cbe9] text-[15px] font-bold uppercase tracking-wider mb-4 inline-block">Tagasiside</span>
         <h2 className="text-5xl md:text-6xl font-bold text-white">Kliendid räägivad</h2>
       </div>
       
       <div className="grid md:grid-cols-3 gap-8">
         {[
-          { quote: "SPS on partner, kellele saame kindlad olla. Puhtus garanteeritud!", author: "Teledyne Flir", role: "Tallinn" },
+          { quote: "SPS on partner, kellele saame kindlad olla. Puhtus on alati tagatud!", author: "Teledyne Flir", role: "Tallinn" },
           { quote: "Professionaalne meeskond ja suurepärane tulemus. Soovitame!", author: "AS Norma", role: "Tootmine" },
           { quote: "Paindlik ja töökindel teenus juba üle 5 aasta.", author: "Nordic Hotels", role: "Hotellindus" },
         ].map((t, i) => (
           <div key={i} className="bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/20 hover:bg-white/15 transition-all">
             <div className="flex gap-1 mb-6 text-[#f59e0b] text-xl">★★★★★</div>
-            <p className="text-white/90 leading-relaxed mb-8 text-lg italic">"{t.quote}"</p>
+            <p className="text-white/90 leading-relaxed mb-8 text-lg italic">&quot;{t.quote}&quot;</p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#5ab5da] to-[#2d9e6b] flex items-center justify-center text-white font-bold text-lg">{t.author[0]}</div>
               <div>
                 <div className="font-bold text-white">{t.author}</div>
-                <div className="text-sm text-[#85cbe9]">{t.role}</div>
+                <div className="text-[15px] text-[#85cbe9]">{t.role}</div>
               </div>
             </div>
           </div>
@@ -216,7 +216,7 @@ const Testimonials = () => (
 // Modern Industries
 const Industries = () => {
   const industries = [
-    { name: "Kontorid", count: "500+" },
+    { name: "Kontorid", count: "üle 100" },
     { name: "Kaubandus", count: "15+" },
     { name: "Tootmine", count: "100k m²" },
     { name: "Hotellid", count: "50+" },
@@ -228,7 +228,7 @@ const Industries = () => {
     <section id="valdkonnad" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <span className="text-[#5ab5da] text-sm font-bold uppercase tracking-wider mb-4 inline-block">Valdkonnad</span>
+          <span className="text-[#5ab5da] text-[15px] font-bold uppercase tracking-wider mb-4 inline-block">Valdkonnad</span>
           <h2 className="text-5xl md:text-6xl font-bold text-[#17345a]">Teenindame edukalt</h2>
         </div>
         
@@ -255,7 +255,7 @@ const Trust = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div>
-          <span className="text-[#5ab5da] text-sm font-bold uppercase tracking-wider mb-4 inline-block">Miks meie?</span>
+          <span className="text-[#5ab5da] text-[15px] font-bold uppercase tracking-wider mb-4 inline-block">Miks meie?</span>
           <h2 className="text-5xl md:text-6xl font-bold text-[#17345a] mb-6">Usaldavad sadu ettevõtteid</h2>
           <p className="text-xl text-gray-600 leading-relaxed mb-10">
             SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 20 aasta. 
@@ -264,9 +264,9 @@ const Trust = () => (
           
           <div className="grid grid-cols-2 gap-6">
             {[
-              { num: "500k", label: "m² kuus", icon: "📊" },
+              { num: "üle miljoni", label: "m² iga päev", icon: "📊" },
               { num: "200+", label: "Töötajat", icon: "👥" },
-              { num: "500+", label: "Klienti", icon: "🏢" },
+              { num: "üle 100", label: "Klienti", icon: "🏢" },
               { num: "20+", label: "Aastat", icon: "⭐" },
             ].map((stat, i) => (
               <div key={i} className="group bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
@@ -292,7 +292,7 @@ const Trust = () => (
                 </div>
               </div>
               <div className="space-y-4">
-                {["Kvaliteedi garantii 100%", "Kindlustatud teenused", "24/7 tugi ja reageerimine"].map((item, i) => (
+                {["Kindlustatud teenus", "Kindlustatud teenused", "24/7 tugi ja reageerimine"].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 bg-white/10 backdrop-blur-lg p-4 rounded-xl">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
                     <span className="text-white font-medium">{item}</span>
@@ -317,7 +317,7 @@ const ContactForm = () => (
     
     <div className="relative max-w-2xl mx-auto px-6">
       <div className="text-center mb-12">
-        <span className="text-[#85cbe9] text-sm font-bold uppercase tracking-wider mb-4 inline-block">Pakkumine</span>
+        <span className="text-[#85cbe9] text-[15px] font-bold uppercase tracking-wider mb-4 inline-block">Pakkumine</span>
         <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Küsi tasuta pakkumist</h2>
         <p className="text-xl text-white/70">Vastame 24 tunni jooksul</p>
       </div>
@@ -353,7 +353,7 @@ const FAQ = () => {
     <section id="kkk" className="py-32 bg-white">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-[#5ab5da] text-sm font-bold uppercase tracking-wider mb-4 inline-block">KKK</span>
+          <span className="text-[#5ab5da] text-[15px] font-bold uppercase tracking-wider mb-4 inline-block">KKK</span>
           <h2 className="text-5xl md:text-6xl font-bold text-[#17345a]">Korduma kippuvad küsimused</h2>
         </div>
         

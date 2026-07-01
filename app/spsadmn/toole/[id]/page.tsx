@@ -50,7 +50,7 @@ function linkPrompt(callback: (url: string) => void) {
   }
 }
 
-function RichTextEditor({ value, onChange, label }: { value: string; onChange: (v: string) => void; label: string }) {
+function RichTextEditor({ value, onChange }: { value: string; onChange: (v: string) => void; label: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const [imageBrowserOpen, setImageBrowserOpen] = useState(false)
 

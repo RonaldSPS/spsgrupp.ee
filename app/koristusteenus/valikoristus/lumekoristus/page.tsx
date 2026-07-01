@@ -90,7 +90,7 @@ const teenuseSisuKaardid: { bold: string; desc: string }[] = [
 const miksMeieKaardid = [
   {
     title: "Automaatne reageerimine",
-    desc: "Te ei pea meile helistama. Jälgime ilmaprognoosi ja tuleme automaatselt. Hommikul on parkla alati puhas.",
+    desc: "Te ei pea meile helistama. Jälgime ilmaprognoosi ja tuleme automaatselt. Hommikul on parkla puhas.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
@@ -245,7 +245,7 @@ export default function Lumekoristus() {
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
                 Automaatne reageerimine lumesajule. Parklad, kõnniteed,
-                sissepääsud alati puhtad ja turvalised. Hooajaline leping,
+                sissepääsud puhtad ja turvalised. Hooajaline leping,
                 fikseeritud hinnaga.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
@@ -286,7 +286,7 @@ export default function Lumekoristus() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -551,7 +551,7 @@ export default function Lumekoristus() {
                 {[
                   { number: "20+", label: "aastat kogemust" },
                   { number: "200+", label: "teenindatud objekti" },
-                  { number: "100%", label: "kindlustatud teenus" },
+                  { number: "Kindlustatud", label: "teenus" },
                 ].map((stat, i) => (
                   <div
                     key={i}

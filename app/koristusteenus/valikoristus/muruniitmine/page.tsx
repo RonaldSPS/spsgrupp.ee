@@ -4,7 +4,7 @@ import OutdoorServicePage, { type OutdoorServicePageData } from "../_components/
 
 const data: OutdoorServicePageData = {
   ariaLabel: "Muruniitmine",
-  heroImage: "/muruniitmine-1.jpg",
+  heroImage: "/muruniitmine-1.webp",
   image: "/muruniitmin-2.jpg",
   imageAlt: "SPS Grupp muruniitmine ja haljasalade hooldus",
   title: "Muruniitmine",

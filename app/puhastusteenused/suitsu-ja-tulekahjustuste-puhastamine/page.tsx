@@ -16,23 +16,23 @@ import Tooprotsess from "../../components/Tooprotsess";
 const customFAQ = [
   {
     q: "Kui kiiresti tuleb alustada puhastusprotsessiga?",
-    a: "Esimese 24-48 tunni jooksul on kriitiline kutsuda professionaalne meeskond. Iga viivitatud tund voib suurendada loplikke kulusid kuni 25% ja raskendada taastamist.",
+    a: "Esimese 24-48 tunni jooksul on kriitiline kutsuda professionaalne meeskond. Iga viivitatud tund võib suurendada lõplikke kulusid kuni 25% ja raskendada taastamist.",
   },
   {
-    q: "Kas kindlustus katab koik kulud?",
-    a: "Professionaalne dokumentatsioon suurendab margatavalt huvitise saamise toenaosust. Teeme alati pohjaliku kahjustuste kirjelduse koos fotodega, mille saab kindlustusseltsile esitada.",
+    q: "Kas kindlustus katab kõik kulud?",
+    a: "Professionaalne dokumentatsioon suurendab märgatavalt hüvitise saamise tõenäosust. Teeme alati põhjaliku kahjustuste kirjelduse koos fotodega, mille saab kindlustusseltsile esitada.",
   },
   {
     q: "Kui ohtlikud on tulekahjujargsed mikroosakesed?",
-    a: "Voivad pohjustada tosiseid hingamisteede probleeme, kui neid oigeaegselt ei eemaldata. Samuti suuivad nad materjalidesse ja on hiljem vaga raskesti eemaldatavad.",
+    a: "Võivad põhjustada tõsiseid hingamisteede probleeme, kui neid õigeaegselt ei eemaldata. Samuti söövivad nad materjalidesse ja on hiljem väga raskesti eemaldatavad.",
   },
   {
-    q: "Kas lohn jaab alles ka parast puhastust?",
-    a: "Ei. Kasutame professionaalseid ohupuhastusseadmeid ja neutralisaatoreid, mis eemaldavad lohna molekulaarsel tasandil. Lohn ei tule tagasi.",
+    q: "Kas lõhn jääb alles ka pärast puhastust?",
+    a: "Ei. Kasutame professionaalseid õhupuhastusseadmeid ja neutralisaatoreid, mis eemaldavad lõhna molekulaarsel tasandil. Lõhn ei tule tagasi.",
   },
   {
     q: "Kui kaua puhastusprotsess kestab?",
-    a: "Keskmiselt 1-3 toopaeva soltuvalt kahjustuste ulatusest ja ruumi suurusest. Suuremate juhtumite puhul voib votta nadala voi rohkem.",
+    a: "Keskmiselt 1-3 tööpäeva sõltuvalt kahjustuste ulatusest ja ruumi suurusest. Suuremate juhtumite puhul võib võtta nädala või rohkem.",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
               </div>
               <div>
                 <div className="text-[18px] font-bold text-[#17345a] leading-tight">Kindlustus</div>
-                <div className="text-[15px] text-[#1f2937]">koostoo</div>
+                <div className="text-[15px] text-[#1f2937]">koostöö</div>
               </div>
             </div>
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -111,11 +111,11 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                 <span className="text-[#3abeff]">puhastamine</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Kiire taastamine ilma ariseisakuta. Eemaldame tahma, neutraliseerime lohna ja dokumenteerime kahjustused kindlustuse jaoks.
+                Kiire taastamine ilma äriseisakuta. Eemaldame tahma, neutraliseerime lõhna ja dokumenteerime kahjustused kindlustuse jaoks.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
-                  Kusi pakkumist
+                  Küsi pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
@@ -133,7 +133,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>
@@ -148,14 +148,14 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
         <ScrollAnimation animation="fade-up">
           <section className="py-[100px] bg-white">
             <div className="max-w-[1280px] mx-auto px-[5%]">
-              <TwoToneHeading text="Parast tulekahju on igal tunnil hind" className="mb-8" />
+              <TwoToneHeading text="Pärast tulekahju on igal tunnil hind" className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
                 <div>
-                  <p>Mida kauem tahm ja lohn ruumis pusivad, seda keerulisem ja kulukam on hilisem puhastustoo. Tahm soovitab pindu, lohn imbub materjalidesse, mikroosakesed tungivad ventilatsioonisusteemidesse. Iga viivitatud tund voib kulu suurendada.</p>
-                  <p className="mt-4">Lisaks finantskahjule on tervislikud riskid: tahma mikroosakesed ja tulekahjust jaanud kemikaalid voivad pohjustada tosiseid terviseprobleeme, kui neid oigeaegselt ei eemaldata.</p>
+                  <p>Mida kauem tahm ja lõhn ruumis püsivad, seda keerulisem ja kulukam on hilisem puhastustöö. Tahm söövitab pindu, lõhn imbub materjalidesse, mikroosakesed tungivad ventilatsioonisüsteemidesse. Iga viivitatud tund võib kulu suurendada.</p>
+                  <p className="mt-4">Lisaks finantskahjule on tervislikud riskid: tahma mikroosakesed ja tulekahjust jäänud kemikaalid võivad põhjustada tõsiseid terviseprobleeme, kui neid õigeaegselt ei eemaldata.</p>
                 </div>
                 <div>
-                  <p>SPS Grupp reageerib suitsu- ja tulekahjustuste olukordades 24 tunni jooksul. Meie spetsialistid dokumenteerivad kahjustused kindlustuse jaoks, eemaldavad tahma, puhastavad ventilatsiooni ja neutraliseerivad lohna.</p>
+                  <p>SPS Grupp reageerib suitsu- ja tulekahjustuste olukordades 24 tunni jooksul. Meie spetsialistid dokumenteerivad kahjustused kindlustuse jaoks, eemaldavad tahma, puhastavad ventilatsiooni ja neutraliseerivad lõhna.</p>
                 </div>
               </div>
             </div>
@@ -183,14 +183,14 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   { bold: "Esmane hindamine ja kahjustuste dokumenteerimine kindlustuse jaoks", desc: "" },
-                  { bold: "Turvalise juurdepaasu tagamine ja riskide kaardistamine", desc: "" },
-                  { bold: "Tahma eemaldamine koikidelt pindadelt spetsiaalsete vahenditega", desc: "" },
-                  { bold: "Porandate, seinte ja lagede pohjalik puhastus", desc: "" },
-                  { bold: "Ventilatsioonisusteemide puhastus ja saasteallikate neutraliseerimine", desc: "" },
-                  { bold: "Ohupuhastus ja lohna eemaldamine", desc: "" },
-                  { bold: "Tekstiilide, vaipade ja pehme moobli puhastus", desc: "" },
-                  { bold: "Desinfitseerimine ja sanitaartootlus", desc: "" },
-                  { bold: "Koostoo kindlustusseltsidega kogu protsessi valtel", desc: "" },
+                  { bold: "Turvalise juurdepääsu tagamine ja riskide kaardistamine", desc: "" },
+                  { bold: "Tahma eemaldamine kõikidelt pindadelt spetsiaalsete vahenditega", desc: "" },
+                  { bold: "Põrandate, seinte ja lagede põhjalik puhastus", desc: "" },
+                  { bold: "Ventilatsioonisüsteemide puhastus ja saasteallikate neutraliseerimine", desc: "" },
+                  { bold: "Õhupuhastus ja lõhna eemaldamine", desc: "" },
+                  { bold: "Tekstiilide, vaipade ja pehme mööbli puhastus", desc: "" },
+                  { bold: "Desinfitseerimine ja sanitaartöötlus", desc: "" },
+                  { bold: "Koostöö kindlustusseltsidega kogu protsessi vältel", desc: "" },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -239,7 +239,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">24h reageerimine</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Helistage ja oleme objektil 24 tunni jooksul. Kriitiline esimene oopaev maarab sageli taastamise edukuse ja kulude suuruse.
+                          Helistage ja oleme objektil 24 tunni jooksul. Kriitiline esimene ööpäev määrab sageli taastamise edukuse ja kulude suuruse.
                         </p>
                       </div>
                     </div>
@@ -254,9 +254,9 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kindlustusega koostoo</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kindlustusega koostöö</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Dokumenteerime koik kahjustused pohjalikult — koos fotodega ja kahjustuste kirjeldusega. See suurendab oluliselt huvitise toenaosust.
+                          Dokumenteerime kõik kahjustused põhjalikult — koos fotodega ja kahjustuste kirjeldusega. See suurendab oluliselt hüvitise tõenäosust.
                         </p>
                       </div>
                     </div>
@@ -272,7 +272,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Erivarustus ja -vahendid</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kuiv aurupuhastus (ule 170°C), elektrostaatilised pihustid, professionaalsed ohupuhastid, UV-C desinfitseerimine. Seadmed, mida tavalistel koristusfirmadel ei ole.
+                          Kuiv aurupuhastus (üle 170°C), elektrostaatilised pihustid, professionaalsed õhupuhastid, UV-C desinfitseerimine. Seadmed, mida tavalistel koristusfirmadel ei ole.
                         </p>
                       </div>
                     </div>
@@ -287,9 +287,9 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Lohna eemaldamine molekulaartasandil</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Lõhna eemaldamine molekulaartasandil</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kasutame neutralisaatoreid, mis ei varja lohna, vaid havitavad selle molekulid. Lohn ei tule tagasi.
+                          Kasutame neutralisaatoreid, mis ei varja lõhna, vaid hävitavad selle molekulid. Lõhn ei tule tagasi.
                         </p>
                       </div>
                     </div>
@@ -328,13 +328,13 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
                 <div>
                   <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Iga tulekahjustuse olukord on unikaalne. Hind soltub kahjustuste ulatusest, pindalast, materjalidest ja vajalikest toodest.
+                    Iga tulekahjustuse olukord on unikaalne. Hind sõltub kahjustuste ulatusest, pindalast, materjalidest ja vajalikest töödest.
                   </p>
 
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     {[
                       { size: "Esmane hindamine", area: "tasuta (kindlustusjuhtumi puhul)", price: "Tasuta", period: "", highlight: true },
-                      { size: "Vaikesed suitsukahjustused", area: "", price: "500€", period: "alates" },
+                      { size: "Väikesed suitsukahjustused", area: "", price: "500€", period: "alates" },
                       { size: "Keskmised kahjustused", area: "tuba–korrus", price: "1500€", period: "alates" },
                       { size: "Suured kahjustused", area: "", price: "Individuaalne", period: "" },
                     ].map((item, i) => (
@@ -393,8 +393,8 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
         {/* Lopu CTA */}
         <ScrollAnimation animation="fade-up">
           <FooterCTA
-            title="Vajate kiiret abi suitsu- voi tulekahjustusega?"
-            description="Helistage oopaevaringselt 662 3328 voi kirjutage info@spsgrupp.ee. Oleme objektil 24 tunni jooksul."
+            title="Vajate kiiret abi suitsu- või tulekahjustusega?"
+            description="Helistage ööpäevaringselt 662 3328 või kirjutage info@spsgrupp.ee. Oleme objektil 24 tunni jooksul."
           />
         </ScrollAnimation>
 

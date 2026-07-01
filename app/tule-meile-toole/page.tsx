@@ -109,7 +109,7 @@ export default function TuleMeileToolePage() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Tule meile tööle</span>
               </nav>

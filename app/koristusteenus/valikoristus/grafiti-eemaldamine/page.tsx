@@ -293,7 +293,7 @@ export default function GrafitiEemaldamine() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -651,7 +651,7 @@ export default function GrafitiEemaldamine() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
                   { number: "24h", label: "reageerimisaeg" },
-                  { number: "100%", label: "tulemuse garantii" },
+                  { number: "Kvaliteetne", label: "tulemus" },
                   { number: "150+", label: "eemaldatud graffitit" },
                 ].map((stat, i) => (
                   <div

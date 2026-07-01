@@ -48,12 +48,19 @@ export default async function BlogPostPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": "https://spsgrupp.ee/blog/" + post.slug + "#blogposting",
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
+    dateModified: post.date,
     author: { "@type": "Organization", name: "SPS Grupp" },
+    publisher: { "@type": "Organization", name: "SPS Grupp OÜ", url: "https://spsgrupp.ee" },
     image: "https://spsgrupp.ee" + post.featuredImage,
     url: "https://spsgrupp.ee/blog/" + post.slug,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://spsgrupp.ee/blog/" + post.slug,
+    },
   }
 
   return (

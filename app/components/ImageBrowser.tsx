@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
 interface ImageInfo {
   url: string
@@ -25,14 +25,21 @@ export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserPr
   const [preview, setPreview] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  const loadImages = useCallback(async () => {
+    setLoading(true)
+    try {
+      const r = await fetch("/api/spsadmn/images")
+      const data = await r.json()
+      setImages(data.images || [])
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
   useEffect(() => {
     if (!open) return
-    setLoading(true)
-    fetch("/api/spsadmn/images")
-      .then((r) => r.json())
-      .then((data) => setImages(data.images || []))
-      .finally(() => setLoading(false))
-  }, [open])
+    loadImages()
+  }, [open, loadImages])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -146,6 +153,7 @@ export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserPr
                   }}
                   className={`relative group rounded-xl overflow-hidden border-2 bg-[#eef7fc] aspect-square transition-all ${preview === img.url ? "border-[#3abeff] ring-2 ring-[#3abeff]/20" : "border-transparent hover:border-[#3abeff]/50"}`}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={img.url}
                     alt={img.name}
@@ -167,6 +175,7 @@ export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserPr
           <div className="shrink-0 p-4 border-t border-[rgba(23,52,90,0.08)] flex items-center justify-between bg-gray-50">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-lg overflow-hidden bg-[#eef7fc]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={preview} alt="" className="w-full h-full object-cover" />
               </div>
               <div>

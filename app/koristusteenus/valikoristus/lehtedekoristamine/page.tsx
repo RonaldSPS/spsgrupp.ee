@@ -4,7 +4,7 @@ import OutdoorServicePage, { type OutdoorServicePageData } from "../_components/
 
 const data: OutdoorServicePageData = {
   ariaLabel: "Lehtede koristamine",
-  heroImage: "/lehekoristus-1.jpg",
+  heroImage: "/lehekoristus-1.webp",
   image: "/lehekoristus-2.jpg",
   imageAlt: "SPS Grupp lehtede koristamine välialadel",
   title: "Lehtede koristamine",

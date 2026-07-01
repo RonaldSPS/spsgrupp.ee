@@ -32,9 +32,9 @@ const categories: CategoryGroup[] = [
       },
       {
         quote:
-          "Soovin edastada erakordselt positiivse tagasiside kontorikoristuse kohta. Kontor on alati väga puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel ning see on leidnud positiivset tähelepanu ka meie töötajate seas. On näha, et koristustöid tehakse suure hoole ja pühendumusega.",
+          "Soovin edastada erakordselt positiivse tagasiside kontorikoristuse kohta. Kontor on puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel ning see on leidnud positiivset tähelepanu ka meie töötajate seas. On näha, et koristustöid tehakse suure hoole ja pühendumusega.",
         shortQuote:
-          "Kontor on alati väga puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel.",
+          "Kontor on puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel.",
         author: "Elis",
         initials: "E",
         logo: "/arvamused-logod/elis.png",
@@ -199,7 +199,7 @@ const categories: CategoryGroup[] = [
       },
       {
         quote:
-          "Sooviksin edastada meie ettevõtte siirad tänusõnad ja suured kiitused Teie töötajale, kes viibib hetkel puhkusel, kuid keda ootame väga tagasi. Puhastusteenindaja on erakordselt tubli, kohusetundlik ja professionaalne koristaja. Tema töö kvaliteet on olnud järjepidevalt väga kõrgel tasemel ning tema panus on olnud selgelt märgatav. Ruumid on alati puhtad, korras ja hooldatud ning tema suhtumine oma töösse väärib igati tunnustust. Selliseid töötajaid kohtab harva.",
+           "Sooviksin edastada meie ettevõtte siirad tänusõnad ja suured kiitused Teie töötajale, kes viibib hetkel puhkusel, kuid keda ootame väga tagasi. Puhastusteenindaja on erakordselt tubli, kohusetundlik ja professionaalne koristaja. Tema töö kvaliteet on olnud järjepidevalt väga kõrgel tasemel ning tema panus on olnud selgelt märgatav. Ruumid on puhtad, korras ja hooldatud ning tema suhtumine oma töösse väärib igati tunnustust. Selliseid töötajaid kohtab harva.",
         shortQuote:
           "Puhastusteenindaja on erakordselt tubli, kohusetundlik ja professionaalne. Tema töö kvaliteet on olnud järjepidevalt väga kõrgel tasemel.",
         author: "Kelly",
@@ -292,8 +292,6 @@ const categories: CategoryGroup[] = [
 ];
 
 export default function ArvamusedPage() {
-  const totalCount = categories.reduce((sum, cat) => sum + cat.testimonials.length, 0);
-
   return (
     <>
       <SeoJsonLd
@@ -345,7 +343,7 @@ export default function ArvamusedPage() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/sps-grupp" className="text-white/80 no-underline hover:text-white transition-colors">SPS Grupp</a>
                 <span className="text-white/50">/</span>
@@ -414,6 +412,7 @@ export default function ArvamusedPage() {
                   <video
                     src="/SPS-TarmoSildberg.mp4"
                     controls
+                    preload="none"
                     poster="/TarmoHero.jpg"
                     className="w-full h-auto"
                     style={{ borderRadius: "24px" }}

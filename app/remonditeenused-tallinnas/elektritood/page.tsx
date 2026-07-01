@@ -44,7 +44,7 @@ const elektritoodFAQ = [
 ];
 
 export default function ElektritoodLeht() {
-  const heroPilt = "/images/elekter/ElekterHero.png";
+  const heroPilt = "/images/elekter/ElekterHero.webp";
   const heroPealkiri = "Elektritööd äripindadele";
   const heroPealkiriVarviline = "Tallinnas ja Harjumaal";
   const heroKirjeldus =
@@ -318,7 +318,7 @@ export default function ElektritoodLeht() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/remonditeenused-tallinnas" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
                 <span className="text-white/50">/</span>

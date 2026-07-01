@@ -32,7 +32,7 @@ export default function TestimonialCards({ testimonials }: Props) {
             ))}
           </div>
           <p className="text-[15px] leading-[1.8] text-[#2d3748] mb-5 font-light italic flex-1">
-            "{t.shortQuote}"
+            &quot;{t.shortQuote}&quot;
           </p>
 
           {/* Logo row - prominently above author */}

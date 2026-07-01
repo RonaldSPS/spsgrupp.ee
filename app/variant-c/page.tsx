@@ -33,13 +33,13 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center gap-2 list-none">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="text-white/70 no-underline text-sm font-medium px-4 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-all">
+              <Link href={link.href} className="text-white/70 no-underline text-[15px] font-medium px-4 py-2 rounded-lg hover:text-white hover:bg-white/5 transition-all">
                 {link.label}
               </Link>
             </li>
           ))}
           <li>
-            <Link href="#pakkumine" className="bg-gradient-to-r from-[#17345a] to-[#85cbe9] text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-[#85cbe9]/30 transition-all">
+            <Link href="#pakkumine" className="bg-gradient-to-r from-[#17345a] to-[#85cbe9] text-white px-6 py-2.5 rounded-lg text-[15px] font-semibold hover:shadow-lg hover:shadow-[#85cbe9]/30 transition-all">
               Küsi pakkumist
             </Link>
           </li>
@@ -62,14 +62,14 @@ const Hero = () => (
       <div>
         <div className="inline-flex items-center gap-2 bg-[#17345a]/50 backdrop-blur-lg rounded-full px-5 py-2.5 mb-6 border border-[#85cbe9]/30">
           <span className="w-2 h-2 bg-[#85cbe9] rounded-full animate-pulse shadow-lg shadow-[#85cbe9]"></span>
-          <span className="text-sm text-white/90 font-medium">Premium koristusteenus</span>
+          <span className="text-[15px] text-white/90 font-medium">Premium koristusteenus</span>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
           <span className="text-white">Puhtus</span><br />
           <span className="bg-gradient-to-r from-[#85cbe9] to-[#5ab5da] bg-clip-text text-transparent">uuel tasemel</span>
         </h1>
         <p className="text-xl text-white/70 leading-relaxed mb-8 max-w-lg">
-          Hooldame <strong className="text-white font-semibold">500 000m²</strong> äripindu. 
+          Hooldame <strong className="text-white font-semibold">üle miljoni m²</strong> äripindu iga päev. 
           ISO sertifitseeritud premium kvaliteet.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -95,8 +95,8 @@ const Hero = () => (
               <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-7 h-7"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">500k m²</div>
-              <div className="text-sm text-white/50">kuus</div>
+              <div className="text-2xl font-bold text-white">üle miljoni m²</div>
+              <div className="text-[15px] text-white/50">iga päev</div>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@ const Hero = () => (
             </div>
             <div>
               <div className="text-2xl font-bold text-white">ISO</div>
-              <div className="text-sm text-white/50">9001 + 14001</div>
+              <div className="text-[15px] text-white/50">9001 + 14001</div>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ const Hero = () => (
 const Logos = () => (
   <section id="kliendid" className="py-20 bg-[#0a1628] border-y border-[#17345a]/30">
     <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
-      <p className="text-sm text-white/50 uppercase tracking-wider">Premium partnerid</p>
+      <p className="text-[15px] text-white/50 uppercase tracking-wider">Premium partnerid</p>
     </div>
     <div className="overflow-hidden">
       <div className="flex gap-20 opacity-40">
@@ -145,7 +145,7 @@ const Services = () => {
     <section id="teenused" className="py-32 bg-[#0a1628] relative">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <span className="text-[#85cbe9] text-sm font-semibold uppercase tracking-wider mb-4 inline-block">Teenused</span>
+          <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">Teenused</span>
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">Premium lahendused</h2>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">Täisteenus kõrgeima kvaliteedistandardiga.</p>
         </div>
@@ -175,7 +175,7 @@ const Testimonials = () => (
   <section id="kliendid-arvustused" className="py-32 bg-[#0f1f33]">
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center mb-20">
-        <span className="text-[#85cbe9] text-sm font-semibold uppercase tracking-wider mb-4 inline-block">Tagasiside</span>
+        <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">Tagasiside</span>
         <h2 className="text-5xl md:text-6xl font-bold text-white">Kliendi sõnad</h2>
       </div>
       
@@ -187,12 +187,12 @@ const Testimonials = () => (
         ].map((t, i) => (
           <div key={i} className="bg-[#0a1628] p-8 rounded-2xl border border-[#17345a]/50 hover:border-[#85cbe9]/50 transition-all">
             <div className="flex gap-1 mb-6 text-[#f59e0b] text-lg">★★★★★</div>
-            <p className="text-white/80 leading-relaxed mb-8 italic">"{t.quote}"</p>
+            <p className="text-white/80 leading-relaxed mb-8 italic">&quot;{t.quote}&quot;</p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#17345a] to-[#85cbe9] flex items-center justify-center text-white font-bold">{t.author[0]}</div>
               <div>
                 <div className="font-semibold text-white">{t.author}</div>
-                <div className="text-sm text-white/50">{t.role}</div>
+                <div className="text-[15px] text-white/50">{t.role}</div>
               </div>
             </div>
           </div>
@@ -205,7 +205,7 @@ const Testimonials = () => (
 // Dark Industries
 const Industries = () => {
   const industries = [
-    { name: "Kontorid", count: "500+" },
+    { name: "Kontorid", count: "üle 100" },
     { name: "Kaubandus", count: "15+" },
     { name: "Tootmine", count: "100k m²" },
     { name: "Hotellid", count: "50+" },
@@ -217,7 +217,7 @@ const Industries = () => {
     <section id="valdkonnad" className="py-32 bg-[#0a1628]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <span className="text-[#85cbe9] text-sm font-semibold uppercase tracking-wider mb-4 inline-block">Valdkonnad</span>
+          <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">Valdkonnad</span>
           <h2 className="text-5xl md:text-6xl font-bold text-white">Teenindame</h2>
         </div>
         
@@ -241,7 +241,7 @@ const Trust = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div>
-          <span className="text-[#85cbe9] text-sm font-semibold uppercase tracking-wider mb-4 inline-block">Miks meie?</span>
+          <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">Miks meie?</span>
           <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">Premium kvaliteet</h2>
           <p className="text-xl text-white/60 leading-relaxed mb-10">
             SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 20 aasta. 
@@ -250,9 +250,9 @@ const Trust = () => (
           
           <div className="grid grid-cols-2 gap-6">
             {[
-              { num: "500k", label: "m² kuus" },
+              { num: "üle miljoni", label: "m² iga päev" },
               { num: "200+", label: "Töötajat" },
-              { num: "500+", label: "Klienti" },
+              { num: "üle 100", label: "Klienti" },
               { num: "20+", label: "Aastat" },
             ].map((stat, i) => (
               <div key={i} className="bg-[#0a1628] p-6 rounded-2xl border border-[#17345a]/50">
@@ -275,7 +275,7 @@ const Trust = () => (
               </div>
             </div>
             <div className="space-y-4">
-              {["Kvaliteedi garantii", "Kindlustatud teenused", "24/7 tugi"].map((item, i) => (
+              {["Kindlustatud teenused", "24/7 tugi"].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 bg-[#0a1628]/50 p-4 rounded-xl border border-[#17345a]/50">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#85cbe9" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
                   <span className="text-white/80">{item}</span>
@@ -294,7 +294,7 @@ const ContactForm = () => (
   <section id="pakkumine" className="py-32 bg-[#0a1628]">
     <div className="max-w-2xl mx-auto px-6">
       <div className="text-center mb-12">
-        <span className="text-[#85cbe9] text-sm font-semibold uppercase tracking-wider mb-4 inline-block">Pakkumine</span>
+        <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">Pakkumine</span>
         <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Küsi pakkumist</h2>
         <p className="text-xl text-white/60">Vastame 24 tunni jooksul</p>
       </div>
@@ -330,7 +330,7 @@ const FAQ = () => {
     <section id="kkk" className="py-32 bg-[#0f1f33]">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-[#85cbe9] text-sm font-semibold uppercase tracking-wider mb-4 inline-block">KKK</span>
+          <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">KKK</span>
           <h2 className="text-5xl md:text-6xl font-bold text-white">Küsimused</h2>
         </div>
         

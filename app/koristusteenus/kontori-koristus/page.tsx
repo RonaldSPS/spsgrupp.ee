@@ -125,7 +125,7 @@ export default function KontoriKoristus() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -243,9 +243,9 @@ export default function KontoriKoristus() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Taustakontroll ja konfidentsiaalsus</h3>
+                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Konfidentsiaalsus ja andmekaitse</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Iga töötaja läbib taustakontrolli ja allkirjastab konfidentsiaalsuslepingu. Teie dokumentatsioon ja tehnika on turvalistes kätes.
+                        Iga töötaja allkirjastab konfidentsiaalsuslepingu. Teie dokumentatsioon ja tehnika on turvalistes kätes.
                       </p>
                     </div>
                   </div>
@@ -383,8 +383,8 @@ export default function KontoriKoristus() {
                 author: "Paul", initials: "P", logo: "/arvamused-logod/paul.png",
               },
               {
-                quote: "Soovin edastada erakordselt positiivse tagasiside kontorikoristuse kohta. Kontor on alati väga puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel ning see on leidnud positiivset tähelepanu ka meie töötajate seas.",
-                shortQuote: "Kontor on alati väga puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel.",
+                quote: "Soovin edastada erakordselt positiivse tagasiside kontorikoristuse kohta. Kontor on puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel ning see on leidnud positiivset tähelepanu ka meie töötajate seas.",
+                shortQuote: "Kontor on puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel.",
                 author: "Elis", initials: "E", logo: "/arvamused-logod/elis.png",
               },
               {

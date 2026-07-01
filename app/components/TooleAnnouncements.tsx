@@ -22,14 +22,20 @@ export default function TooleAnnouncements() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    let cancelled = false
     fetch("/api/spsadmn/toole")
-      .then((r) => r.json())
+      .then((r) => { if (!r.ok) throw new Error("Failed to load") ; return r.json() })
       .then((data) => {
+        if (cancelled) return
         const active = (data.announcements || []).filter((a: Announcement) => a.active)
         active.sort((a: Announcement, b: Announcement) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime())
         setAnnouncements(active)
       })
-      .finally(() => setLoading(false))
+      .catch(() => {
+        if (!cancelled) setAnnouncements([])
+      })
+      .finally(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
   }, [])
 
   if (loading) {

@@ -140,7 +140,7 @@ export default function KoolideKoristamine() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -423,6 +423,7 @@ export default function KoolideKoristamine() {
                   <video
                     src="/SPS-TarmoSildberg.mp4"
                     controls
+                    preload="none"
                     poster="/TarmoHero.jpg"
                     className="w-full h-auto"
                     style={{ borderRadius: "24px" }}

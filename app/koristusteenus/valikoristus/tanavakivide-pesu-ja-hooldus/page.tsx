@@ -285,7 +285,7 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -573,7 +573,7 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                 {[
                   { number: "20+", label: "aastat kogemust" },
                   { number: "5000+", label: "m² pestud pinda" },
-                  { number: "100%", label: "kindlustatud teenus" },
+                  { number: "Kindlustatud", label: "teenus" },
                 ].map((stat, i) => (
                   <div
                     key={i}

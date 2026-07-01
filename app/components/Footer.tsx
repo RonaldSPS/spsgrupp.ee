@@ -271,7 +271,6 @@ export default function Footer() {
           <span>© {currentYear} SPS Grupp. Kõik õigused kaitstud.</span>
           <div className="flex gap-5">
             <Link href="/privaatsus" className="text-white/70 no-underline hover:text-[#85cbe9]">Privaatsus</Link>
-            <Link href="/kasutustingimused" className="text-white/70 no-underline hover:text-[#85cbe9]">Kasutustingimused</Link>
           </div>
         </div>
       </div>

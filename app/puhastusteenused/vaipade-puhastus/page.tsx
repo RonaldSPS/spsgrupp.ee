@@ -58,7 +58,7 @@ export default function VaipadePuhastus() {
           className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Vaipade puhastus"
-          style={{ background: "url('/vaipade-puhastus-1.png') center/cover no-repeat" }}
+          style={{ background: "url('/vaipade-puhastus-1.webp') center/cover no-repeat" }}
         >
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
@@ -139,7 +139,7 @@ export default function VaipadePuhastus() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>

@@ -1,3 +1,4 @@
+import { cache } from "react"
 import { promises as fs } from "fs"
 import path from "path"
 import { notFound } from "next/navigation"
@@ -6,6 +7,7 @@ import Link from "next/link"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import ScrollAnimation from "../../components/ScrollAnimation"
+import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 
 interface Announcement {
   id: string
@@ -38,17 +40,29 @@ interface Announcement {
   slug: string
 }
 
-async function getAnnouncements(): Promise<Announcement[]> {
+const getAnnouncements = cache(async (): Promise<Announcement[]> => {
   try {
     const raw = await fs.readFile(
       path.join(process.cwd(), "data", "admin-toole-announcements.json"),
       "utf-8"
     )
-    return JSON.parse(raw).announcements || []
+    const data = JSON.parse(raw).announcements || []
+    return data.map((a: Announcement) => ({
+      ...a,
+      tasks: sanitizeHtmlSafe(a.tasks || ""),
+      requirements: sanitizeHtmlSafe(a.requirements || ""),
+      benefits: sanitizeHtmlSafe(a.benefits || ""),
+      companyDescription: sanitizeHtmlSafe(a.companyDescription || ""),
+    }))
   } catch {
     return []
   }
-}
+})
+
+const getActiveAnnouncementBySlug = cache(async (slug: string): Promise<Announcement | undefined> => {
+  const announcements = await getAnnouncements()
+  return announcements.find((a) => a.slug === slug && a.active)
+})
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -56,51 +70,68 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const announcements = await getAnnouncements()
-  const a = announcements.find((a) => a.slug === slug && a.active)
+  const a = await getActiveAnnouncementBySlug(slug)
   if (!a) return { title: "Tööpakkumine | SPS Grupp" }
   return {
     title: a.title + " | SPS Grupp",
-    description: a.subtitle || a.title + " - " + a.location,
+    description: (a.subtitle || a.title + " - " + a.location).slice(0, 160),
     alternates: { canonical: "https://spsgrupp.ee/tule-meile-toole/" + a.slug },
+    openGraph: {
+      title: a.title + " | SPS Grupp",
+      description: a.subtitle || a.title,
+      type: "website",
+      locale: "et_EE",
+    },
   }
 }
 
 export default async function TooleAnnouncementPage({ params }: Props) {
   const { slug } = await params
-  const announcements = await getAnnouncements()
-  const a = announcements.find((a) => a.slug === slug && a.active)
+  const a = await getActiveAnnouncementBySlug(slug)
   if (!a) notFound()
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
+    "@id": "https://spsgrupp.ee/tule-meile-toole/" + a.slug + "#jobposting",
     title: a.title,
     description: a.subtitle || a.title,
     datePosted: a.publishedDate,
-    validThrough: a.applicationDeadline,
+    validThrough: a.applicationDeadline || undefined,
+    identifier: {
+      "@type": "PropertyValue",
+      name: a.company,
+      value: a.id,
+    },
+    employmentType: a.workTime ? a.workTime : "FULL_TIME",
     hiringOrganization: {
       "@type": "Organization",
       name: a.company,
+      sameAs: a.website || "https://spsgrupp.ee",
     },
     jobLocation: {
       "@type": "Place",
-      address: a.location,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: a.location || "Tallinn",
+        addressCountry: "EE",
+      },
     },
     baseSalary: a.salary > 0 ? {
       "@type": "MonetaryAmount",
-      currency: "EUR",
+      currency: a.salaryUnit || "EUR",
       value: {
         "@type": "QuantitativeValue",
         value: a.salary,
         unitText: "MONTH",
       },
     } : undefined,
+    totalJobOpenings: a.vacancies > 0 ? a.vacancies : undefined,
   }
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <Navbar />
       <main className="pt-[130px] pb-[80px]">
         <div className="max-w-[900px] mx-auto px-[25px]">

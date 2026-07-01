@@ -18,11 +18,11 @@ const faqItems = [
   },
   {
     q: "Kuidas tagate konfidentsiaalsuse ja turvalisuse?",
-    a: "Kõik meie töötajad läbivad taustakontrolli ja allkirjastavad konfidentsiaalsuslepingud. Kasutame ranget personalivaliku protsessi.",
+    a: "Andmeid käsitletakse konfidentsiaalselt. Kasutame ranget personalivaliku protsessi.",
   },
   {
     q: "Miks valida SPS Grupp, mitte mõni teine koristusfirma?",
-    a: "Meil on üle 20 aasta kogemust, ISO 9001 ja 14001 keskkonnasertifikaadid, meie teenus on kindlustatud ja anname 100% garantii oma töödele. Saame hakkama igat tüüpi pindade puhastamisega.",
+    a: "Meil on üle 20 aasta kogemust, ISO 9001 ja 14001 keskkonnasertifikaadid, meie teenus on kindlustatud ja pakume kindlustatud teenust. Saame hakkama igat tüüpi pindade puhastamisega.",
   },
 ];
 

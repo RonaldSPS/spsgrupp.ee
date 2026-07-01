@@ -115,7 +115,7 @@ export default function MuruniitmineLeht() {
           className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Muru niitmine Tallinnas"
-          style={{ background: "url('/muruniitmine-1.jpg') center/cover no-repeat" }}
+          style={{ background: "url('/muruniitmine-1.webp') center/cover no-repeat" }}
         >
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
             {[
@@ -178,7 +178,7 @@ export default function MuruniitmineLeht() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/remonditeenused-tallinnas" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
                 <span className="text-white/50">/</span>
@@ -200,7 +200,7 @@ export default function MuruniitmineLeht() {
                 </div>
                 <div>
                   <p>SPS Grupp pakub professionaalset muru niitmise teenust ärihoonetele Tallinnas. Tuleme kohale kokkulepitud ajal ja teeme töö ära. Teie ei pea mõtlema muruniiduki, kütuse ega aja peale.</p>
-                  <p className="mt-4">Pakume nii ühekordseid niitmisi kui ka regulaarseid hoolduslepinguid. Hoolduslepinguga saate soodsama hinna ja garanteeritud teenuse kogu hooaja vältel.</p>
+                  <p className="mt-4">                   Pakume nii ühekordseid niitmisi kui ka regulaarseid hoolduslepinguid. Hoolduslepinguga saate soodsama hinna ja kindlustatud teenuse kogu hooaja vältel.</p>
                 </div>
               </div>
             </div>
@@ -309,7 +309,7 @@ export default function MuruniitmineLeht() {
                   ))}
                 </div>
                 <p className="text-[15px] text-[#5a6474] leading-[1.7] mb-8">
-                  Regulaarse hoolduslepinguga saate soodsama hinna ja garanteeritud teenuse.
+                  Regulaarse hoolduslepinguga saate soodsama hinna ja kindlustatud teenuse.
                 </p>
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
                   Küsi muru niitmise pakkumist

@@ -13,16 +13,16 @@ const testimonials = [
     logo: "/logod/teledyne.png",
   },
   {
-    quote: "Tahame kiita puhastusteenindajat. Võrreldes eelmiste teenusepakkujatega nagu öö ja päev! Viisakad & positiivsed. Ning WC-s on ka nüüd alati kõik tarvikud olemas.",
-    shortQuote: "Tahame kiita puhastusteenindajat. Viisakad & positiivsed. Ning WC-s on alati kõik tarvikud olemas.",
+    quote: "Tahame kiita puhastusteenindajat. Võrreldes eelmiste teenusepakkujatega nagu öö ja päev! Viisakad & positiivsed. Ning WC-s on ka nüüd kõik tarvikud olemas.",
+    shortQuote: "Tahame kiita puhastusteenindajat. Viisakad & positiivsed. Ning WC-s on kõik tarvikud olemas.",
     author: "Maiki Nautras",
     location: "General Services Specialist, AS Norma",
     initials: "M",
     logo: "/arvamused-logod/maiki.png",
   },
   {
-    quote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on alati puhtad ja esinduslikud.",
-    shortQuote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on alati puhtad ja esinduslikud.",
+    quote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on puhtad ja esinduslikud.",
+    shortQuote: "SPS Grupp on professionaalne ja kiire reageerimisvõimega partner. Kontoripinnad on puhtad ja esinduslikud.",
     author: "Ericsson",
     location: "Tallinn",
     initials: "ER",
@@ -60,7 +60,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="text-[15px] leading-[1.8] text-[#2d3748] mb-5 font-light italic flex-1">
-                "{t.shortQuote}"
+                &quot;{t.shortQuote}&quot;
               </p>
 
               <div className="flex justify-center mb-3">
@@ -100,6 +100,7 @@ export default function Testimonials() {
             <video
               src="/SPS-TarmoSildberg.mp4"
               controls
+              preload="none"
               poster="/TarmoHero.jpg"
               className="w-full h-auto"
               style={{ borderRadius: "24px" }}

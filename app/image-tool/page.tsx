@@ -49,7 +49,7 @@ export default function ImageUploader() {
       });
       const data = await response.json();
       setResult(data);
-    } catch (error) {
+    } catch {
       setResult({ success: false, error: "Upload failed" });
     } finally {
       setUploading(false);
@@ -63,7 +63,7 @@ export default function ImageUploader() {
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-[15px] font-medium text-gray-700 mb-2">
               Select Location
             </label>
             <select
@@ -77,13 +77,13 @@ export default function ImageUploader() {
                 </option>
               ))}
             </select>
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="mt-2 text-[15px] text-gray-500">
               Target sizes: {dimensions[location].map(d => `${d.width}x${d.height}`).join(", ")}
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-[15px] font-medium text-gray-700 mb-2">
               Upload Image
             </label>
             <input
@@ -108,8 +108,8 @@ export default function ImageUploader() {
             {result.success ? (
               <>
                 <p className="font-medium text-green-800">Success!</p>
-                <p className="text-sm text-green-600 mt-1">Generated images:</p>
-                <ul className="mt-2 text-sm text-green-700">
+                <p className="text-[15px] text-green-600 mt-1">Generated images:</p>
+                <ul className="mt-2 text-[15px] text-green-700">
                   {result.images?.map((img, i) => (
                     <li key={i}>{img}</li>
                   ))}

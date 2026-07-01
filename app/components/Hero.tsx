@@ -1,6 +1,7 @@
-"use client";
+"use client"
 
-import Link from "next/link";
+import Link from "next/link"
+import Image from "next/image"
 
 const FloatingChip = ({
   iconClass,
@@ -8,10 +9,10 @@ const FloatingChip = ({
   bigText,
   smallText,
 }: {
-  iconClass: string;
-  icon: React.ReactNode;
-  bigText: string;
-  smallText: string;
+  iconClass: string
+  icon: React.ReactNode
+  bigText: string
+  smallText: string
 }) => (
   <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
     <div className={`chip-icon ${iconClass} w-11 h-11 rounded-xl flex items-center justify-center`}>
@@ -22,18 +23,24 @@ const FloatingChip = ({
       <div className="text-[15px] text-[#1f2937]">{smallText}</div>
     </div>
   </div>
-);
+)
 
 export default function Hero() {
   return (
     <section
-      className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
-      id="avaleht"
+      className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[200px] sm:pt-[140px] md:pt-[100px] pb-[40px] sm:pb-[60px]"
       aria-label="Avaleht"
-      style={{ background: "url('/FrontHeroCar.jpg') center/cover no-repeat" }}
     >
-      {/* Floating chips - absolute positioned to align with frosted glass top */}
-      <div className="absolute top-[200px] right-[5%] flex gap-[20px] z-20 hidden md:flex">
+      <Image
+        src="/FrontHeroCar.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover -z-10"
+      />
+
+      <div className="absolute top-[140px] right-[5%] flex gap-[12px] sm:gap-[20px] z-20">
         <FloatingChip
           iconClass="chip-icon-blue"
           icon={
@@ -71,16 +78,15 @@ export default function Hero() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start max-w-[1280px] mx-auto w-full relative z-10">
-        {/* Left column - Hero content */}
-        <div 
+        <div
           className="animate-fade-up order-2 md:order-1"
-          style={{ 
-            background: "rgba(38, 42, 45, 0.62)", 
+          style={{
+            background: "rgba(38, 42, 45, 0.62)",
             backdropFilter: "blur(5px)",
             WebkitBackdropFilter: "blur(5px)",
             padding: "32px",
             borderRadius: "20px",
-            border: "1px solid rgba(133, 203, 233, 0.2)"
+            border: "1px solid rgba(133, 203, 233, 0.2)",
           }}
         >
           <h1 className="text-[clamp(28px,4.2vw,56px)] leading-[1.12] -tracking-[1px] mb-[18px]" style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: 'white' }}>
@@ -110,9 +116,8 @@ export default function Hero() {
               662 3328
             </Link>
           </div>
-
         </div>
       </div>
     </section>
-  );
+  )
 }

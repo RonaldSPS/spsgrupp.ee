@@ -47,6 +47,21 @@ const nextConfig: NextConfig = {
         destination: "/blog/kaheksa-kusimust-enne-koristuslepingu-solmimist",
         permanent: true,
       },
+      {
+        source: "/remonditeenused-tallinnas/kojameheteenus",
+        destination: "/koristusteenus/valikoristus/kojameheteenus",
+        permanent: true,
+      },
+      {
+        source: "/remonditeenused-tallinnas/lehtedekoristamine",
+        destination: "/koristusteenus/valikoristus/lehtedekoristamine",
+        permanent: true,
+      },
+      {
+        source: "/remonditeenused-tallinnas/muruniitmine",
+        destination: "/koristusteenus/valikoristus/muruniitmine",
+        permanent: true,
+      },
     ];
   },
 };

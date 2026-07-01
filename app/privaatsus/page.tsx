@@ -3,7 +3,6 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FooterCTA from "../components/FooterCTA";
-import type { Metadata } from "next";
 
 export default function PrivaatsusPage() {
   return (

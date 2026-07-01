@@ -69,7 +69,7 @@ export default function Koristusteenus() {
               </div>
               <div>
                 <div className="text-[18px] font-bold text-[#17345a] leading-tight">Üle miljoni m²</div>
-                <div className="text-[15px] text-[#1f2937]">igakuiselt</div>
+                <div className="text-[15px] text-[#1f2937]">iga päev</div>
               </div>
             </div>
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -138,7 +138,7 @@ export default function Koristusteenus() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenused</a>
                 <span className="text-white/50">/</span>
@@ -275,9 +275,9 @@ export default function Koristusteenus() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Taustakontrollitud personal</h3>
+                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kontrollitud personal</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Iga töötaja läbib taustakontrolli ja allkirjastab konfidentsiaalsuslepingu. Teie vara ja dokumentatsioon on turvalistes kätes.
+                        Iga töötaja allkirjastab konfidentsiaalsuslepingu. Teie vara ja dokumentatsioon on turvalistes kätes.
                       </p>
                     </div>
                   </div>

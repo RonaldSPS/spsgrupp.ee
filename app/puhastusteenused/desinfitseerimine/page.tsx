@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -136,7 +136,7 @@ export default function Desinfitseerimine() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>
@@ -301,7 +301,7 @@ export default function Desinfitseerimine() {
 
                 <div className="relative rounded-2xl overflow-hidden">
                   <Image
-                    src="/desinfitseerimine-2.png"
+                    src="/desinfitseerimine-2.webp"
                     alt="SPS Grupp desinfitseerimine"
                     width={600}
                     height={700}

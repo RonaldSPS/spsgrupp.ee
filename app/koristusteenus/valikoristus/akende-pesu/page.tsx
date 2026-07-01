@@ -284,7 +284,7 @@ export default function AkendePesu() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -547,7 +547,7 @@ export default function AkendePesu() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
                   { number: "15+", label: "aastat kogemust" },
-                  { number: "100%", label: "triipude vaba garantii" },
+                  { number: "Triibuvaba", label: "tulemus" },
                   { number: "200+", label: "teenindatud hoonet" },
                 ].map((stat, i) => (
                   <div

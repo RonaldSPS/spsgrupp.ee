@@ -166,7 +166,7 @@ export default function SPSGruppPage() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">SPS Grupp</span>
               </nav>
@@ -382,7 +382,7 @@ export default function SPSGruppPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
                   { number: "200+", label: "töötajat" },
-                  { number: "1 000 000+", label: "m² hooldatavat pinda kuus" },
+                  { number: "üle miljoni", label: "m² iga päev" },
                   { number: "ISO 9001", label: "sertifitseeritud kvaliteedijuhtimine" },
                 ].map((stat, i) => (
                   <div

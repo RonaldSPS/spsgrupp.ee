@@ -141,7 +141,7 @@ export default function KaubanduspindadeKoristus() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <a href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</a>
+                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
                 <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
@@ -295,7 +295,7 @@ export default function KaubanduspindadeKoristus() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Koolitatud ja taustakontrollitud personal</h3>
+                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Koolitatud ja kontrollitud personal</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
                         Meie töötajad töötavad klientide juuresolekul. Nad teavad, kuidas käituda, kuidas riietuda ja kuidas mitte segada müügitegevust.
                       </p>

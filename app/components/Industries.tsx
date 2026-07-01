@@ -24,7 +24,7 @@ const industries = [
     subtitle: "Tööohutus ja kord",
     badge: "Tööstuspinnad",
     text: "Tootmishoones ei piisa kodusest loogikast. SPS arvestab masinate, tolmu, liikumisteede, ladude ja eri tsoonidega, et koristus toetaks töökorraldust.",
-    image: "/tootmishoonete-koristus.jpg",
+    image: "/tootmishoonete-koristus.webp",
   },
   {
     title: "Hotellid ja restoranid",

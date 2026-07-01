@@ -13,13 +13,19 @@ import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Koristusfirma Tallinnas | SPS Grupp",
-  description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² äripindu kuus. ISO 9001 sertifikaat. Küsi tasuta pakkumist!",
+  description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² iga päev. ISO 9001 sertifikaat. Küsi tasuta pakkumist!",
   keywords: "koristusfirma, koristusfirmad, puhastusfirma, koristusfirma tallinnas, äripindade koristus, koristusteenus tallinn",
   openGraph: {
     title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² äripindu kuus.",
+    description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² iga päev.",
     type: "website",
     locale: "et_EE",
+    images: [{ url: "https://spsgrupp.ee/SPS_LOGO.svg", width: 512, height: 512, alt: "SPS Grupp logo" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Koristusfirma Tallinnas | SPS Grupp",
+    description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² iga päev.",
   },
   alternates: {
     canonical: "https://spsgrupp.ee",
@@ -66,12 +72,6 @@ const breadcrumbLd = {
       "position": 1,
       "name": "Avaleht",
       "item": "https://spsgrupp.ee"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Koristusfirma",
-      "item": "https://spsgrupp.ee"
     }
   ]
 };
@@ -79,9 +79,11 @@ const breadcrumbLd = {
 const organizationLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://spsgrupp.ee/#organization",
   name: "SPS Grupp OÜ",
   url: "https://spsgrupp.ee",
   logo: "https://spsgrupp.ee/SPS_LOGO.svg",
+  image: "https://spsgrupp.ee/SPS_LOGO.svg",
   description: "20+ aastase kogemusega koristusfirma Tallinnas. ISO 9001 sertifikaat.",
   address: {
     "@type": "PostalAddress",
