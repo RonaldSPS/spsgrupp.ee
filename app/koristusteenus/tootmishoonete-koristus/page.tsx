@@ -25,7 +25,7 @@ const customFaqItems = [
   },
   {
     q: "Kas kasutate keskkonnasõbralikke vahendeid?",
-    a: "Jah, kasutame ökomärgisega sertifitseeritud tooteid ja järgime ISO 14001 standardi nõudeid. Õlieemaldus toimub spetsiaalsete biolagunevate ainetega.",
+    a: "Eelistame väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus pinnad ja ohutusnõuded seda võimaldavad. Õlieemalduseks kasutame spetsiaalseid biolagunevaid aineid. Järgime ISO 14001 standardit.",
   },
   {
     q: "Kas SPS Grupp koristab ka õli- või suitsukahjustusi?",

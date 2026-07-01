@@ -243,7 +243,7 @@ export default function KoolideKoristamine() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Lastele ohutud vahendid</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Kasutame ainult EL-i standarditele vastavaid, laste ümbruses sertifitseeritud puhastusvahendeid.
+                        Kasutame EL-i standarditele vastavaid puhastusvahendeid, mis on laste ümbruses kasutamiseks sertifitseeritud.
                       </p>
                     </div>
                   </div>

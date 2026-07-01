@@ -62,6 +62,41 @@ const nextConfig: NextConfig = {
         destination: "/koristusteenus/valikoristus/muruniitmine",
         permanent: true,
       },
+      {
+        source: "/kas-koristusfirma-tostab-hinda",
+        destination: "/blog/miks-puhastusteenuste-hinnad-tousevad",
+        permanent: true,
+      },
+      {
+        source: "/kodune-akende-pesu-kuidas-aknad-sarama-luua",
+        destination: "/koristusteenus/valikoristus/akende-pesu",
+        permanent: true,
+      },
+      {
+        source: "/koristusteenused",
+        destination: "/koristusteenus",
+        permanent: true,
+      },
+      {
+        source: "/puhastusteenused/ehitusjargne-koristus-ja-puhastus",
+        destination: "/puhastusteenused/ehitusjargne-koristus",
+        permanent: true,
+      },
+      {
+        source: "/puhastusteenused/pehme-moobli-puhastus",
+        destination: "/puhastusteenused",
+        permanent: true,
+      },
+      {
+        source: "/sps-grupp-partnerina",
+        destination: "/sps-grupp",
+        permanent: true,
+      },
+      {
+        source: "/sps-grupp-partnerina/meetodid/kvaliteedi-ja-keskkonnapoliitika",
+        destination: "/sps-grupp",
+        permanent: true,
+      },
     ];
   },
 };

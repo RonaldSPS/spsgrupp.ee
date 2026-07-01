@@ -18,7 +18,7 @@ const kontoriKoristusFAQ = [
   { q: "Kui tihti tuleks kontorit koristada?", a: "Enamikule kontoritest soovitame koristust 3–5 korda nädalas. Tiheda liiklusega alad vajavad igapäevast koristust, väiksemad kontorid saavad hakkama 2–3 korraga nädalas." },
   { q: "Kas kontorikoristus toimub tööajal või väljaspool?", a: "Tavaliselt koristame töövälisel ajal — varahommikul enne tööpäeva algust või õhtul pärast tööaega. Soovi korral saame korraldada ka päevase koristuse madala liiklusega aegadel." },
   { q: "Mida kontori koristus sisaldab?", a: "Tolmuimejaga puhastus, pindade pühkimine, prügi väljaviimine, sanitaarruumide puhastus, köögi ja puhkeala koristus. Lisateenustena pakume akende pesu, vaipade süvapuhastust ja desinfitseerimist." },
-  { q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?", a: "Jah, kõik meie puhastusvahendid on ökomärgisega sertifitseeritud ja ohutud nii inimestele kui ka keskkonnale." },
+  { q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?", a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Eritööde puhul valitakse vahendid konkreetse ülesande järgi." },
   { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Tavaliselt 3–5 tööpäeva jooksul pärast lepingu sõlmimist. Kiireloomulistel juhtudel saame alustada 24–48 tunni jooksul." },
 ];
 
@@ -282,7 +282,7 @@ export default function KontoriKoristus() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Öko puhastusvahendid</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Kasutame ökomärgisega sertifitseeritud tooteid, mis on ohutud inimestele ja elektroonikaseadmetele. Pakume allergiavabasid lahendusi tundlikele töötajatele.
+                        Eelistame sertifitseeritud ja väiksema keskkonnamõjuga tooteid. Pakume allergiavabasid lahendusi tundlikele töötajatele.
                       </p>
                     </div>
                   </div>

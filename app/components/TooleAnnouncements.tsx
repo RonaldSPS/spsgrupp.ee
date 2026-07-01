@@ -23,7 +23,7 @@ export default function TooleAnnouncements() {
 
   useEffect(() => {
     let cancelled = false
-    fetch("/api/spsadmn/toole")
+    fetch("/api/jobs")
       .then((r) => { if (!r.ok) throw new Error("Failed to load") ; return r.json() })
       .then((data) => {
         if (cancelled) return

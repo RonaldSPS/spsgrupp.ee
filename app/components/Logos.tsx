@@ -1,4 +1,6 @@
-import Image from "next/image";
+"use client"
+
+import Image from "next/image"
 
 const logos = [
   "21kool.png",
@@ -31,20 +33,17 @@ const logos = [
   "uponor.png",
   "veho.png",
   "zoo.png"
-];
+]
 
 export default function Logos() {
   return (
     <section className="logos-section bg-white border-t border-b border-[rgba(23,52,90,0.05)]" id="kliendid" aria-label="Meie kliendid">
-      <div className="overflow-hidden relative" aria-hidden="true">
-        <div 
-          className="logo-scroll-track flex items-center gap-0"
-          style={{ width: "max-content" }}
-        >
+      <div className="overflow-hidden w-full" aria-hidden="true">
+        <div className="logo-scroll-track flex items-center gap-0 w-max">
           {[...logos, ...logos, ...logos].map((logo, i) => (
-            <div 
-              key={i} 
-              className="flex items-center justify-center py-2.5 px-10 opacity-40 transition-all hover:opacity-80 min-w-[160px]"
+            <div
+              key={i}
+              className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-40 transition-all hover:opacity-80 min-w-[120px] sm:min-w-[160px]"
             >
               <Image
                 src={`/logod/${logo}`}
@@ -52,12 +51,11 @@ export default function Logos() {
                 width={90}
                 height={50}
                 className="object-contain"
-                style={{ }}
               />
             </div>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }

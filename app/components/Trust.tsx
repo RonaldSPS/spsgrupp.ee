@@ -224,7 +224,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">
               Kõik vahendid ja tarvikud on hinna sees.
             </p>
-            <a href="#pakkumine" aria-label="Vaata lähemalt regulaarse koristusteenuse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
+            <a href="/koristusteenus" aria-label="Vaata lähemalt regulaarse koristusteenuse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
               Vaata lähemalt <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -260,7 +260,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">
               Kiirreageerimine 24/7 ootamatute olukordade jaoks.
             </p>
-            <a href="#pakkumine" aria-label="Vaata lähemalt puhastusteenuste ja eritööde kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
+            <a href="/puhastusteenused" aria-label="Vaata lähemalt puhastusteenuste ja eritööde kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
               Vaata lähemalt <span aria-hidden="true">→</span>
             </a>
           </div>
@@ -296,7 +296,7 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">
               Üks leping, mis katab kõik hooajad ja vajadused.
             </p>
-            <a href="#pakkumine" aria-label="Vaata lähemalt välikoristuse ja territooriumi hoolduse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
+            <a href="/koristusteenus/valikoristus" aria-label="Vaata lähemalt välikoristuse ja territooriumi hoolduse kohta" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
               Vaata lähemalt <span aria-hidden="true">→</span>
             </a>
           </div>

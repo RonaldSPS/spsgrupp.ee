@@ -129,7 +129,7 @@ export default function PrivaatsusPage() {
               SPS Grupp OÜ on kehtestanud kõigile isikutele, kes ettevõtte nimel ja ülesandel isikuandmeid töötlevad, selged ja kohustuslikud nõuded ning need teatavaks teinud.
             </p>
             <p className="text-[15px] text-[#2f353f] leading-relaxed mb-4">
-              SPS Grupp OÜ jälgib Isikuandmete töötlemisel standardi ISO 27001:2013 (infoturbe halduse süsteem, ISMS) nõudeid või sarnasele tasemele vastavaid nõudeid.
+              SPS Grupp OÜ järgib isikuandmete töötlemisel kehtivaid andmekaitsealaseid õigusakte ja rakendab asjakohaseid tehnilisi ning organisatsioonilisi turvameetmeid.
             </p>
           </Section>
 

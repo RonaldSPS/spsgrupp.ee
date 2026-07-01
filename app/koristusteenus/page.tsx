@@ -32,7 +32,7 @@ const customFaqItems = [
   },
   {
     q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?",
-    a: "Jah, kasutame ainult ökomärgisega sertifitseeritud tooteid, mis on ohutud inimestele, elektroonikaseadmetele ja keskkonnale. Järgime ISO 14001 keskkonnajuhtimissüsteemi nõudeid.",
+    a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Järgime ISO 14001 keskkonnajuhtimissüsteemi nõudeid.",
   },
 ];
 
@@ -297,7 +297,7 @@ export default function Koristusteenus() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">ISO 14001 keskkonnajuhtimine</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Kasutame ainult ökomärgisega puhastusvahendeid. Säästlikud meetodid, mis ei kahjusta teie tehnikat ega keskkonda.
+                        Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus pind ja ohutusnõuded seda võimaldavad. Järgime ISO 14001 standardit.
                       </p>
                     </div>
                   </div>

@@ -22,7 +22,7 @@ const faqItems = [
   },
   {
     q: "Miks valida SPS Grupp, mitte mõni teine koristusfirma?",
-    a: "Meil on üle 20 aasta kogemust, ISO 9001 ja 14001 keskkonnasertifikaadid, meie teenus on kindlustatud ja pakume kindlustatud teenust. Saame hakkama igat tüüpi pindade puhastamisega.",
+    a: "Meil on üle 20 aasta kogemust, ISO 9001 ja 14001 keskkonnasertifikaadid, meie teenus on kindlustatud. Saame hakkama igat tüüpi pindade puhastamisega.",
   },
 ];
 
@@ -70,6 +70,7 @@ export default function FAQ({ items }: { items?: FAQItem[] }) {
                   className="faq-question w-full text-left"
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
                   aria-expanded={openIndex === i}
+                  aria-controls={`faq-panel-${i}`}
                 >
                   <span className="text-[15px] font-medium text-[#17345a] flex-1">
                     {item.q}
@@ -84,7 +85,9 @@ export default function FAQ({ items }: { items?: FAQItem[] }) {
                   </div>
                 </button>
                 <div
+                  id={`faq-panel-${i}`}
                   className="overflow-hidden transition-all"
+                  hidden={openIndex !== i}
                   style={{
                     maxHeight: openIndex === i ? "300px" : "0",
                     padding: openIndex === i ? "0 22px 20px" : "0 22px",

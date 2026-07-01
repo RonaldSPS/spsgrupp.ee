@@ -32,7 +32,7 @@ const customFAQ = [
   },
   {
     q: "Kas kasutate ohutuid puhastusvahendeid?",
-    a: "Jah, kasutame ainult sertifitseeritud ja keskkonnaohutuid puhastusvahendeid. Järgime kõiki keskkonnastandardeid ja ISO 14001 nõudeid.",
+    a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Järgime ISO 14001 nõudeid.",
   },
 ];
 

@@ -37,6 +37,12 @@ const ORGANIZATION = {
     availableLanguage: ["Estonian", "Russian", "English"],
   },
   areaServed: ["Tallinn", "Harjumaa"],
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "registryCode",
+    value: "11394806",
+  },
+  taxID: "EE101460268",
 };
 
 export default function SeoJsonLd({ serviceName, serviceDescription, serviceUrl, breadcrumbs, faq }: Props) {

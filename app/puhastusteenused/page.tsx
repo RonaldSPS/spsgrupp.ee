@@ -25,7 +25,7 @@ const customFAQ = [
   },
   {
     q: "Kas kasutate ohutuid puhastusvahendeid?",
-    a: "Jah, kasutame ökomärgisega sertifitseeritud tooteid. Eritööde puhul valime vahendi pinna järgi, et vältida kahjustusi. Kõik vahendid vastavad EL standarditele.",
+    a: "Eelistame Euroopa Liidu standarditele vastavaid ja väiksema keskkonnamõjuga tooteid. Eritööde puhul valime vahendi konkreetse pinna ja ülesande järgi, et tagada parim tulemus.",
   },
   {
     q: "Kas pakute tulemustele garantiid?",

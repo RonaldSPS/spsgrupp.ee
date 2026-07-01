@@ -51,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "app/koristusteenus/valikoristus/page.tsx",
   )
 
-  entries.push({ url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1 })
+  entries.push({ url: BASE_URL, lastModified: new Date("2024-01-01"), changeFrequency: "weekly", priority: 1 })
 
   entries.push({
     url: `${BASE_URL}/koristusteenus`,

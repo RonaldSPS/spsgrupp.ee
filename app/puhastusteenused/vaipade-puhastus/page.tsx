@@ -282,7 +282,7 @@ export default function VaipadePuhastus() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Allergiavabad vahendid</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kasutame tundlikele inimestele sobivaid puhastusvahendeid. Vahendid on ökomärgisega, sertifitseeritud, ohutud ja ilma ärritavate lõhnadeta.
+                          Kasutame tundlikele inimestele sobivaid puhastusvahendeid. Vahendid on sertifitseeritud ja ilma ärritavate lõhnadeta.
                         </p>
                       </div>
                     </div>

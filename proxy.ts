@@ -80,6 +80,12 @@ export async function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString("base64")
   const csp = buildCspHeader(nonce)
 
+  if (pathname === "/api/jobs") {
+    const response = makeResponse(request, csp)
+    response.headers.set("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
+    return response
+  }
+
   if (pathname.startsWith("/api/spsadmn/")) {
     if (pathname === "/api/spsadmn/login") {
       const response = makeResponse(request, csp)
@@ -101,6 +107,15 @@ export async function proxy(request: NextRequest) {
   if (pathname.startsWith("/spsadmn")) {
     const response = makeResponse(request, csp)
     response.headers.set("Cache-Control", "no-store, max-age=0")
+    response.headers.set("X-Robots-Tag", "noindex, nofollow")
+
+    if (pathname !== "/spsadmn") {
+      const token = request.cookies.get(COOKIE_NAME)?.value
+      if (!token || !(await validateToken(token))) {
+        return NextResponse.redirect(new URL("/spsadmn", request.url))
+      }
+    }
+
     return response
   }
 

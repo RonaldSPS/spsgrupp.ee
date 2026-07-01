@@ -34,10 +34,10 @@ export function verifySameOrigin(request: Request): boolean {
   const origin = request.headers.get("origin")
   const host = request.headers.get("host")
   const xForwardedHost = request.headers.get("x-forwarded-host")
-  if (!origin) return true
+  if (!origin) return false
   const originUrl = safeParseOrigin(origin)
   const hostToCheck = xForwardedHost || host
-  if (!originUrl || !hostToCheck) return true
+  if (!originUrl || !hostToCheck) return false
   return originUrl === hostToCheck
 }
 

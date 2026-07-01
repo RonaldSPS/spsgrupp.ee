@@ -111,7 +111,7 @@ export default function KontaktLeht() {
               >
                 <h1 className="text-[clamp(28px,4.2vw,56px)] leading-[1.12] -tracking-[1px] mb-[18px]" style={{ fontFamily: 'var(--font-sans)', fontWeight: 400, color: 'white' }}>
                   Võtke ühendust<br />
-                  <span className="text-[#3abeff]" style={{ fontWeight: 600 }}>SPS Gruppiga</span>
+                  <span className="text-[#3abeff]" style={{ fontWeight: 600 }}>SPS Grupiga</span>
                 </h1>
                 <p className="text-[15px] text-white/90 leading-[1.75] mb-[30px] max-w-[500px] font-light">
                   SPS Grupp on professionaalne koristus- ja remonditeenuste
