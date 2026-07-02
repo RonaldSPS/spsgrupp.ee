@@ -1,68 +1,13 @@
-import { cache } from "react"
-import { promises as fs } from "fs"
-import path from "path"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { headers } from "next/headers"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import ScrollAnimation from "../../components/ScrollAnimation"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
-
-interface Announcement {
-  id: string
-  title: string
-  subtitle: string
-  publishedDate: string
-  offerNumber: string
-  company: string
-  registryCode: string
-  website: string
-  companyDescription: string
-  tasks: string
-  requirements: string
-  benefits: string
-  location: string
-  vacancies: number
-  salary: number
-  salaryUnit: string
-  salaryDetails: string
-  workTime: string
-  workTimeDetails: string
-  startDate: string
-  applicationDeadline: string
-  contactName: string
-  contactRole: string
-  contactPhone: string
-  contactPhone2: string
-  contactEmail: string
-  active: boolean
-  slug: string
-}
-
-const getAnnouncements = cache(async (): Promise<Announcement[]> => {
-  try {
-    const raw = await fs.readFile(
-      path.join(process.cwd(), "data", "admin-toole-announcements.json"),
-      "utf-8"
-    )
-    const data = JSON.parse(raw).announcements || []
-    return data.map((a: Announcement) => ({
-      ...a,
-      tasks: sanitizeHtmlSafe(a.tasks || ""),
-      requirements: sanitizeHtmlSafe(a.requirements || ""),
-      benefits: sanitizeHtmlSafe(a.benefits || ""),
-      companyDescription: sanitizeHtmlSafe(a.companyDescription || ""),
-    }))
-  } catch {
-    return []
-  }
-})
-
-const getActiveAnnouncementBySlug = cache(async (slug: string): Promise<Announcement | undefined> => {
-  const announcements = await getAnnouncements()
-  return announcements.find((a) => a.slug === slug && a.active)
-})
+import { getAnnouncementBySlug } from "@/lib/announcements"
+import type { Announcement } from "@/lib/types"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -70,7 +15,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const a = await getActiveAnnouncementBySlug(slug)
+  const a = await getAnnouncementBySlug(slug)
   if (!a) return { title: "Tööpakkumine | SPS Grupp" }
   return {
     title: a.title + " | SPS Grupp",
@@ -87,8 +32,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TooleAnnouncementPage({ params }: Props) {
   const { slug } = await params
-  const a = await getActiveAnnouncementBySlug(slug)
-  if (!a) notFound()
+  const headersList = await headers()
+  const nonce = headersList.get("x-csp-nonce") || ""
+
+  const raw = await getAnnouncementBySlug(slug)
+  if (!raw) notFound()
+
+  const a: Announcement = {
+    ...raw,
+    tasks: sanitizeHtmlSafe(raw.tasks || ""),
+    requirements: sanitizeHtmlSafe(raw.requirements || ""),
+    benefits: sanitizeHtmlSafe(raw.benefits || ""),
+    companyDescription: sanitizeHtmlSafe(raw.companyDescription || ""),
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -131,7 +87,7 @@ export default async function TooleAnnouncementPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <Navbar />
       <main className="pt-[130px] pb-[80px]">
         <div className="max-w-[900px] mx-auto px-[25px]">

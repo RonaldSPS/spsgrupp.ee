@@ -34,12 +34,6 @@ export default function Hero() {
       aria-label="Avaleht"
       style={{ background: "url('/FrontHeroCar.jpg') center/cover no-repeat" }}
     >
-      <div
-        className="absolute inset-0 z-0"
-        style={{ background: "rgba(38, 42, 45, 0.3)" }}
-        aria-hidden="true"
-      />
-
       <div className="max-w-[1280px] mx-auto w-full relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start">
           <div

@@ -14,6 +14,11 @@ interface RateEntry {
   consecutiveBreaches: number
 }
 
+// NOTE: This in-memory Map is process-local and is NOT shared across
+// serverless instances or multiple Node.js processes. In production
+// deployments with horizontal scaling, consider replacing with a shared
+// store such as Redis (ioredis), Upstash Redis, or a database-backed
+// counter for consistent rate limiting across all instances.
 const store = new Map<string, RateEntry>()
 
 function getClientIp(request: Request): string {
@@ -147,7 +152,7 @@ if (typeof setInterval !== "undefined") {
   setInterval(cleanupRateLimitMap, 5 * 60 * 1000)
 }
 
-const REQUEST_SIZE_LIMIT = 50 * 1024 * 1024
+const REQUEST_SIZE_LIMIT = 4.5 * 1024 * 1024
 
 export function checkRequestSize(request: Request): boolean {
   const contentLength = request.headers.get("content-length")

@@ -35,6 +35,28 @@ interface AdminEdits {
 }
 
 const getAdminEdits = cache(async (): Promise<AdminEdits> => {
+  if (process.env.DATABASE_URL) {
+    try {
+      const { db } = await import("@/lib/db")
+      const { blogEdits } = await import("@/lib/db/schema")
+      const rows = await db.select().from(blogEdits)
+      const posts: AdminEdits["posts"] = {}
+      for (const row of rows) {
+        posts[String(row.id)] = {
+          title: row.title ?? undefined,
+          slug: row.slug ?? undefined,
+          contentHtml: row.contentHtml ?? undefined,
+          featuredImage: row.featuredImage ?? undefined,
+          excerpt: row.excerpt ?? undefined,
+          updatedAt: row.updatedAt?.toISOString?.() ?? String(row.updatedAt ?? ""),
+        }
+      }
+      return { posts }
+    } catch {
+      // fall through to JSON file fallback
+    }
+  }
+
   try {
     const raw = await fs.readFile(
       path.join(process.cwd(), "data", "admin-blog-edits.json"),

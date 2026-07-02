@@ -165,11 +165,11 @@ Koristusfirma SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 2
 
             {/* Overlay certifications */}
             <div 
-              className="absolute -bottom-6 -left-6 right-6 bg-white rounded-4xl p-6 flex gap-4 shadow-md border border-[rgba(23,52,90,0.06)]"
+              className="absolute -bottom-6 left-0 right-0 md:-left-6 md:right-6 bg-white rounded-4xl p-4 md:p-6 flex flex-col sm:flex-row gap-3 md:gap-4 shadow-md border border-[rgba(23,52,90,0.06)]"
               style={{ boxShadow: "0 8px 30px rgba(23,52,90,0.10)" }}
             >
               {certChips.map((cert, i) => (
-                <div key={i} className="flex items-center gap-2.5 bg-[#eef7fc] border border-[rgba(133,203,233,0.25)] rounded-[10px] px-3.5 py-2.5 flex-1 min-w-[140px]">
+                <div key={i} className="flex items-center gap-2.5 bg-[#eef7fc] border border-[rgba(133,203,233,0.25)] rounded-[10px] px-3.5 py-2.5 flex-1 md:min-w-[140px]">
                   <div className="w-9 h-9 bg-[#17345a] rounded-lg flex items-center justify-center flex-shrink-0">
                     <span className="w-[18px] h-[18px] text-white">{cert.icon}</span>
                   </div>

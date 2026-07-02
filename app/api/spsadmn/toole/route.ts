@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
-import { promises as fs } from "fs"
-import path from "path"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse } from "@/lib/auth"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 import { sanitizeHtml } from "@/lib/sanitize"
-
-const DATA_PATH = path.join(process.cwd(), "data", "admin-toole-announcements.json")
+import {
+  getAllAnnouncements,
+  upsertAnnouncement,
+  deleteAnnouncement,
+} from "@/lib/announcements"
 
 interface Announcement {
   id: string
@@ -39,28 +40,17 @@ interface Announcement {
   slug: string
 }
 
-interface AnnouncementsData {
-  announcements: Announcement[]
-}
-
-async function readData(): Promise<AnnouncementsData> {
-  const raw = await fs.readFile(DATA_PATH, "utf-8")
-  return JSON.parse(raw)
-}
-
-async function writeData(data: AnnouncementsData): Promise<void> {
-  await fs.mkdir(path.dirname(DATA_PATH), { recursive: true })
-  await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2), "utf-8")
-}
-
 export async function GET(request: NextRequest) {
   return withRateLimit(request, async () => {
     try {
-      const data = await readData()
-      return NextResponse.json(data, {
+      if (!(await validateAdminRequest())) return unauthorizedResponse()
+
+      const announcements = await getAllAnnouncements()
+      return NextResponse.json({ announcements }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
-    } catch {
+    } catch (error) {
+      console.error("Toole GET error:", error)
       return NextResponse.json({ announcements: [] }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
@@ -80,52 +70,45 @@ export async function PUT(request: NextRequest) {
       const { id, fields } = body as { id: string; fields: Partial<Announcement> }
       if (!id) return noStoreResponse(JSON.stringify({ error: "id required" }), 400)
 
-      const data = await readData()
-      const idx = data.announcements.findIndex((a: Announcement) => a.id === id)
-
       const safeFields = sanitizeAnnouncementFields(fields)
+      const now = new Date()
 
-      if (idx >= 0) {
-        const updated = { ...data.announcements[idx], ...safeFields }
-        data.announcements.splice(idx, 1)
-        data.announcements.unshift(updated)
-      } else {
-        const newAnnouncement: Announcement = {
-          id,
-          title: "",
-          subtitle: "",
-          publishedDate: new Date().toISOString().split("T")[0],
-          offerNumber: "",
-          company: "SP Service OÜ",
-          registryCode: "11312978",
-          website: "https://spsgrupp.ee/",
-          companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele.",
-          tasks: "",
-          requirements: "<ul><li>Korrektsus ja kohusetundlikkus</li><li>Hea füüsiline vorm ja tervis</li><li>Valmisolek töötada graafiku alusel</li><li>Ausus ja usaldusväärsus</li><li>Iseseisvus ja omaalgatusvõime</li><li>Eesti keele oskus suhtlustasandil</li></ul>",
-          benefits: "<p><strong>Pakume Sulle:</strong></p><ul><li>Väljaõpet ja täiendkoolitusi</li><li>Õigeaegset töötasu</li><li>Kaasaegseid ja ergonoomilisi töövahendeid</li><li>Tunnustust pikaajalise panuse eest</li><li>Rahalist toetust erijuhtudel</li><li>Sotsiaalset kaitset ja kindlustunnet</li><li>Tervisekontrolli vastavalt töö iseloomule</li><li>Mugavaid ja kvaliteetseid tööriideid</li></ul>",
-          location: "",
-          vacancies: 1,
-          salary: 0,
-          salaryUnit: "EUR",
-          salaryDetails: "",
-          workTime: "",
-          workTimeDetails: "",
-          startDate: "",
-          applicationDeadline: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split("T")[0],
-          contactName: "Jelena Smirnov",
-          contactRole: "Personalispetsialist",
-          contactPhone: "56 820 520",
-          contactPhone2: "6623 328",
-          contactEmail: "personal@spsgrupp.ee",
-          active: true,
-          slug: "",
-          ...safeFields,
-        }
-        data.announcements.unshift(newAnnouncement)
-      }
+      const defaultsProvider = (): Omit<Announcement, "id"> => ({
+        title: "",
+        subtitle: "",
+        publishedDate: new Date().toISOString().split("T")[0],
+        offerNumber: "",
+        company: "SP Service OÜ",
+        registryCode: "11312978",
+        website: "https://spsgrupp.ee/",
+        companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele.",
+        tasks: "",
+        requirements: "<ul><li>Korrektsus ja kohusetundlikkus</li><li>Hea füüsiline vorm ja tervis</li><li>Valmisolek töötada graafiku alusel</li><li>Ausus ja usaldusväärsus</li><li>Iseseisvus ja omaalgatusvõime</li><li>Eesti keele oskus suhtlustasandil</li></ul>",
+        benefits: "<p><strong>Pakume Sulle:</strong></p><ul><li>Väljaõpet ja täiendkoolitusi</li><li>Õigeaegset töötasu</li><li>Kaasaegseid ja ergonoomilisi töövahendeid</li><li>Tunnustust pikaajalise panuse eest</li><li>Rahalist toetust erijuhtudel</li><li>Sotsiaalset kaitset ja kindlustunnet</li><li>Tervisekontrolli vastavalt töö iseloomule</li><li>Mugavaid ja kvaliteetseid tööriideid</li></ul>",
+        location: "",
+        vacancies: 1,
+        salary: 0,
+        salaryUnit: "EUR",
+        salaryDetails: "",
+        workTime: "",
+        workTimeDetails: "",
+        startDate: "",
+        applicationDeadline: new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString().split("T")[0],
+        contactName: "Jelena Smirnov",
+        contactRole: "Personalispetsialist",
+        contactPhone: "56 820 520",
+        contactPhone2: "6623 328",
+        contactEmail: "personal@spsgrupp.ee",
+        active: true,
+        slug: "",
+      })
 
-      await writeData(data)
-      return NextResponse.json({ success: true, announcement: idx >= 0 ? data.announcements[0] : data.announcements[0] }, {
+      const announcement = await upsertAnnouncement(id, safeFields as Partial<Announcement>, defaultsProvider)
+
+      return NextResponse.json({
+        success: true,
+        announcement,
+      }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
     } catch (error) {
@@ -146,11 +129,9 @@ export async function DELETE(request: NextRequest) {
       const id = request.nextUrl.searchParams.get("id")
       if (!id) return noStoreResponse(JSON.stringify({ error: "id required" }), 400)
 
-      const data = await readData()
-      data.announcements = data.announcements.filter((a: Announcement) => a.id !== id)
+      const ok = await deleteAnnouncement(id)
 
-      await writeData(data)
-      return NextResponse.json({ success: true }, {
+      return NextResponse.json({ success: ok }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
     } catch (error) {

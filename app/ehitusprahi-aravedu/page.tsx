@@ -118,7 +118,7 @@ export default function EhitusprahiAravedu() {
                 Kiire ja seadusandlusele vastav ehitusjäätmete äravedu. Sorteerimine, konteinerite tarne 24h jooksul, transport ja dokumentatsioon ühest kohast.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <a onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
                   Küsi ehitusprahi äraveo pakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -374,7 +374,7 @@ export default function EhitusprahiAravedu() {
                     Ehitusjäätmete segajäätmetena käitlemine on oluliselt kallim kui sorteerimine. Meie kohapealne sorteerimine võib säästa 30–50% käitluskulusid.
                   </p>
                   <div className="mt-6">
-                    <a onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
+                    <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
                       Küsi ehitusprahi äraveo pakkumist
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <line x1="5" y1="12" x2="19" y2="12" />

@@ -1,3 +1,7 @@
+"use client"
+
+import { useNonce } from "./NonceProvider"
+
 type BreadcrumbItem = {
   position: number;
   name: string;
@@ -46,6 +50,8 @@ const ORGANIZATION = {
 };
 
 export default function SeoJsonLd({ serviceName, serviceDescription, serviceUrl, breadcrumbs, faq }: Props) {
+  const nonce = useNonce()
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -64,11 +70,12 @@ export default function SeoJsonLd({ serviceName, serviceDescription, serviceUrl,
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {faq && faq.length > 0 && (
         <script
           type="application/ld+json"
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",

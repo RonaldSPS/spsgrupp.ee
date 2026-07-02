@@ -118,7 +118,7 @@ export default function RemonditeenusedTallinnas() {
                 Kogu remondiprojekt ühest kohast. Elekter, torud, siseviimistlus, ventilatsioon, plaatimine ja betoonitööd. Üks partner, üks vastutus, ennustatav tulemus.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
-                <a onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
                   Küsi remondipakkumist
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />

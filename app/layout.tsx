@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Ubuntu } from "next/font/google";
+import { headers } from "next/headers";
+import { NonceProvider } from "./components/NonceProvider";
 import "./globals.css";
 
 const ubuntu = Ubuntu({
@@ -12,6 +14,34 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const ORGANIZATION_SCHEMA = {
+  "@type": "Organization",
+  name: "SPS Grupp OÜ",
+  url: "https://spsgrupp.ee",
+  logo: "https://spsgrupp.ee/SPS_LOGO.svg",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Mustamäe tee 46",
+    addressLocality: "Tallinn",
+    postalCode: "10621",
+    addressCountry: "EE",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+372-662-3328",
+    contactType: "customer service",
+    email: "info@spsgrupp.ee",
+    availableLanguage: ["Estonian", "Russian", "English"],
+  },
+  areaServed: ["Tallinn", "Harjumaa"],
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "registryCode",
+    value: "11394806",
+  },
+  taxID: "EE101460268",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://spsgrupp.ee"),
@@ -54,11 +84,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers()
+  const nonce = headersList.get("x-csp-nonce") || ""
+
   return (
     <html
       lang="et"
@@ -73,7 +106,17 @@ export default function RootLayout({
           Otse sisu juurde
         </a>
         <div id="main-content" tabIndex={-1} />
-        {children}
+        <script
+          type="application/ld+json"
+          nonce={nonce}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              ...ORGANIZATION_SCHEMA,
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
+        <NonceProvider nonce={nonce}>{children}</NonceProvider>
       </body>
     </html>
   );

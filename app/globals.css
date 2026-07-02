@@ -318,6 +318,14 @@ body {
   position: relative; overflow: hidden;
 }
 
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(38, 42, 45, 0.3);
+}
+
 .hero-content-frosted {
   padding: 32px;
   background: rgba(23, 52, 90, 0.75);

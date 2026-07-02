@@ -1,7 +1,7 @@
 {
   "name": "SPS Grupp",
   "short_name": "SPS",
-  "description": "SPS Grupp — Hasti juhitud ettevõte",
+  "description": "SPS Grupp — Hästi juhitud ettevõte",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

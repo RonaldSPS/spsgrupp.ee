@@ -90,7 +90,7 @@ export default function Industries() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6">
-          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+          <div className="hidden md:flex md:flex-col gap-2 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
             {industries.map((ind, i) => (
               <button
                 key={ind.title}

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
+import { headers } from "next/headers"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import FooterCTA from "../../components/FooterCTA"
@@ -43,6 +44,9 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getPostBySlugWithEdits(slug)
   if (!post) notFound()
 
+  const headersList = await headers()
+  const nonce = headersList.get("x-csp-nonce") || ""
+
   const related = getRelatedPosts(post)
 
   const jsonLd = {
@@ -67,6 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
+        nonce={nonce}
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
@@ -83,7 +88,7 @@ export default async function BlogPostPage({ params }: Props) {
           </nav>
 
           <div className="relative h-[300px] md:h-[400px] rounded-[16px] overflow-hidden bg-[#eef7fc] mb-8">
-            <Image src={post.featuredImage} alt={post.title} fill className="object-cover" priority sizes="100vw" />
+            <Image src={post.featuredImage} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
           </div>
 
           <div className="grid md:grid-cols-[65fr_35fr] gap-10">

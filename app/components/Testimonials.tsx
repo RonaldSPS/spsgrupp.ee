@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import TwoToneHeading from "./TwoToneHeading"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
@@ -15,20 +15,10 @@ const pool: TestimonialData[] = [
   { shortQuote: "Koristuse kvaliteet on järjepidevalt kõrgel tasemel.", author: "Heido", initials: "H", logo: "/arvamused-logod/heido.png", quote: "" },
 ]
 
-function pick(count: number): TestimonialData[] {
-  const shuffled = [...pool].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, count)
-}
-
-const TOTAL = 7
 const GAP = 10
 
 export default function Testimonials() {
-  const [items, setItems] = useState<TestimonialData[]>([])
-
-  useEffect(() => setItems(pick(TOTAL)), [])
-
-  if (items.length === 0) return null
+  const [items] = useState<TestimonialData[]>(() => [...pool])
 
   const duo = [...items, ...items]
 
@@ -48,7 +38,7 @@ export default function Testimonials() {
         <div className="overflow-hidden w-full">
           <div className="testimonial-scroll-track flex items-center w-max" style={{ gap: `${GAP}px` }}>
             {duo.map((t, i) => (
-              <div key={i} className="shrink-0 w-[340px] md:w-[309px] self-stretch [&>div]:h-full">
+              <div key={i} className="shrink-0 w-[280px] sm:w-[320px] md:w-[309px] self-stretch [&>div]:h-full">
                 <TestimonialCards testimonials={[t]} cols={1} />
               </div>
             ))}

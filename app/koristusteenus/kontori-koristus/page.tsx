@@ -107,6 +107,7 @@ export default function KontoriKoristus() {
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a
+                  href="#pakkumine"
                   onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }}
                   className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer"
                 >

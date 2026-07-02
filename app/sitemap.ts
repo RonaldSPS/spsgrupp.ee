@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { promises as fs } from "fs"
+import { execSync } from "child_process"
 import path from "path"
 import { getBlogPostsWithEdits } from "@/app/blog/data"
 
@@ -25,15 +26,48 @@ async function getActiveJobs(): Promise<JobAnnouncement[]> {
   }
 }
 
-async function getLatestEditDate(...dataPaths: string[]): Promise<Date> {
-  let latest = new Date(0)
-  for (const dp of dataPaths) {
-    try {
-      const stat = await fs.stat(path.join(process.cwd(), dp))
-      if (stat.mtime > latest) latest = stat.mtime
-    } catch {}
+let _editorialDatesCache: Record<string, string> | null = null
+
+async function loadEditorialDates(): Promise<Record<string, string>> {
+  if (_editorialDatesCache) return _editorialDatesCache
+  try {
+    const raw = await fs.readFile(
+      path.join(process.cwd(), "data", "editorial-dates.json"),
+      "utf-8"
+    )
+    _editorialDatesCache = JSON.parse(raw)
+  } catch {
+    _editorialDatesCache = {}
   }
-  return latest > new Date(0) ? latest : new Date("2024-01-01")
+  return _editorialDatesCache
+}
+
+function getGitLastDate(filePaths: string[]): Date | null {
+  try {
+    const args = filePaths.map((p) => `"${p}"`).join(" ")
+    const result = execSync(
+      `git log --format=%ci --max-count=1 -- ${args}`,
+      { cwd: process.cwd(), encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"] }
+    ).trim()
+    if (result && !isNaN(new Date(result).getTime())) {
+      return new Date(result)
+    }
+  } catch {}
+  return null
+}
+
+async function getEditorialDate(urlPath: string, ...filePaths: string[]): Promise<Date> {
+  const gitDate = getGitLastDate(filePaths)
+  if (gitDate) return gitDate
+
+  const dates = await loadEditorialDates()
+  const key = urlPath.toLowerCase()
+  if (dates[key]) {
+    const d = new Date(dates[key])
+    if (!isNaN(d.getTime())) return d
+  }
+
+  return new Date("2025-06-01")
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -41,17 +75,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postsWithEdits = await getBlogPostsWithEdits()
 
-  const koristusDate = await getLatestEditDate(
+  const koristusDate = await getEditorialDate("/koristusteenus",
     "app/koristusteenus/layout.tsx",
     "app/koristusteenus/page.tsx",
     "data/admin-blog-edits.json",
   )
-  const valikoristusDate = await getLatestEditDate(
+  const valikoristusDate = await getEditorialDate("/koristusteenus/valikoristus",
     "app/koristusteenus/valikoristus/layout.tsx",
     "app/koristusteenus/valikoristus/page.tsx",
   )
 
-  entries.push({ url: BASE_URL, lastModified: new Date("2024-01-01"), changeFrequency: "weekly", priority: 1 })
+  entries.push({ url: BASE_URL, lastModified: await getEditorialDate("/", "app/page.tsx", "app/layout.tsx", "app/components/Hero.tsx", "app/components/Trust.tsx", "app/components/Services.tsx", "app/components/Testimonials.tsx"), changeFrequency: "weekly", priority: 1 })
 
   entries.push({
     url: `${BASE_URL}/koristusteenus`,
@@ -67,7 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "koolide-koristamine",
   ]
   for (const slug of sisekoristusPages) {
-    const d = await getLatestEditDate(
+    const d = await getEditorialDate(`/koristusteenus/${slug}`,
       `app/koristusteenus/${slug}/layout.tsx`,
       `app/koristusteenus/${slug}/page.tsx`,
     )
@@ -97,7 +131,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "tanavakivide-pesu-ja-hooldus",
   ]
   for (const slug of valikoristusPages) {
-    const d = await getLatestEditDate(
+    const d = await getEditorialDate(`/koristusteenus/valikoristus/${slug}`,
       `app/koristusteenus/valikoristus/${slug}/layout.tsx`,
       `app/koristusteenus/valikoristus/${slug}/page.tsx`,
     )
@@ -109,7 +143,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
-  const puhastusDate = await getLatestEditDate(
+  const puhastusDate = await getEditorialDate("/puhastusteenused",
     "app/puhastusteenused/layout.tsx",
     "app/puhastusteenused/page.tsx",
   )
@@ -129,7 +163,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "vaipade-puhastus",
   ]
   for (const slug of puhastusPages) {
-    const d = await getLatestEditDate(
+    const d = await getEditorialDate(`/puhastusteenused/${slug}`,
       `app/puhastusteenused/${slug}/layout.tsx`,
       `app/puhastusteenused/${slug}/page.tsx`,
     )
@@ -141,7 +175,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
-  const remontDate = await getLatestEditDate(
+  const remontDate = await getEditorialDate("/remonditeenused-tallinnas",
     "app/remonditeenused-tallinnas/layout.tsx",
     "app/remonditeenused-tallinnas/page.tsx",
   )
@@ -163,7 +197,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "ventilatsioonide-ehitus-ja-hooldus",
   ]
   for (const slug of remontPages) {
-    const d = await getLatestEditDate(
+    const d = await getEditorialDate(`/remonditeenused-tallinnas/${slug}`,
       `app/remonditeenused-tallinnas/${slug}/layout.tsx`,
       `app/remonditeenused-tallinnas/${slug}/page.tsx`,
     )
@@ -175,7 +209,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
-  const ehitushrahtDate = await getLatestEditDate(
+  const ehitushrahtDate = await getEditorialDate("/ehitusprahi-aravedu",
     "app/ehitusprahi-aravedu/layout.tsx",
     "app/ehitusprahi-aravedu/page.tsx",
   )
@@ -186,7 +220,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   })
 
-  const spsGruppDate = await getLatestEditDate(
+  const spsGruppDate = await getEditorialDate("/sps-grupp",
     "app/sps-grupp/layout.tsx",
     "app/sps-grupp/page.tsx",
   )
@@ -197,7 +231,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   })
 
-  const arvamusedDate = await getLatestEditDate(
+  const arvamusedDate = await getEditorialDate("/sps-grupp/arvamused",
     "app/sps-grupp/arvamused/layout.tsx",
     "app/sps-grupp/arvamused/page.tsx",
   )
@@ -208,7 +242,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   })
 
-  const privaatsusDate = await getLatestEditDate(
+  const privaatsusDate = await getEditorialDate("/privaatsus",
     "app/privaatsus/layout.tsx",
     "app/privaatsus/page.tsx",
   )
@@ -221,7 +255,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   entries.push({
     url: `${BASE_URL}/tule-meile-toole`,
-    lastModified: await getLatestEditDate("app/tule-meile-toole/layout.tsx", "app/tule-meile-toole/page.tsx"),
+    lastModified: await getEditorialDate("/tule-meile-toole", "app/tule-meile-toole/layout.tsx", "app/tule-meile-toole/page.tsx"),
     changeFrequency: "monthly",
     priority: 0.8,
   })
@@ -236,7 +270,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   }
 
-  const kontaktDate = await getLatestEditDate(
+  const kontaktDate = await getEditorialDate("/kontakt",
     "app/kontakt/layout.tsx",
     "app/kontakt/page.tsx",
   )
@@ -249,7 +283,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   entries.push({
     url: `${BASE_URL}/blog`,
-    lastModified: await getLatestEditDate("app/blog/page.tsx"),
+    lastModified: await getEditorialDate("/blog", "app/blog/page.tsx"),
     changeFrequency: "weekly",
     priority: 0.8,
   })

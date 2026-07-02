@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@vercel/blob": "^2.5.0",
+    "drizzle-orm": "^0.45.2",
     "framer-motion": "^12.38.0",
     "next": "^16.2.9",
     "nodemailer": "^9.0.3",
@@ -25,6 +28,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vercel/next": "^4.15.0",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "^16.2.9",
     "tailwindcss": "^4",

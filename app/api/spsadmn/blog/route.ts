@@ -1,33 +1,11 @@
 import { NextResponse } from "next/server"
-import { promises as fs } from "fs"
-import path from "path"
+import { eq } from "drizzle-orm"
+import { db } from "@/lib/db"
+import { blogEdits } from "@/lib/db/schema"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse } from "@/lib/auth"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 import { sanitizeHtml } from "@/lib/sanitize"
-
-const DATA_PATH = path.join(process.cwd(), "data", "admin-blog-edits.json")
-
-interface BlogEdits {
-  posts: Record<string, {
-    title?: string
-    slug?: string
-    contentHtml?: string
-    featuredImage?: string
-    excerpt?: string
-    updatedAt: string
-  }>
-}
-
-async function readData(): Promise<BlogEdits> {
-  const raw = await fs.readFile(DATA_PATH, "utf-8")
-  return JSON.parse(raw)
-}
-
-async function writeData(data: BlogEdits): Promise<void> {
-  await fs.mkdir(path.dirname(DATA_PATH), { recursive: true })
-  await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2), "utf-8")
-}
 
 function sanitizeTextField(value: string | undefined): string {
   if (!value) return ""
@@ -38,11 +16,23 @@ export async function GET(request: Request) {
   return withRateLimit(request, async () => {
     try {
       if (!(await validateAdminRequest())) return unauthorizedResponse()
-      const data = await readData()
-      return NextResponse.json(data, {
+      const rows = await db.select().from(blogEdits)
+      const posts: Record<string, unknown> = {}
+      for (const row of rows) {
+        posts[String(row.id)] = {
+          title: row.title,
+          slug: row.slug,
+          contentHtml: row.contentHtml,
+          featuredImage: row.featuredImage,
+          excerpt: row.excerpt,
+          updatedAt: row.updatedAt?.toISOString?.() ?? row.updatedAt,
+        }
+      }
+      return NextResponse.json({ posts }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
-    } catch {
+    } catch (error) {
+      console.error("Blog GET error:", error)
       return NextResponse.json({ posts: {} }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
@@ -62,9 +52,10 @@ export async function PUT(request: Request) {
       const { id, fields } = body as { id: string; fields: Record<string, string | undefined> }
       if (!id) return noStoreResponse(JSON.stringify({ error: "id required" }), 400)
 
-      const data = await readData()
+      const postId = parseInt(id, 10)
+      if (isNaN(postId)) return noStoreResponse(JSON.stringify({ error: "invalid id" }), 400)
 
-      const safeFields: Record<string, string> = {}
+      const safeFields: Record<string, string | null> = { updatedAt: new Date().toISOString() }
 
       if (fields.title !== undefined) safeFields.title = sanitizeTextField(fields.title)
       if (fields.slug !== undefined) safeFields.slug = sanitizeTextField(fields.slug).replace(/\s+/g, "-")
@@ -76,15 +67,41 @@ export async function PUT(request: Request) {
       }
       if (fields.excerpt !== undefined) safeFields.excerpt = sanitizeTextField(fields.excerpt)
 
-      safeFields.updatedAt = new Date().toISOString()
+      await db.insert(blogEdits)
+        .values({
+          id: postId,
+          title: safeFields.title,
+          slug: safeFields.slug,
+          contentHtml: safeFields.contentHtml,
+          featuredImage: safeFields.featuredImage,
+          excerpt: safeFields.excerpt,
+          updatedAt: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: blogEdits.id,
+          set: {
+            title: safeFields.title,
+            slug: safeFields.slug,
+            contentHtml: safeFields.contentHtml,
+            featuredImage: safeFields.featuredImage,
+            excerpt: safeFields.excerpt,
+            updatedAt: new Date(),
+          },
+        })
 
-      data.posts[id] = {
-        ...data.posts[id],
-        ...safeFields,
-      }
-
-      await writeData(data)
-      return NextResponse.json({ success: true, post: data.posts[id] }, {
+      const saved = await db.select().from(blogEdits).where(eq(blogEdits.id, postId)).limit(1)
+      const post = saved[0]
+      return NextResponse.json({
+        success: true,
+        post: post ? {
+          title: post.title,
+          slug: post.slug,
+          contentHtml: post.contentHtml,
+          featuredImage: post.featuredImage,
+          excerpt: post.excerpt,
+          updatedAt: post.updatedAt?.toISOString?.() ?? post.updatedAt,
+        } : null,
+      }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
     } catch (error) {

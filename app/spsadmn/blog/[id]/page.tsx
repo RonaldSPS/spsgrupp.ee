@@ -27,8 +27,10 @@ export default function AdminBlogEdit() {
   const contentRef = useRef<HTMLDivElement>(null)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
+  const [saveError, setSaveError] = useState("")
   const [imageBrowserOpen, setImageBrowserOpen] = useState(false)
   const [imageBrowserForFeatured, setImageBrowserForFeatured] = useState(false)
+  const [pendingContent, setPendingContent] = useState("")
 
   const foundPost = blogPosts.find((p: BlogPost) => String(p.id) === id) ?? null
 
@@ -58,9 +60,7 @@ export default function AdminBlogEdit() {
           featuredImage: edits?.featuredImage ?? foundPost.featuredImage,
           excerpt: edits?.excerpt ?? foundPost.excerpt,
         })
-        if (contentRef.current) {
-          contentRef.current.innerHTML = content
-        }
+        setPendingContent(content)
       })
       .catch(() => {
         setFormData({
@@ -69,12 +69,16 @@ export default function AdminBlogEdit() {
           featuredImage: foundPost.featuredImage,
           excerpt: foundPost.excerpt,
         })
-        if (contentRef.current) {
-          contentRef.current.innerHTML = foundPost.contentHtml
-        }
+        setPendingContent(foundPost.contentHtml)
       })
       .finally(() => setLoading(false))
   }, [id, foundPost, router])
+
+  useEffect(() => {
+    if (!loading && contentRef.current && pendingContent) {
+      contentRef.current.innerHTML = pendingContent
+    }
+  }, [loading, pendingContent])
 
   useEffect(() => {
     if (foundPost === null && !loading) {
@@ -90,23 +94,31 @@ export default function AdminBlogEdit() {
   const handleSave = async () => {
     setSaving(true)
     setSaved(false)
+    setSaveError("")
     const contentHtml = contentRef.current?.innerHTML || ""
 
-    const res = await fetch("/api/spsadmn/blog", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id,
-        fields: {
-          ...formData,
-          contentHtml,
-        },
-      }),
-    })
+    try {
+      const res = await fetch("/api/spsadmn/blog", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id,
+          fields: {
+            ...formData,
+            contentHtml,
+          },
+        }),
+      })
 
-    if (res.ok) {
-      setSaved(true)
-      setTimeout(() => setSaved(false), 2500)
+      if (res.ok) {
+        setSaved(true)
+        setTimeout(() => setSaved(false), 2500)
+      } else {
+        const data = await res.json().catch(() => ({ error: "Salvestamine ebaõnnestus" }))
+        setSaveError(data.error || `Viga: ${res.status}`)
+      }
+    } catch (e) {
+      setSaveError("Võrguühenduse viga")
     }
     setSaving(false)
   }
@@ -127,6 +139,7 @@ export default function AdminBlogEdit() {
           <p className="text-[15px] text-[#5a6474]">ID: {foundPost.id}</p>
         </div>
         <div className="flex items-center gap-3">
+          {saveError && <span className="text-[15px] text-red-600 font-medium">{saveError}</span>}
           {saved && <span className="text-[15px] text-[#2d9e6b] font-medium">Salvestatud!</span>}
           <button
             onClick={handleSave}

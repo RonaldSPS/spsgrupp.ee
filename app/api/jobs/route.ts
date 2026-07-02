@@ -1,31 +1,26 @@
 import { NextResponse } from "next/server"
-import { promises as fs } from "fs"
-import path from "path"
-
-const DATA_PATH = path.join(process.cwd(), "data", "admin-toole-announcements.json")
-
-interface Announcement {
-  id: string
-  title: string
-  subtitle: string
-  location: string
-  salary: number
-  salaryUnit: string
-  salaryDetails: string
-  workTime: string
-  publishedDate: string
-  slug: string
-  active: boolean
-}
+import { getActiveAnnouncements } from "@/lib/announcements"
 
 export async function GET() {
   try {
-    const raw = await fs.readFile(DATA_PATH, "utf-8")
-    const data = JSON.parse(raw)
-    const active = (data.announcements || []).filter((a: Announcement) => a.active)
-    active.sort((a: Announcement, b: Announcement) =>
-      new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
-    )
+    const announcements = await getActiveAnnouncements()
+    const active = announcements
+      .map(row => ({
+        id: row.id,
+        title: row.title,
+        subtitle: row.subtitle,
+        location: row.location,
+        salary: row.salary,
+        salaryUnit: row.salaryUnit,
+        salaryDetails: row.salaryDetails,
+        workTime: row.workTime,
+        publishedDate: row.publishedDate,
+        slug: row.slug,
+        active: row.active,
+      }))
+      .sort((a, b) =>
+        new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
+      )
     return NextResponse.json({ announcements: active }, {
       headers: {
         "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
