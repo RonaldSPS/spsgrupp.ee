@@ -45,11 +45,11 @@ async function validateToken(token: string): Promise<boolean> {
   return age >= 0 && age < 24 * 60 * 60 * 1000
 }
 
-function buildCspHeader(nonce: string): string {
+function buildCspHeader(): string {
   const isDev = process.env.NODE_ENV === "development"
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
     `style-src 'self' 'unsafe-inline'`,
     "img-src 'self' blob: data:",
     "font-src 'self'",
@@ -65,10 +65,10 @@ function generateNonce(): string {
   return btoa(crypto.randomUUID())
 }
 
-function makeResponse(request: NextRequest, csp: string, nonce: string): NextResponse {
+function makeResponse(request: NextRequest, csp: string): NextResponse {
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set("Content-Security-Policy", csp)
-  requestHeaders.set("X-CSP-Nonce", nonce)
+  requestHeaders.set("X-CSP-Nonce", generateNonce())
 
   const response = NextResponse.next({ request: { headers: requestHeaders } })
   response.headers.set("Content-Security-Policy", csp)
@@ -82,18 +82,17 @@ function makeResponse(request: NextRequest, csp: string, nonce: string): NextRes
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const nonce = generateNonce()
-  const csp = buildCspHeader(nonce)
+  const csp = buildCspHeader()
 
   if (pathname === "/api/jobs") {
-    const response = makeResponse(request, csp, nonce)
+    const response = makeResponse(request, csp)
     response.headers.set("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
     return response
   }
 
   if (pathname.startsWith("/api/spsadmn/")) {
     if (pathname === "/api/spsadmn/login" || pathname === "/api/spsadmn/logout") {
-      const response = makeResponse(request, csp, nonce)
+      const response = makeResponse(request, csp)
       response.headers.set("Cache-Control", "no-store, max-age=0")
       return response
     }
@@ -104,13 +103,13 @@ export async function proxy(request: NextRequest) {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
     }
-    const response = makeResponse(request, csp, nonce)
+    const response = makeResponse(request, csp)
     response.headers.set("Cache-Control", "no-store, max-age=0")
     return response
   }
 
   if (pathname.startsWith("/spsadmn")) {
-    const response = makeResponse(request, csp, nonce)
+    const response = makeResponse(request, csp)
     response.headers.set("Cache-Control", "no-store, max-age=0")
     response.headers.set("X-Robots-Tag", "noindex, nofollow")
 
@@ -124,7 +123,7 @@ export async function proxy(request: NextRequest) {
     return response
   }
 
-  return makeResponse(request, csp, nonce)
+  return makeResponse(request, csp)
 }
 
 export const config = {
