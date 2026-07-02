@@ -39,7 +39,7 @@ async function loadEditorialDates(): Promise<Record<string, string>> {
   } catch {
     _editorialDatesCache = {}
   }
-  return _editorialDatesCache
+  return _editorialDatesCache ?? {}
 }
 
 function getGitLastDate(filePaths: string[]): Date | null {
