@@ -27,7 +27,7 @@ export default function Hinnakalkulaator() {
       </div>
 
       <p className="text-[15px] text-[#5a6474] mb-10">
-        Hinnanguline kuumaksumus — täpne pakkumine 24 h jooksul.
+        Hinnanguline kuumaksumus — täpne pakkumine 24 tunni jooksul.
       </p>
 
       <div className="mb-8">

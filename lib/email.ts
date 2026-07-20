@@ -24,10 +24,17 @@ function getFromAddress(): string {
   return process.env.SMTP_FROM || process.env.SMTP_USER || ""
 }
 
+export interface EmailAttachment {
+  filename: string
+  content: Buffer
+  contentType: string
+}
+
 export async function sendEmail(params: {
   to: string
   subject: string
   text: string
+  attachments?: EmailAttachment[]
 }): Promise<{ success: boolean; error?: string }> {
   try {
     const transporter = getTransporter()
@@ -37,6 +44,7 @@ export async function sendEmail(params: {
       to: params.to,
       subject: params.subject,
       text: params.text,
+      attachments: params.attachments,
     })
     return { success: true }
   } catch (err) {

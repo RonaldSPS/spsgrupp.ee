@@ -4,6 +4,8 @@ import path from "path"
 import { db } from "@/lib/db"
 import { jobAnnouncements } from "@/lib/db/schema"
 import type { Announcement } from "./types"
+import { getJobTranslationBySlug, type JobTranslationRow } from "@/lib/translate-jobs"
+import type { TranslationLanguage } from "@/lib/ai-translation"
 
 const JSON_PATH = path.join(process.cwd(), "data", "admin-toole-announcements.json")
 
@@ -112,6 +114,40 @@ export async function getAnnouncementBySlug(slug: string): Promise<Announcement 
   )
 }
 
+export async function getTranslatedAnnouncementBySlug(
+  language: TranslationLanguage,
+  slug: string,
+): Promise<Announcement | undefined> {
+  try {
+    const translation = await getJobTranslationBySlug(language, slug)
+    if (!translation || translation.status === "stale") return undefined
+    const all = await getAnnouncements()
+    const source = all.find((announcement) => announcement.id === translation.jobId && announcement.active)
+    if (!source) return undefined
+    return applyJobTranslation(source, translation)
+  } catch {
+    return undefined
+  }
+}
+
+export function applyJobTranslation(source: Announcement, translation: JobTranslationRow): Announcement {
+  return {
+    ...source,
+    title: translation.title || source.title,
+    subtitle: translation.subtitle || source.subtitle,
+    companyDescription: translation.companyDescription || source.companyDescription,
+    tasks: translation.tasks || source.tasks,
+    requirements: translation.requirements || source.requirements,
+    benefits: translation.benefits || source.benefits,
+    location: translation.location || source.location,
+    salaryDetails: translation.salaryDetails || source.salaryDetails,
+    workTime: translation.workTime || source.workTime,
+    workTimeDetails: translation.workTimeDetails || source.workTimeDetails,
+    contactRole: translation.contactRole || source.contactRole,
+    slug: translation.slug || source.slug,
+  }
+}
+
 export async function upsertAnnouncement(
   id: string,
   fields: Partial<Announcement>,
@@ -127,12 +163,10 @@ export async function upsertAnnouncement(
         .limit(1)
 
       if (existing.length > 0) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await db.update(jobAnnouncements).set({ ...fields, updatedAt: now } as any)
           .where(eq(jobAnnouncements.id, id))
       } else {
         const defaults = defaultsProvider()
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         await db.insert(jobAnnouncements).values({
           ...defaults, id, ...fields, createdAt: now, updatedAt: now,
         } as any)

@@ -1,4 +1,4 @@
-import { pgTable, integer, text, boolean, timestamp, real } from "drizzle-orm/pg-core"
+import { pgTable, integer, text, boolean, timestamp, real, serial, uniqueIndex } from "drizzle-orm/pg-core"
 
 export const blogEdits = pgTable("blog_edits", {
   id: integer("id").primaryKey(),
@@ -7,8 +7,47 @@ export const blogEdits = pgTable("blog_edits", {
   contentHtml: text("content_html"),
   featuredImage: text("featured_image"),
   excerpt: text("excerpt"),
+  active: boolean("active").notNull().default(true),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
+
+export const blogTranslations = pgTable("blog_translations", {
+  id: serial("id").primaryKey(),
+  blogId: integer("blog_id").notNull(),
+  language: text("language").notNull(),
+  title: text("title"),
+  slug: text("slug"),
+  excerpt: text("excerpt"),
+  contentHtml: text("content_html"),
+  sourceHash: text("source_hash"),
+  status: text("status").notNull().default("auto"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => ({
+  unique: uniqueIndex("blog_trans_blog_lang_idx").on(table.blogId, table.language),
+}))
+
+export const jobTranslations = pgTable("job_translations", {
+  id: serial("id").primaryKey(),
+  jobId: text("job_id").notNull(),
+  language: text("language").notNull(),
+  title: text("title"),
+  subtitle: text("subtitle"),
+  companyDescription: text("company_description"),
+  tasks: text("tasks"),
+  requirements: text("requirements"),
+  benefits: text("benefits"),
+  location: text("location"),
+  salaryDetails: text("salary_details"),
+  workTime: text("work_time"),
+  workTimeDetails: text("work_time_details"),
+  contactRole: text("contact_role"),
+  slug: text("slug"),
+  sourceHash: text("source_hash"),
+  status: text("status").notNull().default("auto"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => ({
+  unique: uniqueIndex("job_trans_job_lang_idx").on(table.jobId, table.language),
+}))
 
 export const jobAnnouncements = pgTable("job_announcements", {
   id: text("id").primaryKey(),
@@ -39,6 +78,52 @@ export const jobAnnouncements = pgTable("job_announcements", {
   contactEmail: text("contact_email").notNull().default(""),
   active: boolean("active").notNull().default(true),
   slug: text("slug").notNull().default(""),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+})
+
+export const testimonials = pgTable("testimonials", {
+  id: text("id").primaryKey(),
+  categoryTitle: text("category_title").notNull().default(""),
+  categoryHref: text("category_href").notNull().default(""),
+  quote: text("quote").notNull().default(""),
+  shortQuote: text("short_quote").notNull().default(""),
+  author: text("author").notNull().default(""),
+  initials: text("initials").notNull().default(""),
+  logo: text("logo").notNull().default(""),
+  active: boolean("active").notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+})
+
+export const testimonialTranslations = pgTable("testimonial_translations", {
+  id: serial("id").primaryKey(),
+  testimonialId: text("testimonial_id").notNull(),
+  language: text("language").notNull(),
+  categoryTitle: text("category_title"),
+  quote: text("quote"),
+  shortQuote: text("short_quote"),
+  sourceHash: text("source_hash"),
+  status: text("status").notNull().default("auto"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => ({
+  unique: uniqueIndex("testimonial_trans_testimonial_lang_idx").on(table.testimonialId, table.language),
+}))
+
+export const systemSettings = pgTable("system_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull().default(""),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+})
+
+export const adminUsers = pgTable("admin_users", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  displayName: text("display_name").notNull().default(""),
+  role: text("role").notNull().default("manager"),
+  active: boolean("active").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })

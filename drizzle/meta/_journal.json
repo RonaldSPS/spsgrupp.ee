@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1783935720707,
+      "tag": "0000_melodic_stature",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1783968010416,
+      "tag": "0001_dynamic_content_translations",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784046510000,
+      "tag": "0002_testimonials",
+      "breakpoints": true
+    }
+  ]
+}

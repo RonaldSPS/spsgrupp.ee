@@ -431,7 +431,7 @@ export default function TootmishooneteKoristus() {
         <ScrollAnimation animation="fade-up">
         <FooterCTA
           title="Küsige tootmishoone koristuse pakkumist"
-          description="Tuleme kohale, hindame olukorda ja koostame personaalse pakkumise. Anname vastuse 24h jooksul. See ei kohusta teenust tellima."
+          description="Tuleme kohale, hindame olukorda ja koostame personaalse pakkumise. Anname vastuse 24 tunni jooksul. See ei kohusta teenust tellima."
         />
         </ScrollAnimation>
 

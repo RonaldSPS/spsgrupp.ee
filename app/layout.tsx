@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Geist_Mono, Ubuntu } from "next/font/google";
 import { headers } from "next/headers";
 import { NonceProvider } from "./components/NonceProvider";
+import { I18nProvider } from "@/lib/i18n-provider";
+import etMessages from "@/messages/et.json";
+import enMessages from "@/messages/en.json";
+import ruMessages from "@/messages/ru.json";
 import "./globals.css";
 
 const ubuntu = Ubuntu({
@@ -41,6 +45,12 @@ const ORGANIZATION_SCHEMA = {
     value: "11394806",
   },
   taxID: "EE101460268",
+};
+
+const messagesByLocale = {
+  et: etMessages,
+  en: enMessages,
+  ru: ruMessages,
 };
 
 export const metadata: Metadata = {
@@ -91,32 +101,38 @@ export default async function RootLayout({
 }>) {
   const headersList = await headers()
   const nonce = headersList.get("x-csp-nonce") || ""
+  const localeHeader = headersList.get("x-sps-locale")
+  const locale = localeHeader === "en" || localeHeader === "ru" ? localeHeader : "et"
+  const messages = messagesByLocale[locale]
+  const skipLinkText = messages.skipLink.text
 
   return (
     <html
-      lang="et"
+      lang={locale}
       className={`${ubuntu.variable} ${geistMono.variable} h-full antialiased no-js`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[10000] focus:bg-[#17345a] focus:text-white focus:px-5 focus:py-3 focus:rounded-lg focus:text-[15px] focus:font-medium focus:outline-none focus:ring-2 focus:ring-[#3abeff] focus:ring-offset-2"
-        >
-          Otse sisu juurde
-        </a>
-        <div id="main-content" tabIndex={-1} />
-        <script
-          type="application/ld+json"
-          nonce={nonce}
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              ...ORGANIZATION_SCHEMA,
-            }).replace(/</g, "\\u003c"),
-          }}
-        />
-        <NonceProvider nonce={nonce}>{children}</NonceProvider>
+        <I18nProvider locale={locale} messages={messages}>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-[10000] focus:bg-[#17345a] focus:text-white focus:px-5 focus:py-3 focus:rounded-lg focus:text-[15px] focus:font-medium focus:outline-none focus:ring-2 focus:ring-[#3abeff] focus:ring-offset-2"
+          >
+            {skipLinkText}
+          </a>
+          <div id="main-content" tabIndex={-1} />
+          <script
+            type="application/ld+json"
+            nonce={nonce}
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                ...ORGANIZATION_SCHEMA,
+              }).replace(/</g, "\\u003c"),
+            }}
+          />
+          <NonceProvider nonce={nonce}>{children}</NonceProvider>
+        </I18nProvider>
       </body>
     </html>
   );

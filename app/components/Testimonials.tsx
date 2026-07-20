@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import TwoToneHeading from "./TwoToneHeading"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
 
@@ -18,6 +19,7 @@ const pool: TestimonialData[] = [
 const GAP = 10
 
 export default function Testimonials() {
+  const t = useTranslations("testimonials")
   const [items] = useState<TestimonialData[]>(() => [...pool])
 
   const duo = [...items, ...items]
@@ -30,9 +32,9 @@ export default function Testimonials() {
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
-            Klientide tagasiside
+            {t("sectionTag")}
           </div>
-          <TwoToneHeading text="Mida ütlevad meie kliendid" />
+          <TwoToneHeading text={t("heading")} />
         </div>
 
         <div className="overflow-hidden w-full">
@@ -50,7 +52,7 @@ export default function Testimonials() {
             href="/sps-grupp/arvamused"
             className="inline-flex items-center gap-2 bg-[#17345a] text-white py-3 px-6 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors"
           >
-            Vaata kõiki arvamusi
+            {t("viewAll")}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
             </svg>

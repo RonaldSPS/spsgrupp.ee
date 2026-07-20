@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function FooterCTA({ title, description }: { title?: string; description?: string }) {
+  const t = useTranslations("footerCta")
+
   return (
     <section className="footer-cta-section py-[100px] bg-[#17345a] relative overflow-hidden text-center">
       {/* Background glow */}
@@ -10,10 +13,10 @@ export default function FooterCTA({ title, description }: { title?: string; desc
       
       <div className="relative z-10 max-w-[1280px] mx-auto px-[5%]">
         <h2 className="text-[clamp(28px,3.5vw,46px)] font-bold text-white -tracking-[0.5px] mb-3.5">
-          {title || "Kas olete valmis koristuse korda panema?"}
+          {title || t("title")}
         </h2>
         <p className="text-[17px] text-white/70 max-w-[560px] mx-auto mb-9 leading-[1.7] font-light">
-          {description || "Võtke meiega ühendust ja saage tasuta pakkumine 24 tunni jooksul. Meie spetsialistid aitavad teil leida parima lahenduse."}
+          {description || t("description")}
         </p>
         
         <div className="flex gap-3.5 justify-center flex-wrap">
@@ -22,7 +25,7 @@ export default function FooterCTA({ title, description }: { title?: string; desc
             className="btn-primary bg-[#85cbe9] text-[#17345a] hover:bg-[#5ab5da]"
             onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
           >
-            Küsi tasuta pakkumist
+            {t("cta")}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />

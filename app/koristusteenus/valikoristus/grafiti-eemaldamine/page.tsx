@@ -44,7 +44,7 @@ const floatingChips = [
       </svg>
     ),
     chipClass: "chip-icon-navy",
-    value: "24h",
+    value: "Kiire",
     label: "reageerimine",
   },
 ];
@@ -86,8 +86,8 @@ const teenuseSisuKaardid: { bold: string; desc: string }[] = [
 
 const miksMeieKaardid = [
   {
-    title: "Kiire reageerimine 24h jooksul",
-    desc: "Helistage hommikul, oleme kohal pärastlõunal. Mida kiiremini alustame, seda parem on tulemus. Värsked graffitid on oluliselt lihtsamini eemaldatavad.",
+    title: "Kiire reageerimine",
+    desc: "Reageerime kiiresti ja lepime kokku teile sobiva aja. Mida kiiremini alustame, seda parem on tulemus. Värsked graffitid on oluliselt lihtsamini eemaldatavad.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <circle cx="12" cy="12" r="10" />
@@ -147,7 +147,7 @@ const hindKaardid = [
 const grafitiFAQ = [
   {
     q: "Kui kiiresti saate graffiti eemaldada?",
-    a: "Enamikul juhtudel 24 tunni jooksul peale tellimust. Kiireloomuliste juhtumite puhul saame tulla ka samal päeval. Töö ise võtab 30 minutit kuni 2 tundi.",
+    a: "Reageerime kiiresti ja lepime kokku teile sobiva aja. Töö ise võtab tavaliselt 30 minutit kuni 2 tundi.",
   },
   {
     q: "Kas kõik graffitid on eemaldatavad?",
@@ -190,7 +190,7 @@ export default function GrafitiEemaldamine() {
     <>
       <SeoJsonLd
         serviceName="Graffiti eemaldamine Tallinnas"
-        serviceDescription="Graffiti kiire eemaldamine Tallinnas. 24h reageerimine, kõik pinnatüübid, anti-graffiti kaitsekate."
+        serviceDescription="Graffiti kiire eemaldamine Tallinnas. Kõik pinnatüübid, anti-graffiti kaitsekate."
         serviceUrl="https://spsgrupp.ee/koristusteenus/valikoristus/grafiti-eemaldamine"
         breadcrumbs={[
           { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
@@ -330,7 +330,7 @@ export default function GrafitiEemaldamine() {
                   pleekinud graffitid nõuavad juba põhjalikumat tööd.
                   <br />
                   <br />
-                  SPS Grupp reageerib 24 tunni jooksul ja enamikul juhtudel saab
+                  SPS Grupp reageerib kiiresti ja enamikul juhtudel saab
                   graffiti eemaldatud 30 minuti kuni 2 tunniga.
                 </div>
               </div>
@@ -650,7 +650,7 @@ export default function GrafitiEemaldamine() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
-                  { number: "24h", label: "reageerimisaeg" },
+                  { number: "Kiire", label: "reageerimisaeg" },
                   { number: "Kvaliteetne", label: "tulemus" },
                   { number: "150+", label: "eemaldatud graffitit" },
                 ].map((stat, i) => (

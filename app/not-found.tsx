@@ -1,8 +1,13 @@
+"use client"
+
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
 export default function NotFound() {
+  const t = useTranslations("notFound")
+
   return (
     <>
       <Navbar />
@@ -13,11 +18,10 @@ export default function NotFound() {
           </div>
           <div className="mt-[-60px] mb-10">
             <h1 className="text-[32px] font-bold text-[#17345a] mb-4">
-              Lehekülge ei leitud
+              {t("heading")}
             </h1>
             <p className="text-[16px] text-[#2f353f] leading-relaxed mb-8 font-light">
-              Otsitavat lehekülge ei leitud või see on teisaldatud.
-              Kontrollige aadressi või pöörduge tagasi avalehele.
+              {t("description")}
             </p>
             <Link
               href="/"
@@ -27,7 +31,7 @@ export default function NotFound() {
                 <line x1="19" y1="12" x2="5" y2="12" />
                 <polyline points="12 19 5 12 12 5" />
               </svg>
-              Tagasi avalehele
+              {t("backHome")}
             </Link>
           </div>
         </div>

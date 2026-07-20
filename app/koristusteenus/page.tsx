@@ -28,7 +28,7 @@ const customFaqItems = [
   },
   {
     q: "Mis juhtub, kui koristuskvaliteet ei vasta ootustele?",
-    a: "Iga objekti juures on objektijuht, kes vastutab kvaliteedi eest. Kui midagi ei vasta standardile, reageerime 24h jooksul ja parandame olukorra. Teenused on kindlustatud — võimalikud kahjud hüvitatakse.",
+    a: "Iga objekti juures on objektijuht, kes vastutab kvaliteedi eest. Kui midagi ei vasta standardile, reageerime 24 tunni jooksul ja parandame olukorra. Teenused on kindlustatud — võimalikud kahjud hüvitatakse.",
   },
   {
     q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?",
@@ -115,7 +115,7 @@ export default function Koristusteenus() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja kvaliteedikontrol. Hind alates <strong className="text-white font-medium">1.2€/m²</strong>.
+                Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja kvaliteedikontroll. Hind alates <strong className="text-white font-medium">1.2€/m²</strong>.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a
@@ -159,7 +159,7 @@ export default function Koristusteenus() {
                 <strong>Üks probleem, mida kuuleme päris tihti: &quot;Koristaja küll käib, aga midagi on ikkagi valesti.&quot; Tolm koguneb kappide peale. Prügikastid on õhtul täis. WC-s lõppevad tarvikud. Serveriruumi ei puudutata, sest keegi ei julge.</strong>
               </div>
               <div>
-                <strong>Äripindade koristus ei ole sirgjooneline kiirteenus. See on süsteem, mis peab sobima teie hoone, tööajate ja äri eripäraga.</strong> Kontoris on kaableid ja tehnikat, mida ei tohi märjalt käsitleda. Kaubanduspinnal on kõrge liiklus ja kliendid peavad alati puhast ruumi nägema. Tootmishoonetes on õlid, rasvad ja ranged ohutusnõuded.
+                <strong>Äripindade koristus ei ole sirgjooneline kiirteenus. See on süsteem, mis peab sobima teie hoone, tööaja ja äri eripäraga.</strong> Kontoris on kaableid ja tehnikat, mida ei tohi märjalt käsitleda. Kaubanduspinnal on kõrge liiklus ja kliendid peavad alati puhast ruumi nägema. Tootmishoonetes on õlid, rasvad ja ranged ohutusnõuded.
                 <br /><br />
                 <strong>SPS Grupp on 20+ aastat ehitanud just sellist süsteemi,</strong> mis suudaks toime tulla kõikvõimalike olukordadega. Me teame, mida iga äripinna tüüp vajab ja mida kunagi teha ei tohi.
               </div>

@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Elektritööd Tallinnas ja Harjumaal — ärikliendile | SPS Grupp",
   description:
-    "Elektritööd äripindadele Tallinnas ja Harjumaal — projekteerimine, paigaldus, hooldus, LED-valgustus, laadimisjaamad. Litsentseeritud elektrikud. Pakkumine 24 h jooksul.",
+    "Elektritööd äripindadele Tallinnas ja Harjumaal — projekteerimine, paigaldus, hooldus, LED-valgustus, laadimisjaamad. Litsentseeritud elektrikud. Pakkumine 24 tunni jooksul.",
   keywords:
     "elektritööd, elektritööd tallinnas, elektritööd harjumaal, elektrisüsteemide hooldus, elektripaigaldus, elektrik tallinnas, laadimisjaamad",
   openGraph: {
     title: "Elektritööd Tallinnas ja Harjumaal — ärikliendile | SPS Grupp",
     description:
-      "Elektritööd äripindadele Tallinnas ja Harjumaal — projekteerimine, paigaldus, hooldus, LED-valgustus, laadimisjaamad. Litsentseeritud elektrikud. Pakkumine 24 h jooksul.",
+      "Elektritööd äripindadele Tallinnas ja Harjumaal — projekteerimine, paigaldus, hooldus, LED-valgustus, laadimisjaamad. Litsentseeritud elektrikud. Pakkumine 24 tunni jooksul.",
     type: "website",
     locale: "et_EE",
   },

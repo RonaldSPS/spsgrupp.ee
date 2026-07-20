@@ -4,6 +4,8 @@ import { blogPosts as _blogPosts } from "./posts.generated"
 import { promises as fs } from "fs"
 import path from "path"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
+import { getBlogTranslationBySlug, getBlogTranslationsByLanguage } from "@/lib/translate-blog"
+import type { TranslationLanguage } from "@/lib/ai-translation"
 
 export type { BlogPost }
 export const blogPosts = _blogPosts
@@ -30,6 +32,7 @@ interface AdminEdits {
     contentHtml?: string
     featuredImage?: string
     excerpt?: string
+    active?: boolean
     updatedAt: string
   }>
 }
@@ -48,6 +51,7 @@ const getAdminEdits = cache(async (): Promise<AdminEdits> => {
           contentHtml: row.contentHtml ?? undefined,
           featuredImage: row.featuredImage ?? undefined,
           excerpt: row.excerpt ?? undefined,
+          active: row.active,
           updatedAt: row.updatedAt?.toISOString?.() ?? String(row.updatedAt ?? ""),
         }
       }
@@ -86,18 +90,71 @@ export const getPostBySlugWithEdits = cache(async (slug: string): Promise<BlogPo
 
 export const getBlogPostsWithEdits = cache(async (): Promise<BlogPost[]> => {
   const edits = await getAdminEdits()
-  return blogPosts.map((post) => {
+  return blogPosts.flatMap((post) => {
     const edit = edits.posts[String(post.id)]
-    if (!edit) return { ...post, contentHtml: sanitizeHtmlSafe(post.contentHtml), excerpt: cleanExcerpt(post.excerpt, post.title) }
-    return {
+    if (edit && edit.active === false) return []
+    if (!edit) return [{ ...post, contentHtml: sanitizeHtmlSafe(post.contentHtml), excerpt: cleanExcerpt(post.excerpt, post.title) }]
+    return [{
       ...post,
       title: edit.title ?? post.title,
       slug: edit.slug ?? post.slug,
       contentHtml: sanitizeHtmlSafe(edit.contentHtml ?? post.contentHtml),
       featuredImage: edit.featuredImage ?? post.featuredImage,
       excerpt: cleanExcerpt(edit.excerpt ?? post.excerpt, edit.title ?? post.title),
-    }
+    }]
   })
+})
+
+export const getTranslatedPostBySlug = cache(async (
+  language: TranslationLanguage,
+  slug: string,
+): Promise<BlogPost | undefined> => {
+  try {
+    const translation = await getBlogTranslationBySlug(language, slug)
+    if (!translation || translation.status === "stale") return undefined
+
+    const base = blogPosts.find((post) => post.id === translation.blogId)
+    if (!base) return undefined
+
+    return {
+      ...base,
+      title: translation.title,
+      slug: translation.slug,
+      excerpt: cleanExcerpt(translation.excerpt, translation.title),
+      contentHtml: sanitizeHtmlSafe(translation.contentHtml),
+    }
+  } catch {
+    return undefined
+  }
+})
+
+export const getTranslatedBlogPosts = cache(async (
+  language: TranslationLanguage,
+): Promise<BlogPost[]> => {
+  try {
+    const rows = (await getBlogTranslationsByLanguage(language))
+      .filter((translation) => translation.status === "auto")
+    const byId = new Map(rows.map((row) => [row.blogId, row]))
+
+    const edits = await getAdminEdits()
+
+    return blogPosts.flatMap((post) => {
+      const edit = edits.posts[String(post.id)]
+      if (edit && edit.active === false) return []
+
+      const translation = byId.get(post.id)
+      if (!translation?.slug || !translation.title || !translation.contentHtml) return []
+      return [{
+        ...post,
+        title: translation.title,
+        slug: translation.slug,
+        excerpt: cleanExcerpt(translation.excerpt || "", translation.title),
+        contentHtml: sanitizeHtmlSafe(translation.contentHtml),
+      }]
+    })
+  } catch {
+    return []
+  }
 })
 
 export function getPostBySlug(slug: string): BlogPost | undefined {

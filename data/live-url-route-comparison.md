@@ -1,0 +1,116 @@
+# Live URL Route Comparison
+
+Generated: 2026-07-13T15:04:14.907Z
+Canonical trailing slash policy inferred from live canonical tags: **trailing slash**.
+
+Indexable pages crawled: 106
+Static: 106, blog: 0, job: 0
+
+| live URL | current local URL | matches live? | required action |
+|---|---|---:|---|
+| https://spsgrupp.ee/ | / | yes | none |
+| https://spsgrupp.ee/andmekaitsetingimused | /andmekaitsetingimused | yes | none |
+| https://spsgrupp.ee/ehitusprahi-aravedu | /ehitusprahi-aravedu | yes | none |
+| https://spsgrupp.ee/en | /en | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients | /en/cleaning-services-for-business-clients | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/carpet-cleaning | /en/cleaning-services-for-business-clients/carpet-cleaning | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/deep-cleaning-of-escalators | /en/cleaning-services-for-business-clients/deep-cleaning-of-escalators | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/deep-cleaning-of-escalators | /en/cleaning-services-for-business-clients/deep-cleaning-of-escalators | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/disinfection-and-post-virus-cleaning | /en/cleaning-services-for-business-clients/disinfection-and-post-virus-cleaning | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/post-construction-cleaning | /en/cleaning-services-for-business-clients/post-construction-cleaning | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/professional-floor-maintenance-in-tallinn | /en/cleaning-services-for-business-clients/professional-floor-maintenance-in-tallinn | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/smoke-and-fire-damage-cleaning | /en/cleaning-services-for-business-clients/smoke-and-fire-damage-cleaning | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-for-business-clients/smoke-and-fire-damage-cleaning | /en/cleaning-services-for-business-clients/smoke-and-fire-damage-cleaning | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-in-tallinn | /en/cleaning-services-in-tallinn | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-in-tallinn/cleaning-of-industrial-buildings | /en/cleaning-services-in-tallinn/cleaning-of-industrial-buildings | yes | none |
+| https://spsgrupp.ee/en/cleaning-services-in-tallinn/cleaning-up-retail-spaces | /en/cleaning-services-in-tallinn/cleaning-up-retail-spaces | yes | none |
+| https://spsgrupp.ee/en/come-work-for-us | /en/come-work-for-us | yes | none |
+| https://spsgrupp.ee/en/construction-waste-removal | /en/construction-waste-removal | yes | none |
+| https://spsgrupp.ee/en/contact-sps-group | /en/contact-sps-group | yes | none |
+| https://spsgrupp.ee/en/privacy-policy | /en/privacy-policy | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning | /en/professional-exterior-cleaning | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning/graffiti-removal | /en/professional-exterior-cleaning/graffiti-removal | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning/professional-facade-cleaning | /en/professional-exterior-cleaning/professional-facade-cleaning | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning/professional-window-cleaning-in-tallinn | /en/professional-exterior-cleaning/professional-window-cleaning-in-tallinn | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning/snow-clearing-in-tallinn-and-harju-county | /en/professional-exterior-cleaning/snow-clearing-in-tallinn-and-harju-county | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning/snow-clearing-in-tallinn-and-harju-county | /en/professional-exterior-cleaning/snow-clearing-in-tallinn-and-harju-county | yes | none |
+| https://spsgrupp.ee/en/professional-exterior-cleaning/street-paving-washing | /en/professional-exterior-cleaning/street-paving-washing | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn | /en/repair-services-in-tallinn | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/cloakroom-construction | /en/repair-services-in-tallinn/cloakroom-construction | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/concrete-works | /en/repair-services-in-tallinn/concrete-works | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/construction-and-maintenance-of-ventilation-systems | /en/repair-services-in-tallinn/construction-and-maintenance-of-ventilation-systems | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/demolition | /en/repair-services-in-tallinn/demolition | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/electrical-works | /en/repair-services-in-tallinn/electrical-works | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/interior-finishing | /en/repair-services-in-tallinn/interior-finishing | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/pipeworks | /en/repair-services-in-tallinn/pipeworks | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/plating | /en/repair-services-in-tallinn/plating | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/roof-repairs | /en/repair-services-in-tallinn/roof-repairs | yes | none |
+| https://spsgrupp.ee/en/repair-services-in-tallinn/sanitary-renovation-and-conversion | /en/repair-services-in-tallinn/sanitary-renovation-and-conversion | yes | none |
+| https://spsgrupp.ee/en/sps-group | /en/sps-group | yes | none |
+| https://spsgrupp.ee/kontakt | /kontakt | yes | none |
+| https://spsgrupp.ee/koolide-koristamine | /koolide-koristamine | yes | none |
+| https://spsgrupp.ee/koristusteenus | /koristusteenus | yes | none |
+| https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus | /koristusteenus/kaubanduspindade-koristus | yes | none |
+| https://spsgrupp.ee/koristusteenus/kontori-koristus | /koristusteenus/kontori-koristus | yes | none |
+| https://spsgrupp.ee/koristusteenus/tootmishoonete-koristus | /koristusteenus/tootmishoonete-koristus | yes | none |
+| https://spsgrupp.ee/puhastusteenused | /puhastusteenused | yes | none |
+| https://spsgrupp.ee/puhastusteenused/ehitusjargne-koristus | /puhastusteenused/ehitusjargne-koristus | yes | none |
+| https://spsgrupp.ee/puhastusteenused/eskalaatorite-suvapuhastus | /puhastusteenused/eskalaatorite-suvapuhastus | yes | none |
+| https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus | /puhastusteenused/koroonaviiruse-jargne-puhastus | yes | none |
+| https://spsgrupp.ee/puhastusteenused/porandate-hooldus | /puhastusteenused/porandate-hooldus | yes | none |
+| https://spsgrupp.ee/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine | /puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine | yes | none |
+| https://spsgrupp.ee/puhastusteenused/vaipade-puhastus | /puhastusteenused/vaipade-puhastus | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas | /remonditeenused-tallinnas | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/betoonitood | /remonditeenused-tallinnas/betoonitood | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/elektritood | /remonditeenused-tallinnas/elektritood | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/garderoobide-ehitus | /remonditeenused-tallinnas/garderoobide-ehitus | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/katuse-remont | /remonditeenused-tallinnas/katuse-remont | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/lammutustood | /remonditeenused-tallinnas/lammutustood | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/plaatimistood | /remonditeenused-tallinnas/plaatimistood | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus | /remonditeenused-tallinnas/sanitaarremont-ja-umberehitus | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/siseviimistlustood | /remonditeenused-tallinnas/siseviimistlustood | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/torutood-2 | /remonditeenused-tallinnas/torutood-2 | yes | none |
+| https://spsgrupp.ee/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus | /remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus | yes | none |
+| https://spsgrupp.ee/ru | /ru | yes | none |
+| https://spsgrupp.ee/ru/%d0%b2%d1%8b%d0%b2%d0%be%d0%b7-%d1%81%d1%82%d1%80%d0%be%d0%b8%d1%82%d0%b5%d0%bb%d1%8c%d0%bd%d0%be%d0%b3%d0%be-%d0%bc%d1%83%d1%81%d0%be%d1%80%d0%b0 | /ru/вывоз-строительного-мусора | yes | none |
+| https://spsgrupp.ee/ru/%d0%b3%d1%80%d1%83%d0%bf%d0%bf%d0%b0-sps | /ru/группа-sps | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d0%be%d0%bb%d0%b8%d1%82%d0%b8%d0%ba%d0%b0-%d0%ba%d0%be%d0%bd%d1%84%d0%b8%d0%b4%d0%b5%d0%bd%d1%86%d0%b8%d0%b0%d0%bb%d1%8c%d0%bd%d0%be%d1%81%d1%82%d0%b8 | /ru/политика-конфиденциальности | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%b8%d1%85%d0%be%d0%b4%d0%b8%d1%82%d0%b5-%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0%d1%82%d1%8c-%d0%ba-%d0%bd%d0%b0%d0%bc | /ru/приходите-работать-к-нам | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-%d1%82 | /ru/профессиональная-внешняя-отделка-в-т | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-%d1%82/%d0%bc%d0%be%d0%b9%d0%ba%d0%b0-%d0%b8-%d1%83%d1%85%d0%be%d0%b4-%d0%b7%d0%b0-%d1%83%d0%bb%d0%b8%d1%87%d0%bd%d0%be%d0%b9-%d0%b1%d1%80%d1%83%d1%81%d1%87%d0%b0%d1%82%d0%ba%d0%be%d0%b9-%d1%81%d1%82%d1%80 | /ru/профессиональная-внешняя-отделка-в-т/мойка-и-уход-за-уличной-брусчаткой-стр | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-%d1%82/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d1%87%d0%b8%d1%81%d1%82%d0%ba%d0%b0-%d1%84%d0%b0%d1%81%d0%b0%d0%b4%d0%be%d0%b2-%d0%bf%d0%be%d0%b2 | /ru/профессиональная-внешняя-отделка-в-т/профессиональная-чистка-фасадов-пов | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-%d1%82/%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b0-%d1%81%d0%bd%d0%b5%d0%b3%d0%b0-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5-%d0%b8-%d1%85%d0%b0%d1%80%d1%8c%d1%8e%d0%bc%d0%b0%d0%b0 | /ru/профессиональная-внешняя-отделка-в-т/уборка-снега-в-таллинне-и-харьюмаа | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-%d1%82/%d1%83%d0%b4%d0%b0%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b3%d1%80%d0%b0%d1%84%d1%84%d0%b8%d1%82%d0%b8-%d0%b1%d1%8b%d1%81%d1%82%d1%80%d0%be%d0%b5-%d0%b8-%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8 | /ru/профессиональная-внешняя-отделка-в-т/удаление-граффити-быстрое-и-професси | yes | none |
+| https://spsgrupp.ee/ru/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d0%b2%d0%bd%d0%b5%d1%88%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0-%d0%b2-%d1%82/m%d1%8b%d1%82%d1%8ce-%d0%be%d0%ba%d0%be%d0%bd | /ru/профессиональная-внешняя-отделка-в-т/mытьe-окон | yes | none |
+| https://spsgrupp.ee/ru/%d1%81%d0%b2%d1%8f%d0%b6%d0%b8%d1%82%d0%b5%d1%81%d1%8c-%d1%81-sps-group | /ru/свяжитесь-с-sps-group | yes | none |
+| https://spsgrupp.ee/ru/%D1%81%D0%B2%D1%8F%D0%B6%D0%B8%D1%82%D0%B5%D1%81%D1%8C-%D1%81-sps-group | /ru/свяжитесь-с-sps-group | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5 | /ru/услуги-по-ремонту-в-таллинне | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d0%b1%d0%b5%d1%82%d0%be%d0%bd%d0%bd%d1%8b%d0%b5-%d1%80%d0%b0%d0%b1%d0%be%d1%82%d1%8b | /ru/услуги-по-ремонту-в-таллинне/бетонные-работы | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d0%b2%d0%bd%d1%83%d1%82%d1%80%d0%b5%d0%bd%d0%bd%d1%8f%d1%8f-%d0%be%d1%82%d0%b4%d0%b5%d0%bb%d0%ba%d0%b0 | /ru/услуги-по-ремонту-в-таллинне/внутренняя-отделка | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d0%be%d0%b1%d0%bd%d0%be%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-%d0%b8-%d0%bf%d1%80%d0%b5%d0%be%d0%b1%d1%80%d0%b0%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d1%81%d0%b0%d0%bd%d0%b8%d1%82%d0%b0%d1%80 | /ru/услуги-по-ремонту-в-таллинне/обновление-и-преобразование-санитар | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d0%bf%d0%be%d0%ba%d1%80%d1%8b%d1%82%d0%b8%d0%b5 | /ru/услуги-по-ремонту-в-таллинне/покрытие | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82-%d0%ba%d1%80%d1%8b%d1%88%d0%b8 | /ru/услуги-по-ремонту-в-таллинне/ремонт-крыши | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d1%81%d0%bd%d0%be%d1%81 | /ru/услуги-по-ремонту-в-таллинне/снос | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d1%81%d1%82%d1%80%d0%be%d0%b8%d1%82%d0%b5%d0%bb%d1%8c%d1%81%d1%82%d0%b2%d0%be-%d0%b3%d0%b0%d1%80%d0%b4%d0%b5%d1%80%d0%be%d0%b1%d0%bd%d0%be%d0%b9 | /ru/услуги-по-ремонту-в-таллинне/строительство-гардеробной | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d1%81%d1%82%d1%80%d0%be%d0%b8%d1%82%d0%b5%d0%bb%d1%8c%d1%81%d1%82%d0%b2%d0%be-%d0%b8-%d0%be%d0%b1%d1%81%d0%bb%d1%83%d0%b6%d0%b8%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b2%d0%b5%d0%bd%d1%82%d0%b8%d0%bb | /ru/услуги-по-ремонту-в-таллинне/строительство-и-обслуживание-вентил | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d1%8d%d0%bb%d0%b5%d0%ba%d1%82%d1%80%d0%be%d0%bc%d0%be%d0%bd%d1%82%d0%b0%d0%b6%d0%bd%d1%8b%d0%b5-%d1%80%d0%b0%d0%b1%d0%be%d1%82%d1%8b | /ru/услуги-по-ремонту-в-таллинне/электромонтажные-работы | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%80%d0%b5%d0%bc%d0%be%d0%bd%d1%82%d1%83-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/pipeworks | /ru/услуги-по-ремонту-в-таллинне/pipeworks | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b5-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5 | /ru/услуги-по-уборке-в-таллинне | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b5-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d0%be%d1%87%d0%b8%d1%81%d1%82%d0%ba%d0%b0-%d1%82%d0%be%d1%80%d0%b3%d0%be%d0%b2%d1%8b%d1%85-%d0%bf%d0%bb%d0%be%d1%89%d0%b0%d0%b4%d0%b5%d0%b9-%d0%b2-%d1%85%d0%b0%d1%80%d1%8c%d1%8e%d0%bc%d0%b0%d0%b0 | /ru/услуги-по-уборке-в-таллинне/очистка-торговых-площадей-в-харьюмаа | yes | none |
+| https://spsgrupp.ee/ru/%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%bf%d0%be-%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b5-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb%d0%b8%d0%bd%d0%bd%d0%b5/%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b0-%d0%bf%d1%80%d0%be%d0%bc%d1%8b%d1%88%d0%bb%d0%b5%d0%bd%d0%bd%d1%8b%d1%85-%d0%b7%d0%b4%d0%b0%d0%bd%d0%b8%d0%b9 | /ru/услуги-по-уборке-в-таллинне/уборка-промышленных-зданий | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5 | /ru/частные-клининговые-услуги-для-бизне | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5/%d0%b3%d0%bb%d1%83%d0%b1%d0%be%d0%ba%d0%b0%d1%8f-%d0%be%d1%87%d0%b8%d1%81%d1%82%d0%ba%d0%b0-%d1%8d%d1%81%d0%ba%d0%b0%d0%bb%d0%b0%d1%82%d0%be%d1%80%d0%be%d0%b2 | /ru/частные-клининговые-услуги-для-бизне/глубокая-очистка-эскалаторов | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5/%d0%b4%d0%b5%d0%b7%d0%b8%d0%bd%d1%84%d0%b5%d0%ba%d1%86%d0%b8%d1%8f-%d0%b8-%d0%be%d1%87%d0%b8%d1%81%d1%82%d0%ba%d0%b0-%d0%bf%d0%be%d1%81%d0%bb%d0%b5-%d0%b2%d0%b8%d1%80%d1%83%d1%81%d0%be%d0%b2 | /ru/частные-клининговые-услуги-для-бизне/дезинфекция-и-очистка-после-вирусов | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5/%d0%bf%d0%be%d1%81%d0%bb%d0%b5%d1%81%d1%82%d1%80%d0%be%d0%b8%d1%82%d0%b5%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b0-%d0%b2-%d1%85%d0%b0%d1%80%d1%8c%d1%8e%d0%bc%d0%b0%d0%b0 | /ru/частные-клининговые-услуги-для-бизне/послестроительная-уборка-в-харьюмаа | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d0%b0%d1%8f-%d1%87%d0%b8%d1%81%d1%82%d0%ba%d0%b0-%d0%ba%d0%be%d0%b2%d1%80%d0%be%d0%b2-%d0%b4%d0%bb%d1%8f-%d0%ba | /ru/частные-клининговые-услуги-для-бизне/профессиональная-чистка-ковров-для-к | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5/%d0%bf%d1%80%d0%be%d1%84%d0%b5%d1%81%d1%81%d0%b8%d0%be%d0%bd%d0%b0%d0%bb%d1%8c%d0%bd%d1%8b%d0%b9-%d1%83%d1%85%d0%be%d0%b4-%d0%b7%d0%b0-%d0%bf%d0%be%d0%bb%d0%be%d0%bc-%d0%b2-%d1%82%d0%b0%d0%bb%d0%bb | /ru/частные-клининговые-услуги-для-бизне/профессиональный-уход-за-полом-в-талл | yes | none |
+| https://spsgrupp.ee/ru/%d1%87%d0%b0%d1%81%d1%82%d0%bd%d1%8b%d0%b5-%d0%ba%d0%bb%d0%b8%d0%bd%d0%b8%d0%bd%d0%b3%d0%be%d0%b2%d1%8b%d0%b5-%d1%83%d1%81%d0%bb%d1%83%d0%b3%d0%b8-%d0%b4%d0%bb%d1%8f-%d0%b1%d0%b8%d0%b7%d0%bd%d0%b5/%d1%83%d0%b1%d0%be%d1%80%d0%ba%d0%b0-%d0%bf%d0%be%d0%b2%d1%80%d0%b5%d0%b6%d0%b4%d0%b5%d0%bd%d0%b8%d0%b9-%d0%be%d1%82-%d0%b4%d1%8b%d0%bc%d0%b0-%d0%b8-%d0%be%d0%b3%d0%bd%d1%8f | /ru/частные-клининговые-услуги-для-бизне/уборка-повреждений-от-дыма-и-огня | yes | none |
+| https://spsgrupp.ee/sps-grupp | /sps-grupp | yes | none |
+| https://spsgrupp.ee/tule-meile-toole | /tule-meile-toole | yes | none |
+| https://spsgrupp.ee/valikoristus | /valikoristus | yes | none |
+| https://spsgrupp.ee/valikoristus | /valikoristus | yes | none |
+| https://spsgrupp.ee/valikoristus/akende-pesu | /valikoristus/akende-pesu | yes | none |
+| https://spsgrupp.ee/valikoristus/fassaadipesu | /valikoristus/fassaadipesu | yes | none |
+| https://spsgrupp.ee/valikoristus/grafiti-eemaldamine | /valikoristus/grafiti-eemaldamine | yes | none |
+| https://spsgrupp.ee/valikoristus/lumekoristus | /valikoristus/lumekoristus | yes | none |
+| https://spsgrupp.ee/valikoristus/tanavakivide-pesu-ja-hooldus | /valikoristus/tanavakivide-pesu-ja-hooldus | yes | none |

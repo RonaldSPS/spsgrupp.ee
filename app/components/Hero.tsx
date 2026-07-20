@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useTranslations } from "next-intl"
 
 const FloatingChip = ({
   iconClass,
@@ -28,10 +29,12 @@ const FloatingChip = ({
 )
 
 export default function Hero() {
+  const t = useTranslations("hero")
+
   return (
     <section
       className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[120px] pb-[40px] sm:pb-[60px]"
-      aria-label="Avaleht"
+      aria-label={t("ariaLabel")}
       style={{ background: "url('/FrontHeroCar.jpg') center/cover no-repeat" }}
     >
       <div className="max-w-[1280px] mx-auto w-full relative z-10">
@@ -51,20 +54,18 @@ export default function Hero() {
               className="text-[clamp(28px,4.2vw,56px)] leading-[1.12] -tracking-[1px] mb-[18px]"
               style={{ fontFamily: "var(--font-sans)", fontWeight: 400, color: "white" }}
             >
-              Koristusfirma
+              {t("heading1")}
               <br />
               <span className="text-[#3abeff]" style={{ fontWeight: 600 }}>
-                ärikliendile
+                {t("heading2")}
               </span>
             </h1>
             <p className="text-[16px] md:text-[17px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-              Koristusfirma SPS Grupp hooldab iga päev üle{" "}
-              <strong className="text-white font-medium">miljoni m²</strong>{" "}
-              kontori-, kaubandus- ja tootmispindu Harjumaal.
+              {t("description")}
             </p>
             <div className="flex gap-[10px] animate-fade-up">
               <Link href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
-                Küsi pakkumist
+                {t("cta")}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
@@ -92,8 +93,8 @@ export default function Hero() {
                 <polyline points="12 6 12 12 16 14" />
               </svg>
             }
-            bigText="20+"
-            smallText="aastat kogemust"
+            bigText={t("floating1Big")}
+            smallText={t("floating1Small")}
           />
           <FloatingChip
             iconClass="chip-icon-green"
@@ -103,8 +104,8 @@ export default function Hero() {
                 <polyline points="9 12 11 14 15 10" />
               </svg>
             }
-            bigText="ISO 9001"
-            smallText="sertifitseeritud"
+            bigText={t("floating2Big")}
+            smallText={t("floating2Small")}
           />
           <FloatingChip
             iconClass="chip-icon-navy"
@@ -115,8 +116,8 @@ export default function Hero() {
                 <path d="M9 21V9" />
               </svg>
             }
-            bigText="Üle miljoni m²"
-            smallText="igapäevaselt"
+            bigText={t("floating3Big")}
+            smallText={t("floating3Small")}
           />
         </div>
       </div>

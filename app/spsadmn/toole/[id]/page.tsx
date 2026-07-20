@@ -33,6 +33,14 @@ interface Announcement {
   contactEmail: string
   active: boolean
   slug: string
+  translations?: TranslationStatus[]
+}
+
+interface TranslationStatus {
+  language: string
+  slug: string
+  status: string
+  sourceHash?: string | null
 }
 
 function linkPrompt(callback: (url: string) => void) {
@@ -233,6 +241,9 @@ export default function AdminTooleEdit() {
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
   const [form, setForm] = useState<Announcement | null>(null)
+  const [translations, setTranslations] = useState<TranslationStatus[]>([])
+  const [translating, setTranslating] = useState(false)
+  const [translationError, setTranslationError] = useState("")
 
   useEffect(() => {
     fetch("/api/spsadmn/toole")
@@ -241,6 +252,7 @@ export default function AdminTooleEdit() {
         const found = data.announcements?.find((a: Announcement) => a.id === id)
         if (found) {
           setForm(found)
+          setTranslations(found.translations ?? [])
         } else {
           const idSlug = "uus-toopakkumine-" + Date.now()
           const oneMonthLater = new Date()
@@ -295,9 +307,31 @@ export default function AdminTooleEdit() {
     })
     if (res.ok) {
       setSaved(true)
+      const data = await res.json().catch(() => null)
+      if (data?.announcement?.translations) setTranslations(data.announcement.translations)
       setTimeout(() => setSaved(false), 2500)
     }
     setSaving(false)
+  }
+
+  const handleTranslate = async () => {
+    if (!form) return
+    setTranslating(true)
+    setTranslationError("")
+    try {
+      const res = await fetch("/api/spsadmn/toole/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: form.id }),
+      })
+      const data = await res.json().catch(() => null)
+      if (!res.ok) throw new Error(data?.error || `Translation failed: ${res.status}`)
+      setTranslations(data.translations || [])
+    } catch (error) {
+      setTranslationError(error instanceof Error ? error.message : "Translation failed")
+    } finally {
+      setTranslating(false)
+    }
   }
 
   if (loading || !form) {
@@ -356,6 +390,45 @@ export default function AdminTooleEdit() {
             <Field form={form} updateField={updateField} label="Telefon (Jelena)" field="contactPhone" />
             <Field form={form} updateField={updateField} label="Telefon (üldnumber)" field="contactPhone2" />
             <Field form={form} updateField={updateField} label="E-post" field="contactEmail" />
+          </div>
+
+          <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5">
+            <div className="flex items-center justify-between gap-3 mb-3">
+              <h2 className="text-[18px] font-bold text-[#17345a]">Tõlked</h2>
+              <button
+                type="button"
+                onClick={handleTranslate}
+                disabled={translating}
+                className="bg-[#3abeff] text-white py-2 px-4 rounded-xl text-[15px] font-medium hover:bg-[#2ba8e8] transition-colors disabled:opacity-60"
+              >
+                {translating ? "Tõlgin..." : "Tõlgi EN/RU"}
+              </button>
+            </div>
+            {translationError ? <p className="text-[15px] text-red-600 mb-3">{translationError}</p> : null}
+            <div className="space-y-2 text-[15px]">
+              {["en", "ru"].map((language) => {
+                const item = translations.find((translation) => translation.language === language)
+                const parent = language === "en" ? "/en/come-work-for-us" : "/ru/приходите-работать-к-нам"
+                return (
+                  <div key={language} className="flex items-center justify-between gap-3 rounded-lg bg-[#f8fafc] px-3 py-2">
+                    <span className="font-medium text-[#17345a] uppercase">{language}</span>
+                    <span className={item?.status === "auto" ? "text-[#2d9e6b]" : "text-[#5a6474]"}>
+                      {item ? item.status : "puudub"}
+                    </span>
+                    {item?.slug ? (
+                      <a
+                        href={`${parent}/${item.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#3abeff] font-medium"
+                      >
+                        Ava
+                      </a>
+                    ) : null}
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
 

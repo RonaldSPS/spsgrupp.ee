@@ -31,18 +31,43 @@ function timingSafeEqual(a: string, b: string): boolean {
 }
 
 async function validateToken(token: string): Promise<boolean> {
-  const password = getAdminPassword()
-  if (!password) return false
   if (!token.startsWith(TOKEN_PREFIX)) return false
   const payload = token.slice(TOKEN_PREFIX.length)
   const parts = payload.split("_")
   if (parts.length < 2) return false
   const timestamp = parts[0]
-  const providedHash = parts.slice(1).join("_")
-  const expectedHash = await hmacSha256(password, timestamp)
-  if (!timingSafeEqual(expectedHash, providedHash)) return false
+
   const age = Date.now() - parseInt(timestamp, 10)
-  return age >= 0 && age < 24 * 60 * 60 * 1000
+  if (age < 0 || age >= 24 * 60 * 60 * 1000) return false
+
+  // Env-based admin (2 parts: ts_hash)
+  if (parts.length === 2) {
+    const password = getAdminPassword()
+    if (!password) return false
+    const providedHash = parts[1]
+    const expectedHash = await hmacSha256(password, timestamp)
+    return timingSafeEqual(expectedHash, providedHash)
+  }
+
+  // DB user (3 parts: ts_userId_hash)
+  if (parts.length === 3) {
+    const userId = parseInt(parts[1], 10)
+    if (isNaN(userId)) return false
+    try {
+      const { db } = await import("@/lib/db")
+      const { adminUsers } = await import("@/lib/db/schema")
+      const { eq } = await import("drizzle-orm")
+      const rows = await db.select({ passwordHash: adminUsers.passwordHash, active: adminUsers.active }).from(adminUsers).where(eq(adminUsers.id, userId)).limit(1)
+      if (rows.length === 0 || !rows[0].active) return false
+      const providedHash = parts[2]
+      const expectedHash = await hmacSha256(rows[0].passwordHash, `${timestamp}_${userId}`)
+      return timingSafeEqual(expectedHash, providedHash)
+    } catch {
+      return false
+    }
+  }
+
+  return false
 }
 
 function buildCspHeader(): string {
@@ -67,8 +92,15 @@ function generateNonce(): string {
 
 function makeResponse(request: NextRequest, csp: string): NextResponse {
   const requestHeaders = new Headers(request.headers)
+  const { pathname } = request.nextUrl
+  const locale = pathname === "/en" || pathname.startsWith("/en/")
+    ? "en"
+    : pathname === "/ru" || pathname.startsWith("/ru/")
+      ? "ru"
+      : "et"
   requestHeaders.set("Content-Security-Policy", csp)
   requestHeaders.set("X-CSP-Nonce", generateNonce())
+  requestHeaders.set("X-SPS-Locale", locale)
 
   const response = NextResponse.next({ request: { headers: requestHeaders } })
   response.headers.set("Content-Security-Policy", csp)
@@ -82,16 +114,17 @@ function makeResponse(request: NextRequest, csp: string): NextResponse {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
+  const normalizedPathname = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname
   const csp = buildCspHeader()
 
-  if (pathname === "/api/jobs") {
+  if (normalizedPathname === "/api/jobs") {
     const response = makeResponse(request, csp)
     response.headers.set("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300")
     return response
   }
 
-  if (pathname.startsWith("/api/spsadmn/")) {
-    if (pathname === "/api/spsadmn/login" || pathname === "/api/spsadmn/logout") {
+  if (normalizedPathname.startsWith("/api/spsadmn/")) {
+    if (normalizedPathname === "/api/spsadmn/login" || normalizedPathname === "/api/spsadmn/logout") {
       const response = makeResponse(request, csp)
       response.headers.set("Cache-Control", "no-store, max-age=0")
       return response
@@ -108,15 +141,15 @@ export async function proxy(request: NextRequest) {
     return response
   }
 
-  if (pathname.startsWith("/spsadmn")) {
+  if (normalizedPathname.startsWith("/spsadmn")) {
     const response = makeResponse(request, csp)
     response.headers.set("Cache-Control", "no-store, max-age=0")
     response.headers.set("X-Robots-Tag", "noindex, nofollow")
 
-    if (pathname !== "/spsadmn") {
+    if (normalizedPathname !== "/spsadmn") {
       const token = request.cookies.get(COOKIE_NAME)?.value
       if (!token || !(await validateToken(token))) {
-        return NextResponse.redirect(new URL("/spsadmn", request.url))
+        return NextResponse.redirect(new URL("/spsadmn/", request.url))
       }
     }
 

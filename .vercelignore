@@ -1,0 +1,14 @@
+.git
+.next
+.vercel
+node_modules
+coverage
+out
+build
+*.log
+*.tsbuildinfo
+.env*
+env.local
+env.*.local
+.wordpress-backups
+raportid

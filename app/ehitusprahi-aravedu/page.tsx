@@ -24,7 +24,7 @@ const customFAQ = [
   },
   {
     q: "Kui kiiresti saate konteinerit tarnida?",
-    a: "Tavaliselt 24 tunni jooksul peale tellimust. Kiireloomuliste projektide puhul ka samal päeval. Pakume erinevaid konteinerisuurusi alates 5m³.",
+    a: "Lepime kokku teile sobiva tarneaja. Pakume erinevaid konteinerisuurusi alates 5m³.",
   },
   {
     q: "Kas tegelete ohtlike jäätmetega?",
@@ -41,7 +41,7 @@ export default function EhitusprahiAravedu() {
     <>
       <SeoJsonLd
         serviceName="Ehitusprahi äravedu Tallinnas"
-        serviceDescription="Ehitusprahi ja ehitusjäätmete äravedu Tallinnas. Konteinerid 24h, sorteerimine."
+        serviceDescription="Ehitusprahi ja ehitusjäätmete äravedu Tallinnas. Konteinerite tarne, sorteerimine, dokumentatsioon."
         serviceUrl="https://spsgrupp.ee/ehitusprahi-aravedu"
         breadcrumbs={[
           { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
@@ -68,7 +68,7 @@ export default function EhitusprahiAravedu() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">24h</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Kiire</div>
                 <div className="text-[15px] text-[#1f2937]">tarne</div>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function EhitusprahiAravedu() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Kiire ja seadusandlusele vastav ehitusjäätmete äravedu. Sorteerimine, konteinerite tarne 24h jooksul, transport ja dokumentatsioon ühest kohast.
+                Kiire ja seadusandlusele vastav ehitusjäätmete äravedu. Sorteerimine, konteinerite tarne, transport ja dokumentatsioon ühest kohast.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
@@ -157,7 +157,7 @@ export default function EhitusprahiAravedu() {
                   <p className="mt-4">Planeerimata jäätmekäitlus võib lükata renoveerimise valmimise edasi ja kasvatada kulusid.</p>
                 </div>
                 <div>
-                  <p>SPS Grupp korraldab kogu protsessi sujuvalt. Toome konteinerid kohale 24 tunni jooksul, sorteerime jäätmed ja korraldame transpordi ning dokumendid. Teie saate keskenduda ehitusele.</p>
+                  <p>SPS Grupp korraldab kogu protsessi sujuvalt. Toome konteinerid kohale, sorteerime jäätmed ja korraldame transpordi ning dokumendid. Teie saate keskenduda ehitusele.</p>
                 </div>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function EhitusprahiAravedu() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   { bold: "Ehitusprahi sorteerimine kohapeal", desc: "puit, metall, betoon, segajäätmed" },
-                  { bold: "Konteinerite tarne ja paigaldus", desc: "24h jooksul, erinevad suurused (5–20 m³)" },
+                  { bold: "Konteinerite tarne ja paigaldus", desc: "Erinevad suurused (5–20 m³)" },
                   { bold: "Regulaarne äraveograafik", desc: "projekti kestel, 1–3 korda nädalas" },
                   { bold: "Ühekordsed äraveod", desc: "ja kiirreageerimine" },
                   { bold: "Ohtlike jäätmete seaduslik käitlemine", desc: "värvid, lahustid, asbest" },
@@ -239,9 +239,9 @@ export default function EhitusprahiAravedu() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kiire reageerimine, konteineri tarne 24h jooksul</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kiire konteineri tarne</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Saadame konteineri juba järgmisel tööpäeval peale tellimust. Kiireloomuliste projektide puhul sageli samal päeval.
+                          Lepime kokku teile sobiva tarneaja. Pakume erinevaid konteinerisuurusi vastavalt projekti mahule ja vajadustele.
                         </p>
                       </div>
                     </div>

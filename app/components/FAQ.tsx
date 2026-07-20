@@ -1,30 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations, useMessages } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
-
-const faqItems = [
-  {
-    q: "Kui sageli peaks äriruume koristama?",
-    a: "Enamikule ettevõtetele soovitame koristust 3–5 korda nädalas. Täpne sagedus sõltub teie äri spetsiifikast, töötajate arvust ja pindalast. Aitame teil leida optimaalse graafiku tasuta konsultatsiooni käigus.",
-  },
-  {
-    q: "Kuidas kujuneb koristuse hind?",
-    a: "Hind sõltub ruumide suurusest, koristuse sagedusest ja eritööde vajadusest. Anname alati läbipaistva pakkumise, kus iga komponent on selgelt välja toodud. Alustage tasuta koristuskulude auditist.",
-  },
-  {
-    q: "Kas saate koristada ka töövälisel ajal?",
-    a: "Jah, enamik meie koristustöid toimub varahommikul (enne 8:00), õhtuti (peale 18:00) või nädalavahetustel. Kohandame graafiku täpselt teie ettevõtte tööajaga.",
-  },
-  {
-    q: "Kuidas tagate konfidentsiaalsuse ja turvalisuse?",
-    a: "Andmeid käsitletakse konfidentsiaalselt. Kasutame ranget personalivaliku protsessi.",
-  },
-  {
-    q: "Miks valida SPS Grupp, mitte mõni teine koristusfirma?",
-    a: "Meil on üle 20 aasta kogemust, ISO 9001 ja 14001 keskkonnasertifikaadid, meie teenus on kindlustatud. Saame hakkama igat tüüpi pindade puhastamisega.",
-  },
-];
 
 interface FAQItem {
   q: string;
@@ -32,9 +10,12 @@ interface FAQItem {
 }
 
 export default function FAQ({ items }: { items?: FAQItem[] }) {
+  const t = useTranslations("faq")
+  const messages = useMessages()
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faq = items ?? faqItems;
+  const msgItems = ((messages as Record<string, unknown>).faq as { items: FAQItem[] })?.items || []
+  const faq = items ?? msgItems
 
   return (
     <section className="faq-section py-[100px] bg-white" id="kkk">
@@ -42,16 +23,16 @@ export default function FAQ({ items }: { items?: FAQItem[] }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
           {/* Sidebar */}
           <div>
-            <TwoToneHeading text="KKK" />
+            <TwoToneHeading text={t("heading")} />
             <p className="text-[15px] text-[#2f353f] leading-[1.7] mb-6 font-light">
-              Vastame kõige levinumatele küsimustele koristusteenuse kohta. Kui teil tekib küsimusi, palun võtke meiega ühendust.
+              {t("description")}
             </p>
             <a
               href="#pakkumine"
               className="inline-flex items-center gap-2 bg-[#17345a] text-white py-2.5 px-5 rounded-[10px] text-[15px] font-medium no-underline transition-all hover:bg-[#1e4a7a] hover:-translate-y-0.5"
               style={{ boxShadow: "0 2px 12px rgba(23,52,90,0.07)" }}
             >
-              Küsi pakkumist
+              {t("cta")}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />

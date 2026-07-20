@@ -22,8 +22,8 @@ const floatingChips = [
       </svg>
     ),
     chipClass: "chip-icon-blue",
-    value: "Sertifitseeritud",
-    label: "kõrgtööd",
+    value: "Kõrgtööde",
+    label: "kogemus",
   },
   {
     icon: (
@@ -101,7 +101,7 @@ const miksMeieKaardid = [
   },
   {
     title: "Kõrghoonete spetsialistid",
-    desc: "Tõstukid, ronimisvarustus, teleskoopvardad. Töötame ka Ülemiste City mastaabis hoonetel. Sertifitseeritud kõrgtöödeks.",
+    desc: "Tõstukid, ronimisvarustus, teleskoopvardad. Töötame ka Ülemiste City mastaabis hoonetel.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -177,7 +177,7 @@ const fassaadipesuFAQ = [
   },
   {
     q: "Kas teete fassaadipesu ka kõrghoonetel?",
-    a: "Jah. Omame sertifitseeritud personali ja varustust kõrgtöödeks. Oleme teinud fassaadipesu kuni 20+ korrustel hoonetel.",
+    a: "Jah. Omame vastavat varustust ja kogemust kõrgtöödeks. Oleme teinud fassaadipesu kuni 20+ korrustel hoonetel.",
   },
   {
     q: "Kas kaitsekihi lisamine on vajalik?",

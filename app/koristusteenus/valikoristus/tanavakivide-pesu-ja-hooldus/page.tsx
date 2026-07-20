@@ -96,8 +96,8 @@ const miksMeieKaardid = [
     ),
   },
   {
-    title: "Umbrohu täielik eemaldamine",
-    desc: "Lihtsalt pinnapealne eemaldamine ei tööta, umbrohi kasvab kiiresti tagasi. Eemaldame koos juurtega.",
+    title: "Umbrohu eemaldamine",
+    desc: "Eemaldame umbrohu koos juurtega, mis pikendab puhastustulemust. Pinnapealne eemaldus ilma juurteta annab ajutise tulemuse.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
@@ -120,7 +120,7 @@ const miksMeieKaardid = [
   },
   {
     title: "Keskkonnasõbralikud lahendused",
-    desc: "Kogume pesuveed kokku ja käitleme seaduspäraselt. Ei lase saastunud vett maapinda.",
+    desc: "Kasutame biolagunevaid puhastusvahendeid, mis ei kahjusta ümbritsevat keskkonda ega haljastust.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />

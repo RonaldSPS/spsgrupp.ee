@@ -24,7 +24,7 @@ const customFAQ = [
   },
   {
     q: "Kui kiiresti saab tellida ehitusjärgse koristuse?",
-    a: "Tavaliselt 24–48 tunni jooksul peale tellimuse kinnitamist. Kiireloomuliste projektide puhul võimalik ka samal päeval.",
+    a: "Reageerime kiiresti ja lepime kokku teile sobiva aja. Iga objekt on erinev, seega planeerime ajakava vastavalt objekti suurusele ja tööde mahule.",
   },
   {
     q: "Mis maksab ehitusjärgne koristus?",
@@ -65,7 +65,7 @@ export default function EhitusjargneKoristus() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">24–48h</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Kiire</div>
                 <div className="text-[15px] text-[#1f2937]">reageerimine</div>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function EhitusjargneKoristus() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Objekt valmis üleandmiseks 24–48 tunni jooksul. Ehitustolm, praht, värvitilgad, kleebised ja tsemendijäägid kaovad. Kombineeritud teenus koos prahi äraveoga.
+                Ehitustolm, praht, värvitilgad, kleebised ja tsemendijäägid kaovad. Kombineeritud teenus koos prahi äraveoga. Objekt valmis üleandmiseks.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
@@ -238,9 +238,9 @@ export default function EhitusjargneKoristus() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kiire reageerimine 24–48h</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kiire reageerimine</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Tavaliselt oleme objektil järgmisel või ülejärgmisel tööpäeval peale tellimust. Kiireloomuliste objektide puhul ka samal päeval.
+                          Reageerime kiiresti ja lepime kokku teile sobiva aja. Iga objekt on erinev, seega planeerime ajakava vastavalt objekti suurusele ja tööde mahule.
                         </p>
                       </div>
                     </div>
@@ -396,7 +396,7 @@ export default function EhitusjargneKoristus() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Ärge laske koristamisel projekti valmimist viivitada"
-            description="Helistage või kirjutage täna — tuleme järgmisel päeval ja viime teie objekti üleandmiseks valmis."
+            description="Helistage või kirjutage täna — tuleme esimesel võimalusel ja viime teie objekti üleandmiseks valmis."
           />
         </ScrollAnimation>
 

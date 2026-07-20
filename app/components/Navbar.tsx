@@ -1,96 +1,119 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
-
-const navLinks = [
-  { href: "#teenused", label: "Teenused" },
-  { href: "/tule-meile-toole", label: "Tule tööle", subItems: [
-    { href: "/tule-meile-toole#pakkumised", label: "Aktiivsed tööpakkumised" },
-  ]},
-  { href: "/sps-grupp", label: "SPS Grupp", subItems: [
-    { href: "/sps-grupp/arvamused", label: "Arvamused" },
-  ]},
-  { href: "/blog", label: "Blogi" },
-  { href: "/kontakt", label: "Kontakt" },
-]
-
-const megaMenuData = {
-  title: "Teenused",
-  columns: [
-    {
-      title: "Koristusteenused",
-      href: "/koristusteenus",
-      subSections: [
-        {
-          title: "Sisekoristus",
-          href: "/koristusteenus",
-          items: [
-            { label: "Kontori koristus", href: "/koristusteenus/kontori-koristus" },
-            { label: "Kaubanduspindade koristus", href: "/koristusteenus/kaubanduspindade-koristus" },
-            { label: "Tootmishoonete koristus", href: "/koristusteenus/tootmishoonete-koristus" },
-            { label: "Koolide koristus", href: "/koristusteenus/koolide-koristamine" },
-          ],
-        },
-        {
-          title: "Välikoristus",
-          href: "/koristusteenus/valikoristus",
-          items: [
-            { label: "Muru niitmine", href: "/koristusteenus/valikoristus/muruniitmine" },
-            { label: "Lehtede koristamine", href: "/koristusteenus/valikoristus/lehtedekoristamine" },
-            { label: "Kojamehe teenus", href: "/koristusteenus/valikoristus/kojameheteenus" },
-            { label: "Lumekoristus", href: "/koristusteenus/valikoristus/lumekoristus" },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Puhastusteenused",
-      href: "/puhastusteenused",
-      subSections: [
-        {
-          title: "Eripuhastustööd",
-          href: "/puhastusteenused",
-          items: [
-            { label: "Akende pesu", href: "/koristusteenus/valikoristus/akende-pesu" },
-            { label: "Vaipade puhastus", href: "/puhastusteenused/vaipade-puhastus" },
-            { label: "Põrandate hooldus", href: "/puhastusteenused/porandate-hooldus" },
-            { label: "Ehitusprahi äravedu", href: "/ehitusprahi-aravedu" },
-            { label: "Ehitusjärgne koristus", href: "/puhastusteenused/ehitusjargne-koristus" },
-            { label: "Tulekahjustuste eemaldus", href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
-            { label: "Eskalaatorite süvapuhastus", href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
-            { label: "Desinfitseerimine", href: "/puhastusteenused/desinfitseerimine" },
-            { label: "Tänavakivide pesu ja hooldus", href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus" },
-            { label: "Graffiti eemaldamine", href: "/koristusteenus/valikoristus/grafiti-eemaldamine" },
-            { label: "Fassaadipesu", href: "/koristusteenus/valikoristus/fassaadipesu" },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Remonditeenused",
-      href: "/remonditeenused-tallinnas",
-      items: [
-        { label: "Elektritööd", href: "/remonditeenused-tallinnas/elektritood/" },
-        { label: "Torutööd", href: "/remonditeenused-tallinnas/torutood/" },
-        { label: "Siseviimistlustööd", href: "/remonditeenused-tallinnas/siseviimistlustood/" },
-        { label: "Sanitaarremont", href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/" },
-        { label: "Ventilatsioonide ehitus", href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/" },
-        { label: "Plaatimistööd", href: "/remonditeenused-tallinnas/plaatimistood/" },
-        { label: "Katuse remont", href: "/remonditeenused-tallinnas/katuse-remont/" },
-        { label: "Lammutustööd", href: "/remonditeenused-tallinnas/lammutustood/" },
-      ],
-    },
-  ],
-}
-
-const sectionKeys = ["Koristusteenused", "Puhastusteenused", "Välikoristus", "Remonditeenused"]
+import { localizePath, getCurrentEtPath, type Locale } from "@/lib/slug-map"
 
 export default function Navbar() {
+  const t = useTranslations()
   const pathname = usePathname()
-  const isServicePage = pathname.startsWith("/koristusteenus") || pathname.startsWith("/remonditeenused-tallinnas") || pathname.startsWith("/puhastusteenused") || pathname.startsWith("/ehitusprahi-aravedu")
+  const router = useRouter()
+  const locale: Locale = pathname === '/en' || pathname.startsWith('/en/')
+    ? 'en'
+    : pathname === '/ru' || pathname.startsWith('/ru/')
+      ? 'ru'
+      : 'et'
+
+  function switchLanguage(newLocale: Locale) {
+    router.push(localizePath(currentEtPath, newLocale))
+  }
+
+  const currentEtPath = getCurrentEtPath(pathname, locale)
+
+  function localeHref(href: string): string {
+    if (href.startsWith("#") || href.startsWith("tel:") || href.startsWith("mailto:") || /^https?:\/\//.test(href)) {
+      return href
+    }
+    const [pathPart, hashPart] = href.split("#")
+    const localized = localizePath(pathPart || "/", locale)
+    return hashPart ? `${localized}#${hashPart}` : localized
+  }
+
+  const navLinks = [
+    { href: "#teenused", label: t('nav.services') },
+    { href: "/tule-meile-toole", label: t('nav.comeToWork'), subItems: [
+      { href: "/tule-meile-toole#pakkumised", label: t('nav.activeJobs') },
+    ]},
+    { href: "/sps-grupp", label: t('nav.spsGrupp'), subItems: [
+      { href: "/sps-grupp/arvamused", label: t('nav.opinions') },
+    ]},
+    ...(locale === 'et' ? [{ href: "/blog", label: t('nav.blog') }] : []),
+    { href: "/kontakt", label: t('nav.contact') },
+  ]
+
+  const megaMenuData = {
+    title: t('megaMenu.services'),
+    columns: [
+      {
+        title: t('megaMenu.cleaningServices'),
+        href: "/koristusteenus",
+        subSections: [
+          {
+            title: t('megaMenu.indoorCleaning'),
+            href: "/koristusteenus",
+            items: [
+              { label: t('megaMenu.officeCleaning'), href: "/koristusteenus/kontori-koristus" },
+              { label: t('megaMenu.commercialCleaning'), href: "/koristusteenus/kaubanduspindade-koristus" },
+              { label: t('megaMenu.industrialCleaning'), href: "/koristusteenus/tootmishoonete-koristus" },
+              { label: t('megaMenu.schoolCleaning'), href: "/koolide-koristamine" },
+            ],
+          },
+          {
+            title: t('megaMenu.outdoorCleaning'),
+            href: "/valikoristus",
+            items: [
+              { label: t('megaMenu.lawnMowing'), href: "/valikoristus/muruniitmine" },
+              { label: t('megaMenu.leafRemoval'), href: "/valikoristus/lehtedekoristamine" },
+              { label: t('megaMenu.janitorService'), href: "/valikoristus/kojameheteenus" },
+              { label: t('megaMenu.snowRemoval'), href: "/valikoristus/lumekoristus" },
+            ],
+          },
+        ],
+      },
+      {
+        title: t('megaMenu.cleaningServices2'),
+        href: "/puhastusteenused",
+        subSections: [
+          {
+            title: t('megaMenu.specialCleaning'),
+            href: "/puhastusteenused",
+            items: [
+              { label: t('megaMenu.windowCleaning'), href: "/valikoristus/akende-pesu" },
+              { label: t('megaMenu.carpetCleaning'), href: "/puhastusteenused/vaipade-puhastus" },
+              { label: t('megaMenu.floorMaintenance'), href: "/puhastusteenused/porandate-hooldus" },
+              { label: t('megaMenu.constructionWaste'), href: "/ehitusprahi-aravedu" },
+              { label: t('megaMenu.postConstructionCleaning'), href: "/puhastusteenused/ehitusjargne-koristus" },
+              { label: t('megaMenu.fireDamageCleaning'), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
+              { label: t('megaMenu.escalatorDeepCleaning'), href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
+              { label: t('megaMenu.disinfection'), href: "/puhastusteenused/koroonaviiruse-jargne-puhastus" },
+              { label: t('megaMenu.pavingCleaning'), href: "/valikoristus/tanavakivide-pesu-ja-hooldus" },
+              { label: t('megaMenu.graffitiRemoval'), href: "/valikoristus/grafiti-eemaldamine" },
+              { label: t('megaMenu.facadeCleaning'), href: "/valikoristus/fassaadipesu" },
+            ],
+          },
+        ],
+      },
+      {
+        title: t('megaMenu.renovationServices'),
+        href: "/remonditeenused-tallinnas",
+        items: [
+          { label: t('megaMenu.electricalWork'), href: "/remonditeenused-tallinnas/elektritood/" },
+          { label: t('megaMenu.plumbing'), href: "/remonditeenused-tallinnas/torutood-2/" },
+          { label: t('megaMenu.interiorFinishing'), href: "/remonditeenused-tallinnas/siseviimistlustood/" },
+          { label: t('megaMenu.bathroomRenovation'), href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/" },
+          { label: t('megaMenu.ventilation'), href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/" },
+          { label: t('megaMenu.tiling'), href: "/remonditeenused-tallinnas/plaatimistood/" },
+          { label: t('megaMenu.roofRepair'), href: "/remonditeenused-tallinnas/katuse-remont/" },
+          { label: t('megaMenu.demolition'), href: "/remonditeenused-tallinnas/lammutustood/" },
+        ],
+      },
+    ],
+  }
+
+  const isServicePage = currentEtPath.startsWith("/koristusteenus") || currentEtPath.startsWith("/valikoristus") || currentEtPath.startsWith("/remonditeenused-tallinnas") || currentEtPath.startsWith("/puhastusteenused") || currentEtPath.startsWith("/ehitusprahi-aravedu")
   const [scrolled, setScrolled] = useState(false)
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
   const [tooleDropdownOpen, setTooleDropdownOpen] = useState(false)
@@ -160,9 +183,9 @@ export default function Navbar() {
   }, [megaMenuOpen])
 
   return (
-    <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`} id="navbar" aria-label="Peamenüü">
+    <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`} id="navbar" aria-label={t('nav.ariaMainMenu')}>
       <div className="navbar-container">
-        <Link href="/" className="logo flex items-center gap-2.5 no-underline">
+          <Link href={localeHref("/")} className="logo flex items-center gap-2.5 no-underline">
           <Image src="/SPS_LOGO.svg" alt="SPS Grupp — koristusfirma" width={38} height={38} style={{ width: "auto", height: "38px" }} />
         </Link>
 
@@ -172,7 +195,7 @@ export default function Navbar() {
               {index === 0 ? (
                 <div className="mega-menu-trigger relative" ref={megaMenuRef}>
                   <Link
-                    href={link.href}
+                    href={localeHref(link.href)}
                     role="menuitem"
                     aria-expanded={megaMenuOpen}
                     aria-controls="mega-menu"
@@ -188,7 +211,7 @@ export default function Navbar() {
                   <div
                     id="mega-menu"
                     role="menu"
-                    aria-label="Teenused"
+                    aria-label={t('nav.ariaMegaMenu')}
                     className={`mega-menu max-w-[1100px] w-[95vw] bg-white rounded-b-[16px] shadow-lg border border-[rgba(23,52,90,0.08)] p-6 grid grid-cols-3 gap-8 transition-opacity duration-200 ${megaMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
                     onMouseEnter={() => setMegaMenuOpen(true)}
                     onMouseLeave={() => setMegaMenuOpen(false)}
@@ -197,18 +220,18 @@ export default function Navbar() {
                       <div key={colIdx}>
                         <div className="text-[15px] font-bold text-[#17345a] mb-3">
                           {col.href ? (
-                            <Link href={col.href} className="text-[#17345a] no-underline hover:text-[#1e4a7a]">
+                            <Link href={localeHref(col.href)} className="text-[#17345a] no-underline hover:text-[#1e4a7a]">
                               {col.title}
                             </Link>
                           ) : col.title}
                         </div>
                         {col.subSections ? col.subSections.map((sub, subIdx) => (
                           <div key={subIdx} className={subIdx > 0 ? "mt-4" : ""}>
-                            <Link href={sub.href} className="text-[15px] font-semibold text-[#5a6474] mb-2 block no-underline hover:text-[#17345a]">{sub.title}</Link>
+                            <Link href={localeHref(sub.href)} className="text-[15px] font-semibold text-[#5a6474] mb-2 block no-underline hover:text-[#17345a]">{sub.title}</Link>
                             <ul className="flex flex-col gap-1">
                               {sub.items.map((item, itemIdx) => (
                                 <li key={itemIdx} role="none">
-                                  <Link href={item.href} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${pathname === item.href ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
+                                  <Link href={localeHref(item.href)} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${currentEtPath === item.href ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
                                     {item.label}
                                   </Link>
                                 </li>
@@ -219,7 +242,7 @@ export default function Navbar() {
                           <ul className="flex flex-col gap-1 pl-3">
                             {col.items.map((item, itemIdx) => (
                               <li key={itemIdx} role="none">
-                                <Link href={item.href} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${pathname === item.href ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
+                                <Link href={localeHref(item.href)} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${currentEtPath === item.href ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
                                   {item.label}
                                 </Link>
                               </li>
@@ -233,7 +256,7 @@ export default function Navbar() {
               ) : "subItems" in link && link.subItems ? (
                 <div className="relative" ref={link.href === "/tule-meile-toole" ? tooleDropdownRef : spsDropdownRef}>
                   <Link
-                    href={link.href}
+                    href={localeHref(link.href)}
                     role="menuitem"
                     aria-expanded={link.href === "/tule-meile-toole" ? tooleDropdownOpen : spsDropdownOpen}
                     aria-controls={link.href === "/tule-meile-toole" ? "toole-dropdown" : "sps-dropdown"}
@@ -253,14 +276,14 @@ export default function Navbar() {
                     onMouseLeave={() => link.href === "/tule-meile-toole" ? setTooleDropdownOpen(false) : setSpsDropdownOpen(false)}
                   >
                     {link.subItems.map((item) => (
-                      <Link key={item.href} href={item.href} role="menuitem" className="block px-5 py-2.5 text-[15px] text-[#2f353f] hover:bg-[#eef7fc] hover:text-[#17345a] transition-colors whitespace-nowrap" onClick={closeAllDesktop}>
+                      <Link key={item.href} href={localeHref(item.href)} role="menuitem" className="block px-5 py-2.5 text-[15px] text-[#2f353f] hover:bg-[#eef7fc] hover:text-[#17345a] transition-colors whitespace-nowrap" onClick={closeAllDesktop}>
                         {item.label}
                       </Link>
                     ))}
                   </div>
                 </div>
               ) : (
-                <Link href={link.href} role="menuitem" className="text-[#17345a] no-underline text-[15px] font-medium transition-all hover:text-[#17345a] relative">
+                <Link href={localeHref(link.href)} role="menuitem" className="text-[#17345a] no-underline text-[15px] font-medium transition-all hover:text-[#17345a] relative">
                   {link.label}
                 </Link>
               )}
@@ -271,12 +294,24 @@ export default function Navbar() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
-              662 3328
+              {t('nav.phoneShort')}
             </Link>
+          </li>
+          <li role="none" className="flex items-center gap-1.5">
+            {(['et', 'en', 'ru'] as Locale[]).map((loc) => (
+              <button
+                key={loc}
+                onClick={() => switchLanguage(loc)}
+                aria-label={`${t('nav.ariaLanguage')} ${loc.toUpperCase()}`}
+                className={`flex items-center justify-center min-w-[32px] min-h-[32px] px-1.5 py-0.5 rounded text-[15px] font-semibold border-none cursor-pointer transition-colors ${locale === loc ? "bg-[#17345a] text-white" : "bg-[#f0f4f8] text-[#17345a] hover:bg-[#dde5ee]"}`}
+              >
+                {loc.toUpperCase()}
+              </button>
+            ))}
           </li>
           <li role="none">
             <a href="#pakkumine" className="bg-[#17345a] text-white no-underline py-2.5 px-5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#1e4a7a] hover:-translate-y-0.5 min-h-[44px] flex items-center" style={{ boxShadow: "0 2px 12px rgba(23,52,90,0.07)" }} onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }}>
-              Küsi pakkumist
+              {t('nav.requestQuote')}
             </a>
           </li>
         </ul>
@@ -285,7 +320,7 @@ export default function Navbar() {
       <button
         ref={menuBtnRef}
         className="mobile-menu-btn flex flex-col gap-1.5 cursor-pointer bg-transparent border-none p-3 min-w-[44px] min-h-[44px] items-center justify-center"
-        aria-label={mobileMenuOpen ? "Sulge menüü" : "Ava menüü"}
+        aria-label={mobileMenuOpen ? t('nav.ariaCloseMenu') : t('nav.ariaOpenMenu')}
         aria-expanded={mobileMenuOpen}
         aria-controls="mobile-menu"
         onClick={() => mobileMenuOpen ? closeMobile() : openMobile()}
@@ -300,14 +335,14 @@ export default function Navbar() {
         ref={mobileMenuRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Menüü"
+        aria-label={t('nav.ariaMainMenu')}
         className={`fixed inset-0 bg-white z-[1001] overflow-y-auto transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
       >
         <div className="sticky top-0 bg-white z-10 flex justify-between items-center p-4 border-b border-gray-100">
-          <Link href="/" className="flex items-center gap-2.5 min-h-[44px]" onClick={closeMobile}>
+            <Link href={localeHref("/")} className="flex items-center gap-2.5 min-h-[44px]" onClick={closeMobile}>
             <Image src="/SPS_LOGO.svg" alt="SPS Grupp — koristusfirma" width={32} height={32} style={{ width: "auto", height: "32px" }} />
           </Link>
-          <button ref={closeBtnRef} onClick={closeMobile} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Sulge menüü">
+          <button ref={closeBtnRef} onClick={closeMobile} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label={t('nav.ariaCloseMenu')}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2" aria-hidden="true">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
@@ -340,7 +375,7 @@ export default function Navbar() {
                             <ul id={`mobile-section-${sub.title.replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pl-3">
                               {sub.items.map((item, itemIdx) => (
                                 <li key={itemIdx}>
-                                  <Link href={item.href} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
+                                  <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
                                     {item.label}
                                   </Link>
                                 </li>
@@ -366,7 +401,7 @@ export default function Navbar() {
                             <ul id={`mobile-section-${sub.title.replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pl-3">
                               {sub.items.map((item, itemIdx) => (
                                 <li key={itemIdx}>
-                                  <Link href={item.href} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
+                                  <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
                                     {item.label}
                                   </Link>
                                 </li>
@@ -375,28 +410,34 @@ export default function Navbar() {
                           )}
                         </div>
                       ))}
-                      {sectionKeys.slice(2).map(sk => {
-                        const section = sk === "Välikoristus" ? megaMenuData.columns[0].subSections?.[1] : null
-                        const remontItems = sk === "Remonditeenused" ? megaMenuData.columns[2].items : null
-                        if (!section && !remontItems) return null
-                        return (
-                          <div key={sk}>
+                      {(() => {
+                        const outdoorSection = megaMenuData.columns[0].subSections?.[1]
+                        const renovationItems = megaMenuData.columns[2].items
+                        const sections: { label: string; items: { label: string; href: string }[] }[] = []
+                        if (outdoorSection?.items) {
+                          sections.push({ label: t('megaMenu.outdoorCleaning'), items: outdoorSection.items })
+                        }
+                        if (renovationItems) {
+                          sections.push({ label: t('megaMenu.renovationServices'), items: renovationItems } as typeof sections[number])
+                        }
+                        return sections.map(section => (
+                          <div key={section.label}>
                             <button
                               className="text-base font-bold text-[#17345a] mb-1 flex items-center gap-1 bg-transparent border-none cursor-pointer w-full text-left px-0 py-2 min-h-[44px]"
-                              aria-expanded={!!expandedSections[sk]}
-                              aria-controls={`mobile-section-${sk}`}
-                              onClick={() => setExpandedSections(prev => ({ ...prev, [sk]: !prev[sk] }))}
+                              aria-expanded={!!expandedSections[section.label]}
+                              aria-controls={`mobile-section-${section.label}`}
+                              onClick={() => setExpandedSections(prev => ({ ...prev, [section.label]: !prev[section.label] }))}
                             >
-                              <span className="flex-1">{sk}</span>
-                              <svg className={`w-4 h-4 transition-transform ${expandedSections[sk] ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                              <span className="flex-1">{section.label}</span>
+                              <svg className={`w-4 h-4 transition-transform ${expandedSections[section.label] ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                                 <path d="M3 5l3 3 3-3" />
                               </svg>
                             </button>
-                            {expandedSections[sk] && (
-                              <ul id={`mobile-section-${sk}`} className="flex flex-col gap-1 pl-3">
-                                {(section?.items || remontItems || []).map((item, itemIdx) => (
+                            {expandedSections[section.label] && (
+                              <ul id={`mobile-section-${section.label}`} className="flex flex-col gap-1 pl-3">
+                                {(section.items || []).map((item, itemIdx) => (
                                   <li key={itemIdx}>
-                                    <Link href={item.href} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${pathname === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
+                                    <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
                                       {item.label}
                                     </Link>
                                   </li>
@@ -404,25 +445,25 @@ export default function Navbar() {
                               </ul>
                             )}
                           </div>
-                        )
-                      })}
+                        ))
+                      })()}
                     </div>
                   </div>
                 ) : "subItems" in link && link.subItems ? (
                   <div className="mb-4">
-                    <Link href={link.href} className="block py-3 text-lg font-medium text-[#2f353f] border-b border-gray-100 min-h-[44px] flex items-center" onClick={closeMobile}>
+                    <Link href={localeHref(link.href)} className="block py-3 text-lg font-medium text-[#2f353f] border-b border-gray-100 min-h-[44px] flex items-center" onClick={closeMobile}>
                       {link.label}
                     </Link>
                     <div className="pl-4 pt-1">
                       {link.subItems.map((item) => (
-                        <Link key={item.href} href={item.href} className="block py-2.5 text-[15px] text-[#5a6474] hover:text-[#17345a] transition-colors min-h-[44px] flex items-center" onClick={closeMobile}>
+                        <Link key={item.href} href={localeHref(item.href)} className="block py-2.5 text-[15px] text-[#5a6474] hover:text-[#17345a] transition-colors min-h-[44px] flex items-center" onClick={closeMobile}>
                           {item.label}
                         </Link>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <Link href={link.href} className="block py-3 text-lg font-medium text-[#2f353f] border-b border-gray-100 min-h-[44px] flex items-center" onClick={closeMobile}>
+                  <Link href={localeHref(link.href)} className="block py-3 text-lg font-medium text-[#2f353f] border-b border-gray-100 min-h-[44px] flex items-center" onClick={closeMobile}>
                     {link.label}
                   </Link>
                 )}
@@ -432,10 +473,10 @@ export default function Navbar() {
 
           <div className="mt-8 pt-6 border-t border-gray-100">
             <a href="#pakkumine" className="block w-full text-center bg-[#17345a] text-white py-3.5 px-5 rounded-lg font-medium mb-4 min-h-[48px] flex items-center justify-center text-[15px]" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); closeMobile() }}>
-              Küsi pakkumist
+              {t('nav.requestQuote')}
             </a>
             <a href="tel:6623328" className="block text-center text-[#2f353f] py-3 min-h-[44px] flex items-center justify-center text-[15px]">
-              662 3328
+              {t('nav.phoneShort')}
             </a>
           </div>
         </div>

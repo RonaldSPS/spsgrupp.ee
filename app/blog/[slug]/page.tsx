@@ -6,14 +6,10 @@ import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import FooterCTA from "../../components/FooterCTA"
 import type { Metadata } from "next"
-import { blogPosts, getPostBySlugWithEdits, getRelatedPosts } from "../data"
+import { getPostBySlugWithEdits, getRelatedPosts } from "../data"
 
 interface Props {
   params: Promise<{ slug: string }>
-}
-
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

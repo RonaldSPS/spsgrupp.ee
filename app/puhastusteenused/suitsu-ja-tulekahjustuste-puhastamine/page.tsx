@@ -16,7 +16,7 @@ import Tooprotsess from "../../components/Tooprotsess";
 const customFAQ = [
   {
     q: "Kui kiiresti tuleb alustada puhastusprotsessiga?",
-    a: "Esimese 24-48 tunni jooksul on kriitiline kutsuda professionaalne meeskond. Iga viivitatud tund võib suurendada lõplikke kulusid kuni 25% ja raskendada taastamist.",
+    a: "Esimesel võimalusel on kriitiline kutsuda professionaalne meeskond. Iga viivitatud tund võib suurendada lõplikke kulusid kuni 25% ja raskendada taastamist.",
   },
   {
     q: "Kas kindlustus katab kõik kulud?",
@@ -28,7 +28,7 @@ const customFAQ = [
   },
   {
     q: "Kas lõhn jääb alles ka pärast puhastust?",
-    a: "Ei. Kasutame professionaalseid õhupuhastusseadmeid ja neutralisaatoreid, mis eemaldavad lõhna molekulaarsel tasandil. Lõhn ei tule tagasi.",
+    a: "Ei. Kasutame osonisaatorit ja spetsiaalseid vahendeid suitsulõhna neutraliseerimiseks. Eemaldame lõhna, mitte ei varja seda.",
   },
   {
     q: "Kui kaua puhastusprotsess kestab?",
@@ -65,7 +65,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">24h</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Kiire</div>
                 <div className="text-[15px] text-[#1f2937]">reageerimine</div>
               </div>
             </div>
@@ -155,7 +155,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                   <p className="mt-4">Lisaks finantskahjule on tervislikud riskid: tahma mikroosakesed ja tulekahjust jäänud kemikaalid võivad põhjustada tõsiseid terviseprobleeme, kui neid õigeaegselt ei eemaldata.</p>
                 </div>
                 <div>
-                  <p>SPS Grupp reageerib suitsu- ja tulekahjustuste olukordades 24 tunni jooksul. Meie spetsialistid dokumenteerivad kahjustused kindlustuse jaoks, eemaldavad tahma, puhastavad ventilatsiooni ja neutraliseerivad lõhna.</p>
+                  <p>SPS Grupp reageerib suitsu- ja tulekahjustuste olukordades kiiresti. Meie spetsialistid dokumenteerivad kahjustused kindlustuse jaoks, eemaldavad tahma, puhastavad ventilatsiooni ja neutraliseerivad lõhna.</p>
                 </div>
               </div>
             </div>
@@ -237,9 +237,9 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">24h reageerimine</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kiire reageerimine</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Helistage ja oleme objektil 24 tunni jooksul. Kriitiline esimene ööpäev määrab sageli taastamise edukuse ja kulude suuruse.
+                          Reageerime kiiresti ja tuleme objektile esimesel võimalusel. Kiire tegutsemine on kriitilise tähtsusega — iga viivitatud tund võib suurendada kahjustusi ja kulusid.
                         </p>
                       </div>
                     </div>
@@ -270,9 +270,9 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Erivarustus ja -vahendid</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Professionaalne varustus</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kuiv aurupuhastus (üle 170°C), elektrostaatilised pihustid, professionaalsed õhupuhastid, UV-C desinfitseerimine. Seadmed, mida tavalistel koristusfirmadel ei ole.
+                          Kasutame osonisaatorit ja teisi spetsiaalseid vahendeid tahma, suitsu ja lõhna kahjude likvideerimiseks. Seadmed, mida tavalistel koristusfirmadel ei ole.
                         </p>
                       </div>
                     </div>
@@ -287,9 +287,9 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Lõhna eemaldamine molekulaartasandil</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Lõhna eemaldamine</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kasutame neutralisaatoreid, mis ei varja lõhna, vaid hävitavad selle molekulid. Lõhn ei tule tagasi.
+                          Kasutame osonisaatorit ja spetsiaalseid vahendeid suitsulõhna neutraliseerimiseks. Eemaldame lõhna, mitte ei varja seda.
                         </p>
                       </div>
                     </div>
@@ -394,7 +394,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Vajate kiiret abi suitsu- või tulekahjustusega?"
-            description="Helistage ööpäevaringselt 662 3328 või kirjutage info@spsgrupp.ee. Oleme objektil 24 tunni jooksul."
+            description="Helistage ööpäevaringselt 662 3328 või kirjutage info@spsgrupp.ee. Reageerime kiiresti ja tuleme esimesel võimalusel."
           />
         </ScrollAnimation>
 

@@ -16,28 +16,28 @@ export async function POST(request: Request) {
   }
 
   try {
-    let body: { password?: string }
+    let body: { email?: string; password?: string }
     try {
       body = await request.json()
     } catch {
       return noStoreResponse(JSON.stringify({ error: "Invalid JSON" }), 400)
     }
 
-    const { password } = body
+    const { email, password } = body
     if (!password || typeof password !== "string") {
-      return noStoreResponse(JSON.stringify({ error: "Password required" }), 400)
+      return noStoreResponse(JSON.stringify({ error: "Parool on kohustuslik" }), 400)
     }
 
     let token: string | null = null
     try {
-      token = await createAdminToken(password)
+      token = await createAdminToken(password, email)
     } catch (e) {
       console.error("Auth config error:", e)
       return noStoreResponse(JSON.stringify({ error: "Server configuration error" }), 500)
     }
 
     if (!token) {
-      return noStoreResponse(JSON.stringify({ error: "Invalid password" }), 401)
+      return noStoreResponse(JSON.stringify({ error: "Vale parool või e-mail" }), 401)
     }
 
     await setAdminCookie(token)

@@ -9,7 +9,6 @@ import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
 import Tooprotsess from "../../../components/Tooprotsess";
 
@@ -471,7 +470,7 @@ export default function Lumekoristus() {
                     ja sõltub pindalast, raskusastmest ja teenuse ulatusest.
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="grid grid-cols-3 gap-3 mb-6">
                     {hindKaardid.map((item, i) => (
                       <div
                         key={i}
@@ -489,7 +488,7 @@ export default function Lumekoristus() {
                           {item.size}
                         </div>
                         <div
-                          className={`text-[26px] font-bold mb-1 ${
+                          className={`text-[22px] font-bold mb-1 ${
                             item.highlight ? "text-white" : "text-[#17345a]"
                           }`}
                         >
@@ -520,7 +519,6 @@ export default function Lumekoristus() {
                   </p>
                 </div>
 
-                <Hinnakalkulaator />
               </div>
             </div>
           </section>
@@ -557,7 +555,7 @@ export default function Lumekoristus() {
                     key={i}
                     className="bg-white rounded-2xl p-8 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
                   >
-                    <div className="text-[clamp(32px,4vw,48px)] font-bold text-[#17345a] mb-2">
+                    <div className="text-[clamp(22px,3vw,32px)] font-bold text-[#17345a] mb-2">
                       {stat.number}
                     </div>
                     <div className="text-[15px] text-[#5a6474]">

@@ -1,13 +1,31 @@
 import "server-only"
 import { cookies } from "next/headers"
+import { createHash } from "crypto"
 
 const COOKIE_NAME = "sps_admin_token"
 const TOKEN_PREFIX = "sps_"
+
+export type AdminRole = "admin" | "manager"
+
+export interface AdminUserInfo {
+  id: number
+  email: string
+  displayName: string
+  role: AdminRole
+}
 
 function getAdminPassword(): string {
   const pw = process.env.ADMIN_PASSWORD
   if (!pw) throw new Error("ADMIN_PASSWORD environment variable is not set")
   return pw
+}
+
+function hashPasswordSha256(password: string): string {
+  return createHash("sha256").update(password).digest("hex")
+}
+
+export function hashAdminPassword(password: string): string {
+  return hashPasswordSha256(password)
 }
 
 async function hmacSha256(key: string, message: string): Promise<string> {
@@ -32,11 +50,60 @@ function timingSafeEqual(a: string, b: string): boolean {
   return result === 0
 }
 
-export async function createAdminToken(password: string): Promise<string | null> {
-  if (password !== getAdminPassword()) return null
+async function getAdminUsersFromDb(): Promise<Array<{ id: number; email: string; passwordHash: string; displayName: string; role: string; active: boolean }> | null> {
+  if (!process.env.DATABASE_URL) return null
+  try {
+    const { db } = await import("@/lib/db")
+    const { adminUsers } = await import("@/lib/db/schema")
+    const { eq, and } = await import("drizzle-orm")
+    const rows = await db.select().from(adminUsers).where(and(eq(adminUsers.active, true)))
+    return rows.map((r) => ({
+      id: r.id,
+      email: r.email,
+      passwordHash: r.passwordHash,
+      displayName: r.displayName,
+      role: r.role,
+      active: r.active,
+    }))
+  } catch {
+    return null
+  }
+}
+
+export async function createAdminToken(password: string, email?: string): Promise<string | null> {
+  if (!email) {
+    if (password === getAdminPassword()) {
+      const timestamp = Date.now().toString()
+      const hash = await hmacSha256(getAdminPassword(), timestamp)
+      return TOKEN_PREFIX + timestamp + "_" + hash
+    }
+
+    const users = await getAdminUsersFromDb()
+    if (users) {
+      for (const user of users) {
+        if (user.active && user.passwordHash === hashPasswordSha256(password)) {
+          const timestamp = Date.now().toString()
+          const hash = await hmacSha256(user.passwordHash, `${timestamp}_${user.id}`)
+          return TOKEN_PREFIX + timestamp + "_" + user.id + "_" + hash
+        }
+      }
+    }
+
+    return null
+  }
+
+  const users = await getAdminUsersFromDb()
+  if (!users) return null
+
+  const cleanEmail = email.trim().toLowerCase()
+  const hashedPw = hashPasswordSha256(password)
+
+  const user = users.find((u) => u.email.toLowerCase() === cleanEmail)
+  if (!user || !user.active || user.passwordHash !== hashedPw) return null
+
   const timestamp = Date.now().toString()
-  const hash = await hmacSha256(getAdminPassword(), timestamp)
-  return TOKEN_PREFIX + timestamp + "_" + hash
+  const hash = await hmacSha256(user.passwordHash, `${timestamp}_${user.id}`)
+  return TOKEN_PREFIX + timestamp + "_" + user.id + "_" + hash
 }
 
 export async function validateAdminToken(token: string): Promise<boolean> {
@@ -45,12 +112,64 @@ export async function validateAdminToken(token: string): Promise<boolean> {
   const parts = payload.split("_")
   if (parts.length < 2) return false
   const timestamp = parts[0]
-  const providedHash = parts.slice(1).join("_")
-  const expectedHash = await hmacSha256(getAdminPassword(), timestamp)
-  if (!timingSafeEqual(expectedHash, providedHash)) return false
+
   const age = Date.now() - parseInt(timestamp, 10)
   const MAX_AGE = 24 * 60 * 60 * 1000
-  return age >= 0 && age < MAX_AGE
+  if (age < 0 || age >= MAX_AGE) return false
+
+  if (parts.length === 2) {
+    const providedHash = parts[1]
+    const expectedHash = await hmacSha256(getAdminPassword(), timestamp)
+    return timingSafeEqual(expectedHash, providedHash)
+  }
+
+  if (parts.length === 3) {
+    const userId = parseInt(parts[1], 10)
+    const providedHash = parts[2]
+    if (isNaN(userId)) return false
+
+    const users = await getAdminUsersFromDb()
+    if (!users) return false
+
+    const user = users.find((u) => u.id === userId)
+    if (!user || !user.active) return false
+
+    const expectedHash = await hmacSha256(user.passwordHash, `${timestamp}_${user.id}`)
+    return timingSafeEqual(expectedHash, providedHash)
+  }
+
+  return false
+}
+
+export async function getAdminTokenInfo(token: string): Promise<AdminUserInfo | null> {
+  if (!token.startsWith(TOKEN_PREFIX)) return null
+  const payload = token.slice(TOKEN_PREFIX.length)
+  const parts = payload.split("_")
+  if (parts.length < 2) return null
+
+  // DB user (3+ parts: ts_userId_hash)
+  const maybeUserId = parseInt(parts[1], 10)
+  if (!isNaN(maybeUserId)) {
+    const users = await getAdminUsersFromDb()
+    if (users) {
+      const user = users.find((u) => u.id === maybeUserId)
+      if (user) {
+        return {
+          id: user.id,
+          email: user.email,
+          displayName: user.displayName,
+          role: user.role as AdminRole,
+        }
+      }
+    }
+  }
+
+  return {
+    id: 0,
+    email: "admin",
+    displayName: "Peaadmin",
+    role: "admin",
+  }
 }
 
 export async function validateAdminRequest(): Promise<boolean> {
@@ -61,6 +180,17 @@ export async function validateAdminRequest(): Promise<boolean> {
     return validateAdminToken(token)
   } catch {
     return false
+  }
+}
+
+export async function getCurrentAdminUser(): Promise<AdminUserInfo | null> {
+  try {
+    const cookieStore = await cookies()
+    const token = cookieStore.get(COOKIE_NAME)?.value
+    if (!token) return null
+    return getAdminTokenInfo(token)
+  } catch {
+    return null
   }
 }
 

@@ -40,7 +40,7 @@ export default function Desinfitseerimine() {
     <>
       <SeoJsonLd
         serviceName="Desinfitseerimine Tallinnas"
-        serviceDescription="Ruumide professionaalne desinfitseerimine Tallinnas, elektrostaatilised pihustid, UV-C, sertifitseeritud vahendid."
+        serviceDescription="Ruumide professionaalne desinfitseerimine Tallinnas. Sertifitseeritud vahendid, ohutu inimestele ja tehnikale."
         serviceUrl="https://spsgrupp.ee/puhastusteenused/desinfitseerimine"
         breadcrumbs={[
           { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
@@ -114,7 +114,7 @@ export default function Desinfitseerimine() {
                 <span className="text-[#3abeff]">äriruumides</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Vähendab haiguspäevi kuni 30%. Elektrostaatilised pihustid, UV-C seadmed, sertifitseeritud vahendid. Ohutud inimestele ja tehnikale.
+                Vähendab haiguspäevi kuni 30%. Sertifitseeritud vahendid, õhuionisaator. Ohutu inimestele ja tehnikale.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
@@ -158,7 +158,7 @@ export default function Desinfitseerimine() {
                   <p className="mt-4">Tavaline koristus ei kaitse teie töötajaid viiruste eest. Mikroobid levivad kontorites ja käidavates kohtades erinevate puutepindade kaudu: telefonid, ukselingid, kohvimasinad, koosolekulauad. Tavaline puhastusvahend neid ei hävita, vaid lihtsalt ajab laiali.</p>
                 </div>
                 <div>
-                  <p>SPS Grupp pakub professionaalset desinfitseerimist, mis hävitab patogeene spetsiaalsete meetoditega: elektrostaatilised pihustid, UV-C kiirgus ja kuiv aurupuhastus.</p>
+                  <p>SPS Grupp pakub professionaalset desinfitseerimist spetsiaalsete desovahendite ja õhuionisaatoriga. Hävitab patogeene tõhusalt ja on ohutu inimestele.</p>
                 </div>
               </div>
             </div>
@@ -186,10 +186,7 @@ export default function Desinfitseerimine() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   { bold: "Esmane hindamine", desc: "Kriitiliste piirkondade kaardistamine" },
-                  { bold: "Elektrostaatiliste pihustite kasutamine", desc: "Katab ka raskesti ligipääsetavad kohad" },
-                  { bold: "UV-C desinfitseerimine", desc: "Hävitab viirused ja bakterid" },
-                  { bold: "Kuiv aurupuhastus (üle 170°C)", desc: "Pindadele ohutu" },
-                  { bold: "Aerosoolsüsteemid", desc: "Mis täidavad kogu ruumi" },
+                  { bold: "Desovahenditega pihustamine", desc: "Katab ka raskesti ligipääsetavad kohad" },
                   { bold: "Kontaktpindade erihooldus", desc: "Ukselingid, lülitid, klaviatuurid" },
                   { bold: "Sanitaarruumide ja söögialade põhjalik desinfitseerimine", desc: "" },
                   { bold: "Ventilatsioonisüsteemide töötlus", desc: "" },
@@ -258,7 +255,7 @@ export default function Desinfitseerimine() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kaasaegsed meetodid</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Elektrostaatilised pihustid, UV-C kiirgus, kuiv aur. Iga olukorra jaoks sobiv tehniline lahendus.
+                          Spetsiaalsed desovahendid ja õhuionisaator. Iga olukorra jaoks sobiv tehniline lahendus.
                         </p>
                       </div>
                     </div>
@@ -336,22 +333,16 @@ export default function Desinfitseerimine() {
 
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl">
-                      <div className="text-[15px] font-bold mb-1 text-white">Elektrostaatiline pihustamine</div>
+                      <div className="text-[15px] font-bold mb-1 text-white">Pindade desinfitseerimine</div>
                       <div className="text-[26px] font-bold mb-1 text-white">1.5€/m²</div>
                       <div className="text-[15px] mb-2 text-white/70">alates</div>
                       <div className="text-[15px] text-white/70">pindade töötlus</div>
                     </div>
                     <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                      <div className="text-[15px] font-bold mb-1 text-[#17345a]">UV-C desinfitseerimine</div>
+                      <div className="text-[15px] font-bold mb-1 text-[#17345a]">Õhu desinfitseerimine</div>
                       <div className="text-[26px] font-bold mb-1 text-[#17345a]">2€/m²</div>
                       <div className="text-[15px] mb-2 text-[#5a6474]">alates</div>
-                      <div className="text-[15px] text-[#5a6474]">kiirgustöötlus</div>
-                    </div>
-                    <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                      <div className="text-[15px] font-bold mb-1 text-[#17345a]">Kuiv aurupuhastus</div>
-                      <div className="text-[26px] font-bold mb-1 text-[#17345a]">2.5€/m²</div>
-                      <div className="text-[15px] mb-2 text-[#5a6474]">alates</div>
-                      <div className="text-[15px] text-[#5a6474]">üle 170°C aur</div>
+                      <div className="text-[15px] text-[#5a6474]">õhuionisaatoriga</div>
                     </div>
                   </div>
 

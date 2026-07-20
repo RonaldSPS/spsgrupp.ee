@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  trailingSlash: true,
   serverExternalPackages: ["sharp"],
   turbopack: {
     root: process.cwd(),
@@ -10,21 +11,6 @@ const nextConfig: NextConfig = {
       {
         source: "/kontorikoristus",
         destination: "/koristusteenus/kontori-koristus",
-        permanent: true,
-      },
-      {
-        source: "/valikoristus",
-        destination: "/koristusteenus/valikoristus",
-        permanent: true,
-      },
-      {
-        source: "/valikoristus/akende-pesu",
-        destination: "/koristusteenus/valikoristus/akende-pesu",
-        permanent: true,
-      },
-      {
-        source: "/valikoristus/tanavakivide-pesu-ja-hooldus",
-        destination: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus",
         permanent: true,
       },
       {
@@ -80,6 +66,28 @@ const nextConfig: NextConfig = {
       {
         source: "/puhastusteenused/ehitusjargne-koristus-ja-puhastus",
         destination: "/puhastusteenused/ehitusjargne-koristus",
+        permanent: true,
+      },
+      {
+        source: "/privaatsus",
+        destination: "/andmekaitsetingimused/",
+        permanent: true,
+      },
+      {
+        source: "/koristusteenus/koolide-koristamine",
+        destination: "/koolide-koristamine/",
+        permanent: true,
+      },
+      // valikoristus redirects removed — pages live at /koristusteenus/valikoristus/...
+      // catch-all handles legacy /valikoristus/* URLs via page-registry
+      {
+        source: "/puhastusteenused/desinfitseerimine",
+        destination: "/puhastusteenused/koroonaviiruse-jargne-puhastus/",
+        permanent: true,
+      },
+      {
+        source: "/remonditeenused-tallinnas/torutood",
+        destination: "/remonditeenused-tallinnas/torutood-2/",
         permanent: true,
       },
       {

@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server"
-import { getActiveAnnouncements } from "@/lib/announcements"
+import { applyJobTranslation, getActiveAnnouncements } from "@/lib/announcements"
+import { getJobTranslation } from "@/lib/translate-jobs"
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const url = new URL(request.url)
+    const lang = url.searchParams.get("lang")
     const announcements = await getActiveAnnouncements()
-    const active = announcements
+    const source = lang === "en" || lang === "ru"
+      ? (await Promise.all(announcements.map(async (announcement) => {
+          const translation = await getJobTranslation(announcement.id, lang)
+          if (!translation || translation.status === "stale") return null
+          return applyJobTranslation(announcement, translation)
+        }))).filter((announcement) => announcement !== null)
+      : announcements
+    const active = source
       .map(row => ({
         id: row.id,
         title: row.title,

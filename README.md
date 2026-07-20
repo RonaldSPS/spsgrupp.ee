@@ -5,6 +5,8 @@ Copy `.env.local.example` to `.env.local` and fill in the values:
 | Variable | Required | Description |
 |---|---|---|
 | `ADMIN_PASSWORD` | Yes | Password for the `/spsadmn` admin panel |
+| `DATABASE_URL` | Yes | Supabase pooled PostgreSQL connection string |
+| `DEEPSEEK_API_KEY` | Yes | Deepseek API key for admin translations |
 | `SMTP_HOST` | Yes | SMTP server hostname (e.g. `smtp.gmail.com`) |
 | `SMTP_PORT` | Yes | SMTP port (`587` for STARTTLS, `465` for SSL) |
 | `SMTP_USER` | Yes | SMTP authentication username / email |

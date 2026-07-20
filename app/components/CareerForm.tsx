@@ -1,21 +1,25 @@
 "use client"
 
 import { useActionState, useEffect, useRef } from "react"
+import { useLocale, useTranslations } from "next-intl"
 import TwoToneHeading from "./TwoToneHeading"
 import { submitCareerForm } from "@/lib/actions"
+import { localizePath, type Locale } from "@/lib/slug-map"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
-const timeOptions = [
-  { value: "Päevane tööaeg (8-17)", label: "Päevane tööaeg (8-17)" },
-  { value: "Õhtune tööaeg (16-00)", label: "Õhtune tööaeg (16-00)" },
-  { value: "Öine tööaeg (22-06)", label: "Öine tööaeg (22-06)" },
-  { value: "Sobivad kõik tööajad", label: "Sobivad kõik tööajad" },
-]
-
 export default function CareerForm() {
+  const t = useTranslations("careerForm")
+  const locale = useLocale() as Locale
   const [state, formAction, pending] = useActionState(submitCareerForm, initialState)
   const formRef = useRef<HTMLFormElement>(null)
+  const privacyPath = localizePath("/andmekaitsetingimused", locale)
+  const workTimeOptions = [
+    { value: "day", label: t("workTimeDay") },
+    { value: "evening", label: t("workTimeEvening") },
+    { value: "night", label: t("workTimeNight") },
+    { value: "any", label: t("workTimeAny") },
+  ]
 
   useEffect(() => {
     if (state.success && formRef.current) {
@@ -27,10 +31,10 @@ export default function CareerForm() {
     <section className="form-section py-[100px] bg-[#eceef1]" id="pakkumine">
       <div className="max-w-[800px] mx-auto px-[5%]">
         <div className="form-card">
-          <div className="section-tag mx-auto w-fit">Karjäär</div>
-          <TwoToneHeading text="Registreeru proovipäevale" className="mb-6 text-center" />
+          <div className="section-tag mx-auto w-fit">{t("sectionTag")}</div>
+          <TwoToneHeading text={t("heading")} className="mb-6 text-center" />
           <p className="text-[15px] text-[#5a6474] mb-6 font-light text-center">
-            Täida allolev vorm ja me võtame sinuga ühendust proovipäeva kokkuleppimiseks.
+            {t("subtitle")}
           </p>
 
           <form ref={formRef} action={formAction}>
@@ -41,7 +45,7 @@ export default function CareerForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">
-                <label htmlFor="career-email" className="text-[15px] font-medium text-[#17345a]">E-mail *</label>
+                <label htmlFor="career-email" className="text-[15px] font-medium text-[#17345a]">{t("emailLabel")}</label>
                 <input
                   id="career-email"
                   name="email"
@@ -50,11 +54,11 @@ export default function CareerForm() {
                   maxLength={254}
                   defaultValue={state.fields?.email ?? ""}
                   className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
-                  placeholder="sinu@email.ee"
+                  placeholder={t("emailPlaceholder")}
                 />
               </div>
               <div className="flex flex-col gap-1.25">
-                <label htmlFor="career-phone" className="text-[15px] font-medium text-[#17345a]">Telefon *</label>
+                <label htmlFor="career-phone" className="text-[15px] font-medium text-[#17345a]">{t("phoneLabel")}</label>
                 <input
                   id="career-phone"
                   name="phone"
@@ -63,78 +67,78 @@ export default function CareerForm() {
                   maxLength={30}
                   defaultValue={state.fields?.phone ?? ""}
                   className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
-                  placeholder="+372 5xxx xxx"
+                  placeholder={t("phonePlaceholder")}
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
-              <label htmlFor="career-region" className="text-[15px] font-medium text-[#17345a]">Vali tööpiirkond</label>
+              <label htmlFor="career-region" className="text-[15px] font-medium text-[#17345a]">{t("regionLabel")}</label>
               <select
                 id="career-region"
                 name="region"
                 defaultValue={state.fields?.region ?? ""}
                 className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
               >
-                <option value="">Vali piirkond</option>
-                <option value="Tallinn">Tallinn</option>
-                <option value="Harjumaa">Harjumaa</option>
+                <option value="">{t("regionPlaceholder")}</option>
+                <option value="Tallinn">{t("regionTallinn")}</option>
+                <option value="Harjumaa">{t("regionHarjumaa")}</option>
               </select>
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
-              <span className="text-[15px] font-medium text-[#17345a]">Sobiv töökoormus</span>
+              <span className="text-[15px] font-medium text-[#17345a]">{t("workloadLabel")}</span>
               <div className="flex gap-4 flex-wrap">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="radio"
                     name="workload"
-                    value="Täistööaeg"
-                    defaultChecked={state.fields?.workload === "Täistööaeg" || state.fields === undefined}
+                    value="full"
+                    defaultChecked={state.fields?.workload === "full" || state.fields === undefined}
                     className="w-4 h-4 accent-[#17345a]"
                   />
-                  <span className="text-[15px] text-[#2f353f]">Täistööaeg</span>
+                  <span className="text-[15px] text-[#2f353f]">{t("workloadFull")}</span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="radio"
                     name="workload"
-                    value="Osaline tööaeg"
-                    defaultChecked={state.fields?.workload === "Osaline tööaeg"}
+                    value="part"
+                    defaultChecked={state.fields?.workload === "part"}
                     className="w-4 h-4 accent-[#17345a]"
                   />
-                  <span className="text-[15px] text-[#2f353f]">Osaline tööaeg</span>
+                  <span className="text-[15px] text-[#2f353f]">{t("workloadPart")}</span>
                 </label>
               </div>
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
-              <span className="text-[15px] font-medium text-[#17345a]">Sobiv tööaeg</span>
+              <span className="text-[15px] font-medium text-[#17345a]">{t("workTimeLabel")}</span>
               <div className="flex gap-4 flex-wrap">
-                {timeOptions.map((opt) => (
-                  <label key={opt.value} className="flex items-center gap-2 cursor-pointer">
+                {workTimeOptions.map((option) => (
+                  <label key={option.value} className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
                       name="work_time"
-                      value={opt.value}
-                      defaultChecked={state.fields?.workTime === opt.value}
+                      value={option.value}
+                      defaultChecked={state.fields?.workTime === option.value}
                       className="w-4 h-4 accent-[#17345a]"
                     />
-                    <span className="text-[15px] text-[#2f353f]">{opt.label}</span>
+                    <span className="text-[15px] text-[#2f353f]">{option.label}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
-              <label htmlFor="career-info" className="text-[15px] font-medium text-[#17345a]">Lisainfo</label>
+              <label htmlFor="career-info" className="text-[15px] font-medium text-[#17345a]">{t("infoLabel")}</label>
               <textarea
                 id="career-info"
                 name="info"
                 maxLength={5000}
                 defaultValue={state.fields?.info ?? ""}
                 className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)] resize-y min-h-[90px]"
-                placeholder="Täiendav info..."
+                placeholder={t("infoPlaceholder")}
               />
             </div>
 
@@ -147,11 +151,11 @@ export default function CareerForm() {
                   className="w-4 h-4 mt-0.5 accent-[#17345a] shrink-0"
                 />
                 <span className="text-[15px] text-[#5a6474]">
-                  Olen tutvunud{" "}
-                  <a href="/privaatsus" target="_blank" rel="noopener noreferrer" className="text-[#17345a] font-medium underline hover:text-[#3abeff]">
-                    andmekaitsetingimustega
-                  </a>{" "}
-                  ja nõustun oma andmete töötlemisega päringule vastamise eesmärgil. *
+                  {t("privacyConsent").split(t("privacyLink"))[0]}
+                  <a href={privacyPath} target="_blank" rel="noopener noreferrer" className="text-[#17345a] font-medium underline hover:text-[#3abeff]">
+                    {t("privacyLink")}
+                  </a>
+                  {t("privacyConsent").split(t("privacyLink"))[1] || ""}
                 </span>
               </label>
             </div>
@@ -164,7 +168,7 @@ export default function CareerForm() {
               )}
               {state?.success && (
                 <p className="text-[15px] text-[#2d9e6b] mb-3.5 font-medium" role="status">
-                  Täname! Teie avaldus on saadetud. Võtame teiega ühendust esimesel võimalusel.
+                  {t("successMessage")}
                 </p>
               )}
             </div>
@@ -175,17 +179,17 @@ export default function CareerForm() {
               className="w-full bg-[#17345a] text-white py-3.5 border-none rounded-[10px] text-[15px] font-medium cursor-pointer transition-all hover:bg-[#1e4a7a] hover:-translate-y-0.5 mt-1 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
               style={{ boxShadow: "0 8px 30px rgba(23,52,90,0.10)" }}
             >
-              <span className="relative z-10">{pending ? "Saadan..." : "Esita avaldus"}</span>
+              <span className="relative z-10">{pending ? t("submitting") : t("submitButton")}</span>
             </button>
 
             <p className="text-center text-[15px] text-[#5a6474] mt-3 flex items-center justify-center gap-1.5 font-light">
-              Andmed edastatakse krüpteeritult. Vastame esimesel võimalusel.
+              {t("footerNote")}
             </p>
           </form>
 
           <div className="mt-8 pt-6 border-t border-[rgba(23,52,90,0.1)] text-center">
             <p className="text-[15px] text-[#5a6474] font-light">
-              Kui soovid saata oma CV failina, saada see aadressile{" "}
+              {t("cvNote")}{" "}
               <a href="mailto:personal@spsgrupp.ee" className="text-[#17345a] font-medium no-underline hover:underline">
                 personal@spsgrupp.ee
               </a>

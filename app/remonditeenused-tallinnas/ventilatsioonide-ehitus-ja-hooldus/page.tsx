@@ -22,7 +22,7 @@ const serviceItems = [
   "Tolmu- ja saaste eemaldamine tootmishoonetest",
   "Köökide ventilatsiooni hooldus (rasva eemaldamine)",
   "Automatiseerimis- ja juhtimissüsteemide paigaldus",
-  "24h hooldusleping ärikriitiliste süsteemide jaoks",
+  "Hooldusleping ärikriitiliste süsteemide jaoks",
 ];
 
 const benefits = [
@@ -60,7 +60,7 @@ const benefits = [
   },
   {
     title: "Kiire reageerimine riketele",
-    desc: "Kui süsteem seiskub, reageerime 24h jooksul. Hoolduslepingutega klientidele prioriteet.",
+    desc: "Kui süsteem seiskub, reageerime 24 tunni jooksul. Hoolduslepingutega klientidele prioriteet.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M13 2L3 14h8l-1 8 11-14h-8l1-6z" />

@@ -8,6 +8,7 @@ import {
   upsertAnnouncement,
   deleteAnnouncement,
 } from "@/lib/announcements"
+import { getJobSourceHash, getJobTranslations, markJobTranslationsStale } from "@/lib/translate-jobs"
 
 interface Announcement {
   id: string
@@ -46,7 +47,16 @@ export async function GET(request: NextRequest) {
       if (!(await validateAdminRequest())) return unauthorizedResponse()
 
       const announcements = await getAllAnnouncements()
-      return NextResponse.json({ announcements }, {
+      const withTranslations = await Promise.all(announcements.map(async (announcement) => {
+        try {
+          const sourceHash = getJobSourceHash(announcement)
+          const translations = await getJobTranslations(announcement.id)
+          return { ...announcement, sourceHash, translations }
+        } catch {
+          return announcement
+        }
+      }))
+      return NextResponse.json({ announcements: withTranslations }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
     } catch (error) {
@@ -71,8 +81,6 @@ export async function PUT(request: NextRequest) {
       if (!id) return noStoreResponse(JSON.stringify({ error: "id required" }), 400)
 
       const safeFields = sanitizeAnnouncementFields(fields)
-      const now = new Date()
-
       const defaultsProvider = (): Omit<Announcement, "id"> => ({
         title: "",
         subtitle: "",
@@ -104,6 +112,13 @@ export async function PUT(request: NextRequest) {
       })
 
       const announcement = await upsertAnnouncement(id, safeFields as Partial<Announcement>, defaultsProvider)
+      if (announcement) {
+        try {
+          await markJobTranslationsStale(announcement.id, getJobSourceHash(announcement))
+        } catch (error) {
+          console.warn(`Could not mark job translations stale for ${announcement.id}:`, error)
+        }
+      }
 
       return NextResponse.json({
         success: true,

@@ -9,7 +9,6 @@ import FooterCTA from "../components/FooterCTA";
 import ContactForm from "../components/ContactForm";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
-import Hinnakalkulaator from "../components/Hinnakalkulaator";
 import SeoJsonLd from "../components/SeoJsonLd";
 import Tooprotsess from "../components/Tooprotsess";
 
@@ -32,7 +31,7 @@ const customFAQ = [
   },
   {
     q: "Kas tegelete ka kiireloomuliste hädaolukordadega?",
-    a: "Jah — veeavarii, elektririke, kanalisatsiooniummistus. Reageerime 24/7, kohapeal tavaliselt 1–2 tunni jooksul.",
+    a: "Jah — veeavarii, elektririke, kanalisatsiooniummistus. Reageerime kiiresti ja jõuame kohale esimesel võimalusel.",
   },
 ];
 
@@ -276,7 +275,7 @@ export default function RemonditeenusedTallinnas() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Litsentseeritud ja kindlustatud</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kõigil aladel vastavad litsentsid ja tunnistused. Kõik tööd on kindlustatud.
+                          Meie spetsialistidel on vajalikud litsentsid ja tunnistused. Tööd on kindlustatud.
                         </p>
                       </div>
                     </div>
@@ -296,7 +295,7 @@ export default function RemonditeenusedTallinnas() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Planeerimine äritegevust arvestades</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Teeme tööd nädalavahetustel või öösel, kui vaja. Koordineerime nii, et teie äritegevus ei katkeks.
+                          Teeme tööd nädalavahetustel või öösel, kui vaja. Püüame korraldada töö nii, et see segaks teie äritegevust võimalikult vähe.
                         </p>
                       </div>
                     </div>
@@ -313,7 +312,7 @@ export default function RemonditeenusedTallinnas() {
                       <div>
                         <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Läbipaistev hinnakujundus</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Täpne pakkumine enne töid. Ei mingeid üllatusi ega lisatasusid. Kui tuleb muudatus, leppime kokku enne tööd.
+                          Täpne pakkumine enne töid. Kulud lepitakse eelnevalt kokku. Kui tuleb muudatus, leppime kokku enne tööd.
                         </p>
                       </div>
                     </div>
@@ -390,7 +389,6 @@ export default function RemonditeenusedTallinnas() {
                   </p>
                 </div>
 
-                <Hinnakalkulaator />
               </div>
             </div>
           </section>

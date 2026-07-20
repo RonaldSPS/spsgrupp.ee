@@ -51,7 +51,7 @@ const data: OutdoorServicePageData = {
   statsTitle: "Sügisene korrashoid ilma viimase hetke paanikata",
   statsIntro: "Regulaarne lehekoristus aitab ennetada libedust, ummistusi ja kinnistu üldmulje halvenemist.",
   stats: [
-    { number: "24h", label: "kiire pakkumine" },
+    { number: "24 h", label: "kiire pakkumine" },
     { number: "3", label: "põhitööd: koristus, kogumine, äravedu" },
     { number: "1", label: "partner kogu välialale" },
   ],

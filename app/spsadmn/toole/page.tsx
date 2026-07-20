@@ -76,12 +76,12 @@ export default function AdminTooleList() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
         <div>
-          <h1 className="text-[32px] font-bold text-[#17345a] mb-2">Tööpakkumised</h1>
-          <div className="flex items-center gap-3">
+          <h1 className="text-[24px] sm:text-[32px] font-bold text-[#17345a] mb-2">Tööpakkumised</h1>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <p className="text-[15px] text-[#5a6474]">Halda Tule tööle lehe kuulutusi</p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <button
                 onClick={() => setSortDir((d) => d === "desc" ? "asc" : "desc")}
                 className="flex items-center gap-1.5 text-[15px] px-3 py-1.5 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] text-[#17345a] font-medium hover:bg-[#f8fafc] transition-colors"
@@ -104,7 +104,7 @@ export default function AdminTooleList() {
         </div>
         <button
           onClick={createNew}
-          className="bg-[#3abeff] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#2ba8e8] transition-colors flex items-center gap-2"
+          className="bg-[#3abeff] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#2ba8e8] transition-colors flex items-center gap-2 shrink-0"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
@@ -123,9 +123,9 @@ export default function AdminTooleList() {
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] overflow-hidden">
           <div className="divide-y divide-[rgba(23,52,90,0.06)]">
             {sorted.map((a) => (
-              <div key={a.id} className={`flex items-center gap-4 px-6 py-4 transition-colors ${a.active ? "hover:bg-[#f8fafc]" : "bg-[#f0f2f5] hover:bg-[#e8eaed]"}`}>
+              <div key={a.id} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 transition-colors ${a.active ? "hover:bg-[#f8fafc]" : "bg-[#f0f2f5] hover:bg-[#e8eaed]"}`}>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <Link
                       href={`/spsadmn/toole/${a.id}`}
                       className="text-[16px] font-medium text-[#17345a] hover:text-[#3abeff] transition-colors truncate"
@@ -145,7 +145,7 @@ export default function AdminTooleList() {
                     {a.location} {a.salary > 0 ? `| alates ${a.salary} ${a.salaryUnit}` : ""} | Avaldatud {formatDate(a.publishedDate)}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 shrink-0">
                   <Link
                     href={`/spsadmn/toole/${a.id}`}
                     className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#eef7fc] text-[#17345a] transition-colors"

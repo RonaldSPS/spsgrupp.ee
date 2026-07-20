@@ -52,8 +52,8 @@ export default function TorutoodLeht() {
 
   const miksMeieKaardid = [
     {
-      title: "24h avariireageerimine",
-      desc: "Helistage hädaolukorras ja oleme kohal 1-2 tunni jooksul. Isoleerime lekke, hindame kahjud, alustame remonti.",
+      title: "Kiire avariireageerimine",
+      desc: "Helistage hädaolukorras ja reageerime 24 tunni jooksul. Isoleerime lekke, hindame kahjud ja alustame remonti.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
           <path d="M12 8v5l3 3" />
@@ -116,7 +116,7 @@ export default function TorutoodLeht() {
         >
           <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
             {[
-              { value: "24h", label: "avariireageerimine" },
+              { value: "24 h", label: "avariireageerimine" },
               { value: "2 aastat", label: "garantii" },
               { value: "Ärihooned", label: "spetsialiseerumine" },
             ].map((chip, i) => (
@@ -154,7 +154,7 @@ export default function TorutoodLeht() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Vee-, kanalisatsiooni- ja küttesüsteemide paigaldus, hooldus ja avariiremont. Kogenud torulukksepad, kindlustatud tööd, 24h reageerimine.
+                Vee-, kanalisatsiooni- ja küttesüsteemide paigaldus, hooldus ja avariiremont. Kogenud torulukksepad, kindlustatud tööd, kiire reageerimine.
               </p>
               <div className="flex flex-wrap gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">

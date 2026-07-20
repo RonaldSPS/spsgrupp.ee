@@ -51,7 +51,7 @@ const floatingChips = [
 const teenuseSisuKaardid = [
   { bold: "Fassaadipesu", desc: "Kõik pinnatüübid — krohv, klinker, klaas, metall. Ohutu ja efektiivne puhastus kõrg- ja madalhoonetele." },
   { bold: "Akende ja klaasfassaadide pesu", desc: "Professionaalne aknapesu kuni 20+ korrustel hoonetel, kasutades spetsiaalset kõrgtööde varustust." },
-  { bold: "Graffiti eemaldamine", desc: "Kiire eemaldus ja kaitsekihtide paigaldus, mis hoiab ära uue sodimise. Reageerime 24h jooksul." },
+  { bold: "Graffiti eemaldamine", desc: "Kiire eemaldus ja kaitsekihtide paigaldus, mis hoiab ära uue sodimise. Reageerime 24 tunni jooksul." },
   { bold: "Tänavakivide pesu ja hooldus", desc: "Survepesu, vuukide puhastus ja kaitseimmutus, mis pikendab tänavakivide eluiga aastaid." },
   { bold: "24/7 lumekoristus ja libedusetõrje", desc: "Automaatne teenus talveperioodil. Ilmaprognoosi jälgimine, traktorid ja minilaadurid kohe valmis." },
   { bold: "Parklate ja kõnniteede hooldus", desc: "Regulaarne pühkimine, prahi koristus ja hooajaline erihooldus (lehed, lumi, jää)." },
@@ -124,7 +124,7 @@ const valikoristusFAQ = [
   },
   {
     q: "Kui kiiresti saate graffiti eemaldada?",
-    a: "Graffiti eemaldame tavaliselt 30 minutit kuni 2 tundi sõltuvalt suurusest ja pinnast. Kiireloomuliste juhtumite puhul reageerime 24h jooksul.",
+    a: "Graffiti eemaldame tavaliselt 30 minutit kuni 2 tundi sõltuvalt suurusest ja pinnast. Kiireloomuliste juhtumite puhul reageerime 24 tunni jooksul.",
   },
   {
     q: "Kas teete välitöid ka talvel?",
@@ -474,7 +474,7 @@ export default function Valikoristus() {
         <ScrollAnimation animation="fade-up">
         <FooterCTA
           title="Tellige välikoristuse tasuta audit"
-          description="Tuleme kohale, vaatame üle teie ärikinnistu ja koostame personaalse hoolduskava. 24h vastus, tasuta ja kohustuseta."
+          description="Tuleme kohale, vaatame üle teie ärikinnistu ja koostame personaalse hoolduskava. Vastus 24 tunni jooksul, tasuta ja kohustuseta."
         />
         </ScrollAnimation>
 

@@ -9,7 +9,6 @@ import FooterCTA from "../components/FooterCTA";
 import ContactForm from "../components/ContactForm";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
-import Hinnakalkulaator from "../components/Hinnakalkulaator";
 import SeoJsonLd from "../components/SeoJsonLd";
 import TestimonialCards from "../components/TestimonialCards";
 import Tooprotsess from "../components/Tooprotsess";
@@ -40,7 +39,7 @@ const customFAQ = [
 const miksMeieKaardid = [
   {
     title: "Spetsiaalne tehnika ja vahendid",
-    desc: "Aurupuhastid, kõrgsurvepesurid, elektrostaatilised pihustid, UV-C desinfitseerimine. Meie vahendid on tipptasemel.",
+    desc: "Aurupuhastid, kõrgsurvepesurid, osonisaatorid ja spetsiaalsed desovahendid. Meie vahendid on tipptasemel.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <circle cx="12" cy="8" r="6" />
@@ -133,7 +132,7 @@ export default function Puhastusteenused() {
                 <span className="text-[#3abeff]">äriklientidele Tallinnas</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Kui tavaline koristus ei piisa. Põrandate süvapuhastus, vaipade keemiline pesu, ehitusjärgne koristus, tulekahjustuste taastamine ja professionaalne desinfitseerimine.
+                Kui tavalisest koristusest ei piisa. Põrandate süvapuhastus, vaipade keemiline pesu, ehitusjärgne koristus, tulekahjustuste taastamine ja professionaalne desinfitseerimine.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a
@@ -342,7 +341,6 @@ export default function Puhastusteenused() {
                   </p>
                 </div>
 
-                <Hinnakalkulaator />
               </div>
             </div>
           </section>
@@ -395,7 +393,7 @@ export default function Puhastusteenused() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Tellige tasuta puhastusteenuste analüüs"
-            description="Kirjeldage oma olukorda või tuleme kohapeale olukorraga tutvuma. Koostame pakkumise 24h jooksul."
+            description="Kirjeldage oma olukorda või tuleme kohapeale olukorraga tutvuma. Koostame pakkumise 24 tunni jooksul."
           />
         </ScrollAnimation>
 

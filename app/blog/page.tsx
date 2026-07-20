@@ -66,7 +66,10 @@ export default async function BlogArchive() {
           </div>
         </div>
       </main>
-      <FooterCTA />
+      <FooterCTA
+        title="SPS Grupp pakub parima lahenduse teie koristusvajadustele"
+        description="Võtke meiega ühendust ja saage tasuta pakkumine 24 tunni jooksul. Meie spetsialistid aitavad teil leida parima lahenduse."
+      />
       <Footer />
     </>
   )
