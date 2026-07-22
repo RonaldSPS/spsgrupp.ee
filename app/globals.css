@@ -212,7 +212,7 @@ body {
 }
 
 /* Mobile responsive */
-@media (max-width: 900px) {
+@media (max-width: 1250px) {
   .navbar-container {
     padding: 0 20px;
   }
@@ -241,9 +241,10 @@ body {
 .mega-menu {
   position: absolute;
   left: 50%;
-  top: 100%;
+  top: 74px;
   transform: translateX(-50%);
-  margin-top: 16px;
+  max-width: 1280px;
+  width: calc(100% - 160px);
 }
 
 /* Mega menu link hover/click states */
@@ -296,10 +297,6 @@ body {
 @media (max-width: 768px) {
   .mega-menu {
     display: none !important;
-  }
-  
-  .mobile-menu-btn {
-    display: flex !important;
   }
 }
 

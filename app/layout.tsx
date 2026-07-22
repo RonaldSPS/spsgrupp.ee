@@ -123,7 +123,8 @@ export default async function RootLayout({
           <div id="main-content" tabIndex={-1} />
           <script
             type="application/ld+json"
-            nonce={nonce}
+            nonce={nonce || undefined}
+            suppressHydrationWarning
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",

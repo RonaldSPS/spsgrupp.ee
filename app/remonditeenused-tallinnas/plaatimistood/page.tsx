@@ -117,7 +117,7 @@ export default function PlaatimistoodLeht() {
           aria-label="Plaatimistööd"
           style={{ background: "url('/plaatimistood-1.jpg') center/cover no-repeat" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {[
               { value: "Sirged", label: "jooned" },
               { value: "Kõik", label: "plaaditüübid" },

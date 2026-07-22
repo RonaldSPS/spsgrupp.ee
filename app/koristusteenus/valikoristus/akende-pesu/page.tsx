@@ -9,7 +9,6 @@ import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
 import Tooprotsess from "../../../components/Tooprotsess";
 
@@ -202,7 +201,7 @@ export default function AkendePesu() {
           }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
               <div
                 key={i}
@@ -460,65 +459,59 @@ export default function AkendePesu() {
                 <TwoToneHeading text="Kuidas kujuneb akende pesu hind?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Akende pesu hind sõltub pinna suurusest, aknatüübist,
-                    juurdepääsu keerukusest ja töö sagedusest.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Akende pesu hind sõltub pinna suurusest, aknatüübist,
+                juurdepääsu keerukusest ja töö sagedusest.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {hindKaardid.map((item, i) => (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                          item.highlight
-                            ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                            : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                        }`}
-                      >
-                        <div
-                          className={`text-[15px] font-bold mb-1 ${
-                            item.highlight ? "text-white" : "text-[#17345a]"
-                          }`}
-                        >
-                          {item.size}
-                        </div>
-                        <div
-                          className={`text-[26px] font-bold mb-1 ${
-                            item.highlight ? "text-white" : "text-[#17345a]"
-                          }`}
-                        >
-                          {item.price}
-                        </div>
-                        <div
-                          className={`text-[15px] mb-2 ${
-                            item.highlight ? "text-white/70" : "text-[#5a6474]"
-                          }`}
-                        >
-                          {item.period}
-                        </div>
-                        <div
-                          className={`text-[15px] ${
-                            item.highlight ? "text-white/70" : "text-[#5a6474]"
-                          }`}
-                        >
-                          {item.area}
-                        </div>
-                      </div>
-                    ))}
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                {hindKaardid.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${i === hindKaardid.length - 1 ? "col-span-2 lg:col-span-1" : ""} ${
+                      item.highlight
+                        ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
+                        : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
+                    }`}
+                  >
+                    <div
+                      className={`text-[15px] font-bold mb-1 ${
+                        item.highlight ? "text-white" : "text-[#17345a]"
+                      }`}
+                    >
+                      {item.size}
+                    </div>
+                    <div
+                      className={`text-[26px] font-bold mb-1 ${
+                        item.highlight ? "text-white" : "text-[#17345a]"
+                      }`}
+                    >
+                      {item.price}
+                    </div>
+                    <div
+                      className={`text-[15px] mb-2 ${
+                        item.highlight ? "text-white/70" : "text-[#5a6474]"
+                      }`}
+                    >
+                      {item.period}
+                    </div>
+                    <div
+                      className={`text-[15px] ${
+                        item.highlight ? "text-white/70" : "text-[#5a6474]"
+                      }`}
+                    >
+                      {item.area}
+                    </div>
                   </div>
-
-                  <p className="text-[15px] text-[#5a6474]">
-                    Regulaarse hoolduse puhul on optimaalne soovitus
-                    klaashoonetele 4 korda aastas. Ülemiste City tüüpi
-                    äripiirkondades sageli kord kvartalis. Regulaarse
-                    hoolduslepingu korral kehtib soodushind.
-                  </p>
-                </div>
-
-                <Hinnakalkulaator />
+                ))}
               </div>
+
+              <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
+                Regulaarse hoolduse puhul on optimaalne soovitus
+                klaashoonetele 4 korda aastas. Ülemiste City tüüpi
+                äripiirkondades sageli kord kvartalis. Regulaarse
+                hoolduslepingu korral kehtib soodushind.
+              </p>
             </div>
           </section>
         </ScrollAnimation>

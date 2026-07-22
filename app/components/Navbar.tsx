@@ -193,7 +193,7 @@ export default function Navbar() {
           {navLinks.map((link, index) => (
             <li key={link.href} role="none">
               {index === 0 ? (
-                <div className="mega-menu-trigger relative" ref={megaMenuRef}>
+                <div className="mega-menu-trigger" ref={megaMenuRef}>
                   <Link
                     href={localeHref(link.href)}
                     role="menuitem"
@@ -212,7 +212,7 @@ export default function Navbar() {
                     id="mega-menu"
                     role="menu"
                     aria-label={t('nav.ariaMegaMenu')}
-                    className={`mega-menu max-w-[1100px] w-[95vw] bg-white rounded-b-[16px] shadow-lg border border-[rgba(23,52,90,0.08)] p-6 grid grid-cols-3 gap-8 transition-opacity duration-200 ${megaMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+                    className={`mega-menu bg-white rounded-b-[16px] shadow-lg border border-[rgba(23,52,90,0.08)] p-6 grid grid-cols-3 gap-8 transition-opacity duration-200 ${megaMenuOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
                     onMouseEnter={() => setMegaMenuOpen(true)}
                     onMouseLeave={() => setMegaMenuOpen(false)}
                   >

@@ -1,4 +1,4 @@
-import { and, eq, sql } from "drizzle-orm"
+import { and, eq, sql, inArray } from "drizzle-orm"
 import { promises as fs } from "fs"
 import path from "path"
 import { db } from "@/lib/db"
@@ -180,6 +180,24 @@ export async function markJobTranslationsStale(jobId: string, hash: string): Pro
     ))
 }
 
+export async function getJobTranslationsByLanguage(
+  language: string,
+): Promise<Array<JobTranslationRow & { jobId: string }>> {
+  if (!process.env.DATABASE_URL) {
+    const data = await readJobTranslationsJson()
+    return Object.entries(data.jobs).flatMap(([jobId, rows]) =>
+      rows
+        .filter((row) => row.language === language)
+        .map((row) => ({ ...row, jobId })),
+    )
+  }
+
+  const rows = await db.select().from(jobTranslations)
+    .where(eq(jobTranslations.language, language))
+
+  return rows.map((row) => ({ ...mapJobTranslation(row), jobId: row.jobId }))
+}
+
 export async function getJobTranslation(jobId: string, language: string): Promise<JobTranslationRow | null> {
   if (!process.env.DATABASE_URL) {
     const data = await readJobTranslationsJson()
@@ -195,6 +213,31 @@ export async function getJobTranslation(jobId: string, language: string): Promis
 
   if (!rows.length) return null
   return mapJobTranslation(rows[0])
+}
+
+export async function getJobTranslationsBulk(
+  jobIds: string[],
+): Promise<Record<string, JobTranslationRow[]>> {
+  if (jobIds.length === 0) return {}
+
+  if (!process.env.DATABASE_URL) {
+    const data = await readJobTranslationsJson()
+    const result: Record<string, JobTranslationRow[]> = {}
+    for (const id of jobIds) {
+      if (data.jobs[id]) result[id] = data.jobs[id]
+    }
+    return result
+  }
+
+  const rows = await db.select().from(jobTranslations)
+    .where(inArray(jobTranslations.jobId, jobIds))
+
+  const result: Record<string, JobTranslationRow[]> = {}
+  for (const row of rows) {
+    result[row.jobId] ??= []
+    result[row.jobId].push(mapJobTranslation(row))
+  }
+  return result
 }
 
 export async function getJobTranslations(jobId: string): Promise<JobTranslationRow[]> {

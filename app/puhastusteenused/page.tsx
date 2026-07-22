@@ -304,44 +304,39 @@ export default function Puhastusteenused() {
                 <TwoToneHeading text="Puhastusteenuste hinnad" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Iga puhastusteenus on erinev, seega hinnastame individuaalselt.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Iga puhastusteenus on erinev, seega hinnastame individuaalselt.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl">
-                      <div className="text-[15px] font-bold mb-1 text-white">Vaipade puhastus</div>
-                      <div className="text-[26px] font-bold mb-1 text-white">3€/m²</div>
-                      <div className="text-[15px] mb-2 text-white/70">alates</div>
-                      <div className="text-[15px] text-white/70">süvapuhastus</div>
-                    </div>
-                    <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                      <div className="text-[15px] font-bold mb-1 text-[#17345a]">Põrandate hooldus</div>
-                      <div className="text-[26px] font-bold mb-1 text-[#17345a]">2.5€/m²</div>
-                      <div className="text-[15px] mb-2 text-[#5a6474]">alates</div>
-                      <div className="text-[15px] text-[#5a6474]">süvapuhastus</div>
-                    </div>
-                    <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                      <div className="text-[15px] font-bold mb-1 text-[#17345a]">Desinfitseerimine</div>
-                      <div className="text-[26px] font-bold mb-1 text-[#17345a]">1.5€/m²</div>
-                      <div className="text-[15px] mb-2 text-[#5a6474]">alates</div>
-                      <div className="text-[15px] text-[#5a6474]">pindade töötlus</div>
-                    </div>
-                  </div>
-
-                  <div className="text-[16px] text-[#2f353f] leading-[2] font-light mb-4">
-                    <p><strong className="text-[#17345a]">Ehitusjärgne koristus:</strong> alates 250€ (sõltub objekti suurusest)</p>
-                    <p><strong className="text-[#17345a]">Suitsukahjustuste puhastamine:</strong> individuaalne pakkumine</p>
-                  </div>
-
-                  <p className="text-[15px] text-[#5a6474]">
-                    Kohapealne hindamine on alati tasuta ja ei kohusta ostma.
-                  </p>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl">
+                  <div className="text-[15px] font-bold mb-1 text-white">Vaipade puhastus</div>
+                  <div className="text-[26px] font-bold mb-1 text-white">3€/m²</div>
+                  <div className="text-[15px] mb-2 text-white/70">alates</div>
+                  <div className="text-[15px] text-white/70">süvapuhastus</div>
                 </div>
-
+                <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
+                  <div className="text-[15px] font-bold mb-1 text-[#17345a]">Põrandate hooldus</div>
+                  <div className="text-[26px] font-bold mb-1 text-[#17345a]">2.5€/m²</div>
+                  <div className="text-[15px] mb-2 text-[#5a6474]">alates</div>
+                  <div className="text-[15px] text-[#5a6474]">süvapuhastus</div>
+                </div>
+                <div className="p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9] col-span-2 lg:col-span-1">
+                  <div className="text-[15px] font-bold mb-1 text-[#17345a]">Desinfitseerimine</div>
+                  <div className="text-[26px] font-bold mb-1 text-[#17345a]">1.5€/m²</div>
+                  <div className="text-[15px] mb-2 text-[#5a6474]">alates</div>
+                  <div className="text-[15px] text-[#5a6474]">pindade töötlus</div>
+                </div>
               </div>
+
+              <div className="text-[16px] text-[#2f353f] leading-[2] font-light mb-4 max-w-[720px] mx-auto text-center">
+                <p><strong className="text-[#17345a]">Ehitusjärgne koristus:</strong> alates 250€ (sõltub objekti suurusest)</p>
+                <p><strong className="text-[#17345a]">Suitsukahjustuste puhastamine:</strong> individuaalne pakkumine</p>
+              </div>
+
+              <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
+                Kohapealne hindamine on alati tasuta ja ei kohusta ostma.
+              </p>
             </div>
           </section>
         </ScrollAnimation>

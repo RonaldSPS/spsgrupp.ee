@@ -1,13 +1,11 @@
-import { createHash, timingSafeEqual } from "crypto"
+import { createHash, randomBytes, timingSafeEqual } from "crypto"
 
 function getCsrfSecret(): string {
   const secret = process.env.CSRF_SECRET
-  if (!secret) {
-    const pw = process.env.ADMIN_PASSWORD
-    if (!pw) return crypto.randomUUID()
-    return createHash("sha256").update("csrf_" + pw).digest("hex")
-  }
-  return secret
+  if (secret) return secret
+  const pw = process.env.ADMIN_PASSWORD
+  if (!pw) return randomBytes(32).toString("hex")
+  return createHash("sha256").update("csrf_" + pw).digest("hex")
 }
 
 export function generateCsrfToken(): string {

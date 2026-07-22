@@ -13,6 +13,7 @@ interface AdminUser {
 
 export default function SeadedPage() {
   const [activeTab, setActiveTab] = useState<"general" | "users">("general")
+  const [currentRole, setCurrentRole] = useState<string>("manager")
 
   // General settings
   const [emailRecipients, setEmailRecipients] = useState("")
@@ -68,7 +69,12 @@ export default function SeadedPage() {
     }).finally(() => setUsersLoading(false))
   }
 
+  const isAdmin = currentRole === "admin"
+
   useEffect(() => {
+    fetch("/api/spsadmn/me").then(r => r.json()).then(data => {
+      if (data.user) setCurrentRole(data.user.role)
+    }).catch(() => {})
     fetchSettings()
     fetchUsers()
   }, [])
@@ -188,26 +194,33 @@ export default function SeadedPage() {
       <h1 className="text-[24px] sm:text-[32px] font-bold text-[#17345a] mb-2">Seaded</h1>
       <p className="text-[15px] text-[#5a6474] mb-6">Halda süsteemi seadeid ja administraatoreid</p>
 
-      <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-[rgba(23,52,90,0.08)] w-fit">
-        <button
-          onClick={() => setActiveTab("general")}
-          className={`px-4 py-2 rounded-lg text-[15px] font-medium transition-colors ${
-            activeTab === "general" ? "bg-[#17345a] text-white" : "text-[#5a6474] hover:bg-[#f8fafc]"
-          }`}
-        >
-          Üldine
-        </button>
-        <button
-          onClick={() => setActiveTab("users")}
-          className={`px-4 py-2 rounded-lg text-[15px] font-medium transition-colors ${
-            activeTab === "users" ? "bg-[#17345a] text-white" : "text-[#5a6474] hover:bg-[#f8fafc]"
-          }`}
-        >
-          Kasutajad
-        </button>
-      </div>
+      {isAdmin && (
+        <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-[rgba(23,52,90,0.08)] w-fit">
+          <button
+            onClick={() => setActiveTab("general")}
+            className={`px-4 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+              activeTab === "general" ? "bg-[#17345a] text-white" : "text-[#5a6474] hover:bg-[#f8fafc]"
+            }`}
+          >
+            Üldine
+          </button>
+          <button
+            onClick={() => setActiveTab("users")}
+            className={`px-4 py-2 rounded-lg text-[15px] font-medium transition-colors ${
+              activeTab === "users" ? "bg-[#17345a] text-white" : "text-[#5a6474] hover:bg-[#f8fafc]"
+            }`}
+          >
+            Kasutajad
+          </button>
+        </div>
+      )}
+      {!isAdmin && (
+        <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-10 text-center mb-6">
+          <p className="text-[15px] text-[#5a6474]">Süsteemi seadete muutmine on lubatud ainult peaadministraatorile.</p>
+        </div>
+      )}
 
-      {activeTab === "general" && (
+      {isAdmin && activeTab === "general" && (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-6">
           <h2 className="text-[20px] font-bold text-[#17345a] mb-4">E-posti saajad</h2>
           <p className="text-[15px] text-[#5a6474] mb-4">
@@ -245,7 +258,7 @@ export default function SeadedPage() {
         </div>
       )}
 
-      {activeTab === "users" && (
+      {isAdmin && activeTab === "users" && (
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[20px] font-bold text-[#17345a]">Administraatorid</h2>

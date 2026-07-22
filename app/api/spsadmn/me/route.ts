@@ -32,8 +32,9 @@ export async function GET(request: Request) {
           isEnvAdmin: false,
         },
       }, { headers: { "Cache-Control": "no-store, max-age=0" } })
-    } catch {
-      return NextResponse.json({ user: null }, { headers: { "Cache-Control": "no-store, max-age=0" } })
+    } catch (error) {
+      console.error("Me GET error:", error)
+      return noStoreResponse(JSON.stringify({ error: "Failed to get user" }), 500)
     }
   }, true)
 }

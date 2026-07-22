@@ -9,7 +9,6 @@ import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
 import Tooprotsess from "../../../components/Tooprotsess";
 
@@ -205,7 +204,7 @@ export default function TanavakividePesu() {
           aria-label="Tänavakivide pesu ja hooldus"
 style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
               <div
                 key={i}
@@ -461,84 +460,78 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
                 <TwoToneHeading text="Kuidas kujuneb tänavakivide pesu hind?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Hind sõltub pindalast, mustuse astmest ja vajalikest
-                    lisateenustest.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Hind sõltub pindalast, mustuse astmest ja vajalikest
+                lisateenustest.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {hindKaardid.map((item, i) => (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                          item.highlight
-                            ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                            : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                        }`}
-                      >
-                        <div
-                          className={`text-[15px] font-bold mb-1 ${
-                            item.highlight ? "text-white" : "text-[#17345a]"
-                          }`}
-                        >
-                          {item.size}
-                        </div>
-                        <div
-                          className={`text-[26px] font-bold mb-1 ${
-                            item.highlight ? "text-white" : "text-[#17345a]"
-                          }`}
-                        >
-                          {item.price}
-                        </div>
-                        <div
-                          className={`text-[15px] mb-2 ${
-                            item.highlight ? "text-white/70" : "text-[#5a6474]"
-                          }`}
-                        >
-                          {item.period}
-                        </div>
-                        <div
-                          className={`text-[15px] ${
-                            item.highlight ? "text-white/70" : "text-[#5a6474]"
-                          }`}
-                        >
-                          {item.area}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="text-[15px] text-[#5a6474]">
-                    Soovituslik hooldussagedus on 1–2 korda aastas, sõltuvalt
-                    liikluskoormusest. Komplektpakett (pesu + umbrohi + vuugid)
-                    soodushinnaga.
-                  </p>
-
-                  <div className="mt-6">
-                    <a
-                      href="#pakkumine"
-                      onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
-                      className="btn-primary text-[15px] py-2.5 px-4 inline-flex items-center gap-2"
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                {hindKaardid.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
+                      item.highlight
+                        ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
+                        : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
+                    }`}
+                  >
+                    <div
+                      className={`text-[15px] font-bold mb-1 ${
+                        item.highlight ? "text-white" : "text-[#17345a]"
+                      }`}
                     >
-                      Küsi tänavakivide pesu pakkumist
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                      >
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
-                    </a>
+                      {item.size}
+                    </div>
+                    <div
+                      className={`text-[26px] font-bold mb-1 ${
+                        item.highlight ? "text-white" : "text-[#17345a]"
+                      }`}
+                    >
+                      {item.price}
+                    </div>
+                    <div
+                      className={`text-[15px] mb-2 ${
+                        item.highlight ? "text-white/70" : "text-[#5a6474]"
+                      }`}
+                    >
+                      {item.period}
+                    </div>
+                    <div
+                      className={`text-[15px] ${
+                        item.highlight ? "text-white/70" : "text-[#5a6474]"
+                      }`}
+                    >
+                      {item.area}
+                    </div>
                   </div>
-                </div>
+                ))}
+              </div>
 
-                <Hinnakalkulaator />
+              <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
+                Soovituslik hooldussagedus on 1–2 korda aastas, sõltuvalt
+                liikluskoormusest. Komplektpakett (pesu + umbrohi + vuugid)
+                soodushinnaga.
+              </p>
+
+              <div className="mt-6 text-center">
+                <a
+                  href="#pakkumine"
+                  onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+                  className="btn-primary text-[15px] py-2.5 px-4 inline-flex items-center gap-2"
+                >
+                  Küsi tänavakivide pesu pakkumist
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
               </div>
             </div>
           </section>

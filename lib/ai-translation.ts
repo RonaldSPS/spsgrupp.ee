@@ -39,6 +39,9 @@ export function loadDeepseekApiKey(): string {
   return apiKey
 }
 
+const DEEPSEEK_TIMEOUT_MS = 60_000
+const DEEPSEEK_MAX_RETRIES = 2
+
 export async function translateJsonWithDeepseek<T extends object>({
   source,
   targetLanguage,
@@ -48,24 +51,30 @@ export async function translateJsonWithDeepseek<T extends object>({
   const apiKey = loadDeepseekApiKey()
   const langName = languageNames[targetLanguage]
 
-  const response = await fetch(`${DEEPSEEK_BASE}/chat/completions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: JSON.stringify({
-      model: "deepseek-chat",
-      max_tokens: 12000,
-      temperature: 0.1,
-      messages: [
-        {
-          role: "system",
-          content: "You are a professional website translator. Return ONLY valid JSON with the same keys. No markdown, no comments.",
+  let lastError: Error | null = null
+  for (let attempt = 0; attempt <= DEEPSEEK_MAX_RETRIES; attempt++) {
+    try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), DEEPSEEK_TIMEOUT_MS)
+
+      const response = await fetch(`${DEEPSEEK_BASE}/chat/completions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
         },
-        {
-          role: "user",
-          content: `Translate this Estonian ${subject} JSON to ${langName}.
+        body: JSON.stringify({
+          model: "deepseek-chat",
+          max_tokens: 12000,
+          temperature: 0.1,
+          messages: [
+            {
+              role: "system",
+              content: "You are a professional website translator. Return ONLY valid JSON with the same keys. No markdown, no comments.",
+            },
+            {
+              role: "user",
+              content: `Translate this Estonian ${subject} JSON to ${langName}.
 
 Rules:
 - Keep every JSON key exactly as-is.
@@ -80,19 +89,32 @@ Rules:
 
 JSON:
 ${JSON.stringify(source, null, 2)}`,
-        },
-      ],
-    }),
-  })
+            },
+          ],
+        }),
+        signal: controller.signal,
+      })
+      clearTimeout(timeoutId)
 
-  if (!response.ok) {
-    throw new Error(`Deepseek API error ${response.status}: ${await response.text()}`)
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(`Deepseek API error ${response.status}: ${errorText}`)
+      }
+
+      const data = await response.json()
+      const text = data.choices?.[0]?.message?.content || ""
+      const jsonText = extractJson(text)
+      return JSON.parse(jsonText) as T
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error))
+      if (attempt < DEEPSEEK_MAX_RETRIES) {
+        await new Promise((resolve) => setTimeout(resolve, 1000 * (attempt + 1)))
+        continue
+      }
+    }
   }
 
-  const data = await response.json()
-  const text = data.choices?.[0]?.message?.content || ""
-  const jsonText = extractJson(text)
-  return JSON.parse(jsonText) as T
+  throw lastError || new Error("Deepseek translation failed")
 }
 
 function extractJson(text: string): string {

@@ -58,7 +58,7 @@ export default function RemonditeenusedTallinnas() {
           style={{ background: "url('/remonditeenused-1.jpg') right top/cover no-repeat" }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
               <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">

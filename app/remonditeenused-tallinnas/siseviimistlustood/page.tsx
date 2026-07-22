@@ -120,7 +120,7 @@ export default function SiseviimistlustoodLeht() {
           aria-label="Siseviimistlustööd"
           style={{ background: "url('/siseviimistlus-1.jpg') center/cover no-repeat" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {[
               { value: "Kiire", label: "töö" },
               { value: "2 aastat", label: "garantii" },

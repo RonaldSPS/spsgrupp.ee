@@ -84,7 +84,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hidden sm:flex gap-[12px] sm:gap-[20px] mt-16 sm:mt-20 md:absolute md:bottom-[-90px] md:left-0">
+        <div className="hidden sm:flex flex-wrap gap-[12px] sm:gap-[20px] mt-16 sm:mt-20 md:absolute md:bottom-[-90px] md:left-0">
           <FloatingChip
             iconClass="chip-icon-blue"
             icon={

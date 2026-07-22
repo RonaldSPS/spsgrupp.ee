@@ -10,7 +10,6 @@ import FooterCTA from "../../components/FooterCTA";
 import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
 import Tooprotsess from "../../components/Tooprotsess";
 
@@ -61,7 +60,7 @@ export default function VaipadePuhastus() {
           style={{ background: "url('/vaipade-puhastus-1.webp') center/cover no-repeat" }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
               <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
@@ -335,47 +334,41 @@ export default function VaipadePuhastus() {
                 <TwoToneHeading text="Kuidas kujuneb vaibapesu hind?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Vaipade puhastuse hind sõltub pindalast, vaibatüübist, mustuse astmest ja valitud meetodist.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Vaipade puhastuse hind sõltub pindalast, vaibatüübist, mustuse astmest ja valitud meetodist.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {[
-                      { size: "Aurupuhastus", area: "süvapuhastus + kiire kuivamine", price: "3€/m²", period: "alates", highlight: true },
-                      { size: "Keemiline pesu", area: "sügavpuhastuseks", price: "4€/m²", period: "alates" },
-                      { size: "Kuivpuhastus", area: "kohe kasutatav", price: "3.5€/m²", period: "alates" },
-                    ].map((item, i) => (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                          item.highlight
-                            ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                            : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                        }`}
-                      >
-                        <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                        <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                          {item.price}
-                        </div>
-                        <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                          {item.period}
-                        </div>
-                        <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                          {item.area}
-                        </div>
-                      </div>
-                    ))}
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                {[
+                  { size: "Aurupuhastus", area: "süvapuhastus + kiire kuivamine", price: "3€/m²", period: "alates", highlight: true },
+                  { size: "Keemiline pesu", area: "sügavpuhastuseks", price: "4€/m²", period: "alates" },
+                  { size: "Kuivpuhastus", area: "kohe kasutatav", price: "3.5€/m²", period: "alates" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${i === 2 ? "col-span-2 lg:col-span-1" : ""} ${
+                      item.highlight
+                        ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
+                        : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
+                    }`}
+                  >
+                    <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
+                    <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
+                      {item.price}
+                    </div>
+                    <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
+                      {item.period}
+                    </div>
+                    <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
+                      {item.area}
+                    </div>
                   </div>
-
-                  <p className="text-[15px] text-[#5a6474]">
-                    Plekkide lisatöötlus: alates <strong>15€/plekk</strong>. Keskmise kontori (200–300m²) vaipade puhastus võtab 2–3 tundi. Kohapealne hindamine on tasuta.
-                  </p>
-                </div>
-
-                <Hinnakalkulaator />
+                ))}
               </div>
+
+              <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
+                Plekkide lisatöötlus: alates <strong>15€/plekk</strong>. Keskmise kontori (200–300m²) vaipade puhastus võtab 2–3 tundi. Kohapealne hindamine on tasuta.
+              </p>
             </div>
           </section>
         </ScrollAnimation>

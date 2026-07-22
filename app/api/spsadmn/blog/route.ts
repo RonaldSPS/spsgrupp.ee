@@ -102,9 +102,7 @@ export async function GET(request: Request) {
       })
     } catch (error) {
       console.error("Blog GET error:", error)
-      return NextResponse.json({ posts: {} }, {
-        headers: { "Cache-Control": "no-store, max-age=0" },
-      })
+      return noStoreResponse(JSON.stringify({ error: "Failed to load blog posts" }), 500)
     }
   }, true)
 }

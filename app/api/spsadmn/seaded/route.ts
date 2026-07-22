@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server"
-import { eq } from "drizzle-orm"
+import { eq, sql } from "drizzle-orm"
 import { promises as fs } from "fs"
 import path from "path"
 import { db } from "@/lib/db"
 import { systemSettings } from "@/lib/db/schema"
-import { validateAdminRequest, unauthorizedResponse, noStoreResponse } from "@/lib/auth"
+import { validateAdminRequest, unauthorizedResponse, noStoreResponse, requireAdminRole } from "@/lib/auth"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
@@ -50,9 +50,7 @@ export async function GET(request: Request) {
       })
     } catch (error) {
       console.error("Settings GET error:", error)
-      return NextResponse.json({ settings: {} }, {
-        headers: { "Cache-Control": "no-store, max-age=0" },
-      })
+      return noStoreResponse(JSON.stringify({ error: "Failed to load settings" }), 500)
     }
   }, true)
 }
@@ -64,6 +62,9 @@ export async function PUT(request: Request) {
       if (!verifySameOrigin(request)) {
         return noStoreResponse(JSON.stringify({ error: "Invalid origin" }), 403)
       }
+
+      const roleCheck = await requireAdminRole()
+      if (roleCheck) return roleCheck
 
       const body = await request.json()
       const { settings } = body as { settings: Record<string, string> }
@@ -83,12 +84,16 @@ export async function PUT(request: Request) {
         })
       }
 
-      for (const [key, value] of Object.entries(settings)) {
+      const rows = Object.entries(settings).map(([key, value]) => ({
+        key,
+        value: String(value).slice(0, 10000),
+      }))
+      if (rows.length > 0) {
         await db.insert(systemSettings)
-          .values({ key, value: String(value).slice(0, 10000) })
+          .values(rows)
           .onConflictDoUpdate({
             target: systemSettings.key,
-            set: { value: String(value).slice(0, 10000), updatedAt: new Date() },
+            set: { value: sql`excluded.value`, updatedAt: new Date() },
           })
       }
 
@@ -109,6 +114,9 @@ export async function DELETE(request: Request) {
       if (!verifySameOrigin(request)) {
         return noStoreResponse(JSON.stringify({ error: "Invalid origin" }), 403)
       }
+
+      const roleCheck = await requireAdminRole()
+      if (roleCheck) return roleCheck
 
       const { searchParams } = new URL(request.url)
       const key = searchParams.get("key")

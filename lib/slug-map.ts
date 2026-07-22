@@ -164,8 +164,11 @@ export function localizePath(etPath: string, locale: Locale): string {
   const normalizedEtPath = normalizePath(etPath)
   if (locale === 'et') return normalizedEtPath
   const slug = localizedPaths[normalizedEtPath]?.[locale]
-  if (!slug) return normalizedEtPath
-  return `/${locale}${slug === '/' ? '' : slug}`
+  if (slug) return `/${locale}${slug === '/' ? '' : slug}`
+  const withoutPrefix = normalizedEtPath.replace(/^\/koristusteenus\//, '/')
+  const fallbackSlug = localizedPaths[withoutPrefix]?.[locale]
+  if (fallbackSlug) return `/${locale}${fallbackSlug === '/' ? '' : fallbackSlug}`
+  return normalizedEtPath
 }
 
 export function getCurrentEtPath(pathname: string, locale: Locale): string {

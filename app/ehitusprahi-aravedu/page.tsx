@@ -9,7 +9,6 @@ import FooterCTA from "../components/FooterCTA";
 import ContactForm from "../components/ContactForm";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
-import Hinnakalkulaator from "../components/Hinnakalkulaator";
 import SeoJsonLd from "../components/SeoJsonLd";
 import Tooprotsess from "../components/Tooprotsess";
 
@@ -59,7 +58,7 @@ export default function EhitusprahiAravedu() {
           style={{ background: "#d4d8e3 url('/ehitusprahi-aravedu-1.jpg') calc(100% + 100px) center / cover no-repeat" }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
               <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
@@ -331,60 +330,54 @@ export default function EhitusprahiAravedu() {
                 <TwoToneHeading text="Kuidas kujuneb ehitusprahi äraveo hind?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Hind sõltub jäätmete tüübist, mahust, konteineri suurusest ja äraveo sagedusest.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Hind sõltub jäätmete tüübist, mahust, konteineri suurusest ja äraveo sagedusest.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {[
-                      { size: "Sorteeritud jäätmed", area: "puit, metall, betoon", price: "30–50€", period: "/tonn", highlight: true },
-                      { size: "Segajäätmed", area: "segaehitusjäätmed", price: "60–80€", period: "/tonn" },
-                      { size: "Ohtlikud jäätmed", area: "värvid, lahustid jm", price: "Individuaalne", period: "" },
-                    ].map((item, i) => (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                          item.highlight
-                            ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                            : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                        }`}
-                      >
-                        <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                        <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                          {item.price}
-                        </div>
-                        {item.period && (
-                          <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                            {item.period}
-                          </div>
-                        )}
-                        <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                          {item.area}
-                        </div>
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                {[
+                  { size: "Sorteeritud jäätmed", area: "puit, metall, betoon", price: "30–50€", period: "/tonn", highlight: true },
+                  { size: "Segajäätmed", area: "segaehitusjäätmed", price: "60–80€", period: "/tonn" },
+                  { size: "Ohtlikud jäätmed", area: "värvid, lahustid jm", price: "Individuaalne", period: "" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${i === 2 ? "col-span-2 lg:col-span-1" : ""} ${
+                      item.highlight
+                        ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
+                        : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
+                    }`}
+                  >
+                    <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
+                    <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
+                      {item.price}
+                    </div>
+                    {item.period && (
+                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
+                        {item.period}
                       </div>
-                    ))}
+                    )}
+                    <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
+                      {item.area}
+                    </div>
                   </div>
+                ))}
+              </div>
 
-                  <p className="text-[15px] text-[#5a6474]">
-                    Konteineri rendi kuluhinnad sõltuvad suurusest (5, 7, 10, 20 m³). Pakume ka täispaketti &quot;koristus + äravedu&quot; soodushinnaga.
-                  </p>
-                  <p className="text-[15px] text-[#5a6474] mt-3">
-                    Ehitusjäätmete segajäätmetena käitlemine on oluliselt kallim kui sorteerimine. Meie kohapealne sorteerimine võib säästa 30–50% käitluskulusid.
-                  </p>
-                  <div className="mt-6">
-                    <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
-                      Küsi ehitusprahi äraveo pakkumist
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-
-                <Hinnakalkulaator />
+              <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
+                Konteineri rendi kuluhinnad sõltuvad suurusest (5, 7, 10, 20 m³). Pakume ka täispaketti &quot;koristus + äravedu&quot; soodushinnaga.
+              </p>
+              <p className="text-[15px] text-[#5a6474] mt-3 max-w-[720px] mx-auto text-center">
+                Ehitusjäätmete segajäätmetena käitlemine on oluliselt kallim kui sorteerimine. Meie kohapealne sorteerimine võib säästa 30–50% käitluskulusid.
+              </p>
+              <div className="mt-6 text-center">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
+                  Küsi ehitusprahi äraveo pakkumist
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
               </div>
             </div>
           </section>

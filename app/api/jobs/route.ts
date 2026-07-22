@@ -1,19 +1,29 @@
 import { NextResponse } from "next/server"
 import { applyJobTranslation, getActiveAnnouncements } from "@/lib/announcements"
-import { getJobTranslation } from "@/lib/translate-jobs"
+import { getJobTranslationsByLanguage } from "@/lib/translate-jobs"
+import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit"
 
 export async function GET(request: Request) {
+  const { allowed, retryAfter } = checkRateLimit(request, 120)
+  if (!allowed) return rateLimitResponse(retryAfter)
+
   try {
     const url = new URL(request.url)
     const lang = url.searchParams.get("lang")
     const announcements = await getActiveAnnouncements()
+
     const source = lang === "en" || lang === "ru"
-      ? (await Promise.all(announcements.map(async (announcement) => {
-          const translation = await getJobTranslation(announcement.id, lang)
-          if (!translation || translation.status === "stale") return null
-          return applyJobTranslation(announcement, translation)
-        }))).filter((announcement) => announcement !== null)
+      ? await (async () => {
+          const translations = await getJobTranslationsByLanguage(lang)
+          const byId = new Map(translations.map((t) => [t.jobId, t]))
+          return announcements.flatMap((announcement) => {
+            const translation = byId.get(announcement.id)
+            if (!translation || translation.status === "stale") return []
+            return [applyJobTranslation(announcement, translation)]
+          })
+        })()
       : announcements
+
     const active = source
       .map(row => ({
         id: row.id,
@@ -37,8 +47,10 @@ export async function GET(request: Request) {
         "CDN-Cache-Control": "public, max-age=60",
       },
     })
-  } catch {
-    return NextResponse.json({ announcements: [] }, {
+  } catch (error) {
+    console.error("Jobs GET error:", error)
+    return NextResponse.json({ announcements: [], error: "Failed to load jobs" }, {
+      status: 500,
       headers: { "Cache-Control": "no-store, max-age=0" },
     })
   }

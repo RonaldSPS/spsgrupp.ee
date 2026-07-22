@@ -1,4 +1,4 @@
-import { and, eq, sql } from "drizzle-orm"
+import { and, eq, sql, inArray } from "drizzle-orm"
 import { promises as fs } from "fs"
 import path from "path"
 import { db } from "@/lib/db"
@@ -169,6 +169,31 @@ export async function markTestimonialTranslationsStale(testimonialId: string, ha
     ))
     await writeTestimonialTranslationsJson(data)
   }
+}
+
+export async function getTestimonialTranslationsBulk(
+  testimonialIds: string[],
+): Promise<Record<string, TestimonialTranslationRow[]>> {
+  if (testimonialIds.length === 0) return {}
+
+  if (!process.env.DATABASE_URL) {
+    const data = await readTestimonialTranslationsJson()
+    const result: Record<string, TestimonialTranslationRow[]> = {}
+    for (const id of testimonialIds) {
+      if (data.testimonials[id]) result[id] = data.testimonials[id]
+    }
+    return result
+  }
+
+  const rows = await db.select().from(testimonialTranslations)
+    .where(inArray(testimonialTranslations.testimonialId, testimonialIds))
+
+  const result: Record<string, TestimonialTranslationRow[]> = {}
+  for (const row of rows) {
+    result[row.testimonialId] ??= []
+    result[row.testimonialId].push(mapTestimonialTranslation(row))
+  }
+  return result
 }
 
 export async function getTestimonialTranslations(testimonialId: string): Promise<TestimonialTranslationRow[]> {

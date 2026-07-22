@@ -35,9 +35,7 @@ export async function GET(request: NextRequest) {
       })
     } catch (error) {
       console.error("Testimonials GET error:", error)
-      return NextResponse.json({ testimonials: [] }, {
-        headers: { "Cache-Control": "no-store, max-age=0" },
-      })
+      return noStoreResponse(JSON.stringify({ error: "Failed to load testimonials" }), 500)
     }
   })
 }

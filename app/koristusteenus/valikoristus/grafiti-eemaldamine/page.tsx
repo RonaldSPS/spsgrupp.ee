@@ -9,7 +9,6 @@ import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../../components/SeoJsonLd";
 import Tooprotsess from "../../../components/Tooprotsess";
 
@@ -212,7 +211,7 @@ export default function GrafitiEemaldamine() {
           }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
               <div
                 key={i}
@@ -544,84 +543,78 @@ export default function GrafitiEemaldamine() {
                 <TwoToneHeading text="Mis maksab graffiti eemaldamine?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Hind sõltub graffiti suurusest, vanusest, pinnatüübist ja
-                    ligipääsu keerukusest.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Hind sõltub graffiti suurusest, vanusest, pinnatüübist ja
+                ligipääsu keerukusest.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {hindKaardid.map((item, i) => (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                          item.highlight
-                            ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                            : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                        }`}
-                      >
-                        <div
-                          className={`text-[15px] font-bold mb-1 ${
-                            item.highlight ? "text-white" : "text-[#17345a]"
-                          }`}
-                        >
-                          {item.size}
-                        </div>
-                        <div
-                          className={`text-[26px] font-bold mb-1 ${
-                            item.highlight ? "text-white" : "text-[#17345a]"
-                          }`}
-                        >
-                          {item.price}
-                        </div>
-                        <div
-                          className={`text-[15px] mb-2 ${
-                            item.highlight ? "text-white/70" : "text-[#5a6474]"
-                          }`}
-                        >
-                          {item.period}
-                        </div>
-                        <div
-                          className={`text-[15px] ${
-                            item.highlight ? "text-white/70" : "text-[#5a6474]"
-                          }`}
-                        >
-                          {item.area}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <p className="text-[15px] text-[#5a6474] mb-4">
-                    Anti-graffiti kaitsekate: <strong>alates 8€/m²</strong>.
-                  </p>
-                  <p className="text-[15px] text-[#5a6474] mb-6">
-                    Värsked graffitid on alati kiiremini ja odavamini
-                    eemaldatavad. Helistage kohe, kui märkate!
-                  </p>
-
-                  <div>
-                    <Link
-                      href="tel:6623328"
-                      className="btn-outline text-[#17345a] border-[#17345a] hover:bg-[#17345a] hover:text-white text-[15px] py-2.5 px-4"
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                {hindKaardid.map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
+                      item.highlight
+                        ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
+                        : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
+                    }`}
+                  >
+                    <div
+                      className={`text-[15px] font-bold mb-1 ${
+                        item.highlight ? "text-white" : "text-[#17345a]"
+                      }`}
                     >
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                      >
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                      </svg>
-                      662 3328
-                    </Link>
+                      {item.size}
+                    </div>
+                    <div
+                      className={`text-[26px] font-bold mb-1 ${
+                        item.highlight ? "text-white" : "text-[#17345a]"
+                      }`}
+                    >
+                      {item.price}
+                    </div>
+                    <div
+                      className={`text-[15px] mb-2 ${
+                        item.highlight ? "text-white/70" : "text-[#5a6474]"
+                      }`}
+                    >
+                      {item.period}
+                    </div>
+                    <div
+                      className={`text-[15px] ${
+                        item.highlight ? "text-white/70" : "text-[#5a6474]"
+                      }`}
+                    >
+                      {item.area}
+                    </div>
                   </div>
-                </div>
+                ))}
+              </div>
 
-                <Hinnakalkulaator />
+              <p className="text-[15px] text-[#5a6474] mb-4 max-w-[720px] mx-auto text-center">
+                Anti-graffiti kaitsekate: <strong>alates 8€/m²</strong>.
+              </p>
+              <p className="text-[15px] text-[#5a6474] mb-6 max-w-[720px] mx-auto text-center">
+                Värsked graffitid on alati kiiremini ja odavamini
+                eemaldatavad. Helistage kohe, kui märkate!
+              </p>
+
+              <div className="text-center">
+                <Link
+                  href="tel:6623328"
+                  className="btn-outline text-[#17345a] border-[#17345a] hover:bg-[#17345a] hover:text-white text-[15px] py-2.5 px-4"
+                >
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41 2 2 0 0 1 3.58 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.97-1.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  662 3328
+                </Link>
               </div>
             </div>
           </section>

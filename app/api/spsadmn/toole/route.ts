@@ -61,9 +61,7 @@ export async function GET(request: NextRequest) {
       })
     } catch (error) {
       console.error("Toole GET error:", error)
-      return NextResponse.json({ announcements: [] }, {
-        headers: { "Cache-Control": "no-store, max-age=0" },
-      })
+      return noStoreResponse(JSON.stringify({ error: "Failed to load announcements" }), 500)
     }
   })
 }

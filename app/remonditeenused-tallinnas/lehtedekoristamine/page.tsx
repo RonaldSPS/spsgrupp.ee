@@ -117,7 +117,7 @@ export default function LehtedekoristamineLeht() {
           aria-label="Lehtede koristus Tallinnas"
           style={{ background: "url('/lehekoristus-1.webp') center/cover no-repeat" }}
         >
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {[
               { value: "Sügisene", label: "koristus" },
               { value: "Kiire", label: "reageerimine" },

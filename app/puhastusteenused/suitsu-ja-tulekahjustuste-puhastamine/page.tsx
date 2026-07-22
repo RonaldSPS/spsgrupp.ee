@@ -9,7 +9,6 @@ import FooterCTA from "../../components/FooterCTA";
 import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
 import Tooprotsess from "../../components/Tooprotsess";
 
@@ -56,7 +55,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
           style={{ background: "url('/tulekahjustus1.jpg') center/cover no-repeat" }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
               <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
@@ -325,53 +324,47 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
                 <TwoToneHeading text="Kuidas kujuneb tulekahjustuste puhastamise hind?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
-                <div>
-                  <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                    Iga tulekahjustuse olukord on unikaalne. Hind sõltub kahjustuste ulatusest, pindalast, materjalidest ja vajalikest töödest.
-                  </p>
+              <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">
+                Iga tulekahjustuse olukord on unikaalne. Hind sõltub kahjustuste ulatusest, pindalast, materjalidest ja vajalikest töödest.
+              </p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    {[
-                      { size: "Esmane hindamine", area: "tasuta (kindlustusjuhtumi puhul)", price: "Tasuta", period: "", highlight: true },
-                      { size: "Väikesed suitsukahjustused", area: "", price: "500€", period: "alates" },
-                      { size: "Keskmised kahjustused", area: "tuba–korrus", price: "1500€", period: "alates" },
-                      { size: "Suured kahjustused", area: "", price: "Individuaalne", period: "" },
-                    ].map((item, i) => (
-                      <div
-                        key={i}
-                        className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                          item.highlight
-                            ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                            : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                        }`}
-                      >
-                        <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                        <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                          {item.price}
-                        </div>
-                        {item.period && (
-                          <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                            {item.period}
-                          </div>
-                        )}
-                        <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                          {item.area}
-                        </div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                {[
+                  { size: "Esmane hindamine", area: "tasuta (kindlustusjuhtumi puhul)", price: "Tasuta", period: "", highlight: true },
+                  { size: "Väikesed suitsukahjustused", area: "", price: "500€", period: "alates" },
+                  { size: "Keskmised kahjustused", area: "tuba–korrus", price: "1500€", period: "alates" },
+                  { size: "Suured kahjustused", area: "", price: "Individuaalne", period: "" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
+                      item.highlight
+                        ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
+                        : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
+                    }`}
+                  >
+                    <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
+                    <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
+                      {item.price}
+                    </div>
+                    {item.period && (
+                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
+                        {item.period}
                       </div>
-                    ))}
+                    )}
+                    <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
+                      {item.area}
+                    </div>
                   </div>
-
-                  <p className="text-[15px] text-[#5a6474]">
-                    Kuna teenus on sageli kindlustuse kaetud, aitame koostada ka dokumentatsiooni huvitise jaoks.
-                  </p>
-                  <p className="text-[15px] text-[#17345a] font-bold mt-4">
-                    Helistage kohe: ☎ 662 3328
-                  </p>
-                </div>
-
-                <Hinnakalkulaator />
+                ))}
               </div>
+
+              <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
+                Kuna teenus on sageli kindlustuse kaetud, aitame koostada ka dokumentatsiooni huvitise jaoks.
+              </p>
+              <p className="text-[15px] text-[#17345a] font-bold mt-4 text-center">
+                Helistage kohe: ☎ 662 3328
+              </p>
             </div>
           </section>
         </ScrollAnimation>

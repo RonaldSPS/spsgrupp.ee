@@ -4,7 +4,7 @@ import { promises as fs } from "fs"
 import path from "path"
 import { db } from "@/lib/db"
 import { adminUsers } from "@/lib/db/schema"
-import { validateAdminRequest, unauthorizedResponse, noStoreResponse, getCurrentAdminUser, hashAdminPassword } from "@/lib/auth"
+import { validateAdminRequest, unauthorizedResponse, noStoreResponse, getCurrentAdminUser, hashAdminPassword, requireAdminRole } from "@/lib/auth"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
@@ -39,14 +39,6 @@ async function writeUsersJson(data: AdminUsersJson): Promise<void> {
   await fs.writeFile(JSON_PATH, JSON.stringify(data, null, 2), "utf-8")
 }
 
-async function requireAdminRole(): Promise<Response | null> {
-  const user = await getCurrentAdminUser()
-  if (!user || user.role !== "admin") {
-    return noStoreResponse(JSON.stringify({ error: "Ainult peaadmin saab hallata kasutajaid" }), 403)
-  }
-  return null
-}
-
 export async function GET(request: Request) {
   return withRateLimit(request, async () => {
     try {
@@ -79,9 +71,7 @@ export async function GET(request: Request) {
       })
     } catch (error) {
       console.error("Admin users GET error:", error)
-      return NextResponse.json({ users: [] }, {
-        headers: { "Cache-Control": "no-store, max-age=0" },
-      })
+      return noStoreResponse(JSON.stringify({ error: "Failed to load admin users" }), 500)
     }
   }, true)
 }

@@ -220,6 +220,14 @@ export function unauthorizedResponse() {
   })
 }
 
+export async function requireAdminRole(): Promise<Response | null> {
+  const user = await getCurrentAdminUser()
+  if (!user || user.role !== "admin") {
+    return noStoreResponse(JSON.stringify({ error: "Ainult peaadmin saab seda toimingut teha" }), 403)
+  }
+  return null
+}
+
 export function noStoreResponse(body: string, status: number, extraHeaders?: Record<string, string>) {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",

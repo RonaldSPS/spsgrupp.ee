@@ -111,10 +111,15 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
   return withRateLimit(request, async () => {
-    if (!(await validateAdminRequest())) return unauthorizedResponse()
-    return NextResponse.json(
-      { locations: Object.keys(imageConfigs), configs: imageConfigs },
-      { headers: { "Cache-Control": "no-store, max-age=0" } },
-    )
+    try {
+      if (!(await validateAdminRequest())) return unauthorizedResponse()
+      return NextResponse.json(
+        { locations: Object.keys(imageConfigs), configs: imageConfigs },
+        { headers: { "Cache-Control": "no-store, max-age=0" } },
+      )
+    } catch (error) {
+      console.error("Image resize GET error:", error)
+      return noStoreResponse(JSON.stringify({ error: "Failed to get image configs" }), 500)
+    }
   }, true)
 }

@@ -211,7 +211,7 @@ export default function TeenuseLeht() {
           style={{ background: `url('${heroPilt}') center/cover no-repeat` }}
         >
           {/* Floating chips */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-1/2 flex gap-[20px] z-20 hidden md:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
               <div
                 key={i}
