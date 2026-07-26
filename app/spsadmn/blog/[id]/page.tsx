@@ -5,13 +5,6 @@ import { useParams, useRouter } from "next/navigation"
 import { blogPosts, type BlogPost } from "@/app/blog/posts.generated"
 import ImageBrowser from "@/app/components/ImageBrowser"
 
-interface TranslationStatus {
-  language: string
-  slug: string
-  status: string
-  sourceHash?: string | null
-}
-
 function linkPrompt(callback: (url: string) => void) {
   const sel = window.getSelection()
   if (sel && sel.toString().length > 0) {
@@ -38,10 +31,6 @@ export default function AdminBlogEdit() {
   const [imageBrowserOpen, setImageBrowserOpen] = useState(false)
   const [imageBrowserForFeatured, setImageBrowserForFeatured] = useState(false)
   const [pendingContent, setPendingContent] = useState("")
-  const [translations, setTranslations] = useState<TranslationStatus[]>([])
-  const [translating, setTranslating] = useState(false)
-  const [translationError, setTranslationError] = useState("")
-
   const foundPost = blogPosts.find((p: BlogPost) => String(p.id) === id) ?? null
 
   const [formData, setFormData] = useState(() => {
@@ -70,7 +59,6 @@ export default function AdminBlogEdit() {
           featuredImage: edits?.featuredImage ?? foundPost.featuredImage,
           excerpt: edits?.excerpt ?? foundPost.excerpt,
         })
-        setTranslations(edits?.translations ?? [])
         setPendingContent(content)
       })
       .catch(() => {
@@ -123,8 +111,6 @@ export default function AdminBlogEdit() {
 
       if (res.ok) {
         setSaved(true)
-        const data = await res.json().catch(() => null)
-        if (data?.translations) setTranslations(data.translations)
         setTimeout(() => setSaved(false), 2500)
       } else {
         const data = await res.json().catch(() => ({ error: "Salvestamine ebaõnnestus" }))
@@ -134,25 +120,6 @@ export default function AdminBlogEdit() {
       setSaveError("Võrguühenduse viga")
     }
     setSaving(false)
-  }
-
-  const handleTranslate = async () => {
-    setTranslating(true)
-    setTranslationError("")
-    try {
-      const res = await fetch("/api/spsadmn/blog/translate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      })
-      const data = await res.json().catch(() => null)
-      if (!res.ok) throw new Error(data?.error || `Translation failed: ${res.status}`)
-      setTranslations(data.translations || [])
-    } catch (error) {
-      setTranslationError(error instanceof Error ? error.message : "Translation failed")
-    } finally {
-      setTranslating(false)
-    }
   }
 
   if (loading || !foundPost) {
@@ -361,44 +328,6 @@ export default function AdminBlogEdit() {
               rows={4}
               className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] resize-y"
             />
-          </div>
-
-          <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5">
-            <div className="flex items-center justify-between gap-3 mb-3">
-              <h2 className="text-[18px] font-bold text-[#17345a]">Tõlked</h2>
-              <button
-                type="button"
-                onClick={handleTranslate}
-                disabled={translating}
-                className="bg-[#3abeff] text-white py-2 px-4 rounded-xl text-[15px] font-medium hover:bg-[#2ba8e8] transition-colors disabled:opacity-60"
-              >
-                {translating ? "Tõlgin..." : "Tõlgi EN/RU"}
-              </button>
-            </div>
-            {translationError ? <p className="text-[15px] text-red-600 mb-3">{translationError}</p> : null}
-            <div className="space-y-2 text-[15px]">
-              {["en", "ru"].map((language) => {
-                const item = translations.find((translation) => translation.language === language)
-                return (
-                  <div key={language} className="flex items-center justify-between gap-3 rounded-lg bg-[#f8fafc] px-3 py-2">
-                    <span className="font-medium text-[#17345a] uppercase">{language}</span>
-                    <span className={item?.status === "auto" ? "text-[#2d9e6b]" : "text-[#5a6474]"}>
-                      {item ? item.status : "puudub"}
-                    </span>
-                    {item?.slug ? (
-                      <a
-                        href={`/${language}/blog/${item.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#3abeff] font-medium"
-                      >
-                        Ava
-                      </a>
-                    ) : null}
-                  </div>
-                )
-              })}
-            </div>
           </div>
 
           <button

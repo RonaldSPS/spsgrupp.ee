@@ -401,7 +401,7 @@ export default function EhitusprahiAravedu() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Vabastage oma projekt ehitusprahi muredest"
-            description="Kirjeldage oma projekti ja me teeme pakkumise 24 tunni jooksul. Hind sõltub mahust, sagedusest ja jäätmete tüübist."
+            description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub jäätmete liigist, mahust ja objekti ülevaatuse vajadusest."
           />
         </ScrollAnimation>
 

@@ -69,7 +69,7 @@ const Hero = () => (
           <span className="bg-gradient-to-r from-[#85cbe9] to-[#5ab5da] bg-clip-text text-transparent">uuel tasemel</span>
         </h1>
         <p className="text-xl text-white/70 leading-relaxed mb-8 max-w-lg">
-          Hooldame <strong className="text-white font-semibold">üle miljoni m²</strong> äripindu iga päev. 
+          Meie hoolduses on <strong className="text-white font-semibold">üle 1 000 000 m²</strong> äripindu.
           ISO sertifitseeritud premium kvaliteet.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -95,7 +95,7 @@ const Hero = () => (
               <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-7 h-7"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">üle miljoni m²</div>
+              <div className="text-2xl font-bold text-white">üle 1 000 000 m²</div>
               <div className="text-[15px] text-white/50">iga päev</div>
             </div>
           </div>
@@ -250,8 +250,8 @@ const Trust = () => (
           
           <div className="grid grid-cols-2 gap-6">
             {[
-              { num: "üle miljoni", label: "m² iga päev" },
-              { num: "200+", label: "Töötajat" },
+              { num: "üle 1 000 000", label: "m² meie hoolduses" },
+              { num: "300+", label: "Töötajat" },
               { num: "üle 100", label: "Klienti" },
               { num: "20+", label: "Aastat" },
             ].map((stat, i) => (
@@ -275,7 +275,7 @@ const Trust = () => (
               </div>
             </div>
             <div className="space-y-4">
-              {["Kindlustatud teenused", "24/7 tugi"].map((item, i) => (
+              {["Vastutuskindlustusega kaetud tegevus", "Operatiivne suhtlus"].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 bg-[#0a1628]/50 p-4 rounded-xl border border-[#17345a]/50">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#85cbe9" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
                   <span className="text-white/80">{item}</span>
@@ -296,7 +296,7 @@ const ContactForm = () => (
       <div className="text-center mb-12">
         <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider mb-4 inline-block">Pakkumine</span>
         <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Küsi pakkumist</h2>
-        <p className="text-xl text-white/60">Vastame 24 tunni jooksul</p>
+        <p className="text-xl text-white/60">Vastame üldjuhul ühe tööpäeva jooksul</p>
       </div>
       
       <form className="bg-[#0f1f33] p-10 rounded-2xl border border-[#17345a]/50 shadow-2xl" onSubmit={(e) => e.preventDefault()}>

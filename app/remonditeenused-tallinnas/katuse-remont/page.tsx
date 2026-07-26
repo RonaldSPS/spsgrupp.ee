@@ -100,8 +100,8 @@ const faqItems = [
     a: "Jah. Suured lumekoormused võivad kahjustada katust ja isegi ohustada konstruktsiooni. Pakume talvist lumekoristust katuselt.",
   },
   {
-    q: "Kas annate garantii katusetöödele?",
-    a: "Jah. Paigaldustöödele 2 aastat, materjalidele tootja garantii, sageli 10+ aastat. Suuremad renoveerimised tulevad pikema töögarantiiga.",
+    q: "Kuidas katusetööde maht kokku lepitakse?",
+    a: "Katuse seisukord, tööde ulatus, kasutatavad materjalid ja üleandmise tingimused kirjeldatakse enne töö alustamist.",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function KatuseRemontLeht() {
                 <span className="text-[#3abeff]">ärihoonetele</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[560px] font-light">
-                Lamekatused, rullmaterjalid, hüdroisolatsioon. Lekete kiire kõrvaldamine, regulaarne hooldus ja täielik renoveerimine. 20+ aastat kogemust.
+                Lamekatused, rullmaterjalid ja hüdroisolatsioon. Tööde ulatus ning sobiv lahendus selguvad pärast katuse seisukorra hindamist.
               </p>
               <div className="flex flex-wrap gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">

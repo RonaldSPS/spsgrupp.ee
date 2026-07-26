@@ -38,12 +38,25 @@ export default function CareerForm() {
           </p>
 
           <form ref={formRef} action={formAction}>
-            <div style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }} aria-hidden="true">
+            <div hidden aria-hidden="true">
               <label htmlFor="career-website_url">Website</label>
               <input type="text" id="career-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
+              <div className="flex flex-col gap-1.25">
+                <label htmlFor="career-name" className="text-[15px] font-medium text-[#17345a]">{t("nameLabel")}</label>
+                <input
+                  id="career-name"
+                  name="name"
+                  type="text"
+                  required
+                  maxLength={200}
+                  defaultValue={state.fields?.name ?? ""}
+                  className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
+                  placeholder={t("namePlaceholder")}
+                />
+              </div>
               <div className="flex flex-col gap-1.25">
                 <label htmlFor="career-email" className="text-[15px] font-medium text-[#17345a]">{t("emailLabel")}</label>
                 <input
@@ -57,6 +70,9 @@ export default function CareerForm() {
                   placeholder={t("emailPlaceholder")}
                 />
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">
                 <label htmlFor="career-phone" className="text-[15px] font-medium text-[#17345a]">{t("phoneLabel")}</label>
                 <input
@@ -70,32 +86,33 @@ export default function CareerForm() {
                   placeholder={t("phonePlaceholder")}
                 />
               </div>
-            </div>
-
-            <div className="flex flex-col gap-1.25 mb-3.5">
-              <label htmlFor="career-region" className="text-[15px] font-medium text-[#17345a]">{t("regionLabel")}</label>
-              <select
-                id="career-region"
-                name="region"
-                defaultValue={state.fields?.region ?? ""}
-                className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
-              >
-                <option value="">{t("regionPlaceholder")}</option>
-                <option value="Tallinn">{t("regionTallinn")}</option>
-                <option value="Harjumaa">{t("regionHarjumaa")}</option>
-              </select>
+              <div className="flex flex-col gap-1.25">
+                <label htmlFor="career-region" className="text-[15px] font-medium text-[#17345a]">{t("regionLabel")}</label>
+                <select
+                  id="career-region"
+                  name="region"
+                  required
+                  defaultValue={state.fields?.region ?? ""}
+                  className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
+                >
+                  <option value="">{t("regionPlaceholder")}</option>
+                  <option value="Tallinn">{t("regionTallinn")}</option>
+                  <option value="Harjumaa">{t("regionHarjumaa")}</option>
+                </select>
+              </div>
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
               <span className="text-[15px] font-medium text-[#17345a]">{t("workloadLabel")}</span>
-              <div className="flex gap-4 flex-wrap">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="radio"
                     name="workload"
                     value="full"
-                    defaultChecked={state.fields?.workload === "full" || state.fields === undefined}
-                    className="w-4 h-4 accent-[#17345a]"
+                    required
+                    defaultChecked={state.fields?.workload === "full"}
+                    className="w-5 h-5 accent-[#17345a] shrink-0"
                   />
                   <span className="text-[15px] text-[#2f353f]">{t("workloadFull")}</span>
                 </label>
@@ -104,8 +121,9 @@ export default function CareerForm() {
                     type="radio"
                     name="workload"
                     value="part"
+                    required
                     defaultChecked={state.fields?.workload === "part"}
-                    className="w-4 h-4 accent-[#17345a]"
+                    className="w-5 h-5 accent-[#17345a] shrink-0"
                   />
                   <span className="text-[15px] text-[#2f353f]">{t("workloadPart")}</span>
                 </label>
@@ -114,15 +132,16 @@ export default function CareerForm() {
 
             <div className="flex flex-col gap-1.25 mb-3.5">
               <span className="text-[15px] font-medium text-[#17345a]">{t("workTimeLabel")}</span>
-              <div className="flex gap-4 flex-wrap">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {workTimeOptions.map((option) => (
-                  <label key={option.value} className="flex items-center gap-2 cursor-pointer">
+                  <label key={option.value} className="flex items-center gap-3 cursor-pointer min-h-[44px] rounded-lg border border-[rgba(23,52,90,0.12)] px-3 py-2 bg-white">
                     <input
                       type="radio"
                       name="work_time"
                       value={option.value}
+                      required
                       defaultChecked={state.fields?.workTime === option.value}
-                      className="w-4 h-4 accent-[#17345a]"
+                      className="w-5 h-5 accent-[#17345a] shrink-0"
                     />
                     <span className="text-[15px] text-[#2f353f]">{option.label}</span>
                   </label>

@@ -68,7 +68,7 @@ export default async function BlogArchive() {
       </main>
       <FooterCTA
         title="SPS Grupp pakub parima lahenduse teie koristusvajadustele"
-        description="Võtke meiega ühendust ja saage tasuta pakkumine 24 tunni jooksul. Meie spetsialistid aitavad teil leida parima lahenduse."
+        description="Võtke meiega ühendust. Vastame päringule üldjuhul ühe tööpäeva jooksul."
       />
       <Footer />
     </>

@@ -54,29 +54,29 @@
   "hero": {
     "heading1": "Koristusfirma",
     "heading2": "ärikliendile",
-    "description": "Koristusfirma SPS Grupp hooldab iga päev üle miljoni m² kontori-, kaubandus- ja tootmispindu Harjumaal.",
+    "description": "Koristusfirma SPS Grupp hooldab kontori-, kaubandus- ja tootmispindu Tallinnas ja Harjumaal. Üle 1 000 000 m² meie hoolduses.",
     "cta": "Küsi pakkumist",
-    "floating1Big": "20+",
-    "floating1Small": "aastat kogemust",
-    "floating2Big": "ISO 9001",
+    "floating1Big": "Alates 2006",
+    "floating1Small": "kogemust",
+    "floating2Big": "ISO 9001 & 14001",
     "floating2Small": "sertifitseeritud",
-    "floating3Big": "Üle miljoni m²",
-    "floating3Small": "igapäevaselt",
+    "floating3Big": "Üle 1 000 000 m²",
+    "floating3Small": "meie hoolduses",
     "ariaLabel": "Avaleht"
   },
   "services": {
     "heading": "Miks Eesti suurettevõtted valivad SPS Grupi koristusfirmaks?",
-    "para1": "Koristusteenuse pakkuja valikul ei ole küsimus ainult hinnas. Enamik firmasid, kes meie poole pöörduvad, on varasemalt juba teenusepakkujat vahetanud, põhjuseks ebastabiilne kvaliteet, kehv kommunikatsioon või puuduv vastutus.",
-    "para2": "Hea teenus ei sõltu ainult koristajast. Oluline on süsteem: selge tööplaan, regulaarne kvaliteedikontroll ja kiire reageerimine olukordades, mis igapäevatöös paratamatult tekivad.",
-    "para3": "SPS Grupp on aastaid keskendunud just äriklientidele. Meie koristusteenus põhineb standardiseeritud protsessidel, koolitatud meeskonnal ja digitaalsel tööde jälgimisel.",
-    "para4": "Kui otsite partnerit, kes hoiab püsivat kvaliteeti läbi aastate, võtke meiega ühendust. Alustame vajaduste kaardistamisest ja läbipaistvast hinnapakkumisest."
+    "para1": "Pakume iga ettevõtte vajadustele kohandatud koristusteenust. Selge tööplaan, koolitatud meeskond ja regulaarne kvaliteedikontroll aitavad hoida teenuse stabiilsena.",
+    "para2": "Keskendume äriklientidele ning arvestame hoone kasutuse, ettevõtte töökorralduse ja objekti eripäraga.",
+    "para3": "Leiame sobiva lahenduse nii keskmistele kui ka suurettevõtetele.",
+    "para4": "Koostöö algab vajaduste kaardistamisest ja läbipaistvast hinnapakkumisest."
   },
   "trust": {
     "sectionTag": "SPS Grupp",
     "heading": "Õige koristusfirma on investeering, mitte kulu",
-    "description": "Üks meie klientidest ütles hiljuti, et kõige suurem muutus oli see, et ta ise ei pea enam koristuse pärast muretsema. Enne oli alati midagi valesti. Koristaja kas ei tulnud või ei suutnud oma töö kvaliteeti kontrollida. Nüüd toimib teenus märkamatult.",
-    "highlight1Title": "20 aastase ajalooga koristusfirma",
-    "highlight1Desc": "Koristusfirma SPS Grupp ajalugu sai alguse 2006 aastal. Tänaseks oleme kasvanud üheks Harjumaa juhtivaks kinnisvarahaldus ettevõtteks. Meil töötab üle 200 töötaja ning suudame leida optimaalse lahenduse nii suurtele, kui ka väga suurtele ettevõtetele.",
+    "description": "Hästi korraldatud koristusteenus toimib märkamatult: tööplaan on selge, kvaliteeti kontrollitakse regulaarselt ja puudused lahendatakse operatiivselt.",
+    "highlight1Title": "Kogemus alates 2006. aastast",
+    "highlight1Desc": "SPS Grupp alustas tegevust 2006. aastal. Meie meeskonnas on 300+ töötajat ning teenindame enam kui 200 klienti.",
     "highlight2Title": "Robootika ja AI kinnisvarahoolduses",
     "highlight2Desc": "Kiired arengud AI ja robootika vallas on toomas suuri muutusi ka kinnisvara hooldusesse. Juba täna kasutame autonoomseid seadmeid suuremate tootmishoonete puhastamiseks. Huvi sellise lähenemise vastu on väga suur.",
     "highlight2Cta": "Küsi lähemalt oma objekti kohta"
@@ -134,31 +134,31 @@
     "cta": "Küsi pakkumist",
     "items": [
       {
-        "q": "How often should business premises be cleaned?",
-        "a": "For most businesses we recommend cleaning 3ā€“5 times per week. The exact frequency depends on your business specifics, number of employees, and floor area. We'll help you find the optimal schedule during a free consultation."
+        "q": "Kui sageli tuleks äripindu koristada?",
+        "a": "Enamikule kontoritele soovitame koristust 3–5 korda nädalas. Täpne sagedus sõltub ruumide kasutusest, töötajate arvust ja pindalast. Sobiva graafiku paneme paika vajaduste kaardistamisel."
       },
       {
-        "q": "How is the cleaning price determined?",
-        "a": "The price depends on the size of the premises, cleaning frequency, and any special tasks required. We always provide a transparent quote where every component is clearly detailed. Start with a free cleaning cost audit."
+        "q": "Kuidas kujuneb koristusteenuse hind?",
+        "a": "Hind sõltub ruumide suurusest, koristussagedusest, töömahust ja objekti eripärast. Koostame läbipaistva hinnapakkumise pärast vajaduste hindamist."
       },
       {
-        "q": "Can you clean outside business hours?",
-        "a": "Yes, most of our cleaning takes place early in the morning (before 8:00), in the evening (after 18:00), or on weekends. We tailor the schedule precisely to your company's working hours."
+        "q": "Kas koristada saab väljaspool tööaega?",
+        "a": "Jah. Koristame sageli varahommikul, õhtul pärast kella 18.00 või nädalavahetusel. Graafik kohandatakse ettevõtte töökorraldusega."
       },
       {
-        "q": "How do you ensure confidentiality and security?",
-        "a": "Data is handled confidentially. We use a rigorous staff selection process."
+        "q": "Kuidas tagate konfidentsiaalsuse ja turvalisuse?",
+        "a": "Käsitleme kliendi andmeid konfidentsiaalselt ning kasutame töötajate valikul ja juhendamisel kindlaid protseduure."
       },
       {
-        "q": "Why choose SPS Grupp over another cleaning company?",
-        "a": "We have over 20 years of experience, ISO 9001 and 14001 environmental certifications, and our service is insured. We can handle cleaning of all types of surfaces."
+        "q": "Miks valida SPS Grupp?",
+        "a": "Tegutseme alates 2006. aastast, meil on ISO 9001 ja ISO 14001 sertifitseeritud juhtimissüsteemid, enam kui 300 töötajat ning üle 200 kliendi."
       }
     ]
   },
   "contactForm": {
     "sectionTag": "Küsi pakkumist",
-    "heading": "Aitame leida optimaalse lahenduse teie koristusvajadustele",
-    "subtitle": "Täitke vorm ja meie spetsialist võtab teiega ühendust 24 tunni jooksul.",
+    "heading": "Aitame leida sobiva lahenduse teie koristusvajadustele",
+    "subtitle": "Täitke vorm ja võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
     "nameLabel": "Nimi *",
     "namePlaceholder": "Teie nimi",
     "emailLabel": "E-mail *",
@@ -175,13 +175,15 @@
     "privacyLink": "andmekaitsetingimustega",
     "submitButton": "Saada päring",
     "submitting": "Saadan...",
-    "successMessage": "Täname! Teie päring on saadetud. Võtame ühendust 24 tunni jooksul.",
-    "footerNote": "Andmed edastatakse krüpteeritult. Vastame üldjuhul 24 tunni jooksul."
+    "successMessage": "Täname! Teie päring on saadetud. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
+    "footerNote": "Andmed edastatakse krüpteeritult. Vastame üldjuhul ühe tööpäeva jooksul."
   },
   "careerForm": {
     "sectionTag": "Karjäär",
     "heading": "Registreeru proovipäevale",
-    "subtitle": "Täida allolev vorm ja me võtame sinuga ühendust proovipäeva kokkuleppimiseks.",
+    "subtitle": "Täida allolev vorm ja võtame sinuga ühendust, et leppida kokku proovipäev.",
+    "nameLabel": "Nimi *",
+    "namePlaceholder": "Sinu nimi",
     "emailLabel": "E-mail *",
     "emailPlaceholder": "sinu@email.ee",
     "phoneLabel": "Telefon *",
@@ -194,9 +196,9 @@
     "workloadFull": "Täistööaeg",
     "workloadPart": "Osaline tööaeg",
     "workTimeLabel": "Sobiv tööaeg",
-    "workTimeDay": "Päevane tööaeg (8-17)",
-    "workTimeEvening": "Õhtune tööaeg (16-00)",
-    "workTimeNight": "Öine tööaeg (22-06)",
+    "workTimeDay": "Päevane tööaeg kell 8.00–17.00",
+    "workTimeEvening": "Õhtune tööaeg kell 16.00–00.00",
+    "workTimeNight": "Öine tööaeg kell 22.00–6.00",
     "workTimeAny": "Sobivad kõik tööajad",
     "infoLabel": "Lisainfo",
     "infoPlaceholder": "Täiendav info...",
@@ -210,7 +212,7 @@
   },
   "footerCta": {
     "title": "Kas olete valmis koristuse korda panema?",
-    "description": "Võtke meiega ühendust ja saage tasuta pakkumine 24 tunni jooksul. Meie spetsialistid aitavad teil leida parima lahenduse.",
+    "description": "Võtke meiega ühendust. Vastame päringule üldjuhul ühe tööpäeva jooksul ning pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest.",
     "cta": "Küsi tasuta pakkumist"
   },
   "footer": {
@@ -266,27 +268,27 @@
     },
     "faq": {
       "q0": "How often should business premises be cleaned?",
-      "a0": "For most offices we recommend 3ā€“5 times per week. Retail spaces need daily cleaning, industrial facilities depend on the production process. Public areas and sanitary facilities need daily maintenance. The exact schedule is created during a free consultation.",
+      "a0": "For most offices we recommend 3–5 times per week. Retail spaces need daily cleaning, industrial facilities depend on the production process. Public areas and sanitary facilities need daily maintenance. The exact schedule is created during a free consultation.",
       "q1": "How quickly can regular cleaning service begin?",
-      "a1": "Usually within 3ā€“5 business days after signing the contract. For urgent orders we can start even sooner. Post-event operational cleaning is often possible even on the same day.",
+      "a1": "Tööde algusaeg lepitakse kokku pärast mahu, graafiku ja meeskonna saadavuse hindamist.",
       "q2": "Does cleaning take place during or outside business hours?",
-      "a2": "Most companies prefer cleaning outside business hours ā€” either early morning before 8:00 or evenings after 18:00. We adapt the schedule to your working hours so cleaning does not disturb daily operations. For retail spaces we also provide daytime cleaning during low-traffic periods.",
+      "a2": "Most companies prefer cleaning outside business hours — either early morning before 8:00 or evenings after 18:00. We adapt the schedule to your working hours so cleaning does not disturb daily operations. For retail spaces we also provide daytime cleaning during low-traffic periods.",
       "q3": "What happens if the cleaning quality does not meet expectations?",
-      "a3": "Each site has a site manager responsible for quality. If anything does not meet the standard, we respond within 24 hours and resolve the situation. Services are insured ā€” potential damages are compensated.",
+      "a3": "Each site has a site manager responsible for quality. If anything does not meet the standard, we review the issue and agree on the next steps. Services are insured — potential damages are compensated.",
       "q4": "Do you use environmentally friendly cleaning products?",
       "a4": "We prefer certified and lower environmental impact cleaning products wherever the surface and safety requirements allow. We follow ISO 14001 environmental management system requirements."
     },
     "hero": {
       "ariaLabel": "Cleaning Services",
-      "chip1Title": "Over one million mĀ²",
+      "chip1Title": "Over one million m²",
       "chip1Sub": "every day",
       "chip2Title": "ISO 9001 & 14001",
       "chip2Sub": "certified",
-      "chip3Title": "200+ trained",
+      "chip3Title": "300+ trained",
       "chip3Sub": "employees",
       "h1Line1": "Regular cleaning services for business premises",
       "h1Line2": "in Tallinn and Harjumaa",
-      "description": "Daily maintenance for offices, retail spaces and industrial facilities. Flexible scheduling, trained staff and quality control. Price starting from <strong>ā‚¬1.2/mĀ²</strong>.",
+      "description": "Daily maintenance for offices, retail spaces and industrial facilities. Flexible scheduling, trained staff and quality control. Price starting from <strong>€1.2/m²</strong>.",
       "ctaButton": "Request a free cleaning service quote",
       "breadcrumbHome": "Home",
       "breadcrumbServices": "Services",
@@ -318,7 +320,7 @@
       "item6Title": "Sanitary Facility Disinfection",
       "item6Desc": "including supply replenishment",
       "item7Title": "Flexible Scheduling",
-      "item7Desc": "daily, 2ā€“5x per week or at desired frequency"
+      "item7Desc": "daily, 2–5x per week or at desired frequency"
     },
     "whyUs": {
       "tag": "Why Us",
@@ -330,34 +332,22 @@
       "reason2Title": "ISO 14001 Environmental Management",
       "reason2Desc": "We prefer certified and lower environmental impact cleaning products wherever the surface and safety requirements allow. We follow the ISO 14001 standard.",
       "reason3Title": "Flexibility and Quick Response",
-      "reason3Desc": "Post-event cleaning, emergencies, changing schedules ā€” we adapt to your business pace, not the other way around."
+      "reason3Desc": "Post-event cleaning, emergencies, changing schedules — we adapt to your business pace, not the other way around."
     },
     "pricing": {
       "tag": "Pricing",
       "heading": "How is the cleaning service price determined?",
-      "description": "The cleaning service price depends on four factors: floor area (ā‚¬/mĀ²), cleaning frequency (2ā€“5x per week), special task requirements, and property type.",
-      "item0Size": "Small Office",
-      "item0Area": "100ā€“200mĀ²",
-      "item0Price": "ā‚¬250",
-      "item0Period": "/month",
-      "item1Size": "Medium Office",
-      "item1Area": "200ā€“500mĀ²",
-      "item1Price": "ā‚¬450",
-      "item1Period": "/month",
-      "item2Size": "Large Space",
-      "item2Area": "500mĀ²+",
-      "item2Price": "Custom",
-      "item2Period": "quote",
-      "note": "Regular maintenance cleaning starts at <strong>ā‚¬1.2/mĀ²</strong>, deep cleaning at <strong>ā‚¬1.5/mĀ²</strong>"
+      "description": "The cleaning service price depends on four factors: floor area (€/m²), cleaning frequency (2–5x per week), special task requirements, and property type.",
+      "note": "Teenindame äripindu alates <strong>800 m²</strong>. Kõik näidishinnad arvutatakse ühe valemiga: pindala × 1,20 €/m² kuus."
     },
     "footerCta": {
       "title": "Order a free cleaning service assessment",
-      "description": "We will come to your location, inspect your business premises, and create a personalized cleaning plan with pricing. You will receive a response within 24 hours. The site inspection is free and carries no obligation."
+      "description": "We will come to your location, inspect your business premises, and create a personalized cleaning plan with pricing. You will receive a response after assessing the scope. The site inspection is free and carries no obligation."
     }
   },
   "kontakt": {
     "seo": {
-      "companyName": "SPS Grupp OĆ",
+      "companyName": "SPS Grupp OÜ",
       "companyDesc": "Professional cleaning and renovation service partner in Tallinn and Harjumaa",
       "breadcrumbHome": "Home",
       "breadcrumbContact": "Contact",
@@ -370,7 +360,7 @@
       "btnQuote": "Request a quote",
       "breadcrumbHome": "Home",
       "breadcrumbContact": "Contact",
-      "companyName": "SPS Grupp OĆ",
+      "companyName": "SPS Grupp OÜ",
       "chip1": "Phone",
       "chip2": "Mobile",
       "chip3": "E-mail",
@@ -380,13 +370,13 @@
       "tag": "Why us",
       "heading": "Why choose SPS Grupp?",
       "reason1Title": "Fast response",
-      "reason1Desc": "We respond to inquiries on business days usually within a few hours. For urgent issues, we find a solution as quickly as possible and if needed arrange a site inspection on the same day.",
+      "reason1Desc": "Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest.",
       "reason2Title": "Personalized solutions",
       "reason2Desc": "Every property and client is different. We create cleaning and maintenance solutions according to building size, usage load, workflow, and budget.",
       "reason3Title": "Experienced team",
       "reason3Desc": "We have served office buildings, housing associations, commercial premises, and industrial sites across Tallinn and Harjumaa. Our team uses professional techniques and high-quality cleaning products.",
       "reason4Title": "All services from one source",
-      "reason4Desc": "We offer regular cleaning, deep cleaning, technical maintenance, specialized cleaning, and renovation work ā€” one reliable partner for all property maintenance."
+      "reason4Desc": "We offer regular cleaning, deep cleaning, technical maintenance, specialized cleaning, and renovation work — one reliable partner for all property maintenance."
     },
     "services": {
       "tag": "Our services",
@@ -417,14 +407,14 @@
       "item4": "Harku Parish",
       "item5": "Saue Parish",
       "item6": "Peetri",
-      "item7": "JĆ¼ri",
+      "item7": "Jüriri",
       "item8": "Tabasalu",
       "mapAlt": "Map of Estonia",
       "desc2": "For larger properties and special solutions, we serve clients across Estonia by agreement."
     },
     "faq": {
       "q0": "How much does office cleaning cost?",
-      "a0": "The regular cleaning of an average office in Tallinn depends on the property size, cleaning frequency, and workload. For example, maintenance cleaning for an office of approximately 400mĀ² typically falls in the range of ā‚¬350ā€“500 per month.",
+      "a0": "Regulaarse hoolduskoristuse näidishind algab 1,20 €/m² kuus. Teenindame äripindu alates 800 m², mille näidishind on alates 960 € kuus. Täpne hind sõltub koristussagedusest, töömahust ja objekti eripärast.",
       "q1": "How quickly can I get a quote?",
       "a1": "We usually send an initial estimate on the same business day. For larger properties, we arrange a site inspection before preparing a quote.",
       "q2": "Do you also offer one-off cleaning?",
@@ -445,7 +435,7 @@
   },
   "spsGrupp": {
     "seo": {
-      "serviceName": "SPS Grupp ā€“ cleaning and renovation services",
+      "serviceName": "SPS Grupp – cleaning and renovation services",
       "serviceDescription": "SPS Grupp is a reliable partner for cleaning, renovation, and maintenance services for business clients in Tallinn and Harjumaa since 2006."
     },
     "breadcrumb": {
@@ -459,12 +449,12 @@
       "chip3Label": "employees",
       "title": "SPS Grupp",
       "subtitle": "Increasing Property Value",
-      "description": "SPS Grupp OĆ is a company founded in 2006 that provides maintenance cleaning and sanitation services.",
+      "description": "SPS Grupp OÜ is a company founded in 2006 that provides maintenance cleaning and sanitation services.",
       "cta": "Request a quote"
     },
     "about": {
       "heading": "Full-service cleaning company partner",
-      "paragraph1Bold": "Cleaning company SPS Grupp OĆ offers a complete cleaning services package.",
+      "paragraph1Bold": "Cleaning company SPS Grupp OÜ offers a complete cleaning services package.",
       "paragraph1": "From us you will find all services for property maintenance and renovation. In cooperation with partners, we also offer doormat replacement, waste collection, and snow removal services.",
       "paragraph2Bold": "Our goal is to provide high-quality, customer-friendly, and flexible cleaning services at a competitive price.",
       "paragraph2": "Since 2006, we have served hundreds of companies in Tallinn and Harjumaa."
@@ -472,13 +462,13 @@
     "standards": {
       "tag": "Standards",
       "heading": "High Standards",
-      "intro": "SPS Grupp OĆ has the experience, resources, and dedication required to deliver quality services. Our advantages include:",
+      "intro": "SPS Grupp OÜ has the experience, resources, and dedication required to deliver quality services. Our advantages include:",
       "item1Title": "Service quality management system",
       "item1Desc": "systematic approach to quality",
       "item2Title": "Proven and reliable maintenance cost estimation",
       "item2Desc": "precise and transparent",
       "item3Title": "Standard calculations for each work type",
-      "item3Desc": "e.g. EUR/mĀ² or EUR/h",
+      "item3Desc": "e.g. EUR/m² or EUR/h",
       "item4Title": "Operational efficiency and quick response",
       "item5Title": "Uniform attire and professional appearance",
       "item6Title": "Always clean and well-maintained vehicles with SPS Grupp colors and logo",
@@ -494,7 +484,7 @@
       "leftTitle": "Customer satisfaction and continuous feedback",
       "leftContent": "Customer satisfaction is our priority. We collect regular feedback through surveys, analyze the results, and implement necessary improvements. When issues arise, we apply established procedures to resolve them quickly and systematically. Our goal is to learn from every situation and always offer a better service.",
       "rightTitle": "Our strength is our people",
-      "rightContent": "Every employee of SPS Grupp OĆ is responsible for ensuring quality and environmentally friendly operations. We value employee competence, provide training, and involve them in quality and environmental management. Every new employee receives thorough onboarding and continuous support. We also ensure that our infrastructure ā€” from tools to software ā€” is up-to-date and functional. A safe and supportive work environment is a given for us."
+      "rightContent": "Every employee of SPS Grupp OÜ is responsible for ensuring quality and environmentally friendly operations. We value employee competence, provide training, and involve them in quality and environmental management. Every new employee receives thorough onboarding and continuous support. We also ensure that our infrastructure — from tools to software — is up-to-date and functional. A safe and supportive work environment is a given for us."
     },
     "certificates": {
       "tag": "Certificates",
@@ -502,31 +492,31 @@
       "paragraph1": "SPS Grupp operates on the principle that all company activities should be carried out according to a clear plan. We follow best practices, standards, and environmental legislation and administrative acts.",
       "paragraph2": "SPS Grupp aims to be customer-centric, streamline internal processes, reduce negative environmental impacts from our operations, and continuously improve and enhance our management system.",
       "paragraph3Bold": "ISO certificates are a mark of our quality.",
-      "paragraph3": "SPS Grupp is one of the few Estonian companies in the cleaning sector operating according to the rules of the international quality and environmental standards ISO 9001:2015 and ISO 14001:2015. We give a guarantee on our cleaning services. Our operations are insured.",
+      "paragraph3": "SPS Grupp tegutseb ISO 9001:2015 kvaliteedijuhtimise ja ISO 14001:2015 keskkonnajuhtimise standardite alusel. Meie tegevus on kaetud vastutuskindlustusega vastavalt kindlustuslepingu tingimustele.",
       "imageAlt": "ISO 9001:2015 and ISO 14001:2015 certificates"
     },
     "emergency": {
       "tag": "Readiness",
       "heading": "Work execution and emergency preparedness",
       "leftTitle": "Emergency preparedness",
-      "leftContent": "SPS Grupp OĆ has identified potential emergencies and their possible consequences; has analyzed emergency prevention and mitigation options, and developed action guidelines according to the Environmental Management Procedure.",
+      "leftContent": "SPS Grupp OÜ has identified potential emergencies and their possible consequences; has analyzed emergency prevention and mitigation options, and developed action guidelines according to the Environmental Management Procedure.",
       "rightTitle": "Environmental and other requirements",
-      "rightContent": "SPS Grupp OĆ has identified the environmental and other requirements applicable to its operations and regularly reviews them according to the Internal Audit Procedure. We follow the standards set out in EVS 914, published by the Estonian Centre for Standardisation in 2011."
+      "rightContent": "SPS Grupp OÜ has identified the environmental and other requirements applicable to its operations and regularly reviews them according to the Internal Audit Procedure. We follow the standards set out in EVS 914, published by the Estonian Centre for Standardisation in 2011."
     },
     "stats": {
       "tag": "SPS Grupp in Numbers",
       "heading": "20+ years serving Estonian companies",
       "stat1Label": "employees",
-      "stat2Label": "mĀ² every day",
+      "stat2Label": "m² every day",
       "stat3Label": "certified quality management"
     },
     "cta": {
       "title": "Take your company's exterior appearance to the next level!",
-      "description": "FREE consultation ā€“ Personal building assessment ā€“ Expert opinion within 30 minutes. Contact us: by phone at +372 662 3328 or by e-mail at info@spsgrupp.ee"
+      "description": "Esmane konsultatsioon ja vajaduste kaardistamine. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Telefon +372 662 3328, e-post info@spsgrupp.ee."
     },
     "faq": {
-      "q1": "What is SPS Grupp OĆ?",
-      "a1": "SPS Grupp OĆ is a company founded in 2006 that provides property maintenance cleaning and sanitation services. Our goal is to provide high-quality, customer-friendly, and flexible service at a competitive price.",
+      "q1": "What is SPS Grupp OÜ?",
+      "a1": "SPS Grupp OÜ is a company founded in 2006 that provides property maintenance cleaning and sanitation services. Our goal is to provide high-quality, customer-friendly, and flexible service at a competitive price.",
       "q2": "What services does SPS Grupp provide?",
       "a2": "We offer a complete cleaning services package for property maintenance and renovation. In cooperation with partners, we also offer doormat replacement, waste collection, and snow removal services.",
       "q3": "What makes SPS Grupp different from other cleaning companies?",
@@ -538,11 +528,11 @@
       "q6": "How do you ensure the quality of your services?",
       "a6": "Our quality is ensured by: a service quality management system, experienced employees and their continuous training, reliable maintenance cost estimation, compliance with Standard EVS 914, ISO 9001:2015 and ISO 14001:2015 certificates, and continuous collection and analysis of client feedback.",
       "q7": "How are your service prices determined?",
-      "a7": "Our prices are based on standard maintenance work calculations (e.g. EUR/mĀ² or EUR/h). Prices are customer-friendly and competitive.",
+      "a7": "Our prices are based on standard maintenance work calculations (e.g. EUR/m² or EUR/h). Prices are customer-friendly and competitive.",
       "q8": "How can I get a quote?",
       "a8": "To get a quote, you can contact us by phone at +372 662 3328 or by e-mail at info@spsgrupp.ee. You can also fill out the contact form on our website.",
       "q9": "Do you offer a free consultation?",
-      "a9": "Yes, we offer a free consultation and personal building assessment. We provide an expert opinion within 30 minutes.",
+      "a9": "Jah. Pakume esmast konsultatsiooni ja vajaduste kaardistamist. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
       "q10": "What approach does SPS Grupp take towards the environment?",
       "a10": "Environmental sustainability is an important priority for us. We hold the ISO 14001:2015 environmental management system certificate and continuously strive to reduce negative environmental impacts from our operations.",
       "q11": "Do you use environmentally friendly cleaning products?",
@@ -619,23 +609,11 @@
       "tag": "Pricing",
       "heading": "Transparent office cleaning pricing",
       "description": "Office cleaning costs depend on floor area, cleaning frequency, and any special requirements. Below are indicative price ranges for regular maintenance cleaning.",
-      "item0Size": "Small Office",
-      "item0Area": "100–200m²",
-      "item0Price": "€250",
-      "item0Period": "/month",
-      "item1Size": "Medium Office",
-      "item1Area": "200–500m²",
-      "item1Price": "€450",
-      "item1Period": "/month",
-      "item2Size": "Large Office",
-      "item2Area": "500m²+",
-      "item2Price": "Custom",
-      "item2Period": "quote",
-      "note": "Regular office maintenance starts at <strong>€1.2/m²</strong>. Deep cleaning packages available from <strong>€1.5/m²</strong>."
+      "note": "Teenindame äripindu alates <strong>800 m²</strong>. Kõik näidishinnad arvutatakse ühe valemiga: pindala × 1,20 €/m² kuus."
     },
     "footerCta": {
       "title": "Ready to come to a clean office every morning?",
-      "description": "Request a free site assessment. We'll visit your office, evaluate your needs and provide a fixed-price quote within 24 hours — no obligation."
+      "description": "Request a free site assessment. We'll visit your office, evaluate your needs and provide a fixed-price quote after assessing the scope — no obligation."
     },
     "faq": {
       "q0": "How often should an office be cleaned?",
@@ -645,7 +623,7 @@
       "q2": "How do you handle confidential documents?",
       "a2": "All staff sign non-disclosure agreements. We have a strict policy: documents on desks are never moved or read. Cleaning is performed around, not through, sensitive materials.",
       "q3": "What if something is missed or not cleaned properly?",
-      "a3": "Your dedicated site manager conducts regular quality audits. If anything falls below standard, we resolve it within 24 hours. Our service is fully insured.",
+      "a3": "Your dedicated site manager conducts regular quality audits. If anything falls below standard, we review the issue and agree on the next steps. Our service is fully insured.",
       "q4": "Do you provide cleaning supplies and equipment?",
       "a4": "Yes, we bring all professional cleaning products and equipment. We use certified, low-environmental-impact products wherever possible, compliant with ISO 14001."
     }
@@ -713,23 +691,11 @@
       "tag": "Pricing",
       "heading": "Commercial cleaning pricing",
       "description": "Pricing is based on floor area, footfall intensity, required cleaning frequency and any special surface care needs. We provide a tailored quote after a site visit.",
-      "item0Size": "Small Shop",
-      "item0Area": "50–150m²",
-      "item0Price": "€200",
-      "item0Period": "/month",
-      "item1Size": "Medium Retail",
-      "item1Area": "150–400m²",
-      "item1Price": "€400",
-      "item1Period": "/month",
-      "item2Size": "Large Store",
-      "item2Area": "400m²+",
-      "item2Price": "Custom",
-      "item2Period": "quote",
-      "note": "Daily retail maintenance starts from <strong>€1.3/m²</strong>. Includes daytime spot cleaning and end-of-day deep clean."
+      "note": "Teenindame äripindu alates <strong>800 m²</strong>. Kõik näidishinnad arvutatakse ühe valemiga: pindala × 1,20 €/m² kuus."
     },
     "footerCta": {
       "title": "Let your store make the right first impression every time",
-      "description": "Get a free assessment of your retail space. We'll create a cleaning plan that works around your trading hours — quote within 24 hours."
+      "description": "Get a free assessment of your retail space. We'll create a cleaning plan that works around your trading hours — quote after assessing the scope."
     },
     "faq": {
       "q0": "Can you clean during opening hours?",
@@ -807,23 +773,11 @@
       "tag": "Pricing",
       "heading": "Industrial cleaning pricing",
       "description": "Industrial cleaning costs depend on facility size, cleaning complexity, frequency and any specialist requirements. We provide a detailed quote after a thorough site assessment.",
-      "item0Size": "Small Facility",
-      "item0Area": "up to 500m²",
-      "item0Price": "€550",
-      "item0Period": "/month",
-      "item1Size": "Medium Facility",
-      "item1Area": "500–2000m²",
-      "item1Price": "€900",
-      "item1Period": "/month",
-      "item2Size": "Large Complex",
-      "item2Area": "2000m²+",
-      "item2Price": "Custom",
-      "item2Period": "quote",
-      "note": "Industrial cleaning starts from <strong>€0.9/m²</strong>. Robotic cleaning options available for very large facilities."
+      "note": "Teenindame äripindu alates <strong>800 m²</strong>. Kõik näidishinnad arvutatakse ühe valemiga: pindala × 1,20 €/m² kuus."
     },
     "footerCta": {
       "title": "Keep your facility safe, compliant and productive",
-      "description": "Request a free industrial site assessment. We'll evaluate your cleaning needs and deliver a detailed plan with pricing within 24 hours."
+      "description": "Request a free industrial site assessment. We'll evaluate your cleaning needs and deliver a detailed plan with pricing after assessing the scope."
     },
     "faq": {
       "q0": "Can you clean while production is running?",
@@ -901,23 +855,11 @@
       "tag": "Pricing",
       "heading": "School cleaning pricing",
       "description": "School cleaning costs depend on building size, pupil numbers, cleaning frequency and any special requirements. We provide a transparent quote after a site survey.",
-      "item0Size": "Small School",
-      "item0Area": "up to 1000m²",
-      "item0Price": "€600",
-      "item0Period": "/month",
-      "item1Size": "Medium School",
-      "item1Area": "1000–3000m²",
-      "item1Price": "€1100",
-      "item1Period": "/month",
-      "item2Size": "Large Campus",
-      "item2Area": "3000m²+",
-      "item2Price": "Custom",
-      "item2Period": "quote",
-      "note": "Daily school maintenance starts from <strong>€0.8/m²</strong>. Holiday deep cleaning packages available separately."
+      "note": "Teenindame äripindu alates <strong>800 m²</strong>. Kõik näidishinnad arvutatakse ühe valemiga: pindala × 1,20 €/m² kuus."
     },
     "footerCta": {
       "title": "Give your pupils and staff a cleaner, healthier environment",
-      "description": "Request a free school cleaning assessment. We'll visit your site, evaluate your requirements and deliver a tailored plan with pricing within 24 hours."
+      "description": "Request a free school cleaning assessment. We'll visit your site, evaluate your requirements and deliver a tailored plan with pricing after assessing the scope."
     },
     "faq": {
       "q0": "Can you clean during school hours?",
@@ -977,7 +919,7 @@
     },
     "footerCta": {
       "title": "Let the light in — get a window cleaning quote today",
-      "description": "Request a free window cleaning assessment. We'll survey your building and provide a fixed price within 24 hours."
+      "description": "Request a free window cleaning assessment. We'll survey your building and provide a fixed price after assessing the scope."
     }
   },
   "fassaadipesu": {
@@ -1025,7 +967,7 @@
     },
     "footerCta": {
       "title": "Restore your building's kerb appeal",
-      "description": "Request a free facade inspection and cleaning quote. We'll assess your building and provide a detailed proposal within 24 hours."
+      "description": "Request a free facade inspection and cleaning quote. We'll assess your building and provide a detailed proposal after assessing the scope."
     }
   },
   "grafitiEemaldamine": {
@@ -1360,8 +1302,8 @@
       "reason1Desc": "Specialist cleaning tasks require specific training — from chemical handling to working at height. Our teams are certified for the work they perform.",
       "reason2Title": "All Services, One Partner",
       "reason2Desc": "No need to coordinate multiple contractors. We handle regular cleaning, specialist tasks and outdoor maintenance under one contract.",
-      "reason3Title": "Insurance and Guarantee",
-      "reason3Desc": "All specialist cleaning work is fully insured. We stand behind our results with a service guarantee — if it's not right, we fix it."
+      "reason3Title": "Tulemuse kontroll",
+      "reason3Desc": "Kui tulemus ei vasta kokkulepitud kvaliteedinõuetele, vaatame töö üle ja kõrvaldame põhjendatud puudused."
     },
     "footerCta": {
       "title": "One partner for every cleaning challenge your property faces",
@@ -1433,7 +1375,7 @@
     },
     "footerCta": {
       "title": "Get your project handover-ready on schedule",
-      "description": "Request a free post-construction cleaning quote. We'll visit your site, assess the scope and provide a fixed price within 24 hours."
+      "description": "Request a free post-construction cleaning quote. We'll visit your site, assess the scope and provide a fixed price after assessing the scope."
     }
   },
   "desinfitseerimine": {
@@ -1529,7 +1471,7 @@
     },
     "footerCta": {
       "title": "Keep your escalators clean, safe and welcoming",
-      "description": "Request a free escalator cleaning assessment. We'll survey your units and provide a scheduled maintenance quote within 24 hours."
+      "description": "Request a free escalator cleaning assessment. We'll survey your units and provide a scheduled maintenance quote after assessing the scope."
     }
   },
   "porandateHooldus": {
@@ -1577,7 +1519,7 @@
     },
     "footerCta": {
       "title": "Give your floors the professional care they deserve",
-      "description": "Request a free floor assessment. We'll inspect your surfaces, recommend the right treatment and provide a fixed-price quote within 24 hours."
+      "description": "Request a free floor assessment. We'll inspect your surfaces, recommend the right treatment and provide a fixed-price quote after assessing the scope."
     }
   },
   "suitsuJaTulekahjustustePuhastamine": {
@@ -1625,7 +1567,7 @@
     },
     "footerCta": {
       "title": "Fire damage? Call us now for immediate help",
-      "description": "24/7 emergency response for fire and smoke damage in Tallinn and Harjumaa. Call +372 662 3328 or request a callback online."
+      "description": "Suitsu- ja tulekahjustuste puhastamine Tallinnas ja Harjumaal. Kiireloomulise juhtumi puhul hindame reageerimisvõimalust asukoha, kahjustuste mahu ja meeskonna saadavuse järgi."
     }
   },
   "vaipadePuhastus": {
@@ -1673,7 +1615,7 @@
     },
     "footerCta": {
       "title": "Extend your carpet life and improve your indoor environment",
-      "description": "Request a free carpet cleaning assessment. We'll survey your floor coverings and provide a fixed-price quote within 24 hours."
+      "description": "Request a free carpet cleaning assessment. We'll survey your floor coverings and provide a fixed-price quote after assessing the scope."
     }
   },
   "remonditeenusedTallinnas": {
@@ -1725,7 +1667,7 @@
     },
     "footerCta": {
       "title": "One partner for all your property renovation needs",
-      "description": "Request a free renovation consultation. We'll assess your property, discuss your requirements and provide a detailed quote within 24 hours."
+      "description": "Request a free renovation consultation. We'll assess your property, discuss your requirements and provide a detailed quote after assessing the scope."
     }
   },
   "elektritood": {
@@ -1740,7 +1682,7 @@
       "ariaLabel": "Electrical Work",
       "h1Line1": "Electrical Work",
       "h1Line2": "commercial and residential",
-      "description": "Qualified electricians for installation, repair and maintenance. Lighting, power, switchboards, fault finding and electrical certification — safe, compliant work guaranteed.",
+      "description": "Äripindade elektripaigaldiste remont ja hooldus. Tööde maht, vajalik pädevus ning dokumentatsioon lepitakse kokku enne töö algust.",
       "ctaButton": "Request an electrical work quote"
     },
     "services": {
@@ -1773,7 +1715,7 @@
     },
     "footerCta": {
       "title": "Safe, compliant electrical work — on time and on budget",
-      "description": "Request a free electrical work quote. We'll assess your requirements and provide a detailed proposal within 24 hours."
+      "description": "Request a free electrical work quote. We'll assess your requirements and provide a detailed proposal after assessing the scope."
     }
   },
   "torutood": {
@@ -1821,7 +1763,7 @@
     },
     "footerCta": {
       "title": "Reliable plumbing — from a dripping tap to a full system install",
-      "description": "Request a free plumbing quote. We'll assess the work and provide a transparent, fixed-price proposal within 24 hours."
+      "description": "Request a free plumbing quote. We'll assess the work and provide a transparent, fixed-price proposal after assessing the scope."
     }
   },
   "siseviimistlustood": {
@@ -1869,7 +1811,7 @@
     },
     "footerCta": {
       "title": "Transform your interior spaces with professional finishing",
-      "description": "Request a free interior finishing quote. We'll visit your property, discuss finishes and provide a detailed proposal within 24 hours."
+      "description": "Request a free interior finishing quote. We'll visit your property, discuss finishes and provide a detailed proposal after assessing the scope."
     }
   },
   "sanitaarremontJaUmberehitus": {
@@ -1917,7 +1859,7 @@
     },
     "footerCta": {
       "title": "Ready to transform your bathrooms?",
-      "description": "Request a free bathroom renovation consultation. We'll survey your existing facilities and provide a detailed design and quote within 24 hours."
+      "description": "Request a free bathroom renovation consultation. We'll survey your existing facilities and provide a detailed design and quote after assessing the scope."
     }
   },
   "ventilatsioonideEhitusJaHooldus": {
@@ -2013,7 +1955,7 @@
     },
     "footerCta": {
       "title": "Beautiful, durable tiling that lasts for decades",
-      "description": "Request a free tiling assessment. We'll measure your space, discuss tile options and provide a detailed quote within 24 hours."
+      "description": "Request a free tiling assessment. We'll measure your space, discuss tile options and provide a detailed quote after assessing the scope."
     }
   },
   "katuseRemont": {
@@ -2061,7 +2003,7 @@
     },
     "footerCta": {
       "title": "Don't let a small leak become a big problem",
-      "description": "Request a free roof inspection and repair quote. We'll assess the damage and provide a fixed-price proposal within 24 hours."
+      "description": "Request a free roof inspection and repair quote. We'll assess the damage and provide a fixed-price proposal after assessing the scope."
     }
   },
   "lammutustood": {
@@ -2109,7 +2051,7 @@
     },
     "footerCta": {
       "title": "Ready to clear the way for your renovation?",
-      "description": "Request a free demolition assessment. We'll survey the space, discuss your scope and provide a detailed quote within 24 hours."
+      "description": "Request a free demolition assessment. We'll survey the space, discuss your scope and provide a detailed quote after assessing the scope."
     }
   },
   "valikoristus": {

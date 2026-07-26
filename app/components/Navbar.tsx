@@ -18,6 +18,10 @@ export default function Navbar() {
       : 'et'
 
   function switchLanguage(newLocale: Locale) {
+    if (currentEtPath === "/blog" || currentEtPath.startsWith("/blog/")) {
+      router.push(localizePath("/", newLocale))
+      return
+    }
     router.push(localizePath(currentEtPath, newLocale))
   }
 
@@ -63,12 +67,12 @@ export default function Navbar() {
           },
           {
             title: t('megaMenu.outdoorCleaning'),
-            href: "/valikoristus",
+            href: "/koristusteenus/valikoristus",
             items: [
-              { label: t('megaMenu.lawnMowing'), href: "/valikoristus/muruniitmine" },
-              { label: t('megaMenu.leafRemoval'), href: "/valikoristus/lehtedekoristamine" },
-              { label: t('megaMenu.janitorService'), href: "/valikoristus/kojameheteenus" },
-              { label: t('megaMenu.snowRemoval'), href: "/valikoristus/lumekoristus" },
+              { label: t('megaMenu.lawnMowing'), href: "/koristusteenus/valikoristus/muruniitmine" },
+              { label: t('megaMenu.leafRemoval'), href: "/koristusteenus/valikoristus/lehtedekoristamine" },
+              { label: t('megaMenu.janitorService'), href: "/koristusteenus/valikoristus/kojameheteenus" },
+              { label: t('megaMenu.snowRemoval'), href: "/koristusteenus/valikoristus/lumekoristus" },
             ],
           },
         ],
@@ -81,7 +85,7 @@ export default function Navbar() {
             title: t('megaMenu.specialCleaning'),
             href: "/puhastusteenused",
             items: [
-              { label: t('megaMenu.windowCleaning'), href: "/valikoristus/akende-pesu" },
+              { label: t('megaMenu.windowCleaning'), href: "/koristusteenus/valikoristus/akende-pesu" },
               { label: t('megaMenu.carpetCleaning'), href: "/puhastusteenused/vaipade-puhastus" },
               { label: t('megaMenu.floorMaintenance'), href: "/puhastusteenused/porandate-hooldus" },
               { label: t('megaMenu.constructionWaste'), href: "/ehitusprahi-aravedu" },
@@ -89,9 +93,9 @@ export default function Navbar() {
               { label: t('megaMenu.fireDamageCleaning'), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
               { label: t('megaMenu.escalatorDeepCleaning'), href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
               { label: t('megaMenu.disinfection'), href: "/puhastusteenused/koroonaviiruse-jargne-puhastus" },
-              { label: t('megaMenu.pavingCleaning'), href: "/valikoristus/tanavakivide-pesu-ja-hooldus" },
-              { label: t('megaMenu.graffitiRemoval'), href: "/valikoristus/grafiti-eemaldamine" },
-              { label: t('megaMenu.facadeCleaning'), href: "/valikoristus/fassaadipesu" },
+              { label: t('megaMenu.pavingCleaning'), href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus" },
+              { label: t('megaMenu.graffitiRemoval'), href: "/koristusteenus/valikoristus/grafiti-eemaldamine" },
+              { label: t('megaMenu.facadeCleaning'), href: "/koristusteenus/valikoristus/fassaadipesu" },
             ],
           },
         ],
@@ -101,7 +105,7 @@ export default function Navbar() {
         href: "/remonditeenused-tallinnas",
         items: [
           { label: t('megaMenu.electricalWork'), href: "/remonditeenused-tallinnas/elektritood/" },
-          { label: t('megaMenu.plumbing'), href: "/remonditeenused-tallinnas/torutood-2/" },
+          { label: t('megaMenu.plumbing'), href: "/remonditeenused-tallinnas/torutood" },
           { label: t('megaMenu.interiorFinishing'), href: "/remonditeenused-tallinnas/siseviimistlustood/" },
           { label: t('megaMenu.bathroomRenovation'), href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/" },
           { label: t('megaMenu.ventilation'), href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/" },
@@ -113,7 +117,7 @@ export default function Navbar() {
     ],
   }
 
-  const isServicePage = currentEtPath.startsWith("/koristusteenus") || currentEtPath.startsWith("/valikoristus") || currentEtPath.startsWith("/remonditeenused-tallinnas") || currentEtPath.startsWith("/puhastusteenused") || currentEtPath.startsWith("/ehitusprahi-aravedu")
+  const isServicePage = currentEtPath.startsWith("/koristusteenus") || currentEtPath.startsWith("/remonditeenused-tallinnas") || currentEtPath.startsWith("/puhastusteenused") || currentEtPath.startsWith("/ehitusprahi-aravedu")
   const [scrolled, setScrolled] = useState(false)
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
   const [tooleDropdownOpen, setTooleDropdownOpen] = useState(false)
@@ -186,7 +190,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`} id="navbar" aria-label={t('nav.ariaMainMenu')}>
       <div className="navbar-container">
           <Link href={localeHref("/")} className="logo flex items-center gap-2.5 no-underline">
-          <Image src="/SPS_LOGO.svg" alt="SPS Grupp — koristusfirma" width={38} height={38} style={{ width: "auto", height: "38px" }} />
+          <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={38} height={38} style={{ width: "auto", height: "38px" }} />
         </Link>
 
         <ul className="nav-links flex list-none items-center gap-7" role="menubar">
@@ -340,7 +344,7 @@ export default function Navbar() {
       >
         <div className="sticky top-0 bg-white z-10 flex justify-between items-center p-4 border-b border-gray-100">
             <Link href={localeHref("/")} className="flex items-center gap-2.5 min-h-[44px]" onClick={closeMobile}>
-            <Image src="/SPS_LOGO.svg" alt="SPS Grupp — koristusfirma" width={32} height={32} style={{ width: "auto", height: "32px" }} />
+            <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={32} height={32} style={{ width: "auto", height: "32px" }} />
           </Link>
           <button ref={closeBtnRef} onClick={closeMobile} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label={t('nav.ariaCloseMenu')}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2" aria-hidden="true">
@@ -411,12 +415,8 @@ export default function Navbar() {
                         </div>
                       ))}
                       {(() => {
-                        const outdoorSection = megaMenuData.columns[0].subSections?.[1]
                         const renovationItems = megaMenuData.columns[2].items
                         const sections: { label: string; items: { label: string; href: string }[] }[] = []
-                        if (outdoorSection?.items) {
-                          sections.push({ label: t('megaMenu.outdoorCleaning'), items: outdoorSection.items })
-                        }
                         if (renovationItems) {
                           sections.push({ label: t('megaMenu.renovationServices'), items: renovationItems } as typeof sections[number])
                         }
@@ -472,6 +472,18 @@ export default function Navbar() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-gray-100">
+            <div className="flex items-center justify-center gap-2 mb-5" aria-label={t('nav.ariaLanguage')}>
+              {(['et', 'en', 'ru'] as Locale[]).map((loc) => (
+                <button
+                  key={loc}
+                  onClick={() => switchLanguage(loc)}
+                  aria-label={`${t('nav.ariaLanguage')} ${loc.toUpperCase()}`}
+                  className={`flex items-center justify-center min-w-[48px] min-h-[44px] px-3 py-2 rounded-lg text-[15px] font-semibold border-none cursor-pointer transition-colors ${locale === loc ? "bg-[#17345a] text-white" : "bg-[#f0f4f8] text-[#17345a] hover:bg-[#dde5ee]"}`}
+                >
+                  {loc.toUpperCase()}
+                </button>
+              ))}
+            </div>
             <a href="#pakkumine" className="block w-full text-center bg-[#17345a] text-white py-3.5 px-5 rounded-lg font-medium mb-4 min-h-[48px] flex items-center justify-center text-[15px]" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); closeMobile() }}>
               {t('nav.requestQuote')}
             </a>

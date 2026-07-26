@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
+import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
 import TestimonialCards from "../../components/TestimonialCards";
 import Tooprotsess from "../../components/Tooprotsess";
@@ -70,7 +71,7 @@ export default function TootmishooneteKoristus() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">20+ aastat</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Alates 2006</div>
                 <div className="text-[15px] text-[#1f2937]">tööstuskogemust</div>
               </div>
             </div>
@@ -339,37 +340,7 @@ export default function TootmishooneteKoristus() {
                   Tootmishoone koristuse hind sõltub pindalast, mustuse iseloomust, koristuse sagedusest ja töögraafikust.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    { size: "Väike tootmishoone", area: "kuni 500m²", price: "400€", period: "kuu", highlight: true },
-                    { size: "Keskmine tootmishoone", area: "500–2000m²", price: "900€", period: "kuu" },
-                    { size: "Suur tootmiskompleks", area: "2000m²+", price: "Individuaalne", period: "pakkumine" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                        item.highlight
-                          ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                          : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                      }`}
-                    >
-                      <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                      <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                        {item.price}
-                      </div>
-                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.period}
-                      </div>
-                      <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.area}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="text-[15px] text-[#5a6474]">
-                  Eritööd (õlieemaldus, süvapesu, kõrgtööd) arvestatakse eraldi. Anname alati läbipaistva pakkumise, kus iga komponent on selgelt välja toodud.
-                </p>
+                <MaintenancePriceExamples />
               </div>
 
               <Hinnakalkulaator />
@@ -431,7 +402,7 @@ export default function TootmishooneteKoristus() {
         <ScrollAnimation animation="fade-up">
         <FooterCTA
           title="Küsige tootmishoone koristuse pakkumist"
-          description="Tuleme kohale, hindame olukorda ja koostame personaalse pakkumise. Anname vastuse 24 tunni jooksul. See ei kohusta teenust tellima."
+          description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest."
         />
         </ScrollAnimation>
 

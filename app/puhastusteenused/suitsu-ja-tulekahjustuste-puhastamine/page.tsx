@@ -40,7 +40,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
     <>
       <SeoJsonLd
         serviceName="Suitsu- ja tulekahjustuste puhastamine Tallinnas"
-        serviceDescription="Suitsu- ja tulekahjustuste professionaalne puhastamine Tallinnas 24/7. Tahm, lõhnad, jäägid."
+        serviceDescription="Suitsu- ja tulekahjustuste professionaalne puhastamine Tallinnas. Tahma, lõhnade ja jääkide eemaldamine kokkulepitud töömahus."
         serviceUrl="https://spsgrupp.ee/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine"
         breadcrumbs={[{ position: 1, name: "Avaleht", item: "https://spsgrupp.ee" }, { position: 2, name: "Puhastusteenused", item: "https://spsgrupp.ee/puhastusteenused" }, { position: 3, name: "Suitsu- ja tulekahjustuste puhastamine", item: "https://spsgrupp.ee/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" }]}
         faq={customFAQ.map((f) => ({ question: f.q, answer: f.a }))}
@@ -387,7 +387,7 @@ export default function SuitsuJaTulekahjustustePuhastamine() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Vajate kiiret abi suitsu- või tulekahjustusega?"
-            description="Helistage ööpäevaringselt 662 3328 või kirjutage info@spsgrupp.ee. Reageerime kiiresti ja tuleme esimesel võimalusel."
+            description="Helistage 662 3328 või kirjutage info@spsgrupp.ee. Hindame võimalust reageerida esimesel võimalusel; täpne aeg sõltub objekti asukohast, kahjustuse ulatusest ja meeskonna saadavusest."
           />
         </ScrollAnimation>
 

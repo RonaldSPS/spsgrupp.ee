@@ -104,19 +104,19 @@ const MAGIC_BYTES: Record<string, number[]> = {
   "application/pdf": [0x25, 0x50, 0x44, 0x46],
 }
 
-async function validateFile(file: File): Promise<{ valid: boolean; error?: string; attachment?: EmailAttachment }> {
+async function validateFile(file: File, copy: ActionCopy): Promise<{ valid: boolean; error?: string; attachment?: EmailAttachment }> {
   const name = file.name.toLowerCase()
   const ext = name.lastIndexOf(".") >= 0 ? name.slice(name.lastIndexOf(".")) : ""
   if (!ALLOWED_EXTENSIONS.has(ext)) {
-    return { valid: false, error: "Failiformaat ei ole lubatud. Lubatud on JPG, PNG ja PDF." }
+    return { valid: false, error: copy.fileInvalidFormat }
   }
 
   if (file.size === 0) {
-    return { valid: false, error: "Fail on tühi." }
+    return { valid: false, error: copy.fileEmpty }
   }
 
   if (file.size > MAX_FILE_SIZE) {
-    return { valid: false, error: "Fail on liiga suur. Maksimaalne suurus on 10 MB." }
+    return { valid: false, error: copy.fileTooLarge }
   }
 
   const buffer = Buffer.from(await file.arrayBuffer())
@@ -127,13 +127,13 @@ async function validateFile(file: File): Promise<{ valid: boolean; error?: strin
   )
 
   if (!expectedMagic) {
-    return { valid: false, error: "Faili tüüpi ei saa kinnitada." }
+    return { valid: false, error: copy.fileTypeUnknown }
   }
 
   const [verifiedType] = expectedMagic
 
   if (!ALLOWED_MIME_TYPES.has(mimeType) && !ALLOWED_MIME_TYPES.has(verifiedType)) {
-    return { valid: false, error: "Failiformaat ei ole lubatud. Lubatud on JPG, PNG ja PDF." }
+    return { valid: false, error: copy.fileInvalidFormat }
   }
 
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_")
@@ -163,6 +163,10 @@ interface ActionCopy {
   tooManyRequests: string
   invalidEmail: string
   invalidPhone: string
+  fileInvalidFormat: string
+  fileEmpty: string
+  fileTooLarge: string
+  fileTypeUnknown: string
   consentRequired: string
   duplicateContact: string
   duplicateCareer: string
@@ -193,6 +197,10 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     tooManyRequests: "Liiga palju päringuid. Palun proovi hiljem uuesti.",
     invalidEmail: "Palun sisesta kehtiv e-posti aadress.",
     invalidPhone: "Palun sisesta kehtiv telefoninumber.",
+    fileInvalidFormat: "Failiformaat ei ole lubatud. Lubatud on JPG, PNG ja PDF.",
+    fileEmpty: "Fail on tühi.",
+    fileTooLarge: "Fail on liiga suur. Maksimaalne suurus on 10 MB.",
+    fileTypeUnknown: "Faili tüüpi ei saa kinnitada.",
     consentRequired: "Andmekaitsetingimustega nõustumine on kohustuslik.",
     duplicateContact: "Päring on juba saadetud. Palun oota enne uuesti proovimist.",
     duplicateCareer: "Avaldus on juba saadetud. Palun oota enne uuesti proovimist.",
@@ -203,9 +211,9 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     extraInfoHeading: "Lisainfo",
     workloadOptions: { full: "Täistööaeg", part: "Osaline tööaeg" },
     workTimeOptions: {
-      day: "Päevane tööaeg (8-17)",
-      evening: "Õhtune tööaeg (16-00)",
-      night: "Öine tööaeg (22-06)",
+      day: "Päevane tööaeg (8.00–17.00)",
+      evening: "Õhtune tööaeg (16.00–00.00)",
+      night: "Öine tööaeg (22.00–06.00)",
       any: "Sobivad kõik tööajad",
     },
   },
@@ -226,6 +234,10 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     tooManyRequests: "Too many requests. Please try again later.",
     invalidEmail: "Please enter a valid e-mail address.",
     invalidPhone: "Please enter a valid phone number.",
+    fileInvalidFormat: "This file format is not allowed. JPG, PNG and PDF files are accepted.",
+    fileEmpty: "The file is empty.",
+    fileTooLarge: "The file is too large. The maximum size is 10 MB.",
+    fileTypeUnknown: "The file type could not be verified.",
     consentRequired: "You must agree to the privacy policy.",
     duplicateContact: "This request has already been sent. Please wait before trying again.",
     duplicateCareer: "This application has already been sent. Please wait before trying again.",
@@ -236,9 +248,9 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     extraInfoHeading: "Additional information",
     workloadOptions: { full: "Full-time", part: "Part-time" },
     workTimeOptions: {
-      day: "Day shift (8-17)",
-      evening: "Evening shift (16-00)",
-      night: "Night shift (22-06)",
+      day: "Day shift (8:00–17:00)",
+      evening: "Evening shift (16:00–00:00)",
+      night: "Night shift (22:00–06:00)",
       any: "Any working hours",
     },
   },
@@ -259,6 +271,10 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     tooManyRequests: "Слишком много запросов. Пожалуйста, попробуйте позже.",
     invalidEmail: "Пожалуйста, введите корректный e-mail адрес.",
     invalidPhone: "Пожалуйста, введите корректный номер телефона.",
+    fileInvalidFormat: "Этот формат файла не поддерживается. Допустимы JPG, PNG и PDF.",
+    fileEmpty: "Файл пуст.",
+    fileTooLarge: "Файл слишком большой. Максимальный размер — 10 МБ.",
+    fileTypeUnknown: "Не удалось подтвердить тип файла.",
     consentRequired: "Необходимо согласиться с политикой конфиденциальности.",
     duplicateContact: "Этот запрос уже отправлен. Пожалуйста, подождите перед повторной попыткой.",
     duplicateCareer: "Эта заявка уже отправлена. Пожалуйста, подождите перед повторной попыткой.",
@@ -269,9 +285,9 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     extraInfoHeading: "Дополнительная информация",
     workloadOptions: { full: "Полная занятость", part: "Частичная занятость" },
     workTimeOptions: {
-      day: "Дневная смена (8-17)",
-      evening: "Вечерняя смена (16-00)",
-      night: "Ночная смена (22-06)",
+      day: "Дневная смена (8:00–17:00)",
+      evening: "Вечерняя смена (16:00–00:00)",
+      night: "Ночная смена (22:00–06:00)",
       any: "Подходит любое время",
     },
   },
@@ -332,11 +348,14 @@ export async function submitContactForm(
   if (phoneErr) errors.push(phoneErr)
   else if (!validatePhone(phone)) errors.push(copy.invalidPhone)
 
+  const messageErr = validateRequired(message, 10, 5000, copy.labels.message, copy)
+  if (messageErr) errors.push(messageErr)
+
   if (!consent) errors.push(copy.consentRequired)
 
   let validatedAttachment: EmailAttachment | undefined
   if (attachmentFile instanceof File && attachmentFile.size > 0) {
-    const validation = await validateFile(attachmentFile)
+    const validation = await validateFile(attachmentFile, copy)
     if (!validation.valid) {
       errors.push(validation.error!)
     } else {
@@ -393,6 +412,7 @@ export async function submitCareerForm(
     return { success: true }
   }
 
+  const name = escapeText(formData.get("name"))
   const email = escapeText(formData.get("email"))
   const phone = escapeText(formData.get("phone"))
   const region = escapeText(formData.get("region"))
@@ -403,25 +423,37 @@ export async function submitCareerForm(
 
   const errors: string[] = []
 
+  const nameErr = validateRequired(name, 2, 200, copy.labels.name, copy)
+  if (nameErr) errors.push(nameErr)
+
   if (!email || !validateEmail(email)) errors.push(copy.invalidEmail)
 
   const phoneErr = validateRequired(phone, 6, 30, copy.labels.phone, copy)
   if (phoneErr) errors.push(phoneErr)
   else if (!validatePhone(phone)) errors.push(copy.invalidPhone)
 
+  const allowedRegions = new Set(["Tallinn", "Harjumaa"])
+  const allowedWorkloads = new Set(["full", "part"])
+  const allowedWorkTimes = new Set(["day", "evening", "night", "any"])
+
+  if (!allowedRegions.has(region)) errors.push(format(copy.required, { label: copy.labels.region }))
+  if (!allowedWorkloads.has(workload)) errors.push(format(copy.required, { label: copy.labels.workload }))
+  if (!allowedWorkTimes.has(workTime)) errors.push(format(copy.required, { label: copy.labels.workTime }))
+
   if (!consent) errors.push(copy.consentRequired)
 
   if (errors.length > 0) {
-    return { error: errors.join(" "), fields: { email, phone, region, workload, workTime, info } }
+    return { error: errors.join(" "), fields: { name, email, phone, region, workload, workTime, info } }
   }
 
-  const submissionData = `${email}|${phone}|${region}|${workload}|${workTime}|${info}`
+  const submissionData = `${name}|${email}|${phone}|${region}|${workload}|${workTime}|${info}`
   if (checkDuplicate("career", submissionData)) {
     return { error: copy.duplicateCareer }
   }
 
-  const subject = `${copy.careerSubject}: ${email}`
+  const subject = `${copy.careerSubject}: ${name}`
   const body = [
+    `${copy.labels.name}: ${name}`,
     `${copy.labels.email}: ${email}`,
     `${copy.labels.phone}: ${phone}`,
     `${copy.labels.region}: ${region || "-"}`,

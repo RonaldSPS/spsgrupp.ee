@@ -53,7 +53,7 @@ const data: OutdoorServicePageData = {
   stats: [
     { number: "4", label: "hooaega kaetud" },
     { number: "1", label: "kontakt ja leping" },
-    { number: "20+", label: "aastat kogemust" },
+    { number: "Alates 2006", label: "kogemust" },
   ],
   footerTitle: "Koostame teie kinnistule kojamehe hoolduskava",
   footerDescription:

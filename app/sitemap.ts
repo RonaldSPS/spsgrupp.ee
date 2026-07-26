@@ -117,6 +117,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const etPath of getAllPaths()) {
     const lastModified = await getEditorialDate(etPath)
+    if (etPath === "/blog") {
+      await addEntry(etPath, lastModified)
+      continue
+    }
     const alternates = alternateLanguages(etPath)
     await addEntry(etPath, lastModified, alternates)
 

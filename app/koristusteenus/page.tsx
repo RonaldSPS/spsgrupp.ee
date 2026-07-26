@@ -11,6 +11,7 @@ import ContactForm from "../components/ContactForm";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import Hinnakalkulaator from "../components/Hinnakalkulaator";
+import MaintenancePriceExamples from "../components/MaintenancePriceExamples";
 import SeoJsonLd from "../components/SeoJsonLd";
 
 const customFaqItems = [
@@ -20,15 +21,15 @@ const customFaqItems = [
   },
   {
     q: "Kui kiiresti saab regulaarse koristusteenusega alustada?",
-    a: "Tavaliselt 3–5 tööpäeva jooksul pärast lepingu sõlmimist. Kiireloomuliste tellimuste puhul saame alustada ka kiiremini. Ürituste järgne operatiivne koristus on võimalik sageli isegi samal päeval.",
+    a: "Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist.",
   },
   {
     q: "Kas koristusteenus toimub tööajal või väljaspool seda?",
-    a: "Enamik ettevõtteid eelistab koristust töövälisel ajal — kas varahommikul enne 8:00 või õhtuti peale 18:00. Kohandame graafiku teie tööajaga, et koristus ei segaks igapäevatööd. Kaubanduspindadel teeme ka päevakoristust madala liiklusega aegadel.",
+    a: "Enamik ettevõtteid eelistab koristust töövälisel ajal — kas varahommikul enne kella 8.00 või õhtuti pärast kella 18.00. Kohandame graafiku teie tööajaga, et koristus ei segaks igapäevatööd.",
   },
   {
     q: "Mis juhtub, kui koristuskvaliteet ei vasta ootustele?",
-    a: "Iga objekti juures on objektijuht, kes vastutab kvaliteedi eest. Kui midagi ei vasta standardile, reageerime 24 tunni jooksul ja parandame olukorra. Teenused on kindlustatud — võimalikud kahjud hüvitatakse.",
+    a: "Objektijuht jälgib regulaarselt töö kvaliteeti ning aitab puudused kiiresti lahendada. Meie tegevus on kaetud vastutuskindlustusega vastavalt kindlustuslepingu tingimustele.",
   },
   {
     q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?",
@@ -68,8 +69,8 @@ export default function Koristusteenus() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Üle miljoni m²</div>
-                <div className="text-[15px] text-[#1f2937]">iga päev</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Üle 1 000 000 m²</div>
+                <div className="text-[15px] text-[#1f2937]">meie hoolduses</div>
               </div>
             </div>
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -92,7 +93,7 @@ export default function Koristusteenus() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">200+ koolitatud</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">300+ koolitatud</div>
                 <div className="text-[15px] text-[#1f2937]">töötajat</div>
               </div>
             </div>
@@ -115,7 +116,7 @@ export default function Koristusteenus() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja kvaliteedikontroll. Hind alates <strong className="text-white font-medium">1.2€/m²</strong>.
+                Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll. Hind alates <strong className="text-white font-medium">1,20 €/m²</strong>.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a
@@ -159,9 +160,9 @@ export default function Koristusteenus() {
                 <strong>Üks probleem, mida kuuleme päris tihti: &quot;Koristaja küll käib, aga midagi on ikkagi valesti.&quot; Tolm koguneb kappide peale. Prügikastid on õhtul täis. WC-s lõppevad tarvikud. Serveriruumi ei puudutata, sest keegi ei julge.</strong>
               </div>
               <div>
-                <strong>Äripindade koristus ei ole sirgjooneline kiirteenus. See on süsteem, mis peab sobima teie hoone, tööaja ja äri eripäraga.</strong> Kontoris on kaableid ja tehnikat, mida ei tohi märjalt käsitleda. Kaubanduspinnal on kõrge liiklus ja kliendid peavad alati puhast ruumi nägema. Tootmishoonetes on õlid, rasvad ja ranged ohutusnõuded.
+                <strong>Äripindade koristus ei ole lihtsalt kiire töö, vaid läbimõeldud süsteem, mis peab arvestama hoone kasutuse ja ettevõtte töökorraldusega.</strong> Kontoris on kaableid ja tehnikat, mida ei tohi märjalt käsitleda. Kaubanduspinnal on kõrge liiklus ja tootmishoonetes kehtivad ranged ohutusnõuded.
                 <br /><br />
-                <strong>SPS Grupp on 20+ aastat ehitanud just sellist süsteemi,</strong> mis suudaks toime tulla kõikvõimalike olukordadega. Me teame, mida iga äripinna tüüp vajab ja mida kunagi teha ei tohi.
+                <strong>Oleme alates 2006. aastast kujundanud välja toimiva teenindus- ja kvaliteedijuhtimise süsteemi.</strong>
               </div>
             </div>
           </div>
@@ -191,11 +192,11 @@ export default function Koristusteenus() {
                 { bold: "Kontorikoristus", desc: "büroode igapäevane hooldus, kohandatud IT-keskkonnale", href: "/koristusteenus/kontori-koristus" },
                 { bold: "Kaubanduspindade koristus", desc: "poed, kaubanduskeskused, esindused", href: "/koristusteenus/kaubanduspindade-koristus" },
                 { bold: "Tootmishoonete koristus", desc: "tööstuspinnad, laod, tootmiskeskkond", href: "/koristusteenus/tootmishoonete-koristus" },
-                { bold: "Koolide ja lasteaedade koristamine", desc: "tervishoiukeskne lähenemine", href: "/koristusteenus/koolide-koristamine" },
+                { bold: "Koolide ja lasteaedade koristamine", desc: "tervishoiukeskne lähenemine", href: "/koolide-koristamine/" },
                 { bold: "Esindus- ja vastuvõtupindade erihooldus", desc: "" },
                 { bold: "Ühiskasutatavate alade hooldus", desc: "koridorid, trepikojad, liftid" },
                 { bold: "Sanitaarruumide desinfitseerimine", desc: "tarvikutega varustamine" },
-                { bold: "Paindlik graafik", desc: "iga päev, 2–5x nädalas või soovitud sagedusega" },
+                { bold: "Paindlik graafik", desc: "iga päev, 2–5 korda nädalas või soovitud sagedusega" },
               ].map((item, i) => {
                 const cardContent = (
                   <>
@@ -260,7 +261,7 @@ export default function Koristusteenus() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Digitaalne kvaliteedikontroll</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Igal objektil on oma objektijuht, kes kontrollib kvaliteeti ja esitab kliendile raportid. Probleemid lahendatakse enne kui te neid märkate.
+                        Objektijuht jälgib regulaarselt töö kvaliteeti ning aitab puudused kiiresti lahendada.
                       </p>
                     </div>
                   </div>
@@ -353,40 +354,10 @@ export default function Koristusteenus() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
               <div>
                 <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
-                  Koristusteenuse hind sõltub neljast tegurist: pindala (€/m²), koristuse sagedus (2–5x nädalas), eritööde vajadus ja objekti tüüp.
+                  Koristusteenuse hind sõltub neljast tegurist: pindala (€/m²), koristuse sagedus (2–5 korda nädalas), eritööde vajadus ja objekti tüüp.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    { size: "Väike kontor", area: "100–200m²", price: "250€", period: "kuu", highlight: true },
-                    { size: "Keskmine kontor", area: "200–500m²", price: "450€", period: "kuu" },
-                    { size: "Suur pind", area: "500m²+", price: "Individuaalne", period: "pakkumine" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                        item.highlight
-                          ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                          : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                      }`}
-                    >
-                      <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                      <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                        {item.price}
-                      </div>
-                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.period}
-                      </div>
-                      <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.area}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="text-[15px] text-[#5a6474]">
-                  Regulaarne hoolduskoristus algab <strong>1.2€/m²</strong>, suurpuhastus <strong>1.5€/m²</strong>
-                </p>
+                <MaintenancePriceExamples />
               </div>
 
               <Hinnakalkulaator />
@@ -399,7 +370,7 @@ export default function Koristusteenus() {
         <ScrollAnimation animation="fade-up">
         <FooterCTA
           title="Tellige tasuta koristusteenuse analüüs"
-          description="Tuleme kohale, vaatame üle teie äripinna ja koostame personaalse koristusplaani koos hinnaga. Saate vastuse 24 tunni jooksul. Pindade üle vaatamine on tasuta ja ei kohusta millekski."
+          description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest."
         />
         </ScrollAnimation>
 

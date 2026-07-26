@@ -4,11 +4,29 @@ import { blogPosts as _blogPosts } from "./posts.generated"
 import { promises as fs } from "fs"
 import path from "path"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
-import { getBlogTranslationBySlug, getBlogTranslationsByLanguage } from "@/lib/translate-blog"
-import type { TranslationLanguage } from "@/lib/ai-translation"
 
 export type { BlogPost }
 export const blogPosts = _blogPosts
+const DB_READ_TIMEOUT_MS = 2500
+
+function withReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Blog database read timed out")),
+      DB_READ_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
 
 function cleanExcerpt(raw: string, title: string): string {
   let text = raw
@@ -23,6 +41,24 @@ function cleanExcerpt(raw: string, title: string): string {
     text = text.slice(0, 157).replace(/\s+\S*$/, "") + "..."
   }
   return text
+}
+
+function normalizeImportedContent(raw: string): string {
+  return raw
+    .replaceAll(
+      "Kes on nr.1 koristusteenuste pakkujad maailmas.",
+      "Kes on maailma suurimad koristusteenuste pakkujad?",
+    )
+    .replaceAll("nr.1 koristusteenuste pakkujad", "tuntud koristusteenuste pakkujad")
+    .replaceAll("#kysipakkumist", "#pakkumine")
+    .replaceAll("pools professionaalsesse", "poolprofessionaalsesse")
+    .replaceAll(
+      "<h2>Enamikul tavapärastest puhastusvahenditest on negatiivne mõju keskkonnale, sest nad sisaldavad kemikaale, mis võivad põhjustada reostust ja kahjustada loodust. Seetõttu on oluline kaaluda keskkonnasõbralike puhastusvahendite kasutamist.</h3>",
+      "<h2>Enamikul tavapärastest puhastusvahenditest on negatiivne mõju keskkonnale, sest need sisaldavad kemikaale, mis võivad põhjustada reostust ja kahjustada loodust. Seetõttu on oluline kaaluda keskkonnasõbralike puhastusvahendite kasutamist.</h2>",
+    )
+    .replaceAll("<h2>Miks ja kuidas üldse prügi sorteerida!</h3>", "<h2>Miks ja kuidas üldse prügi sorteerida?</h2>")
+    .replaceAll("<h2>Milliseid prügi sorteerimislahendusi on pakkuda?</h3>", "<h2>Milliseid prügi sorteerimislahendusi on pakkuda?</h2>")
+    .replaceAll("<h2>Aga, kui meie firma ei soovi ise prügi sorteerimisega tegeleda?</h3>", "<h2>Aga kui meie ettevõte ei soovi ise prügi sorteerimisega tegeleda?</h2>")
 }
 
 interface AdminEdits {
@@ -42,7 +78,7 @@ const getAdminEdits = cache(async (): Promise<AdminEdits> => {
     try {
       const { db } = await import("@/lib/db")
       const { blogEdits } = await import("@/lib/db/schema")
-      const rows = await db.select().from(blogEdits)
+      const rows = await withReadTimeout(db.select().from(blogEdits))
       const posts: AdminEdits["posts"] = {}
       for (const row of rows) {
         posts[String(row.id)] = {
@@ -77,12 +113,12 @@ export const getPostBySlugWithEdits = cache(async (slug: string): Promise<BlogPo
   if (!base) return undefined
   const edits = await getAdminEdits()
   const edit = edits.posts[String(base.id)]
-  if (!edit) return { ...base, contentHtml: sanitizeHtmlSafe(base.contentHtml) }
+  if (!edit) return { ...base, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(base.contentHtml)) }
   return {
     ...base,
     title: edit.title ?? base.title,
     slug: edit.slug ?? base.slug,
-    contentHtml: sanitizeHtmlSafe(edit.contentHtml ?? base.contentHtml),
+    contentHtml: sanitizeHtmlSafe(normalizeImportedContent(edit.contentHtml ?? base.contentHtml)),
     featuredImage: edit.featuredImage ?? base.featuredImage,
     excerpt: cleanExcerpt(edit.excerpt ?? base.excerpt, edit.title ?? base.title),
   }
@@ -93,74 +129,22 @@ export const getBlogPostsWithEdits = cache(async (): Promise<BlogPost[]> => {
   return blogPosts.flatMap((post) => {
     const edit = edits.posts[String(post.id)]
     if (edit && edit.active === false) return []
-    if (!edit) return [{ ...post, contentHtml: sanitizeHtmlSafe(post.contentHtml), excerpt: cleanExcerpt(post.excerpt, post.title) }]
+    if (!edit) return [{ ...post, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(post.contentHtml)), excerpt: cleanExcerpt(post.excerpt, post.title) }]
     return [{
       ...post,
       title: edit.title ?? post.title,
       slug: edit.slug ?? post.slug,
-      contentHtml: sanitizeHtmlSafe(edit.contentHtml ?? post.contentHtml),
+      contentHtml: sanitizeHtmlSafe(normalizeImportedContent(edit.contentHtml ?? post.contentHtml)),
       featuredImage: edit.featuredImage ?? post.featuredImage,
       excerpt: cleanExcerpt(edit.excerpt ?? post.excerpt, edit.title ?? post.title),
     }]
   })
 })
 
-export const getTranslatedPostBySlug = cache(async (
-  language: TranslationLanguage,
-  slug: string,
-): Promise<BlogPost | undefined> => {
-  try {
-    const translation = await getBlogTranslationBySlug(language, slug)
-    if (!translation || translation.status === "stale") return undefined
-
-    const base = blogPosts.find((post) => post.id === translation.blogId)
-    if (!base) return undefined
-
-    return {
-      ...base,
-      title: translation.title,
-      slug: translation.slug,
-      excerpt: cleanExcerpt(translation.excerpt, translation.title),
-      contentHtml: sanitizeHtmlSafe(translation.contentHtml),
-    }
-  } catch {
-    return undefined
-  }
-})
-
-export const getTranslatedBlogPosts = cache(async (
-  language: TranslationLanguage,
-): Promise<BlogPost[]> => {
-  try {
-    const rows = (await getBlogTranslationsByLanguage(language))
-      .filter((translation) => translation.status === "auto")
-    const byId = new Map(rows.map((row) => [row.blogId, row]))
-
-    const edits = await getAdminEdits()
-
-    return blogPosts.flatMap((post) => {
-      const edit = edits.posts[String(post.id)]
-      if (edit && edit.active === false) return []
-
-      const translation = byId.get(post.id)
-      if (!translation?.slug || !translation.title || !translation.contentHtml) return []
-      return [{
-        ...post,
-        title: translation.title,
-        slug: translation.slug,
-        excerpt: cleanExcerpt(translation.excerpt || "", translation.title),
-        contentHtml: sanitizeHtmlSafe(translation.contentHtml),
-      }]
-    })
-  } catch {
-    return []
-  }
-})
-
 export function getPostBySlug(slug: string): BlogPost | undefined {
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) return undefined
-  return { ...post, contentHtml: sanitizeHtmlSafe(post.contentHtml) }
+  return { ...post, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(post.contentHtml)) }
 }
 
 export function getRelatedPosts(post: BlogPost, count = 3): BlogPost[] {

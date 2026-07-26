@@ -1,11 +1,70 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
+import { localizePath, type Locale } from "@/lib/slug-map";
 
 export default function Trust() {
   const t = useTranslations("trust")
+  const locale = useLocale() as Locale
+  const copy = {
+    et: {
+      years: "Alates 2006",
+      experience: "Kogemust",
+      employees: "300+ töötajat",
+      trained: "Koolitatud",
+      area: "Üle 1 000 000 m²",
+      areaLabel: "Meie hoolduses",
+      regularTitle: "Regulaarne koristusteenus",
+      regularText: "Igapäevane ja perioodiline hooldus, mis hoiab teie tööruumid pidevalt puhtad ja esinduslikud.",
+      regularNote: "Teenuse osutamiseks vajalikud tavapärased puhastus- ja töövahendid sisalduvad pakkumises vastavalt kokkulepitud teenusemahule.",
+      specialTitle: "Puhastusteenused ja eritööd",
+      specialText: "Perioodilised ja spetsiifilised tööd, mis taastavad pindade seisukorra ja pikendavad nende eluiga.",
+      specialNote: "Operatiivne reageerimine kokkulepitud teenuste raames.",
+      outdoorTitle: "Välikoristus ja territooriumi hooldus",
+      outdoorText: "Hooldame teie hoone ümbrust aastaringselt, igal hooajal oma plaaniga.",
+      outdoorNote: "Soovi korral koondame hooajalised välitööd ühe teenuslepingu alla.",
+      more: "Vaata lähemalt",
+    },
+    en: {
+      years: "Since 2006",
+      experience: "Experience",
+      employees: "300+ employees",
+      trained: "Trained",
+      area: "Over 1,000,000 m²",
+      areaLabel: "Under our care",
+      regularTitle: "Regular cleaning",
+      regularText: "Daily and periodic maintenance that keeps your workplace consistently clean and presentable.",
+      regularNote: "Standard cleaning products and tools required for the agreed service scope are included in the quote.",
+      specialTitle: "Specialist cleaning",
+      specialText: "Periodic and specialist work that restores surfaces and helps extend their service life.",
+      specialNote: "Operational response within the scope of agreed services.",
+      outdoorTitle: "Outdoor cleaning and grounds care",
+      outdoorText: "We maintain the surroundings of your building year-round with a plan for every season.",
+      outdoorNote: "Seasonal outdoor work can be combined under one service agreement if requested.",
+      more: "Learn more",
+    },
+    ru: {
+      years: "С 2006 года",
+      experience: "Опыта",
+      employees: "300+ сотрудников",
+      trained: "Обучены",
+      area: "Более 1 000 000 м²",
+      areaLabel: "На нашем обслуживании",
+      regularTitle: "Регулярная уборка",
+      regularText: "Ежедневное и периодическое обслуживание, благодаря которому рабочие помещения остаются чистыми и презентабельными.",
+      regularNote: "Стандартные чистящие средства и инвентарь для согласованного объёма услуг включаются в предложение.",
+      specialTitle: "Специализированная уборка",
+      specialText: "Периодические и специальные работы, восстанавливающие состояние поверхностей и продлевающие срок их службы.",
+      specialNote: "Оперативное реагирование в рамках согласованных услуг.",
+      outdoorTitle: "Наружная уборка и уход за территорией",
+      outdoorText: "Круглый год ухаживаем за территорией вокруг здания по сезонному плану.",
+      outdoorNote: "По желанию сезонные наружные работы можно объединить в одном договоре обслуживания.",
+      more: "Подробнее",
+    },
+  }[locale]
 
   return (
     <section className="trust-section py-[100px] bg-white" id="garantii">
@@ -42,8 +101,8 @@ export default function Trust() {
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">20+ aastat</div>
-                  <div className="text-[15px] text-[#5a6474]">Kogemust</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.years}</div>
+                  <div className="text-[15px] text-[#5a6474]">{copy.experience}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
@@ -58,8 +117,8 @@ export default function Trust() {
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">200+ töötajat</div>
-                  <div className="text-[15px] text-[#5a6474]">Koolitatud</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.employees}</div>
+                  <div className="text-[15px] text-[#5a6474]">{copy.trained}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
@@ -73,8 +132,8 @@ export default function Trust() {
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">Üle miljoni m²</div>
-                  <div className="text-[15px] text-[#5a6474]">Igapäevaselt hooldatavat pinda</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.area}</div>
+                  <div className="text-[15px] text-[#5a6474]">{copy.areaLabel}</div>
                 </div>
               </div>
             </div>
@@ -87,7 +146,7 @@ export default function Trust() {
             >
               <Image
                 src="/9001-14001-ENG.webp"
-                alt="Koristusfirma SPS Grupp ISO 9001 ja ISO 14001 sertifikaadid"
+                alt="SPS Grupp ISO 9001 ja ISO 14001"
                 width={640}
                 height={460}
                 className="w-full h-auto"
@@ -139,61 +198,61 @@ export default function Trust() {
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/regulaarnekoristusteenus.jpg"
-                alt="Koristusfirma — regulaarne koristusteenus"
+                alt={`${copy.regularTitle} — SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 style={{ }}
               />
             </div>
-            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">Regulaarne koristusteenus</h3>
+            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{copy.regularTitle}</h3>
             <p className="text-[15px] text-[#333a46] leading-[1.7] mb-5 font-light">
-              Igapäevane ja perioodiline hooldus, mis hoiab teie tööruumid pidevalt puhtad ja esinduslikud.
+              {copy.regularText}
             </p>
-            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">Kõik vahendid ja tarvikud on hinna sees.</p>
-            <a href="/koristusteenus" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              Vaata lähemalt <span aria-hidden="true">→</span>
-            </a>
+            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{copy.regularNote}</p>
+            <Link href={localizePath("/koristusteenus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+              {copy.more} <span aria-hidden="true">→</span>
+            </Link>
           </div>
           <div className="service-column-card">
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/puhastusteenused2.jpg"
-                alt="Koristusfirma — puhastusteenused ja eritööd"
+                alt={`${copy.specialTitle} — SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 style={{ }}
               />
             </div>
-            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">Puhastusteenused ja eritööd</h3>
+            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{copy.specialTitle}</h3>
             <p className="text-[15px] text-[#333a46] leading-[1.7] mb-5 font-light">
-              Perioodilised ja spetsiifilised tööd, mis taastavad pindade seisukorra ja pikendavad nende eluiga.
+              {copy.specialText}
             </p>
-            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">Kiirreageerimine 24/7 ootamatute olukordade jaoks.</p>
-            <a href="/puhastusteenused" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              Vaata lähemalt <span aria-hidden="true">→</span>
-            </a>
+            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{copy.specialNote}</p>
+            <Link href={localizePath("/puhastusteenused", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+              {copy.more} <span aria-hidden="true">→</span>
+            </Link>
           </div>
           <div className="service-column-card">
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/valikoristus.jpg"
-                alt="Koristusfirma — välikoristus ja territooriumi hooldus"
+                alt={`${copy.outdoorTitle} — SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 style={{ }}
               />
             </div>
-            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">Välikoristus ja territooriumi hooldus</h3>
+            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{copy.outdoorTitle}</h3>
             <p className="text-[15px] text-[#333a46] leading-[1.7] mb-5 font-light">
-              Hooldame teie hoone ümbrust aastaringselt, igal hooajal oma plaaniga.
+              {copy.outdoorText}
             </p>
-            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">Üks leping, mis katab kõik hooajad ja vajadused.</p>
-            <a href="/koristusteenus/valikoristus" className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              Vaata lähemalt <span aria-hidden="true">→</span>
-            </a>
+            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{copy.outdoorNote}</p>
+            <Link href={localizePath("/koristusteenus/valikoristus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+              {copy.more} <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </div>

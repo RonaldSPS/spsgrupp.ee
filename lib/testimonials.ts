@@ -17,6 +17,26 @@ export interface TestimonialCategoryGroup {
 }
 
 const JSON_PATH = path.join(process.cwd(), "data", "admin-testimonials.json")
+const DB_READ_TIMEOUT_MS = 2500
+
+function withReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Testimonials database read timed out")),
+      DB_READ_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
 
 interface TestimonialsJson {
   testimonials: Testimonial[]
@@ -75,7 +95,7 @@ function sortTestimonials(items: Testimonial[]): Testimonial[] {
 export async function getAllTestimonials(): Promise<Testimonial[]> {
   return withDbOrJson(
     async () => {
-      const rows = await getTestimonialsFromDb()
+      const rows = await withReadTimeout(getTestimonialsFromDb())
       if (rows.length > 0) return sortTestimonials(rows)
       if (await jsonFileExists()) return sortTestimonials(await getTestimonialsFromJson())
       return []

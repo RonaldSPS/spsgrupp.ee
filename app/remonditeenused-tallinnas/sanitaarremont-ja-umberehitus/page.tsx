@@ -28,7 +28,7 @@ const serviceItems = [
 const benefits = [
   {
     title: "Täislahendus ühest kohast",
-    desc: "Kõik tööd, lammutusest viimistluseni, meie meeskonnaga. Üks kontaktisik, üks arve, üks vastutus.",
+    desc: "Korraldame kokkulepitud tööd oma meeskonna ja vajadusel koostööpartnerite abil. Kliendile jääb tööde koordineerimiseks üks kontaktisik.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M3 21h18" />
@@ -59,8 +59,8 @@ const benefits = [
     ),
   },
   {
-    title: "Garantii ja dokumentatsioon",
-    desc: "Töödele garantii, materjalidele tootja garantii. Kirjalik leping ja korras dokumentatsioon.",
+    title: "Kokkulepped ja dokumentatsioon",
+    desc: "Tööde maht, kasutatavad lahendused ja üleandmise tingimused kirjeldatakse kirjalikult.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -96,8 +96,8 @@ const faqItems = [
     a: "Jah, vajadusel pakume välja sobivaid lahendusi ja soetame need tootjatelt. Võite ka ise osta ja meile paigaldamiseks anda.",
   },
   {
-    q: "Kas annate garantii hüdroisolatsioonile?",
-    a: "Jah. Hüdroisolatsioonile anname garantii, mis on sageli pikem kui tavaliste viimistlustööde garantii.",
+    q: "Kuidas hüdroisolatsioonitööd dokumenteeritakse?",
+    a: "Hüdroisolatsiooni lahendus, kasutatavad materjalid ja tööde üleandmise tingimused lepitakse enne alustamist kirjalikult kokku.",
   },
 ];
 
@@ -123,7 +123,7 @@ export default function SanitaarremontJaUmberehitusLeht() {
             {[
               { value: "Üks", label: "objektijuht" },
               { value: "Täis", label: "lahendus" },
-              { value: "Garantii", label: "töödele" },
+              { value: "Kirjalik", label: "tööde kirjeldus" },
             ].map((chip, i) => (
               <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
                 <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
@@ -202,7 +202,7 @@ export default function SanitaarremontJaUmberehitusLeht() {
                 </div>
                 <div>
                   <p>Kui kasutate erinevaid alltöövõtjaid, tähendab see lõputuid telefonikõnesid ja vastutuse jagamist.</p>
-                  <p className="mt-4">SPS Grupp pakub sanitaarremondile täislahendust. Kogu projekt ühelt meeskonnalt, lammutusest kuni viimistluseni. Üks objektijuht, üks leping, üks vastutus ja ennustatav ajakava.</p>
+                  <p className="mt-4">Korraldame sanitaarremondi kokkulepitud etapid oma meeskonna ja vajadusel koostööpartnerite abil. Kliendile jääb tööde koordineerimiseks üks kontaktisik ning tööde maht ja ajakava lepitakse enne alustamist kokku.</p>
                 </div>
               </div>
             </div>

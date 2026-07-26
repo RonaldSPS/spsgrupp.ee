@@ -16,7 +16,7 @@ import Tooprotsess from "../components/Tooprotsess";
 const customFAQ = [
   {
     q: "Kui kiiresti saate puhastusteenusega alustada?",
-    a: "Hädaolukordades (veeavarii, tulekahju, viiruspuhang) oleme kohal 30 minuti jooksul. Plaaniliste tööde puhul alustame 1–3 tööpäeva jooksul peale kohapealset hindamist.",
+    a: "Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne reageerimisaeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.",
   },
   {
     q: "Kuidas tellida puhastusteenust Tallinnas ja Harjumaal?",
@@ -28,7 +28,7 @@ const customFAQ = [
   },
   {
     q: "Kas pakute tulemustele garantiid?",
-    a: "Jah. Kui tulemus ei vasta kokkulepitud standardile, tuleme tagasi ja teeme töö ümber tasuta. Teenused on ka kindlustatud võimalike kahjude vastu.",
+    a: "Kui tulemus ei vasta kokkulepitud kvaliteedinõuetele, vaatame töö üle ja kõrvaldame põhjendatud puudused.",
   },
   {
     q: "Kas saate tulla ka nädalavahetusel või öösel?",
@@ -58,8 +58,8 @@ const miksMeieKaardid = [
     ),
   },
   {
-    title: "Kvaliteedigarantii",
-    desc: "Anname teenustele garantii. Kui tulemus ei rahulda, tuleme tagasi ja parandame tasuta.",
+    title: "Kokkulepitud kvaliteet",
+    desc: "Kui tulemus ei vasta kokkulepitud kvaliteedinõuetele, vaatame töö üle ja kõrvaldame põhjendatud puudused.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -72,7 +72,7 @@ const miksMeieKaardid = [
   },
   {
     title: "Kiire reageerimine",
-    desc: "Hädaolukordades (tulekahju, veeavarii, viiruspuhang) oleme Harjumaal kohal 30 minuti jooksul.",
+    desc: "Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Aeg sõltub asukohast, töömahust ja meeskonna saadavusest.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -88,7 +88,7 @@ const teenuseSisuKaardid = [
   { bold: "Ehitusjärgne koristus. Tolm, ehituspraht, valmistame pinnad üleandmiseks ette", desc: "", href: "/puhastusteenused/ehitusjargne-koristus" },
   { bold: "Suitsu- ja tulekahjustuste puhastamine, tahma- ja lõhnaeemaldus", desc: "", href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
   { bold: "Eskalaatorite süvapuhastus, kaubanduskeskused", desc: "", href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
-  { bold: "Desinfitseerimine, viiruste- ja bakteriaalne kaitse", desc: "", href: "/puhastusteenused/desinfitseerimine" },
+  { bold: "Desinfitseerimine, viiruste- ja bakteriaalne kaitse", desc: "", href: "/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
   { bold: "Akende ja klaasfassaadide professionaalne pesu", desc: "", href: "/koristusteenus/valikoristus/akende-pesu" },
   { bold: "Fassaadipesu ja välispindade puhastus", desc: "", href: "/koristusteenus/valikoristus/fassaadipesu" },
 ];
@@ -171,14 +171,14 @@ export default function Puhastusteenused() {
         <ScrollAnimation animation="fade-up">
           <section className="py-[100px] bg-white">
             <div className="max-w-[1280px] mx-auto px-[5%]">
-              <TwoToneHeading text="Kas mõni puhastusülesanne on teie jaoks üle jõu käiv?" className="mb-8" />
+              <TwoToneHeading text="Kas vajate tavapärasest koristusest põhjalikumat lahendust?" className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
                 <div>
                   <p>On olukordi, kui tavaline koristus ei ole piisav. Vaipkate on kogunud aastate jooksul nähtamatut mustust. Põrandad on kaotanud sära ja kulumine on näha. Peale ehitust on tolm kõikjal, ka kohtades, kuhu silm ei jõua. Juhuslik tulekahju jättis tahma, mida tavalised vahendid ei eemalda. Või vajate kogu ruumi kiiret desinfitseerimist pärast haiguspuhangut.</p>
                 </div>
                 <div>
                   <p>Need olukorrad vajavad spetsiaalseid vahendeid, erivarustust ja väljaõppega personali.</p>
-                  <p className="mt-4">SPS Grupp on 20+ aastat teinud just seda. Lahendanud raskeid ülesandeid, mida tavaline koristaja ei suuda. Anname tulemustele garantii.</p>
+                  <p className="mt-4">Meil on üle 20 aasta kogemust erinevate pindade ja põhjalikumat puhastust vajavate töödega. Töö tulemus hinnatakse kokkulepitud kvaliteedinõuete järgi.</p>
                 </div>
               </div>
             </div>
@@ -388,7 +388,7 @@ export default function Puhastusteenused() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Tellige tasuta puhastusteenuste analüüs"
-            description="Kirjeldage oma olukorda või tuleme kohapeale olukorraga tutvuma. Koostame pakkumise 24 tunni jooksul."
+            description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest."
           />
         </ScrollAnimation>
 

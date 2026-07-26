@@ -70,7 +70,7 @@ const Hero = () => (
           <span className="bg-gradient-to-r from-[#5ab5da] to-[#2d9e6b] bg-clip-text text-transparent">mis inspireerib</span>
         </h1>
         <p className="text-xl text-white/80 leading-relaxed mb-8 max-w-lg">
-          Hooldame <strong className="text-white font-semibold">üle miljoni m²</strong> äripindu iga päev. 
+          Meie hoolduses on <strong className="text-white font-semibold">üle 1 000 000 m²</strong> äripindu.
           Innovatiivne lähenemine, sertifitseeritud kvaliteet.
         </p>
         <div className="flex gap-4 flex-wrap">
@@ -96,7 +96,7 @@ const Hero = () => (
               <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-7 h-7"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div>
-              <div className="text-2xl font-bold text-[#17345a]">üle miljoni m²</div>
+              <div className="text-2xl font-bold text-[#17345a]">üle 1 000 000 m²</div>
               <div className="text-[15px] text-gray-500">iga päev</div>
             </div>
           </div>
@@ -264,8 +264,8 @@ const Trust = () => (
           
           <div className="grid grid-cols-2 gap-6">
             {[
-              { num: "üle miljoni", label: "m² iga päev", icon: "📊" },
-              { num: "200+", label: "Töötajat", icon: "👥" },
+              { num: "üle 1 000 000", label: "m² meie hoolduses", icon: "📊" },
+              { num: "300+", label: "Töötajat", icon: "👥" },
               { num: "üle 100", label: "Klienti", icon: "🏢" },
               { num: "20+", label: "Aastat", icon: "⭐" },
             ].map((stat, i) => (
@@ -292,7 +292,7 @@ const Trust = () => (
                 </div>
               </div>
               <div className="space-y-4">
-                {["Kindlustatud teenus", "Kindlustatud teenused", "24/7 tugi ja reageerimine"].map((item, i) => (
+                {["Vastutuskindlustusega kaetud tegevus", "Selged kokkulepped", "Operatiivne suhtlus"].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 bg-white/10 backdrop-blur-lg p-4 rounded-xl">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
                     <span className="text-white font-medium">{item}</span>
@@ -319,7 +319,7 @@ const ContactForm = () => (
       <div className="text-center mb-12">
         <span className="text-[#85cbe9] text-[15px] font-bold uppercase tracking-wider mb-4 inline-block">Pakkumine</span>
         <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Küsi tasuta pakkumist</h2>
-        <p className="text-xl text-white/70">Vastame 24 tunni jooksul</p>
+        <p className="text-xl text-white/70">Vastame üldjuhul ühe tööpäeva jooksul</p>
       </div>
       
       <form className="bg-white/10 backdrop-blur-xl p-10 rounded-3xl border border-white/20 shadow-2xl" onSubmit={(e) => e.preventDefault()}>

@@ -121,7 +121,7 @@ const miksMeieKaardid = [
   },
   {
     title: "Tallinna talvede kogemus",
-    desc: "20+ aastat lumetorme. Teame, mis töötab ja mis mitte. Piisav tehnika ja personal suuremate sadude jaoks.",
+    desc: "Talviseid hooldustöid teeme alates 2006. aastast. Töökorraldus ja ressursid lepitakse kokku objekti ning hooajalepingu järgi.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -544,7 +544,7 @@ export default function Lumekoristus() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
-                  { number: "20+", label: "aastat kogemust" },
+                  { number: "Alates 2006", label: "kogemust" },
                   { number: "200+", label: "teenindatud objekti" },
                   { number: "Kindlustatud", label: "teenus" },
                 ].map((stat, i) => (

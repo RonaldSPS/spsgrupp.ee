@@ -13,11 +13,11 @@ import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Koristusfirma Tallinnas | SPS Grupp",
-  description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² iga päev. ISO 9001 sertifikaat. Küsi tasuta pakkumist!",
+  description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses. ISO 9001 ja ISO 14001. Küsi pakkumist!",
   keywords: "koristusfirma, koristusfirmad, puhastusfirma, koristusfirma tallinnas, äripindade koristus, koristusteenus tallinn",
   openGraph: {
     title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² iga päev.",
+    description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses.",
     type: "website",
     locale: "et_EE",
     images: [{ url: "https://spsgrupp.ee/SPS_LOGO.svg", width: 512, height: 512, alt: "SPS Grupp logo" }],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "20+ aastase kogemusega koristusfirma Tallinnas. Hooldame üle miljoni m² iga päev.",
+    description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses.",
   },
   alternates: {
     canonical: "https://spsgrupp.ee",
@@ -57,7 +57,7 @@ const jsonLd = {
       "name": "Miks valida SPS Grupp?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Meil on 20+ aastat kogemust, ISO 9001 sertifikaat ja 200+ koolitatud töötajat."
+        "text": "Tegutseme alates 2006. aastast, meil on ISO 9001 ja ISO 14001 sertifitseeritud juhtimissüsteemid ning enam kui 300 töötajat."
       }
     }
   ]
@@ -84,7 +84,7 @@ const organizationLd = {
   url: "https://spsgrupp.ee",
   logo: "https://spsgrupp.ee/SPS_LOGO.svg",
   image: "https://spsgrupp.ee/SPS_LOGO.svg",
-  description: "20+ aastase kogemusega koristusfirma Tallinnas. ISO 9001 sertifikaat.",
+  description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. ISO 9001 ja ISO 14001 sertifitseeritud juhtimissüsteemid.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Mustamäe tee 46",

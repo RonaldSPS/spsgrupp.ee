@@ -10,6 +10,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
+import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
 import TestimonialCards from "../../components/TestimonialCards";
 import Tooprotsess from "../../components/Tooprotsess";
@@ -43,11 +44,11 @@ export default function KoolideKoristamine() {
       <SeoJsonLd
         serviceName="Koolide koristamine Tallinnas"
         serviceDescription="Koolide ja haridusasutuste professionaalne koristamine Tallinnas."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/koolide-koristamine"
+        serviceUrl="https://spsgrupp.ee/koolide-koristamine/"
         breadcrumbs={[
           { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
           { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Koolide koristamine", item: "https://spsgrupp.ee/koristusteenus/koolide-koristamine" },
+          { position: 3, name: "Koolide koristamine", item: "https://spsgrupp.ee/koolide-koristamine/" },
         ]}
         faq={koolideFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
@@ -339,38 +340,7 @@ export default function KoolideKoristamine() {
                   Kooli koristuse hind sõltub hoone suurusest, õpilaste arvust ja koristusrežiimist.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    { size: "Lasteaed", area: "kuni 500m²", price: "500€", period: "kuu", highlight: true },
-                    { size: "Väike kool", area: "kuni 2000m²", price: "1200€", period: "kuu" },
-                    { size: "Keskmine kool", area: "2000–5000m²", price: "2500€", period: "kuu" },
-                    { size: "Suur kool / gümnaasium", area: "5000m²+", price: "Personaalne", period: "pakkumine" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                        item.highlight
-                          ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                          : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                      }`}
-                    >
-                      <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                      <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                        {item.price}
-                      </div>
-                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.period}
-                      </div>
-                      <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.area}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="text-[15px] text-[#5a6474]">
-                  Küsige personaalset pakkumist teie kooli või lasteaia koristamiseks
-                </p>
+                <MaintenancePriceExamples />
               </div>
 
               <Hinnakalkulaator />

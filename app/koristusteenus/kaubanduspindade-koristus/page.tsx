@@ -11,6 +11,7 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
+import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
 import TestimonialCards from "../../components/TestimonialCards";
 import Tooprotsess from "../../components/Tooprotsess";
@@ -27,7 +28,7 @@ export default function KaubanduspindadeKoristus() {
     },
     {
       q: "Kas pakute kiirreageerimist hädaolukordades?",
-      a: "Jah, pakume 24/7 hädaolukordade teenust, lekked, mahapillatud tooted, rikutud sanitaarruum. Kohapeal tavaliselt 30–60 minuti jooksul.",
+      a: "Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne aeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.",
     },
     {
       q: "Kas eskalaatorite puhastus sisaldub teenuses?",
@@ -95,8 +96,8 @@ export default function KaubanduspindadeKoristus() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">24/7</div>
-                <div className="text-[15px] text-[#1f2937]">valmisolek</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Paindlik</div>
+                <div className="text-[15px] text-[#1f2937]">reageerimine</div>
               </div>
             </div>
           </div>
@@ -258,9 +259,9 @@ export default function KaubanduspindadeKoristus() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">24/7 valmisolek</h3>
+                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Operatiivne suhtlus</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Reageerime hädaolukordadele ööpäevaringselt. Mahapillatud kohv, lekkivad pakendid, rikutud WC, lahendame enne kui kliendid märkavad.
+                        Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne aeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.
                       </p>
                     </div>
                   </div>
@@ -339,38 +340,7 @@ export default function KaubanduspindadeKoristus() {
                   Kaubanduspinna koristuse hind sõltub pindalast, liikluskoormusest, lahtiolekuaegadest ja eritööde vajadusest.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    { size: "Väike kauplus", area: "kuni 200m²", price: "al 300€", period: "kuu", highlight: true },
-                    { size: "Keskmine kauplus", area: "200–800m²", price: "al 600€", period: "kuu" },
-                    { size: "Suur kauplus", area: "800–2000m²", price: "al 1200€", period: "kuu" },
-                    { size: "Kaubanduskeskus", area: "2000m²+", price: "Individuaalne", period: "pakkumine" },
-                  ].map((item, i) => (
-                    <div
-                      key={i}
-                      className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                        item.highlight
-                          ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl"
-                          : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                      }`}
-                    >
-                      <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                      <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                        {item.price}
-                      </div>
-                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.period}
-                      </div>
-                      <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.area}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="text-[15px] text-[#5a6474]">
-                  Eritööd nagu süvapuhastus, aknapesu, põrandate vahatamine arvestatakse eraldi ja saab tellida ka ühekordselt.
-                </p>
+                <MaintenancePriceExamples />
               </div>
 
               <Hinnakalkulaator />
@@ -432,7 +402,7 @@ export default function KaubanduspindadeKoristus() {
         <ScrollAnimation animation="fade-up">
         <FooterCTA
           title="Küsige kaubanduspinna koristuse pakkumist"
-          description="Tuleme kohale, vaatame üle teie objekti ja koostame pakkumise 24 tunni jooksul. Objekti ülevaatus on tasuta ning ei kohusta alustama koostööd."
+          description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest."
         />
         </ScrollAnimation>
 

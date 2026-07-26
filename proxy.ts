@@ -3,6 +3,12 @@ import type { NextRequest } from "next/server"
 
 const COOKIE_NAME = "sps_admin_token"
 const TOKEN_PREFIX = "sps_"
+const LEGACY_RU_REPAIR_REDIRECTS: Record<string, string> = {
+  "/ru/услуги-по-ремонту-в-таллинне/бетонные-работы":
+    "/ru/услуги-по-ремонту-в-таллинне/",
+  "/ru/услуги-по-ремонту-в-таллинне/строительство-гардеробной":
+    "/ru/услуги-по-ремонту-в-таллинне/",
+}
 
 function getAdminPassword(): string {
   return process.env.ADMIN_PASSWORD || ""
@@ -115,6 +121,16 @@ function makeResponse(request: NextRequest, csp: string): NextResponse {
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   const normalizedPathname = pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname
+  let decodedPathname = normalizedPathname
+  try {
+    decodedPathname = decodeURI(normalizedPathname)
+  } catch {}
+
+  const legacyRepairDestination = LEGACY_RU_REPAIR_REDIRECTS[decodedPathname]
+  if (legacyRepairDestination) {
+    return NextResponse.redirect(new URL(legacyRepairDestination, request.url), 308)
+  }
+
   const csp = buildCspHeader()
 
   if (normalizedPathname === "/api/jobs") {

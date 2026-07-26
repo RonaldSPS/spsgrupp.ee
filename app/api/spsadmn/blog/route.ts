@@ -3,12 +3,11 @@ import { eq } from "drizzle-orm"
 import { promises as fs } from "fs"
 import path from "path"
 import { db } from "@/lib/db"
-import { blogEdits, blogTranslations } from "@/lib/db/schema"
+import { blogEdits } from "@/lib/db/schema"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse } from "@/lib/auth"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 import { sanitizeHtml } from "@/lib/sanitize"
-import { getBlogSourceHash, getBlogTranslations, markBlogTranslationsStale } from "@/lib/translate-blog"
 
 const JSON_PATH = path.join(process.cwd(), "data", "admin-blog-edits.json")
 
@@ -37,17 +36,9 @@ export async function GET(request: Request) {
         const data = await readAdminEditsJson()
         const posts: Record<string, unknown> = {}
         for (const [id, row] of Object.entries(data.posts)) {
-          const source = {
-            title: row.title || "",
-            slug: "",
-            excerpt: row.excerpt || "",
-            contentHtml: row.contentHtml || "",
-          }
           posts[id] = {
             ...row,
             active: row.active !== false,
-            sourceHash: getBlogSourceHash(source),
-            translations: await getBlogTranslations(Number(id)),
           }
         }
         return NextResponse.json({ posts }, {
@@ -56,35 +47,8 @@ export async function GET(request: Request) {
       }
 
       const rows = await db.select().from(blogEdits)
-      const translationsByPost: Record<string, unknown[]> = {}
-      try {
-        const allTranslations = await db.select().from(blogTranslations)
-        for (const row of allTranslations) {
-          const key = String(row.blogId)
-          translationsByPost[key] ??= []
-          translationsByPost[key].push({
-            language: row.language,
-            title: row.title || "",
-            slug: row.slug || "",
-            excerpt: row.excerpt || "",
-            contentHtml: row.contentHtml || "",
-            status: row.status,
-            sourceHash: row.sourceHash,
-            updatedAt: row.updatedAt?.toISOString?.() ?? row.updatedAt,
-          })
-        }
-      } catch {
-        // table/column may not exist until migration is applied
-      }
       const posts: Record<string, unknown> = {}
       for (const row of rows) {
-        const source = {
-          title: row.title || "",
-          slug: "",
-          excerpt: row.excerpt || "",
-          contentHtml: row.contentHtml || "",
-        }
-        const hash = getBlogSourceHash(source)
         posts[String(row.id)] = {
           title: row.title,
           slug: row.slug,
@@ -93,8 +57,6 @@ export async function GET(request: Request) {
           excerpt: row.excerpt,
           active: row.active,
           updatedAt: row.updatedAt?.toISOString?.() ?? row.updatedAt,
-          sourceHash: hash,
-          translations: translationsByPost[String(row.id)] || [],
         }
       }
       return NextResponse.json({ posts }, {
@@ -148,18 +110,7 @@ export async function PUT(request: Request) {
         }
         data.posts[String(postId)] = post
         await writeAdminEditsJson(data)
-        const hash = getBlogSourceHash({
-          title: post.title || "",
-          slug: "",
-          excerpt: post.excerpt || "",
-          contentHtml: post.contentHtml || "",
-        })
-        await markBlogTranslationsStale(postId, hash)
-        return NextResponse.json({
-          success: true,
-          post,
-          translations: await getBlogTranslations(postId),
-        }, {
+        return NextResponse.json({ success: true, post }, {
           headers: { "Cache-Control": "no-store, max-age=0" },
         })
       }
@@ -190,38 +141,6 @@ export async function PUT(request: Request) {
 
       const saved = await db.select().from(blogEdits).where(eq(blogEdits.id, postId)).limit(1)
       const post = saved[0]
-      const hash = getBlogSourceHash({
-        title: post?.title || "",
-        slug: "",
-        excerpt: post?.excerpt || "",
-        contentHtml: post?.contentHtml || "",
-      })
-      try {
-        await markBlogTranslationsStale(postId, hash)
-      } catch (error) {
-        console.warn(`Could not mark blog translations stale for post ${postId}:`, error)
-      }
-
-      // Optional auto-translation can be enabled after the Deepseek account is active.
-      if (process.env.AUTO_TRANSLATE_DYNAMIC_CONTENT === "true" && safeFields.title && safeFields.contentHtml) {
-        import("@/lib/translate-blog").then(({ translateBlogPost }) =>
-          translateBlogPost(postId, safeFields.title!, safeFields.excerpt || "", safeFields.contentHtml!)
-        ).catch(err => console.error(`Blog translation failed for post ${postId}:`, err))
-      }
-
-      // Fetch existing translations
-      let translations: unknown[] = []
-      try {
-        const transRows = await db.select().from(blogTranslations).where(eq(blogTranslations.blogId, postId))
-        translations = transRows.map(t => ({
-          language: t.language,
-          title: t.title,
-          slug: t.slug,
-          excerpt: t.excerpt,
-          contentHtml: t.contentHtml,
-          status: t.status,
-        }))
-      } catch { /* table may not exist yet */ }
 
       return NextResponse.json({
         success: true,
@@ -233,7 +152,6 @@ export async function PUT(request: Request) {
           excerpt: post.excerpt,
           updatedAt: post.updatedAt?.toISOString?.() ?? post.updatedAt,
         } : null,
-        translations,
       }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })

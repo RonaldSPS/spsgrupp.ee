@@ -43,8 +43,8 @@ const floatingChips = [
       </svg>
     ),
     chipClass: "chip-icon-navy",
-    value: "20+",
-    label: "aastat",
+    value: "Alates 2006",
+    label: "kogemust",
   },
 ];
 

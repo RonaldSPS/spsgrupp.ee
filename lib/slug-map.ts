@@ -21,56 +21,48 @@ export const localizedPaths: Record<string, LocalePaths> = {
     ru: '/услуги-по-уборке-в-таллинне/уборка-офисов',
   },
   '/koristusteenus/kaubanduspindade-koristus': {
-    en: '/cleaning-services-in-tallinn/cleaning-up-retail-spaces',
-    ru: '/услуги-по-уборке-в-таллинне/очистка-торговых-площадей-в-харьюмаа',
+    en: '/cleaning-services-in-tallinn/retail-cleaning',
+    ru: '/услуги-по-уборке-в-таллинне/уборка-торговых-помещений',
   },
   '/koristusteenus/tootmishoonete-koristus': {
-    en: '/cleaning-services-in-tallinn/cleaning-of-industrial-buildings',
+    en: '/cleaning-services-in-tallinn/industrial-cleaning',
     ru: '/услуги-по-уборке-в-таллинне/уборка-промышленных-зданий',
   },
   '/puhastusteenused': {
-    en: '/cleaning-services-for-business-clients',
-    ru: '/частные-клининговые-услуги-для-бизне',
+    en: '/specialist-cleaning-services',
+    ru: '/клининговые-услуги-для-бизнеса',
   },
   '/puhastusteenused/ehitusjargne-koristus': {
-    en: '/cleaning-services-for-business-clients/post-construction-cleaning',
-    ru: '/частные-клининговые-услуги-для-бизне/послестроительная-уборка-в-харьюмаа',
+    en: '/specialist-cleaning-services/post-construction-cleaning',
+    ru: '/клининговые-услуги-для-бизнеса/послестроительная-уборка',
   },
   '/puhastusteenused/eskalaatorite-suvapuhastus': {
-    en: '/cleaning-services-for-business-clients/deep-cleaning-of-escalators',
-    ru: '/частные-клининговые-услуги-для-бизне/глубокая-очистка-эскалаторов',
+    en: '/specialist-cleaning-services/escalator-deep-cleaning',
+    ru: '/клининговые-услуги-для-бизнеса/глубокая-чистка-эскалаторов',
   },
   '/puhastusteenused/koroonaviiruse-jargne-puhastus': {
-    en: '/cleaning-services-for-business-clients/disinfection-and-post-virus-cleaning',
-    ru: '/частные-клининговые-услуги-для-бизне/дезинфекция-и-очистка-после-вирусов',
+    en: '/specialist-cleaning-services/disinfection',
+    ru: '/клининговые-услуги-для-бизнеса/дезинфекция',
   },
   '/puhastusteenused/porandate-hooldus': {
-    en: '/cleaning-services-for-business-clients/professional-floor-maintenance-in-tallinn',
-    ru: '/частные-клининговые-услуги-для-бизне/профессиональный-уход-за-полом-в-талл',
+    en: '/specialist-cleaning-services/floor-maintenance',
+    ru: '/клининговые-услуги-для-бизнеса/уход-за-полами',
   },
   '/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine': {
-    en: '/cleaning-services-for-business-clients/smoke-and-fire-damage-cleaning',
-    ru: '/частные-клининговые-услуги-для-бизне/уборка-повреждений-от-дыма-и-огня',
+    en: '/specialist-cleaning-services/fire-and-smoke-damage-cleaning',
+    ru: '/клининговые-услуги-для-бизнеса/уборка-после-пожара',
   },
   '/puhastusteenused/vaipade-puhastus': {
-    en: '/cleaning-services-for-business-clients/carpet-cleaning',
-    ru: '/частные-клининговые-услуги-для-бизне/профессиональная-чистка-ковров-для-к',
+    en: '/specialist-cleaning-services/carpet-cleaning',
+    ru: '/клининговые-услуги-для-бизнеса/чистка-ковров',
   },
   '/remonditeenused-tallinnas': {
     en: '/repair-services-in-tallinn',
     ru: '/услуги-по-ремонту-в-таллинне',
   },
-  '/remonditeenused-tallinnas/betoonitood': {
-    en: '/repair-services-in-tallinn/concrete-works',
-    ru: '/услуги-по-ремонту-в-таллинне/бетонные-работы',
-  },
   '/remonditeenused-tallinnas/elektritood': {
     en: '/repair-services-in-tallinn/electrical-works',
     ru: '/услуги-по-ремонту-в-таллинне/электромонтажные-работы',
-  },
-  '/remonditeenused-tallinnas/garderoobide-ehitus': {
-    en: '/repair-services-in-tallinn/cloakroom-construction',
-    ru: '/услуги-по-ремонту-в-таллинне/строительство-гардеробной',
   },
   '/remonditeenused-tallinnas/katuse-remont': {
     en: '/repair-services-in-tallinn/roof-repairs',
@@ -81,62 +73,61 @@ export const localizedPaths: Record<string, LocalePaths> = {
     ru: '/услуги-по-ремонту-в-таллинне/снос',
   },
   '/remonditeenused-tallinnas/plaatimistood': {
-    en: '/repair-services-in-tallinn/plating',
-    ru: '/услуги-по-ремонту-в-таллинне/покрытие',
+    en: '/repair-services-in-tallinn/tiling',
+    ru: '/услуги-по-ремонту-в-таллинне/укладка-плитки',
   },
   '/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus': {
-    en: '/repair-services-in-tallinn/sanitary-renovation-and-conversion',
-    ru: '/услуги-по-ремонту-в-таллинне/обновление-и-преобразование-санитар',
+    en: '/repair-services-in-tallinn/washroom-renovation',
+    ru: '/услуги-по-ремонту-в-таллинне/ремонт-санузлов',
   },
   '/remonditeenused-tallinnas/siseviimistlustood': {
     en: '/repair-services-in-tallinn/interior-finishing',
     ru: '/услуги-по-ремонту-в-таллинне/внутренняя-отделка',
   },
-  '/remonditeenused-tallinnas/torutood-2': {
-    en: '/repair-services-in-tallinn/pipeworks',
-    ru: '/услуги-по-ремонту-в-таллинне/pipeworks',
+  '/remonditeenused-tallinnas/torutood': {
+    en: '/repair-services-in-tallinn/plumbing',
+    ru: '/услуги-по-ремонту-в-таллинне/сантехнические-работы',
   },
   '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': {
-    en: '/repair-services-in-tallinn/construction-and-maintenance-of-ventilation-systems',
-    ru: '/услуги-по-ремонту-в-таллинне/строительство-и-обслуживание-вентил',
+    en: '/repair-services-in-tallinn/ventilation-installation-and-maintenance',
+    ru: '/услуги-по-ремонту-в-таллинне/монтаж-и-обслуживание-вентиляции',
   },
   '/sps-grupp': { en: '/sps-group', ru: '/группа-sps' },
   '/sps-grupp/arvamused': { en: '/sps-group/reviews', ru: '/группа-sps/отзывы' },
   '/tule-meile-toole': { en: '/come-work-for-us', ru: '/приходите-работать-к-нам' },
-  '/valikoristus': { en: '/professional-exterior-cleaning', ru: '/профессиональная-внешняя-отделка-в-т' },
-  '/valikoristus/akende-pesu': {
-    en: '/professional-exterior-cleaning/professional-window-cleaning-in-tallinn',
-    ru: '/профессиональная-внешняя-отделка-в-т/mытьe-окон',
+  '/koristusteenus/valikoristus': { en: '/outdoor-cleaning-and-grounds-care', ru: '/уборка-и-обслуживание-территорий' },
+  '/koristusteenus/valikoristus/akende-pesu': {
+    en: '/outdoor-cleaning-and-grounds-care/window-cleaning',
+    ru: '/уборка-и-обслуживание-территорий/мойка-окон',
   },
-  '/valikoristus/fassaadipesu': {
-    en: '/professional-exterior-cleaning/professional-facade-cleaning',
-    ru: '/профессиональная-внешняя-отделка-в-т/профессиональная-чистка-фасадов-пов',
+  '/koristusteenus/valikoristus/fassaadipesu': {
+    en: '/outdoor-cleaning-and-grounds-care/facade-cleaning',
+    ru: '/уборка-и-обслуживание-территорий/мойка-фасадов',
   },
-  '/valikoristus/grafiti-eemaldamine': {
-    en: '/professional-exterior-cleaning/graffiti-removal',
-    ru: '/профессиональная-внешняя-отделка-в-т/удаление-граффити-быстрое-и-професси',
+  '/koristusteenus/valikoristus/grafiti-eemaldamine': {
+    en: '/outdoor-cleaning-and-grounds-care/graffiti-removal',
+    ru: '/уборка-и-обслуживание-территорий/удаление-граффити',
   },
-  '/valikoristus/kojameheteenus': {
-    en: '/professional-exterior-cleaning/janitor-service',
-    ru: '/профессиональная-внешняя-отделка-в-т/услуги-дворника',
+  '/koristusteenus/valikoristus/kojameheteenus': {
+    en: '/outdoor-cleaning-and-grounds-care/groundskeeping',
+    ru: '/уборка-и-обслуживание-территорий/услуги-дворника',
   },
-  '/valikoristus/lehtedekoristamine': {
-    en: '/professional-exterior-cleaning/leaf-removal',
-    ru: '/профессиональная-внешняя-отделка-в-т/уборка-листьев',
+  '/koristusteenus/valikoristus/lehtedekoristamine': {
+    en: '/outdoor-cleaning-and-grounds-care/leaf-removal',
+    ru: '/уборка-и-обслуживание-территорий/уборка-листьев',
   },
-  '/valikoristus/lumekoristus': {
-    en: '/professional-exterior-cleaning/snow-clearing-in-tallinn-and-harju-county',
-    ru: '/профессиональная-внешняя-отделка-в-т/уборка-снега-в-таллинне-и-харьюмаа',
+  '/koristusteenus/valikoristus/lumekoristus': {
+    en: '/outdoor-cleaning-and-grounds-care/snow-clearing',
+    ru: '/уборка-и-обслуживание-территорий/уборка-снега',
   },
-  '/valikoristus/muruniitmine': {
-    en: '/professional-exterior-cleaning/lawn-mowing',
-    ru: '/профессиональная-внешняя-отделка-в-т/стрижка-газонов',
+  '/koristusteenus/valikoristus/muruniitmine': {
+    en: '/outdoor-cleaning-and-grounds-care/lawn-mowing',
+    ru: '/уборка-и-обслуживание-территорий/стрижка-газонов',
   },
-  '/valikoristus/tanavakivide-pesu-ja-hooldus': {
-    en: '/professional-exterior-cleaning/street-paving-washing',
-    ru: '/профессиональная-внешняя-отделка-в-т/мойка-и-уход-за-уличной-брусчаткой-стр',
+  '/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus': {
+    en: '/outdoor-cleaning-and-grounds-care/paving-stone-cleaning',
+    ru: '/уборка-и-обслуживание-территорий/мойка-тротуарной-плитки',
   },
-  '/blog': { en: '/blog', ru: '/blog' },
 }
 
 function normalizePath(path: string): string {
@@ -162,13 +153,14 @@ export const ruToEt = buildReverseMap('ru')
 
 export function localizePath(etPath: string, locale: Locale): string {
   const normalizedEtPath = normalizePath(etPath)
-  if (locale === 'et') return normalizedEtPath
+  const withTrailingSlash = (path: string) => path === '/' ? path : `${path}/`
+  if (locale === 'et') return withTrailingSlash(normalizedEtPath)
   const slug = localizedPaths[normalizedEtPath]?.[locale]
-  if (slug) return `/${locale}${slug === '/' ? '' : slug}`
+  if (slug) return withTrailingSlash(`/${locale}${slug === '/' ? '' : slug}`)
   const withoutPrefix = normalizedEtPath.replace(/^\/koristusteenus\//, '/')
   const fallbackSlug = localizedPaths[withoutPrefix]?.[locale]
-  if (fallbackSlug) return `/${locale}${fallbackSlug === '/' ? '' : fallbackSlug}`
-  return normalizedEtPath
+  if (fallbackSlug) return withTrailingSlash(`/${locale}${fallbackSlug === '/' ? '' : fallbackSlug}`)
+  return withTrailingSlash(normalizedEtPath)
 }
 
 export function getCurrentEtPath(pathname: string, locale: Locale): string {

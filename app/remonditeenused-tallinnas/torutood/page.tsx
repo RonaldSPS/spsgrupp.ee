@@ -15,7 +15,7 @@ import Tooprotsess from "../../components/Tooprotsess";
 const torutoodFAQ = [
   {
     q: "Kui kiiresti reageerite veelekke hädaolukorras?",
-    a: "Tavaliselt 1-2 tunni jooksul Tallinnas ja Harjumaal. Öisel ajal sama - reageerime 24/7.",
+    a: "Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne aeg sõltub rikke iseloomust, objekti asukohast ja meeskonna saadavusest.",
   },
   {
     q: "Kas teete ka uute torustike paigaldust?",
@@ -26,8 +26,8 @@ const torutoodFAQ = [
     a: "Kasutame termokaameraid, kuulmismeetodit ja rõhu testimist. Enamikul juhtudel leiame lekke kohe ilma suuri lõhkumistöid tegemata.",
   },
   {
-    q: "Kas annate garantii torutöödele?",
-    a: "Jah. Töödele 2 aastat, materjalidele tootja garantii. Kõik dokumenteeritud kirjalikult.",
+    q: "Kuidas torutööd dokumenteeritakse?",
+    a: "Tööde maht, kasutatavad lahendused ja üleandmise tingimused lepitakse enne alustamist kirjalikult kokku.",
   },
   {
     q: "Kas tegelete ka küttesüsteemide probleemidega?",
@@ -46,14 +46,14 @@ export default function TorutoodLeht() {
     { bold: "Ummistuste kõrvaldamine", desc: "Mehaaniline ja keemiline ummistuste eemaldamine." },
     { bold: "Veelekete diagnoosimine ja kiirparandus", desc: "Probleemikoha isoleerimine ja kiire töökindel parandus." },
     { bold: "Sanitaartehnika paigaldus", desc: "WC-d, kraanid, dušid ja muu sanitaartehnika." },
-    { bold: "Avariireageerimine 24/7", desc: "Kiire reageerimine veeavarii ja torustiku rikete korral." },
-    { bold: "Süsteemide dokumentatsioon ja garantii", desc: "Korrektsed dokumendid ja garantii teostatud töödele." },
+    { bold: "Kiireloomuliste tööde hindamine", desc: "Hindame võimalust reageerida esimesel võimalusel." },
+    { bold: "Süsteemide dokumentatsioon", desc: "Korrektselt kirjeldatud tööd ja kasutatud lahendused." },
   ];
 
   const miksMeieKaardid = [
     {
       title: "Kiire avariireageerimine",
-      desc: "Helistage hädaolukorras ja reageerime 24 tunni jooksul. Isoleerime lekke, hindame kahjud ja alustame remonti.",
+      desc: "Helistage hädaolukorras. Hindame võimalust reageerida esimesel võimalusel; täpne aeg sõltub rikkest, asukohast ja meeskonna saadavusest.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
           <path d="M12 8v5l3 3" />
@@ -84,8 +84,8 @@ export default function TorutoodLeht() {
       ),
     },
     {
-      title: "Garantii kõigile töödele",
-      desc: "Meie töödele garantii 2 aastat, materjalidele tootja garantii. Kirjalik leping ja selge dokumentatsioon.",
+      title: "Kirjalikud kokkulepped",
+      desc: "Tööde maht, ajakava ja üleandmise tingimused kirjeldatakse pakkumises või lepingus.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -116,8 +116,8 @@ export default function TorutoodLeht() {
         >
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {[
-              { value: "24 h", label: "avariireageerimine" },
-              { value: "2 aastat", label: "garantii" },
+              { value: "Kokkuleppel", label: "tööde ajakava" },
+              { value: "Kirjalik", label: "tööde kirjeldus" },
               { value: "Ärihooned", label: "spetsialiseerumine" },
             ].map((chip, i) => (
               <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -394,7 +394,7 @@ export default function TorutoodLeht() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Helistage kohe, kui torustikuga on probleem"
-            description="Avariiolukorrad 24/7. Plaanilised tööd — tuleme hindama ja koostame pakkumise."
+            description="Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Plaaniliste tööde jaoks koostame pakkumise."
           />
         </ScrollAnimation>
 
@@ -405,7 +405,7 @@ export default function TorutoodLeht() {
                 Küsi pakkumist
               </a>
               <Link href="tel:6623328" className="btn-outline text-[15px] py-2.5 px-4">
-                662 3328 — 24/7
+                662 3328
               </Link>
               <Link href="mailto:info@spsgrupp.ee" className="btn-outline text-[15px] py-2.5 px-4">
                 info@spsgrupp.ee

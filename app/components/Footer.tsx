@@ -38,7 +38,7 @@ export default function Footer() {
       { label: m("industrialCleaning"), href: "/koristusteenus/tootmishoonete-koristus" },
     ]},
     { items: [
-      { label: m("windowCleaning"), href: "/valikoristus/akende-pesu" },
+      { label: m("windowCleaning"), href: "/koristusteenus/valikoristus/akende-pesu" },
       { label: m("carpetCleaning"), href: "/puhastusteenused/vaipade-puhastus" },
       { label: m("floorMaintenance"), href: "/puhastusteenused/porandate-hooldus" },
       { label: m("constructionWaste"), href: "/ehitusprahi-aravedu" },
@@ -46,20 +46,20 @@ export default function Footer() {
       { label: m("fireDamageCleaning"), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
       { label: m("escalatorDeepCleaning"), href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
       { label: m("disinfection"), href: "/puhastusteenused/koroonaviiruse-jargne-puhastus" },
-      { label: m("pavingCleaning"), href: "/valikoristus/tanavakivide-pesu-ja-hooldus" },
-      { label: m("graffitiRemoval"), href: "/valikoristus/grafiti-eemaldamine" },
-      { label: m("facadeCleaning"), href: "/valikoristus/fassaadipesu" },
+      { label: m("pavingCleaning"), href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus" },
+      { label: m("graffitiRemoval"), href: "/koristusteenus/valikoristus/grafiti-eemaldamine" },
+      { label: m("facadeCleaning"), href: "/koristusteenus/valikoristus/fassaadipesu" },
     ]},
     { items: [
-      { label: m("outdoorCleaning"), href: "/valikoristus" },
-      { label: m("facadeCleaning"), href: "/valikoristus/fassaadipesu" },
-      { label: m("windowCleaning"), href: "/valikoristus/akende-pesu" },
-      { label: m("graffitiRemoval"), href: "/valikoristus/grafiti-eemaldamine" },
-      { label: m("snowRemoval"), href: "/valikoristus/lumekoristus" },
+      { label: m("outdoorCleaning"), href: "/koristusteenus/valikoristus" },
+      { label: m("facadeCleaning"), href: "/koristusteenus/valikoristus/fassaadipesu" },
+      { label: m("windowCleaning"), href: "/koristusteenus/valikoristus/akende-pesu" },
+      { label: m("graffitiRemoval"), href: "/koristusteenus/valikoristus/grafiti-eemaldamine" },
+      { label: m("snowRemoval"), href: "/koristusteenus/valikoristus/lumekoristus" },
     ]},
     { items: [
       { label: m("electricalWork"), href: "/remonditeenused-tallinnas/elektritood/" },
-      { label: m("plumbing"), href: "/remonditeenused-tallinnas/torutood-2/" },
+      { label: m("plumbing"), href: "/remonditeenused-tallinnas/torutood" },
       { label: m("interiorFinishing"), href: "/remonditeenused-tallinnas/siseviimistlustood/" },
       { label: m("bathroomRenovation"), href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/" },
       { label: m("ventilation"), href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/" },
@@ -72,15 +72,16 @@ export default function Footer() {
   return (
     <footer className="bg-[#0f1f33] py-12 border-t border-[rgba(133,203,233,0.08)]">
       <div className="max-w-[1440px] mx-auto px-[25px]">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 pb-9 border-b border-[rgba(133,203,233,0.06)]">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 pb-9 border-b border-[rgba(133,203,233,0.06)]">
+          <div className="lg:col-span-2">
             <Link href={localeHref("/")} className="flex items-center gap-2.5 no-underline mb-4">
               <Image
                 src="/SPS_LOGO.svg"
                 alt={t("logoAlt")}
-                width={38}
-                height={38}
-                style={{ width: "auto", height: "38px" }}
+                width={288}
+                height={50}
+                className="w-[288px] max-w-full h-auto"
+                unoptimized
               />
             </Link>
 

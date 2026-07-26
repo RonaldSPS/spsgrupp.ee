@@ -20,7 +20,7 @@ const textByLocale: Record<Locale, ReviewsPageText> = {
     videoHeading: "Kliendilugu: Tehnikakõrgkool",
     videoDescription: "Vaata, kuidas aitasime 2800 õpilasega koolil luua tervislikuma õpikeskkonna.",
     footerTitle: "Liitu rahulolevate klientidega!",
-    footerDescription: "TASUTA konsultatsioon - Personaalne hoone hindamine - Ekspertarvamus 30 minuti jooksul. Võta meiega ühendust: telefonil +372 662 3328 või e-postil info@spsgrupp.ee",
+    footerDescription: "Esmane konsultatsioon ja vajaduste kaardistamine. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
     cardCta: "Soovid sama tulemust? Küsi pakkumist",
   },
   en: {
@@ -40,7 +40,7 @@ const textByLocale: Record<Locale, ReviewsPageText> = {
     videoHeading: "Client story: Tallinn University of Applied Sciences",
     videoDescription: "See how we helped a school with 2800 students create a healthier learning environment.",
     footerTitle: "Join our satisfied clients!",
-    footerDescription: "FREE consultation - Personal building assessment - Expert opinion within 30 minutes. Contact us by phone at +372 662 3328 or by e-mail at info@spsgrupp.ee",
+    footerDescription: "Initial consultation and needs assessment. We generally contact you within one business day.",
     cardCta: "Want the same result? Request a quote",
   },
   ru: {
@@ -60,7 +60,7 @@ const textByLocale: Record<Locale, ReviewsPageText> = {
     videoHeading: "История клиента: Таллиннский технический колледж",
     videoDescription: "Посмотрите, как мы помогли школе с 2800 учениками создать более здоровую учебную среду.",
     footerTitle: "Присоединяйтесь к довольным клиентам!",
-    footerDescription: "БЕСПЛАТНАЯ консультация - персональная оценка здания - экспертное мнение в течение 30 минут. Свяжитесь с нами по телефону +372 662 3328 или по e-mail info@spsgrupp.ee",
+    footerDescription: "Первичная консультация и оценка потребностей. Обычно мы связываемся с Вами в течение одного рабочего дня.",
     cardCta: "Хотите такой же результат? Запросите предложение",
   },
 }

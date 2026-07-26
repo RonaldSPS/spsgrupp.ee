@@ -13,11 +13,11 @@ import ScrollAnimation from "../components/ScrollAnimation";
 const faqItems = [
   {
     q: "Kui palju maksab kontori koristamine?",
-    a: "Keskmise kontori regulaarne koristamine Tallinnas sõltub objekti suurusest, koristussagedusest ja töömahust. Näiteks umbes 400m² kontori hoolduskoristus jääb tavaliselt vahemikku 350–500 eurot kuus.",
+    a: "Kontori regulaarse koristuse näidishind algab 1,20 €/m² kuus. Teenindame pindu alates 800 m² ning 800 m² kontori hind algab 960 eurost kuus. Täpne hind sõltub koristussagedusest, töömahust ja objekti eripärast.",
   },
   {
     q: "Kui kiiresti hinnapakkumise saab?",
-    a: "Enamasti saadame esmase hinnangu samal tööpäeval. Suuremate objektide puhul lepime enne pakkumise koostamist kokku objekti ülevaatuse.",
+    a: "Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Suuremate objektide puhul lepime enne pakkumise koostamist kokku objekti ülevaatuse.",
   },
   {
     q: "Kas pakute ka ühekordseid puhastusi?",
@@ -219,7 +219,7 @@ export default function KontaktLeht() {
                 {[
                   {
                     title: "Kiire reageerimine",
-                    desc: "Vastame päringutele tööpäeviti enamasti mõne tunni jooksul. Kiireloomuliste probleemide korral leiame lahenduse võimalikult kiiresti ning vajadusel korraldame objekti ülevaatuse juba samal päeval.",
+                    desc: "Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest.",
                     icon: (
                       <svg
                         width="24"

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     locale: "et_EE",
   },
   alternates: {
-    canonical: "https://spsgrupp.ee/puhastusteenused/desinfitseerimine",
+    canonical: "https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/",
   },
 };
 

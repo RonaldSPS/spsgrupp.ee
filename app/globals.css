@@ -734,6 +734,18 @@ footer {
 
 @media (max-width: 480px) {
   .hero-section { padding: 150px 3% 36px; }
+  section div:has(> .btn-primary):has(> .btn-outline) {
+    flex-wrap: wrap;
+  }
+  section div:has(> .btn-primary):has(> .btn-outline) > .btn-primary,
+  section div:has(> .btn-primary):has(> .btn-outline) > .btn-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-section nav {
+    flex-wrap: wrap;
+  }
   .floating-chip { padding: 8px 10px; gap: 6px; font-size: 15px; }
   .floating-chip .text-\[18px\] { font-size: 15px !important; }
   .floating-chip .text-\[15px\] { font-size: 15px !important; }

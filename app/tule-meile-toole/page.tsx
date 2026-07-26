@@ -39,7 +39,7 @@ export default function TuleMeileToolePage() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">200+</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">300+</div>
                 <div className="text-[15px] text-[#1f2937]">töötajat</div>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function TuleMeileToolePage() {
                 <span className="text-[#3abeff]">Liitu meie meeskonnaga</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Meil töötab ligi 200 aktiivset inimest. Varasem töökogemus pole oluline, juhendame oma töötajaid kohapeal.
+                Meil töötab üle 300 inimese. Varasem töökogemus pole oluline, juhendame oma töötajaid kohapeal.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
@@ -158,7 +158,7 @@ export default function TuleMeileToolePage() {
                   { title: "Väljaõpe ja täiendkoolitused", desc: "Pidev enesetäiendamise võimalus" },
                   { title: "Kvaliteetsed ja mugavad tööriided", desc: "Professionaalne varustus" },
                   { title: "Kaasaegsed ja ergonoomilised töövahendid", desc: "Tõhusad ja ohutud seadmed" },
-                  { title: "Sotsiaalne garantii", desc: "Turvatunne ja kindlustus" },
+                  { title: "Ametlik töösuhe ja sotsiaalsed garantiid", desc: "Selged kokkulepped ja turvatunne" },
                   { title: "Tervisekontroll", desc: "Regulaarne tervise jälgimine" },
                   { title: "Tunnustus pikaajalise töö eest", desc: "Staaži hindamine ja premeerimine" },
                   { title: "Rahaline toetus erijuhtudel", desc: "Toetus ootamatutes olukordades" },
@@ -197,13 +197,14 @@ export default function TuleMeileToolePage() {
                     </svg>
                     SPS Grupp
                   </div>
-                  <TwoToneHeading text="Liitu 200+ liikmelise meeskonnaga" className="mb-8" />
+                  <TwoToneHeading text="Liitu enam kui 300 liikmelise meeskonnaga" className="mb-8" />
 
                   <div className="flex flex-wrap gap-4">
                     {[
-                      { number: "200+", label: "töötajat" },
-                      { number: "20+", label: "aastat kogemust" },
-                      { number: "ISO 9001", label: "sertifitseeritud keskkond" },
+                      { number: "300+", label: "töötajat" },
+                      { number: "Alates", label: "2006. aastast" },
+                      { number: "ISO 9001", label: "kvaliteedijuhtimine" },
+                      { number: "ISO 14001", label: "keskkonnajuhtimine" },
                     ].map((stat, i) => (
                       <div
                         key={i}

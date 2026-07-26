@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations, useMessages } from "next-intl";
+import { useLocale, useTranslations, useMessages } from "next-intl";
+import { usePathname } from "next/navigation";
 import TwoToneHeading from "./TwoToneHeading";
+import { getCurrentEtPath, type Locale } from "@/lib/slug-map";
 
 interface FAQItem {
   q: string;
@@ -12,7 +14,15 @@ interface FAQItem {
 export default function FAQ({ items }: { items?: FAQItem[] }) {
   const t = useTranslations("faq")
   const messages = useMessages()
+  const locale = useLocale() as Locale
+  const pathname = usePathname()
+  const isRepairPage = getCurrentEtPath(pathname, locale).startsWith("/remonditeenused-tallinnas")
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const repairDescription = {
+    et: "Vastame kõige levinumatele küsimustele remonditeenuste kohta.",
+    en: "Answers to the most common questions about repair services.",
+    ru: "Ответы на самые распространённые вопросы о ремонтных услугах.",
+  }[locale]
 
   const msgItems = ((messages as Record<string, unknown>).faq as { items: FAQItem[] })?.items || []
   const faq = items ?? msgItems
@@ -25,7 +35,7 @@ export default function FAQ({ items }: { items?: FAQItem[] }) {
           <div>
             <TwoToneHeading text={t("heading")} />
             <p className="text-[15px] text-[#2f353f] leading-[1.7] mb-6 font-light">
-              {t("description")}
+              {isRepairPage ? repairDescription : t("description")}
             </p>
             <a
               href="#pakkumine"

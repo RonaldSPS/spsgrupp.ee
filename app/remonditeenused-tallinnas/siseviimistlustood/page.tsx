@@ -30,8 +30,8 @@ const faqItems = [
     a: "Osaliselt jah. Saame töötada tsooni kaupa ning kaitseme tehnikat ja mööblit. Vesilahustuvad värvid ei eralda tugevaid ebameeldivaid lõhnu. Suuremate värvimistööde puhul on siiski efektiivsem planeerida ruum mõneks ajaks tühjaks.",
   },
   {
-    q: "Kas annate garantii?",
-    a: "Jah. Siseviimistlustöödele anname 2 aastat garantiid. Materjalidele kehtib tootja garantii.",
+    q: "Kuidas lepite kokku tööde tulemuse?",
+    a: "Viimistluse ulatus, materjalid, toonid ja üleandmise tingimused lepitakse enne töö alustamist kirjalikult kokku.",
   },
 ];
 
@@ -123,7 +123,7 @@ export default function SiseviimistlustoodLeht() {
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {[
               { value: "Kiire", label: "töö" },
-              { value: "2 aastat", label: "garantii" },
+              { value: "Kirjalik", label: "tööde kirjeldus" },
               { value: "Puhas", label: "töökoht" },
             ].map((chip, i) => (
               <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>

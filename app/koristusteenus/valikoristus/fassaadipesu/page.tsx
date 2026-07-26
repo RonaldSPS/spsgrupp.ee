@@ -43,8 +43,8 @@ const floatingChips = [
       </svg>
     ),
     chipClass: "chip-icon-navy",
-    value: "20+",
-    label: "aastat",
+    value: "Alates 2006",
+    label: "kogemust",
   },
 ];
 
@@ -327,7 +327,7 @@ export default function Fassaadipesu() {
                   odavam kui hilisem renoveerimine.
                   <br />
                   <br />
-                  SPS Grupp on 20+ aastat teinud professionaalset fassaadipesu
+                  SPS Grupp on alates 2006. aastast pakkunud professionaalset fassaadipesu
                   Tallinna ärihoonetele. Teame, milline meetod sobib erinevatele
                   pinnatüüpidele.
                 </div>
@@ -548,7 +548,7 @@ export default function Fassaadipesu() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
-                  { number: "20+", label: "aastat kogemust" },
+                  { number: "Alates 2006", label: "kogemust" },
                   { number: "Kõik", label: "pinnatüübid" },
                   { number: "Kindlustatud", label: "teenus" },
                 ].map((stat, i) => (

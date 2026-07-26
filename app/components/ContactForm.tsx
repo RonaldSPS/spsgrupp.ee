@@ -2,9 +2,10 @@
 
 import { useActionState, useEffect, useRef } from "react"
 import { useLocale, useTranslations } from "next-intl"
+import { usePathname } from "next/navigation"
 import TwoToneHeading from "./TwoToneHeading"
 import { submitContactForm } from "@/lib/actions"
-import { localizePath, type Locale } from "@/lib/slug-map"
+import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -13,7 +14,23 @@ export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null)
   const t = useTranslations("contactForm")
   const locale = useLocale() as Locale
+  const pathname = usePathname()
+  const isRepairPage = getCurrentEtPath(pathname, locale).startsWith("/remonditeenused-tallinnas")
   const privacyPath = localizePath("/andmekaitsetingimused", locale)
+  const repairCopy = {
+    et: {
+      heading: "Aitame leida sobiva lahenduse teie remondi- või hooldustöödele",
+      subtitle: "Kirjeldage töö vajadust ja võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
+    },
+    en: {
+      heading: "We help find the right solution for your repair or maintenance work",
+      subtitle: "Describe the work you need and we will generally contact you within one business day.",
+    },
+    ru: {
+      heading: "Поможем найти подходящее решение для ремонтных или технических работ",
+      subtitle: "Опишите необходимую работу, и мы свяжемся с вами, как правило, в течение одного рабочего дня.",
+    },
+  }[locale]
 
   useEffect(() => {
     if (state.success && formRef.current) {
@@ -26,13 +43,13 @@ export default function ContactForm() {
       <div className="max-w-[800px] mx-auto px-[5%]">
         <div className="form-card">
           <div className="section-tag mx-auto w-fit">{t("sectionTag")}</div>
-          <TwoToneHeading text={t("heading")} className="mb-6 text-center" />
+          <TwoToneHeading text={isRepairPage ? repairCopy.heading : t("heading")} className="mb-6 text-center" />
           <p className="text-[15px] text-[#5a6474] mb-6 font-light text-center">
-            {t("subtitle")}
+            {isRepairPage ? repairCopy.subtitle : t("subtitle")}
           </p>
 
           <form ref={formRef} action={formAction}>
-            <div style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }} aria-hidden="true">
+            <div hidden aria-hidden="true">
               <label htmlFor="contact-website_url">Website</label>
               <input type="text" id="contact-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
@@ -99,6 +116,7 @@ export default function ContactForm() {
               <textarea
                 id="form-message"
                 name="message"
+                required
                 maxLength={5000}
                 defaultValue={state.fields?.message ?? ""}
                 className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)] resize-y min-h-[90px]"

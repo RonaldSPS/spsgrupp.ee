@@ -19,7 +19,7 @@ const elektritoodFAQ = [
   },
   {
     q: "Kui kiiresti reageerite elektririkkele?",
-    a: "Harjumaa piirkonnas 2 tunni jooksul plaaniliste rikete puhul. Kriitiliste süsteemide (serveriruum, kaubandus, meditsiiniasutused) jaoks on lepinguliselt kokku leppida võimalik 30-minutiline reageering. Tööajavälisel ajal (õhtu, nädalavahetus) on hädaabireageering võimalik, hind on siis kõrgem.",
+    a: "Reageerimisaeg sõltub rikke iseloomust, objekti asukohast ja sobiva pädevusega spetsialisti saadavusest. Kiireloomulise olukorra puhul hindame võimalust reageerida esimesel võimalusel.",
   },
   {
     q: "Kas LED-üleminek tasub end ära?",
@@ -35,7 +35,7 @@ const elektritoodFAQ = [
   },
   {
     q: "Kas elektritööd nõuavad loa?",
-    a: "Osa elektritöid nõuab elektriohutuse seaduse järgi pädevat isikut (meie elektrikud on litsentseeritud). Suurematele uusprojektidele võib vaja olla ehitusluba ja projektdokumentatsiooni — me haldame kogu protsessi kliendile nähtamatult. Pärast tööde lõppu väljastame tegevuspäeviku ja mõõtmisprotokollid, mis on vajalikud nii auditeerimise kui kindlustuse jaoks.",
+    a: "Nõuded sõltuvad töö liigist ja mahust. Enne alustamist selgitame välja vajaliku pädevuse, kooskõlastused ja dokumentatsiooni ning lepime kirjalikult kokku, millised dokumendid töö lõpus üle antakse.",
   },
   {
     q: "Kas saaks ainult lubatud osa süsteemist uuendada, mitte kõike korraga?",
@@ -48,8 +48,8 @@ export default function ElektritoodLeht() {
   const heroPealkiri = "Elektritööd äripindadele";
   const heroPealkiriVarviline = "Tallinnas ja Harjumaal";
   const heroKirjeldus =
-    "Projekteerime ja paigaldame uusi elektrisüsteeme, hooldame olemasolevaid, uuendame aegunud juhtmestikke, paigaldame LED-valgustust ja elektriautode laadimisjaamu. Kõik meie elektrikud on litsentseeritud ja tööd vastavad EVS-HD 60364 standardile. Anname tehtud töödele 2-aastase garantii ja kogu tegevus on kindlustatud.";
-  const heroHind = "2-aastase garantii";
+    "Korraldame äripindade elektrisüsteemide paigaldust, hooldust, juhtmestike uuendamist, LED-valgustuse ja elektriautode laadimislahenduste töid. Vajadusel kaasame töö iseloomule vastava pädevusega spetsialistid ning dokumenteerime kokkulepitud tööd.";
+  const heroHind = "selge töömahuga";
   const heroCtaTekst = "Küsi elektritööde pakkumist";
 
   const floatingChips = [
@@ -61,8 +61,8 @@ export default function ElektritoodLeht() {
         </svg>
       ),
       chipClass: "chip-icon-blue",
-      value: "Litsentseeritud",
-      label: "Elektrikud",
+      value: "Nõuetele vastav",
+      label: "töökorraldus",
     },
     {
       icon: (
@@ -83,8 +83,8 @@ export default function ElektritoodLeht() {
         </svg>
       ),
       chipClass: "chip-icon-navy",
-      value: "2-aastane",
-      label: "Garantii",
+      value: "Kirjalik",
+      label: "tööde kirjeldus",
     },
   ];
 
@@ -102,7 +102,7 @@ export default function ElektritoodLeht() {
     },
     {
       bold: "Hooldus ja rikete likvideerimine",
-      desc: "Regulaarne hooldusleping sisaldab iga-aastast visuaalset ülevaatust ja termograafilist kontrolli. Rikkele reageerime Harjumaal 2 tunni jooksul.",
+      desc: "Hoolduse sisu ja sagedus lepitakse kokku objekti vajaduste järgi. Rikke korral sõltub reageerimisaeg asukohast, töö iseloomust ja sobiva spetsialisti saadavusest.",
     },
     {
       bold: "Juhtmestiku uuendamine",
@@ -157,8 +157,8 @@ export default function ElektritoodLeht() {
       ),
     },
     {
-      title: "2-aastane garantii",
-      desc: "Anname kõikidele elektritöödele 2-aastase garantii. Kui midagi läheb valesti, parandame selle omal kulul.",
+      title: "Selge dokumentatsioon",
+      desc: "Lepime tööde mahu, nõuded ja üleandmise tingimused enne alustamist kirjalikult kokku.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -170,8 +170,8 @@ export default function ElektritoodLeht() {
       ),
     },
     {
-      title: "Litsentseeritud elektrikud",
-      desc: "Kõik meie elektrikud on litsentseeritud ja tööd vastavad EVS-HD 60364 standardile. Teostame töid vastavalt elektriohutuse seadusele.",
+      title: "Sobiva pädevusega spetsialistid",
+      desc: "Tööde teostajad valitakse töö liigi ja kehtivate nõuete järgi. Vajalik pädevus ning üleantav dokumentatsioon täpsustatakse enne töö algust.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -220,7 +220,7 @@ export default function ElektritoodLeht() {
   ];
   const footerCtaTitle = "Tellige elektritööde pakkumine";
   const footerCtaDescription =
-    "Alustame enamasti 15–30-minutilisest kohapealsest nõustamisest — see on tasuta ega kohusta millekski. Helistage +372 662 3328 või kirjutage info@spsgrupp.ee.";
+    "Kirjeldage töö vajadust. Vajadusel lepime kokku objekti ülevaatuse ning täpsustame töö mahu enne pakkumise koostamist. Helistage +372 662 3328 või kirjutage info@spsgrupp.ee.";
 
   const breadcrumbTeenus = "Elektritööd";
 
@@ -230,9 +230,9 @@ export default function ElektritoodLeht() {
     "Meie elektritööde meeskond teenindab kontoreid Ülemiste Citys ja kesklinnas, kaubanduskeskusi Mustamäel ja Lasnamäel, tootmisettevõtteid Peetri ja Saku tööstusparkides. Sageli kombineeritakse elektritööd meie muude teenustega (siseviimistlus, ventilatsioon, sanitaarremont) ühe projekti alusel. Meil on kogemus nii 100 m² väikekontoritest kuni 10 000 m² tootmishoonetesteni.";
 
   const stats = [
-    { number: "2 h", label: "Reageerimisaeg Harjumaal" },
-    { number: "2 a", label: "Garantii elektritöödele" },
-    { number: "100+", label: "Äriobjekti teenindatud" },
+    { number: "Paindlik", label: "tööde ajakava" },
+    { number: "Kirjalik", label: "tööde kirjeldus" },
+    { number: "Üks", label: "kontaktisik" },
   ];
 
   return (

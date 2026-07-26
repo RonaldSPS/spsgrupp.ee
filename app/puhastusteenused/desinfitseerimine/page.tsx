@@ -8,7 +8,6 @@ import FAQ from "../../components/FAQ";
 import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
-import Hinnakalkulaator from "../../components/Hinnakalkulaator";
 import SeoJsonLd from "../../components/SeoJsonLd";
 import Tooprotsess from "../../components/Tooprotsess";
 
@@ -41,11 +40,11 @@ export default function Desinfitseerimine() {
       <SeoJsonLd
         serviceName="Desinfitseerimine Tallinnas"
         serviceDescription="Ruumide professionaalne desinfitseerimine Tallinnas. Sertifitseeritud vahendid, ohutu inimestele ja tehnikale."
-        serviceUrl="https://spsgrupp.ee/puhastusteenused/desinfitseerimine"
+        serviceUrl="https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/"
         breadcrumbs={[
           { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
           { position: 2, name: "Puhastusteenused", item: "https://spsgrupp.ee/puhastusteenused" },
-          { position: 3, name: "Desinfitseerimine", item: "https://spsgrupp.ee/puhastusteenused/desinfitseerimine" },
+          { position: 3, name: "Desinfitseerimine", item: "https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
         ]}
         faq={customFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
@@ -325,7 +324,7 @@ export default function Desinfitseerimine() {
                 <TwoToneHeading text="Kuidas kujuneb desinfitseerimise hind?" />
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
+              <div className="max-w-[760px] mx-auto">
                 <div>
                   <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light">
                     Hind sõltub pindalast, kasutatavast meetodist ja tööde sagedusest.
@@ -362,8 +361,6 @@ export default function Desinfitseerimine() {
                     </svg>
                   </a>
                 </div>
-
-                <Hinnakalkulaator />
               </div>
             </div>
           </section>

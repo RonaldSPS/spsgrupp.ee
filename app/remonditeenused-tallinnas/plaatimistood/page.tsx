@@ -57,8 +57,8 @@ const benefits = [
     ),
   },
   {
-    title: "Garantii töödele",
-    desc: "Plaatimistöödele anname 2 aastat garantiid. Kirjalik leping ja selged tingimused annavad kindluse nii tööde ajal kui pärast üleandmist.",
+    title: "Kirjalikud kokkulepped",
+    desc: "Tööde maht, aluspinna ettevalmistus, materjalid ja üleandmise tingimused lepitakse enne alustamist kokku.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -94,8 +94,8 @@ const faqItems = [
     a: "Jah. Plaatimise aluspind peab olema tasane, kuiv ja kandev. Vajadusel teeme eelnevalt ka tasandustööd. Hindame olukorda objektile tulles.",
   },
   {
-    q: "Kas annate garantii plaatimistöödele?",
-    a: "Jah. Plaatimistöödele 2 aastat garantii, hüdroisolatsioonile sama või pikem. Kirjalik leping ja selged tingimused.",
+    q: "Kuidas plaatimistööde kvaliteet kokku lepitakse?",
+    a: "Aluspinna ettevalmistus, vuukide lahendus, materjalid ja üleandmise tingimused kirjeldatakse enne töö alustamist.",
   },
 ];
 
@@ -121,7 +121,7 @@ export default function PlaatimistoodLeht() {
             {[
               { value: "Sirged", label: "jooned" },
               { value: "Kõik", label: "plaaditüübid" },
-              { value: "2 aastat", label: "garantii" },
+              { value: "Täpne", label: "tööde kirjeldus" },
             ].map((chip, i) => (
               <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
                 <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
@@ -200,7 +200,7 @@ export default function PlaatimistoodLeht() {
                 </div>
                 <div>
                   <p>SPS Grupi plaatijad on spetsialiseerunud just ärikinnisvarale. Me teeme tööd, mis kestab.</p>
-                  <p className="mt-4">Kogenud plaatija suudab teha sirged vuugid ja korrektse hüdroisolatsiooni. Anname tulemusele garantii.</p>
+                  <p className="mt-4">Kogenud plaatija suudab teha sirged vuugid ja korrektse hüdroisolatsiooni. Töö tulemus hinnatakse eelnevalt kokkulepitud tingimuste järgi.</p>
                 </div>
               </div>
             </div>

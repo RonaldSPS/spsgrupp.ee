@@ -12,6 +12,7 @@ import Tooprotsess from "../../components/Tooprotsess";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
+import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
 
 const kontoriKoristusFAQ = [
@@ -19,7 +20,7 @@ const kontoriKoristusFAQ = [
   { q: "Kas kontorikoristus toimub tööajal või väljaspool?", a: "Tavaliselt koristame töövälisel ajal — varahommikul enne tööpäeva algust või õhtul pärast tööaega. Soovi korral saame korraldada ka päevase koristuse madala liiklusega aegadel." },
   { q: "Mida kontori koristus sisaldab?", a: "Tolmuimejaga puhastus, pindade pühkimine, prügi väljaviimine, sanitaarruumide puhastus, köögi ja puhkeala koristus. Lisateenustena pakume akende pesu, vaipade süvapuhastust ja desinfitseerimist." },
   { q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?", a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Eritööde puhul valitakse vahendid konkreetse ülesande järgi." },
-  { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Tavaliselt 3–5 tööpäeva jooksul pärast lepingu sõlmimist. Kiireloomulistel juhtudel saame alustada 24–48 tunni jooksul." },
+  { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist." },
 ];
 
 export default function KontoriKoristus() {
@@ -27,7 +28,7 @@ export default function KontoriKoristus() {
     <>
       <SeoJsonLd
         serviceName="Kontori koristus Tallinnas"
-        serviceDescription="Regulaarne kontori koristus Tallinnas alates 1.2€/m². Paindlik graafik, koolitatud personal, ISO 9001."
+        serviceDescription="Regulaarne kontorikoristus Tallinnas alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001."
         serviceUrl="https://spsgrupp.ee/koristusteenus/kontori-koristus"
         breadcrumbs={[
           { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
@@ -102,8 +103,8 @@ export default function KontoriKoristus() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Regulaarne kontorikoristus alates <strong className="text-white font-medium">1.2€/m²</strong>. 
-                Paindlik graafik, koolitatud personal ja kvaliteedikontroll iga käiguga.
+                Regulaarne kontorikoristus alates <strong className="text-white font-medium">1,20 €/m² kuus</strong>.
+                Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a
@@ -141,13 +142,13 @@ export default function KontoriKoristus() {
         <ScrollAnimation animation="fade-up">
         <section className="py-[100px] bg-white">
           <div className="max-w-[1280px] mx-auto px-[5%]">
-            <TwoToneHeading text="Kas teie kontorit koristab keegi, keda te tegelikult ei usalda?" className="mb-8" />
+            <TwoToneHeading text="Kas teie praegune koristusteenus vastab ettevõtte ootustele?" className="mb-8" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
               <div>
                 <strong>Paljud ettevõtted on olukorras, kus koristaja küll käib, aga tulemus ei rahulda.</strong> Tolm koguneb kappide peale, prügikastid on hommikul endiselt täis ja WC-s lõpevad tarvikud kõige ebasobivamal hetkel. Töötajad märkavad ja kliendid samuti.
               </div>
               <div>
-                <strong>Kontori puhtus mõjutab otseselt kolme asja:</strong> töötajate produktiivsust, klientide esmamuljeid ja haigestumiste arvu. Uuringud näitavad, et puhtas kontoris on haiguspäevi vähem.<br /><br />
+                <strong>Kontori puhtus mõjutab töötajate heaolu ja klientide esmamuljet.</strong> Puhas ja hügieeniline töökeskkond aitab toetada töötajate heaolu ja vähendada nakkuste leviku riski.<br /><br />
                 <strong>SPS Grupis läbib iga koristaja koolituse just kontorikeskkonna jaoks.</strong> Me teame, kuidas käsitleda IT-tehnikat, tundlikke dokumente ja esinduspindu nii, et te ei pea enam muretsema.
               </div>
             </div>
@@ -227,7 +228,7 @@ export default function KontoriKoristus() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">20+ aastat kontorihoolduse kogemust</h3>
+                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kontorihoolduse kogemus alates 2006. aastast</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
                         Oleme koristanud kõiki kontoritüüpe — väikestest IT-büroodest suurte peakontorite ja ministeeriumideni. Teame, mis töötab ja mis mitte.
                       </p>
@@ -266,7 +267,7 @@ export default function KontoriKoristus() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">ISO 9001 kvaliteedijuhtimine</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Iga koristuskäiku kontrollib objektijuht. Kui midagi ei vasta standardile, lahendame selle enne kui märkate.
+                        Objektijuhi korraldatud regulaarne kvaliteedikontroll aitab puudused kiiresti tuvastada ja lahendada.
                       </p>
                     </div>
                   </div>
@@ -283,7 +284,7 @@ export default function KontoriKoristus() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Öko puhastusvahendid</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Eelistame sertifitseeritud ja väiksema keskkonnamõjuga tooteid. Pakume allergiavabasid lahendusi tundlikele töötajatele.
+                        Vajadusel valime tundlikule töökeskkonnale sobivad vähese lõhna ja väiksema allergeeniohuga puhastusvahendid.
                       </p>
                     </div>
                   </div>
@@ -325,37 +326,7 @@ export default function KontoriKoristus() {
                   Kontori koristuse hind kujuneb nelja teguri põhjal: pindala, koristuse sagedus, töötajate arv ja eritööde vajadus.
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[
-                    { size: "Keskmine kontor", area: "800–1500m²", price: "450€", period: "kuu", highlight: true },
-                    { size: "Suur kontor", area: "4000–5000m²", price: "800€", period: "kuu" },
-                    { size: "Suur kompleks", area: "10 000m²+", price: "Individuaalne", period: "pakkumine" },
-                  ].map((item, i) => (
-                    <div 
-                      key={i} 
-                      className={`p-4 rounded-2xl text-center transition-all duration-300 cursor-pointer ${
-                        item.highlight 
-                          ? "bg-[#17345a] text-white hover:bg-[#1e4a7a] hover:scale-105 hover:shadow-xl" 
-                          : "bg-[#f8fafc] hover:bg-[#eef7fc] hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]"
-                      }`}
-                    >
-                      <div className={`text-[15px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>{item.size}</div>
-                      <div className={`text-[26px] font-bold mb-1 ${item.highlight ? "text-white" : "text-[#17345a]"}`}>
-                        {item.price}
-                      </div>
-                      <div className={`text-[15px] mb-2 ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.period}
-                      </div>
-                      <div className={`text-[15px] ${item.highlight ? "text-white/70" : "text-[#5a6474]"}`}>
-                        {item.area}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="text-[15px] text-[#5a6474]">
-                  Regulaarne hoolduskoristus algab <strong>1.2€/m²</strong>, suurpuhastus <strong>1.5€/m²</strong>
-                </p>
+                <MaintenancePriceExamples />
               </div>
 
               <Hinnakalkulaator />
@@ -427,7 +398,7 @@ export default function KontoriKoristus() {
         <ScrollAnimation animation="fade-up">
         <FooterCTA 
           title="Tellige tasuta kontorikoristuse analüüs" 
-          description="Tuleme kohale, vaatame üle teie kontori vajadused ja koostame personaalse pakkumise. Saate vastuse 24 tunni jooksul. Tasuta ja kohustuseta."
+          description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest."
         />
         </ScrollAnimation>
 

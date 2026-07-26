@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
 
@@ -14,7 +13,7 @@ export default function Services() {
           <TwoToneHeading text={t("heading")} />
           <div className="text-[16px] text-[#333a46] leading-[1.8]">
             <p className="mb-4">
-              <Link href="/koristusteenus" className="text-[#17345a] underline hover:text-[#5ab5da]">Koristusteenuse</Link> {t("para1").split(" ").slice(1).join(" ")}
+              {t("para1")}
             </p>
             <p className="mb-4">
               {t("para2")}

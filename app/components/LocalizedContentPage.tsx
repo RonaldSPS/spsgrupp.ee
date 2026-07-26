@@ -5,7 +5,9 @@ import FooterCTA from './FooterCTA'
 import ContactForm from './ContactForm'
 import CareerForm from './CareerForm'
 import TooleAnnouncements from './TooleAnnouncements'
-import type { Locale } from '@/lib/slug-map'
+import Hinnakalkulaator from './Hinnakalkulaator'
+import MaintenancePriceExamples from './MaintenancePriceExamples'
+import { localizePath, type Locale } from '@/lib/slug-map'
 import {
   getHeroImage,
   getLocalizedContent,
@@ -28,13 +30,19 @@ export default function LocalizedContentPage({ etPath, locale, namespace }: Loca
   const title = getTitle(hero, seo)
   const description = stringValue(hero?.description) || stringValue(hero?.desc1) || stringValue(seo?.serviceDescription)
   const faqItems = numberedPairs(asRecord(content.faq), 'q', 'a')
+  const parentPath = getParentPath(etPath)
+  const homeLabel = stringValue(seo?.breadcrumbHome) || (locale === 'ru' ? 'Главная' : 'Home')
+  const parentLabel =
+    stringValue(seo?.breadcrumbService) ||
+    stringValue(seo?.breadcrumbServices) ||
+    localizedParentLabel(parentPath, locale)
 
   return (
     <>
       <Navbar />
       <main>
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px] overflow-x-clip"
           aria-label={stringValue(hero?.ariaLabel) || title}
           style={{ background: `url('${getHeroImage(etPath)}') center/cover no-repeat` }}
         >
@@ -50,6 +58,27 @@ export default function LocalizedContentPage({ etPath, locale, namespace }: Loca
                 border: '1px solid rgba(133, 203, 233, 0.2)',
               }}
             >
+              <nav aria-label={locale === 'ru' ? 'Навигационная цепочка' : 'Breadcrumb'} className="mb-4 text-[15px] text-white/85">
+                <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  <li>
+                    <Link href={localizePath('/', locale)} className="hover:text-white underline-offset-4 hover:underline">
+                      {homeLabel}
+                    </Link>
+                  </li>
+                  {parentPath !== '/' ? (
+                    <>
+                      <li aria-hidden="true">/</li>
+                      <li>
+                        <Link href={localizePath(parentPath, locale)} className="hover:text-white underline-offset-4 hover:underline">
+                          {parentLabel}
+                        </Link>
+                      </li>
+                    </>
+                  ) : null}
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="text-white">{title}</li>
+                </ol>
+              </nav>
               <h1 className="text-[clamp(28px,4.2vw,56px)] font-bold text-white leading-[1.12] mb-[18px]">
                 {title}
               </h1>
@@ -60,11 +89,11 @@ export default function LocalizedContentPage({ etPath, locale, namespace }: Loca
                   value={description}
                 />
               ) : null}
-              <div className="flex flex-wrap gap-[10px] mb-[24px] animate-fade-up">
-                <a href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-[10px] mb-[24px] animate-fade-up">
+                <a href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4 w-full sm:w-auto justify-center">
                   {stringValue(hero?.ctaButton) || stringValue(hero?.cta) || ctaLabel(locale)}
                 </a>
-                <Link href="tel:6623328" className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4">
+                <Link href="tel:6623328" className="btn-outline bg-white/10 border-white/30 text-white hover:bg-white/20 text-[15px] py-2.5 px-4 w-full sm:w-auto justify-center">
                   662 3328
                 </Link>
               </div>
@@ -73,9 +102,9 @@ export default function LocalizedContentPage({ etPath, locale, namespace }: Loca
         </section>
 
         {renderSection('problem', content.problem, 'white')}
-        {renderCardsSection(content.services, 'item')}
-        {renderCardsSection(content.whyUs, 'reason')}
-        {renderPricing(content.pricing)}
+        {renderCardsSection(content.services, 'item', locale)}
+        {renderCardsSection(content.whyUs, 'reason', locale)}
+        {renderPricing(content.pricing, locale, usesMaintenancePricing(etPath))}
         {renderSection('about', content.about, 'white')}
         {renderSection('standards', content.standards, 'muted')}
         {renderSection('customerSatisfaction', content.customerSatisfaction, 'white')}
@@ -129,7 +158,7 @@ function renderSection(key: string, sectionValue: unknown, tone: 'white' | 'mute
   )
 }
 
-function renderCardsSection(sectionValue: unknown, prefix: 'item' | 'reason') {
+function renderCardsSection(sectionValue: unknown, prefix: 'item' | 'reason', locale: Locale) {
   const section = asRecord(sectionValue)
   if (!section) return null
   const cards = numberedPairs(section, `${prefix}`, `${prefix}`, true)
@@ -138,7 +167,7 @@ function renderCardsSection(sectionValue: unknown, prefix: 'item' | 'reason') {
   return (
     <section className="py-[90px] bg-[#eceef1]">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        {stringValue(section.tag) ? <div className="section-tag mb-4">{stringValue(section.tag)}</div> : null}
+        {stringValue(section.tag) ? <div className="section-tag mb-4">{cardSectionTag(stringValue(section.tag), locale)}</div> : null}
         <h2 className="text-[clamp(28px,3vw,44px)] leading-[1.15] font-bold text-[#17345a] mb-10">
           {stringValue(section.heading)}
         </h2>
@@ -156,9 +185,37 @@ function renderCardsSection(sectionValue: unknown, prefix: 'item' | 'reason') {
   )
 }
 
-function renderPricing(sectionValue: unknown) {
+function cardSectionTag(tag: string, locale: Locale): string {
+  if (tag === 'Service content' || tag === 'Сервисный контент') {
+    return locale === 'ru' ? 'Состав услуги' : 'Services'
+  }
+  return tag
+}
+
+function renderPricing(sectionValue: unknown, locale: Locale, maintenancePricing: boolean) {
   const section = asRecord(sectionValue)
   if (!section) return null
+
+  if (maintenancePricing) {
+    return (
+      <section className="py-[90px] bg-white">
+        <div className="max-w-[1280px] mx-auto px-[5%]">
+          {stringValue(section.tag) ? <div className="section-tag mb-4">{stringValue(section.tag)}</div> : null}
+          <h2 className="text-[clamp(28px,3vw,44px)] leading-[1.15] font-bold text-[#17345a] mb-5">
+            {stringValue(section.heading)}
+          </h2>
+          {stringValue(section.description) ? (
+            <RichText as="p" className="text-[16px] leading-[1.8] text-[#2f353f] max-w-[820px] mb-10" value={stringValue(section.description)} />
+          ) : null}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-start">
+            <MaintenancePriceExamples locale={locale} />
+            <Hinnakalkulaator locale={locale} />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   const cards = numberedPairs(section, 'item', 'item', true, ['Size', 'Area', 'Price', 'Period'])
   if (cards.length === 0) return null
 
@@ -186,6 +243,34 @@ function renderPricing(sectionValue: unknown) {
       </div>
     </section>
   )
+}
+
+function usesMaintenancePricing(etPath: string): boolean {
+  return [
+    '/koristusteenus',
+    '/koristusteenus/kontori-koristus',
+    '/koristusteenus/kaubanduspindade-koristus',
+    '/koristusteenus/tootmishoonete-koristus',
+    '/koolide-koristamine',
+  ].includes(etPath)
+}
+
+function getParentPath(etPath: string): string {
+  if (etPath.startsWith('/koristusteenus/valikoristus/')) return '/koristusteenus/valikoristus'
+  if (etPath.startsWith('/koristusteenus/')) return '/koristusteenus'
+  if (etPath.startsWith('/puhastusteenused/')) return '/puhastusteenused'
+  if (etPath.startsWith('/remonditeenused-tallinnas/')) return '/remonditeenused-tallinnas'
+  return '/'
+}
+
+function localizedParentLabel(parentPath: string, locale: Locale): string {
+  const labels: Record<string, { en: string; ru: string }> = {
+    '/koristusteenus': { en: 'Regular cleaning', ru: 'Регулярная уборка' },
+    '/puhastusteenused': { en: 'Specialist cleaning', ru: 'Специализированная уборка' },
+    '/remonditeenused-tallinnas': { en: 'Repair services', ru: 'Ремонтные услуги' },
+    '/koristusteenus/valikoristus': { en: 'Outdoor cleaning and grounds care', ru: 'Уборка и обслуживание территорий' },
+  }
+  return labels[parentPath]?.[locale === 'ru' ? 'ru' : 'en'] || (locale === 'ru' ? 'Услуги' : 'Services')
 }
 
 function renderFaq(items: Array<{ q: string; a: string }>, locale: Locale) {
@@ -247,9 +332,12 @@ function numberedPairs(
 }
 
 function getTitle(hero: ContentRecord | undefined, seo: ContentRecord | undefined): string {
-  const first = stringValue(hero?.title) || stringValue(hero?.h1Line1) || stringValue(seo?.serviceName)
+  const serviceName = stringValue(seo?.serviceName)
+  if (serviceName) return serviceName
+
+  const first = stringValue(hero?.title) || stringValue(hero?.h1Line1)
   const second = stringValue(hero?.subtitle) || stringValue(hero?.h1Line2)
-  return [first, second].filter(Boolean).join(' ')
+  return [first, second].filter(Boolean).join(' — ')
 }
 
 function asRecord(value: unknown): ContentRecord | undefined {

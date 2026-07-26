@@ -15,7 +15,7 @@ import Tooprotsess from "../components/Tooprotsess";
 const customFAQ = [
   {
     q: "Kas SPS Grupp teeb kõiki remonditöid ise või kasutab alltöövõtjaid?",
-    a: "Enamik töid (elekter, toru, viimistlus, plaatimine, lammutus) teeme ise oma sertifitseeritud meeskonnaga. Eriti spetsiifilistel töödel võime kaasata usaldusväärseid partnereid — kuid teie ees vastutame alati meie.",
+    a: "Korraldame ärikinnisvara väiksemaid remondi- ja hooldustöid oma meeskonna ning vajadusel kontrollitud koostööpartnerite abil. Kliendile jääb tööde koordineerimiseks üks kontaktisik.",
   },
   {
     q: "Kas saate teha remonditöid tööajal segamata?",
@@ -23,15 +23,15 @@ const customFAQ = [
   },
   {
     q: "Kui kiiresti saab remonditööde pakkumist?",
-    a: "Tavaliselt 2–5 tööpäeva pärast kohapealset ülevaatust. Väiksemate tööde puhul ka kiiremini. Kiireloomulistes olukordades reageerime samal päeval.",
+    a: "Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
   },
   {
-    q: "Kas annate remonditöödele garantii?",
-    a: "Jah. Kõigile teostatud töödele kehtib garantii vastavalt kokkuleppele — tavaliselt 1–5 aastat sõltuvalt töö iseloomust. Materjalidele kehtib tootja garantii.",
+    q: "Kuidas lepite kokku tööde mahu ja vastutuse?",
+    a: "Tööde sisu, ajakava, vastutus ja üleandmise tingimused kirjeldatakse enne töö alustamist kirjalikus pakkumises või lepingus.",
   },
   {
     q: "Kas tegelete ka kiireloomuliste hädaolukordadega?",
-    a: "Jah — veeavarii, elektririke, kanalisatsiooniummistus. Reageerime kiiresti ja jõuame kohale esimesel võimalusel.",
+    a: "Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne aeg sõltub töö iseloomust, objekti asukohast ja meeskonna saadavusest.",
   },
 ];
 
@@ -67,8 +67,8 @@ export default function RemonditeenusedTallinnas() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Litsentseeritud</div>
-                <div className="text-[15px] text-[#1f2937]">meeskond</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Üks</div>
+                <div className="text-[15px] text-[#1f2937]">kontaktisik</div>
               </div>
             </div>
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -79,8 +79,8 @@ export default function RemonditeenusedTallinnas() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Kindlustatud</div>
-                <div className="text-[15px] text-[#1f2937]">tööd</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Paindlik</div>
+                <div className="text-[15px] text-[#1f2937]">töökorraldus</div>
               </div>
             </div>
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -91,8 +91,8 @@ export default function RemonditeenusedTallinnas() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">20+ aastat</div>
-                <div className="text-[15px] text-[#1f2937]">kogemust</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Ärikinnisvara</div>
+                <div className="text-[15px] text-[#1f2937]">remondi- ja hooldustööd</div>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@ export default function RemonditeenusedTallinnas() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Kogu remondiprojekt ühest kohast. Elekter, torud, siseviimistlus, ventilatsioon, plaatimine ja betoonitööd. Üks partner, üks vastutus, ennustatav tulemus.
+                Korraldame ärikinnisvara väiksemaid remondi- ja hooldustöid oma meeskonna ning vajadusel kontrollitud koostööpartnerite abil. Kliendile jääb tööde koordineerimiseks üks kontaktisik.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
@@ -158,7 +158,7 @@ export default function RemonditeenusedTallinnas() {
                   <p className="mt-4">Tähtajad libisevad, kulud kasvavad, kvaliteet kannatab. Eriti valulik on see kontorites ja kaubanduspindadel, kus iga lisapäev remondis tähendab kaotatud äritulu.</p>
                 </div>
                 <div>
-                  <p>SPS Grupp pakub ärikinnisvarale täislahendust. Kogu remondilahendus ühest kohast. Meie meeskonnas on elektrikud, torulukksepad, viimistlejad, plaatijad ja ventilatsioonispetsialistid. Üks objektijuht, üks leping, üks vastutus.</p>
+                  <p>Korraldame ärikinnisvara väiksemaid remondi- ja hooldustöid oma meeskonna ning vajadusel kontrollitud koostööpartnerite abil. Kliendile jääb tööde koordineerimiseks üks kontaktisik.</p>
                 </div>
               </div>
             </div>
@@ -256,9 +256,9 @@ export default function RemonditeenusedTallinnas() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Täislahendus ühest kohast</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Üks kontaktisik</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Kogu projekt, elektrist viimistluseni, meie meeskonnaga. Üks leping, üks objektijuht, üks arve, üks vastutus.
+                          Koordineerime kokkulepitud töid ning hoiame kliendi jaoks suhtluse selge ja lihtsana.
                         </p>
                       </div>
                     </div>
@@ -273,9 +273,9 @@ export default function RemonditeenusedTallinnas() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Litsentseeritud ja kindlustatud</h3>
+                        <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Sobiv meeskond töö iseloomu järgi</h3>
                         <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                          Meie spetsialistidel on vajalikud litsentsid ja tunnistused. Tööd on kindlustatud.
+                          Kasutame oma meeskonda ning kaasame vajadusel kontrollitud koostööpartnereid.
                         </p>
                       </div>
                     </div>
@@ -407,15 +407,15 @@ export default function RemonditeenusedTallinnas() {
               </div>
               <TwoToneHeading text="Usaldusväärne remondipartner" />
               <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light max-w-[700px] mx-auto mt-6">
-                Aastakümnete pikkune kogemus ja tuhanded teostatud objektid kinnitavad meie usaldusväärsust.
+                Tööde ulatus, ajakava ja vastutus lepitakse enne alustamist selgelt kokku.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
               {[
-                { number: "20+ aastat", label: "kogemust ehitusturul" },
-                { number: "1000+ objekti", label: "teostatud üle Eesti" },
-                { number: "ISO 9001", label: "sertifitseeritud kvaliteet" },
+                { number: "Üks", label: "kontaktisik" },
+                { number: "Selge", label: "tööde ulatus ja ajakava" },
+                { number: "Paindlik", label: "oma meeskond ja koostööpartnerid" },
               ].map((stat, i) => (
                 <div key={i} className="bg-white rounded-2xl p-8 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50">
                   <div className="text-[clamp(32px,4vw,48px)] font-bold text-[#17345a] mb-2">{stat.number}</div>
@@ -445,7 +445,7 @@ export default function RemonditeenusedTallinnas() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Alustage tasuta konsultatsiooniga"
-            description="Tuleme kohale, kuulame ära teie vajadused, koostame pakkumise. Tasuta ja ei kohusta ostma."
+            description="Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest."
           />
         </ScrollAnimation>
 

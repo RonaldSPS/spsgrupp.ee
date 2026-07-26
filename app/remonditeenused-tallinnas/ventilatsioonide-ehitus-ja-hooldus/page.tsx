@@ -60,7 +60,7 @@ const benefits = [
   },
   {
     title: "Kiire reageerimine riketele",
-    desc: "Kui süsteem seiskub, reageerime 24 tunni jooksul. Hoolduslepingutega klientidele prioriteet.",
+    desc: "Süsteemi seiskumise korral hindame reageerimisvõimalust esimesel võimalusel. Täpne aeg sõltub rikkest, asukohast ja meeskonna saadavusest.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
         <path d="M13 2L3 14h8l-1 8 11-14h-8l1-6z" />
@@ -91,8 +91,8 @@ const faqItems = [
     a: "Enamus hooldustöid saame teha tööajal ilma segajaid. Suuremate paigalduste puhul planeerime nädalavahetustele või tööpausidele.",
   },
   {
-    q: "Kas annate garantii ventilatsioonitöödele?",
-    a: "Jah. Paigaldustöödele 2 aastat, seadmetele tootja garantii (sageli 5 aastat).",
+    q: "Kuidas ventilatsioonitööd dokumenteeritakse?",
+    a: "Tööde maht, seadmed, hooldusvajadus ja üleandmise tingimused lepitakse enne alustamist kirjalikult kokku.",
   },
   {
     q: "Kas kaetud hooldusleping võib säästa raha?",

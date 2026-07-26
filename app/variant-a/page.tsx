@@ -45,7 +45,7 @@ const Hero = () => (
           <span className="font-semibold">saate kindel olla</span>
         </h1>
         <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
-          Hooldame iga päev üle <strong className="text-[#17345a] font-medium">miljoni m²</strong> kontori-, kaubandus- ja tootmispinda Harjumaal. ISO sertifitseeritud kvaliteet.
+          Meie hoolduses on üle <strong className="text-[#17345a] font-medium">1 000 000 m²</strong> kontori-, kaubandus- ja tootmispinda Harjumaal. ISO sertifitseeritud kvaliteet.
         </p>
         <div className="flex gap-3">
           <Link href="#pakkumine" className="bg-[#17345a] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1e4a7a] transition-all hover:-translate-y-0.5 shadow-lg shadow-[#17345a]/20">Küsi pakkumist</Link>
@@ -180,15 +180,15 @@ const Trust = () => (
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <div>
           <span className="text-[#85cbe9] text-[15px] font-semibold uppercase tracking-wider">Miks meie?</span>
-          <h2 className="text-4xl font-light mt-3 mb-6">Usaldavad üle 100 ettevõtte</h2>
+          <h2 className="text-4xl font-light mt-3 mb-6">Usaldab enam kui 200 klienti</h2>
           <p className="text-white/80 leading-relaxed mb-8">
             SPS Grupp on pakkunud puhastusteenuseid Eesti ettevõtetele üle 20 aasta. 
             Iga päev hooldame üle miljoni ruutmeetri äripindu.
           </p>
           <div className="grid grid-cols-2 gap-4">
             {[
-              { num: "üle miljoni", label: "m² iga päev" },
-              { num: "200+", label: "Töötajat" },
+              { num: "üle 1 000 000", label: "m² meie hoolduses" },
+              { num: "300+", label: "Töötajat" },
               { num: "üle 100", label: "Klienti" },
               { num: "20+", label: "Aastat" },
             ].map((stat, i) => (
@@ -211,7 +211,7 @@ const Trust = () => (
               </div>
             </div>
             <div className="space-y-3">
-              {["Kindlustatud teenused", "24/7 tugi"].map((item, i) => (
+              {["Vastutuskindlustusega kaetud tegevus", "Operatiivne suhtlus"].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-[15px]">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#85cbe9" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
                   <span className="text-white/80">{item}</span>
@@ -233,7 +233,7 @@ const ContactForm = () => {
         <div className="text-center mb-12">
           <span className="text-[#5ab5da] text-[15px] font-semibold uppercase tracking-wider">Pakkumine</span>
           <h2 className="text-4xl font-light text-[#17345a] mt-3 mb-4">Küsi tasuta pakkumist</h2>
-          <p className="text-gray-600">Vastame 24 tunni jooksul</p>
+          <p className="text-gray-600">Vastame üldjuhul ühe tööpäeva jooksul</p>
         </div>
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
           <div className="grid md:grid-cols-2 gap-4">

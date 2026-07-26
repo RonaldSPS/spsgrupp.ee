@@ -43,7 +43,7 @@ const floatingChips = [
       </svg>
     ),
     chipClass: "chip-icon-navy",
-    value: "20+",
+    value: "Alates 2006",
     label: "aastat kogemust",
   },
 ];
@@ -564,7 +564,7 @@ style={{ background: "url('/tanavakividepesu-1.jpg') center/cover no-repeat" }}
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
-                  { number: "20+", label: "aastat kogemust" },
+                  { number: "Alates 2006", label: "kogemust" },
                   { number: "5000+", label: "m² pestud pinda" },
                   { number: "Kindlustatud", label: "teenus" },
                 ].map((stat, i) => (

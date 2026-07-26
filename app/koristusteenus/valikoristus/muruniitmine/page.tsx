@@ -51,7 +51,7 @@ const data: OutdoorServicePageData = {
   statsTitle: "Haljasalade hooldus kindla graafikuga",
   statsIntro: "Regulaarne hooldus hoiab kinnistu esindusliku ja vähendab hooaja lõpus suuremate korrastustööde vajadust.",
   stats: [
-    { number: "20+", label: "aastat kogemust" },
+    { number: "Alates 2006", label: "kogemust" },
     { number: "1", label: "kindel kontaktisik" },
     { number: "100%", label: "kokkulepitud graafik" },
   ],

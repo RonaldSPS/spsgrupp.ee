@@ -47,7 +47,7 @@ export default function SPSGruppPage() {
     },
     {
       q: "Kas pakute tasuta konsultatsiooni?",
-      a: "Jah, pakume tasuta konsultatsiooni ja personaalset hoone hindamist. Anname ekspertarvamuse 30 minuti jooksul.",
+      a: "Jah. Pakume esmast konsultatsiooni ja vajaduste kaardistamist. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
     },
     {
       q: "Kuidas suhtub SPS Grupp keskkonnahoidu?",
@@ -96,8 +96,8 @@ export default function SPSGruppPage() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">20+</div>
-                <div className="text-[15px] text-[#1f2937]">aastat kogemust</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Alates 2006</div>
+                <div className="text-[15px] text-[#1f2937]">kogemust</div>
               </div>
             </div>
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -120,7 +120,7 @@ export default function SPSGruppPage() {
                 </svg>
               </div>
               <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">200+</div>
+                <div className="text-[18px] font-bold text-[#17345a] leading-tight">300+</div>
                 <div className="text-[15px] text-[#1f2937]">töötajat</div>
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function SPSGruppPage() {
               <h1 className="text-[clamp(28px,4.2vw,56px)] font-bold text-white leading-[1.12] -tracking-[1px] mb-[18px]">
                 SPS Grupp
                 <br />
-                <span className="text-[#3abeff]">Kinnisvara väärtuse tõstmine</span>
+                <span className="text-[#3abeff]">Puhas, toimiv ja esinduslik kinnisvara</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
                 SPS Grupp OÜ on 2006. aastal alguse saanud hoolduskoristust ja puhastusteenuseid pakkuv ettevõte.
@@ -185,7 +185,7 @@ export default function SPSGruppPage() {
                   <strong>Koristusfirma SPS Grupp OÜ pakub täielikku koristusteenuste paketti.</strong> Meilt leiad kõik teenused kinnisvara korrashoiuks ja renoveerimiseks. Koostöös partneritega pakume ka porivaipade vahetust, prügivedu ja lumetõrje teenust.
                 </div>
                 <div>
-                  <strong>Meie eesmärgiks on kõrge kvaliteediga, kliendisõbralik ja paindlik puhastusteenuste osutamine konkurentsivõimelise hinnaga.</strong> Alates 2006. aastast oleme teenindanud sadu ettevõtteid Tallinnas ja Harjumaal.
+                  <strong>Meie eesmärk on pakkuda kvaliteetset, paindlikku ja kliendi vajadustest lähtuvat puhastusteenust konkurentsivõimelise hinnaga.</strong> Alates 2006. aastast oleme teenindanud enam kui 200 klienti.
                 </div>
               </div>
             </div>
@@ -315,7 +315,7 @@ export default function SPSGruppPage() {
                     SPS Grupp soovib olla kliendikeskne, tõhustada ettevõtte siseprotsesse, vähendada oma tegevusest tulenevaid negatiivseid keskkonnamõjusid ning pidevalt täiustada ja parendada oma juhtimissüsteemi.
                   </p>
                   <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light">
-                    <strong>ISO sertifikaadid on meie kvaliteedi tunnuseks.</strong> SPS grupp on üks väheseid Eesti ettevõtteid puhastuse alal, kes tegutseb rahvusvaheliste kvaliteedi- ja keskkonnastandardite ISO 9001:2015 ja ISO 14001:2015 reeglite järgi. Anname oma koristusteenustele garantii. Meie tegevus on kindlustatud.
+                    <strong>ISO sertifikaadid on meie kvaliteedi tunnuseks.</strong> SPS Grupp tegutseb rahvusvaheliste kvaliteedi- ja keskkonnastandardite ISO 9001:2015 ja ISO 14001:2015 järgi. Meie tegevus on kaetud vastutuskindlustusega vastavalt kindlustuslepingu tingimustele.
                   </p>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden">
@@ -376,13 +376,13 @@ export default function SPSGruppPage() {
                   </svg>
                   SPS Grupp numbrites
                 </div>
-                <TwoToneHeading text="20+ aastat teenindame Eesti ettevõtteid" />
+                <TwoToneHeading text="Kogemus alates 2006. aastast" />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
-                  { number: "200+", label: "töötajat" },
-                  { number: "üle miljoni", label: "m² iga päev" },
+                  { number: "300+", label: "töötajat" },
+                  { number: "üle 1 000 000", label: "m² meie hoolduses" },
                   { number: "ISO 9001", label: "sertifitseeritud kvaliteedijuhtimine" },
                 ].map((stat, i) => (
                   <div
@@ -402,7 +402,7 @@ export default function SPSGruppPage() {
         <ScrollAnimation animation="fade-up">
           <FooterCTA
             title="Tõsta oma ettevõtte välisilme uuele tasemele!"
-            description="TASUTA konsultatsioon – Personaalne hoone hindamine – Ekspertarvamus 30 minuti jooksul. Võta meiega ühendust: telefonil +372 662 3328 või e-postil info@spsgrupp.ee"
+            description="Esmane konsultatsioon ja vajaduste kaardistamine. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust."
           />
         </ScrollAnimation>
 

@@ -2,16 +2,13 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { enToEt, localizedPaths } from '@/lib/slug-map'
 import { getPage } from '@/lib/page-registry'
-import { pageMetadata } from '@/lib/metadata-registry'
+import { localizedPageMetadata, pageMetadata } from '@/lib/metadata-registry'
 import { generateLocalizedMetadata } from '@/lib/seo-metadata'
 import LocalizedContentPage from '@/app/components/LocalizedContentPage'
-import DynamicBlogArchive from '@/app/components/DynamicBlogArchive'
-import DynamicBlogPost from '@/app/components/DynamicBlogPost'
 import DynamicJobOffer from '@/app/components/DynamicJobOffer'
 import { ReviewsPage } from '@/app/sps-grupp/arvamused/page'
-import { getTranslatedBlogPosts, getTranslatedPostBySlug } from '@/app/blog/data'
 import { getTranslatedAnnouncementBySlug } from '@/lib/announcements'
-import { getContentNamespace } from '@/lib/localized-content'
+import { getContentNamespace, getLocalizedSeoMetadata } from '@/lib/localized-content'
 
 interface Props {
   params: Promise<{ slug?: string[] }>
@@ -26,8 +23,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const etPath = enToEt[enPath]
   if (!etPath) return {}
 
-  const meta = pageMetadata[etPath] || pageMetadata['/']
-  return generateLocalizedMetadata(etPath, 'en', meta.title, meta.description)
+  const localizedMeta = localizedPageMetadata.en?.[etPath] || getLocalizedSeoMetadata('en', etPath)
+  const meta = localizedMeta || pageMetadata[etPath] || pageMetadata['/']
+  return generateLocalizedMetadata(etPath, 'en', meta.title, meta.description, Boolean(localizedMeta))
 }
 
 export default async function EnPage({ params }: Props) {
@@ -53,17 +51,6 @@ async function getDynamicPage(enPath: string) {
     return <ReviewsPage locale="en" />
   }
 
-  if (enPath === '/blog') {
-    const posts = await getTranslatedBlogPosts('en')
-    return <DynamicBlogArchive posts={posts} locale="en" />
-  }
-
-  const blogSlug = getChildSlug(enPath, '/blog')
-  if (blogSlug) {
-    const post = await getTranslatedPostBySlug('en', blogSlug)
-    if (post) return <DynamicBlogPost post={post} locale="en" />
-  }
-
   const jobSlug = getChildSlug(enPath, localizedPaths['/tule-meile-toole'].en)
   if (jobSlug) {
     const announcement = await getTranslatedAnnouncementBySlug('en', jobSlug)
@@ -74,40 +61,6 @@ async function getDynamicPage(enPath: string) {
 }
 
 async function getDynamicMetadata(enPath: string): Promise<Metadata | null> {
-  if (enPath === '/blog') {
-    return {
-      title: 'Blog | SPS Grupp',
-      description: 'Articles and news about cleaning services, office cleaning and outdoor maintenance.',
-      alternates: { canonical: 'https://spsgrupp.ee/en/blog' },
-      openGraph: {
-        title: 'Blog | SPS Grupp',
-        description: 'Articles and news about cleaning services, office cleaning and outdoor maintenance.',
-        type: 'website',
-        locale: 'en_GB',
-      },
-    }
-  }
-
-  const blogSlug = getChildSlug(enPath, '/blog')
-  if (blogSlug) {
-    const post = await getTranslatedPostBySlug('en', blogSlug)
-    if (!post) return null
-    return {
-      title: `${post.title} | SPS Grupp Blog`,
-      description: post.excerpt,
-      alternates: { canonical: `https://spsgrupp.ee/en/blog/${post.slug}` },
-      openGraph: {
-        title: post.title,
-        description: post.excerpt,
-        url: `https://spsgrupp.ee/en/blog/${post.slug}`,
-        type: 'article',
-        publishedTime: post.date,
-        locale: 'en_GB',
-        images: [{ url: `https://spsgrupp.ee${post.featuredImage}`, width: 1200, height: 630, alt: post.title }],
-      },
-    }
-  }
-
   const jobParent = localizedPaths['/tule-meile-toole'].en
   const jobSlug = getChildSlug(enPath, jobParent)
   if (jobSlug) {

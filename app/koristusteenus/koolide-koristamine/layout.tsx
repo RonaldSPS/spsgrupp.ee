@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     locale: "et_EE",
   },
   alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/koolide-koristamine",
+    canonical: "https://spsgrupp.ee/koolide-koristamine/",
   },
 };
 

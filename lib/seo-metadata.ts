@@ -48,12 +48,13 @@ export function generateLocalizedMetadata(
   locale: string,
   title: string,
   description: string,
+  preferProvided = false,
 ): Metadata {
   const localizedPath = locale === 'et' ? etPath : localizePath(etPath, locale as 'en' | 'ru')
   const url = canonicalUrl(localizedPath)
   const liveMetadata = getLiveMetadata(localizedPath)
-  const localizedTitle = liveMetadata.title || title
-  const localizedDescription = liveMetadata.description || description
+  const localizedTitle = preferProvided ? title : liveMetadata.title || title
+  const localizedDescription = preferProvided ? description : liveMetadata.description || description
 
   return {
     title: localizedTitle,
