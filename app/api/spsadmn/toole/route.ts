@@ -9,6 +9,7 @@ import {
   deleteAnnouncement,
 } from "@/lib/announcements"
 import { getJobSourceHash, getJobTranslations, markJobTranslationsStale } from "@/lib/translate-jobs"
+import { canonicalUrl } from "@/lib/url-utils"
 
 interface Announcement {
   id: string
@@ -86,7 +87,7 @@ export async function PUT(request: NextRequest) {
         offerNumber: "",
         company: "SP Service OÜ",
         registryCode: "11312978",
-        website: "https://spsgrupp.ee/",
+        website: canonicalUrl("/"),
         companyDescription: "Ettevõtte põhitegevusala on tööjõu renditeenuse osutamine, keskendudes eeskätt puhastus- ja hooldusteenuste valdkonna tööjõu pakkumisele.",
         tasks: "",
         requirements: "<ul><li>Korrektsus ja kohusetundlikkus</li><li>Hea füüsiline vorm ja tervis</li><li>Valmisolek töötada graafiku alusel</li><li>Ausus ja usaldusväärsus</li><li>Iseseisvus ja omaalgatusvõime</li><li>Eesti keele oskus suhtlustasandil</li></ul>",

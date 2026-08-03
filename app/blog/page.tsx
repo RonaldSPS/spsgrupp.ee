@@ -5,19 +5,16 @@ import Footer from "../components/Footer"
 import FooterCTA from "../components/FooterCTA"
 import type { Metadata } from "next"
 import { getBlogPostsWithEdits } from "./data"
+import { generatePageMetadata } from "@/lib/metadata-helper"
+import { generateBreadcrumbSchema, renderLdJson } from "@/lib/json-ld-generator"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
+  path: "/blog",
+  locale: "et",
   title: "Blogi | SPS Grupp",
   description: "SPS Grupi blogi: artiklid ja uudised koristusteenuste kohta.",
-  keywords: "koristusblogi, puhastusteenused blogi, koristusfirma artiklid, SPS Grupp blogi",
-  openGraph: {
-    title: "Blogi | SPS Grupp",
-    description: "SPS Grupi blogi: artiklid ja uudised koristusteenuste kohta.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: { canonical: "https://spsgrupp.ee/blog" },
-}
+  imagePath: "/FrontHeroCar.jpg",
+})
 
 function formatDate(d: string) {
   return new Date(d).toLocaleDateString("et-EE", { year: "numeric", month: "long", day: "numeric" })
@@ -25,20 +22,16 @@ function formatDate(d: string) {
 
 export default async function BlogArchive() {
   const blogPosts = await getBlogPostsWithEdits()
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Avaleht", "item": "https://spsgrupp.ee" },
-      { "@type": "ListItem", "position": 2, "name": "Blogi", "item": "https://spsgrupp.ee/blog" },
-    ],
-  };
+  const breadcrumbLd = generateBreadcrumbSchema([
+    { name: "Avaleht", etPath: "/" },
+    { name: "Blogi", etPath: "/blog" },
+  ], "et")
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(breadcrumbLd) }} />
       <Navbar />
-      <main className="pt-[130px] pb-[80px]">
+      <main id="main-content" tabIndex={-1} className="pt-[130px] pb-[80px]">
         <div className="max-w-[1200px] mx-auto px-[25px]">
           <h1 className="text-[42px] font-bold text-[#17345a] mb-2">Blogi</h1>
           <p className="text-[18px] text-[#2f353f] mb-10 max-w-[700px]">

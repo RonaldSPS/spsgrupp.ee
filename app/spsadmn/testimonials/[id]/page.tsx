@@ -168,7 +168,7 @@ export default function AdminTestimonialEdit() {
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="/sps-grupp/arvamused"
+            href="/sps-grupp/arvamused/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[15px] text-[#3abeff] py-2.5 px-5 rounded-xl border border-[#3abeff] font-medium hover:bg-[#3abeff] hover:text-white transition-colors"

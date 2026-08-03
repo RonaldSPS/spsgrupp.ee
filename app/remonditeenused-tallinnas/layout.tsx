@@ -1,19 +1,12 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas",
+  locale: "et",
   title: "Remonditeenused Tallinnas | SPS Grupp",
   description: "Remonditeenused ärikinnisvarale Tallinnas. Elektri-, toru-, plaatimis- ja ventilatsioonitööd ühest kohast. Küsi pakkumist!",
-  keywords: "remonditeenused, remonditeenused tallinnas, ärikinnisvara remont, ehitusteenused, remondifirma tallinnas, äripinna remont",
-  openGraph: {
-    title: "Remonditeenused Tallinnas | SPS Grupp",
-    description: "Remonditeenused ärikinnisvarale Tallinnas. Elektri-, toru-, plaatimis- ja ventilatsioonitööd ühest kohast.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas",
-  },
-};
+  imagePath: "/remonditeenused-1.jpg",
+});
 
 export default function RemonditeenusedTallinnasLayout({
   children,

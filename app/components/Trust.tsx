@@ -12,11 +12,11 @@ export default function Trust() {
   const copy = {
     et: {
       years: "Alates 2006",
-      experience: "Kogemust",
+      certificates: "sertifikaadid",
       employees: "300+ töötajat",
       trained: "Koolitatud",
       area: "Üle 1 000 000 m²",
-      areaLabel: "Meie hoolduses",
+      areaDaily: "Igapäevaselt",
       regularTitle: "Regulaarne koristusteenus",
       regularText: "Igapäevane ja perioodiline hooldus, mis hoiab teie tööruumid pidevalt puhtad ja esinduslikud.",
       regularNote: "Teenuse osutamiseks vajalikud tavapärased puhastus- ja töövahendid sisalduvad pakkumises vastavalt kokkulepitud teenusemahule.",
@@ -30,11 +30,11 @@ export default function Trust() {
     },
     en: {
       years: "Since 2006",
-      experience: "Experience",
+      certificates: "certificates",
       employees: "300+ employees",
       trained: "Trained",
       area: "Over 1,000,000 m²",
-      areaLabel: "Under our care",
+      areaDaily: "Daily",
       regularTitle: "Regular cleaning",
       regularText: "Daily and periodic maintenance that keeps your workplace consistently clean and presentable.",
       regularNote: "Standard cleaning products and tools required for the agreed service scope are included in the quote.",
@@ -48,11 +48,11 @@ export default function Trust() {
     },
     ru: {
       years: "С 2006 года",
-      experience: "Опыта",
+      certificates: "сертификаты",
       employees: "300+ сотрудников",
       trained: "Обучены",
       area: "Более 1 000 000 м²",
-      areaLabel: "На нашем обслуживании",
+      areaDaily: "Ежедневно",
       regularTitle: "Регулярная уборка",
       regularText: "Ежедневное и периодическое обслуживание, благодаря которому рабочие помещения остаются чистыми и презентабельными.",
       regularNote: "Стандартные чистящие средства и инвентарь для согласованного объёма услуг включаются в предложение.",
@@ -81,28 +81,27 @@ export default function Trust() {
                 <div className="w-[46px] h-[46px] bg-[#17345a] rounded-xl flex items-center justify-center flex-shrink-0">
                   <span className="w-[22px] h-[22px] text-white">
                     <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      <polyline points="9 12 11 14 15 10" />
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
                     </svg>
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{t("highlight1Title")}</div>
-                  <div className="text-[15px] text-[#5a6474]">ISO 9001 + ISO 14001</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{t("highlight2Title")}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
                 <div className="w-[46px] h-[46px] bg-[#17345a] rounded-xl flex items-center justify-center flex-shrink-0">
                   <span className="w-[22px] h-[22px] text-white">
                     <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <path d="M12 6v6l4 2" />
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <polyline points="9 12 11 14 15 10" />
                     </svg>
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.years}</div>
-                  <div className="text-[15px] text-[#5a6474]">{copy.experience}</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">ISO 9001 + ISO 14001</div>
+                  <div className="text-[15px] text-[#5a6474]">{copy.certificates}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
@@ -118,7 +117,6 @@ export default function Trust() {
                 </div>
                 <div>
                   <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.employees}</div>
-                  <div className="text-[15px] text-[#5a6474]">{copy.trained}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
@@ -133,7 +131,7 @@ export default function Trust() {
                 </div>
                 <div>
                   <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.area}</div>
-                  <div className="text-[15px] text-[#5a6474]">{copy.areaLabel}</div>
+                  <div className="text-[15px] text-[#5a6474]">{copy.areaDaily}</div>
                 </div>
               </div>
             </div>
@@ -152,39 +150,6 @@ export default function Trust() {
                 className="w-full h-auto"
                 style={{ }}
               />
-            </div>
-
-            <div
-              className="absolute -bottom-6 left-0 right-0 md:-left-6 md:right-6 bg-white rounded-4xl p-4 md:p-6 flex flex-col sm:flex-row gap-3 md:gap-4 shadow-md border border-[rgba(23,52,90,0.06)]"
-              style={{ boxShadow: "0 8px 30px rgba(23,52,90,0.10)" }}
-            >
-              <div className="flex items-center gap-2.5 bg-[#eef7fc] border border-[rgba(133,203,233,0.25)] rounded-[10px] px-3.5 py-2.5 flex-1 md:min-w-[140px]">
-                <div className="w-9 h-9 bg-[#17345a] rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="w-[18px] h-[18px] text-white">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                      <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                  </span>
-                </div>
-                <div>
-                  <div className="text-[15px] font-bold text-[#17345a]">{t("highlight2Title")}</div>
-                </div>
-              </div>
-              {t("highlight2Cta") && (
-                <div className="flex items-center gap-2.5 bg-[#eef7fc] border border-[rgba(133,203,233,0.25)] rounded-[10px] px-3.5 py-2.5 flex-1 md:min-w-[140px]">
-                  <div className="w-9 h-9 bg-[#17345a] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="w-[18px] h-[18px] text-white">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      </svg>
-                    </span>
-                  </div>
-                  <div>
-                    <div className="text-[15px] font-bold text-[#17345a]">{t("highlight2Cta")}</div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

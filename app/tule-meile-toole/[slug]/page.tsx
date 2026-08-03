@@ -1,13 +1,15 @@
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { headers } from "next/headers"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import ScrollAnimation from "../../components/ScrollAnimation"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import { getAnnouncementBySlug } from "@/lib/announcements"
 import type { Announcement } from "@/lib/types"
+import { generatePageMetadata } from "@/lib/metadata-helper"
+import { renderLdJson } from "@/lib/json-ld-generator"
+import { canonicalUrl } from "@/lib/url-utils"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -17,23 +19,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const a = await getAnnouncementBySlug(slug)
   if (!a) return { title: "Tööpakkumine | SPS Grupp" }
-  return {
+  return generatePageMetadata({
+    path: `/tule-meile-toole/${a.slug}`,
+    locale: "et",
     title: a.title + " | SPS Grupp",
     description: (a.subtitle || a.title + " - " + a.location).slice(0, 160),
-    alternates: { canonical: "https://spsgrupp.ee/tule-meile-toole/" + a.slug },
-    openGraph: {
-      title: a.title + " | SPS Grupp",
-      description: a.subtitle || a.title,
-      type: "website",
-      locale: "et_EE",
-    },
-  }
+    imagePath: "/tuletoole-1.jpg",
+  })
 }
 
 export default async function TooleAnnouncementPage({ params }: Props) {
   const { slug } = await params
-  const headersList = await headers()
-  const nonce = headersList.get("x-csp-nonce") || ""
 
   const raw = await getAnnouncementBySlug(slug)
   if (!raw) notFound()
@@ -49,7 +45,7 @@ export default async function TooleAnnouncementPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    "@id": "https://spsgrupp.ee/tule-meile-toole/" + a.slug + "#jobposting",
+    "@id": `${canonicalUrl(`/tule-meile-toole/${a.slug}`)}#jobposting`,
     title: a.title,
     description: a.subtitle || a.title,
     datePosted: a.publishedDate,
@@ -63,7 +59,7 @@ export default async function TooleAnnouncementPage({ params }: Props) {
     hiringOrganization: {
       "@type": "Organization",
       name: a.company,
-      sameAs: a.website || "https://spsgrupp.ee",
+      sameAs: a.website || canonicalUrl("/"),
     },
     jobLocation: {
       "@type": "Place",
@@ -87,14 +83,14 @@ export default async function TooleAnnouncementPage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(jsonLd) }} />
       <Navbar />
-      <main className="pt-[130px] pb-[80px]">
+      <main id="main-content" tabIndex={-1} className="pt-[130px] pb-[80px]">
         <div className="max-w-[900px] mx-auto px-[25px]">
           <nav className="mb-6 text-[15px] text-[#5a6474]">
             <Link href="/" className="text-[#5a6474] no-underline hover:text-[#17345a]">Avaleht</Link>
             <span className="mx-2">/</span>
-            <Link href="/tule-meile-toole" className="text-[#5a6474] no-underline hover:text-[#17345a]">Tule meile tööle</Link>
+            <Link href="/tule-meile-toole/" className="text-[#5a6474] no-underline hover:text-[#17345a]">Tule meile tööle</Link>
             <span className="mx-2">/</span>
             <span className="text-[#17345a]">{a.title}</span>
           </nav>

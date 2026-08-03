@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { renderLdJson } from "@/lib/json-ld-generator";
 
 export default function FaqJsonLd() {
   const t = useTranslations();
@@ -39,7 +40,7 @@ export default function FaqJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: renderLdJson(jsonLd) }}
     />
   );
 }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
@@ -103,20 +104,21 @@ export default function PlaatimistoodLeht() {
   return (
     <>
       <SeoJsonLd
+        etPath="/remonditeenused-tallinnas/plaatimistood"
+        locale="et"
         serviceName="Plaatimistööd Tallinnas"
         serviceDescription="Plaatimistööd ärikinnisvarale Tallinnas. Põranda- ja seinaplaadid, sanitaarruumid, köögid."
-        serviceUrl="https://spsgrupp.ee/remonditeenused-tallinnas/plaatimistood"
-        breadcrumbs={[{ position: 1, name: "Avaleht", item: "https://spsgrupp.ee" }, { position: 2, name: "Remonditeenused Tallinnas", item: "https://spsgrupp.ee/remonditeenused-tallinnas" }, { position: 3, name: "Plaatimistööd", item: "https://spsgrupp.ee/remonditeenused-tallinnas/plaatimistood" }]}
+        breadcrumbs={[{ name: "Avaleht", etPath: "/" }, { name: "Remonditeenused Tallinnas", etPath: "/remonditeenused-tallinnas" }, { name: "Plaatimistööd", etPath: "/remonditeenused-tallinnas/plaatimistood" }]}
         faq={faqItems.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Plaatimistööd"
-          style={{ background: "url('/plaatimistood-1.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/plaatimistood-1.jpg" preload alt="" />
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {[
               { value: "Sirged", label: "jooned" },
@@ -180,7 +182,7 @@ export default function PlaatimistoodLeht() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/remonditeenused-tallinnas" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
+                <a href="/remonditeenused-tallinnas/" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Plaatimistööd</span>
               </nav>
@@ -297,7 +299,7 @@ export default function PlaatimistoodLeht() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>

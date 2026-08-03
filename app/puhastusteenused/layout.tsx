@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/puhastusteenused",
+  locale: "et",
   title: "Puhastusteenused Tallinnas | SPS Grupp",
   description:
     "Professionaalsed puhastusteenused äriklientidele Tallinnas. Põrandate süvapuhastus, vaibad, ehitusjärgne koristus, desinfitseerimine. Küsi pakkumist!",
-  keywords:
-    "puhastusteenused, puhastusteenused tallinnas, puhastusfirma, süvapuhastus, äriklientide puhastusteenus",
-  openGraph: {
-    title: "Puhastusteenused Tallinnas | SPS Grupp",
-    description:
-      "Professionaalsed puhastusteenused äriklientidele Tallinnas. Põrandate süvapuhastus, vaibad, ehitusjärgne koristus, desinfitseerimine. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/puhastusteenused",
-  },
-};
+  imagePath: "/puhastusteenused1.jpg",
+});
 
 export default function PuhastusteenusedLayout({
   children,

@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus",
+  locale: "et",
   title: "Koristusteenus Tallinnas | SPS Grupp",
   description:
     "Regulaarne koristusteenus kontoritele, kaubanduspindadele ja tootmishoonetele Tallinnas. ISO 9001, paindlik graafik. Küsi tasuta pakkumist!",
-  keywords:
-    "koristusteenus, koristusteenused tallinnas, regulaarne koristus, äripindade koristusteenus, koristusteenused, koristus tallinn",
-  openGraph: {
-    title: "Koristusteenus Tallinnas | SPS Grupp",
-    description:
-      "Regulaarne koristusteenus kontoritele, kaubanduspindadele ja tootmishoonetele Tallinnas. ISO 9001, paindlik graafik. Küsi tasuta pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus",
-  },
-};
+  imagePath: "/Koristusteenused-HERO.jpg",
+});
 
 export default function KoristusteenusLayout({
   children,

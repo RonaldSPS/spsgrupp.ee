@@ -91,10 +91,6 @@ export default function Hinnakalkulaator({ locale = "et" }: { locale?: Locale })
         </div>
       </div>
 
-      <div className="mb-12 rounded-xl bg-[#eef7fc] p-4 text-[15px] leading-[1.6] text-[#17345a]">
-        {text.calculation}: {area.toLocaleString(text.locale)} m² × 1,20 €/m² = {price.toLocaleString(text.locale)} €{text.month}.
-      </div>
-
       <a
         href="#pakkumine"
         className="block w-full text-center rounded-full bg-[#17345a] hover:bg-[#1e4a7a] transition py-5 text-xl font-bold text-white no-underline shadow-lg"

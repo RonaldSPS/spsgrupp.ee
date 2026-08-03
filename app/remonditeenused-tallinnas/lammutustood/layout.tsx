@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas/lammutustood",
+  locale: "et",
   title: "Lammutustööd Tallinnas | SPS Grupp",
   description:
     "Lammutustööd Tallinnas ärihoonetes. Vaheseinte eemaldamine, jäätmete sorteerimine ja äravedu. Küsi pakkumist!",
-  keywords:
-    "lammutustööd, lammutustööd tallinnas, vaheseinte lammutus, ruumide lammutus, remondijärgne lammutus",
-  openGraph: {
-    title: "Lammutustööd Tallinnas | SPS Grupp",
-    description:
-      "Lammutustööd Tallinnas ärihoonetes. Vaheseinte eemaldamine, jäätmete sorteerimine ja äravedu. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/lammutustood",
-  },
-};
+  imagePath: "/lammutustood-1.jpg",
+});
 
 export default function LammutustoodLayout({
   children,

@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/lehtedekoristamine",
+  locale: "et",
   title: "Lehtede koristus Tallinnas | SPS Grupp",
   description:
     "Lehtede koristus ja äravedu Tallinnas. Sügisene lehtede kogumine, puhastus, haljastusjäätmete käitlus. Küsi pakkumist!",
-  keywords:
-    "lehtede koristus, lehtede äravedu, sügisene koristus, lehtede kogumine, haljastusjäätmed, lehtede koristus tallinnas",
-  openGraph: {
-    title: "Lehtede koristus Tallinnas | SPS Grupp",
-    description:
-      "Lehtede koristus ja äravedu Tallinnas. Sügisene lehtede kogumine, puhastus, haljastusjäätmete käitlus. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/lehtedekoristamine",
-  },
-};
+  imagePath: "/lehekoristus-1.webp",
+});
 
 export default function LehtedekoristamineLayout({
   children,

@@ -10,25 +10,35 @@ import Trust from "./components/Trust";
 import FAQ from "./components/FAQ";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import { renderLdJson } from "@/lib/json-ld-generator";
+import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils";
 
 export const metadata: Metadata = {
   title: "Koristusfirma Tallinnas | SPS Grupp",
   description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses. ISO 9001 ja ISO 14001. Küsi pakkumist!",
-  keywords: "koristusfirma, koristusfirmad, puhastusfirma, koristusfirma tallinnas, äripindade koristus, koristusteenus tallinn",
+  metadataBase: new URL(BASE_URL),
   openGraph: {
     title: "Koristusfirma Tallinnas | SPS Grupp",
     description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses.",
+    url: canonicalUrl("/"),
     type: "website",
     locale: "et_EE",
-    images: [{ url: "https://spsgrupp.ee/SPS_LOGO.svg", width: 512, height: 512, alt: "SPS Grupp logo" }],
+    images: [{ url: absoluteUrl("/FrontHeroCar.jpg"), alt: "SPS Grupp koristusteenused" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Koristusfirma Tallinnas | SPS Grupp",
     description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses.",
+    images: [absoluteUrl("/FrontHeroCar.jpg")],
   },
   alternates: {
-    canonical: "https://spsgrupp.ee",
+    canonical: canonicalUrl("/"),
+    languages: {
+      et: canonicalUrl("/"),
+      en: canonicalUrl("/en"),
+      ru: canonicalUrl("/ru"),
+      "x-default": canonicalUrl("/"),
+    },
   },
 };
 
@@ -71,35 +81,9 @@ const breadcrumbLd = {
       "@type": "ListItem",
       "position": 1,
       "name": "Avaleht",
-      "item": "https://spsgrupp.ee"
+      "item": canonicalUrl("/")
     }
   ]
-};
-
-const organizationLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://spsgrupp.ee/#organization",
-  name: "SPS Grupp OÜ",
-  url: "https://spsgrupp.ee",
-  logo: "https://spsgrupp.ee/SPS_LOGO.svg",
-  image: "https://spsgrupp.ee/SPS_LOGO.svg",
-  description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. ISO 9001 ja ISO 14001 sertifitseeritud juhtimissüsteemid.",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Mustamäe tee 46",
-    addressLocality: "Tallinn",
-    postalCode: "10621",
-    addressCountry: "EE",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+372-662-3328",
-    contactType: "customer service",
-    email: "info@spsgrupp.ee",
-    availableLanguage: ["Estonian", "Russian", "English"],
-  },
-  sameAs: ["https://www.facebook.com/Puhastusteenused"],
 };
 
 export default function Home() {
@@ -107,19 +91,15 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: renderLdJson(jsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+        dangerouslySetInnerHTML={{ __html: renderLdJson(breadcrumbLd) }}
       />
       <Navbar />
-      <Hero />
-      <main>
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
         <ScrollAnimation animation="fade-up" delay={100}>
           <Logos />
         </ScrollAnimation>

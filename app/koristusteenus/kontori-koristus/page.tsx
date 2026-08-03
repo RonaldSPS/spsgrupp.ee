@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
-import TestimonialCards from "../../components/TestimonialCards";
+import TestimonialSlider from "../../components/TestimonialSlider";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
 import ContactForm from "../../components/ContactForm";
@@ -12,7 +13,6 @@ import Tooprotsess from "../../components/Tooprotsess";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
-import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
 
 const kontoriKoristusFAQ = [
@@ -27,25 +27,26 @@ export default function KontoriKoristus() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/kontori-koristus"
+        locale="et"
         serviceName="Kontori koristus Tallinnas"
-        serviceDescription="Regulaarne kontorikoristus Tallinnas alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/kontori-koristus"
+        serviceDescription="Regulaarne kontorikoristus vähemalt 800 m² büroodele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001."
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Kontori koristus", item: "https://spsgrupp.ee/koristusteenus/kontori-koristus" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Kontori koristus", etPath: "/koristusteenus/kontori-koristus" },
         ]}
         faq={kontoriKoristusFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px] relative"
           id="avaleht"
           aria-label="Kontori koristus"
-          style={{ background: "url('/kontorikoristus1.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/kontorikoristus1.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -103,7 +104,7 @@ export default function KontoriKoristus() {
                 <span className="text-[#3abeff]">Tallinnas ja Harjumaal</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Regulaarne kontorikoristus alates <strong className="text-white font-medium">1,20 €/m² kuus</strong>.
+                Regulaarne kontorikoristus vähemalt 800 m² büroodele Tallinnas ja Harjumaal, alates <strong className="text-white font-medium">1,20 €/m² kuus</strong>.
                 Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll.
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
@@ -129,7 +130,7 @@ export default function KontoriKoristus() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                 <Link href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</Link>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Kontori koristus</span>
               </nav>
@@ -199,6 +200,21 @@ export default function KontoriKoristus() {
                 </div>
               ))}
             </div>
+
+            <div className="text-center mt-10">
+              <p className="text-[15px] text-[#5a6474] leading-[1.8]">
+                Vaata lisaks:{' '}
+                <Link href="/koristusteenus/valikoristus/akende-pesu/" className="text-[#17345a] underline font-medium hover:text-[#1e4a7a]">Akende pesu</Link>
+                {' · '}
+                <Link href="/puhastusteenused/vaipade-puhastus/" className="text-[#17345a] underline font-medium hover:text-[#1e4a7a]">Vaipade puhastus</Link>
+                {' · '}
+                <Link href="/puhastusteenused/porandate-hooldus/" className="text-[#17345a] underline font-medium hover:text-[#1e4a7a]">Põrandate hooldus</Link>
+                {' · '}
+                <Link href="/puhastusteenused/koroonaviiruse-jargne-puhastus/" className="text-[#17345a] underline font-medium hover:text-[#1e4a7a]">Desinfitseerimine</Link>
+                {' · '}
+                <Link href="/blog/kontori-koristusteenuse-kontrollnimekiri/" className="text-[#17345a] underline font-medium hover:text-[#1e4a7a]">Kontorikoristuse kontrollnimekiri</Link>
+              </p>
+            </div>
           </div>
         </section>
         </ScrollAnimation>
@@ -231,6 +247,23 @@ export default function KontoriKoristus() {
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Kontorihoolduse kogemus alates 2006. aastast</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
                         Oleme koristanud kõiki kontoritüüpe — väikestest IT-büroodest suurte peakontorite ja ministeeriumideni. Teame, mis töötab ja mis mitte.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-[#f8fafc] p-4 rounded-2xl transition-colors duration-300 border-2 border-transparent hover:bg-[#eef7fc]">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M9 12l2 2 4-4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Vastutuskindlustusega teenus</h3>
+                      <p className="text-[15px] text-[#5a6474] leading-[1.7]">
+                        SPS Grupil on kehtiv vastutuskindlustus, mis annab kliendile täiendava kaitse võimalike varakahjude korral.
                       </p>
                     </div>
                   </div>
@@ -313,7 +346,7 @@ export default function KontoriKoristus() {
             <div className="text-center mb-14">
               <div className="section-tag">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                 </svg>
                 Hind
               </div>
@@ -326,7 +359,13 @@ export default function KontoriKoristus() {
                   Kontori koristuse hind kujuneb nelja teguri põhjal: pindala, koristuse sagedus, töötajate arv ja eritööde vajadus.
                 </p>
 
-                <MaintenancePriceExamples />
+                <div className="mb-8 space-y-4">
+                  <h3 className="text-[22px] font-bold text-[#17345a]">TASUTA AUDIT enne lepingu algust</h3>
+                  <h3 className="text-[18px] font-semibold text-[#17345a]">Kaardistame teie kontori eripärad ja vajadused</h3>
+                  <p className="text-[15px] text-[#5a6474] leading-[1.7]">
+                    <b>Personaalne kliendihaldur</b> on Teie kontaktisik, kes tunneb teie ettevõtet ning teostab regulaarseid kontrollkäike.
+                  </p>
+                </div>
               </div>
 
               <Hinnakalkulaator />
@@ -348,7 +387,7 @@ export default function KontoriKoristus() {
               </div>
               <TwoToneHeading text="Mida ütlevad meie kontorikliendid" />
             </div>
-            <TestimonialCards testimonials={[
+            <TestimonialSlider testimonials={[
               {
                 quote: "Soovin edastada tänusõnad ja kiituse väga hea kontorikoristuse eest. Üldine tagasiside on väga positiivne, kontor on puhas, korras ja hästi hooldatud. On näha, et tööd tehakse hoolikalt ning kvaliteedile pööratakse tähelepanu.",
                 shortQuote: "Üldine tagasiside on väga positiivne, kontor on puhas, korras ja hästi hooldatud.",

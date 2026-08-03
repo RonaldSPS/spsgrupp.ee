@@ -1,12 +1,14 @@
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { headers } from "next/headers"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import FooterCTA from "../../components/FooterCTA"
 import type { Metadata } from "next"
 import { getPostBySlugWithEdits, getRelatedPosts } from "../data"
+import { generatePageMetadata } from "@/lib/metadata-helper"
+import { renderLdJson } from "@/lib/json-ld-generator"
+import { absoluteUrl, canonicalUrl } from "@/lib/url-utils"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -16,19 +18,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlugWithEdits(slug)
   if (!post) return {}
-  return {
+  return generatePageMetadata({
+    path: `/blog/${post.slug}`,
+    locale: "et",
     title: post.title + " | SPS Grupp Blogi",
     description: post.excerpt,
-    alternates: { canonical: "https://spsgrupp.ee/blog/" + post.slug },
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: "https://spsgrupp.ee/blog/" + post.slug,
-      type: "article",
-      publishedTime: post.date,
-      images: [{ url: "https://spsgrupp.ee" + post.featuredImage, width: 1200, height: 630, alt: post.title }],
-    },
-  }
+    imagePath: post.featuredImage,
+    type: "article",
+    publishedTime: post.date,
+  })
 }
 
 function formatDate(d: string) {
@@ -40,26 +38,23 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getPostBySlugWithEdits(slug)
   if (!post) notFound()
 
-  const headersList = await headers()
-  const nonce = headersList.get("x-csp-nonce") || ""
-
   const related = getRelatedPosts(post)
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "@id": "https://spsgrupp.ee/blog/" + post.slug + "#blogposting",
+    "@id": `${canonicalUrl(`/blog/${post.slug}`)}#blogposting`,
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
     author: { "@type": "Organization", name: "SPS Grupp" },
-    publisher: { "@type": "Organization", name: "SPS Grupp OÜ", url: "https://spsgrupp.ee" },
-    image: "https://spsgrupp.ee" + post.featuredImage,
-    url: "https://spsgrupp.ee/blog/" + post.slug,
+    publisher: { "@type": "Organization", name: "SPS Grupp OÜ", url: canonicalUrl("/") },
+    image: absoluteUrl(post.featuredImage),
+    url: canonicalUrl(`/blog/${post.slug}`),
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://spsgrupp.ee/blog/" + post.slug,
+      "@id": canonicalUrl(`/blog/${post.slug}`),
     },
   }
 
@@ -67,24 +62,23 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        nonce={nonce}
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          __html: renderLdJson(jsonLd),
         }}
       />
       <Navbar />
-      <main className="pt-[110px] pb-[80px]">
+      <main id="main-content" tabIndex={-1} className="pt-[110px] pb-[80px]">
         <div className="max-w-[1200px] mx-auto px-[25px]">
           <nav className="mb-6 text-[15px] text-[#5a6474]">
             <Link href="/" className="text-[#5a6474] no-underline hover:text-[#17345a]">Avaleht</Link>
             <span className="mx-2">/</span>
-            <Link href="/blog" className="text-[#5a6474] no-underline hover:text-[#17345a]">Blogi</Link>
+            <Link href="/blog/" className="text-[#5a6474] no-underline hover:text-[#17345a]">Blogi</Link>
             <span className="mx-2">/</span>
             <span className="text-[#17345a]">{post.title}</span>
           </nav>
 
           <div className="relative h-[300px] md:h-[400px] rounded-[16px] overflow-hidden bg-[#eef7fc] mb-8">
-            <Image src={post.featuredImage} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
+            <Image src={post.featuredImage} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" preload />
           </div>
 
           <div className="grid md:grid-cols-[65fr_35fr] gap-10">

@@ -1,94 +1,44 @@
-"use client"
-
-import { useNonce } from "./NonceProvider"
+import type { Locale } from "@/lib/slug-map"
+import {
+  generateBreadcrumbSchema,
+  generateFaqSchema,
+  generateServiceSchema,
+  renderLdJson,
+} from "@/lib/json-ld-generator"
 
 type BreadcrumbItem = {
-  position: number;
-  name: string;
-  item: string;
-};
-
-type FAQItem = {
-  question: string;
-  answer: string;
-};
+  name: string
+  etPath: string
+}
 
 type Props = {
-  serviceName: string;
-  serviceDescription: string;
-  serviceUrl: string;
-  breadcrumbs: BreadcrumbItem[];
-  faq?: FAQItem[];
-};
+  etPath: string
+  locale: Locale
+  serviceName: string
+  serviceDescription: string
+  breadcrumbs: BreadcrumbItem[]
+  faq?: Array<{ question: string; answer: string }>
+}
 
-const ORGANIZATION = {
-  "@type": "Organization",
-  name: "SPS Grupp OÜ",
-  url: "https://spsgrupp.ee",
-  logo: "https://spsgrupp.ee/SPS_LOGO.svg",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Mustamäe tee 46",
-    addressLocality: "Tallinn",
-    postalCode: "10621",
-    addressCountry: "EE",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+372-662-3328",
-    contactType: "customer service",
-    email: "info@spsgrupp.ee",
-    availableLanguage: ["Estonian", "Russian", "English"],
-  },
-  areaServed: ["Tallinn", "Harjumaa"],
-  identifier: {
-    "@type": "PropertyValue",
-    propertyID: "registryCode",
-    value: "11394806",
-  },
-  taxID: "EE101460268",
-};
-
-export default function SeoJsonLd({ serviceName, serviceDescription, serviceUrl, breadcrumbs, faq }: Props) {
-  const nonce = useNonce()
-
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: serviceName,
-    description: serviceDescription,
-    provider: ORGANIZATION,
-    areaServed: ["Tallinn", "Harjumaa"],
-    url: serviceUrl,
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: breadcrumbs,
-  };
+export default function SeoJsonLd({ etPath, locale, serviceName, serviceDescription, breadcrumbs, faq }: Props) {
+  const serviceSchema = generateServiceSchema(etPath, locale, serviceName, serviceDescription)
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs, locale)
+  const faqSchema = generateFaqSchema(
+    (faq || []).map((item) => ({ q: item.question, a: item.answer })),
+  )
 
   return (
     <>
-      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      {faq && faq.length > 0 && (
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(breadcrumbSchema) }} />
+      {faqSchema && (
         <script
           type="application/ld+json"
-          nonce={nonce}
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: faq.map((f) => ({
-                "@type": "Question",
-                name: f.question,
-                acceptedAnswer: { "@type": "Answer", text: f.answer },
-              })),
-            }),
+            __html: renderLdJson(faqSchema),
           }}
         />
       )}
     </>
-  );
+  )
 }

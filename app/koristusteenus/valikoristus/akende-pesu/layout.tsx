@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/akende-pesu",
+  locale: "et",
   title: "Akende pesu Tallinnas | SPS Grupp",
   description:
     "Akende pesu ärihoonetel Tallinnas. Kõrghoonete aknapesu, klaasfassaadid, regulaarne hooldus. Küsi tasuta pakkumist!",
-  keywords:
-    "akende pesu, aknapesu, akende pesemine, aknapesemine tallinn, aknapesu tallinnas, akende pesu tallinnas, kõrghoonete aknapesu",
-  openGraph: {
-    title: "Akende pesu Tallinnas | SPS Grupp",
-    description:
-      "Akende pesu ärihoonetel Tallinnas. Kõrghoonete aknapesu, klaasfassaadid, regulaarne hooldus. Küsi tasuta pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus/akende-pesu",
-  },
-};
+  imagePath: "/akende-pesu-1.jpg",
+});
 
 export default function AkendePesuLayout({
   children,

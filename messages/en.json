@@ -54,7 +54,7 @@
   "hero": {
     "heading1": "Cleaning Company",
     "heading2": "for businesses",
-    "description": "SPS Grupp maintains office, commercial and industrial premises in Tallinn and Harjumaa. Over 1,000,000 m² under our care.",
+    "description": "SPS Grupp maintains office, commercial and industrial premises in Tallinn and Harjumaa, with a total of over 1,000,000 m².",
     "cta": "Request a quote",
     "floating1Big": "Over 20 years",
     "floating1Small": "of experience",
@@ -69,7 +69,8 @@
     "para1": "Choosing a cleaning service provider is not just about price. Most companies that come to us have previously switched providers due to inconsistent quality, poor communication, or lack of accountability.",
     "para2": "Good service does not depend on the cleaner alone. What matters is the system: a clear work plan, regular quality control and quick response to situations that inevitably arise in daily operations.",
     "para3": "SPS Grupp has focused on business clients for years. Our cleaning service is based on standardized processes, a trained team and digital task tracking.",
-    "para4": "If you are looking for a partner who maintains consistent quality year after year, get in touch. We start by mapping your needs and providing a transparent quote."
+    "para4": "If you are looking for a partner who maintains consistent quality year after year, get in touch. We start by mapping your needs and providing a transparent quote.",
+    "ctaButton": "Request a quote"
   },
   "trust": {
     "sectionTag": "SPS Grupp",
@@ -119,7 +120,7 @@
       "title": "Schools and Kindergartens",
       "subtitle": "A lot of movement every day",
       "badge": "Educational Institutions",
-      "text": "Daily wear changes quickly. SPS looks at classrooms, group rooms, halls, cloakrooms and sanitary facilities separately to ensure realistic maintenance."
+      "text": "SPS reviews classrooms, group rooms, halls, cloakrooms and sanitary facilities so that maintenance is tailored to the needs of each space."
     }
   },
   "testimonials": {

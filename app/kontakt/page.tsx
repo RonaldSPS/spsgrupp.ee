@@ -3,12 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import HeroBackgroundImage from "../components/HeroBackgroundImage";
 import Footer from "../components/Footer";
 import ContactForm from "../components/ContactForm";
 import FAQ from "../components/FAQ";
 import FooterCTA from "../components/FooterCTA";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
+import { generateBreadcrumbSchema, renderLdJson } from "@/lib/json-ld-generator";
+import { canonicalUrl } from "@/lib/url-utils";
 
 const faqItems = [
   {
@@ -48,7 +51,7 @@ export default function KontaktLeht() {
     name: "SPS Grupp OÜ",
     description:
       "Professionaalne koristus- ja remonditeenuste partner Tallinnas ja Harjumaal",
-    url: "https://spsgrupp.ee/kontakt/",
+    url: canonicalUrl("/kontakt"),
     telephone: "+372 662 3328",
     email: "info@spsgrupp.ee",
     address: {
@@ -72,29 +75,25 @@ export default function KontaktLeht() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: renderLdJson(jsonLd) }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-              { "@type": "ListItem", position: 2, name: "Kontakt", item: "https://spsgrupp.ee/kontakt" }
-            ]
-          })
+          __html: renderLdJson(generateBreadcrumbSchema([
+            { name: "Avaleht", etPath: "/" },
+            { name: "Kontakt", etPath: "/kontakt" },
+          ], "et"))
         }}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           aria-label="Kontakt"
-          style={{ background: "url('/FrontHeroCar.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/FrontHeroCar.jpg" preload alt="" />
           <div className="max-w-[1280px] mx-auto w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start">
               {/* Left column - frosted glass */}

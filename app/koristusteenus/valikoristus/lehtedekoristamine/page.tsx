@@ -19,8 +19,7 @@ const data: OutdoorServicePageData = {
     { value: "Äravedu", label: "vajadusel", tone: "navy" },
   ],
   problemTitle: "Märjad lehed on korrashoiu- ja ohutusrisk",
-  problemLeft:
-    "Lehed kogunevad kiiresti sissepääsudele, kõnniteedele, parklaservadesse ja vihmaveerennide ümbrusse. Märjaks saades muutuvad need libedaks ning võivad ummistada äravoolud.",
+  problemLeft: <><b>Lehed kogunevad kiiresti sissepääsudele, kõnniteedele, parklaservadesse ja vihmaveerennide ümbrusse. Märjaks saades muutuvad need libedaks ning võivad ummistada äravoolud.</b></>,
   problemRight:
     "SPS Grupp aitab sügisperioodil hoida territooriumi läbikäidava ja esinduslikuna. Koristame lehed käsitsi või tehnikaga, kogume prahi kokku ja viime selle kokkuleppel ära.",
   serviceTitle: "Mida sisaldab lehtede koristamise teenus?",
@@ -70,14 +69,15 @@ export default function LehtedeKoristamine() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/valikoristus/lehtedekoristamine"
+        locale="et"
         serviceName="Lehtede koristamine"
         serviceDescription="Lehtede ja aiajäätmete koristamine ärikinnisvaralt. Sügisene lehtede koristus."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/valikoristus/lehtedekoristamine"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Välikoristus", item: "https://spsgrupp.ee/koristusteenus/valikoristus" },
-          { position: 4, name: "Lehtede koristamine", item: "https://spsgrupp.ee/koristusteenus/valikoristus/lehtedekoristamine" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Välikoristus", etPath: "/koristusteenus/valikoristus" },
+          { name: "Lehtede koristamine", etPath: "/koristusteenus/valikoristus/lehtedekoristamine" },
         ]}
         faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />

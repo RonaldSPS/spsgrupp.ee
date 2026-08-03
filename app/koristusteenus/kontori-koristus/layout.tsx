@@ -1,19 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/kontori-koristus",
+  locale: "et",
   title: "Kontori koristus Tallinnas | SPS Grupp",
-  description: "Regulaarne kontorikoristus Tallinnas alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001. Küsi pakkumist!",
-  keywords: "kontori koristus, kontorikoristus, büroo koristus, kontori koristusteenus, kontori koristus tallinnas, kontorite koristus",
-  openGraph: {
-    title: "Kontori koristus Tallinnas | SPS Grupp",
-    description: "Regulaarne kontorikoristus Tallinnas alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/kontori-koristus",
-  },
-};
+  description:
+    "Regulaarne kontorikoristus v\u00e4hemalt 800 m\u00b2 b\u00fcroodele Tallinnas ja Harjumaal, alates 1,20 \u20ac/m\u00b2 kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001.",
+  imagePath: "/kontorikoristus1.jpg",
+});
 
 export default function KontoriKoristusLayout({
   children,

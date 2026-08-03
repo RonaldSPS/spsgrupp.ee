@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/grafiti-eemaldamine",
+  locale: "et",
   title: "Graffiti eemaldamine Tallinnas | SPS Grupp",
   description:
     "Graffiti eemaldamine Tallinnas eri pindadelt ja kaitsekatete paigaldus. Reageerimisaeg sõltub asukohast, töömahust ja meeskonna saadavusest. Küsi pakkumist!",
-  keywords:
-    "graffiti eemaldamine, grafiti eemaldus, grafiti mahavõtmine, graffiti puhastus, anti-graffiti kate, grafiti eemaldamine tallinnas",
-  openGraph: {
-    title: "Graffiti eemaldamine Tallinnas | SPS Grupp",
-    description:
-      "Graffiti eemaldamine Tallinnas eri pindadelt ja kaitsekatete paigaldus. Reageerimisaeg sõltub asukohast, töömahust ja meeskonna saadavusest. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus/grafiti-eemaldamine",
-  },
-};
+  imagePath: "/graffiti-eemaldamine-1.jpg",
+});
 
 export default function GrafitiEemaldamineLayout({
   children,

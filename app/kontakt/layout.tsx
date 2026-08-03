@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/kontakt",
+  locale: "et",
   title: "Võta ühendust SPS Grupiga | SPS Grupp",
   description:
     "Võtke ühendust SPS Grupiga — professionaalne koristus- ja remonditeenuste partner Tallinnas ja Harjumaal. Tasuta konsultatsioon, kiire reageerimine ja personaalne hinnapakkumine äriklientidele ja korteriühistutele.",
-  keywords:
-    "SPS Grupp kontakt, koristusfirma kontakt tallinn, äripindade koristus Tallinn, hoolduspartner Harjumaa, kontorikoristus kontakt",
-  openGraph: {
-    title: "Võta ühendust SPS Grupiga | SPS Grupp",
-    description:
-      "Võtke ühendust SPS Grupiga — professionaalne koristus- ja remonditeenuste partner Tallinnas ja Harjumaal.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/kontakt",
-  },
-};
+  imagePath: "/FrontHeroCar.jpg",
+});
 
 export default function KontaktLayout({
   children,

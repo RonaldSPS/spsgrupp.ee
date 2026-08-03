@@ -38,14 +38,14 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "#teenused", label: t('nav.services') },
-    { href: "/tule-meile-toole", label: t('nav.comeToWork'), subItems: [
-      { href: "/tule-meile-toole#pakkumised", label: t('nav.activeJobs') },
+    { href: "/tule-meile-toole/", label: t('nav.comeToWork'), dropdownKey: "toole" as const, subItems: [
+      { href: "/tule-meile-toole/#pakkumised", label: t('nav.activeJobs') },
     ]},
-    { href: "/sps-grupp", label: t('nav.spsGrupp'), subItems: [
-      { href: "/sps-grupp/arvamused", label: t('nav.opinions') },
+    { href: "/sps-grupp/", label: t('nav.spsGrupp'), dropdownKey: "sps" as const, subItems: [
+      { href: "/sps-grupp/arvamused/", label: t('nav.opinions') },
     ]},
-    ...(locale === 'et' ? [{ href: "/blog", label: t('nav.blog') }] : []),
-    { href: "/kontakt", label: t('nav.contact') },
+    ...(locale === 'et' ? [{ href: "/blog/", label: t('nav.blog') }] : []),
+    { href: "/kontakt/", label: t('nav.contact') },
   ]
 
   const megaMenuData = {
@@ -53,59 +53,59 @@ export default function Navbar() {
     columns: [
       {
         title: t('megaMenu.cleaningServices'),
-        href: "/koristusteenus",
+        href: "/koristusteenus/",
         subSections: [
           {
             title: t('megaMenu.indoorCleaning'),
-            href: "/koristusteenus",
+            href: "/koristusteenus/",
             items: [
-              { label: t('megaMenu.officeCleaning'), href: "/koristusteenus/kontori-koristus" },
-              { label: t('megaMenu.commercialCleaning'), href: "/koristusteenus/kaubanduspindade-koristus" },
-              { label: t('megaMenu.industrialCleaning'), href: "/koristusteenus/tootmishoonete-koristus" },
-              { label: t('megaMenu.schoolCleaning'), href: "/koolide-koristamine" },
+              { label: t('megaMenu.officeCleaning'), href: "/koristusteenus/kontori-koristus/" },
+              { label: t('megaMenu.commercialCleaning'), href: "/koristusteenus/kaubanduspindade-koristus/" },
+              { label: t('megaMenu.industrialCleaning'), href: "/koristusteenus/tootmishoonete-koristus/" },
+              { label: t('megaMenu.schoolCleaning'), href: "/koolide-koristamine/" },
             ],
           },
           {
             title: t('megaMenu.outdoorCleaning'),
-            href: "/koristusteenus/valikoristus",
+            href: "/koristusteenus/valikoristus/",
             items: [
-              { label: t('megaMenu.lawnMowing'), href: "/koristusteenus/valikoristus/muruniitmine" },
-              { label: t('megaMenu.leafRemoval'), href: "/koristusteenus/valikoristus/lehtedekoristamine" },
-              { label: t('megaMenu.janitorService'), href: "/koristusteenus/valikoristus/kojameheteenus" },
-              { label: t('megaMenu.snowRemoval'), href: "/koristusteenus/valikoristus/lumekoristus" },
+              { label: t('megaMenu.lawnMowing'), href: "/koristusteenus/valikoristus/muruniitmine/" },
+              { label: t('megaMenu.leafRemoval'), href: "/koristusteenus/valikoristus/lehtedekoristamine/" },
+              { label: t('megaMenu.janitorService'), href: "/koristusteenus/valikoristus/kojameheteenus/" },
+              { label: t('megaMenu.snowRemoval'), href: "/koristusteenus/valikoristus/lumekoristus/" },
             ],
           },
         ],
       },
       {
         title: t('megaMenu.cleaningServices2'),
-        href: "/puhastusteenused",
+        href: "/puhastusteenused/",
         subSections: [
           {
             title: t('megaMenu.specialCleaning'),
-            href: "/puhastusteenused",
+            href: "/puhastusteenused/",
             items: [
-              { label: t('megaMenu.windowCleaning'), href: "/koristusteenus/valikoristus/akende-pesu" },
-              { label: t('megaMenu.carpetCleaning'), href: "/puhastusteenused/vaipade-puhastus" },
-              { label: t('megaMenu.floorMaintenance'), href: "/puhastusteenused/porandate-hooldus" },
-              { label: t('megaMenu.constructionWaste'), href: "/ehitusprahi-aravedu" },
-              { label: t('megaMenu.postConstructionCleaning'), href: "/puhastusteenused/ehitusjargne-koristus" },
-              { label: t('megaMenu.fireDamageCleaning'), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
-              { label: t('megaMenu.escalatorDeepCleaning'), href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
-              { label: t('megaMenu.disinfection'), href: "/puhastusteenused/koroonaviiruse-jargne-puhastus" },
-              { label: t('megaMenu.pavingCleaning'), href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus" },
-              { label: t('megaMenu.graffitiRemoval'), href: "/koristusteenus/valikoristus/grafiti-eemaldamine" },
-              { label: t('megaMenu.facadeCleaning'), href: "/koristusteenus/valikoristus/fassaadipesu" },
+              { label: t('megaMenu.windowCleaning'), href: "/koristusteenus/valikoristus/akende-pesu/" },
+              { label: t('megaMenu.carpetCleaning'), href: "/puhastusteenused/vaipade-puhastus/" },
+              { label: t('megaMenu.floorMaintenance'), href: "/puhastusteenused/porandate-hooldus/" },
+              { label: t('megaMenu.constructionWaste'), href: "/ehitusprahi-aravedu/" },
+              { label: t('megaMenu.postConstructionCleaning'), href: "/puhastusteenused/ehitusjargne-koristus/" },
+              { label: t('megaMenu.fireDamageCleaning'), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/" },
+              { label: t('megaMenu.escalatorDeepCleaning'), href: "/puhastusteenused/eskalaatorite-suvapuhastus/" },
+              { label: t('megaMenu.disinfection'), href: "/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
+              { label: t('megaMenu.pavingCleaning'), href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/" },
+              { label: t('megaMenu.graffitiRemoval'), href: "/koristusteenus/valikoristus/grafiti-eemaldamine/" },
+              { label: t('megaMenu.facadeCleaning'), href: "/koristusteenus/valikoristus/fassaadipesu/" },
             ],
           },
         ],
       },
       {
         title: t('megaMenu.renovationServices'),
-        href: "/remonditeenused-tallinnas",
+        href: "/remonditeenused-tallinnas/",
         items: [
           { label: t('megaMenu.electricalWork'), href: "/remonditeenused-tallinnas/elektritood/" },
-          { label: t('megaMenu.plumbing'), href: "/remonditeenused-tallinnas/torutood" },
+          { label: t('megaMenu.plumbing'), href: "/remonditeenused-tallinnas/torutood/" },
           { label: t('megaMenu.interiorFinishing'), href: "/remonditeenused-tallinnas/siseviimistlustood/" },
           { label: t('megaMenu.bathroomRenovation'), href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/" },
           { label: t('megaMenu.ventilation'), href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/" },
@@ -190,7 +190,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`} id="navbar" aria-label={t('nav.ariaMainMenu')}>
       <div className="navbar-container">
           <Link href={localeHref("/")} className="logo flex items-center gap-2.5 no-underline">
-          <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={38} height={38} style={{ width: "auto", height: "38px" }} />
+          <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={288} height={50} preload className="h-[38px] w-auto" />
         </Link>
 
         <ul className="nav-links flex list-none items-center gap-7" role="menubar">
@@ -258,26 +258,26 @@ export default function Navbar() {
                   </div>
                 </div>
               ) : "subItems" in link && link.subItems ? (
-                <div className="relative" ref={link.href === "/tule-meile-toole" ? tooleDropdownRef : spsDropdownRef}>
+                <div className="relative" ref={link.dropdownKey === "toole" ? tooleDropdownRef : spsDropdownRef}>
                   <Link
                     href={localeHref(link.href)}
                     role="menuitem"
-                    aria-expanded={link.href === "/tule-meile-toole" ? tooleDropdownOpen : spsDropdownOpen}
-                    aria-controls={link.href === "/tule-meile-toole" ? "toole-dropdown" : "sps-dropdown"}
+                    aria-expanded={link.dropdownKey === "toole" ? tooleDropdownOpen : spsDropdownOpen}
+                    aria-controls={link.dropdownKey === "toole" ? "toole-dropdown" : "sps-dropdown"}
                     aria-haspopup="true"
                     className="text-[#17345a] no-underline text-[15px] font-medium transition-all hover:text-[#17345a] relative"
-                    onClick={() => { const isToole = link.href === "/tule-meile-toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } }}
-                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); const isToole = link.href === "/tule-meile-toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } } if (e.key === "Escape") closeAllDesktop() }}
-                    onMouseEnter={() => { setMegaMenuOpen(false); if (link.href === "/tule-meile-toole") { setSpsDropdownOpen(false); setTooleDropdownOpen(true) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(true) } }}
+                    onClick={() => { const isToole = link.dropdownKey === "toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } }}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); const isToole = link.dropdownKey === "toole"; setMegaMenuOpen(false); if (isToole) { setSpsDropdownOpen(false); setTooleDropdownOpen(!tooleDropdownOpen) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(!spsDropdownOpen) } } if (e.key === "Escape") closeAllDesktop() }}
+                    onMouseEnter={() => { setMegaMenuOpen(false); if (link.dropdownKey === "toole") { setSpsDropdownOpen(false); setTooleDropdownOpen(true) } else { setTooleDropdownOpen(false); setSpsDropdownOpen(true) } }}
                   >
                     {link.label}
                   </Link>
                   <div
-                    id={link.href === "/tule-meile-toole" ? "toole-dropdown" : "sps-dropdown"}
+                    id={link.dropdownKey === "toole" ? "toole-dropdown" : "sps-dropdown"}
                     role="menu"
-                    className={`absolute left-0 top-full mt-2 bg-white rounded-xl shadow-md border border-[rgba(23,52,90,0.08)] py-2 min-w-[220px] transition-opacity duration-200 ${(link.href === "/tule-meile-toole" ? tooleDropdownOpen : spsDropdownOpen) ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
-                    onMouseEnter={() => link.href === "/tule-meile-toole" ? setTooleDropdownOpen(true) : setSpsDropdownOpen(true)}
-                    onMouseLeave={() => link.href === "/tule-meile-toole" ? setTooleDropdownOpen(false) : setSpsDropdownOpen(false)}
+                    className={`absolute left-0 top-full mt-2 bg-white rounded-xl shadow-md border border-[rgba(23,52,90,0.08)] py-2 min-w-[220px] transition-opacity duration-200 ${(link.dropdownKey === "toole" ? tooleDropdownOpen : spsDropdownOpen) ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"}`}
+                    onMouseEnter={() => link.dropdownKey === "toole" ? setTooleDropdownOpen(true) : setSpsDropdownOpen(true)}
+                    onMouseLeave={() => link.dropdownKey === "toole" ? setTooleDropdownOpen(false) : setSpsDropdownOpen(false)}
                   >
                     {link.subItems.map((item) => (
                       <Link key={item.href} href={localeHref(item.href)} role="menuitem" className="block px-5 py-2.5 text-[15px] text-[#2f353f] hover:bg-[#eef7fc] hover:text-[#17345a] transition-colors whitespace-nowrap" onClick={closeAllDesktop}>
@@ -344,7 +344,7 @@ export default function Navbar() {
       >
         <div className="sticky top-0 bg-white z-10 flex justify-between items-center p-4 border-b border-gray-100">
             <Link href={localeHref("/")} className="flex items-center gap-2.5 min-h-[44px]" onClick={closeMobile}>
-            <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={32} height={32} style={{ width: "auto", height: "32px" }} />
+            <Image src="/SPS_LOGO.svg" alt="SPS Grupp" width={288} height={50} className="h-[32px] w-auto" />
           </Link>
           <button ref={closeBtnRef} onClick={closeMobile} className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label={t('nav.ariaCloseMenu')}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2" aria-hidden="true">

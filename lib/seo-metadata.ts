@@ -1,19 +1,7 @@
 import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata-helper'
 import { localizePath } from '@/lib/slug-map'
 import liveUrlInventory from '@/data/live-url-inventory.json'
-
-const BASE_URL = 'https://spsgrupp.ee'
-
-const LOCALE_MAP: Record<string, string> = {
-  et: 'et_EE',
-  en: 'en_US',
-  ru: 'ru_RU',
-}
-
-function canonicalUrl(path: string): string {
-  if (path === '/') return BASE_URL
-  return `${BASE_URL}${path.replace(/\/$/, '')}/`
-}
 
 function comparablePath(path: string): string {
   let decoded = path
@@ -49,39 +37,18 @@ export function generateLocalizedMetadata(
   title: string,
   description: string,
   preferProvided = false,
+  imagePath?: string,
 ): Metadata {
   const localizedPath = locale === 'et' ? etPath : localizePath(etPath, locale as 'en' | 'ru')
-  const url = canonicalUrl(localizedPath)
   const liveMetadata = getLiveMetadata(localizedPath)
   const localizedTitle = preferProvided ? title : liveMetadata.title || title
   const localizedDescription = preferProvided ? description : liveMetadata.description || description
 
-  return {
+  return generatePageMetadata({
+    path: etPath,
+    locale: locale as 'et' | 'en' | 'ru',
     title: localizedTitle,
     description: localizedDescription,
-    metadataBase: new URL(BASE_URL),
-    alternates: {
-      canonical: url,
-      languages: {
-        et: canonicalUrl(etPath),
-        en: canonicalUrl(localizePath(etPath, 'en')),
-        ru: canonicalUrl(localizePath(etPath, 'ru')),
-        'x-default': canonicalUrl(etPath),
-      },
-    },
-    openGraph: {
-      title: localizedTitle,
-      description: localizedDescription,
-      url,
-      siteName: 'SPS Grupp',
-      locale: LOCALE_MAP[locale] || 'et_EE',
-      type: 'website',
-      images: [{ url: `${BASE_URL}/SPS_LOGO.svg`, width: 512, height: 512, alt: 'SPS Grupp logo' }],
-    },
-    twitter: {
-      card: 'summary',
-      title: localizedTitle,
-      description: localizedDescription,
-    },
-  }
+    imagePath,
+  })
 }

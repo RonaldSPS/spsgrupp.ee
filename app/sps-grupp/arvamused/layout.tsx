@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/sps-grupp/arvamused",
+  locale: "et",
   title: "Arvamused ja tagasiside | SPS Grupp",
   description:
     "Loe meie klientide tagasisidet ja arvamusi. SPS Grupp on usaldusväärne koristuspartner — kontori-, kooli- ja puhastusteenused Tallinnas ja Harjumaal.",
-  keywords:
-    "arvamused, tagasiside, klientide arvamused, koristusfirma, SPS Grupp, kliendirahulolu",
-  openGraph: {
-    title: "Arvamused ja tagasiside | SPS Grupp",
-    description:
-      "Loe meie klientide tagasisidet ja arvamusi. Kontori-, kooli- ja puhastusteenused.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/sps-grupp/arvamused",
-  },
-};
+  imagePath: "/images/arvamused.jpg",
+});
 
 export default function ArvamusedLayout({
   children,

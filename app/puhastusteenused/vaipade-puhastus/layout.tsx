@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/puhastusteenused/vaipade-puhastus",
+  locale: "et",
   title: "Vaipade puhastus Tallinnas | SPS Grupp",
   description:
     "Vaipade professionaalne puhastus ja keemiline pesu Tallinna kontorites. Allergeenide eemaldamine. Küsi pakkumist!",
-  keywords:
-    "vaipade puhastus, vaipade keemiline puhastus, vaipade pesu, vaipade puhastus tallinnas, vaipkatete puhastus, vaibapuhastus",
-  openGraph: {
-    title: "Vaipade puhastus Tallinnas | SPS Grupp",
-    description:
-      "Vaipade professionaalne puhastus ja keemiline pesu Tallinna kontorites. Allergeenide eemaldamine. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/puhastusteenused/vaipade-puhastus",
-  },
-};
+  imagePath: "/vaipade-puhastus-1.webp",
+});
 
 export default function VaipadePuhastusLayout({
   children,

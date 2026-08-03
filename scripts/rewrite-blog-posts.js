@@ -1,4 +1,3 @@
-﻿/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
 
@@ -401,7 +400,7 @@ Tööandja ei saa sundida töötajaid vaktsineerima, kuid saab:
 <li>Korraldada kontoris gripivaktsineerimise päeva koostöös tervishoiuteenuse pakkujaga</li>
 </ul>
 
-Terve kontor algab teadlikust juhtimisest. Kui vajad professionaalset desinfitseerimisteenust, <a href="https://spsgrupp.ee/puhastusteenused/desinfitseerimine/">vaata SPS Grupi desinfitseerimisteenust</a>.`;
+Terve kontor algab teadlikust juhtimisest. Kui vajad professionaalset desinfitseerimisteenust, <a href="https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/">vaata SPS Grupi desinfitseerimisteenust</a>.`;
   save(p);
   console.log("Updated post-2131");
 }

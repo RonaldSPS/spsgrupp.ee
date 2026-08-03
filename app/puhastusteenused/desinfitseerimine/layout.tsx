@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
+  path: "/puhastusteenused/koroonaviiruse-jargne-puhastus",
+  locale: "et",
   title: "Desinfitseerimine Tallinnas | SPS Grupp",
   description:
     "Ruumide professionaalne desinfitseerimine Tallinnas, elektrostaatilised pihustid, UV-C, sertifitseeritud vahendid. Küsi pakkumist!",
-  keywords:
-    "desinfitseerimine, ruumide desinfitseerimine, viiruse puhastus, hügieenipakett, desinfitseerimine tallinnas, viirusejärgne puhastus",
-  openGraph: {
-    title: "Desinfitseerimine Tallinnas | SPS Grupp",
-    description:
-      "Ruumide professionaalne desinfitseerimine Tallinnas, elektrostaatilised pihustid, UV-C, sertifitseeritud vahendid. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/",
-  },
-};
+  imagePath: "/desinfitseerimine-1.jpg",
+});
 
 export default function DesinfitseerimineLayout({
   children,

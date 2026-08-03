@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus",
+  locale: "et",
   title: "Tänavakivide pesu Tallinnas | SPS Grupp",
   description:
     "Tänavakivide ja sillutuskivide pesu Tallinnas, umbrohu eemaldamine, vuukide täitmine, kaitsekihid. Küsi pakkumist!",
-  keywords:
-    "tänavakivide pesu, sillutuskivi pesu, tänavakivide puhastamine, sillutuskivi hooldus, tänavakivide hooldus tallinnas",
-  openGraph: {
-    title: "Tänavakivide pesu Tallinnas | SPS Grupp",
-    description:
-      "Tänavakivide ja sillutuskivide pesu Tallinnas, umbrohu eemaldamine, vuukide täitmine, kaitsekihid. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus",
-  },
-};
+  imagePath: "/tanavakividepesu-1.jpg",
+});
 
 export default function TanavakividePesuLayout({
   children,

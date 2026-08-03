@@ -92,10 +92,6 @@ function buildCspHeader(): string {
   ].join("; ")
 }
 
-function generateNonce(): string {
-  return btoa(crypto.randomUUID())
-}
-
 function makeResponse(request: NextRequest, csp: string): NextResponse {
   const requestHeaders = new Headers(request.headers)
   const { pathname } = request.nextUrl
@@ -105,7 +101,6 @@ function makeResponse(request: NextRequest, csp: string): NextResponse {
       ? "ru"
       : "et"
   requestHeaders.set("Content-Security-Policy", csp)
-  requestHeaders.set("X-CSP-Nonce", generateNonce())
   requestHeaders.set("X-SPS-Locale", locale)
 
   const response = NextResponse.next({ request: { headers: requestHeaders } })

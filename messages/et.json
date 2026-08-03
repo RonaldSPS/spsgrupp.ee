@@ -54,7 +54,7 @@
   "hero": {
     "heading1": "Koristusfirma",
     "heading2": "ärikliendile",
-    "description": "Koristusfirma SPS Grupp hooldab kontori-, kaubandus- ja tootmispindu Tallinnas ja Harjumaal. Üle 1 000 000 m² meie hoolduses.",
+    "description": "Koristusfirma SPS Grupp hooldab kontori-, kaubandus- ja tootmispindu Tallinnas ja Harjumaal kokku üle 1 000 000 m².",
     "cta": "Küsi pakkumist",
     "floating1Big": "Alates 2006",
     "floating1Small": "kogemust",
@@ -69,7 +69,8 @@
     "para1": "Pakume iga ettevõtte vajadustele kohandatud koristusteenust. Selge tööplaan, koolitatud meeskond ja regulaarne kvaliteedikontroll aitavad hoida teenuse stabiilsena.",
     "para2": "Keskendume äriklientidele ning arvestame hoone kasutuse, ettevõtte töökorralduse ja objekti eripäraga.",
     "para3": "Leiame sobiva lahenduse nii keskmistele kui ka suurettevõtetele.",
-    "para4": "Koostöö algab vajaduste kaardistamisest ja läbipaistvast hinnapakkumisest."
+    "para4": "Koostöö algab vajaduste kaardistamisest ja läbipaistvast hinnapakkumisest.",
+    "ctaButton": "Küsi pakkumist"
   },
   "trust": {
     "sectionTag": "SPS Grupp",
@@ -119,7 +120,7 @@
       "title": "Koolid ja lasteaiad",
       "subtitle": "Palju liikumist iga päev",
       "badge": "Haridusasutused",
-      "text": "Haridusasutuses muutub päevane koormus kiiresti. SPS vaatab eraldi klassid, rühmaruumid, saalid, garderoobid ja sanitaarruumid, et hooldus oleks realistlik."
+      "text": "SPS vaatab üle klassid, rühmaruumid, saalid, garderoobid ja sanitaarruumid, et hooldus oleks kohandatud iga ruumi vajadustega."
     }
   },
   "testimonials": {

@@ -8,7 +8,7 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <Link
-          href="/spsadmn/blog"
+          href="/spsadmn/blog/"
           className="bg-white rounded-2xl p-8 shadow-sm border border-[rgba(23,52,90,0.08)] hover:shadow-md hover:border-[#3abeff]/30 transition-all group"
         >
           <div className="w-14 h-14 rounded-2xl bg-[#eef7fc] flex items-center justify-center mb-4 group-hover:bg-[#d4eef9] transition-colors">
@@ -21,7 +21,7 @@ export default function AdminDashboard() {
         </Link>
 
         <Link
-          href="/spsadmn/toole"
+          href="/spsadmn/toole/"
           className="bg-white rounded-2xl p-8 shadow-sm border border-[rgba(23,52,90,0.08)] hover:shadow-md hover:border-[#3abeff]/30 transition-all group"
         >
           <div className="w-14 h-14 rounded-2xl bg-[#ecfdf5] flex items-center justify-center mb-4 group-hover:bg-[#d0f5e4] transition-colors">
@@ -34,7 +34,7 @@ export default function AdminDashboard() {
         </Link>
 
         <Link
-          href="/spsadmn/testimonials"
+          href="/spsadmn/testimonials/"
           className="bg-white rounded-2xl p-8 shadow-sm border border-[rgba(23,52,90,0.08)] hover:shadow-md hover:border-[#3abeff]/30 transition-all group"
         >
           <div className="w-14 h-14 rounded-2xl bg-[#fef3c7] flex items-center justify-center mb-4 group-hover:bg-[#fde9a0] transition-colors">
@@ -47,7 +47,7 @@ export default function AdminDashboard() {
         </Link>
 
         <Link
-          href="/spsadmn/seaded"
+          href="/spsadmn/seaded/"
           className="bg-white rounded-2xl p-8 shadow-sm border border-[rgba(23,52,90,0.08)] hover:shadow-md hover:border-[#3abeff]/30 transition-all group"
         >
           <div className="w-14 h-14 rounded-2xl bg-[#eceef1] flex items-center justify-center mb-4 group-hover:bg-[#dde1e6] transition-colors">

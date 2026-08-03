@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas/plaatimistood",
+  locale: "et",
   title: "Plaatimistööd Tallinnas | SPS Grupp",
   description:
     "Plaatimistööd Tallinna ärihoonetes. Sanitaarruumid, köögid, kaubanduspinnad. Keraamika, kivi. Küsi pakkumist!",
-  keywords:
-    "plaatimistööd, plaatija tallinnas, plaatide paigaldus, plaatimistööd tallinnas, sanitaarruumi plaatimine, põrandaplaatide paigaldus",
-  openGraph: {
-    title: "Plaatimistööd Tallinnas | SPS Grupp",
-    description:
-      "Plaatimistööd Tallinna ärihoonetes. Sanitaarruumid, köögid, kaubanduspinnad. Keraamika, kivi. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/plaatimistood",
-  },
-};
+  imagePath: "/plaatimistood-1.jpg",
+});
 
 export default function PlaatimistoodLayout({
   children,

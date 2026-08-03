@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { absoluteUrl } from "@/lib/url-utils"
 
 export default function robots(): MetadataRoute.Robots {
   const isPreview = process.env.VERCEL_ENV === "preview" ||
@@ -26,6 +27,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://spsgrupp.ee/sitemap.xml",
+    sitemap: absoluteUrl("/sitemap.xml"),
   }
 }

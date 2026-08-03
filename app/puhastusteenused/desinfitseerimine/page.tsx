@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import ContactForm from "../../components/ContactForm";
@@ -38,25 +39,26 @@ export default function Desinfitseerimine() {
   return (
     <>
       <SeoJsonLd
+        etPath="/puhastusteenused/koroonaviiruse-jargne-puhastus"
+        locale="et"
         serviceName="Desinfitseerimine Tallinnas"
         serviceDescription="Ruumide professionaalne desinfitseerimine Tallinnas. Sertifitseeritud vahendid, ohutu inimestele ja tehnikale."
-        serviceUrl="https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Puhastusteenused", item: "https://spsgrupp.ee/puhastusteenused" },
-          { position: 3, name: "Desinfitseerimine", item: "https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Puhastusteenused", etPath: "/puhastusteenused" },
+          { name: "Desinfitseerimine", etPath: "/puhastusteenused/koroonaviiruse-jargne-puhastus" },
         ]}
         faq={customFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Desinfitseerimine"
-          style={{ background: "#d4d8e3 url('/desinfitseerimine-1.jpg') calc(100% + 100px) center / cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/desinfitseerimine-1.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -137,7 +139,7 @@ export default function Desinfitseerimine() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
+                <a href="/puhastusteenused/" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Desinfitseerimine</span>
               </nav>
@@ -317,7 +319,7 @@ export default function Desinfitseerimine() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>

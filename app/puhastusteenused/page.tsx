@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import HeroBackgroundImage from "../components/HeroBackgroundImage";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
 import FooterCTA from "../components/FooterCTA";
@@ -10,7 +11,7 @@ import ContactForm from "../components/ContactForm";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import SeoJsonLd from "../components/SeoJsonLd";
-import TestimonialCards from "../components/TestimonialCards";
+import TestimonialSlider from "../components/TestimonialSlider";
 import Tooprotsess from "../components/Tooprotsess";
 
 const customFAQ = [
@@ -83,38 +84,39 @@ const miksMeieKaardid = [
 ];
 
 const teenuseSisuKaardid = [
-  { bold: "Vaipade keemiline puhastus, allergeenide ja plekkide eemaldamine", desc: "", href: "/puhastusteenused/vaipade-puhastus" },
-  { bold: "Põrandate süvapuhastus ja poleerimine", desc: "", href: "/puhastusteenused/porandate-hooldus" },
-  { bold: "Ehitusjärgne koristus. Tolm, ehituspraht, valmistame pinnad üleandmiseks ette", desc: "", href: "/puhastusteenused/ehitusjargne-koristus" },
-  { bold: "Suitsu- ja tulekahjustuste puhastamine, tahma- ja lõhnaeemaldus", desc: "", href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" },
-  { bold: "Eskalaatorite süvapuhastus, kaubanduskeskused", desc: "", href: "/puhastusteenused/eskalaatorite-suvapuhastus" },
-  { bold: "Desinfitseerimine, viiruste- ja bakteriaalne kaitse", desc: "", href: "/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
-  { bold: "Akende ja klaasfassaadide professionaalne pesu", desc: "", href: "/koristusteenus/valikoristus/akende-pesu" },
-  { bold: "Fassaadipesu ja välispindade puhastus", desc: "", href: "/koristusteenus/valikoristus/fassaadipesu" },
+  { bold: "Vaipade keemiline puhastus, allergeenide ja plekkide eemaldamine", desc: "", href: "/puhastusteenused/vaipade-puhastus/" },
+  { bold: "Põrandate süvapuhastus ja poleerimine", desc: "", href: "/puhastusteenused/porandate-hooldus/" },
+  { bold: "Ehitusjärgne koristus. Tolm, ehituspraht, valmistame pinnad üleandmiseks ette", desc: "", href: "/puhastusteenused/ehitusjargne-koristus/" },
+  { bold: "Suitsu- ja tulekahjustuste puhastamine, tahma- ja lõhnaeemaldus", desc: "", href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/" },
+  { bold: "Eskalaatorite süvapuhastus, kaubanduskeskused", desc: "", href: "/puhastusteenused/eskalaatorite-suvapuhastus/" },
+  { bold: "Desinfitseerimine, viiruste vastane ja bakteriaalne kaitse", desc: "", href: "/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
+  { bold: "Kontori- ja bürooakende regulaarne pesu", desc: "", href: "/koristusteenus/valikoristus/akende-pesu/" },
+  { bold: "Fassaadipesu ja välispindade puhastus", desc: "", href: "/koristusteenus/valikoristus/fassaadipesu/" },
 ];
 
 export default function Puhastusteenused() {
   return (
     <>
       <SeoJsonLd
+        etPath="/puhastusteenused"
+        locale="et"
         serviceName="Puhastusteenused Tallinnas"
         serviceDescription="Professionaalsed puhastusteenused äriklientidele Tallinnas. Põrandate süvapuhastus, vaibad, ehitusjärgne koristus, desinfitseerimine."
-        serviceUrl="https://spsgrupp.ee/puhastusteenused"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Puhastusteenused", item: "https://spsgrupp.ee/puhastusteenused" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Puhastusteenused", etPath: "/puhastusteenused" },
         ]}
         faq={customFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Puhastusteenused"
-          style={{ background: "url('/puhastusteenused1.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/puhastusteenused1.jpg" preload alt="" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start max-w-[1280px] mx-auto w-full relative z-10">
             <div
               className="animate-fade-up order-2 md:order-1"
@@ -174,7 +176,8 @@ export default function Puhastusteenused() {
               <TwoToneHeading text="Kas vajate tavapärasest koristusest põhjalikumat lahendust?" className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
                 <div>
-                  <p>On olukordi, kui tavaline koristus ei ole piisav. Vaipkate on kogunud aastate jooksul nähtamatut mustust. Põrandad on kaotanud sära ja kulumine on näha. Peale ehitust on tolm kõikjal, ka kohtades, kuhu silm ei jõua. Juhuslik tulekahju jättis tahma, mida tavalised vahendid ei eemalda. Või vajate kogu ruumi kiiret desinfitseerimist pärast haiguspuhangut.</p>
+                  <p><strong>On olukordi, kui tavaline koristus ei ole piisav.</strong></p>
+                  <p><strong>Aknad määrduvad nii aeglaselt, et seda ei märka. Tolm, saaste, õietolm kevadel, talvised soolajäägid kogunevad tasapisi. Alles siis, kui aknad puhtaks pestakse, märkate muutust kontrastselt.</strong></p>
                 </div>
                 <div>
                   <p>Need olukorrad vajavad spetsiaalseid vahendeid, erivarustust ja väljaõppega personali.</p>
@@ -297,7 +300,7 @@ export default function Puhastusteenused() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>
@@ -329,10 +332,7 @@ export default function Puhastusteenused() {
                 </div>
               </div>
 
-              <div className="text-[16px] text-[#2f353f] leading-[2] font-light mb-4 max-w-[720px] mx-auto text-center">
-                <p><strong className="text-[#17345a]">Ehitusjärgne koristus:</strong> alates 250€ (sõltub objekti suurusest)</p>
-                <p><strong className="text-[#17345a]">Suitsukahjustuste puhastamine:</strong> individuaalne pakkumine</p>
-              </div>
+
 
               <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">
                 Kohapealne hindamine on alati tasuta ja ei kohusta ostma.
@@ -354,7 +354,7 @@ export default function Puhastusteenused() {
               </div>
               <TwoToneHeading text="Mida ütlevad meie puhastusteenuste kliendid" />
             </div>
-            <TestimonialCards testimonials={[
+            <TestimonialSlider testimonials={[
               {
                 quote: "Soovime avaldada suurt tunnustust eritööde brigaadile väga hästi tehtud töö eest. Tööd olid läbi mõeldud, korralikult planeeritud ja professionaalselt teostatud. Kogu protsess sujus ladusalt.",
                 shortQuote: "Tööd olid läbi mõeldud, korralikult planeeritud ja professionaalselt teostatud. Kogu protsess sujus ladusalt.",

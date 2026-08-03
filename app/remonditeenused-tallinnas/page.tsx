@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import HeroBackgroundImage from "../components/HeroBackgroundImage";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
 import FooterCTA from "../components/FooterCTA";
@@ -39,24 +40,25 @@ export default function RemonditeenusedTallinnas() {
   return (
     <>
       <SeoJsonLd
+        etPath="/remonditeenused-tallinnas"
+        locale="et"
         serviceName="Remonditeenused Tallinnas"
         serviceDescription="Remonditeenused ärikinnisvarale Tallinnas. Elektri-, toru-, plaatimis- ja ventilatsioonitööd ühest kohast."
-        serviceUrl="https://spsgrupp.ee/remonditeenused-tallinnas"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Remonditeenused Tallinnas", item: "https://spsgrupp.ee/remonditeenused-tallinnas" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Remonditeenused Tallinnas", etPath: "/remonditeenused-tallinnas" },
         ]}
         faq={customFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Remonditeenused Tallinnas"
-          style={{ background: "url('/remonditeenused-1.jpg') right top/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/remonditeenused-1.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -138,7 +140,7 @@ export default function RemonditeenusedTallinnas() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/remonditeenused-tallinnas" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
+                <a href="/remonditeenused-tallinnas/" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Remonditeenused Tallinnas</span>
               </nav>
@@ -185,14 +187,14 @@ export default function RemonditeenusedTallinnas() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { bold: "Elektritööd", desc: "paigaldus, hooldus, rikete kõrvaldamine", href: "/remonditeenused-tallinnas/elektritood" },
-                  { bold: "Torutööd", desc: "vee-, kanalisatsiooni- ja küttesüsteemid", href: "/remonditeenused-tallinnas/torutood" },
-                  { bold: "Siseviimistlustööd", desc: "seinad, laed, põrandad", href: "/remonditeenused-tallinnas/siseviimistlustood" },
-                  { bold: "Plaatimistööd", desc: "sanitaarruumid, köögid, üldkasutatavad alad", href: "/remonditeenused-tallinnas/plaatimistood" },
-                  { bold: "Sanitaarremont ja ümberehitus", desc: "WC-d, dušid, toru- ja elektritööd", href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus" },
-                  { bold: "Ventilatsioonisüsteemide ehitus ja hooldus", desc: "projekteerimine, paigaldus, hooldus", href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus" },
-                  { bold: "Katuse remont ja hooldus", desc: "lamekatused, lekked, hüdroisolatsioon", href: "/remonditeenused-tallinnas/katuse-remont" },
-                  { bold: "Lammutustööd", desc: "kontrollitud, dokumenteeritud, jäätmekäitlusega", href: "/remonditeenused-tallinnas/lammutustood" },
+                  { bold: "Elektritööd", desc: "paigaldus, hooldus, rikete kõrvaldamine", href: "/remonditeenused-tallinnas/elektritood/" },
+                  { bold: "Torutööd", desc: "vee-, kanalisatsiooni- ja küttesüsteemid", href: "/remonditeenused-tallinnas/torutood/" },
+                  { bold: "Siseviimistlustööd", desc: "seinad, laed, põrandad", href: "/remonditeenused-tallinnas/siseviimistlustood/" },
+                  { bold: "Plaatimistööd", desc: "sanitaarruumid, köögid, üldkasutatavad alad", href: "/remonditeenused-tallinnas/plaatimistood/" },
+                  { bold: "Sanitaarremont ja ümberehitus", desc: "WC-d, dušid, toru- ja elektritööd", href: "/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/" },
+                  { bold: "Ventilatsioonisüsteemide ehitus ja hooldus", desc: "projekteerimine, paigaldus, hooldus", href: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/" },
+                  { bold: "Katuse remont ja hooldus", desc: "lamekatused, lekked, hüdroisolatsioon", href: "/remonditeenused-tallinnas/katuse-remont/" },
+                  { bold: "Lammutustööd", desc: "kontrollitud, dokumenteeritud, jäätmekäitlusega", href: "/remonditeenused-tallinnas/lammutustood/" },
                   { bold: "Betoonitööd", desc: "valamine, parandus, tasandus" },
                 ].map((item, i) => {
                   const cardContent = (
@@ -341,7 +343,7 @@ export default function RemonditeenusedTallinnas() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>

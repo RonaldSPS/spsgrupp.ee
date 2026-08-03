@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/puhastusteenused/porandate-hooldus",
+  locale: "et",
   title: "Põrandate hooldus Tallinnas | SPS Grupp",
   description:
     "Põrandate hooldus ja süvapuhastus Tallinnas. PVC, parkett, betoon, kivi, keraamika. Vahatamine ja poleerimine. Küsi pakkumist!",
-  keywords:
-    "põrandate hooldus, põranda puhastus, põrandate süvapuhastus, parketi hooldus, põrandate vahamine, põranda hooldus tallinnas",
-  openGraph: {
-    title: "Põrandate hooldus Tallinnas | SPS Grupp",
-    description:
-      "Põrandate hooldus ja süvapuhastus Tallinnas. PVC, parkett, betoon, kivi, keraamika. Vahatamine ja poleerimine. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/puhastusteenused/porandate-hooldus",
-  },
-};
+  imagePath: "/porandate-hooldus-1.webp",
+});
 
 export default function PorandateHooldusLayout({
   children,

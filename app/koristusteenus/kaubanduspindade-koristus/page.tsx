@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 
 import FAQ from "../../components/FAQ";
@@ -11,9 +12,8 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
-import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
-import TestimonialCards from "../../components/TestimonialCards";
+import TestimonialSlider from "../../components/TestimonialSlider";
 import Tooprotsess from "../../components/Tooprotsess";
 
 export default function KaubanduspindadeKoristus() {
@@ -28,7 +28,7 @@ export default function KaubanduspindadeKoristus() {
     },
     {
       q: "Kas pakute kiirreageerimist hädaolukordades?",
-      a: "Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne aeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.",
+      a: "Kiireloomuliste olukordade puhul reageerime koheselt või esimesel võimalusel. Täpne aeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.",
     },
     {
       q: "Kas eskalaatorite puhastus sisaldub teenuses?",
@@ -36,32 +36,33 @@ export default function KaubanduspindadeKoristus() {
     },
     {
       q: "Kuidas toimub kvaliteedikontroll?",
-      a: "Iga objektil on objektijuht, kes kontrollib tööd regulaarselt. Esitame kliendile digitaalseid raporteid ja viime läbi kliendi rahulolu-uuringuid.",
+      a: "Igal objektil on objektijuht, kes kontrollib tööd regulaarselt. Esitame kliendile digitaalseid raporteid ja viime läbi kliendi rahulolu-uuringuid.",
     },
   ];
 
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/kaubanduspindade-koristus"
+        locale="et"
         serviceName="Kaubanduspindade koristus Tallinnas"
         serviceDescription="Kaubanduspindade professionaalne koristus ja hooldus Tallinnas. Puhtad ja esinduslikud pinnad iga päev."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Kaubanduspindade koristus", item: "https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Kaubanduspindade koristus", etPath: "/koristusteenus/kaubanduspindade-koristus" },
         ]}
         faq={faqItems.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Kaubanduspindade koristus"
-          style={{ background: "url('/kaubanduspindade-koristus.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/kaubanduspindade-koristus.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -144,7 +145,7 @@ export default function KaubanduspindadeKoristus() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Kaubanduspindade koristus</span>
               </nav>
@@ -160,7 +161,7 @@ export default function KaubanduspindadeKoristus() {
             <TwoToneHeading text="Kas teie kaubanduspind jätab õhtul sama hea mulje nagu hommikul?" className="mb-8" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
               <div>
-                Kaubanduspinnal liigub iga päev sadu, sageli tuhandeid inimesi ja SPS Grupp tagab, et iga külastus jätab puhta, meeldiva mulje.
+                <strong>Kaubanduspinnal liigub iga päev sadu, sageli tuhandeid inimesi ja SPS Grupp tagab, et iga külastus jätab puhta, meeldiva mulje.</strong>
               </div>
               <div>
                 <strong>Puhas pind müüb.</strong> Kliendid märkavad korrastatud põrandaid, tühjendatud prügikaste ja värske õhuga ruume ning tulevad tagasi. Hoiame kaubanduspinnad esinduslikena just siis, kui see on kõige olulisem. Hommikusel tipptunnil, nädalavahetuse kiiretel ostupäevadel ja kampaaniate ajal, kui liiklus on kõige tihedam.<br /><br />
@@ -261,7 +262,7 @@ export default function KaubanduspindadeKoristus() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Operatiivne suhtlus</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Kiireloomulise olukorra korral hindame võimalust reageerida esimesel võimalusel. Täpne aeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.
+                        Kiireloomuliste olukordade puhul reageerime koheselt või esimesel võimalusel. Täpne aeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest.
                       </p>
                     </div>
                   </div>
@@ -327,7 +328,7 @@ export default function KaubanduspindadeKoristus() {
             <div className="text-center mb-14">
               <div className="section-tag">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                 </svg>
                 Hind
               </div>
@@ -340,7 +341,11 @@ export default function KaubanduspindadeKoristus() {
                   Kaubanduspinna koristuse hind sõltub pindalast, liikluskoormusest, lahtiolekuaegadest ja eritööde vajadusest.
                 </p>
 
-                <MaintenancePriceExamples />
+                <div className="mb-8">
+                  <p className="text-[16px] text-[#2f353f] leading-[1.75] font-light">
+                    Eesti kliima nõuab läbimõeldud ja hooajalist lähenemist koristusteenustele. Koristusfirma SPS Grupp pakub terviklikku aastaringset plaani, mis lähtub just Eesti tingimustest.
+                  </p>
+                </div>
               </div>
 
               <Hinnakalkulaator />
@@ -362,7 +367,7 @@ export default function KaubanduspindadeKoristus() {
               </div>
               <TwoToneHeading text="Mida ütlevad meie äripindade kliendid" />
             </div>
-            <TestimonialCards testimonials={[
+            <TestimonialSlider testimonials={[
               {
                 quote: "Soovin anda tunnustavat tagasisidet puhastusteenuse kohta. Kontori ja logistika ning üldpindade koristus jätavad väga hea ja korrastatud mulje. Pinnad on puhtad, ruumid korras ning on näha, et koristustöid tehakse hoolikalt.",
                 shortQuote: "Kontori ja logistika ning üldpindade koristus jätavad väga hea ja korrastatud mulje. Pinnad on puhtad, ruumid korras.",
@@ -387,7 +392,7 @@ export default function KaubanduspindadeKoristus() {
         <ScrollAnimation animation="fade-up">
         <Tooprotsess
           title="Kuidas SPS kaubanduspinna koristuse käivitab?"
-          intro="Alustame sellest, millal pind on kõige koormatum, millised alad on kliendile nähtavad ja millal saab teha sügavamaid töid."
+          intro="Alustame sellest, millal pind on kõige koormatum, millised alad on kliendile nähtavad ja millal saab teha põhjalikumaid töid."
           steps={[
             ["Külastuskoormuse hindamine", "Vaatame üle tipptunnid, sissepääsud, sanitaarruumid, klaaspinnad ja müügiala liikumisrajad."],
             ["Päeva- ja öögraafik", "Jagame tööd nähtava päevakoristuse, sulgemisjärgse hoolduse ja perioodiliste eritööde vahel."],

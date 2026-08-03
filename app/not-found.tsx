@@ -11,7 +11,7 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="pt-[110px] pb-[80px] min-h-screen flex items-center">
+      <main id="main-content" tabIndex={-1} className="pt-[110px] pb-[80px] min-h-screen flex items-center">
         <div className="max-w-[600px] mx-auto px-[25px] text-center">
           <div className="text-[120px] font-bold text-[#17345a] leading-none opacity-10 select-none">
             404

@@ -31,7 +31,10 @@ export default function Industries() {
     }
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
+    if (isHovered) return;
     const interval = setInterval(() => {
       if (!isAnimating) {
         setPrevActive(active);
@@ -42,10 +45,15 @@ export default function Industries() {
     }, 4500);
 
     return () => clearInterval(interval);
-  }, [isAnimating, active]);
+  }, [isAnimating, active, isHovered]);
 
   return (
-    <section className="industries-section py-[100px] bg-white" id="valdkonnad">
+    <section
+      className="industries-section py-[100px] bg-white"
+      id="valdkonnad"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="grid grid-cols-1 lg:grid-cols-[0.72fr_1.28fr] gap-12 items-end mb-12">
           <div>

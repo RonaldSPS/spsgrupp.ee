@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../../../components/Navbar";
+import HeroBackgroundImage from "../../../components/HeroBackgroundImage";
 import Footer from "../../../components/Footer";
 import FAQ from "../../../components/FAQ";
 import FooterCTA from "../../../components/FooterCTA";
@@ -46,7 +47,7 @@ export type OutdoorServicePageData = {
   breadcrumb: string;
   chips: { value: string; label: string; tone: "blue" | "green" | "navy" }[];
   problemTitle: string;
-  problemLeft: string;
+  problemLeft: import("react").ReactNode;
   problemRight: string;
   serviceTitle: string;
   serviceCards: ServiceCard[];
@@ -114,13 +115,13 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label={data.ariaLabel}
-          style={{ background: `url('${data.heroImage}') center/cover no-repeat` }}
         >
+          <HeroBackgroundImage src={data.heroImage} preload alt="" />
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {data.chips.map((chip, i) => (
               <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -169,7 +170,7 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <Link href="/koristusteenus/valikoristus" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</Link>
+                <Link href="/koristusteenus/valikoristus/" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</Link>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">{data.breadcrumb}</span>
               </nav>

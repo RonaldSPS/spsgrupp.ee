@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import HeroBackgroundImage from "../components/HeroBackgroundImage";
 import Footer from "../components/Footer";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
@@ -14,23 +15,24 @@ export default function TuleMeileToolePage() {
   return (
     <>
       <SeoJsonLd
+        etPath="/tule-meile-toole"
+        locale="et"
         serviceName="Tööpakkumised SPS Grupis"
         serviceDescription="Liitu SPS Grupi meeskonnaga! Otsime koristajaid Tallinnas ja Harjumaal. Varasem kogemus pole oluline."
-        serviceUrl="https://spsgrupp.ee/tule-meile-toole"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Tule meile tööle", item: "https://spsgrupp.ee/tule-meile-toole" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Tule meile tööle", etPath: "/tule-meile-toole" },
         ]}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Tule meile tööle"
-          style={{ background: "url('/tuletoole-1.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/tuletoole-1.jpg" preload alt="" />
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
               <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">

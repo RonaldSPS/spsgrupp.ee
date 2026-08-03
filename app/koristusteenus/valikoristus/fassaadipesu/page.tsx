@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../../components/Navbar";
+import HeroBackgroundImage from "../../../components/HeroBackgroundImage";
 import Footer from "../../../components/Footer";
 import FAQ from "../../../components/FAQ";
 import FooterCTA from "../../../components/FooterCTA";
@@ -188,26 +189,27 @@ export default function Fassaadipesu() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/valikoristus/fassaadipesu"
+        locale="et"
         serviceName="Fassaadipesu Tallinnas"
         serviceDescription="Fassaadide professionaalne puhastus Tallinnas. Kõik pinnatüübid — krohv, klinker, klaas, metall."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/valikoristus/fassaadipesu"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Välikoristus", item: "https://spsgrupp.ee/koristusteenus/valikoristus" },
-          { position: 4, name: "Fassaadipesu", item: "https://spsgrupp.ee/koristusteenus/valikoristus/fassaadipesu" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Välikoristus", etPath: "/koristusteenus/valikoristus" },
+          { name: "Fassaadipesu", etPath: "/koristusteenus/valikoristus/fassaadipesu" },
         ]}
         faq={fassaadipesuFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Fassaadipesu"
-          style={{ background: "url('/fassaadipesu1.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/fassaadipesu-1.webp" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
@@ -293,9 +295,9 @@ export default function Fassaadipesu() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus/valikoristus" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</a>
+                <a href="/koristusteenus/valikoristus/" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Fassaadipesu</span>
               </nav>
@@ -462,7 +464,7 @@ export default function Fassaadipesu() {
                     stroke="currentColor"
                     strokeWidth="2.5"
                   >
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>

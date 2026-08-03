@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
@@ -10,9 +11,8 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
-import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
-import TestimonialCards from "../../components/TestimonialCards";
+import TestimonialSlider from "../../components/TestimonialSlider";
 import Tooprotsess from "../../components/Tooprotsess";
 
 const customFaqItems = [
@@ -42,25 +42,26 @@ export default function TootmishooneteKoristus() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/tootmishoonete-koristus"
+        locale="et"
         serviceName="Tootmishoonete koristus Tallinnas"
         serviceDescription="Tootmishoonete ja tööstuspindade professionaalne koristus Tallinnas."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/tootmishoonete-koristus"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Tootmishoonete koristus", item: "https://spsgrupp.ee/koristusteenus/tootmishoonete-koristus" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Tootmishoonete koristus", etPath: "/koristusteenus/tootmishoonete-koristus" },
         ]}
         faq={customFaqItems.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Tootmishoonete koristus"
-          style={{ background: "url('/tootmishoonete-koristus.webp') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/tootmishoonete-koristus.webp" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -143,7 +144,7 @@ export default function TootmishooneteKoristus() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Tootmishoonete koristus</span>
               </nav>
@@ -327,7 +328,7 @@ export default function TootmishooneteKoristus() {
             <div className="text-center mb-14">
               <div className="section-tag">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                 </svg>
                 Hind
               </div>
@@ -340,7 +341,11 @@ export default function TootmishooneteKoristus() {
                   Tootmishoone koristuse hind sõltub pindalast, mustuse iseloomust, koristuse sagedusest ja töögraafikust.
                 </p>
 
-                <MaintenancePriceExamples />
+                <div className="mb-8">
+                  <p className="text-[16px] text-[#2f353f] leading-[1.75] font-light">
+                    Tootmishooned nõuavad läbimõeldud lähenemist koristusele. Koristusfirma SPS Grupp pakub terviklikku plaani, mis lähtub just tootmise spetsiifilistest tingimustest.
+                  </p>
+                </div>
               </div>
 
               <Hinnakalkulaator />
@@ -362,7 +367,7 @@ export default function TootmishooneteKoristus() {
               </div>
               <TwoToneHeading text="Mida ütlevad meie tootmis- ja laokliendid" />
             </div>
-            <TestimonialCards testimonials={[
+            <TestimonialSlider testimonials={[
               {
                 quote: "Täname tehtud töö ja panustatud pingutuse eest. Lao ja tootmiskoristuse tööd said korrektselt tehtud, koostöö sujus hästi ning jäime lõpptulemusega rahule.",
                 shortQuote: "Lao ja tootmiskoristuse tööd said korrektselt tehtud, koostöö sujus hästi ning jäime lõpptulemusega rahule.",

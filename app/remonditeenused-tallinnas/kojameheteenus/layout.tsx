@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/kojameheteenus",
+  locale: "et",
   title: "Kojameheteenus — remont ja hooldus | SPS Grupp",
   description:
     "Kojameheteenus ärikinnisvarale Tallinnas. Territooriumi hooldus, väiksemad remonditööd, prügikastid, lumekoristus. Küsi pakkumist!",
-  keywords:
-    "kojamehe teenus, kojamees, kinnisvara hooldus, ärihoone remont, territooriumi hooldus tallinnas",
-  openGraph: {
-    title: "Kojameheteenus — remont ja hooldus | SPS Grupp",
-    description:
-      "Kojameheteenus ärikinnisvarale Tallinnas. Territooriumi hooldus, väiksemad remonditööd, lumekoristus. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/kojameheteenus",
-  },
-};
+  imagePath: "/kojameheteenus-1.jpg",
+});
 
 export default function KojameheteenusLayout({
   children,

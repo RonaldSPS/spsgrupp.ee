@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas/katuse-remont",
+  locale: "et",
   title: "Katuse remont Tallinnas | SPS Grupp",
   description:
     "Katuse remont ja hooldus ärihoonetele Tallinnas. Lamekatused, hüdroisolatsioon, lekete kiire kõrvaldamine. Küsi pakkumist!",
-  keywords:
-    "katuse remont, katuse remont tallinnas, lamekatuse remont, katusetööd, katuse hooldus, katuseleke parandus",
-  openGraph: {
-    title: "Katuse remont Tallinnas | SPS Grupp",
-    description:
-      "Katuse remont ja hooldus ärihoonetele Tallinnas. Lamekatused, hüdroisolatsioon, lekete kiire kõrvaldamine. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/katuse-remont",
-  },
-};
+  imagePath: "/katuseremont-1.jpg",
+});
 
 export default function KatuseRemontLayout({
   children,

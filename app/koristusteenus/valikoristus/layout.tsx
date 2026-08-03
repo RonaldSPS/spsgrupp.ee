@@ -1,19 +1,12 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus",
+  locale: "et",
   title: "Välikoristus Tallinnas | SPS Grupp",
   description: "Välikoristus ja territooriumi hooldus Tallinnas: fassaadipesu, aknad, graffiti, 24/7 lumekoristus. Küsi pakkumist!",
-  keywords: "välikoristus, territooriumi hooldus, välikoristus tallinnas, hoone välispuhastus, välispindade hooldus",
-  openGraph: {
-    title: "Välikoristus Tallinnas | SPS Grupp",
-    description: "Välikoristus ja territooriumi hooldus Tallinnas: fassaadipesu, aknad, graffiti, 24/7 lumekoristus. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus",
-  },
-};
+  imagePath: "/Valikoristus-1.jpg",
+});
 
 export default function ValikoristusLayout({
   children,

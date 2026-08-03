@@ -45,13 +45,15 @@ export default function Logos() {
               key={i}
               className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-40 transition-all hover:opacity-80 min-w-[120px] sm:min-w-[160px]"
             >
-              <Image
-                src={`/logod/${logo}`}
-                alt=""
-                width={90}
-                height={50}
-                className="object-contain"
-              />
+              <span className="relative block h-[50px] w-[90px]">
+                <Image
+                  src={`/logod/${logo}`}
+                  alt=""
+                  fill
+                  sizes="90px"
+                  className="object-contain"
+                />
+              </span>
             </div>
           ))}
         </div>

@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/sps-grupp",
+  locale: "et",
   title: "SPS Grupp – edukate ettevõtete koristusfirma Tallinnas",
   description:
     "SPS Grupp on usaldusväärne partner koristus-, remondi- ja hooldusteenustes äriklientidele. Pakume professionaalset teenust Tallinnas ja Harjumaal alates 2006. aastast.",
-  keywords:
-    "SPS Grupp, koristusfirma Tallinnas, professionaalne koristus, koristusteenus, remonditeenus, hooldusteenus, ISO 9001, ISO 14001, ärikoristus, puhastusteenus",
-  openGraph: {
-    title: "SPS Grupp – edukate ettevõtete koristusfirma",
-    description:
-      "SPS Grupp pakub professionaalset koristus-, remondi- ja hooldusteenust äriklientidele Tallinnas ja Harjumaal.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/sps-grupp",
-  },
-};
+  imagePath: "/FrontHeroCar.jpg",
+});
 
 export default function SPSGruppLayout({
   children,

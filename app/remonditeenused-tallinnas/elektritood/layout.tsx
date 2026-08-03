@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas/elektritood",
+  locale: "et",
   title: "Elektritööd Tallinnas ja Harjumaal — ärikliendile | SPS Grupp",
   description:
     "Elektritööd äripindadele Tallinnas ja Harjumaal — paigaldus, hooldus, LED-valgustus ja muud elektritööd vastavalt töö sisule. Küsi vajaduspõhist pakkumist.",
-  keywords:
-    "elektritööd, elektritööd tallinnas, elektritööd harjumaal, elektrisüsteemide hooldus, elektripaigaldus, elektrik tallinnas, laadimisjaamad",
-  openGraph: {
-    title: "Elektritööd Tallinnas ja Harjumaal — ärikliendile | SPS Grupp",
-    description:
-      "Elektritööd äripindadele Tallinnas ja Harjumaal — paigaldus, hooldus, LED-valgustus ja muud elektritööd vastavalt töö sisule. Küsi vajaduspõhist pakkumist.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/elektritood",
-  },
-};
+  imagePath: "/images/elekter/ElekterHero.webp",
+});
 
 export default function ElektritoodLayout({
   children,

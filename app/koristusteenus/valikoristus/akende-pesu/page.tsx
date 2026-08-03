@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../../components/Navbar";
+import HeroBackgroundImage from "../../../components/HeroBackgroundImage";
 import Footer from "../../../components/Footer";
 import FAQ from "../../../components/FAQ";
 import FooterCTA from "../../../components/FooterCTA";
@@ -71,7 +72,7 @@ const teenuseSisuKaardid: { bold: string; desc: string }[] = [
   },
   {
     bold: "Hooajalised eripesud",
-    desc: "Õietolm kevadel, soolajäägid talvel – vastavalt hooajalisele vajadusele.",
+    desc: "",
   },
   {
     bold: "Ehitusjärgne akende puhastus",
@@ -79,7 +80,7 @@ const teenuseSisuKaardid: { bold: string; desc: string }[] = [
   },
   {
     bold: "Regulaarne hooldusleping",
-    desc: "Kord kvartalis või sagedamini – fikseeritud hind, alati selged aknad.",
+    desc: "Kord kvartalis või sagedamini. Fikseeritud hind, alati selged aknad.",
   },
 ];
 
@@ -178,28 +179,27 @@ export default function AkendePesu() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/valikoristus/akende-pesu"
+        locale="et"
         serviceName="Akende pesu Tallinnas"
         serviceDescription="Akende pesu ärihoonetel Tallinnas. Kõrghoonete aknapesu, klaasfassaadid, regulaarne hooldus."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/valikoristus/akende-pesu"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Välikoristus", item: "https://spsgrupp.ee/koristusteenus/valikoristus" },
-          { position: 4, name: "Akende pesu", item: "https://spsgrupp.ee/koristusteenus/valikoristus/akende-pesu" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Välikoristus", etPath: "/koristusteenus/valikoristus" },
+          { name: "Akende pesu", etPath: "/koristusteenus/valikoristus/akende-pesu" },
         ]}
         faq={akendePesuFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Akende pesu"
-          style={{
-            background: "url('/akende-pesu-1.jpg') center/cover no-repeat",
-          }}
         >
+          <HeroBackgroundImage src="/akende-pesu-1.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
@@ -285,9 +285,9 @@ export default function AkendePesu() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus/valikoristus" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</a>
+                <a href="/koristusteenus/valikoristus/" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Akende pesu</span>
               </nav>
@@ -452,7 +452,7 @@ export default function AkendePesu() {
                     stroke="currentColor"
                     strokeWidth="2.5"
                   >
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>
@@ -516,7 +516,7 @@ export default function AkendePesu() {
           </section>
         </ScrollAnimation>
 
-        {/* Sotsiaalne tõestus */}
+        {/* Pesuplaan */}
         <ScrollAnimation animation="fade-up">
           <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
             <div className="max-w-[1280px] mx-auto px-[5%]">
@@ -532,25 +532,28 @@ export default function AkendePesu() {
                   >
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
-                  Meie numbrid
+                  Pesuplaan
                 </div>
-                <TwoToneHeading text="SPS Grupp akende pesu numbrites" />
+                <TwoToneHeading text="Mida lepime enne aknapesu kokku?" />
+                <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light max-w-[700px] mx-auto mt-6">
+                  Töö ulatus, ligipääs ja sobiv aeg määravad nii pesumeetodi kui ka hinna. Paneme need enne töö algust selgelt paika.
+                </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
                 {[
-                  { number: "15+", label: "aastat kogemust" },
-                  { number: "Triibuvaba", label: "tulemus" },
-                  { number: "200+", label: "teenindatud hoonet" },
+                  { number: "Pesu ulatus", label: "Määrame, kas klaasid pestakse ühelt või mõlemalt poolt ning kas töö sisaldab ka raamide, tihendite ja aknalaudade puhastust." },
+                  { number: "Ligipääs ja meetod", label: "Valime hoone kõrguse ja ligipääsu järgi sobiva lahenduse: teleskoopvarre, tõstuki, ronimisvarustuse või tavapärase käsipesu." },
+                  { number: "Tööaeg ja sagedus", label: "Lepime kokku tööaja, mis häirib hoone kasutajaid võimalikult vähe, ning vajadusel ka regulaarse hooldusgraafiku." },
                 ].map((stat, i) => (
                   <div
                     key={i}
                     className="bg-white rounded-2xl p-8 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
                   >
-                    <div className="text-[clamp(32px,4vw,48px)] font-bold text-[#17345a] mb-2">
+                    <div className="text-[22px] leading-[1.25] font-bold text-[#17345a] mb-3">
                       {stat.number}
                     </div>
-                    <div className="text-[15px] text-[#5a6474]">
+                    <div className="text-[15px] leading-[1.7] text-[#5a6474]">
                       {stat.label}
                     </div>
                   </div>

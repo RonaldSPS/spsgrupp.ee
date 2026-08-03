@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/kaubanduspindade-koristus",
+  locale: "et",
   title: "Kaubanduspindade koristus Tallinnas | SPS Grupp",
   description:
     "Kaubanduspindade koristus ja hooldus Tallinnas: päevakoristus, töövälisel ajal tehtav süvapuhastus ja regulaarne kvaliteedikontroll. Küsi pakkumist!",
-  keywords:
-    "kaubanduspindade koristus, kaubanduskeskuse puhastus, poe koristus, kauplusepindade hooldus, kaubanduspinna koristusteenus",
-  openGraph: {
-    title: "Kaubanduspindade koristus Tallinnas | SPS Grupp",
-    description:
-      "Kaubanduspindade koristus ja hooldus Tallinnas: päevakoristus, töövälisel ajal tehtav süvapuhastus ja regulaarne kvaliteedikontroll. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus",
-  },
-};
+  imagePath: "/kaubanduspindade-koristus.jpg",
+});
 
 export default function KaubanduspindadeKoristusLayout({
   children,

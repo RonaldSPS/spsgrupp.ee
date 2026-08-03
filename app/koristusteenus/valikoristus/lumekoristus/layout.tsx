@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/lumekoristus",
+  locale: "et",
   title: "Lumekoristus Tallinnas | SPS Grupp",
   description:
     "Lumekoristus ja libedusetõrje Tallinnas 24/7. Parklad, kõnniteed, sissepääsud. Hooajaline leping. Küsi pakkumist!",
-  keywords:
-    "lumekoristus, lumelükkamine, libedusetõrje, lumekoristus tallinnas, parkla lumekoristus, kõnnitee lumekoristus",
-  openGraph: {
-    title: "Lumekoristus Tallinnas | SPS Grupp",
-    description:
-      "Lumekoristus ja libedusetõrje Tallinnas 24/7. Parklad, kõnniteed, sissepääsud. Hooajaline leping. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus/lumekoristus",
-  },
-};
+  imagePath: "/lumelykkamine-1.jpg",
+});
 
 export default function LumekoristusLayout({
   children,

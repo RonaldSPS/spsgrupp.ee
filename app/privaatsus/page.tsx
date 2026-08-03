@@ -8,7 +8,7 @@ export default function PrivaatsusPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-[130px] pb-[80px]">
+      <main id="main-content" tabIndex={-1} className="pt-[130px] pb-[80px]">
         <div className="max-w-[900px] mx-auto px-[25px]">
           <h1 className="text-[42px] font-bold text-[#17345a] mb-8">Andmekaitsetingimused</h1>
 

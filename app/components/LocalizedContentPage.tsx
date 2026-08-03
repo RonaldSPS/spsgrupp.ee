@@ -13,6 +13,8 @@ import {
   getLocalizedContent,
   type LocalizedContentNamespace,
 } from '@/lib/localized-content'
+import { renderLdJson, generateServiceSchema, generateBreadcrumbSchema, generateFaqSchema } from '@/lib/json-ld-generator'
+import HeroBackgroundImage from './HeroBackgroundImage'
 
 type ContentRecord = Record<string, unknown>
 
@@ -37,15 +39,41 @@ export default function LocalizedContentPage({ etPath, locale, namespace }: Loca
     stringValue(seo?.breadcrumbServices) ||
     localizedParentLabel(parentPath, locale)
 
+  const breadcrumbItems = [
+    { name: homeLabel, etPath: '/' },
+    ...(parentPath !== '/' ? [{ name: parentLabel, etPath: parentPath }] : []),
+    { name: title, etPath },
+  ]
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: renderLdJson(generateServiceSchema(etPath, locale, title, description)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: renderLdJson(generateBreadcrumbSchema(breadcrumbItems, locale)),
+        }}
+      />
+      {faqItems.length > 0 ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: renderLdJson(generateFaqSchema(faqItems)!),
+          }}
+        />
+      ) : null}
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px] overflow-x-clip"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px] overflow-x-clip"
           aria-label={stringValue(hero?.ariaLabel) || title}
-          style={{ background: `url('${getHeroImage(etPath)}') center/cover no-repeat` }}
         >
+          <HeroBackgroundImage src={getHeroImage(etPath)} preload alt="" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start max-w-[1280px] mx-auto w-full relative z-10">
             <div
               className="animate-fade-up order-2 md:order-1"

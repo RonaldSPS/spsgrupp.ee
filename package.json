@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "node scripts/next-with-system-ca.mjs start",
     "lint": "eslint",
-    "translate": "node scripts/translate.mjs"
+    "translate": "node scripts/translate.mjs",
+    "seo:check": "tsx scripts/seo-check.ts",
+    "seo:check:prod": "tsx scripts/seo-check.ts --base-url=https://spsgrupp.ee",
+    "test:url-utils": "tsx --test lib/__tests__/url-utils.test.ts",
+    "test:json-ld": "tsx --test lib/__tests__/json-ld-generator.test.ts",
+    "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
@@ -31,10 +36,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vercel/next": "^4.15.0",
+    "cheerio": "^1.2.0",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "^16.2.9",
     "tailwindcss": "^4",
+    "tsx": "^4.23.5",
     "typescript": "^5"
   }
 }

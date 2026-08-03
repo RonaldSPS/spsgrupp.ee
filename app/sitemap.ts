@@ -4,9 +4,8 @@ import { execSync } from "child_process"
 import path from "path"
 import { getBlogPostsWithEdits } from "@/app/blog/data"
 import { getAllPaths } from "@/lib/page-registry"
-import { localizePath, type Locale } from "@/lib/slug-map"
-
-const BASE_URL = "https://spsgrupp.ee"
+import { localizePath, localizedPaths, type Locale } from "@/lib/slug-map"
+import { canonicalUrl } from "@/lib/url-utils"
 
 interface JobAnnouncement {
   id: string
@@ -72,11 +71,6 @@ async function getEditorialDate(urlPath: string, ...filePaths: string[]): Promis
   return new Date("2025-06-01")
 }
 
-function canonicalUrl(urlPath: string): string {
-  if (urlPath === "/") return BASE_URL
-  return `${BASE_URL}${urlPath.replace(/\/$/, "")}/`
-}
-
 function priorityForPath(urlPath: string): number {
   if (urlPath === "/") return 1
   if (urlPath === "/kontakt" || urlPath === "/koristusteenus" || urlPath === "/sps-grupp") return 0.9
@@ -86,12 +80,15 @@ function priorityForPath(urlPath: string): number {
 }
 
 function alternateLanguages(etPath: string): Record<string, string> {
-  return {
+  const alts: Record<string, string> = {
     et: canonicalUrl(etPath),
-    en: canonicalUrl(localizePath(etPath, "en")),
-    ru: canonicalUrl(localizePath(etPath, "ru")),
     "x-default": canonicalUrl(etPath),
   }
+  if (localizedPaths[etPath]) {
+    alts.en = canonicalUrl(localizePath(etPath, "en"))
+    alts.ru = canonicalUrl(localizePath(etPath, "ru"))
+  }
+  return alts
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

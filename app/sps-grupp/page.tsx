@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import HeroBackgroundImage from "../components/HeroBackgroundImage";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
 import FooterCTA from "../components/FooterCTA";
@@ -70,24 +71,25 @@ export default function SPSGruppPage() {
   return (
     <>
       <SeoJsonLd
+        etPath="/sps-grupp"
+        locale="et"
         serviceName="SPS Grupp – koristus- ja remonditeenused"
         serviceDescription="SPS Grupp on usaldusväärne partner koristus-, remondi- ja hooldusteenustes äriklientidele Tallinnas ja Harjumaal alates 2006. aastast."
-        serviceUrl="https://spsgrupp.ee/sps-grupp"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "SPS Grupp", item: "https://spsgrupp.ee/sps-grupp" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "SPS Grupp", etPath: "/sps-grupp" },
         ]}
         faq={faqItems.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="SPS Grupp"
-          style={{ background: "url('/FrontHeroCar.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/FrontHeroCar.jpg" preload alt="" />
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
               <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
@@ -340,7 +342,7 @@ export default function SPSGruppPage() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Valmisolek
                 </div>

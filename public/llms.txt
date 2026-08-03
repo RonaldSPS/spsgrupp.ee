@@ -12,48 +12,47 @@
 SPS Grupp on professionaalne koristus- ja remonditeenuste ettevõte, mis teenindab ärikliente Tallinnas ja Harjumaal.
 
 ### Koristusteenused
-- Kontorikoristus — https://spsgrupp.ee/koristusteenus/kontori-koristus
-- Kaubanduspindade koristus — https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus
-- Tootmishoonete koristus — https://spsgrupp.ee/koristusteenus/tootmishoonete-koristus
-- Koolide koristamine — https://spsgrupp.ee/koristusteenus/koolide-koristamine
+- Kontorikoristus — https://spsgrupp.ee/koristusteenus/kontori-koristus/
+- Kaubanduspindade koristus — https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus/
+- Tootmishoonete koristus — https://spsgrupp.ee/koristusteenus/tootmishoonete-koristus/
+- Koolide koristamine — https://spsgrupp.ee/koolide-koristamine/
 
 ### Välikoristus
-- Akende pesu — https://spsgrupp.ee/koristusteenus/valikoristus/akende-pesu
-- Fassaadipesu — https://spsgrupp.ee/koristusteenus/valikoristus/fassaadipesu
-- Graffiti eemaldamine — https://spsgrupp.ee/koristusteenus/valikoristus/grafiti-eemaldamine
-- Kojameheteenus — https://spsgrupp.ee/koristusteenus/valikoristus/kojameheteenus
-- Lehtede koristamine — https://spsgrupp.ee/koristusteenus/valikoristus/lehtedekoristamine
-- Lumekoristus — https://spsgrupp.ee/koristusteenus/valikoristus/lumekoristus
-- Muruniitmine — https://spsgrupp.ee/koristusteenus/valikoristus/muruniitmine
-- Tänavakivide pesu — https://spsgrupp.ee/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus
+- Akende pesu — https://spsgrupp.ee/koristusteenus/valikoristus/akende-pesu/
+- Fassaadipesu — https://spsgrupp.ee/koristusteenus/valikoristus/fassaadipesu/
+- Graffiti eemaldamine — https://spsgrupp.ee/koristusteenus/valikoristus/grafiti-eemaldamine/
+- Kojameheteenus — https://spsgrupp.ee/koristusteenus/valikoristus/kojameheteenus/
+- Lehtede koristamine — https://spsgrupp.ee/koristusteenus/valikoristus/lehtedekoristamine/
+- Lumekoristus — https://spsgrupp.ee/koristusteenus/valikoristus/lumekoristus/
+- Muruniitmine — https://spsgrupp.ee/koristusteenus/valikoristus/muruniitmine/
+- Tänavakivide pesu — https://spsgrupp.ee/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/
 
 ### Puhastusteenused
-- Ehitusjärgne koristus — https://spsgrupp.ee/puhastusteenused/ehitusjargne-koristus
-- Desinfitseerimine — https://spsgrupp.ee/puhastusteenused/desinfitseerimine
-- Eskalaatorite süvapuhastus — https://spsgrupp.ee/puhastusteenused/eskalaatorite-suvapuhastus
-- Põrandate hooldus — https://spsgrupp.ee/puhastusteenused/porandate-hooldus
-- Suitsu- ja tulekahjustuste puhastamine — https://spsgrupp.ee/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine
-- Vaipade puhastus — https://spsgrupp.ee/puhastusteenused/vaipade-puhastus
+- Ehitusjärgne koristus — https://spsgrupp.ee/puhastusteenused/ehitusjargne-koristus/
+- Desinfitseerimine — https://spsgrupp.ee/puhastusteenused/koroonaviiruse-jargne-puhastus/
+- Eskalaatorite süvapuhastus — https://spsgrupp.ee/puhastusteenused/eskalaatorite-suvapuhastus/
+- Põrandate hooldus — https://spsgrupp.ee/puhastusteenused/porandate-hooldus/
+- Suitsu- ja tulekahjustuste puhastamine — https://spsgrupp.ee/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/
+- Vaipade puhastus — https://spsgrupp.ee/puhastusteenused/vaipade-puhastus/
 
 ### Remonditeenused
-- Elektritööd — https://spsgrupp.ee/remonditeenused-tallinnas/elektritood
-- Katuse remont — https://spsgrupp.ee/remonditeenused-tallinnas/katuse-remont
-- Kojameheteenus — https://spsgrupp.ee/remonditeenused-tallinnas/kojameheteenus
-- Lammutustööd — https://spsgrupp.ee/remonditeenused-tallinnas/lammutustood
-- Plaatimistööd — https://spsgrupp.ee/remonditeenused-tallinnas/plaatimistood
-- Sanitaarremont — https://spsgrupp.ee/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus
-- Siseviimistlustööd — https://spsgrupp.ee/remonditeenused-tallinnas/siseviimistlustood
-- Torutööd — https://spsgrupp.ee/remonditeenused-tallinnas/torutood
-- Ventilatsioonide ehitus — https://spsgrupp.ee/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus
+- Elektritööd — https://spsgrupp.ee/remonditeenused-tallinnas/elektritood/
+- Katuse remont — https://spsgrupp.ee/remonditeenused-tallinnas/katuse-remont/
+- Lammutustööd — https://spsgrupp.ee/remonditeenused-tallinnas/lammutustood/
+- Plaatimistööd — https://spsgrupp.ee/remonditeenused-tallinnas/plaatimistood/
+- Sanitaarremont — https://spsgrupp.ee/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/
+- Siseviimistlustööd — https://spsgrupp.ee/remonditeenused-tallinnas/siseviimistlustood/
+- Torutööd — https://spsgrupp.ee/remonditeenused-tallinnas/torutood/
+- Ventilatsioonide ehitus — https://spsgrupp.ee/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/
 
 ### Muu
-- Ehitusprahi äravedu — https://spsgrupp.ee/ehitusprahi-aravedu
+- Ehitusprahi äravedu — https://spsgrupp.ee/ehitusprahi-aravedu/
 
 ## Kontakt
 - Telefon: +372 662 3328
 - E-post: info@spsgrupp.ee
-- Kontaktivorm: https://spsgrupp.ee/kontakt
-- Tööpakkumised: https://spsgrupp.ee/tule-meile-toole
+- Kontaktivorm: https://spsgrupp.ee/kontakt/
+- Tööpakkumised: https://spsgrupp.ee/tule-meile-toole/
 
 ## Sertifikaadid
 - ISO 9001

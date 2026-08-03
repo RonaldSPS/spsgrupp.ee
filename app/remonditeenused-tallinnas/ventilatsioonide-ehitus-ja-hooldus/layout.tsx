@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus",
+  locale: "et",
   title: "Ventilatsioonide ehitus ja hooldus Tallinnas | SPS Grupp",
   description:
     "Ventilatsioonisüsteemide projekteerimine, paigaldus ja hooldus Tallinnas — kontorid, kaubandus, tootmishooned. Küsi pakkumist!",
-  keywords:
-    "ventilatsiooni ehitus, ventilatsiooni hooldus, ventilatsioonisüsteemid, ventilatsiooni paigaldus, ventilatsioonide puhastus, ventilatsioon tallinnas",
-  openGraph: {
-    title: "Ventilatsioonide ehitus ja hooldus Tallinnas | SPS Grupp",
-    description:
-      "Ventilatsioonisüsteemide projekteerimine, paigaldus ja hooldus Tallinnas — kontorid, kaubandus, tootmishooned.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus",
-  },
-};
+  imagePath: "/ventilatsioon-1.jpg",
+});
 
 export default function VentilatsioonideEhitusJaHooldusLayout({
   children,

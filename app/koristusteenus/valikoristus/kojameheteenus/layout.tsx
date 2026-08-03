@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/kojameheteenus",
+  locale: "et",
   title: "Kojameheteenus — välikoristus | SPS Grupp",
   description:
     "Kojameheteenus ärikinnistutele ja korteriühistutele. Sissepääsude, kõnniteede, prügialade ja hooneümbruse regulaarne korrashoid Tallinnas.",
-  keywords:
-    "kojamehe teenus, kojamees, kinnistu hooldus, väliala korrashoid, välikoristus tallinnas",
-  openGraph: {
-    title: "Kojameheteenus — välikoristus | SPS Grupp",
-    description:
-      "Regulaarne kojameheteenus kinnistu igapäevaseks ja hooajaliseks korrashoiuks Tallinnas.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus/kojameheteenus",
-  },
-};
+  imagePath: "/kojameheteenus-1.jpg",
+});
 
 export default function KojameheTeenusLayout({
   children,

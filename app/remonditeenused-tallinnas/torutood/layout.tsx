@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/remonditeenused-tallinnas/torutood",
+  locale: "et",
   title: "Torutööd Tallinnas | SPS Grupp",
   description:
     "Torutööd ärihoonetes Tallinnas: vee-, kanalisatsiooni- ja küttesüsteemide tööd vastavalt objekti vajadustele. Küsi pakkumist!",
-  keywords:
-    "torutööd, torutööd tallinnas, torulukksepp, torulukksepp tallinnas, torutööd tallinn, santehnik tallinnas, veelekke kõrvaldamine",
-  openGraph: {
-    title: "Torutööd Tallinnas | SPS Grupp",
-    description:
-      "Torutööd ärihoonetes Tallinnas: vee-, kanalisatsiooni- ja küttesüsteemide tööd vastavalt objekti vajadustele. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/remonditeenused-tallinnas/torutood",
-  },
-};
+  imagePath: "/torutood-1.jpg",
+});
 
 export default function TorutoodLayout({
   children,

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
@@ -10,9 +11,8 @@ import ContactForm from "../../components/ContactForm";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import Hinnakalkulaator from "../../components/Hinnakalkulaator";
-import MaintenancePriceExamples from "../../components/MaintenancePriceExamples";
 import SeoJsonLd from "../../components/SeoJsonLd";
-import TestimonialCards from "../../components/TestimonialCards";
+import TestimonialSlider from "../../components/TestimonialSlider";
 import Tooprotsess from "../../components/Tooprotsess";
 
 const koolideFAQ = [
@@ -42,25 +42,26 @@ export default function KoolideKoristamine() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koolide-koristamine"
+        locale="et"
         serviceName="Koolide koristamine Tallinnas"
         serviceDescription="Koolide ja haridusasutuste professionaalne koristamine Tallinnas."
-        serviceUrl="https://spsgrupp.ee/koolide-koristamine/"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Koolide koristamine", item: "https://spsgrupp.ee/koolide-koristamine/" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Koolide koristamine", etPath: "/koolide-koristamine" },
         ]}
         faq={koolideFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Koolide koristamine"
-          style={{ background: "url('/koolide-koristamine4.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/koolide-koristamine4.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -143,7 +144,7 @@ export default function KoolideKoristamine() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Koolide koristamine</span>
               </nav>
@@ -244,7 +245,7 @@ export default function KoolideKoristamine() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Lastele ohutud vahendid</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Kasutame EL-i standarditele vastavaid puhastusvahendeid, mis on laste ümbruses kasutamiseks sertifitseeritud.
+                        Kasutame EL-i standarditele vastavaid puhastusvahendeid, mis on kasutamiseks lastele mõeldud keskkondades.
                       </p>
                     </div>
                   </div>
@@ -261,7 +262,7 @@ export default function KoolideKoristamine() {
                     <div>
                       <h3 className="text-[18px] font-bold text-[#17345a] mb-2">Tervishoiukeskne lähenemine</h3>
                       <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                        Meie protokoll keskendub 6 kriitilisele alale, kus levib 80% nakkustest. Tulemuseks haigestumiste vähenemine 2–3 nädala jooksul.
+                        Meie protokoll keskendub 6 kriitilisele alale, kus levib 80% nakkustest. Tulemuseks võib olla haigestumiste vähenemine.
                       </p>
                     </div>
                   </div>
@@ -327,7 +328,7 @@ export default function KoolideKoristamine() {
             <div className="text-center mb-14">
               <div className="section-tag">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                 </svg>
                 Hind
               </div>
@@ -340,7 +341,11 @@ export default function KoolideKoristamine() {
                   Kooli koristuse hind sõltub hoone suurusest, õpilaste arvust ja koristusrežiimist.
                 </p>
 
-                <MaintenancePriceExamples />
+                <div className="mb-8">
+                  <p className="text-[16px] text-[#2f353f] leading-[1.75] font-light">
+                    Regulaarne puhastamine ja desinfitseerimine aitab vähendada viiruste ja bakterite levikut eriti talvel, kui liiguvad ringi viirushaigused. Ka õpetajad ei jää nii tihti haigeks ning pole vaja leida asendajaid.
+                  </p>
+                </div>
               </div>
 
               <Hinnakalkulaator />
@@ -363,7 +368,7 @@ export default function KoolideKoristamine() {
               <TwoToneHeading text="Mida ütlevad meie koolikliendid" />
             </div>
 
-            <TestimonialCards testimonials={[
+            <TestimonialSlider testimonials={[
               {
                 quote: "Soovime avaldada tunnustust koolimaja koristusega tegelevale meeskonnale väga hea töö eest. Koolimaja on olnud puhas, korras ja hooldatud ning on näha, et koristustöid tehakse järjepidevalt ja kohusetundlikult.",
                 shortQuote: "Koolimaja on olnud puhas, korras ja hooldatud. Puhtus ja korrashoid mõjutavad igapäevaselt nii õpilaste, õpetajate kui ka kogu personali heaolu.",

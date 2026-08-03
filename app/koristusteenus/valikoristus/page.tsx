@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
@@ -16,7 +17,7 @@ const floatingChips = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
-        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
       </svg>
     ),
     chipClass: "chip-icon-blue",
@@ -48,15 +49,15 @@ const floatingChips = [
 ];
 
 const teenuseSisuKaardid = [
-  { bold: "Fassaadipesu", desc: "Kõik pinnatüübid — krohv, klinker, klaas, metall. Ohutu ja efektiivne puhastus kõrg- ja madalhoonetele." },
+  { bold: "Fassaadipesu", desc: "Kõik pinnatüübid: krohv, klinker, klaas, metall. Ohutu ja efektiivne puhastus kõrg- ja madalhoonetele." },
   { bold: "Akende ja klaasfassaadide pesu", desc: "Professionaalne aknapesu kuni 20+ korrustel hoonetel, kasutades spetsiaalset kõrgtööde varustust." },
   { bold: "Graffiti eemaldamine", desc: "Eemaldus ja kaitsekihtide paigaldus, mis aitab vähendada uue sodimise mõju. Reageerimisaeg sõltub objekti asukohast, töömahust ja meeskonna saadavusest." },
   { bold: "Tänavakivide pesu ja hooldus", desc: "Survepesu, vuukide puhastus ja kaitseimmutus, mis pikendab tänavakivide eluiga aastaid." },
   { bold: "24/7 lumekoristus ja libedusetõrje", desc: "Automaatne teenus talveperioodil. Ilmaprognoosi jälgimine, traktorid ja minilaadurid kohe valmis." },
   { bold: "Parklate ja kõnniteede hooldus", desc: "Regulaarne pühkimine, prahi koristus ja hooajaline erihooldus (lehed, lumi, jää)." },
-  { bold: "Sissepääsude erihooldus", desc: "Esinduspindade igapäevane korrashoid — puhtad klaasuksed, korras mattid, puhas esine." },
+  { bold: "Sissepääsude erihooldus", desc: "Esinduspindade igapäevane korrashoid: puhtad klaasuksed, korras mattid, puhas majaesine." },
   { bold: "Prügikastide pesu ja hooldus", desc: "Regulaarne pesu ja desinfitseerimine. Väldime lõhnu ja kahjurite levikut teie territooriumil." },
-  { bold: "Territooriumi üldhooldus", desc: "Kõik ülejäänud välitööd ühest kohast — haljastus, lehekoristus, väikeparandused." },
+  { bold: "Territooriumi üldhooldus", desc: "Kõik ülejäänud välitööd ühest kohast: haljastus, lehekoristus, väikeparandused." },
 ];
 
 const miksMeieKaardid = [
@@ -115,7 +116,7 @@ const hindKaardid = [
 const valikoristusFAQ = [
   {
     q: "Kui sageli peaks fassaadi pesema?",
-    a: "Tallinna tingimustes soovitame fassaadipesu vähemalt kord aastas, tiheda liiklusega piirkondades sagedamini. Klaas- ja heledatel fassaadidel on mustus kiiremini nähtav.",
+    a: "Tallinna tingimustes soovitame fassaadipesu vähemalt kord aastas, tiheda liiklusega piirkondades sagedamini. Klaasil ja heledatel fassaadidel on mustus kiiremini nähtav.",
   },
   {
     q: "Kas lumekoristuse leping algab automaatselt?",
@@ -139,25 +140,26 @@ export default function Valikoristus() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/valikoristus"
+        locale="et"
         serviceName="Välikoristus Tallinnas"
         serviceDescription="Välikoristus ja territooriumi hooldus Tallinnas: fassaadipesu, aknad, graffiti, 24/7 lumekoristus."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/valikoristus"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Välikoristus", item: "https://spsgrupp.ee/koristusteenus/valikoristus" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Välikoristus", etPath: "/koristusteenus/valikoristus" },
         ]}
         faq={valikoristusFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Välikoristus"
-          style={{ background: "url('/Valikoristus-1.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/Valikoristus-1.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {floatingChips.map((chip, i) => (
@@ -220,7 +222,7 @@ export default function Valikoristus() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px]">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenus</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Välikoristus</span>
               </nav>
@@ -235,7 +237,7 @@ export default function Valikoristus() {
             <TwoToneHeading text="Teie hoone välisilme jätab esmamulje" className="mb-8" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
               <div>
-                Enne kui klient või külaline teie ukse avab, on ta teie ettevõtte kohta juba otsuse teinud. Räpane fassaad, määrdunud aknad, graffiti seintel, rohtunud sissepääs või lumega kaetud parkla on signaalid, mida inimesed tõlgendavad alateadlikult kui hooletust.
+                <strong>Enne kui klient või külaline teie ukse avab, on ta teie ettevõtte kohta juba otsuse teinud. Räpane fassaad, määrdunud aknad, graffiti seintel, rohtunud sissepääs või lumega kaetud parkla on signaalid, mida inimesed tõlgendavad alateadlikult kui hooletust.</strong>
               </div>
               <div>
                 Eriti kriitiline on talv. Lund täis parkla on otsene õnnetuseoht ja võib kaasa tuua tõsiseid tagajärgi. Libedad kõnniteed, ligipääsmatud sissepääsud, lume alla mattunud autod. Iga hommik võib tähendada probleeme.<br /><br />
@@ -261,7 +263,7 @@ export default function Valikoristus() {
                   </svg>
                   Teenuse sisu
                 </div>
-                <TwoToneHeading text="Millised välikoristuse teenused on saadaval?" />
+                <TwoToneHeading text="Milliseid välikoristuse teenuseid pakub SPS grupp?" />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -342,7 +344,7 @@ export default function Valikoristus() {
             <div className="text-center mb-14">
               <div className="section-tag">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                 </svg>
                 Hind
               </div>
@@ -421,12 +423,6 @@ export default function Valikoristus() {
         <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
           <div className="max-w-[1280px] mx-auto px-[5%]">
             <div className="text-center mb-14">
-              <div className="section-tag">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg>
-                Klientide tagasiside
-              </div>
               <TwoToneHeading text="Tallinna ärikinnistute välihooldus" />
               <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light max-w-[700px] mx-auto mt-6">
                 Hooldame regulaarselt üle 200 ärikinnistu territooriumi Tallinnas ja Harjumaal — alates kesklinnast kuni tööstusparkideni.

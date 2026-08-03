@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
@@ -23,7 +24,7 @@ const customFAQ = [
   },
   {
     q: "Kas saate hooldada kõiki põrandatüüpe?",
-    a: "Jah — PVC, vinüül, parkett, laminaat, betoon, looduslik kivi, marmor, keraamika, epoksü. Iga tüüp nõuab erinevaid vahendeid ja tehnikat.",
+    a: "Jah! PVC, vinüül, parkett, laminaat, betoon, looduslik kivi, marmor, keraamika, epoksiid. Iga põrandatüüp nõuab erinevaid vahendeid ja tehnikat.",
   },
   {
     q: "Kas süvapuhastus kahjustab põrandat?",
@@ -39,21 +40,22 @@ export default function PorandateHooldus() {
   return (
     <>
       <SeoJsonLd
+        etPath="/puhastusteenused/porandate-hooldus"
+        locale="et"
         serviceName="Põrandate hooldus Tallinnas"
         serviceDescription="Põrandate professionaalne hooldus ja süvapuhastus Tallinnas. Kõik põrandatüübid."
-        serviceUrl="https://spsgrupp.ee/puhastusteenused/porandate-hooldus"
-        breadcrumbs={[{ position: 1, name: "Avaleht", item: "https://spsgrupp.ee" }, { position: 2, name: "Puhastusteenused", item: "https://spsgrupp.ee/puhastusteenused" }, { position: 3, name: "Põrandate hooldus", item: "https://spsgrupp.ee/puhastusteenused/porandate-hooldus" }]}
+        breadcrumbs={[{ name: "Avaleht", etPath: "/" }, { name: "Puhastusteenused", etPath: "/puhastusteenused" }, { name: "Põrandate hooldus", etPath: "/puhastusteenused/porandate-hooldus" }]}
         faq={customFAQ.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Põrandate hooldus"
-          style={{ background: "url('/porandate-hooldus-1.webp') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/porandate-hooldus-1.webp" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -111,7 +113,7 @@ export default function PorandateHooldus() {
                 <span className="text-[#3abeff]">äripindadele</span>
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                PVC, parkett, laminaat, betoon, kivi, keraamika — igale põrandatüübile õige meetod. Süvapuhastus, vahamine, poleerimine ja kaitsekihtide uuendamine. Alates <strong className="text-white font-medium">2.5€/m²</strong>.
+                PVC, parkett, laminaat, betoon, kivi, keraamika: igale põrandatüübile õige meetod. Süvapuhastus, vahamine, poleerimine ja kaitsekihtide uuendamine. Alates 2.5€/m².
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4">
@@ -135,7 +137,7 @@ export default function PorandateHooldus() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/puhastusteenused" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
+                <a href="/puhastusteenused/" className="text-white/80 no-underline hover:text-white transition-colors">Puhastusteenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Põrandate hooldus</span>
               </nav>
@@ -151,11 +153,11 @@ export default function PorandateHooldus() {
               <TwoToneHeading text="Põrand on teie ettevõtte nähtavaim investeering" className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
                 <div>
-                  <p>Hästi hooldatud põrand räägib teie ettevõttest ilma sõnadeta. Läikiv, kriimustustevaba ja värske väljanägemisega põrand loob klientides koheselt usalduse ja jätab professionaalse mulje juba ukselt sisenedes.</p>
+                  <p><strong>Hästi hooldatud põrand räägib teie ettevõttest ilma sõnadeta. Läikiv, kriimustustevaba ja värske väljanägemisega põrand loob klientides koheselt usalduse ja jätab professionaalse mulje juba ukselt sisenedes.</strong></p>
                 </div>
                 <div>
-                  <p>SPS Grupp hooldab põrandaid kõikidel materjalidel: parkett, laminaat, PVC, vinüül, betoon, looduslik kivi ja keraamika. Igale materjalile rakendame õiget hooldusmetoodikat, mis säilitab põranda välimuse ja pikendab selle eluiga aastaid.</p>
-                  <p className="mt-4">Regulaarne professionaalne hooldus on investeering, mis tasub end ära. Õigesti hooldatud põrand püsib esinduslikuna kaua ning hoiab ära kulukad remonditööd tulevikus.</p>
+                  <p>SPS Grupp hooldab kõikidest materjalidest põrandaid: parkett, laminaat, PVC, vinüül, betoon, looduslik kivi ja keraamika.</p>
+
                 </div>
               </div>
             </div>
@@ -185,9 +187,9 @@ export default function PorandateHooldus() {
                   { bold: "Põrandate põhjalik süvapuhastus", desc: "kõik materjalid" },
                   { bold: "PVC ja vinüülpõrandate masinpesu ja vahamine", desc: "" },
                   { bold: "Parketi ja laminaadi hooldus, kaitsekihtide uuendamine", desc: "" },
-                  { bold: "Kivi- ja keraamilise põranda kristalliseerimine", desc: "" },
-                  { bold: "Betoonpõrandate hooldus ja epoksü katete uuendamine", desc: "" },
-                  { bold: "Kaubanduspindade põrandate tihendatud hooldus", desc: "" },
+                  { bold: "Kivi ja keraamilise põranda poleerimine", desc: "" },
+                  { bold: "Betoonpõrandate hooldus ja epoksiidkatete uuendamine", desc: "" },
+                  { bold: "Kaubanduspindade põrandate täiendatud hooldus", desc: "" },
                   { bold: "Libedusevastaste katete paigaldus ja hooldus", desc: "" },
                   { bold: "Talvise soolajäägi eemaldamine ja parandus", desc: "" },
                 ].map((item, i) => (
@@ -321,7 +323,7 @@ export default function PorandateHooldus() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>

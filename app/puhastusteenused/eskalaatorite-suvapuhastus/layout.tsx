@@ -1,22 +1,13 @@
-import type { Metadata } from "next";
+import { generatePageMetadata } from "@/lib/metadata-helper";
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/puhastusteenused/eskalaatorite-suvapuhastus",
+  locale: "et",
   title: "Eskalaatorite süvapuhastus | SPS Grupp",
   description:
     "Eskalaatorite professionaalne süvapuhastus kaubanduskeskustes. Öine töö, erivahendid, pikendab eluiga. Küsi pakkumist!",
-  keywords:
-    "eskalaatorite puhastus, eskalaatori hooldus, liikurtrepi puhastus, eskalaatorite süvapuhastus, eskalaatori puhastus tallinnas",
-  openGraph: {
-    title: "Eskalaatorite süvapuhastus | SPS Grupp",
-    description:
-      "Eskalaatorite professionaalne süvapuhastus kaubanduskeskustes. Öine töö, erivahendid, pikendab eluiga. Küsi pakkumist!",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/puhastusteenused/eskalaatorite-suvapuhastus",
-  },
-};
+  imagePath: "/eskalaatorite-suvapuhastus-1.jpg",
+});
 
 export default function EskalaatoriteSuvapuhastusLayout({
   children,

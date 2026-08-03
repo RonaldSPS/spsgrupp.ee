@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Ubuntu } from "next/font/google";
 import { headers } from "next/headers";
-import { NonceProvider } from "./components/NonceProvider";
 import { I18nProvider } from "@/lib/i18n-provider";
 import etMessages from "@/messages/et.json";
 import enMessages from "@/messages/en.json";
 import ruMessages from "@/messages/ru.json";
+import { renderLdJson } from "@/lib/json-ld-generator";
+import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils";
 import "./globals.css";
 
 const ubuntu = Ubuntu({
@@ -20,10 +21,12 @@ const geistMono = Geist_Mono({
 });
 
 const ORGANIZATION_SCHEMA = {
+  "@context": "https://schema.org",
+  "@id": `${canonicalUrl("/")}#organization`,
   "@type": "Organization",
   name: "SPS Grupp OÜ",
-  url: "https://spsgrupp.ee",
-  logo: "https://spsgrupp.ee/SPS_LOGO.svg",
+  url: canonicalUrl("/"),
+  logo: absoluteUrl("/SPS_LOGO.svg"),
   address: {
     "@type": "PostalAddress",
     streetAddress: "Mustamäe tee 46",
@@ -54,7 +57,7 @@ const messagesByLocale = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://spsgrupp.ee"),
+  metadataBase: new URL(BASE_URL),
   title: "SPS Grupp",
   description: "SPS Grupp — Hästi juhitud ettevõte",
   icons: {
@@ -100,7 +103,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const headersList = await headers()
-  const nonce = headersList.get("x-csp-nonce") || ""
   const localeHeader = headersList.get("x-sps-locale")
   const locale = localeHeader === "en" || localeHeader === "ru" ? localeHeader : "et"
   const messages = messagesByLocale[locale]
@@ -120,19 +122,13 @@ export default async function RootLayout({
           >
             {skipLinkText}
           </a>
-          <div id="main-content" tabIndex={-1} />
           <script
             type="application/ld+json"
-            nonce={nonce || undefined}
-            suppressHydrationWarning
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                ...ORGANIZATION_SCHEMA,
-              }).replace(/</g, "\\u003c"),
+              __html: renderLdJson(ORGANIZATION_SCHEMA),
             }}
           />
-          <NonceProvider nonce={nonce}>{children}</NonceProvider>
+          {children}
         </I18nProvider>
       </body>
     </html>

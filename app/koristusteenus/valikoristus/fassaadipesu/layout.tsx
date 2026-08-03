@@ -1,22 +1,13 @@
-import type { Metadata } from "next"
+import { generatePageMetadata } from "@/lib/metadata-helper"
 
-export const metadata: Metadata = {
+export const metadata = generatePageMetadata({
+  path: "/koristusteenus/valikoristus/fassaadipesu",
+  locale: "et",
   title: "Fassaadipesu Tallinnas | SPS Grupp",
   description:
     "Professionaalne fassaadipesu Tallinnas. Krohv-, klinker-, kivi- ja klaasfassaadide pesu. Kõrgtööd, survepesu, öko-vahendid. Küsi pakkumist!",
-  keywords:
-    "fassaadipesu, fassaadipesu tallinnas, fassaadi pesu, kõrgtööd, survepesu, hoone fassaad, fassaadi puhastus",
-  openGraph: {
-    title: "Fassaadipesu Tallinnas | SPS Grupp",
-    description:
-      "Professionaalne fassaadipesu Tallinnas. Krohv-, klinker-, kivi- ja klaasfassaadide pesu. Küsige pakkumist.",
-    type: "website",
-    locale: "et_EE",
-  },
-  alternates: {
-    canonical: "https://spsgrupp.ee/koristusteenus/valikoristus/fassaadipesu",
-  },
-}
+  imagePath: "/fassaadipesu1.jpg",
+})
 
 export default function FassaadipesuLayout({
   children,

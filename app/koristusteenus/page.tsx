@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
+import HeroBackgroundImage from "../components/HeroBackgroundImage";
 import Footer from "../components/Footer";
 
 import FAQ from "../components/FAQ";
@@ -25,7 +26,7 @@ const customFaqItems = [
   },
   {
     q: "Kas koristusteenus toimub tööajal või väljaspool seda?",
-    a: "Enamik ettevõtteid eelistab koristust töövälisel ajal — kas varahommikul enne kella 8.00 või õhtuti pärast kella 18.00. Kohandame graafiku teie tööajaga, et koristus ei segaks igapäevatööd.",
+    a: "Enamik ettevõtteid eelistab koristust töövälisel ajal. Tavaliselt toimub koristus varahommikul enne kella 8.00 või õhtuti pärast kella 18.00. Kohandame graafiku teie tööajaga, et koristus ei segaks igapäevatööd.",
   },
   {
     q: "Mis juhtub, kui koristuskvaliteet ei vasta ootustele?",
@@ -41,24 +42,25 @@ export default function Koristusteenus() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus"
+        locale="et"
         serviceName="Koristusteenus Tallinnas"
         serviceDescription="Regulaarne koristusteenus kontoritele, kaubanduspindadele ja tootmishoonetele Tallinnas. ISO 9001, paindlik graafik."
-        serviceUrl="https://spsgrupp.ee/koristusteenus"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
         ]}
         faq={customFaqItems.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Section */}
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Koristusteenus"
-          style={{ background: "url('/Koristusteenused-HERO.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/Koristusteenused-HERO.jpg" preload alt="" />
           {/* Floating chips */}
           <div className="absolute bottom-[120px] right-[5%] flex gap-[20px] z-20 hidden md:flex">
             <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
@@ -141,7 +143,7 @@ export default function Koristusteenus() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/koristusteenus" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenused</a>
+                <a href="/koristusteenus/" className="text-white/80 no-underline hover:text-white transition-colors">Koristusteenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Koristusteenus</span>
               </nav>
@@ -189,9 +191,9 @@ export default function Koristusteenus() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { bold: "Kontorikoristus", desc: "büroode igapäevane hooldus, kohandatud IT-keskkonnale", href: "/koristusteenus/kontori-koristus" },
-                { bold: "Kaubanduspindade koristus", desc: "poed, kaubanduskeskused, esindused", href: "/koristusteenus/kaubanduspindade-koristus" },
-                { bold: "Tootmishoonete koristus", desc: "tööstuspinnad, laod, tootmiskeskkond", href: "/koristusteenus/tootmishoonete-koristus" },
+                { bold: "Kontorikoristus", desc: "büroode igapäevane hooldus, kohandatud IT-keskkonnale", href: "/koristusteenus/kontori-koristus/" },
+                { bold: "Kaubanduspindade koristus", desc: "poed, kaubanduskeskused, esindused", href: "/koristusteenus/kaubanduspindade-koristus/" },
+                { bold: "Tootmishoonete koristus", desc: "tööstuspinnad, laod, tootmiskeskkond", href: "/koristusteenus/tootmishoonete-koristus/" },
                 { bold: "Koolide ja lasteaedade koristamine", desc: "tervishoiukeskne lähenemine", href: "/koolide-koristamine/" },
                 { bold: "Esindus- ja vastuvõtupindade erihooldus", desc: "" },
                 { bold: "Ühiskasutatavate alade hooldus", desc: "koridorid, trepikojad, liftid" },
@@ -344,7 +346,7 @@ export default function Koristusteenus() {
             <div className="text-center mb-14">
               <div className="section-tag">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                 </svg>
                 Hind
               </div>

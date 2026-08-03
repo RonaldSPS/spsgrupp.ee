@@ -8,7 +8,8 @@ import LocalizedContentPage from '@/app/components/LocalizedContentPage'
 import DynamicJobOffer from '@/app/components/DynamicJobOffer'
 import { ReviewsPage } from '@/app/sps-grupp/arvamused/page'
 import { getTranslatedAnnouncementBySlug } from '@/lib/announcements'
-import { getContentNamespace, getLocalizedSeoMetadata } from '@/lib/localized-content'
+import { getContentNamespace, getHeroImage, getLocalizedSeoMetadata } from '@/lib/localized-content'
+import { absoluteUrl, canonicalUrl } from '@/lib/url-utils'
 
 interface Props {
   params: Promise<{ slug?: string[] }>
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const localizedMeta = localizedPageMetadata.ru?.[etPath] || getLocalizedSeoMetadata('ru', etPath)
   const meta = localizedMeta || pageMetadata[etPath] || pageMetadata['/']
-  return generateLocalizedMetadata(etPath, 'ru', meta.title, meta.description, Boolean(localizedMeta))
+  return generateLocalizedMetadata(etPath, 'ru', meta.title, meta.description, Boolean(localizedMeta), getHeroImage(etPath))
 }
 
 export default async function RuPage({ params }: Props) {
@@ -66,15 +67,25 @@ async function getDynamicMetadata(ruPath: string): Promise<Metadata | null> {
   if (jobSlug) {
     const announcement = await getTranslatedAnnouncementBySlug('ru', jobSlug)
     if (!announcement) return null
+    const canonical = canonicalUrl(`/ru${jobParent}/${announcement.slug}`)
+    const image = absoluteUrl('/tuletoole-1.jpg')
     return {
       title: `${announcement.title} | SPS Grupp`,
       description: (announcement.subtitle || `${announcement.title} - ${announcement.location}`).slice(0, 160),
-      alternates: { canonical: `https://spsgrupp.ee/ru${jobParent}/${announcement.slug}` },
+      alternates: { canonical },
       openGraph: {
         title: `${announcement.title} | SPS Grupp`,
         description: announcement.subtitle || announcement.title,
         type: 'website',
         locale: 'ru_RU',
+        url: canonical,
+        images: [{ url: image, alt: announcement.title }],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${announcement.title} | SPS Grupp`,
+        description: announcement.subtitle || announcement.title,
+        images: [image],
       },
     }
   }

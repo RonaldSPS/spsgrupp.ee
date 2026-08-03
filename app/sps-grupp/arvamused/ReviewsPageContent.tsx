@@ -9,6 +9,7 @@ import TwoToneHeading from "../../components/TwoToneHeading"
 import ScrollAnimation from "../../components/ScrollAnimation"
 import SeoJsonLd from "../../components/SeoJsonLd"
 import TestimonialCards from "../../components/TestimonialCards"
+import HeroBackgroundImage from "../../components/HeroBackgroundImage"
 import { localizePath, type Locale } from "@/lib/slug-map"
 import type { TestimonialCategoryGroup } from "@/lib/testimonials"
 
@@ -40,29 +41,29 @@ interface Props {
 }
 
 export default function ReviewsPageContent({ locale, categories, text }: Props) {
-  const reviewsPath = localizePath("/sps-grupp/arvamused", locale)
   const spsGroupPath = localizePath("/sps-grupp", locale)
   const homePath = locale === "et" ? "/" : `/${locale}`
 
   return (
     <>
       <SeoJsonLd
+        etPath="/sps-grupp/arvamused"
+        locale={locale}
         serviceName={text.serviceName}
         serviceDescription={text.serviceDescription}
-        serviceUrl={`https://spsgrupp.ee${reviewsPath}`}
         breadcrumbs={[
-          { position: 1, name: text.home, item: `https://spsgrupp.ee${homePath === "/" ? "" : homePath}` },
-          { position: 2, name: text.spsGroup, item: `https://spsgrupp.ee${spsGroupPath}` },
-          { position: 3, name: text.reviews, item: `https://spsgrupp.ee${reviewsPath}` },
+          { name: text.home, etPath: "/" },
+          { name: text.spsGroup, etPath: "/sps-grupp" },
+          { name: text.reviews, etPath: "/sps-grupp/arvamused" },
         ]}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section
-          className="hero-section min-h-[50vh] max-h-[550px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative overflow-hidden min-h-[50vh] max-h-[550px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           aria-label={text.reviews}
-          style={{ background: "url('/images/arvamused.jpg') center/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/images/arvamused.jpg" preload alt="" />
           <div className="grid grid-cols-1 gap-[30px] items-start max-w-[1280px] mx-auto w-full relative z-10">
             <div
               className="animate-fade-up max-w-[750px]"

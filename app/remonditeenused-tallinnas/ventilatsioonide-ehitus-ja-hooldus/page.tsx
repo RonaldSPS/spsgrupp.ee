@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../../components/Navbar";
+import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
@@ -104,20 +105,21 @@ export default function VentilatsioonideEhitusJaHooldusLeht() {
   return (
     <>
       <SeoJsonLd
+        etPath="/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus"
+        locale="et"
         serviceName="Ventilatsioonide ehitus ja hooldus Tallinnas"
         serviceDescription="Ventilatsioonisüsteemide ehitus ja hooldus ärikinnisvarale Tallinnas. Õhupuhastus, kanalid, seadmed."
-        serviceUrl="https://spsgrupp.ee/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus"
-        breadcrumbs={[{ position: 1, name: "Avaleht", item: "https://spsgrupp.ee" }, { position: 2, name: "Remonditeenused Tallinnas", item: "https://spsgrupp.ee/remonditeenused-tallinnas" }, { position: 3, name: "Ventilatsioonide ehitus ja hooldus", item: "https://spsgrupp.ee/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus" }]}
+        breadcrumbs={[{ name: "Avaleht", etPath: "/" }, { name: "Remonditeenused Tallinnas", etPath: "/remonditeenused-tallinnas" }, { name: "Ventilatsioonide ehitus ja hooldus", etPath: "/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus" }]}
         faq={faqItems.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section
-          className="hero-section min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
+          className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
           aria-label="Ventilatsioonisüsteemide ehitus ja hooldus Tallinnas"
-          style={{ background: "url('/ventilatsioon-1.jpg') right top/cover no-repeat" }}
         >
+          <HeroBackgroundImage src="/ventilatsioon-1.jpg" preload alt="" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start max-w-[1280px] mx-auto w-full relative z-10">
             <div
               className="animate-fade-up order-2 md:order-1"
@@ -162,7 +164,7 @@ export default function VentilatsioonideEhitusJaHooldusLeht() {
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
                 <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
                 <span className="text-white/50">/</span>
-                <a href="/remonditeenused-tallinnas" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
+                <a href="/remonditeenused-tallinnas/" className="text-white/80 no-underline hover:text-white transition-colors">Remonditeenused</a>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">Ventilatsioonide ehitus ja hooldus</span>
               </nav>
@@ -279,7 +281,7 @@ export default function VentilatsioonideEhitusJaHooldusLeht() {
               <div className="text-center mb-14">
                 <div className="section-tag">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
                   Hind
                 </div>

@@ -19,8 +19,7 @@ const data: OutdoorServicePageData = {
     { value: "Üks", label: "kontaktisik", tone: "navy" },
   ],
   problemTitle: "Kinnistu korrashoid vajab järjepidevat kohalolekut",
-  problemLeft:
-    "Väliala läheb käest väikeste asjade kaudu: prügi sissepääsu juures, täitunud prügikastid, libedad trepid, lehed restides või lumi ukse ees. Need pisiasjad mõjutavad nii turvalisust kui ka hoone mainet.",
+  problemLeft: <><b>Väliala läheb käest väikeste asjade kaudu: prügi sissepääsu juures, täitunud prügikastid, libedad trepid, lehed restides või lumi ukse ees. Need pisiasjad mõjutavad nii turvalisust kui ka hoone mainet.</b></>,
   problemRight:
     "SPS Grupi kojamehe teenus tähendab regulaarset ülevaatust ja praktilisi korrashoiutöid. Lepime kokku tööde sageduse, vastutusalad ja hooajalised lisad, et kinnistu oleks korras ilma pideva korraldamiseta.",
   serviceTitle: "Mida sisaldab kojamehe teenus?",
@@ -70,14 +69,15 @@ export default function KojameheTeenus() {
   return (
     <>
       <SeoJsonLd
+        etPath="/koristusteenus/valikoristus/kojameheteenus"
+        locale="et"
         serviceName="Kojamehe teenus"
         serviceDescription="Kojamehe teenus hoiab sissepääsud, kõnniteed, prügialad ja hoone ümbruse korras igal hooajal."
-        serviceUrl="https://spsgrupp.ee/koristusteenus/valikoristus/kojameheteenus"
         breadcrumbs={[
-          { position: 1, name: "Avaleht", item: "https://spsgrupp.ee" },
-          { position: 2, name: "Koristusteenus", item: "https://spsgrupp.ee/koristusteenus" },
-          { position: 3, name: "Välikoristus", item: "https://spsgrupp.ee/koristusteenus/valikoristus" },
-          { position: 4, name: "Kojamehe teenus", item: "https://spsgrupp.ee/koristusteenus/valikoristus/kojameheteenus" },
+          { name: "Avaleht", etPath: "/" },
+          { name: "Koristusteenus", etPath: "/koristusteenus" },
+          { name: "Välikoristus", etPath: "/koristusteenus/valikoristus" },
+          { name: "Kojamehe teenus", etPath: "/koristusteenus/valikoristus/kojameheteenus" },
         ]}
         faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />

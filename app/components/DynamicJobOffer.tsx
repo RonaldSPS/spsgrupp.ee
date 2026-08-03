@@ -1,11 +1,12 @@
 import Link from "next/link"
-import { headers } from "next/headers"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
 import ScrollAnimation from "./ScrollAnimation"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import type { Announcement } from "@/lib/types"
 import type { Locale } from "@/lib/slug-map"
+import { renderLdJson } from "@/lib/json-ld-generator"
+import { canonicalUrl } from "@/lib/url-utils"
 
 const copy = {
   en: {
@@ -63,8 +64,6 @@ const copy = {
 } as const
 
 export default async function DynamicJobOffer({ announcement, locale }: { announcement: Announcement; locale: Exclude<Locale, "et"> }) {
-  const headersList = await headers()
-  const nonce = headersList.get("x-csp-nonce") || ""
   const labels = copy[locale]
   const parentPath = locale === "en" ? "/en/come-work-for-us" : "/ru/приходите-работать-к-нам"
   const a: Announcement = {
@@ -78,7 +77,7 @@ export default async function DynamicJobOffer({ announcement, locale }: { announ
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    "@id": `https://spsgrupp.ee${parentPath}/${a.slug}#jobposting`,
+    "@id": `${canonicalUrl(`${parentPath}/${a.slug}`)}#jobposting`,
     title: a.title,
     description: a.subtitle || a.title,
     datePosted: a.publishedDate,
@@ -92,7 +91,7 @@ export default async function DynamicJobOffer({ announcement, locale }: { announ
     hiringOrganization: {
       "@type": "Organization",
       name: a.company,
-      sameAs: a.website || "https://spsgrupp.ee",
+      sameAs: a.website || canonicalUrl("/"),
     },
     jobLocation: {
       "@type": "Place",
@@ -106,9 +105,9 @@ export default async function DynamicJobOffer({ announcement, locale }: { announ
 
   return (
     <>
-      <script type="application/ld+json" nonce={nonce} dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(jsonLd) }} />
       <Navbar />
-      <main className="pt-[130px] pb-[80px]">
+      <main id="main-content" tabIndex={-1} className="pt-[130px] pb-[80px]">
         <div className="max-w-[900px] mx-auto px-[25px]">
           <nav className="mb-6 text-[15px] text-[#5a6474]">
             <Link href={`/${locale}`} className="text-[#5a6474] no-underline hover:text-[#17345a]">{labels.home}</Link>
