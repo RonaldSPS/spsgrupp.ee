@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/sanitaarremont-ja-umberehitus'
+export default function Page(){return<SanitaarremontPageView locale="et"/>}
+export function SanitaarremontPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Sanitaarremont ja ruumide ümberehitus":locale==="ru"?"Санитарный ремонт и перепланировка":"Bathroom renovation";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Ремонтные услуги":locale==="en"?"Renovation Services":"Remonditeenused Tallinnas";
+const tt=locale==="et"?"Kuidas SPS sanitaarremondi teenust korraldab?":locale==="ru"?"Kuidas SPS sanitaarremondi teenust korraldab?":"Kuidas SPS sanitaarremondi teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Ülevaatus","Hindame ruumi seisukorda ja tehnilist vajadust."],["Tööplaan","Koostame etapid ja materjalid."],["Lammutus ja ettevalmistus","Eemaldame vana lahenduse vajadusel."],["Remont","Teeme tehnilised ja viimistlustööd."],["Üleandmine","Kontrollime toimivust ja puhtust."]] as [string,string][];
+const sRu=[["Ülevaatus","Hindame ruumi seisukorda ja tehnilist vajadust."],["Tööplaan","Koostame etapid ja materjalid."],["Lammutus ja ettevalmistus","Eemaldame vana lahenduse vajadusel."],["Remont","Teeme tehnilised ja viimistlustööd."],["Üleandmine","Kontrollime toimivust ja puhtust."]] as [string,string][];
+const sEn=[["Ülevaatus","Hindame ruumi seisukorda ja tehnilist vajadust."],["Tööplaan","Koostame etapid ja materjalid."],["Lammutus ja ettevalmistus","Eemaldame vana lahenduse vajadusel."],["Remont","Teeme tehnilised ja viimistlustööd."],["Üleandmine","Kontrollime toimivust ja puhtust."]] as [string,string][];
+return(<><SeoJsonLd etPath="/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Sanitaarremont arikinnisvarale Tallinnas.":locale==="ru"?"Ремонт санузлов в Таллинне.":"Bathroom renovation in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"remonditeenused-tallinnas"},{name:n,etPath:"/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

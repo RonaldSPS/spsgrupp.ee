@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useLocale } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
 
 /* ──────────── Andmed ──────────── */
@@ -183,6 +184,13 @@ function HooajaKaart({ hooaeg, isLast }: { hooaeg: Hooaeg; isLast: boolean }) {
 /* ──────────── Põhikomponent ──────────── */
 
 export default function SeasonalServicesBlock() {
+  const locale = useLocale();
+  const seasonalImageAlt = locale === "ru"
+    ? "Круглогодичное обслуживание территории — SPS Grupp"
+    : locale === "en"
+      ? "Year-round grounds maintenance — SPS Grupp"
+      : "Välihooldus aastaringselt — SPS Grupp";
+
   return (
     <section
       className="py-[100px]"
@@ -224,7 +232,7 @@ export default function SeasonalServicesBlock() {
             <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#e2e8f0]">
               <Image
                 src="/Lumelükkamine3.png"
-                alt="Välihooldus aastaringselt — SPS Grupp"
+                alt={seasonalImageAlt}
                 width={400}
                 height={533}
                 className="w-full h-full object-cover"

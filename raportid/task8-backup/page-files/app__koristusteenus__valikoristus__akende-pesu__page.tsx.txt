@@ -1,0 +1,24 @@
+﻿import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etData, en as enData, ru as ruData } from '@/lib/pages/definitions/akende-pesu'
+
+export default function AkendePesu() { return <AkendePesuPageView locale="et" />; }
+
+export function AkendePesuPageView({ locale }: { locale: Locale }) {
+  const data = locale === "et" ? etData : locale === "en" ? enData : ruData;
+  const seoName = locale === "et" ? "Akende pesu" : locale === "ru" ? "Мойка окон" : "Window cleaning";
+  const seoDesc = locale === "et" ? "Akende pesu ärihoonetel Tallinnas. Kõrghoonete aknapesu, klaasfassaadid, regulaarne hooldus." : locale === "ru" ? "Мойка окон коммерческих зданий в Таллинне. Высотные работы, стеклянные фасады." : "Window cleaning for commercial buildings in Tallinn. High-rise, glass facades, regular maintenance.";
+  const home = locale === "ru" ? "Главная" : locale === "en" ? "Home" : "Avaleht";
+  const cLabel = locale === "ru" ? "Уборка" : locale === "en" ? "Cleaning" : "Koristusteenus";
+  const oLabel = locale === "ru" ? "Уборка территорий" : locale === "en" ? "Outdoor cleaning" : "Välikoristus";
+
+  return (<><SeoJsonLd etPath="/koristusteenus/valikoristus/akende-pesu" locale={locale} serviceName={seoName} serviceDescription={seoDesc} breadcrumbs={[{ name: home, etPath: "/" }, { name: cLabel, etPath: "/koristusteenus" }, { name: oLabel, etPath: "/koristusteenus/valikoristus" }, { name: seoName, etPath: "/koristusteenus/valikoristus/akende-pesu" }]} faq={data.faq.map(f => ({ question: f.q, answer: f.a }))} />
+  <OutdoorServicePage data={data} locale={locale} tooprotsess={<Tooprotsess
+    title={locale === "et" ? "Kuidas SPS aknapesu korraldab?" : locale === "ru" ? "Как SPS организует мойку окон?" : "How does SPS arrange window cleaning?"}
+    intro={locale === "et" ? "SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele." : locale === "ru" ? "SPS начинает с осмотра объекта, чтобы метод, частота и оборудование соответствовали реальным потребностям." : "SPS starts with a site assessment so the method, frequency and equipment match actual needs."}
+    steps={locale === "et" ? [["Pindade ülevaatus","Hindame klaaspindade mahu ja ligipääsu."],["Meetodi valik","Valime tõstuki, teleskoopvarre või muu lahenduse."],["Tööaja kokkulepe","Planeerime töö nii, et see ei segaks kliente ega töötajaid."],["Pesu ja kontroll","Teeme töö ning kontrollime triipudevaba tulemust."],["Hooldusgraafik","Soovi korral lepime kokku korduva pesurütmi."]] as [string,string][] : locale === "ru" ? [["Осмотр поверхностей","Оцениваем объём стеклянных поверхностей и доступ."],["Выбор метода","Выбираем подъёмник, телескопическую штангу или другое решение."],["Согласование времени","Планируем работу так, чтобы не мешать клиентам и сотрудникам."],["Мойка и контроль","Выполняем работу и проверяем результат без разводов."],["График обслуживания","При желании согласовываем повторный график мойки."]] as [string,string][] : [["Surface assessment","We assess the glass area and access."],["Method selection","We choose a lift, telescopic pole or other solution."],["Schedule agreement","We plan the work to avoid disruption to clients and staff."],["Cleaning and check","We do the work and check for a streak-free result."],["Maintenance schedule","We agree a repeat cleaning rhythm if desired."]] as [string,string][]}
+    locale={locale}
+  />} /></>);
+}

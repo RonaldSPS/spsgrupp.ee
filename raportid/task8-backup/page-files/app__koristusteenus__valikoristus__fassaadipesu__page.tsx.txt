@@ -1,0 +1,20 @@
+﻿import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etData, en as enData, ru as ruData } from '@/lib/pages/definitions/fassaadipesu'
+
+export default function Fassaadipesu() { return <FassaadipesuPageView locale="et" />; }
+export function FassaadipesuPageView({ locale }: { locale: Locale }) {
+  const data = locale === "et" ? etData : locale === "en" ? enData : ruData;
+  const seoName = locale === "et" ? "Fassaadipesu" : locale === "ru" ? "Мойка фасадов" : "Facade cleaning";
+  const seoDesc = locale === "et" ? "Professionaalne fassaadipesu ärihoonetele Tallinnas. Survepesu, keemiline puhastus, kõrghooned." : locale === "ru" ? "Профессиональная мойка фасадов в Таллинне. Мойка под давлением, химическая очистка, высотные здания." : "Professional facade cleaning for commercial buildings in Tallinn. Pressure washing, chemical cleaning, high-rise.";
+  const home = locale === "ru" ? "Главная" : locale === "en" ? "Home" : "Avaleht";
+  const cLabel = locale === "ru" ? "Уборка" : locale === "en" ? "Cleaning" : "Koristusteenus";
+  const oLabel = locale === "ru" ? "Уборка территорий" : locale === "en" ? "Outdoor cleaning" : "Välikoristus";
+  const stepsEt: [string,string][] = [["Materjali hindamine","Selgitame välja fassaadi tüübi ja seisundi."],["Mustuse hindamine","Vaatame üle sool, samblik, saaste ja üldmäärdumine."],["Meetodi valik","Valime surve, vahendi ja ligipääsu."],["Töö teostus","Puhastame pinna kokkulepitud ulatuses."],["Kaitse soovitus","Vajadusel soovitame kaitsekihti pikema tulemuse jaoks."]];
+  const stepsRu: [string,string][] = [["Оценка материала","Выясняем тип и состояние фасада."],["Оценка загрязнения","Осматриваем соль, мох, загрязнение."],["Выбор метода","Выбираем давление, средство и доступ."],["Выполнение работ","Очищаем поверхность в согласованном объёме."],["Рекомендация защиты","При необходимости рекомендуем защитное покрытие."]];
+  const stepsEn: [string,string][] = [["Material assessment","We determine the facade type and condition."],["Soiling assessment","We inspect salt, moss, pollution and general soiling."],["Method selection","We choose pressure, cleaning agent and access."],["Work execution","We clean the surface to the agreed extent."],["Protection recommendation","We recommend a protective coating for longer-lasting results where needed."]];
+  return (<><SeoJsonLd etPath="/koristusteenus/valikoristus/fassaadipesu" locale={locale} serviceName={seoName} serviceDescription={seoDesc} breadcrumbs={[{ name: home, etPath: "/" }, { name: cLabel, etPath: "/koristusteenus" }, { name: oLabel, etPath: "/koristusteenus/valikoristus" }, { name: seoName, etPath: "/koristusteenus/valikoristus/fassaadipesu" }]} faq={data.faq.map(f => ({ question: f.q, answer: f.a }))} />
+  <OutdoorServicePage data={data} locale={locale} tooprotsess={<Tooprotsess title={locale === "et" ? "Kuidas SPS fassaadipesu ette valmistab?" : locale === "ru" ? "Как SPS готовит мойку фасадов?" : "How does SPS prepare facade cleaning?"} intro={locale === "et" ? "SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele." : locale === "ru" ? "SPS начинает с осмотра объекта, чтобы метод, частота и оборудование соответствовали реальным потребностям." : "SPS starts with a site assessment so the method, frequency and equipment match actual needs."} steps={locale === "et" ? stepsEt : locale === "ru" ? stepsRu : stepsEn} locale={locale} />} /></>);
+}

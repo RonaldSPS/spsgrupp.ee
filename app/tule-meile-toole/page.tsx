@@ -10,18 +10,169 @@ import ScrollAnimation from "../components/ScrollAnimation";
 import CareerForm from "../components/CareerForm";
 import SeoJsonLd from "../components/SeoJsonLd";
 import TooleAnnouncements from "../components/TooleAnnouncements";
+import { localizePath, type Locale } from "@/lib/slug-map";
+import { getLocalizedContent } from "@/lib/localized-content";
+
+type ContentRecord = Record<string, unknown>;
+
+interface CareersText {
+  serviceName: string;
+  serviceDescription: string;
+  ariaLabel: string;
+  heroChips: { value: string; label: string }[];
+  h1Line1: string;
+  h1Line2: string;
+  heroDescription: string;
+  ctaButton: string;
+  breadcrumbHome: string;
+  breadcrumbCurrent: string;
+  problemHeading: string;
+  problemP1Strong: string;
+  problemP1Text: string;
+  problemP2Strong: string;
+  problemP2Text: string;
+  benefitsTag: string;
+  benefitsHeading: string;
+  benefits: { title: string; desc: string }[];
+  statsTag: string;
+  statsHeading: string;
+  stats: { number: string; label: string }[];
+  statsImageAlt: string;
+}
+
+const etText: CareersText = {
+  serviceName: "Tööpakkumised SPS Grupis",
+  serviceDescription: "Liitu SPS Grupi meeskonnaga! Otsime koristajaid Tallinnas ja Harjumaal. Varasem kogemus pole oluline.",
+  ariaLabel: "Tule meile tööle",
+  heroChips: [
+    { value: "300+", label: "töötajat" },
+    { value: "Väljaõpe", label: "kohapeal" },
+    { value: "Paindlik", label: "tööaeg" },
+  ],
+  h1Line1: "Tule meile tööle",
+  h1Line2: "Liitu meie meeskonnaga",
+  heroDescription: "Meil töötab üle 300 inimese. Varasem töökogemus pole oluline, juhendame oma töötajaid kohapeal.",
+  ctaButton: "Registreeru proovipäevale",
+  breadcrumbHome: "Avaleht",
+  breadcrumbCurrent: "Tule meile tööle",
+  problemHeading: "Kuidas toimub värbamine?",
+  problemP1Strong: "Kõik kandidaadid peavad läbima proovipäeva.",
+  problemP1Text: "Päeva jooksul hinnatakse teie puhastusoskusi ning töösse suhtumist.",
+  problemP2Strong: "Kui proovipäev on läbitud, annab töödejuhataja teada, kas oled sobilik tööle asumiseks.",
+  problemP2Text: "Kui osutud valituks, sõlmitakse sinuga leping ning hakkad saama kokkulepitud tasu.",
+  benefitsTag: "Hüved",
+  benefitsHeading: "Pakume sulle",
+  benefits: [
+    { title: "Õigeaegselt makstav töötasu", desc: "Regulaarne ja täpne väljamakse" },
+    { title: "Väljaõpe ja täiendkoolitused", desc: "Pidev enesetäiendamise võimalus" },
+    { title: "Kvaliteetsed ja mugavad tööriided", desc: "Professionaalne varustus" },
+    { title: "Kaasaegsed ja ergonoomilised töövahendid", desc: "Tõhusad ja ohutud seadmed" },
+    { title: "Ametlik töösuhe ja sotsiaalsed garantiid", desc: "Selged kokkulepped ja turvatunne" },
+    { title: "Tervisekontroll", desc: "Regulaarne tervise jälgimine" },
+    { title: "Tunnustus pikaajalise töö eest", desc: "Staaži hindamine ja premeerimine" },
+    { title: "Rahaline toetus erijuhtudel", desc: "Toetus ootamatutes olukordades" },
+  ],
+  statsTag: "SPS Grupp",
+  statsHeading: "Liitu enam kui 300 liikmelise meeskonnaga",
+  stats: [
+    { number: "300+", label: "töötajat" },
+    { number: "Alates", label: "2006. aastast" },
+    { number: "ISO 9001", label: "kvaliteedijuhtimine" },
+    { number: "ISO 14001", label: "keskkonnajuhtimine" },
+  ],
+  statsImageAlt: "SPS Grupp meeskond",
+};
+
+function asRecord(value: unknown): ContentRecord | undefined {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return undefined;
+  return value as ContentRecord;
+}
+
+function str(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
+
+function localizedText(locale: Exclude<Locale, "et">): CareersText {
+  const content = asRecord(getLocalizedContent(locale, "careers")) ?? {};
+  const seo = asRecord(content.seo) ?? {};
+  const hero = asRecord(content.hero) ?? {};
+  const problem = asRecord(content.problem) ?? {};
+  const services = asRecord(content.services) ?? {};
+  const stats = asRecord(content.stats) ?? {};
+
+  return {
+    serviceName: str(seo.serviceName) || etText.serviceName,
+    serviceDescription: str(seo.serviceDescription) || etText.serviceDescription,
+    ariaLabel: str(hero.ariaLabel) || etText.ariaLabel,
+    heroChips: [
+      { value: str(hero.chip1Badge) || etText.heroChips[0].value, label: str(hero.chip1Label) || etText.heroChips[0].label },
+      { value: str(hero.chip2Badge) || etText.heroChips[1].value, label: str(hero.chip2Label) || etText.heroChips[1].label },
+      { value: str(hero.chip3Badge) || etText.heroChips[2].value, label: str(hero.chip3Label) || etText.heroChips[2].label },
+    ],
+    h1Line1: str(hero.h1Line1) || etText.h1Line1,
+    h1Line2: str(hero.h1Line2),
+    heroDescription: str(hero.description) || etText.heroDescription,
+    ctaButton: str(hero.ctaButton) || etText.ctaButton,
+    breadcrumbHome: str(hero.breadcrumbHome) || etText.breadcrumbHome,
+    breadcrumbCurrent: str(hero.breadcrumbCurrent) || etText.breadcrumbCurrent,
+    problemHeading: str(problem.heading) || etText.problemHeading,
+    problemP1Strong: str(problem.para1Strong) || etText.problemP1Strong,
+    problemP1Text: str(problem.para1Text) || etText.problemP1Text,
+    problemP2Strong: str(problem.para2Strong) || etText.problemP2Strong,
+    problemP2Text: str(problem.para2Text) || etText.problemP2Text,
+    benefitsTag: str(services.tag) || etText.benefitsTag,
+    benefitsHeading: str(services.heading) || etText.benefitsHeading,
+    benefits: Array.from({ length: 8 }, (_, index) => ({
+      title: str(services[`item${index}Title`]) || etText.benefits[index].title,
+      desc: str(services[`item${index}Desc`]),
+    })).filter((item) => item.title),
+    statsTag: str(stats.tag) || etText.statsTag,
+    statsHeading: str(stats.heading) || etText.statsHeading,
+    stats: [1, 2, 3, 4].map((index) => ({
+      number: str(stats[`stat${index}Number`]) || etText.stats[index - 1].number,
+      label: str(stats[`stat${index}Label`]) || etText.stats[index - 1].label,
+    })),
+    statsImageAlt: str(stats.imageAlt) || etText.statsImageAlt,
+  };
+}
+
+function getText(locale: Locale): CareersText {
+  if (locale === "et") return etText;
+  return localizedText(locale);
+}
+
+const chipTones = ["blue", "green", "navy"] as const;
+const chipIcons = [
+  <svg key="0" viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  </svg>,
+  <svg key="1" viewBox="0 0 24 24" fill="none" stroke="#2d9e6b" strokeWidth="2">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+  </svg>,
+  <svg key="2" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+  </svg>,
+];
 
 export default function TuleMeileToolePage() {
+  return <TuleMeileToolePageView locale="et" />;
+}
+
+export function TuleMeileToolePageView({ locale }: { locale: Locale }) {
+  const t = getText(locale);
+
   return (
     <>
       <SeoJsonLd
         etPath="/tule-meile-toole"
-        locale="et"
-        serviceName="Tööpakkumised SPS Grupis"
-        serviceDescription="Liitu SPS Grupi meeskonnaga! Otsime koristajaid Tallinnas ja Harjumaal. Varasem kogemus pole oluline."
+        locale={locale}
+        serviceName={t.serviceName}
+        serviceDescription={t.serviceDescription}
         breadcrumbs={[
-          { name: "Avaleht", etPath: "/" },
-          { name: "Tule meile tööle", etPath: "/tule-meile-toole" },
+          { name: t.breadcrumbHome, etPath: "/" },
+          { name: t.breadcrumbCurrent, etPath: "/tule-meile-toole" },
         ]}
       />
       <Navbar />
@@ -30,45 +181,21 @@ export default function TuleMeileToolePage() {
         <section
           className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
-          aria-label="Tule meile tööle"
+          aria-label={t.ariaLabel}
         >
           <HeroBackgroundImage src="/tuletoole-1.jpg" preload alt="" />
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
-            <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
-              <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
+            {t.heroChips.map((chip, i) => (
+              <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
+                <div className={`chip-icon chip-icon-${chipTones[i % 3]} w-11 h-11 rounded-xl flex items-center justify-center`}>
+                  {chipIcons[i % 3]}
+                </div>
+                <div>
+                  <div className="text-[18px] font-bold text-[#17345a] leading-tight">{chip.value}</div>
+                  <div className="text-[15px] text-[#1f2937]">{chip.label}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">300+</div>
-                <div className="text-[15px] text-[#1f2937]">töötajat</div>
-              </div>
-            </div>
-            <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
-              <div className="chip-icon chip-icon-green w-11 h-11 rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#2d9e6b" strokeWidth="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Väljaõpe</div>
-                <div className="text-[15px] text-[#1f2937]">kohapeal</div>
-              </div>
-            </div>
-            <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
-              <div className="chip-icon chip-icon-navy w-11 h-11 rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Paindlik</div>
-                <div className="text-[15px] text-[#1f2937]">tööaeg</div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start max-w-[1280px] mx-auto w-full relative z-10">
@@ -84,16 +211,20 @@ export default function TuleMeileToolePage() {
               }}
             >
               <h1 className="text-[clamp(28px,4.2vw,56px)] font-bold text-white leading-[1.12] -tracking-[1px] mb-[18px]">
-                Tule meile tööle
-                <br />
-                <span className="text-[#3abeff]">Liitu meie meeskonnaga</span>
+                {t.h1Line1}
+                {t.h1Line2 ? (
+                  <>
+                    <br />
+                    <span className="text-[#3abeff]">{t.h1Line2}</span>
+                  </>
+                ) : null}
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                Meil töötab üle 300 inimese. Varasem töökogemus pole oluline, juhendame oma töötajaid kohapeal.
+                {t.heroDescription}
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
-                  Registreeru proovipäevale
+                  {t.ctaButton}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
@@ -111,9 +242,9 @@ export default function TuleMeileToolePage() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
+                <Link href={localizePath("/", locale)} className="text-white/80 no-underline hover:text-white transition-colors">{t.breadcrumbHome}</Link>
                 <span className="text-white/50">/</span>
-                <span className="text-white/90">Tule meile tööle</span>
+                <span className="text-white/90">{t.breadcrumbCurrent}</span>
               </nav>
 
             </div>
@@ -124,13 +255,13 @@ export default function TuleMeileToolePage() {
         <ScrollAnimation animation="fade-up">
           <section className="py-[100px] bg-white">
             <div className="max-w-[1280px] mx-auto px-[5%]">
-              <TwoToneHeading text="Kuidas toimub värbamine?" className="mb-8" />
+              <TwoToneHeading text={t.problemHeading} className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
                 <div>
-                  <strong>Kõik kandidaadid peavad läbima proovipäeva.</strong> Päeva jooksul hinnatakse teie puhastusoskusi ning töösse suhtumist.
+                  <strong>{t.problemP1Strong}</strong> {t.problemP1Text}
                 </div>
                 <div>
-                  <strong>Kui proovipäev on läbitud, annab töödejuhataja teada, kas oled sobilik tööle asumiseks.</strong> Kui osutud valituks, sõlmitakse sinuga leping ning hakkad saama kokkulepitud tasu.
+                  <strong>{t.problemP2Strong}</strong> {t.problemP2Text}
                 </div>
               </div>
             </div>
@@ -149,22 +280,13 @@ export default function TuleMeileToolePage() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  Hüved
+                  {t.benefitsTag}
                 </div>
-                <TwoToneHeading text="Pakume sulle" />
+                <TwoToneHeading text={t.benefitsHeading} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  { title: "Õigeaegselt makstav töötasu", desc: "Regulaarne ja täpne väljamakse" },
-                  { title: "Väljaõpe ja täiendkoolitused", desc: "Pidev enesetäiendamise võimalus" },
-                  { title: "Kvaliteetsed ja mugavad tööriided", desc: "Professionaalne varustus" },
-                  { title: "Kaasaegsed ja ergonoomilised töövahendid", desc: "Tõhusad ja ohutud seadmed" },
-                  { title: "Ametlik töösuhe ja sotsiaalsed garantiid", desc: "Selged kokkulepped ja turvatunne" },
-                  { title: "Tervisekontroll", desc: "Regulaarne tervise jälgimine" },
-                  { title: "Tunnustus pikaajalise töö eest", desc: "Staaži hindamine ja premeerimine" },
-                  { title: "Rahaline toetus erijuhtudel", desc: "Toetus ootamatutes olukordades" },
-                ].map((item, i) => (
+                {t.benefits.map((item, i) => (
                   <div
                     key={i}
                     className="bg-[#ffffff78] backdrop-blur-[5px] p-4 rounded-xl transition-colors duration-300 border border-transparent hover:bg-white/80"
@@ -197,17 +319,12 @@ export default function TuleMeileToolePage() {
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                     </svg>
-                    SPS Grupp
+                    {t.statsTag}
                   </div>
-                  <TwoToneHeading text="Liitu enam kui 300 liikmelise meeskonnaga" className="mb-8" />
+                  <TwoToneHeading text={t.statsHeading} className="mb-8" />
 
                   <div className="flex flex-wrap gap-4">
-                    {[
-                      { number: "300+", label: "töötajat" },
-                      { number: "Alates", label: "2006. aastast" },
-                      { number: "ISO 9001", label: "kvaliteedijuhtimine" },
-                      { number: "ISO 14001", label: "keskkonnajuhtimine" },
-                    ].map((stat, i) => (
+                    {t.stats.map((stat, i) => (
                       <div
                         key={i}
                         className="bg-white rounded-2xl p-6 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
@@ -222,7 +339,7 @@ export default function TuleMeileToolePage() {
                 <div className="relative rounded-2xl overflow-hidden">
                   <Image
                     src="/tuletoole-2.jpg"
-                    alt="SPS Grupp meeskond"
+                    alt={t.statsImageAlt}
                     width={600}
                     height={700}
                     className="w-full h-auto object-cover"
@@ -235,7 +352,7 @@ export default function TuleMeileToolePage() {
         </ScrollAnimation>
 
         {/* Active Job Announcements */}
-        <TooleAnnouncements />
+        <TooleAnnouncements locale={locale} />
 
         {/* Career Form */}
         <ScrollAnimation animation="fade-up">

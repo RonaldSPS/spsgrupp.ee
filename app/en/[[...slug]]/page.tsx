@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { enToEt, localizedPaths } from '@/lib/slug-map'
 import { getPage } from '@/lib/page-registry'
+import { localizedPageRegistry } from '@/lib/localized-page-registry'
 import { localizedPageMetadata, pageMetadata } from '@/lib/metadata-registry'
 import { generateLocalizedMetadata } from '@/lib/seo-metadata'
-import LocalizedContentPage from '@/app/components/LocalizedContentPage'
+import PrivacyPolicyPage from '@/app/components/PrivacyPolicyPage'
 import DynamicJobOffer from '@/app/components/DynamicJobOffer'
 import { ReviewsPage } from '@/app/sps-grupp/arvamused/page'
 import { getTranslatedAnnouncementBySlug } from '@/lib/announcements'
@@ -41,8 +42,11 @@ export default async function EnPage({ params }: Props) {
   const PageComponent = await getPage(etPath)
   if (!PageComponent) notFound()
 
+  const renderer = localizedPageRegistry[etPath]
+  if (renderer) return renderer('en')
+
   const namespace = getContentNamespace(etPath)
-  if (namespace) return <LocalizedContentPage etPath={etPath} locale="en" namespace={namespace} />
+  if (namespace === 'privacyPolicy') return <PrivacyPolicyPage locale="en" />
 
   return <PageComponent />
 }

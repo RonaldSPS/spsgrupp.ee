@@ -4,7 +4,7 @@ export const metadata = generatePageMetadata({
   path: "/koristusteenus/valikoristus",
   locale: "et",
   title: "Välikoristus Tallinnas | SPS Grupp",
-  description: "Välikoristus ja territooriumi hooldus Tallinnas: fassaadipesu, aknad, graffiti, 24/7 lumekoristus. Küsi pakkumist!",
+  description: "Välikoristus ja territooriumi hooldus Tallinnas: fassaadipesu, aknapesu, grafiti eemaldamine ning lepingupõhine lumekoristus. Küsi pakkumist!",
   imagePath: "/Valikoristus-1.jpg",
 });
 

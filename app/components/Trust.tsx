@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -9,62 +9,6 @@ import { localizePath, type Locale } from "@/lib/slug-map";
 export default function Trust() {
   const t = useTranslations("trust")
   const locale = useLocale() as Locale
-  const copy = {
-    et: {
-      years: "Alates 2006",
-      certificates: "sertifikaadid",
-      employees: "300+ töötajat",
-      trained: "Koolitatud",
-      area: "Üle 1 000 000 m²",
-      areaDaily: "Igapäevaselt",
-      regularTitle: "Regulaarne koristusteenus",
-      regularText: "Igapäevane ja perioodiline hooldus, mis hoiab teie tööruumid pidevalt puhtad ja esinduslikud.",
-      regularNote: "Teenuse osutamiseks vajalikud tavapärased puhastus- ja töövahendid sisalduvad pakkumises vastavalt kokkulepitud teenusemahule.",
-      specialTitle: "Puhastusteenused ja eritööd",
-      specialText: "Perioodilised ja spetsiifilised tööd, mis taastavad pindade seisukorra ja pikendavad nende eluiga.",
-      specialNote: "Operatiivne reageerimine kokkulepitud teenuste raames.",
-      outdoorTitle: "Välikoristus ja territooriumi hooldus",
-      outdoorText: "Hooldame teie hoone ümbrust aastaringselt, igal hooajal oma plaaniga.",
-      outdoorNote: "Soovi korral koondame hooajalised välitööd ühe teenuslepingu alla.",
-      more: "Vaata lähemalt",
-    },
-    en: {
-      years: "Since 2006",
-      certificates: "certificates",
-      employees: "300+ employees",
-      trained: "Trained",
-      area: "Over 1,000,000 m²",
-      areaDaily: "Daily",
-      regularTitle: "Regular cleaning",
-      regularText: "Daily and periodic maintenance that keeps your workplace consistently clean and presentable.",
-      regularNote: "Standard cleaning products and tools required for the agreed service scope are included in the quote.",
-      specialTitle: "Specialist cleaning",
-      specialText: "Periodic and specialist work that restores surfaces and helps extend their service life.",
-      specialNote: "Operational response within the scope of agreed services.",
-      outdoorTitle: "Outdoor cleaning and grounds care",
-      outdoorText: "We maintain the surroundings of your building year-round with a plan for every season.",
-      outdoorNote: "Seasonal outdoor work can be combined under one service agreement if requested.",
-      more: "Learn more",
-    },
-    ru: {
-      years: "С 2006 года",
-      certificates: "сертификаты",
-      employees: "300+ сотрудников",
-      trained: "Обучены",
-      area: "Более 1 000 000 м²",
-      areaDaily: "Ежедневно",
-      regularTitle: "Регулярная уборка",
-      regularText: "Ежедневное и периодическое обслуживание, благодаря которому рабочие помещения остаются чистыми и презентабельными.",
-      regularNote: "Стандартные чистящие средства и инвентарь для согласованного объёма услуг включаются в предложение.",
-      specialTitle: "Специализированная уборка",
-      specialText: "Периодические и специальные работы, восстанавливающие состояние поверхностей и продлевающие срок их службы.",
-      specialNote: "Оперативное реагирование в рамках согласованных услуг.",
-      outdoorTitle: "Наружная уборка и уход за территорией",
-      outdoorText: "Круглый год ухаживаем за территорией вокруг здания по сезонному плану.",
-      outdoorNote: "По желанию сезонные наружные работы можно объединить в одном договоре обслуживания.",
-      more: "Подробнее",
-    },
-  }[locale]
 
   return (
     <section className="trust-section py-[100px] bg-white" id="garantii">
@@ -101,7 +45,7 @@ export default function Trust() {
                 </div>
                 <div>
                   <div className="text-[15px] font-bold text-[#17345a] mb-0.5">ISO 9001 + ISO 14001</div>
-                  <div className="text-[15px] text-[#5a6474]">{copy.certificates}</div>
+                  <div className="text-[15px] text-[#5a6474]">{t("certificates")}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
@@ -116,7 +60,7 @@ export default function Trust() {
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.employees}</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{t("employees")}</div>
                 </div>
               </div>
               <div className="trust-badge-card hover:-translate-y-0.5">
@@ -130,8 +74,8 @@ export default function Trust() {
                   </span>
                 </div>
                 <div>
-                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{copy.area}</div>
-                  <div className="text-[15px] text-[#5a6474]">{copy.areaDaily}</div>
+                  <div className="text-[15px] font-bold text-[#17345a] mb-0.5">{t("area")}</div>
+                  <div className="text-[15px] text-[#5a6474]">{t("areaDaily")}</div>
                 </div>
               </div>
             </div>
@@ -144,7 +88,7 @@ export default function Trust() {
             >
               <Image
                 src="/9001-14001-ENG.webp"
-                alt="SPS Grupp ISO 9001 ja ISO 14001"
+                alt="SPS Grupp ISO 9001 and ISO 14001"
                 width={640}
                 height={460}
                 className="w-full h-auto"
@@ -163,60 +107,60 @@ export default function Trust() {
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/regulaarnekoristusteenus.jpg"
-                alt={`${copy.regularTitle} — SPS Grupp`}
+                alt={`${t("regularTitle")} ā€” SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 style={{ }}
               />
             </div>
-            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{copy.regularTitle}</h3>
+            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{t("regularTitle")}</h3>
             <p className="text-[15px] text-[#333a46] leading-[1.7] mb-5 font-light">
-              {copy.regularText}
+              {t("regularText")}
             </p>
-            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{copy.regularNote}</p>
+            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("regularNote")}</p>
             <Link href={localizePath("/koristusteenus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {copy.more} <span aria-hidden="true">→</span>
+              {t("more")} <span aria-hidden="true">ā†’</span>
             </Link>
           </div>
           <div className="service-column-card">
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/puhastusteenused2.jpg"
-                alt={`${copy.specialTitle} — SPS Grupp`}
+                alt={`${t("specialTitle")} ā€” SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 style={{ }}
               />
             </div>
-            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{copy.specialTitle}</h3>
+            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{t("specialTitle")}</h3>
             <p className="text-[15px] text-[#333a46] leading-[1.7] mb-5 font-light">
-              {copy.specialText}
+              {t("specialText")}
             </p>
-            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{copy.specialNote}</p>
+            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("specialNote")}</p>
             <Link href={localizePath("/puhastusteenused", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {copy.more} <span aria-hidden="true">→</span>
+              {t("more")} <span aria-hidden="true">ā†’</span>
             </Link>
           </div>
           <div className="service-column-card">
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/valikoristus.jpg"
-                alt={`${copy.outdoorTitle} — SPS Grupp`}
+                alt={`${t("outdoorTitle")} ā€” SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
                 style={{ }}
               />
             </div>
-            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{copy.outdoorTitle}</h3>
+            <h3 className="text-[18px] font-bold text-[#17345a] mb-3">{t("outdoorTitle")}</h3>
             <p className="text-[15px] text-[#333a46] leading-[1.7] mb-5 font-light">
-              {copy.outdoorText}
+              {t("outdoorText")}
             </p>
-            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{copy.outdoorNote}</p>
+            <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("outdoorNote")}</p>
             <Link href={localizePath("/koristusteenus/valikoristus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {copy.more} <span aria-hidden="true">→</span>
+              {t("more")} <span aria-hidden="true">ā†’</span>
             </Link>
           </div>
         </div>
@@ -224,3 +168,4 @@ export default function Trust() {
     </section>
   );
 }
+

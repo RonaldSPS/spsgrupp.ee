@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/siseviimistlustood'
+export default function Page(){return<SiseviimistlustoodPageView locale="et"/>}
+export function SiseviimistlustoodPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Siseviimistlustööd":locale==="ru"?"Внутренняя отделка":"Interior finishing";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Ремонтные услуги":locale==="en"?"Renovation Services":"Remonditeenused Tallinnas";
+const tt=locale==="et"?"Kuidas SPS siseviimistlustööde teenust korraldab?":locale==="ru"?"Kuidas SPS siseviimistlustööde teenust korraldab?":"Kuidas SPS siseviimistlustööde teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Ülevaatus","Hindame pindade seisukorda."],["Tööplaan","Lepime kokku materjalid ja etapid."],["Ettevalmistus","Kaitseme pinnad ja parandame aluspinnad."],["Viimistlus","Teostame kokkulepitud tööd."],["Üleandmine","Kontrollime tulemuse ja koristame tööala."]] as [string,string][];
+const sRu=[["Ülevaatus","Hindame pindade seisukorda."],["Tööplaan","Lepime kokku materjalid ja etapid."],["Ettevalmistus","Kaitseme pinnad ja parandame aluspinnad."],["Viimistlus","Teostame kokkulepitud tööd."],["Üleandmine","Kontrollime tulemuse ja koristame tööala."]] as [string,string][];
+const sEn=[["Ülevaatus","Hindame pindade seisukorda."],["Tööplaan","Lepime kokku materjalid ja etapid."],["Ettevalmistus","Kaitseme pinnad ja parandame aluspinnad."],["Viimistlus","Teostame kokkulepitud tööd."],["Üleandmine","Kontrollime tulemuse ja koristame tööala."]] as [string,string][];
+return(<><SeoJsonLd etPath="/remonditeenused-tallinnas/siseviimistlustood" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Siseviimistlustood Tallinnas.":locale==="ru"?"Внутренняя отделка в Таллинне.":"Interior finishing in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"remonditeenused-tallinnas"},{name:n,etPath:"/remonditeenused-tallinnas/siseviimistlustood"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

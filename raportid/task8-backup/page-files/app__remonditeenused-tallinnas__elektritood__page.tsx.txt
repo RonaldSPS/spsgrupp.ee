@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/elektritood'
+export default function Page(){return<ElektritoodPageView locale="et"/>}
+export function ElektritoodPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Elektritööd":locale==="ru"?"Электромонтажные работы":"Electrical work";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Ремонтные услуги":locale==="en"?"Renovation Services":"Remonditeenused Tallinnas";
+const tt=locale==="et"?"Kuidas SPS elektritööde teenust korraldab?":locale==="ru"?"Kuidas SPS elektritööde teenust korraldab?":"Kuidas SPS elektritööde teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Probleemi kirjeldus","Täpsustame töö vajaduse."],["Ülevaatus","Hindame olukorra kohapeal."],["Pakkumine","Kirjeldame tööde ulatuse."],["Teostus","Teeme töö kokkulepitud ajal."],["Kontroll","Anname töö üle ja selgitame tulemust."]] as [string,string][];
+const sRu=[["Probleemi kirjeldus","Täpsustame töö vajaduse."],["Ülevaatus","Hindame olukorra kohapeal."],["Pakkumine","Kirjeldame tööde ulatuse."],["Teostus","Teeme töö kokkulepitud ajal."],["Kontroll","Anname töö üle ja selgitame tulemust."]] as [string,string][];
+const sEn=[["Probleemi kirjeldus","Täpsustame töö vajaduse."],["Ülevaatus","Hindame olukorra kohapeal."],["Pakkumine","Kirjeldame tööde ulatuse."],["Teostus","Teeme töö kokkulepitud ajal."],["Kontroll","Anname töö üle ja selgitame tulemust."]] as [string,string][];
+return(<><SeoJsonLd etPath="/remonditeenused-tallinnas/elektritood" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Elektritood arikinnisvarale Tallinnas.":locale==="ru"?"Электромонтажные работы в Таллинне.":"Electrical work in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"remonditeenused-tallinnas"},{name:n,etPath:"/remonditeenused-tallinnas/elektritood"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

@@ -25,7 +25,7 @@ import Hinnakalkulaator from "../../components/Hinnakalkulaator";
  *   {HERO_PEALKIRI}             — hero H1 pealkiri
  *   {HERO_PEALKIRI_VÄRVILINE}   — H1 värviline osa (nt "Tallinnas ja Harjumaal")
  *   {HERO_KIRJELDUS}            — lühike tutvustav tekst (1-2 lauset)
- *   {HERO_HIND}                 — alghinna fraas (nt "1.2€/m²")
+ *   {HERO_HIND}                 — alghinna fraas (nt "1,2 €/m²")
  *   {HERO_CTA_TEKST}            — CTA nupu tekst (nt "Küsi kontori koristuse pakkumist")
  *   {PROBLEEM_PEALKIRI}         — TwoToneHeading probleemisektsioonis
  *   {PROBLEEM_TEKST_VASAK}      — veerg 1: mure kirjeldus
@@ -39,7 +39,7 @@ import Hinnakalkulaator from "../../components/Hinnakalkulaator";
  *   {HIND_PEALKIRI}             — TwoToneHeading hinna sektsioonis
  *   {HIND_KIRJELDUS}            — sissejuhatav tekst hinna sektsioonis
  *   {HIND_KAARDID}              — massiiv {size, area, price, period, highlight?} objektidega (3 kaarti)
- *   {HIND_ALGHINNAD}            — alghinnad tekst (nt "Regulaarne hoolduskoristus algab 1.2€/m²...")
+ *   {HIND_ALGHINNAD}            — alghindade tekst (nt "Regulaarse hoolduskoristuse hind algab 1,2 €/m²...")
  *   {FOOTER_CTA_TITLE}          — FooterCTA pealkiri
  *   {FOOTER_CTA_DESCRIPTION}    — FooterCTA kirjeldus
  *   {BREADCRUMB_TEENUS}         — leivapuru viimane tase (nt "Kontori koristus")

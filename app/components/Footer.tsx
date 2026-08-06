@@ -166,7 +166,7 @@ export default function Footer() {
                 <a href="https://taust.ee/app/report/sps-grupp-ou-11394806" className="block mt-4 no-underline" rel="nofollow">
                   <Image
                     src="/Hasti-juhitud-ettevote.webp"
-                    alt="Hästi juhitud ettevõte"
+                    alt={t("wellManagedCompanyAlt")}
                     width={120}
                     height={120}
                     style={{ width: "auto", height: "auto" }}

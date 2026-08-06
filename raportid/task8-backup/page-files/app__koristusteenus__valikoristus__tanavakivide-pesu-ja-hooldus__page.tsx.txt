@@ -1,0 +1,21 @@
+﻿import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etData, en as enData, ru as ruData } from '@/lib/pages/definitions/tanavakivide-pesu-ja-hooldus'
+const sEt=[["Pinna hindamine","Vaatame üle kivide tüübi, vuugid, umbrohu ja määrdumise."],["Meetodi valik","Valime surve, harjad ja puhastusvahendid."],["Pesu ja umbrohutõrje","Puhastame pinnad ja töötleme vuugid."],["Vuukide täitmine","Vajadusel täidame vuugid uuesti."],["Kaitse soovitus","Soovitame kaitsekihti pikema tulemuse jaoks."]] as [string,string][];
+const sRu=[["Оценка поверхности","Осматриваем тип плитки, швы, сорняки и загрязнение."],["Выбор метода","Выбираем давление, щётки и чистящие средства."],["Мойка и удаление сорняков","Очищаем поверхности и обрабатываем швы."],["Заполнение швов","При необходимости заполняем швы заново."],["Рекомендация защиты","Рекомендуем защитное покрытие."]] as [string,string][];
+const sEn=[["Surface assessment","We inspect paving type, joints, weeds and soiling."],["Method selection","We choose pressure, brushes and products."],["Cleaning and weed removal","We clean surfaces and treat joints."],["Joint refilling","We refill joints where needed."],["Protection recommendation","We recommend a protective coating."]] as [string,string][];
+
+export default function TanavakividePesu(){return<TanavakividePesuPageView locale="et"/>}
+export function TanavakividePesuPageView({locale}:{locale:Locale}){
+  const d=locale==="et"?etData:locale==="en"?enData:ruData;
+  const n=locale==="et"?"Tänavakivide pesu ja hooldus":locale==="ru"?"Мойка и уход за тротуарной плиткой":"Paving stone cleaning and maintenance";
+  const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+  const cl=locale==="ru"?"Уборка":locale==="en"?"Cleaning":"Koristusteenus";
+  const ol=locale==="ru"?"Уборка территорий":locale==="en"?"Outdoor cleaning":"Välikoristus";
+  const tt=locale==="et"?"Kuidas SPS tänavakivide pesu teeb?":locale==="ru"?"Как SPS моет тротуарную плитку?":"How does SPS clean paving stones?";
+  return(<><SeoJsonLd etPath="/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Tänavakivide kõrgsurvepesu, umbrohu eemaldamine ja vuukide täitmine.":locale==="ru"?"Мойка плитки под давлением, удаление сорняков и заполнение швов.":"Pressure washing, weed removal and joint refilling for commercial properties."} breadcrumbs={[{name:h,etPath:"/"},{name:cl,etPath:"/koristusteenus"},{name:ol,etPath:"/koristusteenus/valikoristus"},{name:n,etPath:"/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus"}]} faq={d.faq.map(f=>({question:f.q,answer:f.a}))}/>
+  <OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={locale==="et"?"SPS alustab objekti ülevaatusest.":locale==="ru"?"SPS начинает с осмотра объекта.":"SPS starts with a site assessment."} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);
+}
+

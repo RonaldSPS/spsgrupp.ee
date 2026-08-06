@@ -1,0 +1,17 @@
+﻿import SeoJsonLd from "../components/SeoJsonLd";
+import Tooprotsess from "../components/Tooprotsess";
+import OutdoorServicePage from "../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/ehitusprahi-aravedu'
+export default function EhitusprahiAravedu(){return<EhitusprahiPageView locale="et"/>}
+export function EhitusprahiPageView({locale}:{locale:Locale}){
+  const d=locale==="et"?etD:locale==="en"?enD:ruD;
+  const n=locale==="et"?"Ehitusprahi äravedu":locale==="ru"?"Вывоз строительного мусора":"Construction waste removal";
+  const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+  const tt=locale==="et"?"Kuidas SPS ehitusprahi äravedu korraldab?":locale==="ru"?"Как SPS организует вывоз строительного мусора?":"How does SPS arrange construction waste removal?";
+  const sEt=[["Hindamine","Hindame jäätmemahu ja vajaliku konteineri suuruse."],["Tarne","Tarnime konteineri kokkulepitud ajal."],["Kogumine","Jäätmed kogutakse ja sorteeritakse."],["Äravedu","Veame täis konteineri ära."],["Dokumentatsioon","Väljastame jäätmearuande."]] as [string,string][];
+  const sRu=[["Оценка","Оцениваем объём отходов и размер контейнера."],["Доставка","Доставляем контейнер в согласованное время."],["Сбор","Отходы собираются и сортируются."],["Вывоз","Вывозим полный контейнер."],["Документация","Выдаём отчёт об отходах."]] as [string,string][];
+  const sEn=[["Assessment","We assess waste volume and container size."],["Delivery","We deliver the container at the agreed time."],["Collection","Waste is collected and sorted."],["Removal","We remove the full container."],["Documentation","We issue a waste report."]] as [string,string][];
+  return(<><SeoJsonLd etPath="/ehitusprahi-aravedu" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Ehitusprahi äravedu Tallinnas. Konteinerid, sorteerimine, dokumentatsioon.":locale==="ru"?"Вывоз строительного мусора в Таллинне. Контейнеры, сортировка, документация.":"Construction waste removal in Tallinn. Containers, sorting, documentation."} breadcrumbs={[{name:h,etPath:"/"},{name:n,etPath:"/ehitusprahi-aravedu"}]} faq={d.faq.map(f=>({question:f.q,answer:f.a}))}/>
+  <OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={locale==="et"?"SPS alustab objekti ülevaatusest, et pakkuda sobiv lahendus.":locale==="ru"?"SPS начинает с оценки объекта.":"SPS starts with a site assessment to provide the right solution."} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);
+}

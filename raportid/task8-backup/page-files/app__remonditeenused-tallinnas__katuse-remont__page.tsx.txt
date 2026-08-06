@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/katuse-remont'
+export default function Page(){return<KatuseRemontPageView locale="et"/>}
+export function KatuseRemontPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Katuse remont ja hooldus":locale==="ru"?"Ремонт кровли":"Roof repair";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Ремонтные услуги":locale==="en"?"Renovation Services":"Remonditeenused Tallinnas";
+const tt=locale==="et"?"Kuidas SPS katuse remondi teenust korraldab?":locale==="ru"?"Kuidas SPS katuse remondi teenust korraldab?":"Kuidas SPS katuse remondi teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Ülevaatus","Hindame katuse seisukorda."],["Diagnoos","Leiame lekete ja kahjustuste allikad."],["Pakkumine","Koostame tööde plaani ja hinna."],["Teostus","Teeme remondi või renoveerimise."],["Hooldus","Koostame hoolduskava."]] as [string,string][];
+const sRu=[["Ülevaatus","Hindame katuse seisukorda."],["Diagnoos","Leiame lekete ja kahjustuste allikad."],["Pakkumine","Koostame tööde plaani ja hinna."],["Teostus","Teeme remondi või renoveerimise."],["Hooldus","Koostame hoolduskava."]] as [string,string][];
+const sEn=[["Ülevaatus","Hindame katuse seisukorda."],["Diagnoos","Leiame lekete ja kahjustuste allikad."],["Pakkumine","Koostame tööde plaani ja hinna."],["Teostus","Teeme remondi või renoveerimise."],["Hooldus","Koostame hoolduskava."]] as [string,string][];
+return(<><SeoJsonLd etPath="/remonditeenused-tallinnas/katuse-remont" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Katuse remont Tallinnas.":locale==="ru"?"Ремонт кровли в Таллинне.":"Roof repair in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"remonditeenused-tallinnas"},{name:n,etPath:"/remonditeenused-tallinnas/katuse-remont"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

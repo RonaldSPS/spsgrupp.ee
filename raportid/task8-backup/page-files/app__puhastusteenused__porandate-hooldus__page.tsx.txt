@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/porandate-hooldus'
+export default function Page(){return<PorandateHooldusPageView locale="et"/>}
+export function PorandateHooldusPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Põrandate hooldus":locale==="ru"?"Уход за полами":"Floor maintenance";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Специализированная уборка":locale==="en"?"Cleaning Services":"puhastusteenused";
+const tt=locale==="et"?"Kuidas SPS põrandate hoolduse teenust korraldab?":locale==="ru"?"Kuidas SPS põrandate hoolduse teenust korraldab?":"Kuidas SPS põrandate hoolduse teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Pinna kontroll","Selgitame materjali."],["Meetodi valik","Määrame vajaduse."],["Töö teostus","Masinpesu."],["Kuivamine","Kasutuspaus."],["Hooldusrütm","Soovitus."]] as [string,string][];
+const sRu=[["Pinna kontroll","Selgitame materjali."],["Meetodi valik","Määrame vajaduse."],["Töö teostus","Masinpesu."],["Kuivamine","Kasutuspaus."],["Hooldusrütm","Soovitus."]] as [string,string][];
+const sEn=[["Pinna kontroll","Selgitame materjali."],["Meetodi valik","Määrame vajaduse."],["Töö teostus","Masinpesu."],["Kuivamine","Kasutuspaus."],["Hooldusrütm","Soovitus."]] as [string,string][];
+return(<><SeoJsonLd etPath="/puhastusteenused/porandate-hooldus" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Porandate hooldus ja suvapuhastus Tallinnas.":locale==="ru"?"Уход за полами в Таллинне.":"Floor maintenance in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"puhastusteenused"},{name:n,etPath:"/puhastusteenused/porandate-hooldus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

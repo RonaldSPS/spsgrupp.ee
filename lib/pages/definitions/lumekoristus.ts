@@ -1,0 +1,188 @@
+import type { OutdoorServicePageData, ServiceDetailDefs } from '@/app/components/templates/ServiceDetailTemplate'
+
+const etParent = { etPath: "/koristusteenus/valikoristus", label: "Välikoristus" };
+const enParent = { etPath: "/koristusteenus/valikoristus", label: "Outdoor cleaning and grounds care" };
+const ruParent = { etPath: "/koristusteenus/valikoristus", label: "Уборка и обслуживание территорий" };
+
+export const et: OutdoorServicePageData = {
+  ariaLabel: "Lumekoristus", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageAlt: "SPS Grupp lumekoristus ärikinnisvaral",
+  title: "Lumekoristus", titleAccent: "Tallinnas ja Harjumaal",
+  intro: "Professionaalne lumekoristus, libedusetõrje ja talvine hooldus ärikinnistutele. Parklate, kõnniteede ja sissepääsude puhastus. Hooajaline leping.",
+  cta: "Küsi lumekoristuse pakkumist", breadcrumb: "Lumekoristus", parentBreadcrumb: etParent,
+  chips: [
+    { value: "24/7", label: "valmisolek", tone: "blue" },
+    { value: "Automaatne", label: "reageerimine", tone: "green" },
+    { value: "200+", label: "objekti", tone: "navy" },
+  ],
+  problemTitle: "Kas teie kinnistu on talveks valmis?",
+  problemLead: "Lumi ja jää on midagi enamat kui ebamugavus — need on ohutusrisk töötajatele, külastajatele ja klientidele. Koristamata sissepääsud, parklad ja kõnniteed võivad põhjustada õnnetusi.",
+  problemDescription: "SPS Grupp tagab usaldusväärse lumekoristuse ja libedusetõrje ärikinnistutele. Jälgime ilmaprognoosi ja reageerime ennetavalt, et teie kinnistu oleks turvaline ja ligipääsetav.",
+  serviceTitle: "Mida sisaldab lumekoristuse teenus?",
+  serviceCards: [
+    { bold: "Parklate ja sissepääsude lumekoristus", desc: "Parklate, juurdepääsuteede ja sissepääsude puhastus lumest koheselt peale sadu." },
+    { bold: "Kõnniteede ja jalakäijate alade koristus", desc: "Puhastame kokkulepitud jalakäijate liikumisteed, trepid ja kaldteed ning teeme vajadusel libedusetõrjet." },
+    { bold: "Libedusetõrje soola ja kruusaga", desc: "Jäätõrjevahend aitab vähendada jää teket ja graniidikruus parandab haardumist. Lahenduse valime ilma ning pinnakatte järgi." },
+    { bold: "Lume äravedu", desc: "Kui parklas ei jätku enam ruumi, korraldame lume äraveo. Lisateenus vastavalt vajadusele." },
+    { bold: "Hooajaline valmisolek", desc: "Hooajalepingu korral lepime kokku valmisoleku, reageerimise tingimused ja prioriteetsed alad." },
+    { bold: "Automaatne reageerimine ilmaprognoosi järgi", desc: "Hoolduslepingu korral jälgime ilmaprognoosi ja alustame töid kokkulepitud tingimustel ilma eraldi tellimuseta." },
+  ],
+  reasonsTitle: "Miks valida SPS Grupp lumekoristuse partneriks?",
+  reasons: [
+    { title: "Automaatne reageerimine", desc: "Hoolduslepingu korral jälgime ilmaprognoosi ja alustame töid kokkulepitud tingimustel." },
+    { title: "Fikseeritud hooajahind", desc: "Hooajalepingu hinna ja selles sisalduvad tööd lepime kokku enne hooaja algust." },
+    { title: "Kindlustatud teenus", desc: "Teenuse vastutus ja kindlustuskaitse lähtuvad lepingust, juhtumi asjaoludest ning kindlustustingimustest." },
+    { title: "Tallinna talvede kogemus", desc: "Talviseid hooldustöid teeme alates 2006. aastast. Töökorraldus ja ressursid lepitakse kokku objekti ning hooajalepingu järgi." },
+  ],
+  priceTitle: "Kuidas kujuneb lumekoristuse hind?",
+  priceIntro: "Hind sõltub objekti suurusest, tööde sagedusest, kokkulepitud reageerimislävest ja libedusetõrje mahust.",
+  priceCards: [
+    { size: "Väike parkla", area: "kõnniteega", price: "150 €/kuu", period: "alates", highlight: true },
+    { size: "Keskmine", area: "ärikinnistu", price: "300 €/kuu", period: "alates" },
+    { size: "Suur", area: "ärikompleks", price: "Individuaalne", period: "pakkumine" },
+  ],
+  priceNote: "Hooajaline leping on märgatavalt soodsam kui ühekordsed teenused ja tagab prioriteetse reageerimise. Hooaeg kestab tavaliselt oktoobrist aprillini.",
+  serviceInfoBlock: {
+    tag: "Talveplaan",
+    title: "Mida lepime enne lumekoristuse algust kokku?",
+    intro: "Kinnistu suurus, prioriteetsed alad ja reageerimise kiirus mõjutavad nii töökorraldust kui hinda. Lepime need enne hooaja algust selgelt kokku.",
+    items: [
+      { title: "Ülevaatus ja alade määramine", description: "Märgime parklad, teed, trepid ja sissepääsud. Määrame millised alad on esmased ning kuhu lund lükatakse." },
+      { title: "Reageerimise aeg ja meetod", description: "Lepime kokku millise lumesaju korral ja kui kiiresti reageerime. Valime sobiva tehnika ning libedusetõrje materjali." },
+      { title: "Hooaeg ja arveldus", description: "Täpsustame hooaja kestuse, arveldusperioodi ja selle, kuidas toimub lisatööde (näiteks lume äravedu) tellimine." },
+    ],
+  },
+  footerTitle: "Sõlmige lumekoristuse leping enne talve",
+  footerDescription: "Ärge jätke lumekoristust viimasele hetkele. Küsige pakkumist täna ja tagage endale rahumeelne talv.",
+  faq: [
+    { q: "Millal lumekoristuse leping algab?", a: "Tavaliselt oktoobri esimesest päevast aprilli viimase päevani. Soovitame lepingu sõlmida hiljemalt septembris, et tagada valmisolek hooaja alguseks." },
+    { q: "Kas ma pean teile helistama, kui sajab lund?", a: "Hoolduslepingu korral jälgime ilmaprognoosi ja alustame töid kokkulepitud tingimustel ilma eraldi tellimuseta." },
+    { q: "Kas teete libedusetõrjet soola või kruusaga?", a: "Meetod sõltub ilmast ja pinnakattest. Vajadusel kombineerime jäätõrjevahendit graniidikruusaga." },
+    { q: "Mis juhtub, kui te ei jõua õigeks ajaks ja keegi libastub?", a: "Töö järjekord ja reageerimine lähtuvad lepingust ning ilmaoludest. Võimaliku kahjujuhtumi vastutus hinnatakse konkreetsete asjaolude järgi." },
+    { q: "Kas korraldate ka lume äravedu suurte kuhjade korral?", a: "Jah, lume äravedu on lisateenus. Vajadus tekib tavaliselt suurte sajude järel, kui parklas ei jätku enam ruumi kuhjumiseks." },
+  ],
+}
+
+
+export const en: OutdoorServicePageData = {
+  ariaLabel: "Snow removal", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageAlt: "SPS Grupp snow removal for commercial property",
+  title: "Snow removal", titleAccent: "in Tallinn and Harjumaa",
+  intro: "Professional snow clearing, gritting and winter maintenance for commercial properties. Car park, pavement and entrance clearance. Seasonal contract.",
+  cta: "Request a snow removal quote", breadcrumb: "Snow removal", parentBreadcrumb: enParent,
+  chips: [
+    { value: "24/7", label: "readiness", tone: "blue" },
+    { value: "Automatic", label: "response", tone: "green" },
+    { value: "200+", label: "properties", tone: "navy" },
+  ],
+  problemTitle: "Is your property ready for winter?",
+  problemLead: "Snow and ice are more than an inconvenience — they are a safety risk for employees, visitors and customers. Uncleared entrances, car parks and pavements can lead to accidents.",
+  problemDescription: "SPS Grupp provides reliable snow clearing and gritting for commercial properties. We monitor weather conditions and respond proactively so your site remains accessible and safe.",
+  serviceTitle: "What does snow removal include?",
+  serviceCards: [
+    { bold: "Car park and entrance snow clearing", desc: "Clearing car parks, access roads and entrances immediately after snowfall." },
+    { bold: "Pavement and pedestrian area clearance", desc: "We clear agreed pedestrian routes, steps and ramps, and apply gritting where needed." },
+    { bold: "Gritting with salt and crushed stone", desc: "De-icer helps reduce ice formation and granite chips improve grip. We choose the solution based on weather and surface type." },
+    { bold: "Snow removal from site", desc: "When there is no more room in the car park we arrange snow removal. Additional service as required." },
+    { bold: "Seasonal readiness", desc: "With a seasonal contract we agree the readiness, response conditions and priority areas." },
+    { bold: "Automatic response based on weather forecast", desc: "With a maintenance contract we monitor the forecast and start work under agreed conditions without a separate order." },
+  ],
+  reasonsTitle: "Why choose SPS Grupp for snow removal?",
+  reasons: [
+    { title: "Automatic response", desc: "With a maintenance contract we monitor the weather forecast and start work under agreed conditions." },
+    { title: "Fixed seasonal price", desc: "The seasonal contract price and included work are agreed before the season starts." },
+    { title: "Insured service", desc: "Service liability and insurance cover are based on the contract, the circumstances of the incident and insurance terms." },
+    { title: "Experience of Tallinn winters", desc: "We have been carrying out winter maintenance work since 2006. Work arrangements and resources are agreed per site and seasonal contract." },
+  ],
+  priceTitle: "How is the cost of snow removal determined?",
+  priceIntro: "The price depends on the size of the property, frequency of clearing, the agreed response threshold and the extent of gritting.",
+  priceCards: [
+    { size: "Small car park", area: "with pavement", price: "150 EUR/month", period: "from", highlight: true },
+    { size: "Medium", area: "commercial property", price: "300 EUR/month", period: "from" },
+    { size: "Large", area: "commercial complex", price: "Individual", period: "quote" },
+  ],
+  priceNote: "A seasonal contract is significantly cheaper than one-off call-outs and guarantees priority response. The season typically runs from October to April.",
+  serviceInfoBlock: {
+    tag: "Winter plan",
+    title: "What do we agree on before snow clearing starts?",
+    intro: "The size of the property, priority areas and response speed affect both work scheduling and price. We agree these clearly before the season starts.",
+    items: [
+      { title: "Survey and area designation", description: "We mark car parks, paths, steps and entrances. We determine which areas are priorities and where snow is to be piled." },
+      { title: "Response time and method", description: "We agree under what snowfall conditions and how quickly we respond. We choose suitable equipment and gritting material." },
+      { title: "Season and billing", description: "We specify the season duration, billing period and how additional work (such as snow removal from site) is ordered." },
+    ],
+  },
+  footerTitle: "Secure your snow removal contract before winter",
+  footerDescription: "Do not leave snow removal to the last minute. Request a quote today and ensure a worry-free winter.",
+  faq: [
+    { q: "When does the snow clearing contract start?", a: "Typically from 1 October to 30 April. We recommend signing the contract by September at the latest to guarantee readiness for the start of the season." },
+    { q: "Do I need to call you when it snows?", a: "With a maintenance contract we monitor the weather forecast and start work under agreed conditions without a separate order." },
+    { q: "Do you use salt or crushed stone for gritting?", a: "The method depends on the weather and surface type. Where required we combine de-icer with granite chips." },
+    { q: "What happens if you don't arrive in time and someone slips?", a: "Work order and response are based on the contract and weather conditions. Liability for a potential incident is assessed according to the specific circumstances, contract and insurance terms." },
+    { q: "Do you also remove piled snow from site?", a: "Yes, snow removal is an additional service. This is usually needed after heavy snowfall when there is no more room in the car park for accumulation." },
+  ],
+}
+
+
+export const ru: OutdoorServicePageData = {
+  ariaLabel: "Уборка снега", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageAlt: "SPS Grupp уборка снега на коммерческой недвижимости",
+  title: "Уборка снега", titleAccent: "в Таллинне и Харьюмаа",
+  intro: "Профессиональная уборка снега, посыпка и зимнее обслуживание коммерческих объектов. Очистка парковок, тротуаров и входов. Сезонный договор.",
+  cta: "Запросить предложение по уборке снега", breadcrumb: "Уборка снега", parentBreadcrumb: ruParent,
+  chips: [
+    { value: "24/7", label: "готовность", tone: "blue" },
+    { value: "Автоматическое", label: "реагирование", tone: "green" },
+    { value: "200+", label: "объектов", tone: "navy" },
+  ],
+  problemTitle: "Готов ли ваш объект к зиме?",
+  problemLead: "Снег и лёд — это не просто неудобство, а риск для безопасности сотрудников, посетителей и клиентов. Неочищенные входы, парковки и тротуары могут привести к несчастным случаям.",
+  problemDescription: "SPS Grupp обеспечивает надёжную уборку снега и посыпку для коммерческих объектов. Мы следим за погодой и реагируем заблаговременно, чтобы ваша территория оставалась доступной и безопасной.",
+  serviceTitle: "Что входит в услугу по уборке снега?",
+  serviceCards: [
+    { bold: "Очистка парковок и входов от снега", desc: "Очистка парковок, подъездных путей и входов сразу после снегопада." },
+    { bold: "Очистка тротуаров и пешеходных зон", desc: "Очищаем согласованные пешеходные маршруты, ступени и пандусы, при необходимости проводим посыпку." },
+    { bold: "Посыпка солью и щебнем", desc: "Антигололёдное средство помогает уменьшить образование льда, а гранитный щебень улучшает сцепление. Выбираем решение по погоде и покрытию." },
+    { bold: "Вывоз снега", desc: "Когда на парковке не остаётся места, организуем вывоз снега. Дополнительная услуга по необходимости." },
+    { bold: "Сезонная готовность", desc: "При сезонном договоре согласовываем готовность, условия реагирования и приоритетные зоны." },
+    { bold: "Автоматическое реагирование по прогнозу погоды", desc: "При договоре обслуживания следим за прогнозом и начинаем работы на согласованных условиях без отдельного заказа." },
+  ],
+  reasonsTitle: "Почему выбрать SPS Grupp для уборки снега?",
+  reasons: [
+    { title: "Автоматическое реагирование", desc: "При договоре обслуживания следим за прогнозом погоды и начинаем работы на согласованных условиях." },
+    { title: "Фиксированная сезонная цена", desc: "Цена сезонного договора и включённые работы согласовываются до начала сезона." },
+    { title: "Застрахованная услуга", desc: "Ответственность и страховое покрытие определяются договором, обстоятельствами случая и условиями страхования." },
+    { title: "Опыт таллинских зим", desc: "Зимние работы по обслуживанию мы выполняем с 2006 года. Организация работ и ресурсы согласовываются по объекту и сезонному договору." },
+  ],
+  priceTitle: "Как формируется стоимость уборки снега?",
+  priceIntro: "Цена зависит от размера объекта, частоты очистки, согласованного порога реагирования и объёма посыпки.",
+  priceCards: [
+    { size: "Небольшая парковка", area: "с тротуаром", price: "150 EUR/месяц", period: "от", highlight: true },
+    { size: "Средний", area: "коммерческий объект", price: "300 EUR/месяц", period: "от" },
+    { size: "Крупный", area: "коммерческий комплекс", price: "Индивидуально", period: "предложение" },
+  ],
+  priceNote: "Сезонный договор значительно дешевле разовых вызовов и гарантирует приоритетное реагирование. Сезон обычно длится с октября по апрель.",
+  serviceInfoBlock: {
+    tag: "Зимний план",
+    title: "О чём мы договариваемся перед началом уборки снега?",
+    intro: "Размер объекта, приоритетные зоны и скорость реагирования влияют на организацию работ и цену. Чётко согласовываем эти вопросы до начала сезона.",
+    items: [
+      { title: "Осмотр и определение зон", description: "Отмечаем парковки, дорожки, ступени и входы. Определяем приоритетные зоны и места складирования снега." },
+      { title: "Время и метод реагирования", description: "Согласовываем при каком снегопаде и как быстро реагируем. Выбираем подходящую технику и материал для посыпки." },
+      { title: "Сезон и расчёты", description: "Уточняем продолжительность сезона, период расчётов и порядок заказа дополнительных работ (например, вывоз снега)." },
+    ],
+  },
+  footerTitle: "Заключите договор на уборку снега до зимы",
+  footerDescription: "Не откладывайте уборку снега на последний момент. Запросите предложение сегодня и обеспечьте себе спокойную зиму.",
+  faq: [
+    { q: "Когда начинается договор на уборку снега?", a: "Обычно с 1 октября по 30 апреля. Рекомендуем заключить договор не позднее сентября, чтобы гарантировать готовность к началу сезона." },
+    { q: "Нужно ли звонить вам при снегопаде?", a: "При договоре обслуживания мы следим за прогнозом погоды и начинаем работы на согласованных условиях без отдельного заказа." },
+    { q: "Используете ли вы соль или щебень для посыпки?", a: "Метод зависит от погоды и типа покрытия. При необходимости комбинируем антигололёдное средство с гранитным щебнем." },
+    { q: "Что если вы не успеете вовремя и кто-то поскользнётся?", a: "Порядок работ и реагирование определяются договором и погодными условиями. Ответственность за возможный случай оценивается по конкретным обстоятельствам, договору и условиям страхования." },
+    { q: "Вывозите ли вы скопившийся снег с территории?", a: "Да, вывоз снега — дополнительная услуга. Обычно требуется после сильных снегопадов, когда на парковке не остаётся места." },
+  ],
+}
+
+
+export const serviceDetail: ServiceDetailDefs = {
+  et: { data: et, seo: {"serviceName":"Lumekoristus","serviceDescription":"Lumekoristus ja libedusetõrje Tallinnas. Parklad, kõnniteed, sissepääsud. Hooajaline leping."}, tooprotsess: {"title":"Kuidas SPS lumekoristuse käivitab?","intro":"SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele.","steps":[["Objekti kaardistus","Märgime parklad, teed, trepid ja prioriteedid."],["Hooajaleping","Lepime kokku valmisoleku ja reageerimise."],["Ilmajälgimine","Jälgime sadu ja libedusriski."],["Tööde teostus","Puhastame ja teeme libedusetõrje."],["Korduvad kontrollid","Vajadusel naaseme suurte sadude ajal."]]}, breadcrumbs: [{"name":"Avaleht","etPath":"/"},{"name":"Koristusteenus","etPath":"/koristusteenus"},{"name":"Välikoristus","etPath":"/koristusteenus/valikoristus"},{"name":"Lumekoristus","etPath":"/koristusteenus/valikoristus/lumekoristus"}] },
+  en: { data: en, seo: {"serviceName":"Snow removal","serviceDescription":"Snow removal and gritting in Tallinn. Car parks, pavements, entrances. Seasonal contract."}, tooprotsess: {"title":"How does SPS launch snow clearing?","intro":"SPS starts with a site assessment so the method, frequency and equipment match actual needs.","steps":[["Site survey","We mark car parks, paths, steps and priorities."],["Seasonal contract","We agree readiness and response terms."],["Weather monitoring","We track snowfall and ice risk."],["Service execution","We clear and grit as agreed."],["Repeat checks","We return during heavy snowfall if needed."]]}, breadcrumbs: [{"name":"Home","etPath":"/"},{"name":"Cleaning","etPath":"/koristusteenus"},{"name":"Outdoor cleaning","etPath":"/koristusteenus/valikoristus"},{"name":"Snow removal","etPath":"/koristusteenus/valikoristus/lumekoristus"}] },
+  ru: { data: ru, seo: {"serviceName":"Уборка снега","serviceDescription":"Уборка снега и посыпка в Таллинне. Парковки, тротуары, входы. Сезонный договор."}, tooprotsess: {"title":"Как SPS запускает уборку снега?","intro":"SPS начинает с осмотра объекта, чтобы метод, частота и оборудование соответствовали реальным потребностям.","steps":[["Обследование объекта","Отмечаем парковки, дорожки, ступени и приоритеты."],["Сезонный договор","Согласовываем готовность и реагирование."],["Мониторинг погоды","Отслеживаем осадки и риск гололёда."],["Выполнение работ","Очищаем и проводим посыпку."],["Повторные проверки","При необходимости возвращаемся во время сильных снегопадов."]]}, breadcrumbs: [{"name":"Главная","etPath":"/"},{"name":"Уборка","etPath":"/koristusteenus"},{"name":"Уборка территорий","etPath":"/koristusteenus/valikoristus"},{"name":"Уборка снега","etPath":"/koristusteenus/valikoristus/lumekoristus"}] },
+}

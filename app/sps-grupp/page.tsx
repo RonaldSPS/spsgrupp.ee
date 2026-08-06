@@ -11,75 +11,47 @@ import ContactForm from "../components/ContactForm";
 import TwoToneHeading from "../components/TwoToneHeading";
 import ScrollAnimation from "../components/ScrollAnimation";
 import SeoJsonLd from "../components/SeoJsonLd";
+import { localizePath, type Locale } from "@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD, type SpsGruppPageData } from "@/lib/pages/definitions/sps-grupp";
+
+function getText(locale: Locale): SpsGruppPageData {
+  return locale === "et" ? etD : locale === "en" ? enD : ruD;
+}
+
+const chipTones = ["blue", "green", "navy"] as const;
+const chipIcons = [
+  <svg key="0" viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  </svg>,
+  <svg key="1" viewBox="0 0 24 24" fill="none" stroke="#2d9e6b" strokeWidth="2">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+  </svg>,
+  <svg key="2" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+  </svg>,
+];
 
 export default function SPSGruppPage() {
-  const faqItems = [
-    {
-      q: "Mis on SPS Grupp OÜ?",
-      a: "SPS Grupp OÜ on 2006. aastal asutatud ettevõte, mis pakub kinnisvara hoolduskoristust ja puhastusteenuseid. Meie eesmärk on pakkuda kõrge kvaliteediga, kliendisõbralikku ja paindlikku teenust konkurentsivõimelise hinnaga.",
-    },
-    {
-      q: "Milliseid teenuseid SPS Grupp pakub?",
-      a: "Pakume täielikku koristusteenuste paketti kinnisvara korrashoiuks ja renoveerimiseks. Koostöös partneritega pakume ka porivaipade vahetust, prügivedu ja lumetõrje teenust.",
-    },
-    {
-      q: "Mille poolest erineb SPS Grupp teistest puhastusfirmadest?",
-      a: "Oleme üks väheseid Eesti puhastusfirmasid, kes tegutseb rahvusvaheliste kvaliteedi- ja keskkonnastandardite ISO 9001 ja ISO 14001 reeglite järgi. Meid iseloomustab ühtne vormiriietus, korras ja puhtad logodega autod, operatiivsus ning kliendisõbralik lähenemine.",
-    },
-    {
-      q: "Kas teie töötajad on koolitatud?",
-      a: "Jah, hindame töötajate pädevust ja pakume neile regulaarselt koolitusi. Iga uus töötaja saab põhjaliku sisseelamise ning pidevat tuge.",
-    },
-    {
-      q: "Kas pakute personaalset lähenemist erinevate hoonete puhastamisel?",
-      a: "Jah, pakume tasuta konsultatsiooni, personaalset hoone hindamist ning ekspertarvamust iga objekti kohta. Teenuseid osutame alati kliendi soovidest lähtuvalt.",
-    },
-    {
-      q: "Kuidas tagate oma teenuste kvaliteedi?",
-      a: "Meie kvaliteedi tagavad: teenuse kvaliteedijuhtimise süsteem, kogemustega töötajad ja nende pidev koolitamine, usaldusväärne hooldustööde kuluarvestus, Standard EVS 914 normitiivide järgimine, ISO 9001:2015 ja ISO 14001:2015 sertifikaadid ning pidev klientide tagasiside kogumine ja analüüsimine.",
-    },
-    {
-      q: "Kuidas kujuneb teie teenuste hind?",
-      a: "Meie hinnad põhinevad hooldustööde tüüpkalkulatsioonidel (näiteks eur/m² või eur/h). Hinnad on kliendisõbralikud ja konkurentsivõimelised.",
-    },
-    {
-      q: "Kuidas saada hinnapakkumist?",
-      a: "Hinnapakkumise saamiseks saate meiega ühendust võtta telefonil +372 662 3328 või e-posti teel info@spsgrupp.ee. Samuti saate täita meie kodulehel oleva kontaktvormi.",
-    },
-    {
-      q: "Kas pakute tasuta konsultatsiooni?",
-      a: "Jah. Pakume esmast konsultatsiooni ja vajaduste kaardistamist. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
-    },
-    {
-      q: "Kuidas suhtub SPS Grupp keskkonnahoidu?",
-      a: "Keskkonnasäästlikkus on meie jaoks oluline prioriteet. Omame ISO 14001:2015 keskkonnajuhtimissüsteemi sertifikaati ning püüame pidevalt vähendada oma tegevusest tulenevaid negatiivseid keskkonnamõjusid.",
-    },
-    {
-      q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?",
-      a: "Jah, lähtume keskkonnaalastest nõuetest ja püüame oma tegevuses kasutada võimalikult keskkonnasõbralikke vahendeid ja meetodeid.",
-    },
-    {
-      q: "Kuidas toimub suhtlus klientidega?",
-      a: "Oleme operatiivsed ja valmis kiiresti reageerima. Kogume pidevalt klientide tagasisidet ja kasutame seda teenuse parandamiseks. Probleemide ilmnemisel rakendame kindlaid protseduure, et need kiiresti ja süsteemselt lahendada.",
-    },
-    {
-      q: "Kas SPS Grupp on valmis tegutsema hädaolukordades?",
-      a: "Jah, oleme määratlenud potentsiaalsed hädaolukorrad ja nendega kaasnevad võimalikud tagajärjed. Oleme analüüsinud hädaolukordade ennetamise ja leevendamise võimalusi ning välja töötanud vastavad tegevusjuhised.",
-    },
-  ];
+  return <SpsGruppPageView locale="et" />;
+}
+
+export function SpsGruppPageView({ locale }: { locale: Locale }) {
+  const t = getText(locale);
 
   return (
     <>
       <SeoJsonLd
         etPath="/sps-grupp"
-        locale="et"
-        serviceName="SPS Grupp – koristus- ja remonditeenused"
-        serviceDescription="SPS Grupp on usaldusväärne partner koristus-, remondi- ja hooldusteenustes äriklientidele Tallinnas ja Harjumaal alates 2006. aastast."
+        locale={locale}
+        serviceName={t.serviceName}
+        serviceDescription={t.serviceDescription}
         breadcrumbs={[
-          { name: "Avaleht", etPath: "/" },
+          { name: t.breadcrumbHome, etPath: "/" },
           { name: "SPS Grupp", etPath: "/sps-grupp" },
         ]}
-        faq={faqItems.map((f) => ({ question: f.q, answer: f.a }))}
+        faq={t.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
       <main id="main-content" tabIndex={-1}>
@@ -87,45 +59,21 @@ export default function SPSGruppPage() {
         <section
           className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
-          aria-label="SPS Grupp"
+          aria-label={t.ariaLabel}
         >
           <HeroBackgroundImage src="/FrontHeroCar.jpg" preload alt="" />
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
-            <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
-              <div className="chip-icon chip-icon-blue w-11 h-11 rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#5ab5da" strokeWidth="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
+            {t.heroChips.map((chip, i) => (
+              <div key={i} className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
+                <div className={`chip-icon chip-icon-${chipTones[i % 3]} w-11 h-11 rounded-xl flex items-center justify-center`}>
+                  {chipIcons[i % 3]}
+                </div>
+                <div>
+                  <div className="text-[18px] font-bold text-[#17345a] leading-tight">{chip.value}</div>
+                  <div className="text-[15px] text-[#1f2937]">{chip.label}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">Alates 2006</div>
-                <div className="text-[15px] text-[#1f2937]">kogemust</div>
-              </div>
-            </div>
-            <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
-              <div className="chip-icon chip-icon-green w-11 h-11 rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#2d9e6b" strokeWidth="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">ISO 9001</div>
-                <div className="text-[15px] text-[#1f2937]">sertifitseeritud</div>
-              </div>
-            </div>
-            <div className="floating-chip animate-float" style={{ background: "rgba(255,255,255,0.95)" }}>
-              <div className="chip-icon chip-icon-navy w-11 h-11 rounded-xl flex items-center justify-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                </svg>
-              </div>
-              <div>
-                <div className="text-[18px] font-bold text-[#17345a] leading-tight">300+</div>
-                <div className="text-[15px] text-[#1f2937]">töötajat</div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start max-w-[1280px] mx-auto w-full relative z-10">
@@ -141,16 +89,20 @@ export default function SPSGruppPage() {
               }}
             >
               <h1 className="text-[clamp(28px,4.2vw,56px)] font-bold text-white leading-[1.12] -tracking-[1px] mb-[18px]">
-                SPS Grupp
-                <br />
-                <span className="text-[#3abeff]">Puhas, toimiv ja esinduslik kinnisvara</span>
+                {t.h1Line1}
+                {t.h1Line2 ? (
+                  <>
+                    <br />
+                    <span className="text-[#3abeff]">{t.h1Line2}</span>
+                  </>
+                ) : null}
               </h1>
               <p className="text-[15px] text-white leading-[1.75] mb-[30px] max-w-[500px] font-light">
-                SPS Grupp OÜ on 2006. aastal alguse saanud hoolduskoristust ja puhastusteenuseid pakkuv ettevõte.
+                {t.heroDescription}
               </p>
               <div className="flex gap-[10px] mb-[24px] animate-fade-up">
                 <a href="#pakkumine" className="btn-primary text-[15px] py-2.5 px-4" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}>
-                  Küsi pakkumist
+                  {t.ctaButton}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12" />
                     <polyline points="12 5 19 12 12 19" />
@@ -168,7 +120,7 @@ export default function SPSGruppPage() {
               </div>
 
               <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
+                <Link href={localizePath("/", locale)} className="text-white/80 no-underline hover:text-white transition-colors">{t.breadcrumbHome}</Link>
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">SPS Grupp</span>
               </nav>
@@ -181,13 +133,13 @@ export default function SPSGruppPage() {
         <ScrollAnimation animation="fade-up">
           <section className="py-[100px] bg-white">
             <div className="max-w-[1280px] mx-auto px-[5%]">
-              <TwoToneHeading text="Koristusfirma täisteenusega partner" className="mb-8" />
+              <TwoToneHeading text={t.aboutHeading} className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
                 <div>
-                  <strong>Koristusfirma SPS Grupp OÜ pakub täielikku koristusteenuste paketti.</strong> Meilt leiad kõik teenused kinnisvara korrashoiuks ja renoveerimiseks. Koostöös partneritega pakume ka porivaipade vahetust, prügivedu ja lumetõrje teenust.
+                  <strong>{t.aboutP1Bold}</strong> {t.aboutP1}
                 </div>
                 <div>
-                  <strong>Meie eesmärk on pakkuda kvaliteetset, paindlikku ja kliendi vajadustest lähtuvat puhastusteenust konkurentsivõimelise hinnaga.</strong> Alates 2006. aastast oleme teenindanud enam kui 200 klienti.
+                  <strong>{t.aboutP2Bold}</strong> {t.aboutP2}
                 </div>
               </div>
             </div>
@@ -206,27 +158,17 @@ export default function SPSGruppPage() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                   </svg>
-                  Standardid
+                  {t.standardsTag}
                 </div>
-                <TwoToneHeading text="Kõrged standardid" />
+                <TwoToneHeading text={t.standardsHeading} />
               </div>
 
               <div className="text-[16px] text-[#2f353f] leading-[1.8] font-light mb-12 max-w-[900px] mx-auto text-center">
-                SPS Grupp OÜ-l on teenuste kvaliteetseks osutamiseks vajalik kogemus, ressursid ja tahe. Meie eelisteks on:
+                {t.standardsIntro}
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { bold: "Teenuse kvaliteedijuhtimise olemasolu", desc: "süsteemne lähenemine kvaliteedile" },
-                  { bold: "Sissetöötatud usaldusväärne hooldustööde kuluarvestus", desc: "täpne ja läbipaistev" },
-                  { bold: "Tüüpkalkulatsioonid iga tööliigi kohta", desc: "näiteks eur/m² või eur/h" },
-                  { bold: "Operatiivsus ja kiire reageerimine", desc: "" },
-                  { bold: "Ühtne vormiriietus ja professionaalne väljanägemine", desc: "" },
-                  { bold: "Alati korras ning puhtad autod SPS Grupp värvide ja logoga", desc: "" },
-                  { bold: "Kliendisõbralikud hinnad", desc: "konkurentsivõimeline hinnastruktuur" },
-                  { bold: "Teenuste osutamine kliendi soovidest lähtuvalt", desc: "paindlik ja personaalne lähenemine" },
-                  { bold: "ISO 9001:2015 ja ISO 14001:2015 sertifikaadid", desc: "rahvusvaheliselt tunnustatud kvaliteedijuhtimine" },
-                ].map((item, i) => (
+                {t.standards.map((item, i) => (
                   <div
                     key={i}
                     className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-colors duration-300 border border-transparent hover:bg-white/80"
@@ -256,7 +198,7 @@ export default function SPSGruppPage() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
-                  Kvaliteet ja inimesed
+                  {t.qualityTag}
                 </div>
               </div>
 
@@ -268,9 +210,9 @@ export default function SPSGruppPage() {
                       <polyline points="14 2 14 8 20 8" />
                     </svg>
                   </div>
-                  <h3 className="text-[20px] font-bold text-[#17345a] mb-4">Kliendirahulolu ja pidev tagasiside</h3>
+                  <h3 className="text-[20px] font-bold text-[#17345a] mb-4">{t.qualityLeftTitle}</h3>
                   <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                    Kliendi rahulolu on meie jaoks prioriteet. Kogume regulaarset tagasisidet küsimustike abil, analüüsime tulemusi ning viime läbi vajalikke parendustegevusi. Probleemide ilmnemisel rakendame kindlaid protseduure, et need kiiresti ja süsteemselt lahendada. Meie eesmärk on õppida igast olukorrast ja pakkuda alati paremat teenust.
+                    {t.qualityLeftContent}
                   </p>
                 </div>
 
@@ -281,9 +223,9 @@ export default function SPSGruppPage() {
                       <circle cx="9" cy="7" r="4" />
                     </svg>
                   </div>
-                  <h3 className="text-[20px] font-bold text-[#17345a] mb-4">Meie tugevuseks on meie inimesed</h3>
+                  <h3 className="text-[20px] font-bold text-[#17345a] mb-4">{t.qualityRightTitle}</h3>
                   <p className="text-[15px] text-[#5a6474] leading-[1.7]">
-                    SPS Grupp OÜ iga töötaja on vastutav kvaliteedi tagamise ja keskkonnahoidliku tegevuse eest. Hindame töötajate pädevust, pakume koolitusi ja kaasame neid kvaliteedi- ja keskkonnajuhtimisse. Iga uus töötaja saab põhjaliku sisseelamise ning pidevat tuge. Samuti hoolitseme selle eest, et meie infrastruktuur – alates töövahenditest kuni tarkvarani – oleks ajakohane ja töökorras. Turvaline ja toetav töökeskkond on meie jaoks iseenesestmõistetav.
+                    {t.qualityRightContent}
                   </p>
                 </div>
               </div>
@@ -303,27 +245,27 @@ export default function SPSGruppPage() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  Sertifikaadid
+                  {t.certificatesTag}
                 </div>
-                <TwoToneHeading text="Kvaliteet ja keskkonnahoid standardite järgi" />
+                <TwoToneHeading text={t.certificatesHeading} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-center">
                 <div>
                   <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light mb-6">
-                    SPS Grupp lähtub põhimõttest, et kõik ettevõtte tegevus oleks teostatud kindla plaani alusel. Lähtume heast tavast, standarditest ning keskkonnaõigus- ja administratiivaktidest.
+                    {t.certificatesP1}
                   </p>
                   <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light mb-6">
-                    SPS Grupp soovib olla kliendikeskne, tõhustada ettevõtte siseprotsesse, vähendada oma tegevusest tulenevaid negatiivseid keskkonnamõjusid ning pidevalt täiustada ja parendada oma juhtimissüsteemi.
+                    {t.certificatesP2}
                   </p>
                   <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light">
-                    <strong>ISO sertifikaadid on meie kvaliteedi tunnuseks.</strong> SPS Grupp tegutseb rahvusvaheliste kvaliteedi- ja keskkonnastandardite ISO 9001:2015 ja ISO 14001:2015 järgi. Meie tegevus on kaetud vastutuskindlustusega vastavalt kindlustuslepingu tingimustele.
+                    <strong>{t.certificatesP3Bold}</strong> {t.certificatesP3}
                   </p>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden">
                   <Image
                     src="/9001-14001-ENG.webp"
-                    alt="ISO 9001:2015 ja ISO 14001:2015 sertifikaadid"
+                    alt={t.certificatesImageAlt}
                     width={600}
                     height={700}
                     className="w-full h-auto object-contain"
@@ -344,22 +286,22 @@ export default function SPSGruppPage() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M15 4a7 7 0 0 0-7 7 7 7 0 0 0 7 7M7 10h8M7 14h8" />
                   </svg>
-                  Valmisolek
+                  {t.emergencyTag}
                 </div>
-                <TwoToneHeading text="Tööde teostus ja valmisolek hädaolukordadeks" />
+                <TwoToneHeading text={t.emergencyHeading} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light max-w-[1000px] mx-auto">
                 <div className="bg-[#f8fafc] rounded-2xl p-8 transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                  <h3 className="text-[18px] font-bold text-[#17345a] mb-4">Hädaolukordadeks valmisolek</h3>
+                  <h3 className="text-[18px] font-bold text-[#17345a] mb-4">{t.emergencyLeftTitle}</h3>
                   <p>
-                    SPS Grupp OÜ on määratlenud potentsiaalsed hädaolukorrad ja viimastega kaasnevad võimalikud tagajärjed; on analüüsinud hädaolukordade ennetamise ja leevendamise võimalusi ning välja töötanud tegevusjuhised vastavalt Keskkonnajuhtimise protseduurile.
+                    {t.emergencyLeftContent}
                   </p>
                 </div>
                 <div className="bg-[#f8fafc] rounded-2xl p-8 transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                  <h3 className="text-[18px] font-bold text-[#17345a] mb-4">Keskkonna- ja muud nõuded</h3>
+                  <h3 className="text-[18px] font-bold text-[#17345a] mb-4">{t.emergencyRightTitle}</h3>
                   <p>
-                    SPS Grupp OÜ on määratlenud oma tegevust puudutavad keskkonna- ja muud nõuded ning teostab regulaarselt nende ülevaatust vastavalt Siseauditi protseduurile. Lähtume Eesti Standardikeskuse 2011. aastal välja antud Standard EVS 914 normitiividest.
+                    {t.emergencyRightContent}
                   </p>
                 </div>
               </div>
@@ -376,17 +318,13 @@ export default function SPSGruppPage() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
-                  SPS Grupp numbrites
+                  {t.statsTag}
                 </div>
-                <TwoToneHeading text="Kogemus alates 2006. aastast" />
+                <TwoToneHeading text={t.statsHeading} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
-                {[
-                  { number: "300+", label: "töötajat" },
-                  { number: "üle 1 000 000", label: "m² meie hoolduses" },
-                  { number: "ISO 9001", label: "sertifitseeritud kvaliteedijuhtimine" },
-                ].map((stat, i) => (
+                {t.stats.map((stat, i) => (
                   <div
                     key={i}
                     className="bg-white rounded-2xl p-8 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
@@ -403,8 +341,8 @@ export default function SPSGruppPage() {
         {/* CTA - Request Quote */}
         <ScrollAnimation animation="fade-up">
           <FooterCTA
-            title="Tõsta oma ettevõtte välisilme uuele tasemele!"
-            description="Esmane konsultatsioon ja vajaduste kaardistamine. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust."
+            title={t.ctaTitle}
+            description={t.ctaDescription}
           />
         </ScrollAnimation>
 
@@ -415,7 +353,7 @@ export default function SPSGruppPage() {
 
         {/* FAQ */}
         <ScrollAnimation animation="fade-up">
-          <FAQ items={faqItems} />
+          <FAQ items={t.faq} />
         </ScrollAnimation>
       </main>
       <ScrollAnimation animation="fade-up" delay={800}>

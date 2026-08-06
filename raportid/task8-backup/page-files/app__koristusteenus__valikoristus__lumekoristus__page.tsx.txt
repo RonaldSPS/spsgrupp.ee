@@ -1,0 +1,43 @@
+import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etData, en as enData, ru as ruData } from '@/lib/pages/definitions/lumekoristus'
+
+export default function Lumekoristus() {
+  return <LumekoristusPageView locale="et" />;
+}
+
+export function LumekoristusPageView({ locale }: { locale: Locale }) {
+  const data = locale === "et" ? etData : locale === "en" ? enData : ruData;
+  const seoName = locale === "et" ? "Lumekoristus"
+    : locale === "ru" ? "Уборка снега"
+    : "Snow removal";
+  const seoDesc = locale === "et" ? "Lumekoristus ja libedusetõrje Tallinnas. Parklad, kõnniteed, sissepääsud. Hooajaline leping."
+    : locale === "ru" ? "Уборка снега и посыпка в Таллинне. Парковки, тротуары, входы. Сезонный договор."
+    : "Snow removal and gritting in Tallinn. Car parks, pavements, entrances. Seasonal contract.";
+  const homeLabel = locale === "ru" ? "Главная" : locale === "en" ? "Home" : "Avaleht";
+  const cleaningLabel = locale === "ru" ? "Уборка" : locale === "en" ? "Cleaning" : "Koristusteenus";
+  const outdoorLabel = locale === "ru" ? "Уборка территорий" : locale === "en" ? "Outdoor cleaning" : "Välikoristus";
+
+  return (
+    <>
+      <SeoJsonLd etPath="/koristusteenus/valikoristus/lumekoristus" locale={locale} serviceName={seoName} serviceDescription={seoDesc}
+        breadcrumbs={[{ name: homeLabel, etPath: "/" }, { name: cleaningLabel, etPath: "/koristusteenus" }, { name: outdoorLabel, etPath: "/koristusteenus/valikoristus" }, { name: seoName, etPath: "/koristusteenus/valikoristus/lumekoristus" }]}
+        faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
+      />
+      <OutdoorServicePage data={data} locale={locale} tooprotsess={<Tooprotsess
+        title={locale === "et" ? "Kuidas SPS lumekoristuse käivitab?" : locale === "ru" ? "Как SPS запускает уборку снега?" : "How does SPS launch snow clearing?"}
+        intro={locale === "et" ? "SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele." : locale === "ru" ? "SPS начинает с осмотра объекта, чтобы метод, частота и оборудование соответствовали реальным потребностям." : "SPS starts with a site assessment so the method, frequency and equipment match actual needs."}
+        steps={locale === "et" ? [
+          ["Objekti kaardistus", "Märgime parklad, teed, trepid ja prioriteedid."], ["Hooajaleping", "Lepime kokku valmisoleku ja reageerimise."], ["Ilmajälgimine", "Jälgime sadu ja libedusriski."], ["Tööde teostus", "Puhastame ja teeme libedusetõrje."], ["Korduvad kontrollid", "Vajadusel naaseme suurte sadude ajal."],
+        ] as [string,string][] : locale === "ru" ? [
+          ["Обследование объекта", "Отмечаем парковки, дорожки, ступени и приоритеты."], ["Сезонный договор", "Согласовываем готовность и реагирование."], ["Мониторинг погоды", "Отслеживаем осадки и риск гололёда."], ["Выполнение работ", "Очищаем и проводим посыпку."], ["Повторные проверки", "При необходимости возвращаемся во время сильных снегопадов."],
+        ] as [string,string][] : [
+          ["Site survey", "We mark car parks, paths, steps and priorities."], ["Seasonal contract", "We agree readiness and response terms."], ["Weather monitoring", "We track snowfall and ice risk."], ["Service execution", "We clear and grit as agreed."], ["Repeat checks", "We return during heavy snowfall if needed."],
+        ] as [string,string][]}
+        locale={locale}
+      />} />
+    </>
+  );
+}

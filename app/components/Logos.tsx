@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 const logos = [
   "21kool.png",
@@ -36,8 +37,10 @@ const logos = [
 ]
 
 export default function Logos() {
+  const t = useTranslations("trust")
+
   return (
-    <section className="logos-section bg-white border-t border-b border-[rgba(23,52,90,0.05)]" id="kliendid" aria-label="Meie kliendid">
+    <section className="logos-section bg-white border-t border-b border-[rgba(23,52,90,0.05)]" id="kliendid" aria-label={t("clientsAria")}>
       <div className="overflow-hidden w-full" aria-hidden="true">
         <div className="logo-scroll-track flex items-center gap-0 w-max">
           {[...logos, ...logos, ...logos].map((logo, i) => (

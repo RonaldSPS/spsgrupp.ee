@@ -1,0 +1,19 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/valikoristus'
+export default function Page(){return<ValikoristusPageView locale="et"/>}
+export function ValikoristusPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Valikoristus":locale==="ru"?"Уборка и обслуживание территорий":"Outdoor cleaning";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Уборка и обслуживание территорий":locale==="en"?"Outdoor cleaning and grounds care":"koristusteenus";
+const tt=locale==="et"?"Kuidas SPS valikoristust korraldab?":locale==="ru"?"Как SPS организует уборку территорий?":"How does SPS organise outdoor cleaning?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс.":"A clear process.";
+const desc=locale==="et"?"Valikoristusteenused arikinnistutele Tallinnas — muruniitmine, lumekoristus, fassaadipesu ja palju muud.":locale==="ru"?"Услуги по уборке и обслуживанию территорий в Таллинне.":"Outdoor cleaning services for commercial properties in Tallinn.";
+const sEt=[["Vajaduse kaardistus","Selgitame valja vajalikud tood."],["Objekti ulevaatus","Hindame ala ja ligipaasu."],["Teenusplaan","Koostame hoolduskava."],["Leping","Lepime kokku tingimused."],["Teenuse algus","Alustame graafiku jargi."]] as [string,string][];
+const sRu=[["Оценка","Выясняем потребности."],["Осмотр","Оцениваем территорию."],["План","Готовим график."],["Договор","Согласовываем."],["Начало","Начинаем по графику."]] as [string,string][];
+const sEn=[["Needs mapping","We identify required work."],["Site assessment","We assess area and access."],["Service plan","We prepare a schedule."],["Contract","We agree terms."],["Service start","We begin as scheduled."]] as [string,string][];
+return(<><SeoJsonLd etPath="/koristusteenus/valikoristus" locale={locale} serviceName={n} serviceDescription={desc} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"/koristusteenus"},{name:n,etPath:"/koristusteenus/valikoristus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

@@ -1,0 +1,43 @@
+import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etData, en as enData, ru as ruData } from '@/lib/pages/definitions/kojameheteenus'
+
+export default function KojameheTeenus() {
+  return <KojameheteenusPageView locale="et" />;
+}
+
+export function KojameheteenusPageView({ locale }: { locale: Locale }) {
+  const data = locale === "et" ? etData : locale === "en" ? enData : ruData;
+  const seoName = locale === "et" ? "Kojamehe teenus"
+    : locale === "ru" ? "\u0423\u0441\u043B\u0443\u0433\u0438 \u0434\u0432\u043E\u0440\u043D\u0438\u043A\u0430"
+    : "Janitor service";
+  const seoDesc = locale === "et" ? "Kojamehe teenus hoiab sissep\u00E4\u00E4sud, k\u00F5nniteed, pr\u00FCgialad ja hoone \u00FCmbruse korras igal hooajal."
+    : locale === "ru" ? "\u0423\u0441\u043B\u0443\u0433\u0430 \u0434\u0432\u043E\u0440\u043D\u0438\u043A\u0430 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442 \u0432\u0445\u043E\u0434\u044B, \u0442\u0440\u043E\u0442\u0443\u0430\u0440\u044B, \u043C\u0443\u0441\u043E\u0440\u043D\u044B\u0435 \u0437\u043E\u043D\u044B \u0438 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u044E \u0443 \u0437\u0434\u0430\u043D\u0438\u044F \u0432 \u043F\u043E\u0440\u044F\u0434\u043A\u0435 \u0432 \u043B\u044E\u0431\u043E\u0439 \u0441\u0435\u0437\u043E\u043D."
+    : "Janitor service keeps entrances, pavements, bin areas and building surroundings in order all year round.";
+  const homeLabel = locale === "ru" ? "\u0413\u043B\u0430\u0432\u043D\u0430\u044F" : locale === "en" ? "Home" : "Avaleht";
+  const cleaningLabel = locale === "ru" ? "\u0423\u0431\u043E\u0440\u043A\u0430" : locale === "en" ? "Cleaning" : "Koristusteenus";
+  const outdoorLabel = locale === "ru" ? "\u0423\u0431\u043E\u0440\u043A\u0430 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0439" : locale === "en" ? "Outdoor cleaning" : "V\u00E4likoristus";
+
+  return (
+    <>
+      <SeoJsonLd etPath="/koristusteenus/valikoristus/kojameheteenus" locale={locale} serviceName={seoName} serviceDescription={seoDesc}
+        breadcrumbs={[{ name: homeLabel, etPath: "/" }, { name: cleaningLabel, etPath: "/koristusteenus" }, { name: outdoorLabel, etPath: "/koristusteenus/valikoristus" }, { name: seoName, etPath: "/koristusteenus/valikoristus/kojameheteenus" }]}
+        faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
+      />
+      <OutdoorServicePage data={data} locale={locale} tooprotsess={<Tooprotsess
+        title={locale === "et" ? "Kuidas SPS kojamehe teenuse k\u00E4ivitab?" : locale === "ru" ? "\u041A\u0430\u043A SPS \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u0435\u0442 \u0443\u0441\u043B\u0443\u0433\u0443 \u0434\u0432\u043E\u0440\u043D\u0438\u043A\u0430?" : "How does SPS launch the janitor service?"}
+        intro={locale === "et" ? "SPS alustab objekti \u00FClevaatusest, et t\u00F6\u00F6meetod, sagedus ja tehnika vastaksid tegelikule vajadusele." : locale === "ru" ? "SPS \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442 \u0441 \u043E\u0441\u043C\u043E\u0442\u0440\u0430 \u043E\u0431\u044A\u0435\u043A\u0442\u0430, \u0447\u0442\u043E\u0431\u044B \u043C\u0435\u0442\u043E\u0434, \u0447\u0430\u0441\u0442\u043E\u0442\u0430 \u0438 \u043E\u0431\u043E\u0440\u0443\u0434\u043E\u0432\u0430\u043D\u0438\u0435 \u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u043E\u0432\u0430\u043B\u0438 \u0440\u0435\u0430\u043B\u044C\u043D\u044B\u043C \u043F\u043E\u0442\u0440\u0435\u0431\u043D\u043E\u0441\u0442\u044F\u043C." : "SPS starts with a site assessment so the method, frequency and equipment match actual needs."}
+        steps={locale === "et" ? [
+          ["Objekti \u00FClevaatus", "Vaatame \u00FCle alad ja ligip\u00E4\u00E4sud."], ["T\u00F6\u00F6de nimekiri", "Paneme kirja igap\u00E4evased ja hooajalised t\u00F6\u00F6d."], ["Graafik", "Lepime kokku sageduse."], ["Teenuse algus", "Meeskond alustab graafiku j\u00E4rgi."], ["Tagasiside", "T\u00E4psustame t\u00F6\u00F6mahtu vajaduse j\u00E4rgi."],
+        ] as [string,string][] : locale === "ru" ? [
+          ["\u041E\u0441\u043C\u043E\u0442\u0440 \u043E\u0431\u044A\u0435\u043A\u0442\u0430", "\u041E\u0441\u043C\u0430\u0442\u0440\u0438\u0432\u0430\u0435\u043C \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u044E \u0438 \u0434\u043E\u0441\u0442\u0443\u043F\u044B."], ["\u0421\u043F\u0438\u0441\u043E\u043A \u0440\u0430\u0431\u043E\u0442", "\u0421\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u043C \u043F\u0435\u0440\u0435\u0447\u0435\u043D\u044C \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u044B\u0445 \u0438 \u0441\u0435\u0437\u043E\u043D\u043D\u044B\u0445 \u0440\u0430\u0431\u043E\u0442."], ["\u0413\u0440\u0430\u0444\u0438\u043A", "\u0421\u043E\u0433\u043B\u0430\u0441\u043E\u0432\u044B\u0432\u0430\u0435\u043C \u0447\u0430\u0441\u0442\u043E\u0442\u0443."], ["\u041D\u0430\u0447\u0430\u043B\u043E \u0440\u0430\u0431\u043E\u0442", "\u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442 \u043F\u043E \u0433\u0440\u0430\u0444\u0438\u043A\u0443."], ["\u041E\u0431\u0440\u0430\u0442\u043D\u0430\u044F \u0441\u0432\u044F\u0437\u044C", "\u041A\u043E\u0440\u0440\u0435\u043A\u0442\u0438\u0440\u0443\u0435\u043C \u043E\u0431\u044A\u0451\u043C \u043F\u043E \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0441\u0442\u0438."],
+        ] as [string,string][] : [
+          ["Site inspection", "We review the areas and access points."], ["Task list", "We list daily and seasonal tasks."], ["Schedule", "We agree the frequency."], ["Service launch", "The team begins as agreed."], ["Feedback", "We adjust the scope as needed."],
+        ] as [string,string][]}
+        locale={locale}
+      />} />
+    </>
+  );
+}

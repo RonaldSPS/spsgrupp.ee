@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/suitsu-ja-tulekahjustuste-puhastamine'
+export default function Page(){return<SuitsuJaTulekahjustustePuhastaminePageView locale="et"/>}
+export function SuitsuJaTulekahjustustePuhastaminePageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Suitsu- ja tulekahjustuste puhastamine":locale==="ru"?"Устранение последствий пожара":"Fire and smoke damage restoration";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Специализированная уборка":locale==="en"?"Cleaning Services":"puhastusteenused";
+const tt=locale==="et"?"Kuidas SPS suitsu- ja tulekahjustuste puhastamise teenust korraldab?":locale==="ru"?"Kuidas SPS suitsu- ja tulekahjustuste puhastamise teenust korraldab?":"Kuidas SPS suitsu- ja tulekahjustuste puhastamise teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Ülevaatus","Hindame kahjustuse ulatust."],["Meetodi valik","Määrame puhastusviisi."],["Testpuhastus","Kontrollime meetodit."],["Puhitöö","Puhastame pinnad."],["Soovitus","Järgmised sammud."]] as [string,string][];
+const sRu=[["Ülevaatus","Hindame kahjustuse ulatust."],["Meetodi valik","Määrame puhastusviisi."],["Testpuhastus","Kontrollime meetodit."],["Puhitöö","Puhastame pinnad."],["Soovitus","Järgmised sammud."]] as [string,string][];
+const sEn=[["Ülevaatus","Hindame kahjustuse ulatust."],["Meetodi valik","Määrame puhastusviisi."],["Testpuhastus","Kontrollime meetodit."],["Puhitöö","Puhastame pinnad."],["Soovitus","Järgmised sammud."]] as [string,string][];
+return(<><SeoJsonLd etPath="/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Suitsu- ja tulekahjustuste puhastamine Tallinnas.":locale==="ru"?"Устранение последствий пожара в Таллинне.":"Fire and smoke damage restoration in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"puhastusteenused"},{name:n,etPath:"/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

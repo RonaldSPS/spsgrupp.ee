@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/desinfitseerimine'
+export default function Page(){return<DesinfitseeriminePageView locale="et"/>}
+export function DesinfitseeriminePageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Professionaalne desinfitseerimine":locale==="ru"?"Дезинфекция":"Disinfection services";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Специализированная уборка":locale==="en"?"Cleaning Services":"puhastusteenused";
+const tt=locale==="et"?"Kuidas SPS desinfitseerimise teenust korraldab?":locale==="ru"?"Kuidas SPS desinfitseerimise teenust korraldab?":"Kuidas SPS desinfitseerimise teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Riskide kaardistus","Täpsustame pinnad."],["Puhastus","Vajadusel eelpuhastus."],["Desinfitseerimine","Kokkulepitud vahendid."],["Mõjuaeg","Arvestame toimimisaja."],["Graafik","Soovitame korduse."]] as [string,string][];
+const sRu=[["Riskide kaardistus","Täpsustame pinnad."],["Puhastus","Vajadusel eelpuhastus."],["Desinfitseerimine","Kokkulepitud vahendid."],["Mõjuaeg","Arvestame toimimisaja."],["Graafik","Soovitame korduse."]] as [string,string][];
+const sEn=[["Riskide kaardistus","Täpsustame pinnad."],["Puhastus","Vajadusel eelpuhastus."],["Desinfitseerimine","Kokkulepitud vahendid."],["Mõjuaeg","Arvestame toimimisaja."],["Graafik","Soovitame korduse."]] as [string,string][];
+return(<><SeoJsonLd etPath="/puhastusteenused/koroonaviiruse-jargne-puhastus" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Professionaalne desinfitseerimine Tallinnas.":locale==="ru"?"Профессиональная дезинфекция в Таллинне.":"Professional disinfection in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"puhastusteenused"},{name:n,etPath:"/puhastusteenused/koroonaviiruse-jargne-puhastus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

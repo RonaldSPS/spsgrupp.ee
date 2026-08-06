@@ -139,26 +139,53 @@ export async function saveJobTranslations(
 
   if (rows.length === 0) return
 
-  await db.insert(jobTranslations).values(rows).onConflictDoUpdate({
-    target: [jobTranslations.jobId, jobTranslations.language],
-    set: {
-      title: sql`excluded.title`,
-      subtitle: sql`excluded.subtitle`,
-      companyDescription: sql`excluded.company_description`,
-      tasks: sql`excluded.tasks`,
-      requirements: sql`excluded.requirements`,
-      benefits: sql`excluded.benefits`,
-      location: sql`excluded.location`,
-      salaryDetails: sql`excluded.salary_details`,
-      workTime: sql`excluded.work_time`,
-      workTimeDetails: sql`excluded.work_time_details`,
-      contactRole: sql`excluded.contact_role`,
-      slug: sql`excluded.slug`,
-      sourceHash: sql`excluded.source_hash`,
+  try {
+    await db.insert(jobTranslations).values(rows).onConflictDoUpdate({
+      target: [jobTranslations.jobId, jobTranslations.language],
+      set: {
+        title: sql`excluded.title`,
+        subtitle: sql`excluded.subtitle`,
+        companyDescription: sql`excluded.company_description`,
+        tasks: sql`excluded.tasks`,
+        requirements: sql`excluded.requirements`,
+        benefits: sql`excluded.benefits`,
+        location: sql`excluded.location`,
+        salaryDetails: sql`excluded.salary_details`,
+        workTime: sql`excluded.work_time`,
+        workTimeDetails: sql`excluded.work_time_details`,
+        contactRole: sql`excluded.contact_role`,
+        slug: sql`excluded.slug`,
+        sourceHash: sql`excluded.source_hash`,
+        status: "auto",
+        updatedAt: new Date(),
+      },
+    })
+  } catch {
+    const data = await readJobTranslationsJson()
+    const existing = data.jobs[jobId] || []
+    const jsonRows = rows.map((row) => ({
+      title: row.title,
+      subtitle: row.subtitle,
+      companyDescription: row.companyDescription,
+      tasks: row.tasks,
+      requirements: row.requirements,
+      benefits: row.benefits,
+      location: row.location,
+      salaryDetails: row.salaryDetails,
+      workTime: row.workTime,
+      workTimeDetails: row.workTimeDetails,
+      contactRole: row.contactRole,
+      slug: row.slug,
+      language: row.language,
+      sourceHash: hash,
       status: "auto",
-      updatedAt: new Date(),
-    },
-  })
+      updatedAt: new Date().toISOString(),
+    } satisfies JobTranslationRow))
+    const nextByLanguage = new Map(existing.map((row) => [row.language, row]))
+    for (const row of jsonRows) nextByLanguage.set(row.language, row)
+    data.jobs[jobId] = Array.from(nextByLanguage.values())
+    await writeJobTranslationsJson(data)
+  }
 }
 
 export async function markJobTranslationsStale(jobId: string, hash: string): Promise<void> {
@@ -172,12 +199,21 @@ export async function markJobTranslationsStale(jobId: string, hash: string): Pro
     return
   }
 
-  await db.update(jobTranslations)
-    .set({ status: "stale" })
-    .where(and(
-      eq(jobTranslations.jobId, jobId),
-      sql`${jobTranslations.sourceHash} IS DISTINCT FROM ${hash}`,
+  try {
+    await db.update(jobTranslations)
+      .set({ status: "stale" })
+      .where(and(
+        eq(jobTranslations.jobId, jobId),
+        sql`${jobTranslations.sourceHash} IS DISTINCT FROM ${hash}`,
+      ))
+  } catch {
+    const data = await readJobTranslationsJson()
+    const rows = data.jobs[jobId] || []
+    data.jobs[jobId] = rows.map((row) => (
+      row.sourceHash && row.sourceHash !== hash ? { ...row, status: "stale" } : row
     ))
+    await writeJobTranslationsJson(data)
+  }
 }
 
 export async function getJobTranslationsByLanguage(
@@ -192,10 +228,19 @@ export async function getJobTranslationsByLanguage(
     )
   }
 
-  const rows = await db.select().from(jobTranslations)
-    .where(eq(jobTranslations.language, language))
+  try {
+    const rows = await db.select().from(jobTranslations)
+      .where(eq(jobTranslations.language, language))
 
-  return rows.map((row) => ({ ...mapJobTranslation(row), jobId: row.jobId }))
+    return rows.map((row) => ({ ...mapJobTranslation(row), jobId: row.jobId }))
+  } catch {
+    const data = await readJobTranslationsJson()
+    return Object.entries(data.jobs).flatMap(([jobId, rows]) =>
+      rows
+        .filter((row) => row.language === language)
+        .map((row) => ({ ...row, jobId })),
+    )
+  }
 }
 
 export async function getJobTranslation(jobId: string, language: string): Promise<JobTranslationRow | null> {
@@ -229,15 +274,24 @@ export async function getJobTranslationsBulk(
     return result
   }
 
-  const rows = await db.select().from(jobTranslations)
-    .where(inArray(jobTranslations.jobId, jobIds))
+  try {
+    const rows = await db.select().from(jobTranslations)
+      .where(inArray(jobTranslations.jobId, jobIds))
 
-  const result: Record<string, JobTranslationRow[]> = {}
-  for (const row of rows) {
-    result[row.jobId] ??= []
-    result[row.jobId].push(mapJobTranslation(row))
+    const result: Record<string, JobTranslationRow[]> = {}
+    for (const row of rows) {
+      result[row.jobId] ??= []
+      result[row.jobId].push(mapJobTranslation(row))
+    }
+    return result
+  } catch {
+    const data = await readJobTranslationsJson()
+    const result: Record<string, JobTranslationRow[]> = {}
+    for (const id of jobIds) {
+      if (data.jobs[id]) result[id] = data.jobs[id]
+    }
+    return result
   }
-  return result
 }
 
 export async function getJobTranslations(jobId: string): Promise<JobTranslationRow[]> {
@@ -246,10 +300,15 @@ export async function getJobTranslations(jobId: string): Promise<JobTranslationR
     return data.jobs[jobId] || []
   }
 
-  const rows = await db.select().from(jobTranslations)
-    .where(eq(jobTranslations.jobId, jobId))
+  try {
+    const rows = await db.select().from(jobTranslations)
+      .where(eq(jobTranslations.jobId, jobId))
 
-  return rows.map(mapJobTranslation)
+    return rows.map(mapJobTranslation)
+  } catch {
+    const data = await readJobTranslationsJson()
+    return data.jobs[jobId] || []
+  }
 }
 
 export async function getJobTranslationBySlug(
@@ -265,15 +324,24 @@ export async function getJobTranslationBySlug(
     return null
   }
 
-  const rows = await db.select().from(jobTranslations)
-    .where(and(
-      eq(jobTranslations.language, language),
-      eq(jobTranslations.slug, slug),
-    ))
-    .limit(1)
+  try {
+    const rows = await db.select().from(jobTranslations)
+      .where(and(
+        eq(jobTranslations.language, language),
+        eq(jobTranslations.slug, slug),
+      ))
+      .limit(1)
 
-  if (!rows.length) return null
-  return { ...mapJobTranslation(rows[0]), jobId: rows[0].jobId }
+    if (!rows.length) return null
+    return { ...mapJobTranslation(rows[0]), jobId: rows[0].jobId }
+  } catch {
+    const data = await readJobTranslationsJson()
+    for (const [jobId, rows] of Object.entries(data.jobs)) {
+      const row = rows.find((item) => item.language === language && item.slug === slug)
+      if (row) return { ...row, jobId }
+    }
+    return null
+  }
 }
 
 function mapJobTranslation(row: typeof jobTranslations.$inferSelect): JobTranslationRow {

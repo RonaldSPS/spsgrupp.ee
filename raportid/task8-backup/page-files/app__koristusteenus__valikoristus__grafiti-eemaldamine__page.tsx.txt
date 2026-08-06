@@ -1,0 +1,19 @@
+﻿import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etData, en as enData, ru as ruData } from '@/lib/pages/definitions/grafiti-eemaldamine'
+export default function GrafitiEemaldamine(){return<GrafitiEemaldaminePageView locale="et"/>}
+export function GrafitiEemaldaminePageView({locale}:{locale:Locale}){
+  const d=locale==="et"?etData:locale==="en"?enData:ruData;
+  const n=locale==="et"?"Grafiti eemaldamine":locale==="ru"?"Удаление граффити":"Graffiti removal";
+  const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+  const cl=locale==="ru"?"Уборка":locale==="en"?"Cleaning":"Koristusteenus";
+  const ol=locale==="ru"?"Уборка территорий":locale==="en"?"Outdoor cleaning":"Välikoristus";
+  const tt=locale==="et"?"Kuidas SPS grafitit eemaldab?":locale==="ru"?"Как SPS удаляет граффити?":"How does SPS remove graffiti?";
+  const sEt=[["Fotod ja hindamine","Dokumenteerime ja hindame pinna."],["Meetodi valik","Valime lahusti, surve või käsitöö."],["Eemaldus","Eemaldame grafiti võimalikult pinnasäästlikult."],["Järelpesu","Puhastame tööala."],["Kaitse soovitus","Vajadusel soovitame grafitivastast kaitsekihti."]] as [string,string][];
+  const sRu=[["Фото и оценка","Документируем и оцениваем поверхность."],["Выбор метода","Выбираем растворитель, давление или ручную работу."],["Удаление","Удаляем граффити бережно к поверхности."],["Финишная очистка","Очищаем рабочую зону."],["Рекомендация защиты","При необходимости рекомендуем защитное покрытие."]] as [string,string][];
+  const sEn=[["Photos and assessment","We document and assess the surface."],["Method selection","We choose solvent, pressure or manual work."],["Removal","We remove the graffiti as gently as possible."],["Final clean","We clean the work area."],["Protection recommendation","We recommend anti-graffiti coating where needed."]] as [string,string][];
+  return(<><SeoJsonLd etPath="/koristusteenus/valikoristus/grafiti-eemaldamine" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Grafiti eemaldamine ärihoonetelt Tallinnas.":locale==="ru"?"Удаление граффити с коммерческих зданий в Таллинне.":"Graffiti removal from commercial buildings in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:cl,etPath:"/koristusteenus"},{name:ol,etPath:"/koristusteenus/valikoristus"},{name:n,etPath:"/koristusteenus/valikoristus/grafiti-eemaldamine"}]} faq={d.faq.map(f=>({question:f.q,answer:f.a}))}/>
+  <OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={locale==="et"?"SPS alustab objekti ülevaatusest.":locale==="ru"?"SPS начинает с осмотра объекта.":"SPS starts with a site assessment."} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);
+}

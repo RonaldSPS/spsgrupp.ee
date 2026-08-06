@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/eskalaatorite-suvapuhastus'
+export default function Page(){return<EskalaatoriteSuvapuhastusPageView locale="et"/>}
+export function EskalaatoriteSuvapuhastusPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Eskalaatorite süvapuhastus":locale==="ru"?"Глубокая чистка эскалаторов":"Escalator deep cleaning";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Специализированная уборка":locale==="en"?"Cleaning Services":"puhastusteenused";
+const tt=locale==="et"?"Kuidas SPS eskalaatorite süvapuhastuse teenust korraldab?":locale==="ru"?"Kuidas SPS eskalaatorite süvapuhastuse teenust korraldab?":"Kuidas SPS eskalaatorite süvapuhastuse teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Ajakava","Lepime kokku tööaja."],["Ettevalmistus","Piirame tööala."],["Puhastus","Puhastame astmed ja pinnad."],["Kuivatus","Jälgime kasutuskõlblikkust."],["Üleandmine","Kontrollime tulemuse."]] as [string,string][];
+const sRu=[["Ajakava","Lepime kokku tööaja."],["Ettevalmistus","Piirame tööala."],["Puhastus","Puhastame astmed ja pinnad."],["Kuivatus","Jälgime kasutuskõlblikkust."],["Üleandmine","Kontrollime tulemuse."]] as [string,string][];
+const sEn=[["Ajakava","Lepime kokku tööaja."],["Ettevalmistus","Piirame tööala."],["Puhastus","Puhastame astmed ja pinnad."],["Kuivatus","Jälgime kasutuskõlblikkust."],["Üleandmine","Kontrollime tulemuse."]] as [string,string][];
+return(<><SeoJsonLd etPath="/puhastusteenused/eskalaatorite-suvapuhastus" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Eskalaatorite suvapuhastus Tallinnas.":locale==="ru"?"Глубокая чистка эскалаторов в Таллинне.":"Escalator deep cleaning in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"puhastusteenused"},{name:n,etPath:"/puhastusteenused/eskalaatorite-suvapuhastus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

@@ -42,37 +42,6 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Kui sageli peaks äriruume koristama?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Enamikule ettevõtetele soovitame koristust 3–5 korda nädalas."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kuidas kujuneb koristuse hind?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hind sõltub ruumide suurusest, koristuse sagedusest ja eritööde vajadusest."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Miks valida SPS Grupp?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tegutseme alates 2006. aastast, meil on ISO 9001 ja ISO 14001 sertifitseeritud juhtimissüsteemid ning enam kui 300 töötajat."
-      }
-    }
-  ]
-};
-
 const breadcrumbLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -91,36 +60,46 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: renderLdJson(jsonLd) }}
-      />
-      <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: renderLdJson(breadcrumbLd) }}
       />
       <Navbar />
       <main id="main-content" tabIndex={-1}>
-        <Hero />
-        <ScrollAnimation animation="fade-up" delay={100}>
-          <Logos />
-        </ScrollAnimation>
-        <ScrollAnimation animation="fade-up" delay={200}>
-          <Trust />
-        </ScrollAnimation>
-        <ScrollAnimation animation="fade-up" delay={300}>
-          <Testimonials />
-        </ScrollAnimation>
-        <ScrollAnimation animation="fade-up" delay={400}>
-          <Industries />
-        </ScrollAnimation>
-        <ScrollAnimation animation="fade-up" delay={500}>
-          <Services />
-        </ScrollAnimation>
-        <ScrollAnimation animation="fade-up" delay={600}>
-          <ContactForm />
-        </ScrollAnimation>
-        <ScrollAnimation animation="fade-up" delay={700}>
-          <FAQ />
-        </ScrollAnimation>
+        <section data-section="hero"><Hero /></section>
+        <section data-section="logos">
+          <ScrollAnimation animation="fade-up" delay={100}>
+            <Logos />
+          </ScrollAnimation>
+        </section>
+        <section data-section="trust">
+          <ScrollAnimation animation="fade-up" delay={200}>
+            <Trust />
+          </ScrollAnimation>
+        </section>
+        <section data-section="testimonials">
+          <ScrollAnimation animation="fade-up" delay={300}>
+            <Testimonials />
+          </ScrollAnimation>
+        </section>
+        <section data-section="industries">
+          <ScrollAnimation animation="fade-up" delay={400}>
+            <Industries />
+          </ScrollAnimation>
+        </section>
+        <section data-section="services">
+          <ScrollAnimation animation="fade-up" delay={500}>
+            <Services />
+          </ScrollAnimation>
+        </section>
+        <section data-section="contact-form">
+          <ScrollAnimation animation="fade-up" delay={600}>
+            <ContactForm />
+          </ScrollAnimation>
+        </section>
+        <section data-section="faq">
+          <ScrollAnimation animation="fade-up" delay={700}>
+            <FAQ />
+          </ScrollAnimation>
+        </section>
       </main>
       <ScrollAnimation animation="fade-up" delay={800}>
         <Footer />

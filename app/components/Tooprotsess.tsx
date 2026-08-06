@@ -1,18 +1,27 @@
 "use client";
 
+import type { Locale } from "@/lib/slug-map";
+
 interface Props {
   title: string;
   intro: string;
   steps: [string, string][];
+  locale?: Locale;
 }
 
-export default function Tooprotsess({ title, intro, steps }: Props) {
+const sectionTagLabels: Record<Locale, string> = {
+  et: "Tööprotsess",
+  en: "Work Process",
+  ru: "Рабочий процесс",
+};
+
+export default function Tooprotsess({ title, intro, steps, locale = "et" }: Props) {
   return (
     <section className="py-[90px] bg-[#eceef1]">
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-12 items-start">
           <div className="max-w-[780px]">
-            <div className="section-tag">Tööprotsess</div>
+            <div className="section-tag">{sectionTagLabels[locale]}</div>
             <h2 className="section-title font-bold mb-5">{title}</h2>
             <p className="text-[17px] leading-[1.75] text-[#2f353f] font-light">{intro}</p>
           </div>

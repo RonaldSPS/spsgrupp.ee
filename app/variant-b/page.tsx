@@ -192,7 +192,7 @@ const Testimonials = () => (
       
       <div className="grid md:grid-cols-3 gap-8">
         {[
-          { quote: "SPS on partner, kellele saame kindlad olla. Puhtus on alati tagatud!", author: "Teledyne Flir", role: "Tallinn" },
+          { quote: "SPS on partner, kellele saame loota. Koostöö aitab hoida meie ruumid järjepidevalt korras.", author: "Teledyne Flir", role: "Tallinn" },
           { quote: "Professionaalne meeskond ja suurepärane tulemus. Soovitame!", author: "AS Norma", role: "Tootmine" },
           { quote: "Paindlik ja töökindel teenus juba üle 5 aasta.", author: "Nordic Hotels", role: "Hotellindus" },
         ].map((t, i) => (

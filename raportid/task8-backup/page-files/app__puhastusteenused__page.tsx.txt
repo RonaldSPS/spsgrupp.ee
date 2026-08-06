@@ -1,0 +1,22 @@
+﻿import SeoJsonLd from "../components/SeoJsonLd";
+import Tooprotsess from "../components/Tooprotsess";
+import OutdoorServicePage from "../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/puhastusteenused'
+export default function Puhastusteenused(){return<PuhastusteenusedPageView locale="et"/>}
+export function PuhastusteenusedPageView({locale}:{locale:Locale}){
+  const d=locale==="et"?etD:locale==="en"?enD:ruD;
+  const n=locale==="et"?"Puhastusteenused":locale==="ru"?"Специализированная уборка":"Specialist cleaning services";
+  const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+  const tt=locale==="et"?"Kuidas SPS puhastusteenuseid korraldab?":locale==="ru"?"Как SPS организует специализированную уборку?":"How does SPS arrange specialist cleaning?";
+  const sEt=[["Vajaduse hindamine","Hindame pinna seisukorra ja mustuse."],["Meetodi valik","Valime sobiva puhastustehnoloogia."],["Tööaja kokkulepe","Planeerime töö segamatult."],["Teostus","Teostame puhastuse professionaalse tehnikaga."],["Järelkontroll","Kontrollime tulemuse vastavust."]] as [string,string][];
+  const sRu=[["Оценка","Оцениваем состояние поверхности."],["Выбор метода","Выбираем технологию очистки."],["Согласование","Планируем работу."],["Выполнение","Выполняем профессионально."],["Контроль","Проверяем результат."]] as [string,string][];
+  const sEn=[["Assessment","We assess surface condition."],["Method","We choose cleaning technology."],["Schedule","We plan without disruption."],["Execution","Professional equipment."],["Check","We verify the result."]] as [string,string][];
+  return(<><SeoJsonLd etPath="/puhastusteenused" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Puhastusteenused äriklientidele Tallinnas.":locale==="ru"?"Специализированная уборка в Таллинне.":"Specialist cleaning services in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:n,etPath:"/puhastusteenused"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+  <OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={locale==="et"?"SPS alustab objekti ülevaatusest.":locale==="ru"?"SPS начинает с осмотра объекта.":"SPS starts with a site assessment."} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);
+}
+
+
+
+
+

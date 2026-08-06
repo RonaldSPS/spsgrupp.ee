@@ -2,6 +2,19 @@
 
 > **Read before adding any new feature.** Update when introducing a new pattern.
 
+## Page system (ET/EN/RU marketing site)
+
+All 36 public pages render their exact Estonian design in every locale. There is one way to build a page — do not reintroduce per-page locale ternaries or a generic localized-content renderer (the retired `LocalizedContentPage`).
+
+- **`lib/pages/registry.ts`** — single source of truth: every public page's ET path, EN/RU slugs, parent (breadcrumbs), hero image, and (only for messages-driven pages) content namespace. `lib/slug-map.ts` and the hero/namespace maps in `lib/localized-content.ts` derive from it. **Add new pages here first.**
+- **Page content lives in `lib/pages/definitions/<slug>.ts`:**
+  - 26 detail pages export `serviceDetail: ServiceDetailDefs` — per-locale `{ data, seo, tooprotsess, breadcrumbs }` × et/en/ru (`lib/pages/definitions/index.ts` maps etPath → definition). Note: `seo` feeds the JSON-LD Service schema only; HTML `<title>`/meta descriptions live in `lib/metadata-registry.ts`.
+  - kontakt/sps-grupp export fully-resolved per-locale `KontaktPageData`/`SpsGruppPageData` with dedicated templates.
+- **Templates:** detail pages are 11-line shells rendering `app/components/templates/ServiceDetailTemplate.tsx` (server component: SeoJsonLd + OutdoorServicePage + Tooprotsess wiring + locale selection). `/koristusteenus` hub, the 4 koristus detail pages and `/tule-meile-toole` are messages-driven PageViews; reviews and job offers are DB-backed (Supabase + JSON fallback in `lib/translate-*.ts`).
+- **`messages/en.json` / `ru.json`** = next-intl UI strings + the 6 PageView-consumed namespaces + `privacyPolicy`/`reviews`/`blogOverview`. Page content does NOT belong here.
+- **Metadata:** ET from `pageMetadata`; EN/RU from `localizedPageMetadata` (both in `lib/metadata-registry.ts`, checked first). `/tule-meile-toole` still reads `careers.seo` via `getLocalizedSeoMetadata`. Pages with no localized entry use the live-URL inventory / ET metadata (`lib/seo-metadata.ts`).
+- **Gates:** `npm run i18n:validate` (registry integrity, namespace key-sets, service-detail definition shapes, ET-leak guard on tooprotsess), `npm run i18n:parity` (rendered structure parity; needs a running server), byte-diff capture/compare against baseline HTML for refactors (`raportid/` + temp scripts).
+
 ## Folder structure
 
 ```

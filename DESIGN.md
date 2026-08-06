@@ -48,6 +48,8 @@ Define once in `app/globals.css` as CSS variables, consume via Tailwind.
 - **Font:** [e.g. Inter via `next/font/google`]
 - **Display font (optional):** [if using a separate heading font]
 
+> **Hard floor (project rule):** no visible text may be smaller than **15px**, on any page, ever. Use `text-[15px]` where `text-sm` would go below the floor.
+
 | Use | Class | Size | Weight |
 |---|---|---|---|
 | Display (hero) | `text-5xl md:text-6xl font-bold tracking-tight` | 48-60px | 700 |
@@ -55,8 +57,7 @@ Define once in `app/globals.css` as CSS variables, consume via Tailwind.
 | H2 | `text-3xl font-semibold tracking-tight` | 30px | 600 |
 | H3 | `text-xl font-semibold` | 20px | 600 |
 | Body | `text-base leading-relaxed` | 16px | 400 |
-| Small | `text-sm text-muted-foreground` | 14px | 400 |
-| Caption | `text-xs text-muted-foreground uppercase tracking-wide` | 12px | 400 |
+| Small (floor) | `text-[15px] text-muted-foreground` | 15px | 400 |
 
 ## Spacing & layout
 

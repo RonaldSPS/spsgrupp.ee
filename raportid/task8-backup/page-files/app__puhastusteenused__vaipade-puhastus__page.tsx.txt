@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/vaipade-puhastus'
+export default function Page(){return<VaipadePuhastusPageView locale="et"/>}
+export function VaipadePuhastusPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Vaipade puhastus":locale==="ru"?"Чистка ковров":"Carpet cleaning";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Специализированная уборка":locale==="en"?"Specialist cleaning":"puhastusteenused";
+const tt=locale==="et"?"Kuidas SPS vaipade puhastust korraldab?":locale==="ru"?"Как SPS организует чистку ковров?":"How does SPS organise carpet cleaning?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс.":"A clear process.";
+const sEt=[["Ülevaatus","Hindame vaiba tüüpi."],["Eeltöötlus","Töötleme plekid."],["Puhitus","Sügavpuhastus."],["Kuivamine","Planeerime pausi."],["Järelkontroll","Kontrollime."]] as [string,string][];
+const sRu=[["Осмотр","Оцениваем тип ковра."],["Обработка","Обрабатываем пятна."],["Чистка","Глубокая чистка."],["Сушка","Планируем перерыв."],["Контроль","Проверяем."]] as [string,string][];
+const sEn=[["Assessment","Assess carpet type."],["Pre-treatment","Treat stains."],["Cleaning","Deep clean."],["Drying","Plan downtime."],["Check","Review result."]] as [string,string][];
+return(<><SeoJsonLd etPath="/puhastusteenused/vaipade-puhastus" locale={locale} serviceName={n} serviceDescription="" breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"/puhastusteenused"},{name:n,etPath:"/puhastusteenused/vaipade-puhastus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

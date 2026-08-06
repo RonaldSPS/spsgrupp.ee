@@ -235,7 +235,7 @@ export default function Navbar() {
                             <ul className="flex flex-col gap-1">
                               {sub.items.map((item, itemIdx) => (
                                 <li key={itemIdx} role="none">
-                                  <Link href={localeHref(item.href)} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${currentEtPath === item.href ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
+                                  <Link href={localeHref(item.href)} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${currentEtPath === item.href.replace(/\/+$/, "") ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
                                     {item.label}
                                   </Link>
                                 </li>
@@ -246,7 +246,7 @@ export default function Navbar() {
                           <ul className="flex flex-col gap-1 pl-3">
                             {col.items.map((item, itemIdx) => (
                               <li key={itemIdx} role="none">
-                                <Link href={localeHref(item.href)} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${currentEtPath === item.href ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
+                                <Link href={localeHref(item.href)} role="menuitem" className={`text-[15px] no-underline rounded-lg px-2 py-0.5 -mx-2 transition-colors ${currentEtPath === item.href.replace(/\/+$/, "") ? "text-[#17345a] font-bold bg-[#eef7fc]" : "text-[#2f353f] hover:text-[#17345a] hover:bg-gray-100"}`}>
                                   {item.label}
                                 </Link>
                               </li>
@@ -379,7 +379,7 @@ export default function Navbar() {
                             <ul id={`mobile-section-${sub.title.replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pl-3">
                               {sub.items.map((item, itemIdx) => (
                                 <li key={itemIdx}>
-                                  <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
+                                  <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href.replace(/\/+$/, "") ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
                                     {item.label}
                                   </Link>
                                 </li>
@@ -405,7 +405,7 @@ export default function Navbar() {
                             <ul id={`mobile-section-${sub.title.replace(/\s+/g, "-")}`} className="flex flex-col gap-1 pl-3">
                               {sub.items.map((item, itemIdx) => (
                                 <li key={itemIdx}>
-                                  <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
+                                  <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href.replace(/\/+$/, "") ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
                                     {item.label}
                                   </Link>
                                 </li>
@@ -437,7 +437,7 @@ export default function Navbar() {
                               <ul id={`mobile-section-${section.label}`} className="flex flex-col gap-1 pl-3">
                                 {(section.items || []).map((item, itemIdx) => (
                                   <li key={itemIdx}>
-                                    <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
+                                    <Link href={localeHref(item.href)} className={`block py-2.5 px-3 rounded-lg hover:bg-gray-100 min-h-[44px] flex items-center ${currentEtPath === item.href.replace(/\/+$/, "") ? "bg-[#eef7fc] text-[#17345a] font-bold" : "text-[#2f353f]"}`} onClick={closeMobile}>
                                       {item.label}
                                     </Link>
                                   </li>

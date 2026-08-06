@@ -1,0 +1,22 @@
+﻿import SeoJsonLd from "../components/SeoJsonLd";
+import Tooprotsess from "../components/Tooprotsess";
+import OutdoorServicePage from "../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/remonditeenused-tallinnas'
+export default function Remonditeenused(){return<RemonditeenusedPageView locale="et"/>}
+export function RemonditeenusedPageView({locale}:{locale:Locale}){
+  const d=locale==="et"?etD:locale==="en"?enD:ruD;
+  const n=locale==="et"?"Remonditeenused Tallinnas":locale==="ru"?"Ремонтные услуги в Таллинне":"Renovation services in Tallinn";
+  const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+  const tt=locale==="et"?"Kuidas SPS remonditeenuseid korraldab?":locale==="ru"?"Как SPS организует ремонтные услуги?":"How does SPS arrange renovation services?";
+  const sEt=[["Vajaduse kaardistus","Täpsustame tööde ulatuse ja prioriteedid."],["Objekti ülevaatus","Hindame tehnilist seisu ja ligipääsu."],["Tööplaan","Koostame ajakava ja vastutuse."],["Teostus","Korraldame tööd kokkulepitud etappides."],["Üleandmine","Kontrollime tulemuse ja teeme vajadusel järelkoristuse."]] as [string,string][];
+  const sRu=[["Определение объёма","Уточняем объём и приоритеты."],["Осмотр объекта","Оцениваем состояние и доступ."],["План работ","Составляем график."],["Выполнение","Организуем поэтапно."],["Сдача","Проверяем результат."]] as [string,string][];
+  const sEn=[["Scope definition","We clarify scope and priorities."],["Site inspection","We assess condition and access."],["Work plan","We prepare a schedule."],["Execution","We organise work in stages."],["Handover","We check the result."]] as [string,string][];
+  return(<><SeoJsonLd etPath="/remonditeenused-tallinnas" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Remonditeenused ärikinnisvarale Tallinnas. Elektri-, toru-, viimistlus- ja muud remonditööd.":locale==="ru"?"Ремонтные услуги в Таллинне. Электрика, сантехника, отделка.":"Renovation services for commercial property in Tallinn. Electrical, plumbing, finishing and more."} breadcrumbs={[{name:h,etPath:"/"},{name:n,etPath:"/remonditeenused-tallinnas"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+  <OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier."} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);
+}
+
+
+
+
+

@@ -12,7 +12,9 @@
     "seo:check:prod": "tsx scripts/seo-check.ts --base-url=https://spsgrupp.ee",
     "test:url-utils": "tsx --test lib/__tests__/url-utils.test.ts",
     "test:json-ld": "tsx --test lib/__tests__/json-ld-generator.test.ts",
-    "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts"
+    "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts && tsx scripts/i18n-validate.ts",
+    "i18n:parity": "tsx scripts/i18n-parity-check.ts",
+    "i18n:validate": "tsx scripts/i18n-validate.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

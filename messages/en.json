@@ -54,7 +54,7 @@
   "hero": {
     "heading1": "Cleaning Company",
     "heading2": "for businesses",
-    "description": "SPS Grupp maintains office, commercial and industrial premises in Tallinn and Harjumaa, with a total of over 1,000,000 m².",
+    "description": "SPS Grupp maintains office, retail and industrial premises in Tallinn and Harjumaa, with a combined managed area of more than 1,000,000 m².",
     "cta": "Request a quote",
     "floating1Big": "Over 20 years",
     "floating1Small": "of experience",
@@ -68,19 +68,36 @@
     "heading": "Why do major Estonian companies choose SPS Grupp?",
     "para1": "Choosing a cleaning service provider is not just about price. Most companies that come to us have previously switched providers due to inconsistent quality, poor communication, or lack of accountability.",
     "para2": "Good service does not depend on the cleaner alone. What matters is the system: a clear work plan, regular quality control and quick response to situations that inevitably arise in daily operations.",
-    "para3": "SPS Grupp has focused on business clients for years. Our cleaning service is based on standardized processes, a trained team and digital task tracking.",
+    "para3": "SPS Grupp has focused on business clients for years. Our cleaning service is based on standardised processes, a trained team and digital task tracking.",
     "para4": "If you are looking for a partner who maintains consistent quality year after year, get in touch. We start by mapping your needs and providing a transparent quote.",
     "ctaButton": "Request a quote"
   },
   "trust": {
+    "clientsAria": "Our clients",
     "sectionTag": "SPS Grupp",
     "heading": "The right cleaning company is an investment, not an expense",
-    "description": "One of our clients recently said the biggest change was that they no longer had to worry about cleaning. Before, something was always wrong. The cleaner either did not show up or could not verify the quality of their work. Now the service runs seamlessly.",
+    "description": "One of our clients recently said the biggest change was that they no longer had to worry about cleaning. Previously, something was always going wrong: the cleaner might not arrive, or the client had no reliable way to check the quality of the work. Now the service runs seamlessly.",
     "highlight1Title": "Over 20 years of experience",
     "highlight1Desc": "SPS Grupp began operations in 2006. Our team has 300+ employees and we serve more than 200 clients.",
     "highlight2Title": "Robotics and AI in property maintenance",
     "highlight2Desc": "Rapid developments in AI and robotics are bringing major changes to property maintenance. We already use autonomous equipment for cleaning larger production facilities. Interest in this approach is very high.",
-    "highlight2Cta": "Ask about your property"
+    "highlight2Cta": "Ask about your property",
+    "years": "Since 2006",
+    "certificates": "certificates",
+    "employees": "300+ employees",
+    "trained": "Trained",
+    "area": "Over 1,000,000 m²",
+    "areaDaily": "Daily",
+    "regularTitle": "Regular cleaning",
+    "regularText": "Daily and periodic maintenance that keeps your workplace consistently clean and presentable.",
+    "regularNote": "Standard cleaning products and tools required for the agreed service scope are included in the quote.",
+    "specialTitle": "Specialist cleaning",
+    "specialText": "Periodic and specialist work that restores surfaces and helps extend their service life.",
+    "specialNote": "Operational response within the scope of agreed services.",
+    "outdoorTitle": "Outdoor cleaning and grounds care",
+    "outdoorText": "We maintain the surroundings of your building year-round with a plan for every season.",
+    "outdoorNote": "Seasonal outdoor work can be combined under one service agreement if requested.",
+    "more": "Learn more"
   },
   "industries": {
     "sectionTag": "Industries",
@@ -90,7 +107,7 @@
       "title": "Offices and Commercial Spaces",
       "subtitle": "Daily peace of mind",
       "badge": "Office Maintenance",
-      "text": "Cleanliness must be an invisible part of the workday. SPS schedules so that desks, kitchens, meeting rooms and sanitary facilities stay in order."
+      "text": "Cleanliness should be an unobtrusive part of the working day. SPS schedules cleaning so that desks, kitchens, meeting rooms and sanitary facilities stay in order."
     },
     "retail": {
       "title": "Retail Spaces",
@@ -136,7 +153,7 @@
     "items": [
       {
         "q": "How often should business premises be cleaned?",
-        "a": "For most businesses we recommend 3–5 times per week. The exact frequency depends on your business specifics, employee count and floor area. We will help you find the optimal schedule during a free consultation."
+        "a": "For most businesses we recommend 3–5 times per week. The exact frequency depends on your operational requirements, employee count and floor area. We will help you find the optimal schedule during a free consultation."
       },
       {
         "q": "How is the cleaning price determined?",
@@ -177,7 +194,7 @@
     "submitButton": "Send Inquiry",
     "submitting": "Sending...",
     "successMessage": "Thank you! Your inquiry has been sent. We will generally contact you within one business day.",
-    "footerNote": "Data is transmitted encrypted. We generally respond within one business day."
+    "footerNote": "Data is transmitted securely using encryption. We generally respond within one business day."
   },
   "careerForm": {
     "sectionTag": "Careers",
@@ -208,15 +225,16 @@
     "submitButton": "Submit Application",
     "submitting": "Sending...",
     "successMessage": "Thank you! Your application has been sent. We will contact you as soon as possible.",
-    "footerNote": "Data is transmitted encrypted. We will respond as soon as possible.",
+    "footerNote": "Data is transmitted securely using encryption. We will respond as soon as possible.",
     "cvNote": "To send your CV as a file, send it to"
   },
   "footerCta": {
-    "title": "Are you ready to get your cleaning in order?",
+    "title": "Ready to put your cleaning in reliable hands?",
     "description": "Get in touch. We generally respond within one business day; the quote schedule depends on the work and whether a site visit is needed.",
     "cta": "Request a free quote"
   },
   "footer": {
+    "wellManagedCompanyAlt": "Well-managed company",
     "cleaningServices": "Cleaning Services",
     "indoorCleaning": "Indoor Cleaning",
     "specialCleaning": "Special Cleaning",
@@ -229,14 +247,14 @@
     "requestQuoteDesc": "The easiest way to get a quote is to describe your situation and what you are trying to solve.",
     "comeToWorkDesc": "With us you will find a secure workplace where you can accomplish great things.",
     "viewJobs": "view job openings",
-    "address": "MUSTAMAE TEE 46, 10621 TALLINN",
+    "address": "MUSTAMÄE TEE 46, 10621 TALLINN",
     "disclaimer": "All rights reserved",
     "logoAlt": "SPS Grupp — cleaning company"
   },
   "notFound": {
     "heading": "Page not found",
     "description": "The page you are looking for does not exist or may have been removed.",
-    "backHome": "Back to home"
+    "backHome": "Back to the homepage"
   },
   "validation": {
     "required": "{field} is required.",
@@ -298,8 +316,8 @@
     "problem": {
       "heading": "Does your current cleaner truly care about your business?",
       "paragraph1": "One problem we hear quite often: \"The cleaner does come, but something is still wrong.\" Dust collects on top of cabinets. Trash bins are full in the evening. Restroom supplies run out. The server room isn't touched because no one dares to.",
-      "paragraph2Strong1": "Commercial space cleaning is not a straight-line express service. It is a system that must fit your building, your employees, and your business specifics.",
-      "paragraph2After1": "Offices have cables and equipment that must not be handled wet. Retail spaces have high traffic and customers must always see a clean environment. Industrial facilities have oils, greases, and strict safety requirements.",
+      "paragraph2Strong1": "Commercial cleaning is not a one-size-fits-all service. It is a system that must fit your building, your employees, and your operational requirements.",
+      "paragraph2After1": "Offices have cables and equipment that must not be cleaned using wet methods. Retail spaces have high traffic and customers must always see a clean environment. Industrial facilities have oils, greases, and strict safety requirements.",
       "paragraph2Strong2": "SPS Grupp has developed its service and quality-management system since 2006.",
       "paragraph2After2": "The work plan is tailored to the type of premises, usage level and safety requirements."
     },
@@ -309,11 +327,11 @@
       "item0Title": "Office Cleaning",
       "item0Desc": "daily office maintenance adapted to IT environments",
       "item1Title": "Retail Space Cleaning",
-      "item1Desc": "shops, shopping centers, showrooms",
+      "item1Desc": "shops, shopping centres, showrooms",
       "item2Title": "Industrial Facility Cleaning",
       "item2Desc": "industrial spaces, warehouses, production environments",
       "item3Title": "School and Kindergarten Cleaning",
-      "item3Desc": "healthcare-oriented approach",
+      "item3Desc": "child-safe, hygiene-focused approach",
       "item4Title": "Special Care for Reception and Representative Areas",
       "item4Desc": "",
       "item5Title": "Common Area Maintenance",
@@ -326,6 +344,8 @@
     "whyUs": {
       "tag": "Why Us",
       "heading": "What sets SPS Grupp's cleaning service apart in the market?",
+      "image": "/Koristusteenus2.jpg",
+      "imageAlt": "SPS Grupp cleaning service",
       "reason0Title": "Digital Quality Control",
       "reason0Desc": "The site manager regularly monitors work quality and helps resolve shortcomings quickly.",
       "reason1Title": "Vetted Staff",
@@ -344,204 +364,6 @@
     "footerCta": {
       "title": "Order a free cleaning service assessment",
       "description": "We generally contact you within one business day. The quote schedule depends on the work and whether a site visit is needed."
-    }
-  },
-  "kontakt": {
-    "seo": {
-      "companyName": "SPS Grupp OÜ",
-      "companyDesc": "Professional cleaning and renovation service partner in Tallinn and Harjumaa",
-      "breadcrumbHome": "Home",
-      "breadcrumbContact": "Contact",
-      "pageAriaLabel": "Contact"
-    },
-    "hero": {
-      "title": "Get in touch",
-      "subtitle": "with SPS Grupp",
-      "desc1": "SPS Grupp is a professional cleaning and renovation service partner in Tallinn and Harjumaa. We help you find the right maintenance or cleaning solution for your business, from regular cleaning to specialized cleaning and renovation work.",
-      "btnQuote": "Request a quote",
-      "breadcrumbHome": "Home",
-      "breadcrumbContact": "Contact",
-      "companyName": "SPS Grupp OÜ",
-      "chip1": "Phone",
-      "chip2": "Mobile",
-      "chip3": "E-mail",
-      "chip4": "Address"
-    },
-    "whyUs": {
-      "tag": "Why us",
-      "heading": "Why choose SPS Grupp?",
-      "reason1Title": "Fast response",
-      "reason1Desc": "We generally respond within one business day. The time needed to prepare a quote depends on the work and whether a site visit is required.",
-      "reason2Title": "Personalized solutions",
-      "reason2Desc": "Every property and client is different. We create cleaning and maintenance solutions according to building size, usage load, workflow, and budget.",
-      "reason3Title": "Experienced team",
-      "reason3Desc": "We have served office buildings, housing associations, commercial premises, and industrial sites across Tallinn and Harjumaa. Our team uses professional techniques and high-quality cleaning products.",
-      "reason4Title": "All services from one source",
-      "reason4Desc": "We offer regular cleaning, deep cleaning, technical maintenance, specialized cleaning, and renovation work — one reliable partner for all property maintenance."
-    },
-    "services": {
-      "tag": "Our services",
-      "heading": "What services can you order from us?",
-      "item1": "Regular office cleaning",
-      "item2": "Housing association maintenance",
-      "item3": "Post-construction cleaning",
-      "item4": "Window cleaning",
-      "item5": "Floor deep cleaning",
-      "item6": "Repair and renovation work",
-      "item7": "Seasonal deep cleaning",
-      "item8": "Technical maintenance",
-      "item9": "Emergency cleaning",
-      "item10": "Commercial space maintenance solutions",
-      "item11": "One-off cleaning services",
-      "item12": "Daily maintenance cleaning",
-      "desc": "We serve both smaller offices and large commercial real estate properties. We find a solution according to your company's needs, working hours, and maintenance volume.",
-      "imageAlt": "SPS Grupp services"
-    },
-    "areas": {
-      "tag": "Service Area",
-      "heading": "We serve clients in Tallinn and Harjumaa",
-      "desc1": "We provide cleaning, maintenance, and renovation services to clients across Tallinn and Harjumaa. We serve office buildings, housing associations, and business clients daily in various regions.",
-      "subheading": "Main service regions:",
-      "item1": "Tallinn",
-      "item2": "Viimsi",
-      "item3": "Rae Parish",
-      "item4": "Harku Parish",
-      "item5": "Saue Parish",
-      "item6": "Peetri",
-      "item7": "Jüriri",
-      "item8": "Tabasalu",
-      "mapAlt": "Map of Estonia",
-      "desc2": "For larger properties and special solutions, we serve clients across Estonia by agreement."
-    },
-    "faq": {
-      "q0": "How much does office cleaning cost?",
-      "a0": "Indicative regular cleaning starts at €1.20/m² per month. We serve commercial properties from 800 m², with an indicative price from €960 per month. The exact price depends on frequency, workload and property characteristics.",
-      "q1": "How quickly can I get a quote?",
-      "a1": "We usually send an initial estimate on the same business day. For larger properties, we arrange a site inspection before preparing a quote.",
-      "q2": "Do you also offer one-off cleaning?",
-      "a2": "Yes. We perform post-construction cleaning, post-event cleaning, seasonal deep cleaning, and emergency cleaning work.",
-      "q3": "Do you work outside business hours?",
-      "a3": "Yes. If needed, we perform cleaning and maintenance work in the evenings, at night, and on weekends so as not to disturb the company's daily operations.",
-      "q4": "Do you use professional cleaning products?",
-      "a4": "We use professional cleaning products and modern equipment suitable for various surfaces that help ensure high-quality results.",
-      "q5": "Can I get a consultation before signing a contract?",
-      "a5": "Yes. We offer a free consultation and help assess which maintenance or cleaning solution best suits your property.",
-      "q6": "How often should an office be cleaned?",
-      "a6": "Office maintenance usually includes daily basic cleaning, regular more thorough cleaning, and periodic deep cleaning according to the usage load of the premises."
-    },
-    "footerCta": {
-      "title": "Do you need a reliable partner for your property maintenance?",
-      "description": "Get in touch and we will find a suitable cleaning, maintenance, or renovation solution for your property. We respond quickly and prepare a personalized quote according to your needs."
-    }
-  },
-  "spsGrupp": {
-    "seo": {
-      "serviceName": "SPS Grupp – cleaning and renovation services",
-      "serviceDescription": "SPS Grupp is a reliable partner for cleaning, renovation, and maintenance services for business clients in Tallinn and Harjumaa since 2006."
-    },
-    "breadcrumb": {
-      "home": "Home",
-      "spsGrupp": "SPS Grupp"
-    },
-    "hero": {
-      "ariaLabel": "SPS Grupp",
-      "chip1Label": "years of experience",
-      "chip2Label": "certified",
-      "chip3Label": "employees",
-      "title": "SPS Grupp",
-      "subtitle": "Increasing Property Value",
-      "description": "SPS Grupp OÜ is a company founded in 2006 that provides maintenance cleaning and sanitation services.",
-      "cta": "Request a quote"
-    },
-    "about": {
-      "heading": "Full-service cleaning company partner",
-      "paragraph1Bold": "Cleaning company SPS Grupp OÜ offers a complete cleaning services package.",
-      "paragraph1": "From us you will find all services for property maintenance and renovation. In cooperation with partners, we also offer doormat replacement, waste collection, and snow removal services.",
-      "paragraph2Bold": "Our goal is to provide high-quality, customer-friendly, and flexible cleaning services at a competitive price.",
-      "paragraph2": "Since 2006, we have served hundreds of companies in Tallinn and Harjumaa."
-    },
-    "standards": {
-      "tag": "Standards",
-      "heading": "High Standards",
-      "intro": "SPS Grupp OÜ has the experience, resources, and dedication required to deliver quality services. Our advantages include:",
-      "item1Title": "Service quality management system",
-      "item1Desc": "systematic approach to quality",
-      "item2Title": "Proven and reliable maintenance cost estimation",
-      "item2Desc": "precise and transparent",
-      "item3Title": "Standard calculations for each work type",
-      "item3Desc": "e.g. EUR/m² or EUR/h",
-      "item4Title": "Operational efficiency and quick response",
-      "item5Title": "Uniform attire and professional appearance",
-      "item6Title": "Always clean and well-maintained vehicles with SPS Grupp colors and logo",
-      "item7Title": "Customer-friendly prices",
-      "item7Desc": "competitive pricing structure",
-      "item8Title": "Service delivery based on client preferences",
-      "item8Desc": "flexible and personalized approach",
-      "item9Title": "ISO 9001:2015 and ISO 14001:2015 certificates",
-      "item9Desc": "internationally recognized quality management"
-    },
-    "customerSatisfaction": {
-      "tag": "Quality and People",
-      "leftTitle": "Customer satisfaction and continuous feedback",
-      "leftContent": "Customer satisfaction is our priority. We collect regular feedback through surveys, analyze the results, and implement necessary improvements. When issues arise, we apply established procedures to resolve them quickly and systematically. Our goal is to learn from every situation and always offer a better service.",
-      "rightTitle": "Our strength is our people",
-      "rightContent": "Every employee of SPS Grupp OÜ is responsible for ensuring quality and environmentally friendly operations. We value employee competence, provide training, and involve them in quality and environmental management. Every new employee receives thorough onboarding and continuous support. We also ensure that our infrastructure — from tools to software — is up-to-date and functional. A safe and supportive work environment is a given for us."
-    },
-    "certificates": {
-      "tag": "Certificates",
-      "heading": "Quality and environmental care according to standards",
-      "paragraph1": "SPS Grupp operates on the principle that all company activities should be carried out according to a clear plan. We follow best practices, standards, and environmental legislation and administrative acts.",
-      "paragraph2": "SPS Grupp aims to be customer-centric, streamline internal processes, reduce negative environmental impacts from our operations, and continuously improve and enhance our management system.",
-      "paragraph3Bold": "ISO certificates are a mark of our quality.",
-      "paragraph3": "SPS Grupp operates in accordance with the international ISO 9001:2015 quality management and ISO 14001:2015 environmental management standards. Our activities are covered by liability insurance subject to the terms of the insurance policy.",
-      "imageAlt": "ISO 9001:2015 and ISO 14001:2015 certificates"
-    },
-    "emergency": {
-      "tag": "Readiness",
-      "heading": "Work execution and emergency preparedness",
-      "leftTitle": "Emergency preparedness",
-      "leftContent": "SPS Grupp OÜ has identified potential emergencies and their possible consequences; has analyzed emergency prevention and mitigation options, and developed action guidelines according to the Environmental Management Procedure.",
-      "rightTitle": "Environmental and other requirements",
-      "rightContent": "SPS Grupp OÜ has identified the environmental and other requirements applicable to its operations and regularly reviews them according to the Internal Audit Procedure. We follow the standards set out in EVS 914, published by the Estonian Centre for Standardisation in 2011."
-    },
-    "stats": {
-      "tag": "SPS Grupp in Numbers",
-      "heading": "Serving Estonian companies since 2006",
-      "stat1Label": "employees",
-      "stat2Label": "m² under our care",
-      "stat3Label": "certified quality management"
-    },
-    "cta": {
-      "title": "Take your company's exterior appearance to the next level!",
-      "description": "Initial consultation and needs assessment. We generally contact you within one business day."
-    },
-    "faq": {
-      "q1": "What is SPS Grupp OÜ?",
-      "a1": "SPS Grupp OÜ is a company founded in 2006 that provides property maintenance cleaning and sanitation services. Our goal is to provide high-quality, customer-friendly, and flexible service at a competitive price.",
-      "q2": "What services does SPS Grupp provide?",
-      "a2": "We offer a complete cleaning services package for property maintenance and renovation. In cooperation with partners, we also offer doormat replacement, waste collection, and snow removal services.",
-      "q3": "What makes SPS Grupp different from other cleaning companies?",
-      "a3": "We are one of the few Estonian cleaning companies operating according to the rules of the international quality and environmental standards ISO 9001 and ISO 14001. We are characterized by uniform attire, clean and well-maintained vehicles with logos, operational efficiency, and a customer-friendly approach.",
-      "q4": "Are your employees trained?",
-      "a4": "Yes, we value employee competence and provide them with regular training. Every new employee receives thorough onboarding and continuous support.",
-      "q5": "Do you offer a personalized approach for cleaning different buildings?",
-      "a5": "Yes, we offer a free consultation, personal building assessment, and expert opinion for each property. Services are always delivered according to the client's preferences.",
-      "q6": "How do you ensure the quality of your services?",
-      "a6": "Our quality is ensured by: a service quality management system, experienced employees and their continuous training, reliable maintenance cost estimation, compliance with Standard EVS 914, ISO 9001:2015 and ISO 14001:2015 certificates, and continuous collection and analysis of client feedback.",
-      "q7": "How are your service prices determined?",
-      "a7": "Our prices are based on standard maintenance work calculations (e.g. EUR/m² or EUR/h). Prices are customer-friendly and competitive.",
-      "q8": "How can I get a quote?",
-      "a8": "To get a quote, you can contact us by phone at +372 662 3328 or by e-mail at info@spsgrupp.ee. You can also fill out the contact form on our website.",
-      "q9": "Do you offer a free consultation?",
-      "a9": "Yes. We offer an initial consultation and needs assessment. We generally contact you within one business day.",
-      "q10": "What approach does SPS Grupp take towards the environment?",
-      "a10": "Environmental sustainability is an important priority for us. We hold the ISO 14001:2015 environmental management system certificate and continuously strive to reduce negative environmental impacts from our operations.",
-      "q11": "Do you use environmentally friendly cleaning products?",
-      "a11": "Yes, we adhere to environmental requirements and strive to use the most environmentally friendly products and methods possible in our operations.",
-      "q12": "How do you communicate with clients?",
-      "a12": "We are efficient and ready to respond quickly. We continuously collect client feedback and use it to improve our service. When issues arise, we apply established procedures to resolve them quickly and systematically.",
-      "q13": "Is SPS Grupp prepared to handle emergencies?",
-      "a13": "Yes, we have identified potential emergencies and their possible consequences. We have analyzed emergency prevention and mitigation options and developed corresponding action guidelines."
     }
   },
   "kontoriKoristus": {
@@ -571,7 +393,7 @@
       "heading": "Does your current cleaning service meet your company's expectations?",
       "para1Strong": "Many businesses are in a situation where the cleaner does come, but the results are unsatisfactory.",
       "para1Text": "Dust collects on top of cabinets, bins are still full in the morning, and restroom supplies run out at the most inconvenient time. Employees notice, and so do clients.",
-      "para2Strong1": "Office cleanliness directly affects three things:",
+      "para2Strong1": "Office cleanliness directly affects two things:",
       "para2Text1": "employee wellbeing and clients' first impressions. A clean and hygienic workplace supports wellbeing and helps reduce the risk of infections spreading.",
       "para2Strong2": "Staff receive instructions tailored to each site.",
       "para2Text2": "The cleaning plan includes agreed rules for working around IT equipment, documents and customer-facing surfaces."
@@ -579,42 +401,84 @@
     "services": {
       "tag": "Service Content",
       "heading": "What does office cleaning include?",
-      "item0Title": "Workstation Cleaning",
-      "item0Desc": "dusting desks, monitors, keyboards and office equipment",
-      "item1Title": "Floor Care",
-      "item1Desc": "vacuuming carpets, mopping hard floors, spot cleaning",
-      "item2Title": "Sanitary Facility Maintenance",
-      "item2Desc": "disinfection of toilets and sinks, supply replenishment",
-      "item3Title": "Kitchen and Break Room",
-      "item3Desc": "surface cleaning, appliance wipe-down, bin emptying",
-      "item4Title": "Meeting Room Preparation",
-      "item4Desc": "tidying tables, cleaning whiteboards, vacuuming",
+      "item0Title": "Daily Floor Cleaning and Maintenance",
+      "item0Desc": "all floor types",
+      "item1Title": "Dusting and Disinfection of Work Surfaces and Furniture",
+      "item1Desc": "",
+      "item2Title": "Thorough Sanitary Facility Cleaning",
+      "item2Desc": "supply replenishment",
+      "item3Title": "Waste Removal",
+      "item3Desc": "collection, sorting and new bin liner installation",
+      "item4Title": "Kitchen and Break Room Maintenance",
+      "item4Desc": "countertops, microwave, coffee machine",
       "item5Title": "Glass Surface Cleaning",
-      "item5Desc": "interior windows, glass partitions and mirrors",
-      "item6Title": "Reception and Representative Areas",
-      "item6Desc": "enhanced care for client-facing spaces"
+      "item5Desc": "mirrors, glass walls",
+      "item6Title": "Antistatic Cleaning Around IT Equipment",
+      "item6Desc": "",
+      "item7Title": "Special Care for Entrance and Reception Areas",
+      "item7Desc": "",
+      "item8Title": "Disinfection of Frequently Touched Surfaces",
+      "item8Desc": "door handles, light switches",
+      "linksLabel": "See also:",
+      "link1": "Window cleaning",
+      "link2": "Carpet cleaning",
+      "link3": "Floor maintenance",
+      "link4": "Disinfection",
+      "link5": "Office cleaning checklist"
     },
     "whyUs": {
       "tag": "Why Us",
       "heading": "Why choose SPS Grupp for your office cleaning?",
-      "reason0Title": "IT-Safe Cleaning",
-      "reason0Desc": "Our staff are trained to work around cables, servers and sensitive equipment. No wet cloths near electronics, no unplugging devices.",
-      "reason1Title": "Confidentiality First",
-      "reason1Desc": "Staff follow the site's confidentiality rules, and procedures for documents and workstations are agreed in advance.",
-      "reason2Title": "Out-of-Hours Service",
-      "reason2Desc": "We clean early mornings, evenings or weekends so your team arrives to a fresh office every day without disruption.",
-      "reason3Title": "Dedicated Site Manager",
-      "reason3Desc": "Each office has a named supervisor who arranges regular quality checks and serves as your single point of contact."
+      "image": "/kontorikoristus2.jpg",
+      "imageAlt": "Office cleaning by SPS Grupp",
+      "reason0Title": "Office maintenance experience since 2006",
+      "reason0Desc": "We have cleaned every type of office — from small IT offices to large headquarters and ministries. We know what works and what doesn't.",
+      "reason1Title": "Liability-insured service",
+      "reason1Desc": "SPS Grupp holds valid liability insurance, giving the client additional protection in case of possible property damage.",
+      "reason2Title": "Confidentiality and data protection",
+      "reason2Desc": "Every employee signs a confidentiality agreement. Your documentation and equipment are in safe hands.",
+      "reason3Title": "ISO 9001 quality management",
+      "reason3Desc": "Regular quality control organised by the site manager helps identify and resolve deficiencies quickly.",
+      "reason4Title": "Eco-friendly cleaning products",
+      "reason4Desc": "When needed, we choose low-odour, low-allergen cleaning products suitable for sensitive working environments."
+    },
+    "testimonials": {
+      "tag": "Client feedback",
+      "heading": "What our office clients say",
+      "item0Quote": "I want to pass on thanks and praise for the very good office cleaning. The overall feedback is very positive — the office is clean, tidy and well maintained. You can see the work is done carefully and quality gets attention.",
+      "item0Short": "The overall feedback is very positive — the office is clean, tidy and well maintained.",
+      "item1Quote": "I want to share exceptionally positive feedback about the office cleaning. The office is clean, tidy and maintained. The quality of the work is consistently high and has been noticed positively by our employees as well.",
+      "item1Short": "The office is clean, tidy and maintained. The quality of the work is consistently high.",
+      "item2Quote": "I want to share positive feedback about the office cleaning. The office rooms have been clean and tidy, and the overall impression is very good. We are very satisfied with the quality of the cleaning service and the results.",
+      "item2Short": "The office rooms have been clean and tidy, and the overall impression is very good.",
+      "item3Quote": "A clean and tidy office creates a better working environment for both employees and visitors. SPS Grupp has helped us maintain this level consistently. The service is professional, high-quality and well organised.",
+      "item3Short": "A clean and tidy office creates a better working environment. SPS Grupp has helped us maintain it consistently.",
+      "item4Quote": "Big thanks to the cleaner who put the dirty dishes left from yesterday's event into the dishwasher. In the morning we were greeted by a clean and tidy kitchen corner. Such small but very attentive acts stand out and show care and a professional attitude.",
+      "item4Short": "Big thanks to the cleaner — in the morning we were greeted by a clean and tidy kitchen corner. Such attentive acts stand out."
     },
     "pricing": {
       "tag": "Pricing",
       "heading": "Transparent office cleaning pricing",
       "description": "Office cleaning costs depend on floor area, cleaning frequency, and any special requirements. Below are indicative price ranges for regular maintenance cleaning.",
-      "note": "We serve commercial properties from <strong>800 m²</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
+      "note": "<strong>FREE AUDIT</strong> before the contract begins. We map your office's specific needs and requirements. <strong>A personal account manager</strong> is your contact who knows your company and conducts regular inspections."
     },
     "footerCta": {
       "title": "Ready to come to a clean office every morning?",
       "description": "We generally contact you within one business day. The quote schedule depends on the work and whether a site visit is needed."
+    },
+    "tooprotsess": {
+      "title": "How does SPS launch office cleaning?",
+      "intro": "A better service starts before the first clean. SPS first maps how your office really works, then builds the work plan around it.",
+      "step0Title": "Site Assessment",
+      "step0Desc": "We review room sizes, usage levels, floor types, sanitary facilities, access and working hours.",
+      "step1Title": "Work Plan",
+      "step1Desc": "We define areas, frequency, daily and periodic tasks, and the responsible contact person.",
+      "step2Title": "Team Preparation",
+      "step2Desc": "We assign suitably trained cleaners, cleaning products and the necessary equipment.",
+      "step3Title": "Service Launch",
+      "step3Desc": "We start on the agreed schedule and fine-tune the workload in the first weeks based on actual usage.",
+      "step4Title": "Quality Control",
+      "step4Desc": "The site manager inspects results, collects feedback and resolves issues before they become recurring problems."
     },
     "faq": {
       "q0": "How often should an office be cleaned?",
@@ -639,19 +503,23 @@
     },
     "hero": {
       "ariaLabel": "Commercial Space Cleaning",
-      "chip1Label": "retail",
+      "chip1Badge": "Long-term",
+      "chip1Label": "experience",
       "chip2Badge": "ISO 9001",
       "chip2Label": "certified",
       "chip3Badge": "Flexible",
-      "chip3Label": "scheduling",
+      "chip3Label": "response",
       "h1Line1": "Commercial Space Cleaning",
       "h1Line2": "in Tallinn and Harjumaa",
       "description": "Daily maintenance for shops, shopping centres and showrooms. Flexible hours, trained staff and rigorous quality control.",
-      "ctaButton": "Request a commercial cleaning quote"
+      "ctaButton": "Request a commercial cleaning quote",
+      "breadcrumbHome": "Home",
+      "breadcrumbService": "Cleaning Services",
+      "breadcrumbCurrent": "Commercial Space Cleaning"
     },
     "problem": {
       "heading": "Your shop floor says everything about your business in seconds",
-      "para1Strong": "In retail, first impressions are formed in under 7 seconds. A scuffed floor, smudged glass or overflowing bin sends the wrong message immediately.",
+      "para1Strong": "In retail, first impressions form quickly. A scuffed floor, smudged glass or overflowing bin can send the wrong message immediately.",
       "para1Text": "Customers associate cleanliness with professionalism and trust. When your premises look neglected, they question the quality of your products and services too.",
       "para2Strong1": "Retail cleaning requires a different approach to office cleaning:",
       "para2Text1": "high footfall means surfaces need attention throughout the day, not just overnight. Entrances, fitting rooms and checkout areas demand the most frequent care.",
@@ -661,54 +529,82 @@
     "services": {
       "tag": "Service Content",
       "heading": "What does commercial space cleaning include?",
-      "item0Title": "Entrance and Lobby Cleaning",
-      "item0Desc": "mats, door glass, high-traffic floor areas maintained throughout the day",
-      "item1Title": "Sales Floor Maintenance",
-      "item1Desc": "sweeping, mopping, spot cleaning of display areas and aisles",
-      "item2Title": "Fitting Room Care",
-      "item2Desc": "mirrors, floors, hooks and seating kept spotless between customers",
-      "item3Title": "Checkout and Counter Areas",
-      "item3Desc": "dust-free counters, clean card terminals, organised queuing areas",
-      "item4Title": "Sanitary Facilities",
-      "item4Desc": "customer and staff toilets disinfected, supplies replenished",
-      "item5Title": "Window and Glass Display Cleaning",
-      "item5Desc": "interior glass, display cases and mirrors kept streak-free",
-      "item6Title": "Waste Management",
-      "item6Desc": "regular bin emptying, recycling sorting, cardboard disposal"
+      "item0Title": "Daytime Cleaning During Low-Traffic Periods",
+      "item0Desc": "floors, glass, toilets",
+      "item1Title": "Night-Time Deep Cleaning",
+      "item1Desc": "machine washing, waxing, thorough disinfection",
+      "item2Title": "Escalator and Lift Cleaning and Maintenance",
+      "item2Desc": "",
+      "item3Title": "Regular Sanitary Facility Checks",
+      "item3Desc": "supply replenishment",
+      "item4Title": "Polishing of Glass Surfaces, Display Cases and Entrances",
+      "item4Desc": "",
+      "item5Title": "Outdoor Area and Entrance Maintenance",
+      "item5Desc": "bins, doormats",
+      "item6Title": "Rapid Response to Emergencies",
+      "item6Desc": "spills, dropped products",
+      "item7Title": "Periodic Specialist Work",
+      "item7Desc": "window cleaning, floor deep washing, facade washing"
     },
     "whyUs": {
       "tag": "Why Us",
       "heading": "Why retailers choose SPS Grupp",
-      "reason0Title": "Daytime Presence",
-      "reason0Desc": "We provide cleaning staff during trading hours for immediate response to spills, smudges and high-traffic wear — not just after closing.",
-      "reason1Title": "Brand-Aligned Standards",
-      "reason1Desc": "We understand that your store reflects your brand. Our quality benchmarks align with the presentation standards your customers expect.",
-      "reason2Title": "Multi-Site Capability",
-      "reason2Desc": "Managing cleaning across multiple retail locations? We handle chains and franchises with consistent standards across every site.",
-      "reason3Title": "Rapid Incident Response",
-      "reason3Desc": "Broken glass, spills, unexpected mess — our team responds fast so your staff can focus on serving customers."
+      "image": "/kaubanduspindade-koristus-2.jpg",
+      "imageAlt": "Retail cleaning by SPS Grupp",
+      "reason0Title": "Extensive shopping centre cleaning experience",
+      "reason0Desc": "We have served large shopping centres and retail chains in Tallinn for years. We know what customers notice and what they don't.",
+      "reason1Title": "Responsive communication",
+      "reason1Desc": "For urgent situations we respond immediately or at the first opportunity. The exact time depends on the site location, workload and team availability.",
+      "reason2Title": "Digital reporting",
+      "reason2Desc": "You see in real time what has been done and when. Monthly reports give a clear overview of cleaning costs and workloads.",
+      "reason3Title": "Trained and vetted staff",
+      "reason3Desc": "Our employees work in the presence of customers. They know how to behave, how to dress and how not to disturb sales activity."
+    },
+    "testimonials": {
+      "tag": "Client feedback",
+      "heading": "What our commercial clients say",
+      "item0Quote": "I want to give appreciative feedback about the cleaning service. The cleaning of the office, logistics and common areas leaves a very good and tidy impression. Surfaces are clean, rooms are tidy and you can see the cleaning is done carefully.",
+      "item0Short": "The cleaning of the office, logistics and common areas leaves a very good and tidy impression. Surfaces are clean, rooms are tidy.",
+      "item1Quote": "I want to give positive feedback about the cleaning service. The rooms are tidy, clean and well kept, and the service works consistently. We appreciate that the cleaning quality has remained consistent.",
+      "item1Short": "The rooms are tidy, clean and well kept, and the service works consistently. The cleaning quality has remained consistent.",
+      "item2Quote": "Please pass on our thanks to the cleaner. Such careful and high-quality work gets noticed by customers and deserves recognition.",
+      "item2Short": "Such careful and high-quality work gets noticed by customers and deserves recognition."
     },
     "pricing": {
       "tag": "Pricing",
       "heading": "Commercial cleaning pricing",
       "description": "Pricing is based on floor area, footfall intensity, required cleaning frequency and any special surface care needs. We provide a tailored quote after a site visit.",
-      "note": "We serve commercial properties from <strong>800 m²</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
+      "note": "<strong>The Estonian climate requires a well-planned and seasonal approach to cleaning services. SPS Grupp offers a comprehensive year-round plan based specifically on Estonian conditions.</strong>"
     },
     "footerCta": {
       "title": "Let your store make the right first impression every time",
-      "description": "Get a free assessment of your retail space. We'll create a cleaning plan that works around your trading hours — quote after assessing the scope."
+      "description": "Get a free assessment of your retail space. We'll create a cleaning plan that works around your trading hours — quote based on your site assessment."
+    },
+    "tooprotsess": {
+      "title": "How does SPS launch retail cleaning?",
+      "intro": "A better service starts before the first clean. SPS first maps your retail space’s needs, then builds the work plan around them.",
+      "step0Title": "Site Assessment",
+      "step0Desc": "We assess floor types, traffic zones, access times and areas requiring special attention.",
+      "step1Title": "Work Plan",
+      "step1Desc": "We define cleaning zones, frequency, tasks by shift and the responsible contact person.",
+      "step2Title": "Team Preparation",
+      "step2Desc": "We assign trained cleaners who understand retail environments, with appropriate equipment.",
+      "step3Title": "Service Launch",
+      "step3Desc": "We start on the agreed schedule and fine-tune the workload in the first weeks.",
+      "step4Title": "Quality Control",
+      "step4Desc": "The site manager inspects results, collects feedback and resolves issues promptly."
     },
     "faq": {
-      "q0": "Can you clean during opening hours?",
-      "a0": "Yes, we provide daytime cleaning staff who work discreetly during trading hours — handling spills, maintaining entrances and restocking supplies so your store always looks its best.",
-      "q1": "How do you handle different floor types in retail?",
-      "a1": "We use surface-appropriate methods: microfiber for polished stone, scrubber-dryers for large tile areas, and specialised care for wood, vinyl and carpeted sections.",
-      "q2": "What about security and stock areas?",
-      "a2": "All staff are vetted and sign confidentiality agreements. We work closely with your security protocols — stockrooms and back-office areas are cleaned to agreed specifications.",
-      "q3": "Can you manage cleaning across multiple store locations?",
-      "a3": "We serve retail chains across Tallinn and Harjumaa. A single account manager oversees quality across all your locations so standards remain consistent.",
-      "q4": "How quickly can you start?",
-      "a4": "Typically within 3–5 business days after contract signing. For urgent requirements we can mobilise even faster."
+      "q0": "How often should a retail space be cleaned?",
+      "a0": "Most retail spaces need daytime cleaning (1–3 times per business day) and nightly deep cleaning. Frequency depends on footfall and assortment. We help create an optimal schedule.",
+      "q1": "Will cleaning disturb the daily operation of the retail space?",
+      "a1": "No. We plan work to be invisible to shopping centre customers. Heavier cleaning happens at night or before opening; daytime cleaning takes place during low-traffic periods and discreetly.",
+      "q2": "Do you offer rapid response to emergencies?",
+      "a2": "For urgent situations we respond immediately or at the first opportunity. The exact time depends on the site location, workload and team availability.",
+      "q3": "Is escalator cleaning included in the service?",
+      "a3": "Daily surface cleaning, yes. Periodic escalator deep cleaning is a separate service, recommended 2–4 times per year depending on usage frequency.",
+      "q4": "How does quality control work?",
+      "a4": "Every site has a site manager who checks work regularly. We provide digital reports to the client and conduct customer satisfaction surveys."
     }
   },
   "tootmishooneteKoristus": {
@@ -721,15 +617,19 @@
     },
     "hero": {
       "ariaLabel": "Industrial Facility Cleaning",
-      "chip1Label": "industrial",
-      "chip2Badge": "ISO 9001",
+      "chip1Badge": "Since 2006",
+      "chip1Label": "industrial experience",
+      "chip2Badge": "ISO 14001",
       "chip2Label": "certified",
-      "chip3Badge": "Safety",
-      "chip3Label": "compliant",
+      "chip3Badge": "Insured",
+      "chip3Label": "service",
       "h1Line1": "Industrial Facility Cleaning",
       "h1Line2": "in Tallinn and Harjumaa",
       "description": "Cleaning for production halls, warehouses and logistics centres. Safety-first approach, trained staff and specialist equipment for industrial environments.",
-      "ctaButton": "Request an industrial cleaning quote"
+      "ctaButton": "Request an industrial cleaning quote",
+      "breadcrumbHome": "Home",
+      "breadcrumbService": "Cleaning Services",
+      "breadcrumbCurrent": "Industrial Facility Cleaning"
     },
     "problem": {
       "heading": "Standard cleaning methods don't work in industrial environments",
@@ -743,54 +643,84 @@
     "services": {
       "tag": "Service Content",
       "heading": "What does industrial facility cleaning include?",
-      "item0Title": "Production Floor Cleaning",
-      "item0Desc": "sweeping, scrubbing and degreasing of manufacturing areas",
-      "item1Title": "Warehouse Maintenance",
-      "item1Desc": "aisle cleaning, rack dusting, loading bay upkeep",
-      "item2Title": "Machinery Surround Cleaning",
-      "item2Desc": "safe cleaning around equipment without disrupting operations",
-      "item3Title": "High-Level Cleaning",
-      "item3Desc": "overhead pipes, beams, ductwork and light fittings",
-      "item4Title": "Sanitary and Locker Room Care",
-      "item4Desc": "staff facilities, showers, changing rooms — disinfected and stocked",
-      "item5Title": "Waste and Recycling Handling",
-      "item5Desc": "segregation and removal of production waste, recyclables and general refuse",
-      "item6Title": "Special Surface Treatment",
-      "item6Desc": "epoxy floors, anti-slip surfaces, mezzanine cleaning"
+      "item0Title": "Thorough Cleaning of Production Floors",
+      "item0Desc": "floors, walls, machinery surroundings",
+      "item1Title": "Removal of Oil, Grease and Industrial Residues",
+      "item1Desc": "",
+      "item2Title": "High-Level Surface Cleaning",
+      "item2Desc": "pipework, light fittings, ventilation",
+      "item3Title": "Warehouse and Logistics Centre Maintenance",
+      "item3Desc": "",
+      "item4Title": "Sanitary and Locker Room Cleaning",
+      "item4Desc": "",
+      "item5Title": "Canteen and Break Room Maintenance",
+      "item5Desc": "",
+      "item6Title": "Regular Cleaning of Office Areas",
+      "item6Desc": "",
+      "item7Title": "Floor Deep Cleaning and Protective Coating Maintenance",
+      "item7Desc": "",
+      "item8Title": "Specialist Work: Soot and Oil Damage Cleaning",
+      "item8Desc": ""
     },
     "whyUs": {
       "tag": "Why Us",
       "heading": "Why manufacturers trust SPS Grupp",
-      "reason0Title": "Safety-First Methodology",
-      "reason0Desc": "All staff receive site-specific safety induction. We follow your site rules, wear required PPE and never compromise on safe working practices.",
-      "reason1Title": "Production-Aware Scheduling",
-      "reason1Desc": "Cleaning is scheduled around production shifts — during line stoppages, between shifts or on maintenance days — to avoid any disruption.",
-      "reason2Title": "Specialist Equipment",
-      "reason2Desc": "We deploy industrial scrubber-dryers, ride-on sweepers and autonomous cleaning robots for large production floors — faster, safer, more consistent.",
-      "reason3Title": "Regulatory Compliance Support",
-      "reason3Desc": "Our documented cleaning schedules and audit trails support your ISO, HACCP or other regulatory requirements."
+      "image": "/Tootmishoonete-koristus-2.webp",
+      "imageAlt": "Industrial facility cleaning by SPS Grupp",
+      "reason0Title": "Industrial experience and relevant training",
+      "reason0Desc": "Our team has completed occupational safety training and knows how to move around production environments. We don't disturb production.",
+      "reason1Title": "We work when production is stopped",
+      "reason1Desc": "Night-time, early morning or weekend work. We adapt the schedule to your production rhythm.",
+      "reason2Title": "Specialist products and equipment",
+      "reason2Desc": "We use oil removers, grease removers and professional pressure washing equipment. We hold the ISO 14001 environmental certificate.",
+      "reason3Title": "Documentation and safety standards",
+      "reason3Desc": "We follow all occupational safety requirements, keep logs and provide regular reports."
+    },
+    "testimonials": {
+      "tag": "Client feedback",
+      "heading": "What our production and warehouse clients say",
+      "item0Quote": "Thank you for the work done and the effort invested. The warehouse and production cleaning was carried out correctly, cooperation went smoothly and we are satisfied with the final result.",
+      "item0Short": "The warehouse and production cleaning was carried out correctly, cooperation went smoothly and we are satisfied with the final result.",
+      "item1Quote": "I want to express appreciation for the very good cleaning service. Both the warehouse and the office rooms are clean, tidy and well maintained. The quality of the work has been consistently high.",
+      "item1Short": "Both the warehouse and the office rooms are clean, tidy and well maintained. The quality has been consistently high.",
+      "item2Quote": "SPS Grupp has been a reliable cooperation partner for us. The maintenance of production, warehouse and office rooms has been consistently high-level.",
+      "item2Short": "The maintenance of production, warehouse and office rooms has been consistently high-level."
     },
     "pricing": {
       "tag": "Pricing",
       "heading": "Industrial cleaning pricing",
       "description": "Industrial cleaning costs depend on facility size, cleaning complexity, frequency and any specialist requirements. We provide a detailed quote after a thorough site assessment.",
-      "note": "We serve commercial properties from <strong>800 m²</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
+      "note": "<strong>Industrial facilities require a well-planned approach to cleaning. SPS Grupp offers a comprehensive plan based specifically on the conditions of your production environment.</strong>"
     },
     "footerCta": {
       "title": "Keep your facility safe, compliant and productive",
-      "description": "Request a free industrial site assessment. We'll evaluate your cleaning needs and deliver a detailed plan with pricing after assessing the scope."
+      "description": "Request a free industrial site assessment. We'll evaluate your cleaning needs and deliver a detailed plan with pricing."
+    },
+    "tooprotsess": {
+      "title": "How does SPS launch industrial cleaning?",
+      "intro": "A clean industrial facility starts with understanding your processes. SPS maps your workflow first, then builds the cleaning plan.",
+      "step0Title": "Site Assessment",
+      "step0Desc": "We review production areas, floor types, safety requirements, access and operating hours.",
+      "step1Title": "Work Plan",
+      "step1Desc": "We define cleaning zones, frequencies, methods for each surface type and safety protocols.",
+      "step2Title": "Team Preparation",
+      "step2Desc": "We assign cleaners trained in industrial environments, with specialised equipment and PPE.",
+      "step3Title": "Service Launch",
+      "step3Desc": "We start on the agreed schedule, coordinating cleaning around your production timetable.",
+      "step4Title": "Quality Control",
+      "step4Desc": "The site manager inspects results against agreed standards and resolves any issues."
     },
     "faq": {
-      "q0": "Can you clean while production is running?",
-      "a0": "Yes, we design cleaning schedules around your production timetable. We clean during shift changes, line stoppages or designated maintenance windows to avoid any operational impact.",
-      "q1": "How do you handle hazardous areas?",
-      "a1": "Our teams receive site-specific safety training before starting. For areas with special hazards, we develop method statements and risk assessments aligned with your site safety protocols.",
-      "q2": "What about food-grade production environments?",
-      "a2": "We have experience with HACCP-compliant cleaning in food production facilities. We use food-safe cleaning products and follow strict hygiene zoning protocols.",
-      "q3": "Do you use robotic cleaning equipment?",
-      "a3": "Yes, we deploy autonomous scrubber-dryers and sweepers in large production halls. They deliver consistent results, reduce labour costs and operate safely around personnel.",
-      "q4": "How do you handle waste from industrial cleaning?",
-      "a4": "We segregate waste according to your requirements — production waste, recyclables, hazardous waste and general refuse — and coordinate removal according to your waste management plan."
+      "q0": "How often should a production facility be cleaned?",
+      "a0": "It depends on production intensity. Usually at least once a week; in dusty or oily conditions more often, often daily. Sanitary facilities and break rooms need daily maintenance.",
+      "q1": "Can cleaning take place outside production hours?",
+      "a1": "Yes. Most of our industrial facility cleaning happens at night, on weekends or during production breaks. We don't disturb your production process.",
+      "q2": "Do you use environmentally friendly products?",
+      "a2": "We prefer lower-environmental-impact cleaning products wherever surfaces and safety requirements allow. For oil removal we use special biodegradable agents. We follow the ISO 14001 standard.",
+      "q3": "Does SPS Grupp also clean oil or soot damage?",
+      "a3": "Yes, we have experience cleaning soot, water and oil damage in industrial environments. We also offer emergency response.",
+      "q4": "Do you have occupational safety training?",
+      "a4": "Yes, all our industrial cleaners complete occupational safety training, use personal protective equipment and follow the client's safety rules."
     }
   },
   "koolideKoristamine": {
@@ -803,15 +733,19 @@
     },
     "hero": {
       "ariaLabel": "School Cleaning",
-      "chip1Label": "schools",
-      "chip2Badge": "Daily",
-      "chip2Label": "maintenance",
-      "chip3Badge": "Child-safe",
-      "chip3Label": "products",
+      "chip1Badge": "Child-safe",
+      "chip1Label": "products",
+      "chip2Badge": "ISO 9001",
+      "chip2Label": "certified",
+      "chip3Badge": "Morning",
+      "chip3Label": "disinfection",
       "h1Line1": "School and Kindergarten Cleaning",
       "h1Line2": "in Tallinn and Harjumaa",
       "description": "Daily cleaning of classrooms, group rooms, corridors and sanitary facilities. Child-safe products, trained staff and documented hygiene standards.",
-      "ctaButton": "Request a school cleaning quote"
+      "ctaButton": "Request a school cleaning quote",
+      "breadcrumbHome": "Home",
+      "breadcrumbService": "Cleaning Services",
+      "breadcrumbCurrent": "School Cleaning"
     },
     "problem": {
       "heading": "Schools get dirty faster than almost any other environment",
@@ -825,1366 +759,409 @@
     "services": {
       "tag": "Service Content",
       "heading": "What does school cleaning include?",
-      "item0Title": "Classroom Cleaning",
-      "item0Desc": "desks, chairs, whiteboards, floors — every classroom ready for the next day",
-      "item1Title": "Corridor and Hallway Maintenance",
-      "item1Desc": "high-traffic areas mopped and swept daily, spill response throughout the day",
-      "item2Title": "Sanitary Facility Care",
-      "item2Desc": "disinfection of toilets, sinks and touchpoints; soap and paper replenishment",
-      "item3Title": "Canteen and Kitchen Areas",
-      "item3Desc": "floor cleaning, table sanitising, bin emptying after meal times",
-      "item4Title": "Sports Hall and Changing Rooms",
-      "item4Desc": "floor care, bench cleaning, shower and locker area disinfection",
-      "item5Title": "Staff and Administration Areas",
-      "item5Desc": "offices, staff rooms and meeting spaces maintained to office standards",
-      "item6Title": "Outdoor Area Upkeep",
-      "item6Desc": "entrance matting, litter picking, playground surface sweeping"
+      "item0Title": "Morning Disinfection Before Children Arrive",
+      "item0Desc": "",
+      "item1Title": "Daily Maintenance of Classrooms and Common Areas",
+      "item1Desc": "",
+      "item2Title": "Thorough Toilet Disinfection and Supply Replenishment",
+      "item2Desc": "",
+      "item3Title": "Canteen and Kitchen Sanitary Maintenance",
+      "item3Desc": "according to catering standards",
+      "item4Title": "Sports Hall and Changing Room Cleaning",
+      "item4Desc": "",
+      "item5Title": "Regular Disinfection of Handrails, Door Handles and Switches",
+      "item5Desc": "",
+      "item6Title": "Window Cleaning, Floor Care, Carpet Cleaning",
+      "item6Desc": "",
+      "item7Title": "Rapid Response",
+      "item7Desc": "viral outbreaks, after events",
+      "item8Title": "Monthly Hygiene Audit and Report to School Management",
+      "item8Desc": ""
     },
     "whyUs": {
       "tag": "Why Us",
       "heading": "Why schools choose SPS Grupp",
+      "image": "/koolide-koristamine2.jpg",
+      "imageAlt": "School cleaning by SPS Grupp",
       "reason0Title": "Child-Safe Products",
-      "reason0Desc": "We use cleaning products that are safe for environments where children spend their day. No harsh chemical residues on desks, floors or play surfaces.",
-      "reason1Title": "School-Day Awareness",
-      "reason1Desc": "Cleaning is scheduled before or after school hours. During the day, we provide rapid response for spills, accidents and urgent needs without disrupting lessons.",
-      "reason2Title": "Infection Control Focus",
-      "reason2Desc": "We prioritise high-touch surfaces — door handles, light switches, banisters, taps — with documented disinfection frequencies that reduce illness transmission.",
-      "reason3Title": "Holiday Deep Cleaning",
-      "reason3Desc": "We use school holidays for intensive deep cleaning — floor treatments, window cleaning, furniture sanitisation — that cannot be done during term time."
+      "reason0Desc": "We use cleaning products compliant with EU standards, intended for use in environments for children.",
+      "reason1Title": "Health-Focused Approach",
+      "reason1Desc": "Our work plan pays special attention to frequently touched surfaces and high-use rooms. Systematic cleaning helps keep the school environment cleaner and supports general hygiene.",
+      "reason2Title": "Morning and Evening Regime",
+      "reason2Desc": "Disinfection before children arrive and after they leave. We don't disturb lessons.",
+      "reason3Title": "Monthly Hygiene Audit",
+      "reason3Desc": "We send a monthly report of the work done, what we found and what we recommend improving. It is a transparent partnership with the school."
+    },
+    "testimonials": {
+      "tag": "Client feedback",
+      "heading": "What our school clients say",
+      "item0Quote": "We want to express appreciation to the team responsible for the school building's cleaning for their very good work. The school building has been clean, tidy and maintained, and you can see the cleaning is done consistently and conscientiously.",
+      "item0Short": "The school building has been clean, tidy and maintained. Cleanliness and order affect the daily wellbeing of pupils, teachers and all staff.",
+      "item1Quote": "I want to share positive feedback about the school building's cleaning. The school building is clean, tidy and well maintained. Cleanliness and order create a pleasant learning and working environment for both pupils and staff.",
+      "item1Short": "The school building is clean, tidy and well maintained. Cleanliness and order create a pleasant learning and working environment.",
+      "item2Quote": "Continuous monitoring of cleaning quality also ensures a healthier learning environment and healthier children.",
+      "item2Short": "Continuous monitoring of cleaning quality also ensures a healthier learning environment and healthier children."
+    },
+    "caseStudy": {
+      "text": "<strong>The Tallinn University of Applied Sciences solution:</strong> for a school of 2,800 pupils we mapped the critical areas (main corridors, canteen, toilets, sports hall). We implemented a morning disinfection protocol and evening deep sanitary maintenance. Within 6 weeks, sick days decreased significantly."
     },
     "pricing": {
       "tag": "Pricing",
       "heading": "School cleaning pricing",
       "description": "School cleaning costs depend on building size, pupil numbers, cleaning frequency and any special requirements. We provide a transparent quote after a site survey.",
-      "note": "We serve commercial properties from <strong>800 m²</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
+      "note": "<strong>Regular cleaning and disinfection help reduce the spread of viruses and bacteria, especially in winter when viral diseases are active. Teachers also get sick less often, and there is no need to find substitutes.</strong>"
     },
     "footerCta": {
       "title": "Give your pupils and staff a cleaner, healthier environment",
-      "description": "Request a free school cleaning assessment. We'll visit your site, evaluate your requirements and deliver a tailored plan with pricing after assessing the scope."
+      "description": "Request a free school cleaning assessment. We'll visit your site, evaluate your requirements and deliver a tailored plan with transparent pricing."
+    },
+    "tooprotsess": {
+      "title": "How does SPS launch school cleaning?",
+      "intro": "Children deserve a clean learning environment. SPS maps your school’s specific needs first, then builds a child-safe cleaning plan.",
+      "step0Title": "Site Assessment",
+      "step0Desc": "We review classrooms, common areas, sanitary facilities, sports halls and playground access.",
+      "step1Title": "Work Plan",
+      "step1Desc": "We define cleaning zones, lesson-time clean tasks, after-hours deep cleans and hygiene-critical touchpoints.",
+      "step2Title": "Team Preparation",
+      "step2Desc": "We assign cleaners with enhanced background checks, trained in child-safe products and school protocols.",
+      "step3Title": "Service Launch",
+      "step3Desc": "We start on the agreed schedule, coordinating around lessons, events and school hours.",
+      "step4Title": "Quality Control",
+      "step4Desc": "The site manager inspects results, coordinates with school staff and resolves any issues promptly."
     },
     "faq": {
-      "q0": "Can you clean during school hours?",
-      "a0": "We recommend cleaning outside school hours — early mornings, evenings or weekends. However, we can provide daytime staff for urgent needs like spill response or sanitary supply restocking.",
-      "q1": "Are your cleaning products safe for children?",
-      "a1": "Yes, we select products specifically for educational environments. They are effective against germs while being safe for use on surfaces that children come into contact with.",
-      "q2": "How do you handle infection outbreaks?",
-      "a2": "In the event of an outbreak, we can increase disinfection frequency, add fogging treatments and focus extra resources on affected areas to support containment.",
-      "q3": "What about school holidays?",
-      "a3": "Holiday periods are ideal for deep cleaning. We offer intensive packages during breaks — floor stripping and resealing, full window cleaning, deep carpet extraction and furniture sanitisation.",
-      "q4": "Do you provide cleaning during exams or events?",
-      "a4": "Yes, we can adjust schedules for exam periods, parent evenings, concerts and other school events — ensuring facilities are in top condition when it matters most."
-    }
-  },
-  "akendePesu": {
-    "seo": {
-      "serviceName": "Window Cleaning Services in Tallinn",
-      "serviceDescription": "Professional window cleaning for businesses in Tallinn. Interior and exterior, high-rise access, pure water technology.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Window Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Window Cleaning",
-      "h1Line1": "Window Cleaning",
-      "h1Line2": "for businesses in Tallinn",
-      "description": "Professional interior and exterior window cleaning for offices, commercial buildings and industrial facilities. Pure water technology, rope access for high-rise, streak-free results.",
-      "ctaButton": "Request a window cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does professional window cleaning include?",
-      "item0Title": "Exterior Window Cleaning",
-      "item0Desc": "all external glass surfaces cleaned with pure water pole system for spot-free finish",
-      "item1Title": "Interior Window Cleaning",
-      "item1Desc": "internal glass, frames and sills cleaned without dripping or mess",
-      "item2Title": "High-Rise Window Cleaning",
-      "item2Desc": "rope access and mobile platforms for multi-storey buildings",
-      "item3Title": "Glass Partitions and Atriums",
-      "item3Desc": "internal glass walls, balustrades and atrium glazing",
-      "item4Title": "Skylight and Roof Glazing",
-      "item4Desc": "overhead glass panels, domes and conservatory glazing",
-      "item5Title": "Frame and Seal Maintenance",
-      "item5Desc": "PVC, aluminium and timber frames wiped down; seals inspected"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for window cleaning?",
-      "reason0Title": "Pure Water Technology",
-      "reason0Desc": "We use deionised water that dries spot-free — no detergents, no residue, no streaks. Better for glass and better for the environment.",
-      "reason1Title": "High-Rise Capability",
-      "reason1Desc": "IRATA-certified rope access technicians and mobile elevated platforms mean we can reach any window, regardless of building height.",
-      "reason2Title": "All-Season Service",
-      "reason2Desc": "We clean windows year-round, including winter. Our heated water systems and cold-weather techniques ensure consistent results in any season.",
-      "reason3Title": "Insured and Certified",
-      "reason3Desc": "All work is fully insured. Our technicians hold relevant safety certifications and follow strict working-at-height protocols."
-    },
-    "footerCta": {
-      "title": "Let the light in — get a window cleaning quote today",
-      "description": "Request a free window cleaning assessment. We'll survey your building and provide a fixed price after assessing the scope."
-    }
-  },
-  "fassaadipesu": {
-    "seo": {
-      "serviceName": "Facade Cleaning Services in Tallinn",
-      "serviceDescription": "Professional facade cleaning for commercial buildings. Pressure washing, soft washing, graffiti removal. ISO 9001 certified.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Facade Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Facade Cleaning",
-      "h1Line1": "Facade Cleaning",
-      "h1Line2": "for commercial buildings in Tallinn",
-      "description": "Restore your building's exterior appearance. Pressure washing, soft washing and specialist treatments for brick, render, stone, metal and glass facades.",
-      "ctaButton": "Request a facade cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does facade cleaning include?",
-      "item0Title": "Pressure Washing",
-      "item0Desc": "high-pressure water cleaning for concrete, brick and stone facades",
-      "item1Title": "Soft Washing",
-      "item1Desc": "low-pressure chemical cleaning for delicate surfaces like render and heritage masonry",
-      "item2Title": "Algae and Moss Removal",
-      "item2Desc": "biocide treatment to remove organic growth and prevent regrowth",
-      "item3Title": "Metal Facade Restoration",
-      "item3Desc": "cleaning and polishing of aluminium composite panels, steel and zinc cladding",
-      "item4Title": "Render and Plaster Cleaning",
-      "item4Desc": "gentle cleaning methods that preserve the integrity of rendered surfaces",
-      "item5Title": "Graffiti and Stain Removal",
-      "item5Desc": "specialist chemical and mechanical removal without damaging the substrate"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for facade cleaning?",
-      "reason0Title": "Surface-Appropriate Methods",
-      "reason0Desc": "Not every facade can handle a pressure washer. We assess the material and select the right technique — pressure wash, soft wash or chemical treatment.",
-      "reason1Title": "Working-at-Height Expertise",
-      "reason1Desc": "Rope access, cherry pickers and scaffolding — we have the equipment and certified personnel to reach any part of your building safely.",
-      "reason2Title": "Preventative Treatments",
-      "reason2Desc": "After cleaning, we can apply protective coatings that slow down re-soiling, algae growth and staining — extending the interval between cleans.",
-      "reason3Title": "Minimal Disruption",
-      "reason3Desc": "We plan work to minimise impact on building occupants and visitors. Pedestrian walkways remain open and business operations continue."
-    },
-    "footerCta": {
-      "title": "Restore your building's kerb appeal",
-      "description": "Request a free facade inspection and cleaning quote. We'll assess your building and provide a detailed proposal after assessing the scope."
-    }
-  },
-  "grafitiEemaldamine": {
-    "seo": {
-      "serviceName": "Graffiti Removal Services in Tallinn",
-      "serviceDescription": "Fast, professional graffiti removal for commercial properties. Same-day response, surface-safe methods, protective coatings available.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Graffiti Removal"
-    },
-    "hero": {
-      "ariaLabel": "Graffiti Removal",
-      "h1Line1": "Graffiti Removal",
-      "h1Line2": "fast and surface-safe",
-      "description": "Professional graffiti and vandalism cleanup for businesses and property managers. Same-day emergency response. Safe removal from brick, render, metal, glass and stone without surface damage.",
-      "ctaButton": "Request emergency graffiti removal"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does graffiti removal include?",
-      "item0Title": "Emergency Response",
-      "item0Desc": "same-day or next-day removal for urgent cases — offensive or high-visibility graffiti",
-      "item1Title": "Chemical Removal",
-      "item1Desc": "specialist solvents and gels that dissolve paint without attacking the substrate",
-      "item2Title": "Mechanical Removal",
-      "item2Desc": "micro-abrasive blasting for delicate stone and heritage surfaces",
-      "item3Title": "Pressure Washing",
-      "item3Desc": "effective for graffiti on hard, non-porous surfaces like metal shutters and concrete",
-      "item4Title": "Anti-Graffiti Coatings",
-      "item4Desc": "sacrificial or permanent protective coatings that make future removal quick and easy",
-      "item5Title": "Multi-Surface Capability",
-      "item5Desc": "brick, render, metal, glass, plastic, stone, wood — we match the method to the material"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for graffiti removal?",
-      "reason0Title": "Rapid Response",
-      "reason0Desc": "We understand that visible graffiti damages your reputation. We aim for same-day or next-day removal so the problem is gone before most people see it.",
-      "reason1Title": "Surface-Safe Methods",
-      "reason1Desc": "Aggressive removal can scar brick or etch render. We test every surface and select the gentlest effective method to avoid collateral damage.",
-      "reason2Title": "Prevention First",
-      "reason2Desc": "After removal, we recommend and apply anti-graffiti coatings that make future incidents a quick wipe-down instead of a major job.",
-      "reason3Title": "Property Manager Partnerships",
-      "reason3Desc": "We work with housing associations, commercial property managers and public sector bodies on ongoing graffiti management contracts."
-    },
-    "footerCta": {
-      "title": "Need graffiti removed — fast?",
-      "description": "Call us now or request a quote online. Emergency same-day response available for commercial properties in Tallinn and Harjumaa."
-    }
-  },
-  "kojameheteenus": {
-    "seo": {
-      "serviceName": "Janitor Services in Tallinn",
-      "serviceDescription": "Comprehensive janitor and property maintenance services for apartment buildings and commercial properties in Tallinn.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Janitor Service"
-    },
-    "hero": {
-      "ariaLabel": "Janitor Service",
-      "h1Line1": "Janitor Service",
-      "h1Line2": "complete property maintenance",
-      "description": "Day-to-day upkeep for apartment buildings, housing associations and commercial properties. Stairwell cleaning, outdoor maintenance, minor repairs and seasonal tasks — everything from one partner.",
-      "ctaButton": "Request a janitor service quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does the janitor service include?",
-      "item0Title": "Stairwell and Common Area Cleaning",
-      "item0Desc": "daily or weekly cleaning of staircases, corridors, lobbies and lifts",
-      "item1Title": "Outdoor Area Maintenance",
-      "item1Desc": "sweeping, litter picking, bin area management and entrance upkeep",
-      "item2Title": "Minor Repairs",
-      "item2Desc": "light bulb replacement, door adjustments, fixture fixes and basic handyman tasks",
-      "item3Title": "Seasonal Tasks",
-      "item3Desc": "leaf clearing in autumn, snow shovelling and gritting in winter, green area upkeep in summer",
-      "item4Title": "Waste Management",
-      "item4Desc": "bin room cleaning, waste sorting supervision and collection day preparation",
-      "item5Title": "Tenant Communication",
-      "item5Desc": "noticeboard updates, reporting issues to the housing association, being the on-site point of contact"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why housing associations choose SPS Grupp",
-      "reason0Title": "Reliable Daily Presence",
-      "reason0Desc": "Your janitor is on site according to an agreed schedule — residents know when to expect them and can rely on consistent service.",
-      "reason1Title": "Multi-Skilled Staff",
-      "reason1Desc": "Our janitors are trained in cleaning, basic maintenance and safety — one person handles most day-to-day property needs.",
-      "reason2Title": "Reporting and Accountability",
-      "reason2Desc": "We provide regular reports to the housing association board. Issues are logged, tracked and resolved transparently.",
-      "reason3Title": "Seasonal Coverage",
-      "reason3Desc": "Snow, leaves, gardening — seasonal peaks are handled without the housing association needing to arrange separate contractors."
-    },
-    "footerCta": {
-      "title": "One reliable partner for all your property's daily needs",
-      "description": "Request a free consultation. We'll assess your building and propose a janitor service package tailored to your property."
-    }
-  },
-  "lehtedekoristamine": {
-    "seo": {
-      "serviceName": "Leaf Removal Services in Tallinn",
-      "serviceDescription": "Professional leaf collection and removal for commercial properties and housing associations in Tallinn. Autumn and spring clearance.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Leaf Removal"
-    },
-    "hero": {
-      "ariaLabel": "Leaf Removal",
-      "h1Line1": "Leaf Removal",
-      "h1Line2": "seasonal property maintenance",
-      "description": "Professional leaf collection and removal for apartment buildings, office parks, school grounds and commercial properties. Efficient equipment, timely service, clean and safe outdoor areas.",
-      "ctaButton": "Request a leaf removal quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does professional leaf removal include?",
-      "item0Title": "Leaf Blowing and Collection",
-      "item0Desc": "powerful backpack blowers gather leaves efficiently from lawns, paths and car parks",
-      "item1Title": "Mechanical Sweeping",
-      "item1Desc": "ride-on sweepers for large paved areas and car parks",
-      "item2Title": "Lawn Leaf Clearance",
-      "item2Desc": "gentle removal that protects grass — preventing dead patches and fungal disease",
-      "item3Title": "Gutter and Drain Clearing",
-      "item3Desc": "leaves cleared from gutters, drains and downspouts to prevent blockages",
-      "item4Title": "Bagging and Removal",
-      "item4Desc": "all collected leaves bagged and removed from site — no piles left behind",
-      "item5Title": "Hedge and Shrub Area Cleanup",
-      "item5Desc": "clearing accumulated leaf litter from under hedges and in planting beds"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for leaf removal?",
-      "reason0Title": "Timely Seasonal Response",
-      "reason0Desc": "We schedule visits according to leaf fall patterns — more frequent during peak weeks, less frequent at the tail ends of the season.",
-      "reason1Title": "Safety First",
-      "reason1Desc": "Wet leaves on paths and car parks are a slip hazard. We prioritise pedestrian and vehicle areas to reduce accident risk for residents and visitors.",
-      "reason2Title": "Proper Disposal",
-      "reason2Desc": "All collected material is removed and disposed of responsibly — no dumping, no burning, no mess left for you to deal with.",
-      "reason3Title": "Combined Service Packages",
-      "reason3Desc": "Leaf removal can be bundled with our janitor service or other outdoor maintenance for a single-contract solution."
-    },
-    "footerCta": {
-      "title": "Don't let fallen leaves become a hazard",
-      "description": "Request a leaf removal plan for your property. We'll assess your grounds and provide a seasonal schedule with transparent pricing."
-    }
-  },
-  "lumekoristus": {
-    "seo": {
-      "serviceName": "Snow Removal Services in Tallinn",
-      "serviceDescription": "Professional snow clearing and gritting for commercial properties. 24/7 winter response, tractors, manual teams. Keep your property safe and accessible.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Snow Removal"
-    },
-    "hero": {
-      "ariaLabel": "Snow Removal",
-      "h1Line1": "Snow Removal",
-      "h1Line2": "24/7 winter property maintenance",
-      "description": "Professional snow clearing, de-icing and gritting for apartment buildings, office parks, retail and industrial properties. Rapid response when it snows — keeping paths, car parks and entrances safe and accessible.",
-      "ctaButton": "Request a snow removal contract"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does snow removal include?",
-      "item0Title": "Snow Ploughing",
-      "item0Desc": "tractor-mounted ploughs for car parks, access roads and large paved areas",
-      "item1Title": "Manual Snow Clearing",
-      "item1Desc": "shovelling paths, steps, ramps and entrances that equipment cannot reach",
-      "item2Title": "De-Icing and Gritting",
-      "item2Desc": "salt or grit application to prevent ice formation on walkways and vehicle routes",
-      "item3Title": "Snow Relocation",
-      "item3Desc": "removing piled snow from site when accumulation exceeds storage capacity",
-      "item4Title": "Roof Snow Clearing",
-      "item4Desc": "safe removal of snow loads from flat roofs to prevent structural damage",
-      "item5Title": "24/7 Emergency Response",
-      "item5Desc": "on-call team ready to respond during snowfall events — day or night, weekend or holiday"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for snow removal?",
-      "reason0Title": "Always-On Winter Service",
-      "reason0Desc": "We monitor weather forecasts and dispatch teams proactively. When snow falls, we're already on the way — not waiting for your phone call.",
-      "reason1Title": "Appropriate Equipment",
-      "reason1Desc": "From compact tractors for tight apartment building car parks to large ploughs for industrial sites — we match the machine to the property.",
-      "reason2Title": "Liability Protection",
-      "reason2Desc": "Our service includes documented gritting logs. If a slip claim is made, you have evidence that maintenance was carried out — critical for insurance and legal defence.",
-      "reason3Title": "Seasonal Contracts",
-      "reason3Desc": "Fixed-price winter maintenance contracts give you budget certainty. No surprise bills after a heavy snowfall month."
-    },
-    "footerCta": {
-      "title": "Keep your property safe and open this winter",
-      "description": "Secure your winter maintenance contract now. We'll assess your property and provide a fixed seasonal price — before the first snow falls."
-    }
-  },
-  "muruniitmine": {
-    "seo": {
-      "serviceName": "Lawn Mowing Services in Tallinn",
-      "serviceDescription": "Professional lawn mowing and grass maintenance for commercial properties and housing associations in Tallinn. Regular schedule, sharp equipment.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Lawn Mowing"
-    },
-    "hero": {
-      "ariaLabel": "Lawn Mowing",
-      "h1Line1": "Lawn Mowing",
-      "h1Line2": "professional grounds maintenance",
-      "description": "Regular lawn mowing, trimming and edge maintenance for apartment buildings, office parks, schools and commercial properties. Sharp blades, consistent schedule, tidy results every time.",
-      "ctaButton": "Request a lawn mowing quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does lawn mowing include?",
-      "item0Title": "Regular Lawn Mowing",
-      "item0Desc": "scheduled visits throughout the growing season — weekly or bi-weekly as needed",
-      "item1Title": "Edge Trimming",
-      "item1Desc": "strimming along fences, walls, paths and planting beds for a clean finish",
-      "item2Title": "Grass Clipping Management",
-      "item2Desc": "clippings collected or mulched according to site preference",
-      "item3Title": "Slope and Bank Mowing",
-      "item3Desc": "specialised equipment for steep or uneven terrain that standard mowers cannot handle",
-      "item4Title": "First and Last Cut",
-      "item4Desc": "spring start-up cut and autumn final cut at the correct height for winter readiness",
-      "item5Title": "Lawn Health Monitoring",
-      "item5Desc": "our teams flag issues like moss, bare patches, disease or drainage problems"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for lawn mowing?",
-      "reason0Title": "Commercial-Grade Equipment",
-      "reason0Desc": "We use professional ride-on and walk-behind mowers that cut faster and cleaner than domestic machines — better results in less time.",
-      "reason1Title": "Weather-Adaptive Scheduling",
-      "reason1Desc": "We adjust the schedule around rain and growth rates. Your lawn is cut when it needs it, not on an arbitrary calendar date.",
-      "reason2Title": "Proper Blade Maintenance",
-      "reason2Desc": "Dull blades tear grass, causing brown tips and disease. We sharpen blades regularly for a clean cut that promotes healthy growth.",
-      "reason3Title": "Multi-Service Integration",
-      "reason3Desc": "Lawn mowing combines seamlessly with our leaf removal, snow clearing and janitor services — one contract, year-round grounds maintenance."
-    },
-    "footerCta": {
-      "title": "Let us handle the grass — you enjoy the view",
-      "description": "Request a lawn maintenance plan for your property. We'll survey your grounds and provide a seasonal quote with a fixed mowing schedule."
-    }
-  },
-  "tanavakividePesuJaHooldus": {
-    "seo": {
-      "serviceName": "Paving Stone Cleaning and Maintenance in Tallinn",
-      "serviceDescription": "Professional paving stone pressure washing, weed removal and joint sanding for commercial properties. Restore your paved surfaces.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Paving Stone Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Paving Stone Cleaning",
-      "h1Line1": "Paving Stone Cleaning",
-      "h1Line2": "and Maintenance",
-      "description": "Restore the appearance of driveways, car parks, paths and patios. High-pressure washing removes dirt, algae and moss. Joint sanding and sealing to protect against weeds and weather damage.",
-      "ctaButton": "Request a paving cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does paving stone cleaning include?",
-      "item0Title": "Pressure Washing",
-      "item0Desc": "high-pressure hot water cleaning to lift ingrained dirt, algae and moss from paving stones",
-      "item1Title": "Weed Removal",
-      "item1Desc": "mechanical and thermal weed removal from joints — no harmful herbicides",
-      "item2Title": "Joint Sanding",
-      "item2Desc": "re-sanding of joints with kiln-dried sand to lock pavers and inhibit weed regrowth",
-      "item3Title": "Sealing",
-      "item3Desc": "optional protective sealant that repels water, resists staining and slows algae return",
-      "item4Title": "Stain Treatment",
-      "item4Desc": "oil, tyre mark and rust stain removal from paved surfaces",
-      "item5Title": "Drainage Check",
-      "item5Desc": "inspection of falls and drainage while cleaning — flagging pooling or runoff issues"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for paving maintenance?",
-      "reason0Title": "Surface-Appropriate Pressure",
-      "reason0Desc": "Too much pressure can etch concrete pavers or blast out joint sand. We calibrate pressure and nozzle selection to your specific paving type.",
-      "reason1Title": "Complete Restoration",
-      "reason1Desc": "We don't just wash — we re-sand and optionally seal. The result is a surface that looks new and stays cleaner longer.",
-      "reason2Title": "Environmentally Responsible",
-      "reason2Desc": "We avoid chemical herbicides for weed control, preferring thermal methods. Waste water is managed responsibly on site.",
-      "reason3Title": "Large-Area Capability",
-      "reason3Desc": "From small apartment building paths to large retail car parks — we have the equipment and team size to handle any scale efficiently."
-    },
-    "footerCta": {
-      "title": "Restore your paved surfaces to like-new condition",
-      "description": "Request a free paving assessment. We'll inspect your paved areas and provide a detailed cleaning and maintenance quote."
-    }
-  },
-  "puhastusteenused": {
-    "seo": {
-      "serviceName": "Specialist Cleaning Services in Tallinn",
-      "serviceDescription": "Specialist cleaning for businesses in Tallinn: deep cleaning, disinfection, post-construction cleaning and other one-off work.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Services",
-      "breadcrumbCurrent": "Specialist Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Specialist Cleaning Services",
-      "h1Line1": "Specialist Cleaning Services",
-      "h1Line2": "for businesses",
-      "description": "A complete range of specialist cleaning services for businesses and property managers. From deep cleaning and disinfection to post-construction cleanup — all delivered to ISO 9001 and ISO 14001 standards.",
-      "ctaButton": "Request a specialist cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "Our sanitation and specialist cleaning services",
-      "item0Title": "Post-Construction Cleaning",
-      "item0Desc": "thorough cleanup after building work — dust, debris, protective film and sticker removal",
-      "item1Title": "Disinfection Services",
-      "item1Desc": "fogging, surface disinfection and sanitisation for infection control",
-      "item2Title": "Escalator Deep Cleaning",
-      "item2Desc": "specialist step-by-step escalator and travelator cleaning",
-      "item3Title": "Floor Maintenance",
-      "item3Desc": "stripping, polishing, crystallisation and sealing for all floor types",
-      "item4Title": "Fire and Smoke Damage Restoration",
-      "item4Desc": "soot removal, deodorisation and structural cleaning after fire incidents",
-      "item5Title": "Carpet Cleaning",
-      "item5Desc": "hot water extraction, dry cleaning and stain treatment for commercial carpets",
-      "item6Title": "Window Cleaning",
-      "item6Desc": "interior and exterior window cleaning including high-rise access",
-      "item7Title": "Facade and Graffiti Cleaning",
-      "item7Desc": "building exterior cleaning, graffiti removal and protective treatments"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for specialist cleaning?",
-      "reason0Title": "ISO-Certified Processes",
-      "reason0Desc": "All our specialist cleaning work follows documented procedures under our ISO 9001 quality and ISO 14001 environmental management systems.",
-      "reason1Title": "Trained Specialists",
-      "reason1Desc": "Specialist cleaning tasks require specific training — from chemical handling to working at height. Our teams are certified for the work they perform.",
-      "reason2Title": "All Services, One Partner",
-      "reason2Desc": "No need to coordinate multiple contractors. We handle regular cleaning, specialist tasks and outdoor maintenance under one contract.",
-      "reason3Title": "Quality Review",
-      "reason3Desc": "If the result does not meet the agreed quality requirements, we review the work and address justified shortcomings."
-    },
-    "footerCta": {
-      "title": "One partner for every cleaning challenge your property faces",
-      "description": "Request a free consultation. Tell us what you need and we'll propose the right specialist cleaning solution with transparent pricing."
-    }
-  },
-  "ehitusjargneKoristus": {
-    "seo": {
-      "serviceName": "Post-Construction Cleaning in Tallinn",
-      "serviceDescription": "Professional post-construction and builders' cleaning for commercial projects. Thorough dust removal, surface cleaning, ready for handover.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Post-Construction Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Post-Construction Cleaning",
-      "h1Line1": "Post-Construction Cleaning",
-      "h1Line2": "turnkey handover readiness",
-      "description": "Thorough cleaning after construction, renovation or fit-out work. We remove construction dust from every surface — floors, walls, ceilings, windows, ductwork — so your project is ready for handover or occupancy.",
-      "ctaButton": "Request a post-construction cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does post-construction cleaning include?",
-      "item0Title": "Construction Dust Removal",
-      "item0Desc": "HEPA-filter vacuuming of all surfaces — walls, ceilings, ledges, pipes and ductwork",
-      "item1Title": "Window and Glass Cleaning",
-      "item1Desc": "removal of stickers, paint splatter, plaster residue and construction film from all glazing",
-      "item2Title": "Floor Deep Cleaning",
-      "item2Desc": "protective film removal, adhesive residue cleanup, mopping and polishing of all floor surfaces",
-      "item3Title": "Sanitary Fixture Cleaning",
-      "item3Desc": "deep clean and polish of all toilets, sinks, taps, mirrors and fittings",
-      "item4Title": "Kitchen and Break Area Preparation",
-      "item4Desc": "appliance cleaning, worktop sanitising, cupboard wipe-down inside and out",
-      "item5Title": "Ventilation and Duct Cleaning",
-      "item5Desc": "cleaning of visible ductwork, grilles and vents to remove construction dust",
-      "item6Title": "Waste and Debris Removal",
-      "item6Desc": "collection and disposal of remaining construction waste, packaging and offcuts"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for post-construction cleaning?",
-      "reason0Title": "Construction-Aware Teams",
-      "reason0Desc": "Our post-construction cleaners understand building materials and finishes. They know which chemicals are safe on which surfaces and won't damage new installations.",
-      "reason1Title": "Handover-Ready Results",
-      "reason1Desc": "We clean to handover standard — every surface, every corner, every fixture. Your client walks into a finished space, not a building site that's been swept.",
-      "reason2Title": "Flexible Timing",
-      "reason2Desc": "Construction schedules change. We adapt — starting earlier, working evenings or weekends, splitting into phases — to meet your handover deadline.",
-      "reason3Title": "Full Waste Management",
-      "reason3Desc": "We don't just clean — we remove construction waste, packaging and debris so you don't need a separate waste contractor for the final clear-out."
-    },
-    "pricing": {
-      "tag": "Pricing",
-      "heading": "Post-construction cleaning pricing",
-      "description": "Pricing depends on project size, type of construction and level of soiling. We provide a fixed-price quote after a site inspection so there are no surprises.",
-      "item0Size": "Small Fit-Out",
-      "item0Area": "up to 200m²",
-      "item0Price": "€350",
-      "item0Period": "",
-      "item1Size": "Medium Project",
-      "item1Area": "200–1000m²",
-      "item1Price": "€800",
-      "item1Period": "",
-      "item2Size": "Large Site",
-      "item2Area": "1000m²+",
-      "item2Price": "Custom",
-      "item2Period": "quote",
-      "note": "Post-construction cleaning typically ranges from <strong>€1.5–3.0/m²</strong> depending on soiling level and finish quality requirements."
-    },
-    "footerCta": {
-      "title": "Get your project handover-ready on schedule",
-      "description": "Request a free post-construction cleaning quote. We'll visit your site, assess the scope and provide a fixed price after assessing the scope."
-    }
-  },
-  "desinfitseerimine": {
-    "seo": {
-      "serviceName": "Disinfection Services in Tallinn",
-      "serviceDescription": "Professional disinfection and sanitisation for businesses. Fogging, surface treatment, infection control. ISO 14001 certified.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Disinfection"
-    },
-    "hero": {
-      "ariaLabel": "Disinfection",
-      "h1Line1": "Disinfection",
-      "h1Line2": "professional infection control",
-      "description": "Professional disinfection services for offices, healthcare facilities, schools and commercial premises. ULV fogging, surface sanitisation and targeted decontamination using certified biocidal products.",
-      "ctaButton": "Request a disinfection quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does professional disinfection include?",
-      "item0Title": "ULV Fogging",
-      "item0Desc": "cold fogging treatment that reaches all surfaces including hard-to-access areas",
-      "item1Title": "Surface Disinfection",
-      "item1Desc": "manual wipe-down of all high-touch surfaces with certified disinfectants",
-      "item2Title": "Sanitary Facility Sanitisation",
-      "item2Desc": "intensive treatment of toilets, washbasins, taps, door handles and light switches",
-      "item3Title": "HVAC Surface Treatment",
-      "item3Desc": "cleaning and disinfection of accessible ventilation grilles and diffusers",
-      "item4Title": "Outbreak Response",
-      "item4Desc": "rapid deployment for infectious disease outbreaks — norovirus, influenza, COVID-19",
-      "item5Title": "Documented Process",
-      "item5Desc": "full treatment log provided for your records, audit compliance and staff communication"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for disinfection?",
-      "reason0Title": "Certified Products",
-      "reason0Desc": "We use only registered biocidal products that are effective against a broad spectrum of pathogens while being safe for occupied environments after the required contact time.",
-      "reason1Title": "Targeted Approach",
-      "reason1Desc": "We don't fog and leave. We combine fogging for comprehensive coverage with manual wiping of high-touch surfaces — the combination that actually works.",
-      "reason2Title": "Rapid Response",
-      "reason2Desc": "In the event of an outbreak, we can deploy a disinfection team within hours — not days. Minimising downtime is critical for your business continuity.",
-      "reason3Title": "Compliance Documentation",
-      "reason3Desc": "We provide dated treatment records, product data sheets and method statements — useful for health and safety files, insurance claims and regulatory inspections."
-    },
-    "footerCta": {
-      "title": "Protect your people and your business from infectious threats",
-      "description": "Request a free disinfection consultation. We'll assess your premises and recommend the right treatment protocol with transparent pricing."
-    }
-  },
-  "eskalaatoriteSuvapuhastus": {
-    "seo": {
-      "serviceName": "Escalator Deep Cleaning in Tallinn",
-      "serviceDescription": "Professional escalator and travelator deep cleaning for shopping centres, transport hubs and commercial buildings. Specialist equipment.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Escalator Deep Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Escalator Deep Cleaning",
-      "h1Line1": "Escalator Deep Cleaning",
-      "h1Line2": "specialist step-by-step maintenance",
-      "description": "Professional escalator and travelator deep cleaning for shopping centres, airports, metro stations and commercial buildings. Specialist step-cleaning machines remove compacted dirt, grease and debris from grooves and side panels.",
-      "ctaButton": "Request an escalator cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does escalator deep cleaning include?",
-      "item0Title": "Step Groove Cleaning",
-      "item0Desc": "specialist rotating brush machines clean each step groove — removing compacted dirt and debris",
-      "item1Title": "Side Panel Cleaning",
-      "item1Desc": "glass or metal skirt panels cleaned and polished to remove scuff marks and grime",
-      "item2Title": "Comb Plate Deep Clean",
-      "item2Desc": "comb plates and landing platforms stripped of accumulated grease and debris",
-      "item3Title": "Handrail Sanitisation",
-      "item3Desc": "cleaning and disinfection of handrail surfaces along the entire length",
-      "item4Title": "Underside and Mechanism Cleaning",
-      "item4Desc": "accessible internal areas cleaned of dust, lint and debris build-up",
-      "item5Title": "Safety Marking Refresh",
-      "item5Desc": "yellow demarcation lines and safety signage cleaned for maximum visibility"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for escalator cleaning?",
-      "reason0Title": "Specialist Equipment",
-      "reason0Desc": "We use dedicated escalator cleaning machines — not improvised tools. Each step groove, side panel and comb plate gets the right treatment.",
-      "reason1Title": "Out-of-Hours Operation",
-      "reason1Desc": "Escalator cleaning is done when the units are stopped — typically at night or during scheduled maintenance windows. Zero disruption to passenger flow.",
-      "reason2Title": "Safety Compliance",
-      "reason2Desc": "We follow LOTOTO (lock-out, tag-out, try-out) procedures when working on stopped escalators. Our teams are trained in working safely around mechanical equipment.",
-      "reason3Title": "Regular Maintenance Programmes",
-      "reason3Desc": "We offer scheduled programmes — monthly, quarterly or bi-annual deep cleans — to keep escalators consistently clean and reduce long-term wear."
-    },
-    "footerCta": {
-      "title": "Keep your escalators clean, safe and welcoming",
-      "description": "Request a free escalator cleaning assessment. We'll survey your units and provide a scheduled maintenance quote after assessing the scope."
-    }
-  },
-  "porandateHooldus": {
-    "seo": {
-      "serviceName": "Floor Maintenance Services in Tallinn",
-      "serviceDescription": "Professional floor stripping, polishing, crystallisation and sealing for all floor types. Commercial floor care by trained specialists.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Floor Maintenance"
-    },
-    "hero": {
-      "ariaLabel": "Floor Maintenance",
-      "h1Line1": "Floor Maintenance",
-      "h1Line2": "restore and protect your floors",
-      "description": "Professional floor care for offices, retail spaces, healthcare and industrial facilities. Stripping, polishing, crystallisation, sealing and daily maintenance for all hard floor types.",
-      "ctaButton": "Request a floor maintenance quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does floor maintenance include?",
-      "item0Title": "Floor Stripping",
-      "item0Desc": "removal of old wax, sealant and polish layers to expose the bare surface",
-      "item1Title": "Polishing and Burnishing",
-      "item1Desc": "high-speed buffing to restore shine on vinyl, linoleum, terrazzo and marble floors",
-      "item2Title": "Crystallisation",
-      "item2Desc": "chemical-mechanical process for marble and limestone to create a durable high-gloss finish",
-      "item3Title": "Diamond Grinding",
-      "item3Desc": "mechanical refinement of concrete and stone floors to achieve the desired finish level",
-      "item4Title": "Sealing and Impregnation",
-      "item4Desc": "protective treatments that prevent staining, moisture ingress and surface wear",
-      "item5Title": "Daily Maintenance Plans",
-      "item5Desc": "ongoing scrubber-dryer and buffing schedules to maintain appearance between deep treatments"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for floor maintenance?",
-      "reason0Title": "Material-Specific Expertise",
-      "reason0Desc": "Marble needs crystallisation, vinyl needs polishing, concrete needs grinding — we match the method to the material so results are optimal and surfaces are not damaged.",
-      "reason1Title": "Professional-Grade Equipment",
-      "reason1Desc": "We use industrial rotary machines, scrubber-dryers and diamond grinders — not rental shop equipment — for faster, better, more consistent results.",
-      "reason2Title": "Minimal Downtime",
-      "reason2Desc": "Floor work is scheduled in zones or out of hours so your business operations continue. Overnight and weekend work is standard.",
-      "reason3Title": "Full Lifecycle Care",
-      "reason3Desc": "From initial restoration to ongoing daily maintenance, we manage the full lifecycle of your floors so they stay looking their best year after year."
-    },
-    "footerCta": {
-      "title": "Give your floors the professional care they deserve",
-      "description": "Request a free floor assessment. We'll inspect your surfaces, recommend the right treatment and provide a fixed-price quote after assessing the scope."
-    }
-  },
-  "suitsuJaTulekahjustustePuhastamine": {
-    "seo": {
-      "serviceName": "Fire and Smoke Damage Restoration in Tallinn",
-      "serviceDescription": "Professional fire damage cleanup, soot removal and smoke deodorisation. Emergency response for commercial properties in Tallinn.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Fire Damage Restoration"
-    },
-    "hero": {
-      "ariaLabel": "Fire Damage Restoration",
-      "h1Line1": "Fire and Smoke Damage",
-      "h1Line2": "Restoration",
-      "description": "Professional cleanup and restoration after fire, smoke or soot damage. Emergency response, structural cleaning, deodorisation and content restoration for commercial and residential properties.",
-      "ctaButton": "Request emergency fire damage cleanup"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does fire damage restoration include?",
-      "item0Title": "Emergency Response",
-      "item0Desc": "rapid deployment to secure the site and begin immediate mitigation work",
-      "item1Title": "Soot and Smoke Residue Removal",
-      "item1Desc": "specialist dry and wet cleaning techniques for walls, ceilings and surfaces",
-      "item2Title": "Deodorisation",
-      "item2Desc": "ozone treatment, thermal fogging and hydroxyl generation to eliminate smoke odour",
-      "item3Title": "Structural Cleaning",
-      "item3Desc": "deep cleaning of building fabric — walls, floors, ceilings, ductwork and voids",
-      "item4Title": "Content Cleaning and Restoration",
-      "item4Desc": "cleaning and deodorising of furniture, equipment, documents and soft furnishings",
-      "item5Title": "Water Extraction and Drying",
-      "item5Desc": "removal of water from firefighting efforts and structural drying to prevent mould"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for fire damage restoration?",
-      "reason0Title": "Rapid Emergency Response",
-      "reason0Desc": "We mobilise within hours of your call. The sooner restoration begins, the more can be saved and the lower the total recovery cost.",
-      "reason1Title": "Comprehensive Approach",
-      "reason1Desc": "We address everything: soot, smoke odour, water damage and structural issues. Not just surface cleaning — full restoration.",
-      "reason2Title": "Insurance Coordination",
-      "reason2Desc": "We provide detailed damage assessments, photo documentation and itemised quotes formatted for insurance claims — reducing your administrative burden.",
-      "reason3Title": "Certified Methods",
-      "reason3Desc": "Our restoration techniques follow industry best practices for fire and smoke damage. We use professional-grade deodorisation and cleaning equipment."
-    },
-    "footerCta": {
-      "title": "Fire damage? Call us now for immediate help",
-      "description": "Call +372 662 3328 or request a callback online. We assess urgent fire and smoke damage cases as soon as possible; response time depends on the location, extent of damage and team availability."
-    }
-  },
-  "vaipadePuhastus": {
-    "seo": {
-      "serviceName": "Carpet Cleaning Services in Tallinn",
-      "serviceDescription": "Professional commercial carpet cleaning. Hot water extraction, dry cleaning and stain treatment. Extend carpet life, improve indoor air quality.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Cleaning Services",
-      "breadcrumbCurrent": "Carpet Cleaning"
-    },
-    "hero": {
-      "ariaLabel": "Carpet Cleaning",
-      "h1Line1": "Carpet Cleaning",
-      "h1Line2": "for commercial properties",
-      "description": "Professional deep cleaning for office carpets, hotel carpets, event spaces and commercial floor coverings. Hot water extraction removes embedded dirt, allergens and stains — extending carpet life and improving indoor air quality.",
-      "ctaButton": "Request a carpet cleaning quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does professional carpet cleaning include?",
-      "item0Title": "Hot Water Extraction",
-      "item0Desc": "deep injection of hot water and cleaning solution followed by powerful vacuum recovery",
-      "item1Title": "Dry Carpet Cleaning",
-      "item1Desc": "low-moisture method using compound cleaning agents — carpets ready for use almost immediately",
-      "item2Title": "Stain Treatment",
-      "item2Desc": "targeted removal of coffee, wine, ink, grease and other common commercial carpet stains",
-      "item3Title": "Odour Elimination",
-      "item3Desc": "deodorising treatment to remove trapped odours from spills, pets or general use",
-      "item4Title": "Carpet Protection",
-      "item4Desc": "optional protective treatment that repels liquids and slows re-soiling",
-      "item5Title": "Upholstery Cleaning",
-      "item5Desc": "fabric chairs, sofas and soft seating cleaned and refreshed alongside carpets"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for carpet cleaning?",
-      "reason0Title": "Truck-Mounted Equipment",
-      "reason0Desc": "For large areas, we use truck-mounted extraction units with superior suction power — deeper clean, faster drying times than portable machines.",
-      "reason1Title": "Fabric-Safe Products",
-      "reason1Desc": "We test cleaning solutions on an inconspicuous area first. Wool, nylon, polypropylene — each fibre type gets the appropriate treatment.",
-      "reason2Title": "Health Benefit",
-      "reason2Desc": "Carpets trap allergens, dust mites and bacteria. Regular professional cleaning significantly improves indoor air quality — important for staff wellbeing.",
-      "reason3Title": "Flexible Scheduling",
-      "reason3Desc": "Evening, overnight and weekend cleaning is standard. We work around your business hours so cleaned areas are dry and ready when you arrive."
-    },
-    "footerCta": {
-      "title": "Extend your carpet life and improve your indoor environment",
-      "description": "Request a free carpet cleaning assessment. We'll survey your floor coverings and provide a fixed-price quote after assessing the scope."
-    }
-  },
-  "remonditeenusedTallinnas": {
-    "seo": {
-      "serviceName": "Renovation Services in Tallinn",
-      "serviceDescription": "Smaller renovation and maintenance work for commercial properties in Tallinn, coordinated through one contact person.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Services",
-      "breadcrumbCurrent": "Renovation Services"
-    },
-    "hero": {
-      "ariaLabel": "Renovation Services",
-      "h1Line1": "Renovation Services",
-      "h1Line2": "in Tallinn",
-      "description": "We arrange smaller repair and maintenance work for commercial properties using our own team and, when needed, vetted partners. The client has one contact person for coordination.",
-      "ctaButton": "Request a renovation quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "Our renovation and repair services",
-      "item0Title": "Electrical Work",
-      "item0Desc": "wiring, lighting, switchboard upgrades, fault finding and electrical certification",
-      "item1Title": "Plumbing",
-      "item1Desc": "pipework, fixture installation, leak repair and drainage solutions",
-      "item2Title": "Interior Finishing",
-      "item2Desc": "plastering, painting, wallpapering and decorative finishes",
-      "item3Title": "Bathroom Renovation",
-      "item3Desc": "full bathroom and WC refurbishment including waterproofing and tiling",
-      "item4Title": "Tiling",
-      "item4Desc": "floor and wall tiling for bathrooms, kitchens, hallways and commercial spaces",
-      "item5Title": "Ventilation Systems",
-      "item5Desc": "installation, maintenance and repair of ventilation and air handling systems",
-      "item6Title": "Roof Repair",
-      "item6Desc": "leak repair, re-roofing, gutter and downpipe work",
-      "item7Title": "Demolition and Strip-Out",
-      "item7Desc": "controlled demolition, partition removal and site clearance before renovation"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for renovation work?",
-      "reason0Title": "One Contact Person",
-      "reason0Desc": "We coordinate the agreed work and keep communication clear and simple for the client.",
-      "reason1Title": "A Suitable Team for the Work",
-      "reason1Desc": "We use our own team and involve vetted partners when the work requires it.",
-      "reason2Title": "Business-Aware Scheduling",
-      "reason2Desc": "We schedule renovation work to minimise disruption — phased work, out-of-hours operations and clear completion timelines so your business keeps running.",
-      "reason3Title": "Clear Scope and Schedule",
-      "reason3Desc": "The scope, schedule and responsibilities are agreed before work begins."
-    },
-    "footerCta": {
-      "title": "Discuss your repair or maintenance needs",
-      "description": "We generally contact you within one business day. The quote schedule depends on the work and whether a site visit is needed."
-    }
-  },
-  "elektritood": {
-    "seo": {
-      "serviceName": "Electrical Work in Tallinn",
-      "serviceDescription": "Electrical installation, repair and maintenance for commercial properties, with the required scope and documentation agreed before work begins.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Electrical Work"
-    },
-    "hero": {
-      "ariaLabel": "Electrical Work",
-      "h1Line1": "Electrical Work",
-      "h1Line2": "commercial and residential",
-      "description": "We arrange electrical installation, repair and maintenance for business premises. The scope, required qualifications and documentation are agreed before work begins.",
-      "ctaButton": "Request an electrical work quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What electrical services do we provide?",
-      "item0Title": "New Installations",
-      "item0Desc": "wiring for new builds, extensions and fit-outs — power, lighting and data",
-      "item1Title": "Lighting Design and Installation",
-      "item1Desc": "office lighting, retail display lighting, emergency lighting and exterior lighting",
-      "item2Title": "Switchboard Upgrades",
-      "item2Desc": "replacement and upgrading of consumer units and distribution boards",
-      "item3Title": "Fault Finding and Repair",
-      "item3Desc": "diagnosis and repair of electrical faults — tripping circuits, faulty sockets, intermittent issues",
-      "item4Title": "Safety Inspections and Testing",
-      "item4Desc": "periodic inspection reports, PAT testing and electrical installation condition reports",
-      "item5Title": "Data and Network Cabling",
-      "item5Desc": "structured cabling for office networks, access points and communication systems"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for electrical work?",
-      "reason0Title": "Qualified and Certified",
-      "reason0Desc": "All our electricians hold the required qualifications and certifications. Work is carried out to Estonian electrical safety standards with full documentation.",
-      "reason1Title": "Commercial Experience",
-      "reason1Desc": "We understand the electrical demands of office buildings, retail spaces and industrial facilities — not just domestic work.",
-      "reason2Title": "Minimal Disruption",
-      "reason2Desc": "We plan electrical work around your operations. Power isolation is scheduled for minimum impact, and we communicate clearly about any downtime.",
-      "reason3Title": "Full Certification",
-      "reason3Desc": "Every job comes with the required test certificates and documentation — essential for insurance, compliance and building records."
-    },
-    "footerCta": {
-      "title": "Safe, compliant electrical work — on time and on budget",
-      "description": "Request a free electrical work quote. We'll assess your requirements and provide a detailed proposal after assessing the scope."
-    }
-  },
-  "torutood": {
-    "seo": {
-      "serviceName": "Plumbing Services in Tallinn",
-      "serviceDescription": "Professional plumbing installation, repair and maintenance for commercial properties. Leak repair, pipework, fixture installation.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Plumbing"
-    },
-    "hero": {
-      "ariaLabel": "Plumbing",
-      "h1Line1": "Plumbing",
-      "h1Line2": "commercial and residential",
-      "description": "Plumbing services for businesses and property managers: pipework installation and repair, leak detection, fixture fitting and drainage solutions.",
-      "ctaButton": "Request a plumbing quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What plumbing services do we provide?",
-      "item0Title": "Pipework Installation and Repair",
-      "item0Desc": "new pipe runs, replacement of aged pipework, leak repair for copper, PEX and multilayer systems",
-      "item1Title": "Fixture Installation",
-      "item1Desc": "toilets, basins, sinks, taps, showers and urinals — supply, installation and commissioning",
-      "item2Title": "Leak Detection and Repair",
-      "item2Desc": "finding and fixing hidden leaks in walls, floors and ceilings before they cause major damage",
-      "item3Title": "Drainage Solutions",
-      "item3Desc": "blocked drain clearance, drain repairs, gully and trap maintenance",
-      "item4Title": "Water Heater Services",
-      "item4Desc": "installation, servicing and repair of electric and central heating water heaters",
-      "item5Title": "Emergency Plumbing",
-      "item5Desc": "rapid response for burst pipes, major leaks, blocked drains and flooding incidents"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for plumbing?",
-      "reason0Title": "Experienced Plumbers",
-      "reason0Desc": "Our plumbers have extensive commercial experience — from office washroom fit-outs to industrial pipework. No job is too large or too small.",
-      "reason1Title": "Emergency Response",
-      "reason1Desc": "A burst pipe doesn't wait for office hours. We offer emergency plumbing response to minimise water damage and get your property back to normal fast.",
-      "reason2Title": "Quality Materials",
-      "reason2Desc": "We use reputable-brand fittings, pipes and fixtures. Quality materials mean fewer callbacks and longer service life — saving you money over time.",
-      "reason3Title": "Clean Workmanship",
-      "reason3Desc": "Plumbing work can be messy. We protect surrounding areas, clean up thoroughly after every job and leave your property as we found it — except with working plumbing."
-    },
-    "footerCta": {
-      "title": "Reliable plumbing — from a dripping tap to a full system install",
-      "description": "Request a free plumbing quote. We'll assess the work and provide a transparent, fixed-price proposal after assessing the scope."
-    }
-  },
-  "siseviimistlustood": {
-    "seo": {
-      "serviceName": "Interior Finishing Services in Tallinn",
-      "serviceDescription": "Professional plastering, painting and decorative finishing for commercial properties. Quality workmanship, clean results.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Interior Finishing"
-    },
-    "hero": {
-      "ariaLabel": "Interior Finishing",
-      "h1Line1": "Interior Finishing",
-      "h1Line2": "plastering, painting and more",
-      "description": "Complete interior finishing services for commercial and residential properties. Plastering, painting, wallpapering, decorative finishes and surface preparation — turning bare spaces into finished rooms.",
-      "ctaButton": "Request an interior finishing quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What interior finishing services do we provide?",
-      "item0Title": "Plastering and Skimming",
-      "item0Desc": "wall and ceiling plastering, re-skimming, drywall taping and jointing",
-      "item1Title": "Painting",
-      "item1Desc": "interior walls, ceilings, woodwork and metalwork — brush, roller and spray application",
-      "item2Title": "Wallpapering",
-      "item2Desc": "standard and specialist wallpaper hanging including pattern matching",
-      "item3Title": "Decorative Finishes",
-      "item3Desc": "textured coatings, feature walls, microcement and polished plaster finishes",
-      "item4Title": "Surface Preparation",
-      "item4Desc": "sanding, filling, priming and sealing — proper preparation for a flawless finish",
-      "item5Title": "Restoration and Repair",
-      "item5Desc": "crack repair, water damage ceiling restoration, cornice and moulding repair"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for interior finishing?",
-      "reason0Title": "Skilled Finishers",
-      "reason0Desc": "Interior finishing is a craft. Our plasterers and painters are experienced tradespeople who take pride in straight lines, smooth surfaces and clean edges.",
-      "reason1Title": "Project Phasing",
-      "reason1Desc": "For occupied properties, we work in phases — completing one area before moving to the next — so your business can continue operating during renovation.",
-      "reason2Title": "Dust Control",
-      "reason2Desc": "Sanding and plastering generate dust. We use dust extraction, containment barriers and protective sheeting to keep the rest of your property clean.",
-      "reason3Title": "Complete Handover",
-      "reason3Desc": "When we finish, the space is ready to use. We clean up all construction debris, remove protective coverings and leave finished rooms spotless."
-    },
-    "footerCta": {
-      "title": "Transform your interior spaces with professional finishing",
-      "description": "Request a free interior finishing quote. We'll visit your property, discuss finishes and provide a detailed proposal after assessing the scope."
-    }
-  },
-  "sanitaarremontJaUmberehitus": {
-    "seo": {
-      "serviceName": "Bathroom Renovation in Tallinn",
-      "serviceDescription": "Bathroom and WC renovation for commercial and residential properties, with the work stages agreed according to the project.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Bathroom Renovation"
-    },
-    "hero": {
-      "ariaLabel": "Bathroom Renovation",
-      "h1Line1": "Bathroom Renovation",
-      "h1Line2": "and Remodelling",
-      "description": "Bathroom and sanitary-facility renovation from demolition through waterproofing, plumbing, tiling and fixture installation. We coordinate the agreed stages through one contact person.",
-      "ctaButton": "Request a bathroom renovation quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does bathroom renovation include?",
-      "item0Title": "Demolition and Strip-Out",
-      "item0Desc": "removal of old tiles, fixtures, partitions and fittings back to the bare structure",
-      "item1Title": "Waterproofing",
-      "item1Desc": "certified waterproofing system applied to floors and wet-area walls before tiling",
-      "item2Title": "Plumbing",
-      "item2Desc": "pipework installation or relocation, drainage, fixture connections",
-      "item3Title": "Tiling",
-      "item3Desc": "floor and wall tiling with appropriate slip-resistant and waterproof specifications",
-      "item4Title": "Fixture Installation",
-      "item4Desc": "toilets, basins, urinals, taps, showers, mirrors, hand dryers and dispensers",
-      "item5Title": "Ventilation",
-      "item5Desc": "extractor fan installation or upgrade to manage humidity and prevent mould"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for bathroom renovation?",
-      "reason0Title": "Turnkey Service",
-      "reason0Desc": "We manage every trade — demolition, waterproofing, plumbing, tiling, electrical, finishing. You get a completed bathroom, not a project to coordinate yourself.",
-      "reason1Title": "Certified Waterproofing",
-      "reason1Desc": "Wet-area waterproofing is critical. We use certified systems applied by trained installers — the difference between a bathroom that lasts decades and one that leaks within years.",
-      "reason2Title": "Commercial Washroom Expertise",
-      "reason2Desc": "We understand the specific requirements of commercial washrooms — durability, accessibility compliance, vandal-resistant fixtures and high-traffic specifications.",
-      "reason3Title": "Fixed Timeline",
-      "reason3Desc": "We provide a clear project timeline before work starts. Regular progress updates mean you always know when your new bathroom will be ready."
-    },
-    "footerCta": {
-      "title": "Ready to transform your bathrooms?",
-      "description": "Request a free bathroom renovation consultation. We'll survey your existing facilities and provide a detailed design and quote after assessing the scope."
-    }
-  },
-  "ventilatsioonideEhitusJaHooldus": {
-    "seo": {
-      "serviceName": "Ventilation Services in Tallinn",
-      "serviceDescription": "Professional ventilation system installation, maintenance and repair for commercial properties. Improved air quality and energy efficiency.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Ventilation"
-    },
-    "hero": {
-      "ariaLabel": "Ventilation",
-      "h1Line1": "Ventilation Systems",
-      "h1Line2": "installation and maintenance",
-      "description": "Professional ventilation and air handling services for offices, retail, industrial and residential properties. System design, installation, commissioning, maintenance and repair — for healthier indoor air and lower energy costs.",
-      "ctaButton": "Request a ventilation quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What ventilation services do we provide?",
-      "item0Title": "System Design and Installation",
-      "item0Desc": "new ventilation system design, ductwork installation and air handling unit setup",
-      "item1Title": "Maintenance and Servicing",
-      "item1Desc": "filter replacement, coil cleaning, fan inspection and system performance checks",
-      "item2Title": "Ductwork Cleaning",
-      "item2Desc": "professional duct cleaning to remove dust, debris and contaminants from the air distribution system",
-      "item3Title": "Repair and Upgrades",
-      "item3Desc": "fan replacement, control system upgrades, ductwork repair and insulation improvements",
-      "item4Title": "Extract Systems",
-      "item4Desc": "kitchen extract, bathroom extract and industrial fume extraction systems",
-      "item5Title": "Air Quality Assessment",
-      "item5Desc": "CO₂ monitoring, humidity analysis and airflow measurement to diagnose ventilation issues"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for ventilation?",
-      "reason0Title": "Full-Service Capability",
-      "reason0Desc": "From design through installation to ongoing maintenance, we handle the entire ventilation lifecycle — no need for separate design and maintenance contractors.",
-      "reason1Title": "Energy Efficiency Focus",
-      "reason1Desc": "Modern ventilation with heat recovery can significantly reduce heating and cooling costs. We design and upgrade systems with energy performance in mind.",
-      "reason2Title": "Health and Compliance",
-      "reason2Desc": "Poor ventilation leads to stuffy air, high CO₂ levels, mould and occupant complaints. We deliver systems that meet building code ventilation rates and keep occupants comfortable.",
-      "reason3Title": "Scheduled Maintenance Plans",
-      "reason3Desc": "Regular filter changes and system checks prevent breakdowns and maintain efficiency. We offer annual maintenance contracts for worry-free operation."
-    },
-    "footerCta": {
-      "title": "Breathe easier with a properly designed and maintained ventilation system",
-      "description": "Request a free ventilation consultation. We'll assess your current system or discuss your requirements for a new installation with transparent pricing."
-    }
-  },
-  "plaatimistood": {
-    "seo": {
-      "serviceName": "Tiling Services in Tallinn",
-      "serviceDescription": "Professional floor and wall tiling for commercial and residential properties. Bathrooms, kitchens, hallways, retail spaces. Quality workmanship.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Tiling"
-    },
-    "hero": {
-      "ariaLabel": "Tiling",
-      "h1Line1": "Tiling",
-      "h1Line2": "professional floor and wall installation",
-      "description": "Expert tiling for commercial and residential properties. Floors, walls, bathrooms, kitchens, hallways and wet areas. Precise cutting, proper substrate preparation, flawless finish.",
-      "ctaButton": "Request a tiling quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What tiling services do we provide?",
-      "item0Title": "Floor Tiling",
-      "item0Desc": "ceramic, porcelain, natural stone and large-format tile installation on prepared subfloors",
-      "item1Title": "Wall Tiling",
-      "item1Desc": "bathroom walls, kitchen splashbacks, feature walls and commercial wall cladding",
-      "item2Title": "Wet Area Tiling",
-      "item2Desc": "waterproofed shower areas, wet rooms and bathroom floors with proper falls to drainage",
-      "item3Title": "Substrate Preparation",
-      "item3Desc": "levelling, priming, decoupling membrane installation and underfloor heating integration",
-      "item4Title": "Tile Removal and Replacement",
-      "item4Desc": "careful removal of old or damaged tiles and preparation for new installation",
-      "item5Title": "Grouting and Sealing",
-      "item5Desc": "colour-matched grouting, silicone sealing at joints and perimeter expansion gaps"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for tiling?",
-      "reason0Title": "Experienced Tilers",
-      "reason0Desc": "Tiling looks simple but demands skill. Our tilers have years of experience with all tile types and formats — from mosaics to 1200mm large-format panels.",
-      "reason1Title": "Proper Preparation",
-      "reason1Desc": "A tile finish is only as good as its substrate. We level, prime and waterproof before the first tile is laid — the steps that prevent cracks and failures later.",
-      "reason2Title": "Commercial-Grade Installation",
-      "reason2Desc": "We use flexible adhesives, decoupling membranes and expansion joints appropriate for high-traffic commercial environments — not domestic shortcuts.",
-      "reason3Title": "Clean and Efficient",
-      "reason3Desc": "We protect surrounding areas, control dust from cutting and leave the workspace clean at the end of each day. Minimal disruption to your property."
-    },
-    "footerCta": {
-      "title": "Beautiful, durable tiling that lasts for decades",
-      "description": "Request a free tiling assessment. We'll measure your space, discuss tile options and provide a detailed quote after assessing the scope."
-    }
-  },
-  "katuseRemont": {
-    "seo": {
-      "serviceName": "Roof Repair Services in Tallinn",
-      "serviceDescription": "Roof repair, leak detection, gutter and downpipe work for commercial properties. The scope is confirmed after assessing the roof.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Roof Repair"
-    },
-    "hero": {
-      "ariaLabel": "Roof Repair",
-      "h1Line1": "Roof Repair",
-      "h1Line2": "and Maintenance",
-      "description": "Professional roof repair and maintenance for commercial and residential properties. Leak repair, re-roofing, gutter replacement, chimney work and emergency storm damage response.",
-      "ctaButton": "Request a roof repair quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What roof repair services do we provide?",
-      "item0Title": "Leak Detection and Repair",
-      "item0Desc": "finding and fixing the source of roof leaks — not just the visible water stain on the ceiling",
-      "item1Title": "Flat Roof Repair",
-      "item1Desc": "membrane repair, seam welding, flashing replacement and drainage improvements",
-      "item2Title": "Pitched Roof Repair",
-      "item2Desc": "tile and slate replacement, ridge re-bedding, felt and batten repair",
-      "item3Title": "Gutter and Downpipe Services",
-      "item3Desc": "cleaning, repair and replacement of gutters and downpipes to ensure proper drainage",
-      "item4Title": "Chimney and Flashing Work",
-      "item4Desc": "chimney re-pointing, flashing repair and replacement, weatherproofing",
-      "item5Title": "Emergency Storm Damage",
-      "item5Desc": "temporary weatherproofing and permanent repair after storm, wind or impact damage"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for roof repair?",
-      "reason0Title": "Working-at-Height Safety",
-      "reason0Desc": "All roof work is carried out with proper fall protection — harnesses, guardrails, scaffolding or mobile platforms as appropriate. Safety is never compromised.",
-      "reason1Title": "Diagnosis Before Repair",
-      "reason1Desc": "We investigate properly before quoting. Many roof leaks have surprising causes — a failed flashing metres from the visible stain. We find the real problem.",
-      "reason2Title": "All Roof Types",
-      "reason2Desc": "Flat roofs, pitched roofs, metal roofs, tile roofs, bitumen, EPDM, PVC — our team has experience with all common roofing systems.",
-      "reason3Title": "Weather-Window Planning",
-      "reason3Desc": "Roof work is weather dependent. We monitor forecasts closely and schedule work during suitable weather windows to ensure quality and safety."
-    },
-    "footerCta": {
-      "title": "Don't let a small leak become a big problem",
-      "description": "Request a free roof inspection and repair quote. We'll assess the damage and provide a fixed-price proposal after assessing the scope."
-    }
-  },
-  "lammutustood": {
-    "seo": {
-      "serviceName": "Demolition Services in Tallinn",
-      "serviceDescription": "Professional controlled demolition and strip-out for commercial properties. Safe, efficient, waste removed. Preparation for renovation.",
-      "breadcrumbHome": "Home",
-      "breadcrumbService": "Renovation Services",
-      "breadcrumbCurrent": "Demolition"
-    },
-    "hero": {
-      "ariaLabel": "Demolition",
-      "h1Line1": "Demolition",
-      "h1Line2": "controlled strip-out and clearance",
-      "description": "Professional demolition and strip-out services for commercial and residential renovation projects. Safe removal of partitions, ceilings, floors, fixtures and fittings — preparing the space for new construction.",
-      "ctaButton": "Request a demolition quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What demolition services do we provide?",
-      "item0Title": "Interior Strip-Out",
-      "item0Desc": "removal of partition walls, suspended ceilings, raised floors and built-in furniture",
-      "item1Title": "Fixture and Fitting Removal",
-      "item1Desc": "kitchen units, sanitaryware, doors, frames, skirting and architrave removal",
-      "item2Title": "Floor Covering Removal",
-      "item2Desc": "carpet, vinyl, laminate, tile and screed removal down to structural slab",
-      "item3Title": "Wall and Ceiling Finish Removal",
-      "item3Desc": "plaster, render, wallpaper and cladding removal from walls and ceilings",
-      "item4Title": "Selective Demolition",
-      "item4Desc": "targeted removal of specific elements while protecting adjacent retained structures",
-      "item5Title": "Waste Segregation and Removal",
-      "item5Desc": "sorting of demolition waste for recycling and responsible disposal — site left clean and clear"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why choose SPS Grupp for demolition?",
-      "reason0Title": "Controlled Approach",
-      "reason0Desc": "We don't just knock things down. We plan the sequence, protect retained structures and isolate services before work begins.",
-      "reason1Title": "Dust and Noise Management",
-      "reason1Desc": "Demolition generates dust and noise. We use dust suppression, containment barriers and schedule noisy work considerately — especially in occupied buildings.",
-      "reason2Title": "Utility Isolation",
-      "reason2Desc": "We identify and safely isolate electrical, plumbing, gas and data services before demolition begins — preventing accidents and service interruptions.",
-      "reason3Title": "Site Handover Ready",
-      "reason3Desc": "After demolition, the site is cleared, swept and ready for the next trade. We remove all waste and leave a clean, safe working environment."
-    },
-    "footerCta": {
-      "title": "Ready to clear the way for your renovation?",
-      "description": "Request a free demolition assessment. We'll survey the space, discuss your scope and provide a detailed quote after assessing the scope."
-    }
-  },
-  "valikoristus": {
-    "seo": {
-      "serviceName": "Outdoor Cleaning in Tallinn",
-      "serviceDescription": "Outdoor cleaning and property grounds maintenance in Tallinn: facade washing, windows, graffiti removal, snow clearing and de-icing."
-    },
-    "hero": {
-      "ariaLabel": "Outdoor Cleaning",
-      "h1Line1": "Outdoor cleaning and grounds maintenance",
-      "h1Line2": "in Tallinn",
-      "description": "Facade washing, window cleaning, graffiti removal, paving-stone care and 24/7 snow clearing. We keep your building exterior clean and presentable in every season.",
-      "ctaButton": "Request an outdoor cleaning quote"
-    },
-    "problem": {
-      "heading": "Your building exterior creates the first impression before clients reach the door",
-      "paragraph1": "Entrances, parking areas, facades and pavements need consistent care. Dirt, snow, leaves and graffiti affect both safety and reputation.",
-      "paragraph2": "SPS Grupp manages outdoor maintenance through one partner: seasonal work, special cleaning and quick response to unexpected situations."
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does outdoor cleaning include?",
-      "item0Title": "Facade Washing",
-      "item0Desc": "render, glass, metal and other surfaces",
-      "item1Title": "Window and Glass Facade Cleaning",
-      "item1Desc": "including high-rise and commercial properties",
-      "item2Title": "Graffiti Removal",
-      "item2Desc": "quick removal and protective coating",
-      "item3Title": "Paving Stone Cleaning and Maintenance",
-      "item3Desc": "pressure washing, joint cleaning and impregnation",
-      "item4Title": "Snow Clearing and De-Icing",
-      "item4Desc": "seasonal readiness and automatic response",
-      "item5Title": "General Grounds Maintenance",
-      "item5Desc": "bins, entrances, parking areas and pavements"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why order outdoor maintenance from SPS Grupp?",
-      "reason0Title": "One Partner for Outdoor Work",
-      "reason0Desc": "Facades, windows, snow and grounds maintenance under one agreement.",
-      "reason1Title": "24/7 Winter Readiness",
-      "reason1Desc": "Snow clearing and de-icing start according to weather conditions.",
-      "reason2Title": "Commercial Property Experience",
-      "reason2Desc": "We work with offices, retail spaces and industrial sites."
-    },
-    "footerCta": {
-      "title": "Keep your building exterior in order",
-      "description": "Describe the property and required work. We will prepare a suitable maintenance plan and quote."
-    }
-  },
-  "ehitusprahiAravedu": {
-    "seo": {
-      "serviceName": "Construction Waste Removal in Tallinn",
-      "serviceDescription": "Construction debris and waste removal in Tallinn. Containers, sorting, transport and documentation from one partner."
-    },
-    "hero": {
-      "ariaLabel": "Construction Waste Removal",
-      "h1Line1": "Construction waste removal",
-      "h1Line2": "in Tallinn and Harjumaa",
-      "description": "Fast, compliant construction waste removal. We arrange containers, sorting, transport and the required documentation.",
-      "ctaButton": "Request a construction waste quote"
-    },
-    "services": {
-      "tag": "Service Content",
-      "heading": "What does the service include?",
-      "item0Title": "Container Delivery and Placement",
-      "item0Desc": "different sizes for renovation and construction sites",
-      "item1Title": "Construction Waste Sorting",
-      "item1Desc": "wood, metal, concrete, glass and mixed waste",
-      "item2Title": "Regular or One-Off Removal",
-      "item2Desc": "scheduled service or urgent order",
-      "item3Title": "Documentation",
-      "item3Desc": "waste records and reporting according to requirements"
-    },
-    "whyUs": {
-      "tag": "Why Us",
-      "heading": "Why order construction waste removal from SPS Grupp?",
-      "reason0Title": "Fast Coordination",
-      "reason0Desc": "We help prevent waste build-up and work stoppages on site.",
-      "reason1Title": "Compliant Handling",
-      "reason1Desc": "Sorting and documentation follow the required rules.",
-      "reason2Title": "Single Responsibility",
-      "reason2Desc": "Cleaning, waste removal and final site clean-up can be ordered from the same partner."
-    },
-    "footerCta": {
-      "title": "Need construction waste removed?",
-      "description": "Send the site address, approximate waste volume and preferred schedule. We will respond quickly."
+      "q0": "How does systematic cleaning help reduce the spread of illness?",
+      "a0": "Regular cleaning and proper cleaning of frequently touched surfaces help reduce contamination and support the school's general hygiene. The actual effect depends on cleaning organisation, room usage and compliance with other preventive measures.",
+      "q1": "Which areas in a school need special attention?",
+      "a1": "Frequently touched surfaces such as handrails, desks, chairs and switches need special attention, as do toilets, the canteen, sports facilities and other high-use areas.",
+      "q2": "Are the cleaning products safe for children?",
+      "a2": "We use products suitable for the work and compliant with EU requirements, and we follow the manufacturer's usage and safety instructions. We select products according to the room, surface and school's specific conditions.",
+      "q3": "Does cleaning disturb lessons?",
+      "a3": "No. The main cleaning happens in the morning before lessons start and in the evening after lessons end. Daytime work is limited to rapid response in public areas.",
+      "q4": "Do you participate in public procurements?",
+      "a4": "Yes, we actively participate in school cleaning public procurements. We hold the necessary qualifications, ISO certificates and experience."
     }
   },
   "privacyPolicy": {
     "form": "none",
-    "hero": {
-      "ariaLabel": "Privacy Policy",
-      "title": "Privacy Policy",
-      "description": "SPS Grupp processes personal data in accordance with the EU General Data Protection Regulation and Estonian law."
-    },
-    "about": {
-      "heading": "How we use data",
-      "paragraph1": "We collect only the data needed to provide services, respond to requests, fulfil contracts and meet legal obligations.",
-      "paragraph2": "We apply technical and organisational security measures to protect the personal data of clients, employees and website visitors."
-    },
-    "standards": {
-      "heading": "Your rights",
-      "paragraph1": "You may request information about the processing of your data, ask us to correct inaccurate data, and request deletion or restriction of processing where the law allows it.",
-      "paragraph2": "For privacy-related questions, contact us at info@spsgrupp.ee."
-    }
+    "title": "Privacy Policy",
+    "intro": [
+      "This privacy policy has been prepared with regard to REGULATION (EU) 2016/679 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL.",
+      "We use security measures in our work related to the provision of services to SPS Grupp OÜ clients and the handling of personal data relating to employees.",
+      "This privacy policy applies to everyone who uses the company's website or other digital services, submits an enquiry about our services, or otherwise communicates with SPS Grupp OÜ.",
+      "SPS Grupp OÜ processes the data of its employees, clients and contact persons in connection with employment or contractual relationships, the provision of services and the other lawful purposes described in this policy."
+    ],
+    "sections": [
+      {
+        "title": "Definitions",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "<strong>Personal data</strong> – means information about a person, i.e., a natural person (data subject), by which they can be identified directly or indirectly: name, personal identification code, location information, network identifiers (identifiers that, in a communication network, help lead to a specific person), as well as physical, economic, cultural, and any other identifying characteristics and combinations thereof."
+          },
+          {
+            "type": "paragraph",
+            "content": "<strong>Processing of personal data</strong> – means any operation performed on data: collection, organisation, storage, modification, reading, use, transmission, combination, deletion, etc."
+          }
+        ]
+      },
+      {
+        "title": "Identification of the Controller and Processor",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ is the controller when processing the personal data of its employees, website visitors and client representatives, and when developing its services. SPS Grupp OÜ's processors are service providers that process data on its behalf."
+          },
+          {
+            "type": "paragraph",
+            "content": "The processor must process personal data on behalf of and under the instructions of the controller in accordance with all applicable regulations."
+          },
+          {
+            "type": "paragraph",
+            "content": "The processor has the right to carry out processing operations only with respect to those personal data and to the extent that the controller has authorized the processor."
+          },
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ is a processor for its clients with respect to personal data entered/transmitted by its clients into SPS Grupp OÜ's business software (e.g., data of clients' clients). In this situation, the controller of personal data is the respective client of SPS Grupp OÜ."
+          }
+        ]
+      },
+      {
+        "title": "Purposes and Bases of Personal Data Processing",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "When collecting client data, we limit collection to the minimum necessary to provide our services and improve customer service."
+          },
+          {
+            "type": "paragraph",
+            "content": "The basis for processing personal data is the conclusion of a contract, legitimate interest, or the consent of the data subject."
+          },
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ does not distribute, transmit, modify, or use personal data entrusted to us in any other way not disclosed at the time of data collection, except where there is a corresponding agreement with the data subject or where the need to disclose information arises from the legislation of the respective country."
+          },
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ collects personal data for:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "identifying the data subject;",
+              "fulfilling the employee's work duties and legal obligations (e.g., data submitted to the tax authority, data submitted to the occupational health physician, etc.);",
+              "preparing a client contract and/or invoice;",
+              "fulfilling the terms of the contract concluded with the client;",
+              "contacting the data subject for the provision of the service;",
+              "maintaining client relationships or resolving questions."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Personal Data Collected",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "The personal data we collect may include the following:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Your name;",
+              "Your personal identification code;",
+              "Your phone number;",
+              "Your email address;",
+              "Your address;",
+              "Your company name and your position;",
+              "Your bank account details;",
+              "The text of your inquiry;",
+              "other data necessary for the provision of the service."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "The categories of personal data processed may vary depending on the employment contract, applicable law, or the contract between SPS Grupp OÜ and the client."
+          }
+        ]
+      },
+      {
+        "title": "Data Retention",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "We retain personal data for as long as necessary to achieve the purposes for which the data were collected. The retention period also depends on legal requirements for document retention."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Personal data related to SPS Grupp OÜ transactions are retained for at least seven (7) years from the end of the financial year, pursuant to the obligation under the Accounting Act to document transactions.",
+              "Data related to employees are retained for at least 10 years after the termination of the employment contract, and occupational health data for at least 55 years in accordance with the legal requirements of the Republic of Estonia.",
+              "Personal data of clients are retained for at least seven (7) years after the end of the client relationship where this is necessary to protect SPS Grupp OÜ's rights in a dispute or in connection with other legal claims."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "How We Share and Disclose Information",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "Personal data processed by SPS Grupp OÜ may be disclosed without the consent of the data subject only to an authority or person who has a justified need or a direct legal right to do so (e.g., a court or pre-trial investigator)."
+          },
+          {
+            "type": "paragraph",
+            "content": "We may transmit your data for processing to third parties who assist us in providing and managing the Services and who provide services related to the management of client inquiries. These parties may include, for example, transport companies, property managers, etc."
+          },
+          {
+            "type": "paragraph",
+            "content": "In all cases, we transmit to the data processor only the data necessary for the performance of a specific task or the provision of a specific service."
+          }
+        ]
+      },
+      {
+        "title": "Collection of Visitor Information on the Website",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "The SPS Grupp OÜ website uses cookies. Cookie information is used to collect statistics on the number of users, as well as to obtain information about the geographical location of our users, in order to adapt the content and service of the website."
+          }
+        ]
+      },
+      {
+        "title": "Security of Personal Data",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ implements the necessary technical, physical (confidential documents are kept in locked storage) and organisational security measures (including confidentiality agreements with personnel) to protect client and employee personal data against loss and unlawful processing."
+          },
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ has established clear and mandatory requirements for everyone who processes personal data on the company's behalf and has communicated those requirements to them."
+          },
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ complies with applicable data protection legislation when processing personal data and implements appropriate technical and organisational security measures."
+          }
+        ]
+      },
+      {
+        "title": "Notification of Personal Data Breach to the Data Subject",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "If a breach is likely to result in a high risk to the rights and freedoms of individuals, the controller shall notify the data subject without undue delay."
+          },
+          {
+            "type": "paragraph",
+            "content": "The purpose of the notification is to give the data subject the information needed to take reasonable precautions and mitigate possible risks."
+          },
+          {
+            "type": "paragraph",
+            "content": "In the notification, we provide essential information about the personal data breach, as well as recommendations to mitigate possible adverse effects."
+          },
+          {
+            "type": "paragraph",
+            "content": "The notification to the data subject shall include:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "a clear and plain language description of the nature of the personal data breach;",
+              "the name and contact details of the contact person at SPS Grupp OÜ;",
+              "a description of the possible consequences of the personal data breach;",
+              "a description of the measures taken to address the personal data breach."
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Rights of the Data Subject",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "<strong>Right to rectification</strong> – the right of the data subject to request that inaccurate or incomplete personal data concerning them be rectified without undue delay."
+          },
+          {
+            "type": "paragraph",
+            "content": "<strong>Right to erasure</strong> – the right of the data subject to request that their personal data be erased without undue delay, provided certain additional conditions are met."
+          },
+          {
+            "type": "paragraph",
+            "content": "If there is no longer a legal basis for processing or disclosing personal data, or for providing access to them, the data subject may request that the data no longer be used or be deleted and that their disclosure or accessibility cease. The request must be submitted in a manner that allows the applicant to be identified."
+          },
+          {
+            "type": "paragraph",
+            "content": "The request will not be granted if:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "it may harm the rights and freedoms of another person;",
+              "it would conflict with a legal or contractual obligation;",
+              "it may hinder the work of law enforcement authorities;",
+              "the requested action is not technically feasible;",
+              "the requester is not legally connected to the data;",
+              "the requester cannot be identified."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "<strong>Right to restrict processing</strong> – the right of the data subject to temporarily or permanently restrict the processing of all or part of their personal data in certain cases."
+          },
+          {
+            "type": "paragraph",
+            "content": "<strong>Right of access</strong> – the right to be informed of personal data and to request access to the personal data we process about you."
+          },
+          {
+            "type": "paragraph",
+            "content": "If the processing of personal data is based on the consent of the data subject, the data subject has the right to withdraw that consent at any time by notifying us by email, without affecting the lawfulness of processing based on consent before its withdrawal."
+          }
+        ]
+      },
+      {
+        "title": "Privacy Policy and Changes",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "content": "Where consent is required for processing, it is obtained in a form that can be reproduced in writing, for example as an annex to a contract."
+          },
+          {
+            "type": "paragraph",
+            "content": "SPS Grupp OÜ reserves the right to amend or supplement this privacy policy where necessary. The current version is available on the SPS Grupp website at spsgrupp.ee/andmekaitsetingimused."
+          },
+          {
+            "type": "paragraph",
+            "content": "If you believe that SPS Grupp OÜ has infringed your rights when processing personal data, please contact us at our published email address. We will first seek to resolve the matter through discussion. You also have the right to contact the Estonian Data Protection Inspectorate (aki.ee, email: info@aki.ee) or a competent court."
+          },
+          {
+            "type": "paragraph",
+            "content": "The privacy policy is effective as of 08.12.2021."
+          }
+        ]
+      }
+    ]
   },
   "careers": {
     "form": "career",
+    "seo": {
+      "serviceName": "Job Offers at SPS Grupp",
+      "serviceDescription": "Join the SPS Grupp team! We are looking for cleaners in Tallinn and Harjumaa. Previous experience is not required."
+    },
     "hero": {
       "ariaLabel": "Careers",
+      "chip1Badge": "300+",
+      "chip1Label": "employees",
+      "chip2Badge": "Training",
+      "chip2Label": "on site",
+      "chip3Badge": "Flexible",
+      "chip3Label": "working hours",
       "h1Line1": "Join SPS Grupp",
       "h1Line2": "and become part of our team",
-      "description": "We are looking for reliable people for cleaning and maintenance work in Tallinn and Harjumaa. Previous experience is not always required; we train on site.",
-      "ctaButton": "Register for a trial day"
+      "description": "More than 300 people work with us. Previous work experience is not important; we guide our employees on site.",
+      "ctaButton": "Register for a trial day",
+      "breadcrumbHome": "Home",
+      "breadcrumbCurrent": "Come work for us"
     },
     "services": {
       "tag": "Benefits",
       "heading": "What do we offer?",
-      "item0Title": "Training and Guidance",
-      "item0Desc": "we help you learn the work methods",
-      "item1Title": "Modern Equipment",
-      "item1Desc": "professional tools and workwear",
-      "item2Title": "On-Time Pay",
-      "item2Desc": "clear agreements and correct payment",
-      "item3Title": "Flexible Working Hours",
-      "item3Desc": "opportunities in different areas"
+      "item0Title": "On-Time Pay",
+      "item0Desc": "regular and accurate payment",
+      "item1Title": "Training and Further Education",
+      "item1Desc": "continuous self-improvement opportunities",
+      "item2Title": "Quality and Comfortable Workwear",
+      "item2Desc": "professional equipment",
+      "item3Title": "Modern and Ergonomic Tools",
+      "item3Desc": "efficient and safe equipment",
+      "item4Title": "Official Employment and Social Guarantees",
+      "item4Desc": "clear agreements and security",
+      "item5Title": "Health Check",
+      "item5Desc": "regular health monitoring",
+      "item6Title": "Recognition for Long-Term Service",
+      "item6Desc": "seniority recognition and rewards",
+      "item7Title": "Financial Support in Special Cases",
+      "item7Desc": "support in unexpected situations"
     },
     "problem": {
-      "heading": "How does applying work?",
-      "paragraph1": "Fill in the form and our HR team will contact you. If suitable, we will agree on a trial day.",
-      "paragraph2": "During the trial day you will learn the work routine and a supervisor will assess which site and schedule suits you best."
+      "heading": "How does recruitment work?",
+      "para1Strong": "All candidates must complete a trial day.",
+      "para1Text": "During the day, your cleaning skills and attitude to work are assessed.",
+      "para2Strong": "Once the trial day is completed, the works manager will let you know whether you are suitable for employment.",
+      "para2Text": "If you are selected, a contract is signed with you and you start receiving the agreed pay."
+    },
+    "stats": {
+      "tag": "SPS Grupp",
+      "heading": "Join a team of more than 300 members",
+      "stat1Number": "300+",
+      "stat1Label": "employees",
+      "stat2Number": "Since",
+      "stat2Label": "2006",
+      "stat3Number": "ISO 9001",
+      "stat3Label": "quality management",
+      "stat4Number": "ISO 14001",
+      "stat4Label": "environmental management",
+      "imageAlt": "SPS Grupp team"
     }
   },
   "reviews": {

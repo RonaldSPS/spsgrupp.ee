@@ -5,65 +5,15 @@ import Link from "next/link";
 import Navbar from "../../../components/Navbar";
 import HeroBackgroundImage from "../../../components/HeroBackgroundImage";
 import Footer from "../../../components/Footer";
-import FAQ from "../../../components/FAQ";
 import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../components/ScrollAnimation";
+import FAQ from "../../../components/FAQ";
+import ServiceInfoBlock from "../../../components/ServiceInfoBlock";
+import { localizePath, type Locale } from "@/lib/slug-map";
 import { type ReactNode } from "react";
-
-type ServiceCard = {
-  bold: string;
-  desc: string;
-};
-
-type ReasonCard = {
-  title: string;
-  desc: string;
-};
-
-type PriceCard = {
-  size: string;
-  area: string;
-  price: string;
-  period: string;
-  highlight?: boolean;
-};
-
-type FAQItem = {
-  q: string;
-  a: string;
-};
-
-export type OutdoorServicePageData = {
-  ariaLabel: string;
-  heroImage: string;
-  image: string;
-  imageAlt: string;
-  title: string;
-  titleAccent: string;
-  intro: string;
-  cta: string;
-  breadcrumb: string;
-  chips: { value: string; label: string; tone: "blue" | "green" | "navy" }[];
-  problemTitle: string;
-  problemLeft: import("react").ReactNode;
-  problemRight: string;
-  serviceTitle: string;
-  serviceCards: ServiceCard[];
-  reasonsTitle: string;
-  reasons: ReasonCard[];
-  priceTitle: string;
-  priceIntro: string;
-  priceCards: PriceCard[];
-  priceNote: string;
-  statsTitle: string;
-  statsIntro: string;
-  stats: { number: string; label: string }[];
-  footerTitle: string;
-  footerDescription: string;
-  faq: FAQItem[];
-};
+import type { OutdoorServicePageData } from "@/app/components/templates/ServiceDetailTemplate";
 
 function ChipIcon({ tone }: { tone: "blue" | "green" | "navy" }) {
   const stroke = tone === "blue" ? "#5ab5da" : tone === "green" ? "#2d9e6b" : "#17345a";
@@ -111,7 +61,21 @@ function ReasonIcon({ index }: { index: number }) {
   return icons[index % icons.length];
 }
 
-export default function OutdoorServicePage({ data, tooprotsess }: { data: OutdoorServicePageData; tooprotsess?: ReactNode }) {
+export default function OutdoorServicePage({ data, locale, tooprotsess }: { data: OutdoorServicePageData; locale: Locale; tooprotsess?: ReactNode }) {
+  const sectionTag = (key: string) => {
+    const tags: Record<string, Record<string, string>> = {
+      services: { et: "Teenuse sisu", en: "Service content", ru: "Состав услуги" },
+      whyUs: { et: "Miks meie", en: "Why us", ru: "Почему мы" },
+      pricing: { et: "Hind", en: "Price", ru: "Цена" },
+    }
+    return tags[key]?.[locale] ?? tags[key]?.et ?? key
+  }
+
+  const homeLabel = { et: "Avaleht", en: "Home", ru: "Главная" }[locale] ?? "Avaleht"
+  const parentLabel = data.parentBreadcrumb?.label ?? ""
+  const parentPath = data.parentBreadcrumb?.etPath ?? ""
+  const breadcrumbAria = { et: "Jäljerida", en: "Breadcrumb", ru: "Навигационная цепочка" }[locale] ?? "Breadcrumb"
+
   return (
     <>
       <Navbar />
@@ -119,6 +83,7 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
         <section
           className="hero-section relative min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[100px] pb-[60px]"
           id="avaleht"
+          data-section="hero"
           aria-label={data.ariaLabel}
         >
           <HeroBackgroundImage src={data.heroImage} preload alt="" />
@@ -167,10 +132,14 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
                 </Link>
               </div>
 
-              <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
-                <Link href="/" className="text-white/80 no-underline hover:text-white transition-colors">Avaleht</Link>
-                <span className="text-white/50">/</span>
-                <Link href="/koristusteenus/valikoristus/" className="text-white/80 no-underline hover:text-white transition-colors">Välikoristus</Link>
+              <nav aria-label={breadcrumbAria} className="flex items-center gap-2 text-white/80 text-[15px] mt-2">
+                <Link href={localizePath("/", locale)} className="text-white/80 no-underline hover:text-white transition-colors">{homeLabel}</Link>
+                {parentPath ? (
+                  <>
+                    <span className="text-white/50">/</span>
+                    <Link href={localizePath(parentPath, locale)} className="text-white/80 no-underline hover:text-white transition-colors">{parentLabel}</Link>
+                  </>
+                ) : null}
                 <span className="text-white/50">/</span>
                 <span className="text-white/90">{data.breadcrumb}</span>
               </nav>
@@ -180,22 +149,22 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
         </section>
 
         <ScrollAnimation animation="fade-up">
-          <section className="py-[100px] bg-white">
+          <section className="py-[100px] bg-white" data-section="problem">
             <div className="max-w-[1280px] mx-auto px-[5%]">
               <TwoToneHeading text={data.problemTitle} className="mb-8" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] text-[16px] text-[#2f353f] leading-[1.8] font-light">
-                <div>{data.problemLeft}</div>
-                <div>{data.problemRight}</div>
+                <div><b>{data.problemLead}</b></div>
+                <div>{data.problemDescription}</div>
               </div>
             </div>
           </section>
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">
-          <section className="py-[100px]" id="teenused" style={{ background: "#d4d8e3 url('/swirl_back.svg') calc(100% + 100px) center / cover no-repeat" }}>
+          <section className="py-[100px]" id="teenused" data-section="services" style={{ background: "#d4d8e3 url('/swirl_back.svg') calc(100% + 100px) center / cover no-repeat" }}>
             <div className="max-w-[1280px] mx-auto px-[5%]">
               <div className="text-center mb-14">
-                <div className="section-tag">Teenuse sisu</div>
+                <div className="section-tag">{sectionTag("services")}</div>
                 <TwoToneHeading text={data.serviceTitle} />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -216,10 +185,10 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">
-          <section className="py-[100px] bg-white">
+          <section className="py-[100px] bg-white" data-section="why-us">
             <div className="max-w-[1280px] mx-auto px-[5%]">
               <div className="text-center mb-14">
-                <div className="section-tag">Miks meie</div>
+                <div className="section-tag">{sectionTag("whyUs")}</div>
                 <TwoToneHeading text={data.reasonsTitle} />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-center">
@@ -247,10 +216,10 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">
-          <section className="py-[100px] bg-white">
+          <section className="py-[100px] bg-white" data-section="pricing">
             <div className="max-w-[1280px] mx-auto px-[5%]">
               <div className="text-center mb-14">
-                <div className="section-tag">Hind</div>
+                <div className="section-tag">{sectionTag("pricing")}</div>
                 <TwoToneHeading text={data.priceTitle} />
               </div>
               <p className="text-[16px] text-[#2f353f] leading-[1.75] mb-8 font-light max-w-[720px] mx-auto text-center">{data.priceIntro}</p>
@@ -269,40 +238,28 @@ export default function OutdoorServicePage({ data, tooprotsess }: { data: Outdoo
           </section>
         </ScrollAnimation>
 
-        <ScrollAnimation animation="fade-up">
-          <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
-            <div className="max-w-[1280px] mx-auto px-[5%]">
-              <div className="text-center mb-14">
-                <div className="section-tag">Meie numbrid</div>
-                <TwoToneHeading text={data.statsTitle} />
-                <p className="text-[16px] text-[#2f353f] leading-[1.8] font-light max-w-[700px] mx-auto mt-6">{data.statsIntro}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
-                {data.stats.map((stat, i) => (
-                  <div key={i} className="bg-white rounded-2xl p-8 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50">
-                    <div className="text-[clamp(32px,4vw,48px)] font-bold text-[#17345a] mb-2">{stat.number}</div>
-                    <div className="text-[15px] text-[#5a6474]">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </ScrollAnimation>
+        {data.serviceInfoBlock && <ServiceInfoBlock data={data.serviceInfoBlock} />}
 
         {tooprotsess && (
         <ScrollAnimation animation="fade-up">
-          {tooprotsess}
+          <section data-section="process">{tooprotsess}</section>
         </ScrollAnimation>
         )}
 
         <ScrollAnimation animation="fade-up">
-          <FooterCTA title={data.footerTitle} description={data.footerDescription} />
+          <section data-section="footer-cta">
+            <FooterCTA title={data.footerTitle} description={data.footerDescription} />
+          </section>
         </ScrollAnimation>
         <ScrollAnimation animation="fade-up">
-          <ContactForm />
+          <section data-section="contact-form">
+            <ContactForm />
+          </section>
         </ScrollAnimation>
         <ScrollAnimation animation="fade-up">
-          <FAQ items={data.faq} />
+          <section data-section="faq">
+            <FAQ items={data.faq} />
+          </section>
         </ScrollAnimation>
       </main>
       <ScrollAnimation animation="fade-up" delay={800}>

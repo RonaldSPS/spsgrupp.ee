@@ -1,0 +1,69 @@
+import SeoJsonLd from "../../../components/SeoJsonLd";
+import Tooprotsess from "../../../components/Tooprotsess";
+import OutdoorServicePage from "../_components/OutdoorServicePage";
+import type { Locale } from "@/lib/slug-map";
+
+import { etData, getMuruniitmineEnData, getMuruniitmineRuData } from '@/lib/pages/definitions/muruniitmine'
+
+// Route wrapper: Next.js 16 page component accepts only params/searchParams
+export default function Muruniitmine() {
+  return <MuruniitminePageView locale="et" />;
+}
+
+// Reusable view: accepts locale prop for use in localizedPageRegistry
+export function MuruniitminePageView({ locale }: { locale: Locale }) {
+  const data = locale === "et" ? etData : locale === "en" ? getMuruniitmineEnData() : getMuruniitmineRuData();
+  const processTitle = locale === "et" ? "Kuidas SPS muruniitmise graafiku koostab?"
+    : locale === "ru" ? "\u041A\u0430\u043A SPS \u0441\u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0433\u0440\u0430\u0444\u0438\u043A \u0441\u0442\u0440\u0438\u0436\u043A\u0438 \u0433\u0430\u0437\u043E\u043D\u043E\u0432?"
+    : "How does SPS schedule lawn mowing?";
+  const processIntro = locale === "et" ? "SPS alustab objekti ulevaatusest, et toomeetod, sagedus ja tehnika vastaksid tegelikule vajadusele."
+    : locale === "ru" ? "SPS \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442 \u0441 \u043E\u0441\u043C\u043E\u0442\u0440\u0430 \u043E\u0431\u044A\u0435\u043A\u0442\u0430, \u0447\u0442\u043E\u0431\u044B \u0432\u044B\u0431\u0440\u0430\u0442\u044C \u043F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0439 \u043C\u0435\u0442\u043E\u0434."
+    : "SPS starts with a site assessment to ensure the method, frequency and equipment match the actual needs.";
+  const processSteps = locale === "et" ? [
+    ["Ala ulevaatus", "Hindame niidetava ala suurust ja takistusi."],
+    ["Sageduse kokkulepe", "Lepime kokku hooajalise hooldusgraafiku."],
+    ["Servatood", "Maarame trimmerdamise ulatuse."],
+    ["Niitmine", "Teostame too graafiku jargi."],
+    ["Jarelpuhastus", "Puhastame teed ja sissepaasud murujaakidest."],
+  ] as [string, string][] : locale === "ru" ? [
+    ["\u041E\u0441\u043C\u043E\u0442\u0440 \u043E\u0431\u044A\u0435\u043A\u0442\u0430", "\u041E\u0446\u0435\u043D\u0438\u0432\u0430\u0435\u043C \u0440\u0430\u0437\u043C\u0435\u0440 \u0438 \u043E\u0441\u043E\u0431\u0435\u043D\u043D\u043E\u0441\u0442\u0438 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0438."],
+    ["\u0421\u043E\u0433\u043B\u0430\u0441\u043E\u0432\u0430\u043D\u0438\u0435 \u0433\u0440\u0430\u0444\u0438\u043A\u0430", "\u0414\u043E\u0433\u043E\u0432\u0430\u0440\u0438\u0432\u0430\u0435\u043C\u0441\u044F \u043E \u0441\u0435\u0437\u043E\u043D\u043D\u043E\u043C \u0433\u0440\u0430\u0444\u0438\u043A\u0435."],
+    ["\u041E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0430 \u043A\u0440\u0430\u0435\u0432", "\u041E\u043F\u0440\u0435\u0434\u0435\u043B\u044F\u0435\u043C \u043E\u0431\u044A\u0435\u043C \u0442\u0440\u0438\u043C\u043C\u0435\u0440\u043E\u0432\u043A\u0438."],
+    ["\u0421\u0442\u0440\u0438\u0436\u043A\u0430", "\u0412\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u043C \u0440\u0430\u0431\u043E\u0442\u0443 \u043F\u043E \u0433\u0440\u0430\u0444\u0438\u043A\u0443."],
+    ["\u0424\u0438\u043D\u0430\u043B\u044C\u043D\u0430\u044F \u0443\u0431\u043E\u0440\u043A\u0430", "\u041E\u0447\u0438\u0449\u0430\u0435\u043C \u0434\u043E\u0440\u043E\u0436\u043A\u0438 \u043E\u0442 \u043E\u0441\u0442\u0430\u0442\u043A\u043E\u0432 \u0442\u0440\u0430\u0432\u044B."],
+  ] as [string, string][] : [
+    ["Site assessment", "We evaluate the size and features of the mowing area."],
+    ["Agree schedule", "We agree on a seasonal maintenance schedule."],
+    ["Edge work", "We define the extent of trimming required."],
+    ["Mowing", "We carry out the work according to the schedule."],
+    ["Clean-up", "We clear paths and entrances of grass debris."],
+  ] as [string, string][];
+
+  const seoName = locale === "et" ? "Muruniitmine"
+    : locale === "ru" ? "\u0421\u0442\u0440\u0438\u0436\u043A\u0430 \u0433\u0430\u0437\u043E\u043D\u043E\u0432"
+    : "Lawn Mowing";
+  const seoDesc = locale === "et" ? "Muruniitmine ja haljasalade hooldus arikinnisvaral. Regulaarne niitmine ja muru servade korrastus."
+    : locale === "ru" ? "\u0421\u0442\u0440\u0438\u0436\u043A\u0430 \u0433\u0430\u0437\u043E\u043D\u043E\u0432 \u0438 \u0443\u0445\u043E\u0434 \u0437\u0430 \u0437\u0435\u043B\u0435\u043D\u044B\u043C\u0438 \u043D\u0430\u0441\u0430\u0436\u0434\u0435\u043D\u0438\u044F\u043C\u0438 \u043D\u0430 \u043A\u043E\u043C\u043C\u0435\u0440\u0447\u0435\u0441\u043A\u043E\u0439 \u043D\u0435\u0434\u0432\u0438\u0436\u0438\u043C\u043E\u0441\u0442\u0438."
+    : "Lawn mowing and grounds maintenance for commercial property. Regular mowing and lawn edging.";
+
+  return (
+    <>
+      <SeoJsonLd
+        etPath="/koristusteenus/valikoristus/muruniitmine"
+        locale={locale}
+        serviceName={seoName}
+        serviceDescription={seoDesc}
+        breadcrumbs={[
+          { name: locale === "ru" ? "\u0413\u043B\u0430\u0432\u043D\u0430\u044F" : locale === "en" ? "Home" : "Avaleht", etPath: "/" },
+          { name: locale === "ru" ? "\u0423\u0431\u043E\u0440\u043A\u0430" : locale === "en" ? "Cleaning" : "Koristusteenus", etPath: "/koristusteenus" },
+          { name: locale === "ru" ? "\u0423\u0431\u043E\u0440\u043A\u0430 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0439" : locale === "en" ? "Outdoor cleaning" : "Valikoristus", etPath: "/koristusteenus/valikoristus" },
+          { name: seoName, etPath: "/koristusteenus/valikoristus/muruniitmine" },
+        ]}
+        faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
+      />
+      <OutdoorServicePage data={data} locale={locale} tooprotsess={
+        <Tooprotsess title={processTitle} intro={processIntro} steps={processSteps} locale={locale} />
+      } />
+    </>
+  );
+}

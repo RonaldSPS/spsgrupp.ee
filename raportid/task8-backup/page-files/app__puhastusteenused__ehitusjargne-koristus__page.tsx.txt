@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/ehitusjargne-koristus'
+export default function Page(){return<EhitusjargneKoristusPageView locale="et"/>}
+export function EhitusjargneKoristusPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Ehitusjärgne koristus":locale==="ru"?"Послестроительная уборка":"Post-construction cleaning";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Специализированная уборка":locale==="en"?"Cleaning Services":"puhastusteenused";
+const tt=locale==="et"?"Kuidas SPS ehitusjärgse koristuse teenust korraldab?":locale==="ru"?"Как SPS организует послестроительную уборку?":"How does SPS organise post-construction cleaning?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Objekti info","Täpsustame ruumid."],["Tööde jaotus","Määrame koristuse vajaduse."],["Teostus","Puhastame ülevalt alla."],["Detailid","Eemaldame kleebised."],["Üleandmine","Kontrollime valmisolekut."]] as [string,string][];
+const sRu=[["Информация об объекте","Уточняем помещения."],["Распределение работ","Определяем необходимость уборки."],["Выполнение","Убираем сверху вниз."],["Детали","Удаляем наклейки."],["Сдача","Проверяем готовность."]] as [string,string][];
+const sEn=[["Site information","We clarify the spaces."],["Work allocation","We determine cleaning needs."],["Execution","We clean from top to bottom."],["Details","We remove stickers."],["Handover","We check readiness."]] as [string,string][];
+return(<><SeoJsonLd etPath="/puhastusteenused/ehitusjargne-koristus" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Ehitusjargne koristus Tallinnas — tolm, praht, varvitilgad. Objekt valmis.":locale==="ru"?"Послестроительная уборка в Таллинне — пыль, мусор, краска.":"Post-construction cleaning in Tallinn — dust, debris, paint drops."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"puhastusteenused"},{name:n,etPath:"/puhastusteenused/ehitusjargne-koristus"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}

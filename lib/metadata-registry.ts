@@ -99,10 +99,6 @@ export const pageMetadata: Record<string, { title: string; description: string }
     title: 'Torutööd Tallinnas — Sanitaartehnilised tööd | SPS Grupp',
     description: 'Professionaalsed torutööd. Sanitaartehnilised paigaldused ja remont.',
   },
-  '/remonditeenused-tallinnas/torutood-2': {
-    title: 'Torutööd Tallinnas ja Harjumaal – SPS Grupp',
-    description: 'Professionaalsed torutööd. Sanitaartehnilised paigaldused ja remont.',
-  },
   '/remonditeenused-tallinnas/siseviimistlustood': {
     title: 'Siseviimistlustööd Tallinnas — Remont ja viimistlus | SPS Grupp',
     description: 'Professionaalsed siseviimistlustööd. Kipsitööd, värvimine ja viimistlus.',
@@ -127,18 +123,6 @@ export const pageMetadata: Record<string, { title: string; description: string }
     title: 'Lammutustööd Tallinnas — Professionaalne lammutamine | SPS Grupp',
     description: 'Professionaalsed lammutustööd. Ohutu ja efektiivne lammutamine.',
   },
-  '/remonditeenused-tallinnas/muruniitmine': {
-    title: 'Muruniitmine Tallinnas — Muru hooldus | SPS Grupp',
-    description: 'Muruniitmine ja muru hooldus. Regulaarne või ühekordne teenus.',
-  },
-  '/remonditeenused-tallinnas/lehtedekoristamine': {
-    title: 'Lehtede koristamine Tallinnas — Territooriumi hooldus | SPS Grupp',
-    description: 'Lehtede koristamine ja territooriumi sügisene puhastus.',
-  },
-  '/remonditeenused-tallinnas/kojameheteenus': {
-    title: 'Kojameheteenus Tallinnas — Igapäevane hooldus | SPS Grupp',
-    description: 'Kojameheteenus ja territooriumi igapäevane hooldus.',
-  },
   '/ehitusprahi-aravedu': {
     title: 'Ehitusprahi äravedu Tallinnas — Kiire ja soodne | SPS Grupp',
     description: 'Ehitusprahi äravedu Tallinnas. Konteineri rent, sorteerimine ja utiliseerimine.',
@@ -159,10 +143,6 @@ export const pageMetadata: Record<string, { title: string; description: string }
     title: 'Tule meile tööle — Tööpakkumised SPS Grupis | SPS Grupp',
     description: 'Liitu SPS Grupi meeskonnaga. Vaata aktiivseid tööpakkumisi ja kandideeri.',
   },
-  '/privaatsus': {
-    title: 'Privaatsuspoliitika — Andmekaitse | SPS Grupp',
-    description: 'SPS Grupp privaatsuspoliitika ja andmekaitsetingimused.',
-  },
   '/andmekaitsetingimused': {
     title: 'Privaatsuspoliitika - SPS Grupp',
     description: 'SPS Grupp privaatsuspoliitika ja andmekaitsetingimused.',
@@ -180,6 +160,10 @@ export const localizedPageMetadata: Partial<
     '/': {
       title: 'Commercial Cleaning Company in Tallinn | SPS Grupp',
       description: 'SPS Grupp provides cleaning services for businesses in Tallinn and Harjumaa. More than 300 employees, over 200 clients, ISO 9001 and ISO 14001.',
+    },
+    '/andmekaitsetingimused': {
+      title: 'Privacy Policy | SPS Grupp',
+      description: 'Read how SPS Grupp OÜ processes, protects, retains and shares personal data and how data subjects can exercise their rights.',
     },
     '/koristusteenus': {
       title: 'Professional Cleaning Services in Tallinn | SPS Grupp',
@@ -233,11 +217,97 @@ export const localizedPageMetadata: Partial<
       title: 'Lawn Mowing in Tallinn and Harjumaa | SPS Grupp',
       description: 'Regular lawn mowing and grounds maintenance for commercial properties and housing associations.',
     },
+    // Moved from messages/en.json *.seo.serviceName/serviceDescription (Task 9; values unchanged).
+
+    '/ehitusprahi-aravedu': {
+      title: 'Construction Waste Removal in Tallinn | SPS Grupp',
+      description: 'Construction debris and waste removal in Tallinn. Containers, sorting, transport and documentation from one partner.',
+    },
+    '/koristusteenus/valikoristus/akende-pesu': {
+      title: 'Window Cleaning Services in Tallinn | SPS Grupp',
+      description: 'Professional window cleaning for businesses in Tallinn. Interior and exterior, high-rise access, pure water technology.',
+    },
+    '/koristusteenus/valikoristus/fassaadipesu': {
+      title: 'Facade Cleaning Services in Tallinn | SPS Grupp',
+      description: 'Professional facade cleaning for commercial buildings. Pressure washing, soft washing, graffiti removal. ISO 9001 certified.',
+    },
+    '/koristusteenus/valikoristus/lumekoristus': {
+      title: 'Snow Removal Services in Tallinn | SPS Grupp',
+      description: 'Professional snow clearing and gritting for commercial properties. 24/7 winter response, tractors, manual teams. Keep your property safe and accessible.',
+    },
+    '/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus': {
+      title: 'Paving Stone Cleaning and Maintenance in Tallinn | SPS Grupp',
+      description: 'Professional paving stone pressure washing, weed removal and joint sanding for commercial properties. Restore your paved surfaces.',
+    },
+    '/puhastusteenused/ehitusjargne-koristus': {
+      title: 'Post-Construction Cleaning in Tallinn | SPS Grupp',
+      description: 'Professional post-construction and builders\' cleaning for commercial projects. Thorough dust removal, surface cleaning, ready for handover.',
+    },
+    '/puhastusteenused/eskalaatorite-suvapuhastus': {
+      title: 'Escalator Deep Cleaning in Tallinn | SPS Grupp',
+      description: 'Professional escalator and travelator deep cleaning for shopping centres, transport hubs and commercial buildings. Specialist equipment.',
+    },
+    '/puhastusteenused/koroonaviiruse-jargne-puhastus': {
+      title: 'Disinfection Services in Tallinn | SPS Grupp',
+      description: 'Professional disinfection and sanitisation for businesses. Fogging, surface treatment, infection control. ISO 14001 certified.',
+    },
+    '/puhastusteenused/porandate-hooldus': {
+      title: 'Floor Maintenance Services in Tallinn | SPS Grupp',
+      description: 'Professional floor stripping, polishing, crystallisation and sealing for all floor types. Commercial floor care by trained specialists.',
+    },
+    '/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine': {
+      title: 'Fire and Smoke Damage Restoration in Tallinn | SPS Grupp',
+      description: 'Professional fire damage cleanup, soot removal and smoke deodorisation. Emergency response for commercial properties in Tallinn.',
+    },
+    '/puhastusteenused/vaipade-puhastus': {
+      title: 'Carpet Cleaning Services in Tallinn | SPS Grupp',
+      description: 'Professional commercial carpet cleaning. Hot water extraction, dry cleaning and stain treatment. Extend carpet life, improve indoor air quality.',
+    },
+    '/remonditeenused-tallinnas': {
+      title: 'Renovation Services in Tallinn | SPS Grupp',
+      description: 'Smaller renovation and maintenance work for commercial properties in Tallinn, coordinated through one contact person.',
+    },
+    '/remonditeenused-tallinnas/elektritood': {
+      title: 'Electrical Work in Tallinn | SPS Grupp',
+      description: 'Electrical installation, repair and maintenance for commercial properties, with the required scope and documentation agreed before work begins.',
+    },
+    '/remonditeenused-tallinnas/katuse-remont': {
+      title: 'Roof Repair Services in Tallinn | SPS Grupp',
+      description: 'Roof repair, leak detection, gutter and downpipe work for commercial properties. The scope is confirmed after assessing the roof.',
+    },
+    '/remonditeenused-tallinnas/lammutustood': {
+      title: 'Demolition Services in Tallinn | SPS Grupp',
+      description: 'Professional controlled demolition and strip-out for commercial properties. Safe, efficient, waste removed. Preparation for renovation.',
+    },
+    '/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus': {
+      title: 'Bathroom Renovation in Tallinn | SPS Grupp',
+      description: 'Bathroom and WC renovation for commercial and residential properties, with the work stages agreed according to the project.',
+    },
+    '/remonditeenused-tallinnas/siseviimistlustood': {
+      title: 'Interior Finishing Services in Tallinn | SPS Grupp',
+      description: 'Professional plastering, painting and decorative finishing for commercial properties. Quality workmanship, clean results.',
+    },
+    '/remonditeenused-tallinnas/torutood': {
+      title: 'Plumbing Services in Tallinn | SPS Grupp',
+      description: 'Professional plumbing installation, repair and maintenance for commercial properties. Leak repair, pipework, fixture installation.',
+    },
+    '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': {
+      title: 'Ventilation Services in Tallinn | SPS Grupp',
+      description: 'Professional ventilation system installation, maintenance and repair for commercial properties. Improved air quality and energy efficiency.',
+    },
+    '/sps-grupp': {
+      title: 'SPS Grupp – cleaning and renovation services',
+      description: 'SPS Grupp is a reliable partner for cleaning, renovation, and maintenance services for business clients in Tallinn and Harjumaa since 2006.',
+    },
   },
   ru: {
     '/': {
       title: 'Клининговая компания в Таллинне | SPS Grupp',
       description: 'SPS Grupp оказывает клининговые услуги для бизнеса в Таллинне и Харьюмаа. Более 300 сотрудников, свыше 200 клиентов, ISO 9001 и ISO 14001.',
+    },
+    '/andmekaitsetingimused': {
+      title: 'Условия обработки и защиты персональных данных | SPS Grupp',
+      description: 'Узнайте, как SPS Grupp OÜ обрабатывает, защищает, хранит и передаёт персональные данные и как субъекты данных могут осуществлять свои права.',
     },
     '/koristusteenus': {
       title: 'Услуги уборки в Таллинне и Харьюмаа | SPS Grupp',
@@ -290,6 +360,88 @@ export const localizedPageMetadata: Partial<
     '/koristusteenus/valikoristus/muruniitmine': {
       title: 'Стрижка газонов в Таллинне и Харьюмаа | SPS Grupp',
       description: 'Регулярная стрижка газонов и уход за территорией для коммерческих объектов и квартирных товариществ.',
+    },
+    // Moved from messages/ru.json *.seo.serviceName/serviceDescription (Task 9; values unchanged).
+
+    '/ehitusprahi-aravedu': {
+      title: 'Вывоз строительного мусора в Таллине | SPS Grupp',
+      description: 'Вывоз строительного мусора и отходов в Таллине. Доставка контейнеров, сортировка, документация.',
+    },
+    '/koristusteenus/valikoristus/akende-pesu': {
+      title: 'Мойка окон в Таллине | SPS Grupp',
+      description: 'Мойка окон на коммерческих зданиях в Таллине. Мойка окон высотных зданий, стеклянные фасады, регулярное обслуживание.',
+    },
+    '/koristusteenus/valikoristus/fassaadipesu': {
+      title: 'Мойка фасадов в Таллине | SPS Grupp',
+      description: 'Профессиональная мойка фасадов в Таллине. Все типы поверхностей — штукатурка, клинкер, стекло, металл.',
+    },
+    '/koristusteenus/valikoristus/lumekoristus': {
+      title: 'Уборка снега в Таллине | SPS Grupp',
+      description: 'Уборка снега и борьба с гололедом в Таллине 24/7. Парковки, тротуары, входы. Сезонный договор.',
+    },
+    '/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus': {
+      title: 'Мойка и уход за тротуарной плиткой в Таллине | SPS Grupp',
+      description: 'Профессиональная мойка и уход за тротуарной плиткой в Таллине. Мойка высоким давлением, удаление сорняков, заполнение швов.',
+    },
+    '/puhastusteenused/ehitusjargne-koristus': {
+      title: 'Послестроительная уборка в Таллине | SPS Grupp',
+      description: 'Профессиональная послестроительная уборка в Таллине. Удаление пыли и грязи, защита поверхностей, сдача объекта.',
+    },
+    '/puhastusteenused/eskalaatorite-suvapuhastus': {
+      title: 'Глубокая очистка эскалаторов в Таллине | SPS Grupp',
+      description: 'Профессиональная глубокая очистка эскалаторов и движущихся лестниц в Таллине.',
+    },
+    '/puhastusteenused/koroonaviiruse-jargne-puhastus': {
+      title: 'Дезинфекция в Таллине | SPS Grupp',
+      description: 'Профессиональная дезинфекция помещений в Таллине. Сертифицированные средства, безопасно для людей и техники.',
+    },
+    '/puhastusteenused/porandate-hooldus': {
+      title: 'Уход за полами в Таллине | SPS Grupp',
+      description: 'Профессиональный уход за полами и глубокая очистка в Таллине. Все типы напольных покрытий.',
+    },
+    '/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine': {
+      title: 'Очистка после пожара и задымления в Таллине | SPS Grupp',
+      description: 'Профессиональная очистка после пожара и задымления в Таллине. Удаление сажи, запахов и остатков в согласованном объеме работ.',
+    },
+    '/puhastusteenused/vaipade-puhastus': {
+      title: 'Химчистка ковров в Таллине | SPS Grupp',
+      description: 'Профессиональная чистка и химическая стирка ковров в офисах Таллина. Удаление аллергенов.',
+    },
+    '/remonditeenused-tallinnas': {
+      title: 'Ремонтные услуги в Таллине | SPS Grupp',
+      description: 'Ремонтные услуги для коммерческой недвижимости в Таллине. Электромонтажные, сантехнические, плиточные и вентиляционные работы — всё в одном месте.',
+    },
+    '/remonditeenused-tallinnas/elektritood': {
+      title: 'Электромонтажные работы в Таллине | SPS Grupp',
+      description: 'Электроуслуги для коммерческой недвижимости в Таллине. Монтаж, ремонт, обслуживание, электрощиты.',
+    },
+    '/remonditeenused-tallinnas/katuse-remont': {
+      title: 'Ремонт кровли в Таллине | SPS Grupp',
+      description: 'Ремонт и обслуживание кровли в Таллине для коммерческой недвижимости. Замена кровельного покрытия, ремонт, осмотр.',
+    },
+    '/remonditeenused-tallinnas/lammutustood': {
+      title: 'Демонтажные работы в Таллине | SPS Grupp',
+      description: 'Демонтажные работы и разборка конструкций в Таллине. Внутренний и наружный демонтаж.',
+    },
+    '/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus': {
+      title: 'Санитарный ремонт и перепланировка в Таллине | SPS Grupp',
+      description: 'Санитарный ремонт и перепланировка помещений для коммерческой недвижимости в Таллине. Ванные комнаты, кухни, душевые.',
+    },
+    '/remonditeenused-tallinnas/siseviimistlustood': {
+      title: 'Внутренняя отделка помещений в Таллине | SPS Grupp',
+      description: 'Внутренняя отделка для коммерческой недвижимости в Таллине. Покраска, оклейка обоев, шпаклевка, отделка потолков и полов.',
+    },
+    '/remonditeenused-tallinnas/torutood': {
+      title: 'Сантехнические работы в Таллине | SPS Grupp',
+      description: 'Сантехнические работы и ремонт водопровода для коммерческой недвижимости в Таллине. Аварийные протечки, трубопроводы, канализация.',
+    },
+    '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': {
+      title: 'Строительство и обслуживание вентиляционных систем в Таллине | SPS Grupp',
+      description: 'Строительство и обслуживание вентиляционных систем для коммерческой недвижимости в Таллине. Очистка воздуха, воздуховоды, оборудование.',
+    },
+    '/sps-grupp': {
+      title: 'SPS Grupp – услуги по уборке и ремонту.',
+      description: 'SPS Grupp с 2006 года является надёжным партнёром бизнес-клиентов в сфере уборки, ремонта и технического обслуживания в Таллинне и Харьюмаа.',
     },
   },
 }

@@ -1,0 +1,18 @@
+import SeoJsonLd from "../../components/SeoJsonLd";
+import Tooprotsess from "../../components/Tooprotsess";
+import OutdoorServicePage from"../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import type{Locale}from"@/lib/slug-map";
+import { et as etD, en as enD, ru as ruD } from '@/lib/pages/definitions/plaatimistood'
+export default function Page(){return<PlaatinistoodPageView locale="et"/>}
+export function PlaatinistoodPageView({locale}:{locale:Locale}){
+const d=locale==="et"?etD:locale==="en"?enD:ruD;
+const n=locale==="et"?"Plaatinistööd":locale==="ru"?"Плиточные работы":"Tiling";
+const h=locale==="ru"?"Главная":locale==="en"?"Home":"Avaleht";
+const pn=locale==="ru"?"Ремонтные услуги":locale==="en"?"Renovation Services":"Remonditeenused Tallinnas";
+const tt=locale==="et"?"Kuidas SPS plaatimistööde teenust korraldab?":locale==="ru"?"Kuidas SPS plaatimistööde teenust korraldab?":"Kuidas SPS plaatimistööde teenust korraldab?";
+const intro=locale==="et"?"Selge protsess teeb teenuse tellimise lihtsamaks.":locale==="ru"?"Чёткий процесс делает заказ услуги проще.":"A clear process makes ordering the service easier.";
+const sEt=[["Ülevaatus","Hindame pinnad ja mõõdame."],["Ettevalmistus","Tasandame ja paigaldame hüdroisolatsiooni."],["Paigaldus","Laome plaadid."],["Vuukimine","Täidame vuugid."],["Üleandmine","Kontrollime tulemuse ja koristame."]] as [string,string][];
+const sRu=[["Ülevaatus","Hindame pinnad ja mõõdame."],["Ettevalmistus","Tasandame ja paigaldame hüdroisolatsiooni."],["Paigaldus","Laome plaadid."],["Vuukimine","Täidame vuugid."],["Üleandmine","Kontrollime tulemuse ja koristame."]] as [string,string][];
+const sEn=[["Ülevaatus","Hindame pinnad ja mõõdame."],["Ettevalmistus","Tasandame ja paigaldame hüdroisolatsiooni."],["Paigaldus","Laome plaadid."],["Vuukimine","Täidame vuugid."],["Üleandmine","Kontrollime tulemuse ja koristame."]] as [string,string][];
+return(<><SeoJsonLd etPath="/remonditeenused-tallinnas/plaatimistood" locale={locale} serviceName={n} serviceDescription={locale==="et"?"Plaatimistood Tallinnas.":locale==="ru"?"Плиточные работы в Таллинне.":"Tiling services in Tallinn."} breadcrumbs={[{name:h,etPath:"/"},{name:pn,etPath:"remonditeenused-tallinnas"},{name:n,etPath:"/remonditeenused-tallinnas/plaatimistood"}]} faq={d.faq.map((f:{q:string;a:string})=>({question:f.q,answer:f.a}))}/>
+<OutdoorServicePage data={d} locale={locale} tooprotsess={<Tooprotsess title={tt} intro={intro} steps={locale==="et"?sEt:locale==="ru"?sRu:sEn} locale={locale}/>}/></>);}
