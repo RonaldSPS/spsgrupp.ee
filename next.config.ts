@@ -47,6 +47,7 @@ const localizedLegacyRedirects = [
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  poweredByHeader: false,
   serverExternalPackages: ["sharp"],
   turbopack: {
     root: process.cwd(),

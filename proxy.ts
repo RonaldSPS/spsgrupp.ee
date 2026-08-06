@@ -105,6 +105,10 @@ function makeResponse(request: NextRequest, csp: string): NextResponse {
 
   const response = NextResponse.next({ request: { headers: requestHeaders } })
   response.headers.set("Content-Security-Policy", csp)
+  // Preview/alias hosts must never be indexed; prod domain is unaffected.
+  if (request.nextUrl.hostname.endsWith(".vercel.app")) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow")
+  }
   response.headers.set("X-Content-Type-Options", "nosniff")
   response.headers.set("X-Frame-Options", "DENY")
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin")

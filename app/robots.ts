@@ -17,14 +17,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/spsadmn/",
-          "/api/spsadmn/",
-          "/image-tool",
-          "/variant-a",
-          "/variant-b",
-          "/variant-c",
-        ],
+        disallow: ["/spsadmn/", "/api/spsadmn/"],
       },
     ],
     sitemap: absoluteUrl("/sitemap.xml"),
