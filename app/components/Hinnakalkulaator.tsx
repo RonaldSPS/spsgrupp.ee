@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import type { Locale } from "@/lib/slug-map";
 import {
   calculateMaintenancePrice,
@@ -49,11 +48,8 @@ export default function Hinnakalkulaator({ locale = "et" }: { locale?: Locale })
   }, [area]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45 }}
-      className="rounded-[32px] bg-[#fafafa] p-8 md:p-10 text-[#2f353f] border border-[#eceef1]"
+    <div
+      className="rounded-[32px] bg-[#fafafa] p-8 md:p-10 text-[#2f353f] border border-[#eceef1] animate-fade-up"
     >
       <p className="uppercase tracking-[0.25em] text-[15px] text-[#5a6474] mb-6">
         {text.calculator}
@@ -97,6 +93,6 @@ export default function Hinnakalkulaator({ locale = "et" }: { locale?: Locale })
       >
         {text.cta} <span className="ml-2">→</span>
       </a>
-    </motion.div>
+    </div>
   );
 }

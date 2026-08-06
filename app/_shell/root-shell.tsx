@@ -16,6 +16,8 @@ const ubuntu = Ubuntu({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  // Used only for below-the-fold price numbers — skip the head preload.
+  preload: false,
 })
 
 const ORGANIZATION_SCHEMA = {
