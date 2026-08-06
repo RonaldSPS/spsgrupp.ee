@@ -729,7 +729,6 @@ footer {
   .form-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .industries-grid { grid-template-columns: 1fr; }
-  .logo-scroll-track { animation: none; }
 }
 
 @media (max-width: 480px) {
