@@ -1,6 +1,6 @@
 import SeoJsonLd from "../SeoJsonLd";
 import Tooprotsess from "../Tooprotsess";
-import OutdoorServicePage from "../../koristusteenus/valikoristus/_components/OutdoorServicePage";
+import OutdoorServicePage from "@/app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage";
 import type { Locale } from "@/lib/slug-map";
 
 /* ------------------------------------------------------------------ */

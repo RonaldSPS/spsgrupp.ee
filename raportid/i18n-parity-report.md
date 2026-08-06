@@ -1,6 +1,6 @@
 # i18n Parity Report
 
-Generated: 2026-08-06T14:04:11.820Z
+Generated: 2026-08-06T15:17:07.698Z
 Pages checked: 36
 
 ## Summary

@@ -92,7 +92,7 @@ function buildCspHeader(): string {
   ].join("; ")
 }
 
-function makeResponse(request: NextRequest, csp: string): NextResponse {
+function makeResponse(request: NextRequest, csp: string, rewritePathname?: string): NextResponse {
   const requestHeaders = new Headers(request.headers)
   const { pathname } = request.nextUrl
   const locale = pathname === "/en" || pathname.startsWith("/en/")
@@ -103,7 +103,10 @@ function makeResponse(request: NextRequest, csp: string): NextResponse {
   requestHeaders.set("Content-Security-Policy", csp)
   requestHeaders.set("X-SPS-Locale", locale)
 
-  const response = NextResponse.next({ request: { headers: requestHeaders } })
+  const init = { request: { headers: requestHeaders } }
+  const response = rewritePathname
+    ? NextResponse.rewrite(rewriteUrl(request, rewritePathname), init)
+    : NextResponse.next(init)
   response.headers.set("Content-Security-Policy", csp)
   // Preview/alias hosts must never be indexed; prod domain is unaffected.
   if (request.nextUrl.hostname.endsWith(".vercel.app")) {
@@ -171,7 +174,29 @@ export async function proxy(request: NextRequest) {
     return response
   }
 
+  // ET pages live at unprefixed URLs but render from the app/[locale] tree.
+  // Rewrite them to the internal /et prefix (blog + admin stay ET-direct in
+  // app/(et), /en and /ru keep their prefixes, files are untouched). Server
+  // action POSTs to page URLs take the same path so they resolve correctly.
+  const isPublicEtPath =
+    !normalizedPathname.startsWith("/api/") &&
+    !normalizedPathname.startsWith("/blog") &&
+    normalizedPathname !== "/en" &&
+    !normalizedPathname.startsWith("/en/") &&
+    normalizedPathname !== "/ru" &&
+    !normalizedPathname.startsWith("/ru/") &&
+    !/\.[a-zA-Z0-9]+$/.test(normalizedPathname)
+  if (isPublicEtPath) {
+    return makeResponse(request, csp, `/et${normalizedPathname === "/" ? "" : normalizedPathname}`)
+  }
+
   return makeResponse(request, csp)
+}
+
+function rewriteUrl(request: NextRequest, pathname: string): URL {
+  const url = request.nextUrl.clone()
+  url.pathname = pathname
+  return url
 }
 
 export const config = {

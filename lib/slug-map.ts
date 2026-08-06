@@ -50,7 +50,13 @@ export function localizePath(etPath: string, locale: Locale): string {
 
 export function getCurrentEtPath(pathname: string, locale: Locale): string {
   const normalizedPathname = normalizePath(pathname)
-  if (locale === 'et') return normalizedPathname
+  if (locale === 'et') {
+    // ET pages prerender under the internal /et prefix (proxy rewrites the
+    // public unprefixed URL to it) — strip it so active-state lookups match.
+    if (normalizedPathname === '/et') return '/'
+    if (normalizedPathname.startsWith('/et/')) return normalizePath(normalizedPathname.slice(3))
+    return normalizedPathname
+  }
 
   const pathWithoutLocale = normalizePath(
     normalizedPathname.replace(new RegExp(`^/${locale}`), '') || '/',
