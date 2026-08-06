@@ -146,3 +146,81 @@ Detail pages are excellent (94–99, CLS 0, no render-blocking, images optimized
 
 **Then (medium):**
 9. robots.txt AI-crawler policy; EN/RU `llms.txt` with prices; noindex preview alias; `poweredByHeader: false`; founding-year consistency; CSP nonces; Redis rate limiting.
+
+---
+
+# Re-audit (after) — 2026-08-06 evening
+
+**Target:** production alias `https://spsgrupp-two.vercel.app/` (and `https://sps-aprill-2026.vercel.app/`), after merging `fix/audit-2026-08` (11 commits) to `main` and deploying `spsgrupp-ckug4t880`. **Method:** same probes + curl tables; Lighthouse re-run pending PSI quota.
+
+## Scorecard (before → after)
+
+| Aspect | Before | After | Notes |
+|---|---|---|---|
+| Overall | 7.8 | **9.3** | All critical + high findings resolved |
+| Security | 7.5 | **9.5** | 0 runtime vulns; probe suite 28/28 on prod alias |
+| Performance | 7.0 | **9.5** | Whole site CDN-cached; TTFB 0.11–0.21 s (was 0.28–1.38 s) |
+| SEO (technical) | 8.5 | **9.5** | Full schema pack shipped + verified in prod HTML |
+| AEO/GEO | 7.0 | **9.0** | llms×3 locales with prices, AI-crawler policy, quotable facts block |
+
+## 1. Security — all findings resolved
+
+| Finding | Status | Verification |
+|---|---|---|
+| next 16.2.9 (9 advisories) | ✅ **16.3.0** deployed | `npm audit`: **0 runtime vulnerabilities** (was 12 incl. 1 crit/5 high); 4 moderate remain dev-only (drizzle-kit→esbuild, accepted) |
+| sharp 0.34.5 libvips CVEs | ✅ **0.35.3** | `/api/image-resize` verified resizing (RIFF/WEBP) on preview |
+| variant-a/b/c + image-tool public | ✅ deleted | All four → 404 on prod alias |
+| CSV formula injection | ✅ escaped | Cells with `= + - @ \t \r` prefixed `'` |
+| In-memory rate limiting | ✅ Upstash-ready | `UPSTASH_REDIS_REST_URL/_TOKEN` env-gated; in-memory fallback (login limiter verified 5×403→429) |
+| CSP unsafe-inline | ◐ accepted | Documented: no per-request nonce plumbing for Next 16 RSC flight scripts |
+| X-Powered-By | ✅ removed | Header absent on prod alias |
+| `eval("require('sharp')")` | ✅ removed | `await import("sharp")` |
+| Preview alias indexable | ✅ noindexed | `X-Robots-Tag: noindex, nofollow` on `*.vercel.app` only; prod domain unaffected |
+
+**Probe suite on prod alias: 28/28** (unauth 401s, forged tokens, path tricks, method tricks, login abuse). One known Vercel platform artifact: `%2F`-in-path requests decoding to real API routes 500 inside Vercel's serverless-middleware (fails closed, no data exposure, not fixable in app code).
+
+## 2. Performance — root cause eliminated
+
+| Metric | Before | After |
+|---|---|---|
+| Rendering | Every page dynamic (`await headers()` in root layout) | **Whole site SSG+ISR** via `app/[locale]` + `next/root-params` |
+| TTFB (8 audited pages) | 0.28–0.64 s; /blog/ 1.38 s | **0.11–0.21 s, every page `X-Vercel-Cache: HIT`** |
+| Home LCP (lab) | 6.1 s | TTFB-bound part ≈ 0.15 s; lab re-run pending PSI quota |
+| Hero image | 678 KB source | **147 KB** (same URL, quality verified visually) |
+| framer-motion | 775 KB raw JS on home (suspected chunk) | **dependency removed** (0 bytes — the app's only usage was one fade-up, now CSS) |
+| Font preloads | 9 woff2 | 8 (Geist Mono no longer preloaded; deeper trim limited by next/font granularity — documented) |
+| Blog TTFB | 1.38 s cold | 0.14 s HIT (revalidate 60) |
+
+Byte-parity proof for the restructure: **137/137 public URLs byte-identical** to the pre-change baseline (only intentional deltas: SSG font/logo preloads, calculator CSS animation, schema/head additions).
+
+**Resilience bonus:** Supabase pooler stalls (which hung builds >60 s and blanked EN/RU reviews/jobs) are now impossible — all page-path DB reads have 2.5 s timeouts and populated JSON fallbacks (`scripts/sync-translation-fallbacks.ts`).
+
+## 3. SEO — schema pack live (verified in prod HTML)
+
+| Finding | Status |
+|---|---|
+| No Review/AggregateRating on arvamused | ✅ `AggregateRating` (5.0, 27 reviews) on Organization (@id-merged) + 27 `Review` nodes — mirrors the 5-star cards in the UI |
+| Service schema lacks pricing | ✅ `offers`→`Offer`/`priceSpecification` from existing priceCards (min price, EUR, per m²/month/hour) on all 26 detail pages × 3 locales |
+| JobPosting gaps | ✅ `baseSalary`, full sanitized description, `directApply: true`, `hiringOrganization.@id #organization` (ET + EN/RU) |
+| Duplicate FAQPage | ✅ single emission (`FAQ.tsx`); dead `FaqJsonLd.tsx` deleted |
+| In-page hreflang | ✅ was already emitted via metadata alternates (verified in prod heads) |
+| Organization depth | ✅ `foundingDate: 2006` (2007 in llms.txt was the lone outlier — unified), `sameAs`, `geo`, `openingHours` Mo–Fr 09–17; kontakt LocalBusiness + `geo`/`priceRange`/`image` |
+| Blog CollectionPage / careers ItemList | ✅ `/blog/` CollectionPage+ItemList (24 posts); careers index ItemList of jobs (all locales) |
+| og:locale:alternate | ✅ all pages |
+
+## 4. AEO — all gaps closed except owner-deferred
+
+| Gap | Status |
+|---|---|
+| llms.txt ET-only/thin | ✅ regenerated from `lib/pages/registry.ts` (can't drift) + **llms-en.txt, llms-ru.txt**; per-service one-liner + starting price + canonical URL; quote CTA |
+| No AI-crawler policy | ✅ explicit allow: GPTBot, ClaudeBot, PerplexityBot, Google-Extended, OAI-SearchBot, Claude-User (admin stays disallowed) |
+| Quotable stat blocks | ✅ `SpsInNumbers` (2006, 300+ staff, 200+ clients, 1M+ m², ISO 9001/14001) on home + sps-grupp, all locales |
+| Blog author | ◐ owner decision: keep Organization; author/publisher now `@id`-linked to the org node |
+| Founding year | ✅ 2006 confirmed & unified |
+
+## Remaining (owner)
+1. **DNS cutover:** `spsgrupp.ee` still serves the old WordPress site (Zone/Apache) — the Vercel project has no custom domain attached yet. Add the domain in Vercel + point DNS when ready.
+2. Lighthouse lab re-run (PSI API daily quota exhausted during audit day).
+3. Rich Results Test on prod URLs (arvamused, one service, one job, one blog post).
+4. Optional: Upstash account for shared rate limiting; transcode/CDN the 97 MB Tarmo video (loads only on play).
+5. Pre-existing content nit: internal link to `/koristusteenus/koolide-koristamine/` (308 → `/koolide-koristamine/`) — left untouched per byte-parity rule.
