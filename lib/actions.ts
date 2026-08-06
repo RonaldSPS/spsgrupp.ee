@@ -3,6 +3,7 @@
 import { headers } from "next/headers"
 import { checkRateLimit } from "@/lib/rate-limit"
 import { sendEmail, type EmailAttachment } from "@/lib/email"
+import { saveFormSubmission } from "@/lib/form-submissions"
 
 const DUPE_WINDOW_MS = 8000
 const recentHashes = new Map<string, number>()
@@ -304,6 +305,12 @@ async function getActionCopy(): Promise<ActionCopy> {
   return actionCopies.et
 }
 
+async function getActionLocale(): Promise<ActionLocale> {
+  const hdrs = await headers()
+  const locale = hdrs.get("x-sps-locale")
+  return locale === "en" || locale === "ru" ? locale : "et"
+}
+
 async function checkFormRateLimit(): Promise<boolean> {
   const hdrs = await headers()
   const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown"
@@ -371,6 +378,17 @@ export async function submitContactForm(
   if (checkDuplicate("contact", submissionData)) {
     return { error: copy.duplicateContact }
   }
+
+  await saveFormSubmission({
+    form: "contact",
+    locale: await getActionLocale(),
+    name,
+    email,
+    phone,
+    company,
+    message,
+    attachmentName: validatedAttachment?.filename ?? "",
+  })
 
   const subject = `${copy.contactSubject}: ${name}${company ? " / " + company : ""}`
   const body = [
@@ -450,6 +468,18 @@ export async function submitCareerForm(
   if (checkDuplicate("career", submissionData)) {
     return { error: copy.duplicateCareer }
   }
+
+  await saveFormSubmission({
+    form: "career",
+    locale: await getActionLocale(),
+    name,
+    email,
+    phone,
+    region,
+    workload,
+    workTime,
+    message: info,
+  })
 
   const subject = `${copy.careerSubject}: ${name}`
   const body = [

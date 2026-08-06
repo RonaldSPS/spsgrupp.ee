@@ -4,12 +4,13 @@ import { useActionState, useEffect, useRef } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
 import TwoToneHeading from "./TwoToneHeading"
+import ScrollAnimation from "./ScrollAnimation"
 import { submitContactForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
-export default function ContactForm() {
+export default function ContactForm({ animDelay }: { animDelay?: number }) {
   const [state, formAction, pending] = useActionState(submitContactForm, initialState)
   const formRef = useRef<HTMLFormElement>(null)
   const t = useTranslations("contactForm")
@@ -38,8 +39,7 @@ export default function ContactForm() {
     }
   }, [state.success])
 
-  return (
-    <section className="form-section py-[100px] bg-[#eceef1]" id="pakkumine">
+  const content = (
       <div className="max-w-[800px] mx-auto px-[5%]">
         <div className="form-card">
           <div className="section-tag mx-auto w-fit">{t("sectionTag")}</div>
@@ -182,6 +182,15 @@ export default function ContactForm() {
           </form>
         </div>
       </div>
+  )
+
+  return (
+    <section className="form-section py-[100px] bg-[#eceef1]" id="pakkumine">
+      {animDelay === undefined ? content : (
+        <ScrollAnimation animation="fade-up" delay={animDelay}>
+          {content}
+        </ScrollAnimation>
+      )}
     </section>
   )
 }

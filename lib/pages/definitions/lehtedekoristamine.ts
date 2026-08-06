@@ -1,6 +1,6 @@
 import type { OutdoorServicePageData, ServiceDetailDefs } from '@/app/components/templates/ServiceDetailTemplate'
 
-const etParent = { etPath: "/koristusteenus/valikoristus", label: "Valikoristus" };
+const etParent = { etPath: "/koristusteenus/valikoristus", label: "Välikoristus" };
 const enParent = { etPath: "/koristusteenus/valikoristus", label: "Outdoor cleaning and grounds care" };
 const ruParent = { etPath: "/koristusteenus/valikoristus", label: "Уборка и обслуживание территорий" };
 

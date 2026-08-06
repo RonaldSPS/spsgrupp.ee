@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import ScrollAnimation from "./components/ScrollAnimation";
 import Logos from "./components/Logos";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
@@ -66,44 +65,28 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <section data-section="hero"><Hero /></section>
         <section data-section="logos">
-          <ScrollAnimation animation="fade-up" delay={100}>
-            <Logos />
-          </ScrollAnimation>
+          <Logos animDelay={100} />
         </section>
         <section data-section="trust">
-          <ScrollAnimation animation="fade-up" delay={200}>
-            <Trust />
-          </ScrollAnimation>
+          <Trust animDelay={200} />
         </section>
         <section data-section="testimonials">
-          <ScrollAnimation animation="fade-up" delay={300}>
-            <Testimonials />
-          </ScrollAnimation>
+          <Testimonials animDelay={300} />
         </section>
         <section data-section="industries">
-          <ScrollAnimation animation="fade-up" delay={400}>
-            <Industries />
-          </ScrollAnimation>
+          <Industries animDelay={400} />
         </section>
         <section data-section="services">
-          <ScrollAnimation animation="fade-up" delay={500}>
-            <Services />
-          </ScrollAnimation>
+          <Services animDelay={500} />
         </section>
         <section data-section="contact-form">
-          <ScrollAnimation animation="fade-up" delay={600}>
-            <ContactForm />
-          </ScrollAnimation>
+          <ContactForm animDelay={600} />
         </section>
         <section data-section="faq">
-          <ScrollAnimation animation="fade-up" delay={700}>
-            <FAQ />
-          </ScrollAnimation>
+          <FAQ animDelay={700} />
         </section>
       </main>
-      <ScrollAnimation animation="fade-up" delay={800}>
-        <Footer />
-      </ScrollAnimation>
+      <Footer animDelay={800} />
     </>
   );
 }

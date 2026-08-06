@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocale, useTranslations, useMessages } from "next-intl";
 import { usePathname } from "next/navigation";
 import TwoToneHeading from "./TwoToneHeading";
+import ScrollAnimation from "./ScrollAnimation";
 import { getCurrentEtPath, type Locale } from "@/lib/slug-map";
 import { renderLdJson } from "@/lib/json-ld-generator";
 
@@ -12,7 +13,7 @@ interface FAQItem {
   a: string;
 }
 
-export default function FAQ({ items }: { items?: FAQItem[] }) {
+export default function FAQ({ items, animDelay }: { items?: FAQItem[]; animDelay?: number }) {
   const t = useTranslations("faq")
   const messages = useMessages()
   const locale = useLocale() as Locale
@@ -29,10 +30,7 @@ export default function FAQ({ items }: { items?: FAQItem[] }) {
   const faq = items ?? msgItems
   const faqLd = { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq.map((f) => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })) }
 
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(faqLd) }} />
-      <section className="faq-section py-[100px] bg-white" id="kkk">
+  const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
           {/* Sidebar */}
@@ -97,6 +95,17 @@ export default function FAQ({ items }: { items?: FAQItem[] }) {
           </div>
         </div>
       </div>
+  )
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(faqLd) }} />
+      <section className="faq-section py-[100px] bg-white" id="kkk">
+      {animDelay === undefined ? content : (
+        <ScrollAnimation animation="fade-up" delay={animDelay}>
+          {content}
+        </ScrollAnimation>
+      )}
     </section>
     </>
   );

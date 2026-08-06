@@ -127,3 +127,19 @@ export const adminUsers = pgTable("admin_users", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
+
+export const formSubmissions = pgTable("form_submissions", {
+  id: serial("id").primaryKey(),
+  form: text("form").notNull(),
+  locale: text("locale").notNull().default(""),
+  name: text("name").notNull().default(""),
+  email: text("email").notNull().default(""),
+  phone: text("phone").notNull().default(""),
+  company: text("company").notNull().default(""),
+  message: text("message").notNull().default(""),
+  region: text("region").notNull().default(""),
+  workload: text("workload").notNull().default(""),
+  workTime: text("work_time").notNull().default(""),
+  attachmentName: text("attachment_name").notNull().default(""),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+})

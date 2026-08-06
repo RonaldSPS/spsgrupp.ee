@@ -69,7 +69,7 @@ const etText: CleaningHubText = {
   breadcrumbServices: "Koristusteenused",
   breadcrumbCurrent: "Koristusteenus",
   problemHeading: "Kas teie praegune koristaja hoolib päriselt teie ärist?",
-  problemP1: "Üks probleem, mida kuuleme päris tihti: &quot;Koristaja küll käib, aga midagi on ikkagi valesti.&quot; Tolm koguneb kappide peale. Prügikastid on õhtul täis. WC-s lõppevad tarvikud. Serveriruumi ei puudutata, sest keegi ei julge.",
+  problemP1: "Üks probleem, mida kuuleme päris tihti: „Koristaja küll käib, aga midagi on ikkagi valesti.“ Tolm koguneb kappide peale. Prügikastid on õhtul täis. WC-s lõppevad tarvikud. Serveriruumi ei puudutata, sest keegi ei julge.",
   problemP2Strong1: "Äripindade koristus ei ole lihtsalt kiire töö, vaid läbimõeldud süsteem, mis peab arvestama hoone kasutuse ja ettevõtte töökorraldusega.",
   problemP2After1: "Kontoris on kaableid ja tehnikat, mida ei tohi märjalt käsitleda. Kaubanduspinnal on kõrge liiklus ja tootmishoonetes kehtivad ranged ohutusnõuded.",
   problemP2Strong2: "Oleme alates 2006. aastast kujundanud välja toimiva teenindus- ja kvaliteedijuhtimise süsteemi.",

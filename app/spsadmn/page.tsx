@@ -47,6 +47,19 @@ export default function AdminDashboard() {
         </Link>
 
         <Link
+          href="/spsadmn/paringud/"
+          className="bg-white rounded-2xl p-8 shadow-sm border border-[rgba(23,52,90,0.08)] hover:shadow-md hover:border-[#3abeff]/30 transition-all group"
+        >
+          <div className="w-14 h-14 rounded-2xl bg-[#eef7fc] flex items-center justify-center mb-4 group-hover:bg-[#d4eef9] transition-colors">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
+              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h2 className="text-[20px] font-bold text-[#17345a] mb-1">Päringud</h2>
+          <p className="text-[15px] text-[#5a6474]">Vaata kontaktivormi ja tööavalduste päringuid ning ekspordi CSV</p>
+        </Link>
+
+        <Link
           href="/spsadmn/seaded/"
           className="bg-white rounded-2xl p-8 shadow-sm border border-[rgba(23,52,90,0.08)] hover:shadow-md hover:border-[#3abeff]/30 transition-all group"
         >

@@ -204,11 +204,14 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px]">
                 <div className="bg-[#f8fafc] rounded-2xl p-8 transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#eef7fc] mb-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                      <polyline points="14 2 14 8 20 8" />
-                    </svg>
+                  <div className="w-16 h-16 rounded-full overflow-hidden mb-4">
+                    <Image
+                      src="/happyclient.jpg"
+                      alt="SPS Grupp klient"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-[20px] font-bold text-[#17345a] mb-4">{t.qualityLeftTitle}</h3>
                   <p className="text-[15px] text-[#5a6474] leading-[1.7]">
@@ -217,11 +220,14 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
                 </div>
 
                 <div className="bg-[#f8fafc] rounded-2xl p-8 transition-all duration-300 hover:shadow-lg border-2 border-transparent hover:border-[#85cbe9]">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#eef7fc] mb-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17345a" strokeWidth="2">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                    </svg>
+                  <div className="w-16 h-16 rounded-full overflow-hidden mb-4">
+                    <Image
+                      src="/happycleaner.jpg"
+                      alt="SPS Grupp koristaja"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 className="text-[20px] font-bold text-[#17345a] mb-4">{t.qualityRightTitle}</h3>
                   <p className="text-[15px] text-[#5a6474] leading-[1.7]">
@@ -304,35 +310,6 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
                     {t.emergencyRightContent}
                   </p>
                 </div>
-              </div>
-            </div>
-          </section>
-        </ScrollAnimation>
-
-        {/* Stats section */}
-        <ScrollAnimation animation="fade-up">
-          <section className="py-[100px] bg-[#eceef1]">
-            <div className="max-w-[1280px] mx-auto px-[5%]">
-              <div className="text-center mb-14">
-                <div className="section-tag">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                  </svg>
-                  {t.statsTag}
-                </div>
-                <TwoToneHeading text={t.statsHeading} />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
-                {t.stats.map((stat, i) => (
-                  <div
-                    key={i}
-                    className="bg-white rounded-2xl p-8 text-center transition-colors duration-300 border-2 border-transparent hover:bg-gray-50"
-                  >
-                    <div className="text-[clamp(32px,4vw,48px)] font-bold text-[#17345a] mb-2">{stat.number}</div>
-                    <div className="text-[15px] text-[#5a6474]">{stat.label}</div>
-                  </div>
-                ))}
               </div>
             </div>
           </section>

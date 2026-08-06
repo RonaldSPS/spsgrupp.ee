@@ -1,6 +1,6 @@
 import type { OutdoorServicePageData, ServiceDetailDefs } from '@/app/components/templates/ServiceDetailTemplate'
 
-const etParentBreadcrumb = { etPath: "/koristusteenus/valikoristus", label: "Valikoristus" };
+const etParentBreadcrumb = { etPath: "/koristusteenus/valikoristus", label: "Välikoristus" };
 const enParentBreadcrumb = { etPath: "/koristusteenus/valikoristus", label: "Outdoor cleaning and grounds care" };
 const ruParentBreadcrumb = { etPath: "/koristusteenus/valikoristus", label: "\u0423\u0431\u043E\u0440\u043A\u0430 \u0438 \u043E\u0431\u0441\u043B\u0443\u0436\u0438\u0432\u0430\u043D\u0438\u0435 \u0442\u0435\u0440\u0440\u0438\u0442\u043E\u0440\u0438\u0439" };
 
@@ -11,59 +11,59 @@ export const etData: OutdoorServicePageData = {
   imageAlt: "SPS Grupp muruniitmine ja haljasalade hooldus",
   title: "Muruniitmine",
   titleAccent: "Tallinnas ja Harjumaal",
-  intro: "Regulaarne muruniitmine arikinnistutele, korteriuhistutele ja avalikele aladele. Hoiame haljasalad korras kogu kasvuperioodi valtel.",
-  cta: "Kusi muruniitmise pakkumist",
+  intro: "Regulaarne muruniitmine ärikinnistutele, korteriühistutele ja avalikele aladele. Hoiame haljasalad korras kogu kasvuperioodi vältel.",
+  cta: "Küsi muruniitmise pakkumist",
   breadcrumb: "Muruniitmine",
   parentBreadcrumb: etParentBreadcrumb,
   chips: [
     { value: "Hooajaline", label: "hooldus", tone: "blue" },
-    { value: "Korraparane", label: "graafik", tone: "green" },
-    { value: "Arikinnistud", label: "ja uhistud", tone: "navy" },
+    { value: "Korrapärane", label: "graafik", tone: "green" },
+    { value: "Ärikinnistud", label: "ja ühistud", tone: "navy" },
   ],
-  problemTitle: "Hooldamata muru jatab kinnistust lohaka mulje",
-  problemLead: "Korgeks kasvanud muru, niitmata servad ja koristamata niide muudavad ka korraliku hoone umbruse kiiresti hooletuks. Arikinnistu, korteriuhistu voi esindushoone puhul on valiala esimene asi, mida kulastaja markab.",
-  problemDescription: "Regulaarne hooldus hoiab kinnistu esinduslikuna ja vahendab hooaja lopus suuremate korrastustoode vajadust.",
+  problemTitle: "Hooldamata muru jätab kinnistust lohaka mulje",
+  problemLead: "Kõrgeks kasvanud muru, niitmata servad ja koristamata niide muudavad ka korraliku hoone ümbruse kiiresti hooletuks. Ärikinnistu, korteriühistu või esindushoone puhul on väliala esimene asi, mida külastaja märkab.",
+  problemDescription: "Regulaarne hooldus hoiab kinnistu esinduslikuna ja vähendab hooaja lõpus suuremate korrastustööde vajadust.",
   serviceTitle: "Mida sisaldab muruniitmise teenus?",
   serviceCards: [
-    { bold: "Regulaarne muruniitmine", desc: "Niitmine kokkulepitud sagedusega kogu kasvuperioodi valtel." },
-    { bold: "Servade trimmerdamine", desc: "Aarekivide, piirete, puude ja hooneumbruse tapne viimistlus." },
-    { bold: "Rohu kogumine voi multsimine", desc: "Valime lahenduse vastavalt murupinnale ja objekti nouetele." },
-    { bold: "Ala ulevaatus", desc: "Hindame niidetava ala suurust ja takistusi." },
-    { bold: "Konniteede puhastus parast niitmist", desc: "Eemaldame murujaagid teedelt, sissepaasudelt ja parkla servadest." },
-    { bold: "Hooajaline hooldusleping", desc: "Uks kokkulepe, selge graafik ja prognoositav kulu." },
+    { bold: "Regulaarne muruniitmine", desc: "Niitmine kokkulepitud sagedusega kogu kasvuperioodi vältel." },
+    { bold: "Servade trimmerdamine", desc: "Äärekivide, piirete, puude ja hooneümbruse täpne viimistlus." },
+    { bold: "Rohu kogumine või multsimine", desc: "Valime lahenduse vastavalt murupinnale ja objekti nõuetele." },
+    { bold: "Ala ülevaatus", desc: "Hindame niidetava ala suurust ja takistusi." },
+    { bold: "Kõnniteede puhastus pärast niitmist", desc: "Eemaldame murujäägid teedelt, sissepääsudelt ja parkla servadest." },
+    { bold: "Hooajaline hooldusleping", desc: "Üks kokkulepe, selge graafik ja prognoositav kulu." },
   ],
   reasonsTitle: "Miks tellida muruniitmine SPS Grupilt?",
   reasons: [
-    { title: "Too toimub graafiku jargi", desc: "Te ei pea iga kord eraldi helistama. Hoiame niitmissageduse kooskolas hooaja ja ilmaga." },
-    { title: "Korras servad ja sissepaasud", desc: "Trimmerdamine ja jarelpuhastus annavad tulemusele viimistletud ilme." },
-    { title: "Sobib suurtele pindadele", desc: "Teenindame ariparke, korteriuhistuid, buroohooneid ja muid suuremaid kinnistuid." },
-    { title: "Uks partner valitoodeks", desc: "Vajadusel uhendame muruniitmise lehekoristuse, kojameheteenuse ja talvise hooldusega." },
+    { title: "Töö toimub graafiku järgi", desc: "Te ei pea iga kord eraldi helistama. Hoiame niitmissageduse kooskõlas hooaja ja ilmaga." },
+    { title: "Korras servad ja sissepääsud", desc: "Trimmerdamine ja järelpuhastus annavad tulemusele viimistletud ilme." },
+    { title: "Sobib suurtele pindadele", desc: "Teenindame äriparke, korteriühistuid, büroohooneid ja muid suuremaid kinnistuid." },
+    { title: "Üks partner välitöödeks", desc: "Vajadusel ühendame muruniitmise lehekoristuse, kojameheteenuse ja talvise hooldusega." },
   ],
-  priceTitle: "Millest soltub muruniitmise hind?",
-  priceIntro: "Hind soltub niidetava ala suurusest, niitmise sagedusest, servatoode mahust ja sellest, kas niide kogutakse voi multsitakse.",
+  priceTitle: "Millest sõltub muruniitmise hind?",
+  priceIntro: "Hind sõltub niidetava ala suurusest, niitmise sagedusest, servatööde mahust ja sellest, kas niide kogutakse või multsitakse.",
   priceCards: [
-    { size: "Vaike kinnistu", area: "uhistu voi buroo", price: "al. 60 \u20AC", period: "kord", highlight: true },
-    { size: "Keskmine ala", area: "arikinnistu", price: "al. 120 \u20AC", period: "kord" },
+    { size: "Väike kinnistu", area: "ühistu või büroo", price: "al. 60 \u20AC", period: "kord", highlight: true },
+    { size: "Keskmine ala", area: "ärikinnistu", price: "al. 120 \u20AC", period: "kord" },
     { size: "Hooajaleping", area: "regulaarne hooldus", price: "Kuu hind", period: "pakkumine" },
   ],
-  priceNote: "Tapse hinna anname parast objekti ulevaatust voi pindala ja toomahu kirjelduse pohjal.",
+  priceNote: "Täpse hinna anname pärast objekti ülevaatust või pindala ja töömahu kirjelduse põhjal.",
   serviceInfoBlock: {
     tag: "Hooldusplaan",
     title: "Mida lepime enne muruniitmise alustamist kokku?",
-    intro: "Niidetava ala ulatus, soovitud hooldustase ja niite kaitlemine mojutavad tookorraldust ning hinda. Lepime need enne hooaja algust voi esimest niitmist selgelt kokku.",
+    intro: "Niidetava ala ulatus, soovitud hooldustase ja niite käitlemine mõjutavad töökorraldust ning hinda. Lepime need enne hooaja algust või esimest niitmist selgelt kokku.",
     items: [
-      { title: "Ala ja ligipaas", description: "Maarame niidetava ala piirid, hindame nolvad, takistused ja tehnika ligipaasu ning lepime kokku alad, mis vajavad kasitsi trimmerdamist." },
-      { title: "Hooldustase ja sagedus", description: "Lepime kokku soovitud muru korguse ja hooldussageduse. Graafikut kohandame kasvukiiruse, ilma ja kinnistu kasutuse jargi." },
-      { title: "Servatood ja niite kaitlus", description: "Tapsustame servade trimmerdamise, teede jarelpuhastuse ning selle, kas niide multsitakse, kogutakse voi viiakse objektilt ara." },
+      { title: "Ala ja ligipääs", description: "Määrame niidetava ala piirid, hindame nõlvad, takistused ja tehnika ligipääsu ning lepime kokku alad, mis vajavad käsitsi trimmerdamist." },
+      { title: "Hooldustase ja sagedus", description: "Lepime kokku soovitud muru kõrguse ja hooldussageduse. Graafikut kohandame kasvukiiruse, ilma ja kinnistu kasutuse järgi." },
+      { title: "Servatööd ja niite käitlus", description: "Täpsustame servade trimmerdamise, teede järelpuhastuse ning selle, kas niide multsitakse, kogutakse või viiakse objektilt ära." },
     ],
   },
   footerTitle: "Tellige muruniitmise hooldusplaan",
   footerDescription: "Saatke meile kinnistu info ja koostame sobiva niitmisgraafiku koos hinnapakkumisega.",
   faq: [
-    { q: "Kui tihti peaks muru niitma?", a: "Niitmissagedus soltub kasvuperioodist, ilmast, murutuubist ja kinnistu soovitud ilmetasemest. Graafikut kohandame hooaja ning tegeliku kasvukiiruse jargi." },
+    { q: "Kui tihti peaks muru niitma?", a: "Niitmissagedus sõltub kasvuperioodist, ilmast, murutüübist ja kinnistu soovitud ilmetasemest. Graafikut kohandame hooaja ning tegeliku kasvukiiruse järgi." },
     { q: "Kas teete ka trimmerdamist?", a: "Jah. Servade trimmerdamine kuulub teenuse juurde, kui see on pakkumises kokku lepitud." },
-    { q: "Kas niide viiakse ara?", a: "Vajadusel kogume ja viime niidetud muru ara. Suurematel aladel on sageli moistlik kasutada multsimist." },
-    { q: "Kas saab solmida hooajalise lepingu?", a: "Jah. Hooajaleping on mugavaim lahendus, sest too toimub automaatselt kokkulepitud graafiku jargi." },
+    { q: "Kas niide viiakse ära?", a: "Vajadusel kogume ja viime niidetud muru ära. Suurematel aladel on sageli mõistlik kasutada multsimist." },
+    { q: "Kas saab sõlmida hooajalise lepingu?", a: "Jah. Hooajaleping on mugavaim lahendus, sest töö toimub automaatselt kokkulepitud graafiku järgi." },
   ],
 };
 
@@ -198,7 +198,7 @@ export function getMuruniitmineRuData(): OutdoorServicePageData {
 }
 
 export const serviceDetail: ServiceDetailDefs = {
-  et: { data: etData, seo: {"serviceName":"Muruniitmine","serviceDescription":"Muruniitmine ja haljasalade hooldus arikinnisvaral. Regulaarne niitmine ja muru servade korrastus."}, tooprotsess: {"title":"Kuidas SPS muruniitmise graafiku koostab?","intro":"SPS alustab objekti ulevaatusest, et toomeetod, sagedus ja tehnika vastaksid tegelikule vajadusele.","steps":[["Ala ulevaatus","Hindame niidetava ala suurust ja takistusi."],["Sageduse kokkulepe","Lepime kokku hooajalise hooldusgraafiku."],["Servatood","Maarame trimmerdamise ulatuse."],["Niitmine","Teostame too graafiku jargi."],["Jarelpuhastus","Puhastame teed ja sissepaasud murujaakidest."]]}, breadcrumbs: [{"name":"Avaleht","etPath":"/"},{"name":"Koristusteenus","etPath":"/koristusteenus"},{"name":"Valikoristus","etPath":"/koristusteenus/valikoristus"},{"name":"Muruniitmine","etPath":"/koristusteenus/valikoristus/muruniitmine"}] },
+  et: { data: etData, seo: {"serviceName":"Muruniitmine","serviceDescription":"Muruniitmine ja haljasalade hooldus ärikinnisvaral. Regulaarne niitmine ja muru servade korrastus."}, tooprotsess: {"title":"Kuidas SPS muruniitmise graafiku koostab?","intro":"SPS alustab objekti ülevaatusest, et töömeetod, sagedus ja tehnika vastaksid tegelikule vajadusele.","steps":[["Ala ülevaatus","Hindame niidetava ala suurust ja takistusi."],["Sageduse kokkulepe","Lepime kokku hooajalise hooldusgraafiku."],["Servatööd","Määrame trimmerdamise ulatuse."],["Niitmine","Teostame töö graafiku järgi."],["Järelpuhastus","Puhastame teed ja sissepääsud murujääkidest."]]}, breadcrumbs: [{"name":"Avaleht","etPath":"/"},{"name":"Koristusteenus","etPath":"/koristusteenus"},{"name":"Välikoristus","etPath":"/koristusteenus/valikoristus"},{"name":"Muruniitmine","etPath":"/koristusteenus/valikoristus/muruniitmine"}] },
   en: { data: getMuruniitmineEnData(), seo: {"serviceName":"Lawn Mowing","serviceDescription":"Lawn mowing and grounds maintenance for commercial property. Regular mowing and lawn edging."}, tooprotsess: {"title":"How does SPS schedule lawn mowing?","intro":"SPS starts with a site assessment to ensure the method, frequency and equipment match the actual needs.","steps":[["Site assessment","We evaluate the size and features of the mowing area."],["Agree schedule","We agree on a seasonal maintenance schedule."],["Edge work","We define the extent of trimming required."],["Mowing","We carry out the work according to the schedule."],["Clean-up","We clear paths and entrances of grass debris."]]}, breadcrumbs: [{"name":"Home","etPath":"/"},{"name":"Cleaning","etPath":"/koristusteenus"},{"name":"Outdoor cleaning","etPath":"/koristusteenus/valikoristus"},{"name":"Lawn Mowing","etPath":"/koristusteenus/valikoristus/muruniitmine"}] },
   ru: { data: getMuruniitmineRuData(), seo: {"serviceName":"Стрижка газонов","serviceDescription":"Стрижка газонов и уход за зелеными насаждениями на коммерческой недвижимости."}, tooprotsess: {"title":"Как SPS составляет график стрижки газонов?","intro":"SPS начинает с осмотра объекта, чтобы выбрать подходящий метод.","steps":[["Осмотр объекта","Оцениваем размер и особенности территории."],["Согласование графика","Договариваемся о сезонном графике."],["Обработка краев","Определяем объем триммеровки."],["Стрижка","Выполняем работу по графику."],["Финальная уборка","Очищаем дорожки от остатков травы."]]}, breadcrumbs: [{"name":"Главная","etPath":"/"},{"name":"Уборка","etPath":"/koristusteenus"},{"name":"Уборка территорий","etPath":"/koristusteenus/valikoristus"},{"name":"Стрижка газонов","etPath":"/koristusteenus/valikoristus/muruniitmine"}] },
 }

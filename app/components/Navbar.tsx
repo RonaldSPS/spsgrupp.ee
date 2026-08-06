@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
@@ -10,7 +10,6 @@ import { localizePath, getCurrentEtPath, type Locale } from "@/lib/slug-map"
 export default function Navbar() {
   const t = useTranslations()
   const pathname = usePathname()
-  const router = useRouter()
   const locale: Locale = pathname === '/en' || pathname.startsWith('/en/')
     ? 'en'
     : pathname === '/ru' || pathname.startsWith('/ru/')
@@ -19,10 +18,10 @@ export default function Navbar() {
 
   function switchLanguage(newLocale: Locale) {
     if (currentEtPath === "/blog" || currentEtPath.startsWith("/blog/")) {
-      router.push(localizePath("/", newLocale))
+      window.location.assign(localizePath("/", newLocale))
       return
     }
-    router.push(localizePath(currentEtPath, newLocale))
+    window.location.assign(localizePath(currentEtPath, newLocale))
   }
 
   const currentEtPath = getCurrentEtPath(pathname, locale)

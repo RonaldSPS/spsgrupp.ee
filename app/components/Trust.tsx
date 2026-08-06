@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
+import ScrollAnimation from "./ScrollAnimation";
 import { localizePath, type Locale } from "@/lib/slug-map";
 
-export default function Trust() {
+export default function Trust({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("trust")
   const locale = useLocale() as Locale
 
-  return (
-    <section className="trust-section py-[100px] bg-white" id="garantii">
+  const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <div>
@@ -107,7 +107,7 @@ export default function Trust() {
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/regulaarnekoristusteenus.jpg"
-                alt={`${t("regularTitle")} ā€” SPS Grupp`}
+                alt={`${t("regularTitle")} — SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -120,14 +120,14 @@ export default function Trust() {
             </p>
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("regularNote")}</p>
             <Link href={localizePath("/koristusteenus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {t("more")} <span aria-hidden="true">ā†’</span>
+              {t("more")} <span aria-hidden="true">→</span>
             </Link>
           </div>
           <div className="service-column-card">
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/puhastusteenused2.jpg"
-                alt={`${t("specialTitle")} ā€” SPS Grupp`}
+                alt={`${t("specialTitle")} — SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -140,14 +140,14 @@ export default function Trust() {
             </p>
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("specialNote")}</p>
             <Link href={localizePath("/puhastusteenused", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {t("more")} <span aria-hidden="true">ā†’</span>
+              {t("more")} <span aria-hidden="true">→</span>
             </Link>
           </div>
           <div className="service-column-card">
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/valikoristus.jpg"
-                alt={`${t("outdoorTitle")} ā€” SPS Grupp`}
+                alt={`${t("outdoorTitle")} — SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -160,11 +160,20 @@ export default function Trust() {
             </p>
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("outdoorNote")}</p>
             <Link href={localizePath("/koristusteenus/valikoristus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {t("more")} <span aria-hidden="true">ā†’</span>
+              {t("more")} <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
       </div>
+  )
+
+  return (
+    <section className="trust-section py-[100px] bg-white" id="garantii">
+      {animDelay === undefined ? content : (
+        <ScrollAnimation animation="fade-up" delay={animDelay}>
+          {content}
+        </ScrollAnimation>
+      )}
     </section>
   );
 }

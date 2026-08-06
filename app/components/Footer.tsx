@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
+import ScrollAnimation from "./ScrollAnimation";
 import { localizePath, type Locale } from "@/lib/slug-map";
 
-export default function Footer() {
+export default function Footer({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("footer")
   const m = useTranslations("megaMenu")
   const n = useTranslations("nav")
@@ -69,8 +70,7 @@ export default function Footer() {
     ]},
   ]
 
-  return (
-    <footer className="bg-[#0f1f33] py-12 border-t border-[rgba(133,203,233,0.08)]">
+  const content = (
       <div className="max-w-[1440px] mx-auto px-[25px]">
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-8 pb-9 border-b border-[rgba(133,203,233,0.06)]">
           <div className="lg:col-span-2">
@@ -184,6 +184,15 @@ export default function Footer() {
           </div>
         </div>
       </div>
+  )
+
+  return (
+    <footer className="bg-[#0f1f33] py-12 border-t border-[rgba(133,203,233,0.08)]">
+      {animDelay === undefined ? content : (
+        <ScrollAnimation animation="fade-up" delay={animDelay}>
+          {content}
+        </ScrollAnimation>
+      )}
     </footer>
   );
 }

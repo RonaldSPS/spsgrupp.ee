@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import TwoToneHeading from "./TwoToneHeading"
+import ScrollAnimation from "./ScrollAnimation"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
 import { localizePath, type Locale } from "@/lib/slug-map"
 
@@ -38,7 +39,7 @@ const testimonialPools: Record<Locale, TestimonialData[]> = {
 
 const GAP = 10
 
-export default function Testimonials() {
+export default function Testimonials({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("testimonials")
   const locale = useLocale() as Locale
   const items = testimonialPools[locale]
@@ -50,8 +51,7 @@ export default function Testimonials() {
 
   const duo = [...items, ...items]
 
-  return (
-    <section className="testimonials-section py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+  const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="text-center mb-14">
           <div className="section-tag">
@@ -103,6 +103,15 @@ export default function Testimonials() {
           </div>
         </div>
       </div>
+  )
+
+  return (
+    <section className="testimonials-section py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+      {animDelay === undefined ? content : (
+        <ScrollAnimation animation="fade-up" delay={animDelay}>
+          {content}
+        </ScrollAnimation>
+      )}
     </section>
   )
 }

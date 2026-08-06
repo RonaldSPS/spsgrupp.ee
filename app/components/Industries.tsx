@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
+import ScrollAnimation from "./ScrollAnimation";
 
 const industryKeys = ["office", "retail", "industrial", "hospitality", "healthcare", "education"] as const
 
@@ -16,7 +17,7 @@ const industryImages = [
   "/koolide-koristamine4.jpg",
 ]
 
-export default function Industries() {
+export default function Industries({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("industries")
   const [active, setActive] = useState(0);
   const [prevActive, setPrevActive] = useState(0);
@@ -47,13 +48,7 @@ export default function Industries() {
     return () => clearInterval(interval);
   }, [isAnimating, active, isHovered]);
 
-  return (
-    <section
-      className="industries-section py-[100px] bg-white"
-      id="valdkonnad"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+  const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="grid grid-cols-1 lg:grid-cols-[0.72fr_1.28fr] gap-12 items-end mb-12">
           <div>
@@ -118,6 +113,20 @@ export default function Industries() {
           </div>
         </div>
       </div>
+  )
+
+  return (
+    <section
+      className="industries-section py-[100px] bg-white"
+      id="valdkonnad"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {animDelay === undefined ? content : (
+        <ScrollAnimation animation="fade-up" delay={animDelay}>
+          {content}
+        </ScrollAnimation>
+      )}
     </section>
   );
 }
