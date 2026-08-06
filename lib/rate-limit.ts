@@ -61,7 +61,7 @@ function getEntry(key: string, windowMs: number): { entry: RateEntry; isNew: boo
   return { entry: existing, isNew: false }
 }
 
-export function checkRateLimit(
+function checkRateLimitMemory(
   request: Request,
   maxRequests: number = MAX_REQUESTS,
   windowMs: number = WINDOW_MS,
@@ -90,7 +90,7 @@ export function checkRateLimit(
   return { allowed: true, remaining: maxRequests - entry.count, resetIn: entry.resetAt - now, retryAfter: 0 }
 }
 
-export function checkLoginRateLimit(request: Request): { allowed: boolean; remaining: number; resetIn: number; retryAfter: number } {
+function checkLoginRateLimitMemory(request: Request): { allowed: boolean; remaining: number; resetIn: number; retryAfter: number } {
   const key = getLoginKey(request)
   const { entry, isNew } = getEntry(key, LOGIN_WINDOW_MS)
   const now = Date.now()
@@ -113,6 +113,102 @@ export function checkLoginRateLimit(request: Request): { allowed: boolean; remai
   return { allowed: true, remaining: LOGIN_MAX_REQUESTS - entry.count, resetIn: entry.resetAt - now, retryAfter: 0 }
 }
 
+/* ------------------------------------------------------------------ */
+/* Shared store: Upstash Redis REST (env-gated, in-memory fallback)    */
+/* ------------------------------------------------------------------ */
+
+const UPSTASH_URL = process.env.UPSTASH_REDIS_REST_URL
+const UPSTASH_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN
+const UPSTASH_TIMEOUT_MS = 1500
+
+function upstashConfigured(): boolean {
+  return Boolean(UPSTASH_URL && UPSTASH_TOKEN)
+}
+
+async function upstashPipeline(commands: string[][]): Promise<Array<{ result: unknown }>> {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), UPSTASH_TIMEOUT_MS)
+  try {
+    const res = await fetch(`${UPSTASH_URL}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${UPSTASH_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commands),
+      signal: controller.signal,
+      cache: "no-store",
+    })
+    if (!res.ok) throw new Error(`Upstash HTTP ${res.status}`)
+    return (await res.json()) as Array<{ result: unknown }>
+  } finally {
+    clearTimeout(timeoutId)
+  }
+}
+
+async function checkRateLimitRedis(
+  request: Request,
+  maxRequests: number,
+  windowMs: number,
+  banThreshold: number,
+  banDurationMs: number,
+  escalating: boolean,
+): Promise<{ allowed: boolean; remaining: number; resetIn: number; retryAfter: number }> {
+  const key = `rl:${getPathKey(request)}`
+  const banKey = `${key}:ban`
+  const breachKey = `${key}:breaches`
+
+  const [countRes, , banRes] = await upstashPipeline([
+    ["INCR", key],
+    ["PEXPIRE", key, String(windowMs), "NX"],
+    ["GET", banKey],
+  ])
+
+  if (banRes.result) {
+    return { allowed: false, remaining: 0, resetIn: 0, retryAfter: banDurationMs }
+  }
+
+  const count = Number(countRes.result)
+  if (count > maxRequests) {
+    const [breachesRes] = await upstashPipeline([
+      ["INCR", breachKey],
+      ["PEXPIRE", breachKey, "600000", "NX"],
+    ])
+    const breaches = Number(breachesRes.result)
+    if (breaches >= banThreshold) {
+      const duration = escalating ? banDurationMs * (1 << Math.min(breaches, 6)) : banDurationMs
+      await upstashPipeline([["SET", banKey, "1", "PX", String(duration)]])
+      return { allowed: false, remaining: 0, resetIn: 0, retryAfter: duration }
+    }
+    return { allowed: false, remaining: 0, resetIn: windowMs, retryAfter: windowMs }
+  }
+
+  return { allowed: true, remaining: maxRequests - count, resetIn: windowMs, retryAfter: 0 }
+}
+
+export async function checkRateLimit(
+  request: Request,
+  maxRequests: number = MAX_REQUESTS,
+  windowMs: number = WINDOW_MS,
+): Promise<{ allowed: boolean; remaining: number; resetIn: number; retryAfter: number }> {
+  if (!upstashConfigured()) return checkRateLimitMemory(request, maxRequests, windowMs)
+  try {
+    return await checkRateLimitRedis(request, maxRequests, windowMs, BAN_THRESHOLD, BAN_DURATION_MS, false)
+  } catch {
+    // Store unavailable — fall back to process-local limiting for this call.
+    return checkRateLimitMemory(request, maxRequests, windowMs)
+  }
+}
+
+export async function checkLoginRateLimit(request: Request): Promise<{ allowed: boolean; remaining: number; resetIn: number; retryAfter: number }> {
+  if (!upstashConfigured()) return checkLoginRateLimitMemory(request)
+  try {
+    return await checkRateLimitRedis(request, LOGIN_MAX_REQUESTS, LOGIN_WINDOW_MS, 1, LOGIN_WINDOW_MS, true)
+  } catch {
+    return checkLoginRateLimitMemory(request)
+  }
+}
+
 export function rateLimitResponse(retryAfterMs: number) {
   const retrySeconds = Math.max(1, Math.ceil(retryAfterMs / 1000))
   return new Response(
@@ -128,14 +224,14 @@ export function rateLimitResponse(retryAfterMs: number) {
   )
 }
 
-export function withRateLimit(
+export async function withRateLimit(
   request: Request,
   handler: () => Promise<Response>,
   isAdmin: boolean = false,
 ): Promise<Response> {
   const max = isAdmin ? ADMIN_MAX_REQUESTS : MAX_REQUESTS
-  const { allowed, retryAfter } = checkRateLimit(request, max)
-  if (!allowed) return Promise.resolve(rateLimitResponse(retryAfter))
+  const { allowed, retryAfter } = await checkRateLimit(request, max)
+  if (!allowed) return rateLimitResponse(retryAfter)
   return handler()
 }
 

@@ -4,7 +4,7 @@ import { getJobTranslationsByLanguage } from "@/lib/translate-jobs"
 import { checkRateLimit, rateLimitResponse } from "@/lib/rate-limit"
 
 export async function GET(request: Request) {
-  const { allowed, retryAfter } = checkRateLimit(request, 120)
+  const { allowed, retryAfter } = await checkRateLimit(request, 120)
   if (!allowed) return rateLimitResponse(retryAfter)
 
   try {

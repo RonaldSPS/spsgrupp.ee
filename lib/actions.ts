@@ -318,7 +318,7 @@ async function checkFormRateLimit(): Promise<boolean> {
   const fakeReq = new Request(`http://localhost${path}`, {
     headers: new Headers([["x-forwarded-for", ip]]),
   })
-  const { allowed } = checkRateLimit(fakeReq, 10, 60_000)
+  const { allowed } = await checkRateLimit(fakeReq, 10, 60_000)
   return allowed
 }
 

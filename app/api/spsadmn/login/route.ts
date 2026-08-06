@@ -4,7 +4,7 @@ import { checkLoginRateLimit, rateLimitResponse } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
 export async function POST(request: Request) {
-  const loginCheck = checkLoginRateLimit(request)
+  const loginCheck = await checkLoginRateLimit(request)
   if (!loginCheck.allowed) return rateLimitResponse(loginCheck.retryAfter)
 
   if (!verifySameOrigin(request)) {

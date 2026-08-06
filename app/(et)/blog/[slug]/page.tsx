@@ -7,6 +7,7 @@ import FooterCTA from "../../../components/FooterCTA"
 import type { Metadata } from "next"
 import { getPostBySlugWithEdits, getRelatedPosts } from "../data"
 import { blogPosts } from "../posts.generated"
+import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import { generatePageMetadata } from "@/lib/metadata-helper"
 import { renderLdJson } from "@/lib/json-ld-generator"
 import { absoluteUrl, canonicalUrl } from "@/lib/url-utils"
@@ -105,7 +106,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               <div
                 className="article-content text-[15px] text-[#2f353f] leading-[1.8]"
-                dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtmlSafe(post.contentHtml) }}
               />
             </article>
 

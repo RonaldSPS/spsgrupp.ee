@@ -2,6 +2,18 @@
 
 > **Read before adding any new feature.** Update when introducing a new pattern.
 
+## Rendering & caching (since 2026-08)
+
+The whole marketing site is **prerendered at build time** (SSG) and served from the Vercel CDN:
+
+- **`app/[locale]/`** — single tree for all locale-prefixed marketing pages. Root layout `app/[locale]/layout.tsx` reads the locale via **`next/root-params`** (stable in Next 16.3) — no `headers()` in the layout (that used to force the entire site into dynamic SSR).
+- **`app/[locale]/[[...slug]]/page.tsx`** — unified catch-all for ET+EN+RU: `generateStaticParams` for every registry path, `revalidate = 300` (ISR), `dynamicParams` stays on so admin-created job postings render on demand.
+- **ET lives at unprefixed URLs.** `proxy.ts` rewrites public ET requests to the internal `/et` prefix (`/kontakt` → `/et/kontakt`). `/blog` and `/spsadmn` are ET-direct in `app/(et)/`; `/api`, `/en`, `/ru` and dotted file paths are excluded. Server actions still read `X-SPS-Locale` (set by the proxy) — `next/root-params` is not available in actions.
+- **`app/(et)/`** — ET-only real routes: `blog/` (SSG, `revalidate = 60`), `spsadmn/`. Own root layout, identical shell, locale hardcoded `et`.
+- **Page components** live in **`app/_pages/`** (private, non-routing) and are mapped to paths by `lib/page-registry.ts`; ET route metadata is imported from the moved layouts via `lib/et-metadata-registry.ts` (keeps `<head>` bytes identical to the old static routes).
+- **Shared root shell:** `app/_shell/root-shell.tsx` (html/body, fonts, I18nProvider, Organization JSON-LD, root metadata) used by both root layouts.
+- **`lib/slug-map.ts` `getCurrentEtPath`** strips the internal `/et` prefix so `usePathname`-based active states prerender correctly.
+
 ## Page system (ET/EN/RU marketing site)
 
 All 36 public pages render their exact Estonian design in every locale. There is one way to build a page — do not reintroduce per-page locale ternaries or a generic localized-content renderer (the retired `LocalizedContentPage`).
@@ -19,28 +31,42 @@ All 36 public pages render their exact Estonian design in every locale. There is
 
 ```
 /
-├── app/                    # Next.js App Router
-│   ├── (marketing)/        # Public pages (landing, pricing, etc.)
-│   ├── (app)/              # Authenticated app pages
-│   ├── api/                # Route handlers (only when needed — prefer Server Actions)
-│   ├── layout.tsx          # Root layout
-│   └── globals.css         # Tailwind + CSS vars only
-├── components/
-│   ├── ui/                 # shadcn/ui primitives — do not edit by hand
-│   ├── shared/             # Reused across features
-│   └── [feature]/          # Feature-scoped components
+├── app/
+│   ├── [locale]/           # Locale-prefixed marketing tree (root layout + unified catch-all)
+│   │   ├── layout.tsx      # Root layout, locale via next/root-params
+│   │   ├── [[...slug]]/    # ET+EN+RU unified catch-all (SSG + ISR 300s)
+│   │   └── not-found.tsx
+│   ├── (et)/               # ET-direct routes (root layout, locale "et")
+│   │   ├── blog/           # Blog index + [slug] (SSG, revalidate 60)
+│   │   └── spsadmn/        # Admin (client-gated)
+│   ├── _pages/             # Marketing page components (private, non-routing)
+│   ├── _shell/root-shell.tsx  # Shared html/body shell + root metadata
+│   ├── components/         # Shared components (Navbar, Footer, SeoJsonLd, templates/)
+│   ├── api/                # Route handlers (admin APIs, jobs, image-resize)
+│   ├── robots.ts sitemap.ts
+│   └── globals.css
 ├── lib/
-│   ├── supabase/           # Server + browser + middleware clients
-│   ├── utils.ts            # cn(), formatters, small helpers
-│   └── [domain].ts         # Domain logic (e.g. pricing.ts, dates.ts)
-├── hooks/                  # Custom React hooks (client-only)
-├── types/                  # Shared TS types (DB types auto-generated)
-├── supabase/
-│   ├── migrations/         # SQL migrations, timestamped
-│   └── seed.sql            # Local dev seed data
-├── public/                 # Static assets
-└── [root configs]
+│   ├── pages/registry.ts   # Single page registry (paths, slugs, namespaces, heroes)
+│   ├── pages/definitions/  # 26 service-detail content definitions
+│   ├── page-registry.ts    # etPath -> component import map
+│   ├── et-metadata-registry.ts  # etPath -> moved layout metadata imports
+│   ├── metadata-registry.ts, metadata-helper.ts, seo-metadata.ts
+│   ├── json-ld-generator.ts     # All structured-data builders (+ tests)
+│   ├── slug-map.ts, url-utils.ts
+│   ├── announcements.ts, testimonials.ts, translate-*.ts  # DB + JSON fallbacks
+│   └── db/                 # Drizzle + postgres.js (Supabase)
+├── messages/               # et/en/ru.json (next-intl UI strings + PageView namespaces)
+├── data/                   # JSON fallbacks (admin-*.json, translation fallbacks)
+├── scripts/                # seo-check, i18n-validate/parity, llms + translation sync
+├── public/                 # Static assets (incl. generated llms*.txt)
+└── proxy.ts                # Locale header, /et rewrites, admin auth gate, security headers
 ```
+
+## Security notes
+
+- CSP (set in `proxy.ts`): `script-src 'self' 'unsafe-inline'` — nonce-based CSP is **not** feasible with Next 16's inline RSC flight scripts (no per-request nonce plumbing); accepted risk, everything else stays strict (`object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, `frame-ancestors 'none'`).
+- Rate limiting (`lib/rate-limit.ts`): Upstash Redis REST when `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN` are set (shared across serverless instances), otherwise process-local in-memory; falls back to in-memory on store errors (availability first).
+- Admin auth: HMAC token cookie (env `ADMIN_PASSWORD` or DB users), proxy gate + per-route validation; CSV export is formula-injection-escaped; sharp via `serverExternalPackages` (no `eval`).
 
 ## Routing rules
 
@@ -127,6 +153,21 @@ export async function createThing(formData: FormData) {
 
 > Append here when you introduce a new repeatable pattern. Format:
 > `### [Pattern name]` → when to use, code skeleton, why.
+
+### Prerendered locale tree (marketing pages)
+Use when: adding any public marketing page.
+Skeleton: register in `lib/pages/registry.ts` (etPath + en/ru slugs) → the unified catch-all prerenders it in all locales via `generateStaticParams`; ET metadata from the moved layout export (`lib/et-metadata-registry.ts`), EN/RU from `lib/metadata-registry.ts`.
+Why: one registration yields static pages + correct canonical/hreflang in all locales; CDN-served at ~250 ms TTFB.
+
+### DB read with timeout + JSON fallback
+Use when: reading Supabase in a page/prerender path.
+Skeleton: `withReadTimeout(db.select()...)` (2.5 s) → on error/timeout read `data/admin-*.json` fallback (refresh via `scripts/sync-translation-fallbacks.ts`).
+Why: Supabase pooler stalls under parallel build workers / after auto-pause; pages must never hang (>60 s build failure) or render blank.
+
+### Registry-generated surface files
+Use when: content that must not drift from the registry (llms.txt, sitemap, hreflang, robots).
+Skeleton: `scripts/generate-llms-txt.ts` reads `lib/pages/registry.ts` + definitions and rewrites `public/llms*.txt`.
+Why: hand-written copies drift; the generator is the single source of truth.
 
 <!-- Example:
 ### Optimistic UI for likes
