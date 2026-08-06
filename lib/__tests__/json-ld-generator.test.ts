@@ -204,7 +204,7 @@ describe("generateServiceOffers", () => {
     assert.strictEqual(generateServiceOffers([]), undefined)
   })
 
-  it("uses minimum parseable price with EUR", () => {
+  it("prefers the highlighted card as the representative offer", () => {
     const offers = generateServiceOffers([
       { size: "A", area: "x", price: "3 €/m²", period: "alates", highlight: true },
       { size: "B", area: "x", price: "2 €/m²", period: "alates" },
@@ -212,9 +212,27 @@ describe("generateServiceOffers", () => {
     ]) as Record<string, unknown>
     assert.strictEqual(offers["@type"], "Offer")
     const spec = offers.priceSpecification as Record<string, unknown>
-    assert.strictEqual(spec.price, 2)
+    assert.strictEqual(spec.price, 3)
     assert.strictEqual(spec.priceCurrency, "EUR")
     assert.strictEqual(spec.unitText, "per m²")
+  })
+
+  it("falls back to the lowest card when highlighted is unparseable", () => {
+    const offers = generateServiceOffers([
+      { size: "A", area: "x", price: "Individuaalne", period: "pakkumine", highlight: true },
+      { size: "B", area: "x", price: "2 €/m²", period: "alates" },
+    ]) as Record<string, unknown>
+    const spec = offers.priceSpecification as Record<string, unknown>
+    assert.strictEqual(spec.price, 2)
+  })
+
+  it("does not read the unit from the area tier (graffiti regression)", () => {
+    const offers = generateServiceOffers([
+      { size: "Small graffiti", area: "up to 1 m²", price: "150 EUR", period: "from", highlight: true },
+    ]) as Record<string, unknown>
+    const spec = offers.priceSpecification as Record<string, unknown>
+    assert.strictEqual(spec.price, 150)
+    assert.strictEqual(spec.unitText, undefined)
   })
 })
 

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import HeroBackgroundImage from "../../components/HeroBackgroundImage";
 import Footer from "../../components/Footer";
+import SpsInNumbers from "../../components/SpsInNumbers";
 import FAQ from "../../components/FAQ";
 import FooterCTA from "../../components/FooterCTA";
 import ContactForm from "../../components/ContactForm";
@@ -313,6 +314,8 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
             </div>
           </section>
         </ScrollAnimation>
+
+        <SpsInNumbers />
 
         {/* CTA - Request Quote */}
         <ScrollAnimation animation="fade-up">

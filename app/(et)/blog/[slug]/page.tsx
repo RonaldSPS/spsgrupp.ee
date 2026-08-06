@@ -56,8 +56,8 @@ export default async function BlogPostPage({ params }: Props) {
     description: post.excerpt,
     datePublished: post.date,
     dateModified: post.date,
-    author: { "@type": "Organization", name: "SPS Grupp" },
-    publisher: { "@type": "Organization", name: "SPS Grupp OÜ", url: canonicalUrl("/") },
+    author: { "@type": "Organization", "@id": `${canonicalUrl("/")}#organization`, name: "SPS Grupp" },
+    publisher: { "@type": "Organization", "@id": `${canonicalUrl("/")}#organization`, name: "SPS Grupp OÜ", url: canonicalUrl("/") },
     image: absoluteUrl(post.featuredImage),
     url: canonicalUrl(`/blog/${post.slug}`),
     mainEntityOfPage: {

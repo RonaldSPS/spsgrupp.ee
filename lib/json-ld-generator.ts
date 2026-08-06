@@ -125,36 +125,38 @@ export interface PriceCardInput {
 }
 
 /** Parse a localized price card ("2 €/m²", "1,20 €/m²", "al. 180 €/kuu",
- *  "from 350 EUR per month", "от 250 EUR") into a numeric min price + unit. */
+ *  "from 350 EUR per month", "от 250 EUR") into a numeric min price + unit.
+ *  Unit is read from the price string and period only — the area field
+ *  describes the size tier ("up to 1 m²"), not the price unit. */
 export function parsePriceCard(card: PriceCardInput): { minPrice: number; unitText?: string } | null {
   const m = card.price.match(/(\d+(?:[.,]\d+)?)/)
   if (!m) return null
   const value = Number(m[1].replace(",", "."))
   if (!Number.isFinite(value) || value <= 0) return null
 
-  const haystack = `${card.price} ${card.period} ${card.area}`.toLowerCase()
+  const haystack = `${card.price} ${card.period}`.toLowerCase()
   if (haystack.includes("m²")) return { minPrice: value, unitText: "per m²" }
   if (/kuu|month|месяц/.test(haystack)) return { minPrice: value, unitText: "per month" }
   if (/h\b|tunnid|tund|hour|час\b/.test(haystack)) return { minPrice: value, unitText: "per hour" }
   return { minPrice: value }
 }
 
-/** Lowest parseable card wins; the highlighted card is preferred as the entry offer. */
+/** The highlighted card is the representative offer; fall back to the lowest
+ *  parseable card when the highlighted one has no numeric price. */
 export function generateServiceOffers(cards: PriceCardInput[]): object | undefined {
   if (!cards || cards.length === 0) return undefined
   const highlighted = cards.find((c) => c.highlight) ?? cards[0]
   const primary = parsePriceCard(highlighted)
   const all = cards.map(parsePriceCard).filter((p): p is NonNullable<typeof p> => p !== null)
   if (all.length === 0) return undefined
-  const minPrice = Math.min(...all.map((p) => p.minPrice))
-  const unitText = (primary ?? all[0]).unitText
+  const offer = primary ?? all.reduce((min, p) => (p.minPrice < min.minPrice ? p : min), all[0])
   return {
     "@type": "Offer",
     priceSpecification: {
       "@type": "PriceSpecification",
-      price: minPrice,
+      price: offer.minPrice,
       priceCurrency: "EUR",
-      ...(unitText ? { unitText } : {}),
+      ...(offer.unitText ? { unitText: offer.unitText } : {}),
       description: "Indicative starting price; exact quote after site assessment",
     },
   }

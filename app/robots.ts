@@ -12,6 +12,10 @@ export default function robots(): MetadataRoute.Robots {
     }
   }
 
+  // AI crawlers are explicitly welcome (AEO/GEO visibility); the admin stays
+  // disallowed for everyone.
+  const aiCrawlers = ["GPTBot", "ClaudeBot", "PerplexityBot", "Google-Extended", "OAI-SearchBot", "Claude-User"]
+
   return {
     rules: [
       {
@@ -19,6 +23,11 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/spsadmn/", "/api/spsadmn/"],
       },
+      ...aiCrawlers.map((agent) => ({
+        userAgent: agent,
+        allow: "/",
+        disallow: ["/spsadmn/", "/api/spsadmn/"],
+      })),
     ],
     sitemap: absoluteUrl("/sitemap.xml"),
   }

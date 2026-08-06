@@ -9,6 +9,7 @@ import Trust from "../../components/Trust";
 import FAQ from "../../components/FAQ";
 import ContactForm from "../../components/ContactForm";
 import Footer from "../../components/Footer";
+import SpsInNumbers from "../../components/SpsInNumbers";
 import { renderLdJson } from "@/lib/json-ld-generator";
 import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils";
 
@@ -82,6 +83,7 @@ export default function Home() {
         <section data-section="services">
           <Services animDelay={500} />
         </section>
+        <SpsInNumbers />
         <section data-section="contact-form">
           <ContactForm animDelay={600} />
         </section>
