@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
       const bytes = await file.arrayBuffer()
       const buffer = Buffer.from(bytes)
 
-      const sharp = eval("require('sharp')") as typeof import("sharp")
+      const sharp = (await import("sharp")).default
 
       const configs = imageConfigs[location]
       const results: string[] = []

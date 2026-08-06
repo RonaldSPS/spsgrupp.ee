@@ -42,7 +42,10 @@ const CSV_HEADER = [
 ]
 
 function csvCell(value: string): string {
-  return `"${value.replace(/"/g, '""')}"`
+  // CSV formula-injection guard: cells starting with = + - @ (or tab/CR) are
+  // prefixed with ' so Excel/LibreOffice render them as literal text.
+  const safe = /^[=+\-@\t\r]/.test(value) ? `'${value}` : value
+  return `"${safe.replace(/"/g, '""')}"`
 }
 
 function formatDateTime(iso: string): string {
