@@ -39,6 +39,9 @@ export const metadata: Metadata = {
       "x-default": canonicalUrl("/"),
     },
   },
+  other: {
+    "og:locale:alternate": ["en_US", "ru_RU"],
+  },
 };
 
 const breadcrumbLd = {

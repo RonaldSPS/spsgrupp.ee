@@ -303,7 +303,6 @@ export function KoolideKoristaminePageView({ locale }: { locale: Locale }) {
           { name: t.breadcrumbService, etPath: "/koristusteenus" },
           { name: t.breadcrumbCurrent, etPath: "/koolide-koristamine" },
         ]}
-        faq={t.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
       <main id="main-content" tabIndex={-1}>

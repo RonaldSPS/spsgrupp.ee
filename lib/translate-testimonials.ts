@@ -213,6 +213,27 @@ export async function getTestimonialTranslations(testimonialId: string): Promise
   }
 }
 
+const DB_READ_TIMEOUT_MS = 2500
+
+function withReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Testimonial translations database read timed out")),
+      DB_READ_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
 export async function getTestimonialTranslationsByLanguage(
   language: TranslationLanguage,
 ): Promise<Array<TestimonialTranslationRow & { testimonialId: string }>> {
@@ -226,8 +247,10 @@ export async function getTestimonialTranslationsByLanguage(
   }
 
   try {
-    const rows = await db.select().from(testimonialTranslations)
-      .where(eq(testimonialTranslations.language, language))
+    const rows = await withReadTimeout(
+      db.select().from(testimonialTranslations)
+        .where(eq(testimonialTranslations.language, language)),
+    )
 
     return rows.map((row) => ({ ...mapTestimonialTranslation(row), testimonialId: row.testimonialId }))
   } catch {

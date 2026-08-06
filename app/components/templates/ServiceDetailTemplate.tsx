@@ -119,7 +119,7 @@ export default function ServiceDetailTemplate({
         serviceName={seo.serviceName}
         serviceDescription={seo.serviceDescription}
         breadcrumbs={breadcrumbs}
-        faq={data.faq.map((f) => ({ question: f.q, answer: f.a }))}
+        priceCards={data.priceCards}
       />
       <OutdoorServicePage
         data={data}

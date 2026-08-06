@@ -12,7 +12,7 @@ import FooterCTA from "../../components/FooterCTA";
 import TwoToneHeading from "../../components/TwoToneHeading";
 import ScrollAnimation from "../../components/ScrollAnimation";
 import { generateBreadcrumbSchema, renderLdJson } from "@/lib/json-ld-generator";
-import { canonicalUrl } from "@/lib/url-utils";
+import { absoluteUrl, canonicalUrl } from "@/lib/url-utils";
 import { localizePath, type Locale } from "@/lib/slug-map";
 import { et as etD, en as enD, ru as ruD, type KontaktPageData } from "@/lib/pages/definitions/kontakt";
 
@@ -80,6 +80,13 @@ export function KontaktPageView({ locale }: { locale: Locale }) {
     },
     areaServed: ["Tallinn", "Harjumaa"],
     sameAs: ["https://www.facebook.com/Puhastusteenused"],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 59.4042,
+      longitude: 24.6843,
+    },
+    priceRange: "€€",
+    image: absoluteUrl("/FrontHeroCar.jpg"),
   };
 
   const contactChips: KontaktChip[] = [

@@ -5,8 +5,7 @@ import ScrollAnimation from "./ScrollAnimation"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import type { Announcement } from "@/lib/types"
 import type { Locale } from "@/lib/slug-map"
-import { renderLdJson } from "@/lib/json-ld-generator"
-import { canonicalUrl } from "@/lib/url-utils"
+import { generateJobPostingSchema, htmlToPlainText, renderLdJson } from "@/lib/json-ld-generator"
 
 const copy = {
   en: {
@@ -74,34 +73,24 @@ export default async function DynamicJobOffer({ announcement, locale }: { announ
     companyDescription: sanitizeHtmlSafe(announcement.companyDescription || ""),
   }
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    "@id": `${canonicalUrl(`${parentPath}/${a.slug}`)}#jobposting`,
+  const descriptionText = htmlToPlainText(
+    [a.companyDescription, a.tasks, a.requirements, a.benefits].filter(Boolean).join(" "),
+  ) || a.subtitle || a.title
+  const jsonLd = generateJobPostingSchema({
+    canonicalPath: `${parentPath}/${a.slug}`,
     title: a.title,
-    description: a.subtitle || a.title,
-    datePosted: a.publishedDate,
-    validThrough: a.applicationDeadline || undefined,
-    identifier: {
-      "@type": "PropertyValue",
-      name: a.company,
-      value: a.id,
-    },
-    employmentType: a.workTime || "FULL_TIME",
-    hiringOrganization: {
-      "@type": "Organization",
-      name: a.company,
-      sameAs: a.website || canonicalUrl("/"),
-    },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: a.location || "Tallinn",
-        addressCountry: "EE",
-      },
-    },
-  }
+    descriptionText,
+    publishedDate: a.publishedDate,
+    applicationDeadline: a.applicationDeadline,
+    id: a.id,
+    company: a.company,
+    companyWebsite: a.website,
+    location: a.location,
+    workTime: a.workTime,
+    salary: a.salary,
+    salaryUnit: a.salaryUnit,
+    vacancies: a.vacancies,
+  })
 
   return (
     <>

@@ -327,7 +327,6 @@ export function KontoriKoristusPageView({ locale }: { locale: Locale }) {
           { name: t.breadcrumbService, etPath: "/koristusteenus" },
           { name: t.breadcrumbCurrent, etPath: "/koristusteenus/kontori-koristus" },
         ]}
-        faq={t.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
       <main id="main-content" tabIndex={-1}>

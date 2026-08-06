@@ -51,7 +51,6 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
           { name: t.breadcrumbHome, etPath: "/" },
           { name: "SPS Grupp", etPath: "/sps-grupp" },
         ]}
-        faq={t.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
       <main id="main-content" tabIndex={-1}>

@@ -1,0 +1,174 @@
+{
+  "jobs": {
+    "toole-005": [
+      {
+        "language": "en",
+        "title": "Production Waste Press Operator",
+        "subtitle": "Emptying containers in production",
+        "companyDescription": "The company's main activity is providing workforce rental services, focusing primarily on offering labor in the cleaning and maintenance services sector.",
+        "tasks": "<ul><li>Emptying waste containers in production</li><li>The evening shift worker also serves as a security cleaner. In case of an accident, they take the floor cleaning machine and clean it up.</li></ul>",
+        "requirements": "<ul><li>Honesty</li><li>Responsibility</li><li>Good physical condition</li></ul>",
+        "benefits": "<ul><li>A cheerful and pleasant work environment</li><li>Stable income</li><li>Social benefits</li><li>Modern work tools</li><li>On-the-job training</li></ul>",
+        "location": "Rae parish",
+        "salaryDetails": "6.00 euros/gross",
+        "workTime": "Full-time",
+        "status": "auto",
+        "sourceHash": "d709ba3dc24e2bbd44fc10c0",
+        "slug": "production-waste-press-operator",
+        "updatedAt": "2026-07-13T19:34:45.713Z"
+      },
+      {
+        "language": "ru",
+        "title": "Прессовщик производственных отходов",
+        "subtitle": "Опорожнение контейнеров в производстве",
+        "companyDescription": "Основным видом деятельности компании является предоставление услуг по аренде рабочей силы, с особым акцентом на предложение персонала в сфере уборочных и сервисных услуг.",
+        "tasks": "<ul><li>Опорожнение мусорных контейнеров в производстве</li><li>Работник вечерней смены также выполняет функции дежурного уборщика. В случае аварии берет поломоечную машину и устраняет.</li></ul>",
+        "requirements": "<ul><li>Честность</li><li>Ответственность</li><li>Хорошая физическая форма</li></ul>",
+        "benefits": "<ul><li>Дружелюбную и приятную рабочую атмосферу</li><li>Стабильный доход</li><li>Социальные льготы</li><li>Современные средства труда</li><li>Профессиональное обучение</li></ul>",
+        "location": "Волость Раэ",
+        "salaryDetails": "6.00 евро/брутто",
+        "workTime": "Полный рабочий день",
+        "status": "auto",
+        "sourceHash": "d709ba3dc24e2bbd44fc10c0",
+        "slug": "pressovshchik-proizvodstvennykh-otkhodov",
+        "updatedAt": "2026-07-13T19:34:45.713Z"
+      }
+    ],
+    "toole-001": [
+      {
+        "language": "en",
+        "title": "Cleaning Service Worker, Cleaner",
+        "subtitle": "At Muuga Port",
+        "companyDescription": "The company's main activity is providing labor rental services, focusing primarily on offering workforce in the cleaning and maintenance services sector.",
+        "tasks": "<ul><li>Performing maintenance cleaning in the port's common areas, stairwells, toilets, offices, changing rooms, shower rooms, etc.</li></ul>",
+        "requirements": "<ul><li>Driver's license B</li></ul>",
+        "benefits": "<ul><li>A stable and promising job in a rapidly growing and youthful team</li><li>Competitive salary</li><li>Free training</li><li>Professional training</li><li>Stable income</li><li>Car compensation of 50 euros per month</li></ul>",
+        "location": "Maardu",
+        "salaryDetails": "hourly rate 6.50 euros + car compensation 50 euros per month",
+        "workTime": "Full-time, Part-time",
+        "status": "auto",
+        "sourceHash": "2647eb5cb67803ae672a7cab",
+        "slug": "cleaning-service-worker-cleaner",
+        "updatedAt": "2026-07-13T19:34:54.115Z"
+      },
+      {
+        "language": "ru",
+        "title": "Уборщик, работник по уборке",
+        "subtitle": "в порту Мууга",
+        "companyDescription": "Основным видом деятельности компании является предоставление услуг по аренде рабочей силы, с особым акцентом на предложение персонала в сфере уборочных и сервисных услуг.",
+        "tasks": "<ul><li>Проведение поддерживающей уборки на общих территориях порта: лестничные клетки, туалеты, офисы, раздевалки, душевые и т.д.</li></ul>",
+        "requirements": "<ul><li>Водительские права категории B</li></ul>",
+        "benefits": "<ul><li>Стабильное и перспективное рабочее место в быстрорастущем и молодом коллективе</li><li>Конкурентоспособная заработная плата</li><li>Бесплатное обучение</li><li>Профессиональная подготовка</li><li>Стабильный доход</li><li>Компенсация за автомобиль 50 евро в месяц</li></ul>",
+        "location": "Маарду",
+        "salaryDetails": "почасовая оплата 6.50 евро + компенсация за автомобиль 50 евро в месяц",
+        "workTime": "Полный рабочий день, Неполный рабочий день",
+        "status": "auto",
+        "sourceHash": "2647eb5cb67803ae672a7cab",
+        "slug": "уборщик-работник-по-уборке",
+        "updatedAt": "2026-07-13T19:34:54.115Z"
+      }
+    ],
+    "toole-002": [
+      {
+        "language": "en",
+        "title": "Container Unloader / Press Operator",
+        "subtitle": "Container unloading in production",
+        "companyDescription": "The company's main activity is providing temporary labor services, focusing primarily on offering labor in the cleaning and maintenance services sector.",
+        "tasks": "<ul><li>Unloading waste containers in production.</li></ul>",
+        "requirements": "<ul><li>Honesty</li><li>Responsibility</li></ul>",
+        "benefits": "<ul><li>A cheerful and pleasant work environment</li><li>Stable income</li><li>Social benefits</li><li>Modern work tools</li><li>On-the-job training</li></ul>",
+        "location": "Lasnamäe",
+        "salaryDetails": "5.67 euros daytime hourly rate, 6.20 euros nighttime hourly rate",
+        "workTime": "Full-time",
+        "status": "auto",
+        "sourceHash": "d86ec56ba047f91cda008f99",
+        "slug": "container-unloader-press-operator",
+        "updatedAt": "2026-07-13T19:35:01.629Z"
+      },
+      {
+        "language": "ru",
+        "title": "Опорожнитель контейнеров / Прессовщик",
+        "subtitle": "Опорожнение контейнеров в производстве",
+        "companyDescription": "Основным видом деятельности компании является предоставление услуг по аренде рабочей силы, с особым акцентом на предложение рабочей силы в сфере уборочных и сервисных услуг.",
+        "tasks": "<ul><li>Опорожнение мусорных контейнеров в производстве.</li></ul>",
+        "requirements": "<ul><li>Честность</li><li>Ответственность</li></ul>",
+        "benefits": "<ul><li>Дружелюбную и приятную рабочую атмосферу</li><li>Стабильный доход</li><li>Социальные льготы</li><li>Современные рабочие инструменты</li><li>Профессиональное обучение</li></ul>",
+        "location": "Ласнамяэ",
+        "salaryDetails": "5.67 евро дневная почасовая ставка, 6.20 евро ночная почасовая ставка",
+        "workTime": "Полный рабочий день",
+        "status": "auto",
+        "sourceHash": "d86ec56ba047f91cda008f99",
+        "slug": "oporozhnitel-konteinerov-pressovshchik",
+        "updatedAt": "2026-07-13T19:35:01.629Z"
+      }
+    ],
+    "toole-004": [
+      {
+        "language": "en",
+        "title": "Factory Cleaning Attendant in Lasnamäe",
+        "subtitle": "",
+        "companyDescription": "The company's main activity is providing labor rental services, focusing primarily on offering workforce in the cleaning and maintenance services sector.",
+        "tasks": "<ul><li>Dusting hard-to-reach places</li><li>Sweeping stairs</li></ul>",
+        "requirements": "<ul><li>Honesty</li><li>Responsibility</li></ul>",
+        "benefits": "<ul><li>A cheerful and pleasant work environment</li><li>Stable income</li><li>Social benefits</li><li>Modern work tools</li><li>On-the-job training</li></ul>",
+        "location": "Lasnamäe",
+        "salaryDetails": "",
+        "workTime": "Full-time",
+        "status": "auto",
+        "sourceHash": "b7605615aedff81b1a383ab1",
+        "slug": "tehase-puhastusteenindaja-lasnamael",
+        "updatedAt": "2026-07-13T19:35:20.835Z"
+      },
+      {
+        "language": "ru",
+        "title": "Уборщик на заводе в Ласнамяэ",
+        "subtitle": "",
+        "companyDescription": "Основным видом деятельности компании является предоставление услуг по аренде рабочей силы, с особым акцентом на предложение рабочей силы в сфере уборочных и сервисных услуг.",
+        "tasks": "<ul><li>Сметание пыли с труднодоступных мест</li><li>Подметание лестниц</li></ul>",
+        "requirements": "<ul><li>Честность</li><li>Ответственность</li></ul>",
+        "benefits": "<ul><li>Дружелюбную и приятную рабочую атмосферу</li><li>Стабильный доход</li><li>Социальные льготы</li><li>Современные рабочие инструменты</li><li>Профессиональное обучение</li></ul>",
+        "location": "Ласнамяэ",
+        "salaryDetails": "",
+        "workTime": "Полный рабочий день",
+        "status": "auto",
+        "sourceHash": "b7605615aedff81b1a383ab1",
+        "slug": "уборщик-на-заводе-в-ласнамяэ",
+        "updatedAt": "2026-07-13T19:35:20.835Z"
+      }
+    ],
+    "toole-003": [
+      {
+        "language": "en",
+        "title": "Cleaning Attendant in Hotel",
+        "subtitle": "Night Cleaner",
+        "companyDescription": "The company's main activity is providing labor rental services, focusing primarily on offering workforce in the cleaning and maintenance services sector.",
+        "tasks": "<ul><li>Clean rooms, corridors, toilets</li><li>Replace trash bins and household chemicals</li><li>Clean general surfaces</li></ul>",
+        "requirements": "<ul><li>Honesty</li><li>Responsibility</li></ul>",
+        "benefits": "<ul><li>Cheerful and pleasant work environment</li><li>Stable income</li><li>Social benefits</li><li>Modern work tools</li><li>On-the-job training</li></ul>",
+        "location": "Tallinn",
+        "salaryDetails": "hourly rate is 6.50 euros/gross",
+        "workTime": "Full-time",
+        "status": "auto",
+        "sourceHash": "ed6cb35c31e4610927ce361c",
+        "slug": "cleaning-attendant-in-hotel",
+        "updatedAt": "2026-07-13T19:35:34.334Z"
+      },
+      {
+        "language": "ru",
+        "title": "Уборщик в отеле",
+        "subtitle": "Ночной уборщик",
+        "companyDescription": "Основным видом деятельности компании является предоставление услуг по аренде рабочей силы, с особым акцентом на предложение персонала в сфере уборочных и сервисных услуг.",
+        "tasks": "<ul><li>Уборка номеров, коридоров, туалетов</li><li>Замена мусорных баков и бытовой химии</li><li>Уборка общих поверхностей</li></ul>",
+        "requirements": "<ul><li>Честность</li><li>Ответственность</li></ul>",
+        "benefits": "<ul><li>Дружелюбная и приятная рабочая атмосфера</li><li>Стабильный доход</li><li>Социальные льготы</li><li>Современные рабочие инструменты</li><li>Профессиональное обучение</li></ul>",
+        "location": "Таллинн",
+        "salaryDetails": "почасовая оплата составляет 6.50 евро/брутто",
+        "workTime": "Полная занятость",
+        "status": "auto",
+        "sourceHash": "ed6cb35c31e4610927ce361c",
+        "slug": "уборщик-в-отеле",
+        "updatedAt": "2026-07-13T19:35:34.334Z"
+      }
+    ]
+  }
+}

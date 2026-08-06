@@ -289,7 +289,6 @@ export function KaubanduspindadeKoristusPageView({ locale }: { locale: Locale })
           { name: t.breadcrumbService, etPath: "/koristusteenus" },
           { name: t.breadcrumbCurrent, etPath: "/koristusteenus/kaubanduspindade-koristus" },
         ]}
-        faq={t.faq.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <Navbar />
       <main id="main-content" tabIndex={-1}>

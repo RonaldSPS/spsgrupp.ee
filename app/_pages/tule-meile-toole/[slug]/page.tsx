@@ -8,8 +8,7 @@ import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import { getAnnouncementBySlug } from "@/lib/announcements"
 import type { Announcement } from "@/lib/types"
 import { generatePageMetadata } from "@/lib/metadata-helper"
-import { renderLdJson } from "@/lib/json-ld-generator"
-import { canonicalUrl } from "@/lib/url-utils"
+import { generateJobPostingSchema, htmlToPlainText, renderLdJson } from "@/lib/json-ld-generator"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -42,44 +41,24 @@ export default async function TooleAnnouncementPage({ params }: Props) {
     companyDescription: sanitizeHtmlSafe(raw.companyDescription || ""),
   }
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "JobPosting",
-    "@id": `${canonicalUrl(`/tule-meile-toole/${a.slug}`)}#jobposting`,
+  const descriptionText = htmlToPlainText(
+    [a.companyDescription, a.tasks, a.requirements, a.benefits].filter(Boolean).join(" "),
+  ) || a.subtitle || a.title
+  const jsonLd = generateJobPostingSchema({
+    canonicalPath: `/tule-meile-toole/${a.slug}`,
     title: a.title,
-    description: a.subtitle || a.title,
-    datePosted: a.publishedDate,
-    validThrough: a.applicationDeadline || undefined,
-    identifier: {
-      "@type": "PropertyValue",
-      name: a.company,
-      value: a.id,
-    },
-    employmentType: a.workTime ? a.workTime : "FULL_TIME",
-    hiringOrganization: {
-      "@type": "Organization",
-      name: a.company,
-      sameAs: a.website || canonicalUrl("/"),
-    },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: a.location || "Tallinn",
-        addressCountry: "EE",
-      },
-    },
-    baseSalary: a.salary > 0 ? {
-      "@type": "MonetaryAmount",
-      currency: a.salaryUnit || "EUR",
-      value: {
-        "@type": "QuantitativeValue",
-        value: a.salary,
-        unitText: "MONTH",
-      },
-    } : undefined,
-    totalJobOpenings: a.vacancies > 0 ? a.vacancies : undefined,
-  }
+    descriptionText,
+    publishedDate: a.publishedDate,
+    applicationDeadline: a.applicationDeadline,
+    id: a.id,
+    company: a.company,
+    companyWebsite: a.website,
+    location: a.location,
+    workTime: a.workTime,
+    salary: a.salary,
+    salaryUnit: a.salaryUnit,
+    vacancies: a.vacancies,
+  })
 
   return (
     <>

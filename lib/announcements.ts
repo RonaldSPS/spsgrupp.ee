@@ -18,8 +18,29 @@ async function jsonFileExists(): Promise<boolean> {
   }
 }
 
+const DB_READ_TIMEOUT_MS = 2500
+
+function withReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Announcements database read timed out")),
+      DB_READ_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
 export async function getAnnouncementsFromDb(): Promise<Announcement[]> {
-  const rows = await db.select().from(jobAnnouncements)
+  const rows = await withReadTimeout(db.select().from(jobAnnouncements))
   return rows as unknown as Announcement[]
 }
 

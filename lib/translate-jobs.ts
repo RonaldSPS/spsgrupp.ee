@@ -311,6 +311,27 @@ export async function getJobTranslations(jobId: string): Promise<JobTranslationR
   }
 }
 
+const DB_READ_TIMEOUT_MS = 2500
+
+function withReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Job translations database read timed out")),
+      DB_READ_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
 export async function getJobTranslationBySlug(
   language: TranslationLanguage,
   slug: string,
@@ -325,12 +346,14 @@ export async function getJobTranslationBySlug(
   }
 
   try {
-    const rows = await db.select().from(jobTranslations)
-      .where(and(
-        eq(jobTranslations.language, language),
-        eq(jobTranslations.slug, slug),
-      ))
-      .limit(1)
+    const rows = await withReadTimeout(
+      db.select().from(jobTranslations)
+        .where(and(
+          eq(jobTranslations.language, language),
+          eq(jobTranslations.slug, slug),
+        ))
+        .limit(1),
+    )
 
     if (!rows.length) return null
     return { ...mapJobTranslation(rows[0]), jobId: rows[0].jobId }

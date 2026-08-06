@@ -9,6 +9,7 @@ import { etLayoutMetadata } from '@/lib/et-metadata-registry'
 import { generateLocalizedMetadata } from '@/lib/seo-metadata'
 import PrivacyPolicyPage from '@/app/components/PrivacyPolicyPage'
 import DynamicJobOffer from '@/app/components/DynamicJobOffer'
+import JobsItemListJsonLd from '@/app/components/JobsItemListJsonLd'
 import { ReviewsPage } from '@/app/_pages/sps-grupp/arvamused/page'
 import { metadata as homeMetadata } from '@/app/_pages/home/page'
 import TooleAnnouncementPage, { generateMetadata as etJobMetadata } from '@/app/_pages/tule-meile-toole/[slug]/page'
@@ -75,7 +76,12 @@ export default async function LocalePage({ params }: Props) {
     if (jobSlug) return <TooleAnnouncementPage params={Promise.resolve({ slug: jobSlug })} />
     const PageComponent = await getPage(path)
     if (!PageComponent) notFound()
-    return <PageComponent />
+    return (
+      <>
+        {path === '/tule-meile-toole' && <JobsItemListJsonLd locale="et" />}
+        <PageComponent />
+      </>
+    )
   }
 
   const loc = current as 'en' | 'ru'
@@ -89,7 +95,14 @@ export default async function LocalePage({ params }: Props) {
   if (!PageComponent) notFound()
 
   const renderer = localizedPageRegistry[etPath]
-  if (renderer) return renderer(loc)
+  if (renderer) {
+    return (
+      <>
+        {etPath === '/tule-meile-toole' && <JobsItemListJsonLd locale={loc} />}
+        {renderer(loc)}
+      </>
+    )
+  }
 
   const namespace = getContentNamespace(etPath)
   if (namespace === 'privacyPolicy') return <PrivacyPolicyPage locale={loc} />

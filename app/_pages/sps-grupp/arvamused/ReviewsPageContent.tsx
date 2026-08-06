@@ -11,6 +11,7 @@ import SeoJsonLd from "../../../components/SeoJsonLd"
 import TestimonialCards from "../../../components/TestimonialCards"
 import HeroBackgroundImage from "../../../components/HeroBackgroundImage"
 import { localizePath, type Locale } from "@/lib/slug-map"
+import { generateReviewsPageSchema, renderLdJson } from "@/lib/json-ld-generator"
 import type { TestimonialCategoryGroup } from "@/lib/testimonials"
 
 interface ReviewsPageText {
@@ -44,8 +45,20 @@ export default function ReviewsPageContent({ locale, categories, text }: Props) 
   const spsGroupPath = localizePath("/sps-grupp", locale)
   const homePath = locale === "et" ? "/" : `/${locale}`
 
+  // Review schema mirrors the visible cards; TestimonialCards renders 5 stars each.
+  const reviewsSchema = generateReviewsPageSchema(
+    categories.flatMap((group) =>
+      group.testimonials.map((t) => ({
+        author: t.author,
+        text: t.shortQuote || t.quote,
+        ratingValue: 5,
+      })),
+    ),
+  )
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(reviewsSchema) }} />
       <SeoJsonLd
         etPath="/sps-grupp/arvamused"
         locale={locale}

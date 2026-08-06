@@ -48,6 +48,19 @@ const ORGANIZATION_SCHEMA = {
     value: "11394806",
   },
   taxID: "EE101460268",
+  foundingDate: "2006",
+  sameAs: ["https://www.facebook.com/Puhastusteenused"],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 59.4042,
+    longitude: 24.6843,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "17:00",
+  },
 }
 
 const messagesByLocale = {

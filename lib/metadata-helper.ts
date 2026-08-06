@@ -85,6 +85,12 @@ type GeneratePageMetadataParams = {
   publishedTime?: string
 }
 
+const OG_LOCALE_ALTERNATES: Record<Locale, string[]> = {
+  et: ["en_US", "ru_RU"],
+  en: ["et_EE", "ru_RU"],
+  ru: ["et_EE", "en_US"],
+}
+
 export function generatePageMetadata({
   path,
   locale,
@@ -114,5 +120,8 @@ export function generatePageMetadata({
       publishedTime,
     ),
     twitter: makeTwitter(title, description, imagePath),
+    other: {
+      "og:locale:alternate": OG_LOCALE_ALTERNATES[locale],
+    },
   }
 }

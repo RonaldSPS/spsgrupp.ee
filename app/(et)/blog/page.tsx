@@ -6,7 +6,8 @@ import FooterCTA from "../../components/FooterCTA"
 import type { Metadata } from "next"
 import { getBlogPostsWithEdits } from "./data"
 import { generatePageMetadata } from "@/lib/metadata-helper"
-import { generateBreadcrumbSchema, renderLdJson } from "@/lib/json-ld-generator"
+import { generateBreadcrumbSchema, generateCollectionPageSchema, renderLdJson } from "@/lib/json-ld-generator"
+import { canonicalUrl } from "@/lib/url-utils"
 
 export const revalidate = 60
 
@@ -28,10 +29,17 @@ export default async function BlogArchive() {
     { name: "Avaleht", etPath: "/" },
     { name: "Blogi", etPath: "/blog" },
   ], "et")
+  const collectionLd = generateCollectionPageSchema(
+    "SPS Grupi blogi",
+    "Artiklid ja uudised koristusteenuste kohta SPS Grupilt.",
+    canonicalUrl("/blog"),
+    blogPosts.map((post) => ({ name: post.title, url: canonicalUrl(`/blog/${post.slug}`) })),
+  )
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(collectionLd) }} />
       <Navbar />
       <main id="main-content" tabIndex={-1} className="pt-[130px] pb-[80px]">
         <div className="max-w-[1200px] mx-auto px-[25px]">
