@@ -56,10 +56,10 @@ const etText: CareersText = {
   breadcrumbHome: "Avaleht",
   breadcrumbCurrent: "Tule meile tööle",
   problemHeading: "Kuidas toimub värbamine?",
-  problemP1Strong: "Kõik kandidaadid peavad läbima proovipäeva.",
-  problemP1Text: "Päeva jooksul hinnatakse teie puhastusoskusi ning töösse suhtumist.",
-  problemP2Strong: "Kui proovipäev on läbitud, annab töödejuhataja teada, kas oled sobilik tööle asumiseks.",
-  problemP2Text: "Kui osutud valituks, sõlmitakse sinuga leping ning hakkad saama kokkulepitud tasu.",
+  problemP1Strong: "Sobivate kandidaatidega lepime kokku järgmised sammud ning vajadusel praktilise tööoskuste hindamise.",
+  problemP1Text: "Kõik etapid ja tingimused lepime sinuga eelnevalt kokku.",
+  problemP2Strong: "Kui osutud valituks, sõlmitakse sinuga leping.",
+  problemP2Text: "Hakkad saama kokkulepitud tasu alates esimesest tööpäevast.",
   benefitsTag: "Hüved",
   benefitsHeading: "Pakume sulle",
   benefits: [
@@ -73,7 +73,7 @@ const etText: CareersText = {
     { title: "Rahaline toetus erijuhtudel", desc: "Toetus ootamatutes olukordades" },
   ],
   statsTag: "SPS Grupp",
-  statsHeading: "Liitu enam kui 300 liikmelise meeskonnaga",
+  statsHeading: "Liitu enam kui 300-liikmelise meeskonnaga",
   stats: [
     { number: "300+", label: "töötajat" },
     { number: "Alates", label: "2006. aastast" },

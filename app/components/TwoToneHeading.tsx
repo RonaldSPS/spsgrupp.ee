@@ -11,7 +11,7 @@ export default function TwoToneHeading({ text, className = "" }: TwoToneHeadingP
 
   return (
     <h2 className={`section-title ${className}`}>
-      <span className="two-tone-heading-primary">{firstHalf}</span>
+      <span className="two-tone-heading-primary">{firstHalf}</span>{" "}
       <span className="two-tone-heading-accent">{secondHalf}</span>
     </h2>
   );

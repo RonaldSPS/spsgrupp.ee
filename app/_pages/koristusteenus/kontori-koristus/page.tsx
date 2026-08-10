@@ -115,7 +115,7 @@ const etText: OfficeCleaningText = {
   pricingTag: "Hind",
   pricingHeading: "Millest sõltub kontori koristuse hind?",
   pricingDescription: "Kontori koristuse hind kujuneb nelja teguri põhjal: pindala, koristuse sagedus, töötajate arv ja eritööde vajadus.",
-  pricingNote: "<strong>TASUTA AUDIT enne lepingu algust</strong><br />Kaardistame teie kontori eripärad ja vajadused<br /><br /><b>Personaalne kliendihaldur</b> on Teie kontaktisik, kes tunneb teie ettevõtet ning teostab regulaarseid kontrollkäike.",
+  pricingNote: "<strong>TASUTA AUDIT enne lepingu algust</strong><br />Kaardistame teie kontori eripärad ja vajadused<br /><br /><b>Personaalne kliendihaldur</b> on teie kontaktisik, kes tunneb teie ettevõtet ning teostab regulaarseid kontrollkäike.",
   testimonialsTag: "Klientide tagasiside",
   testimonialsHeading: "Mida ütlevad meie kontorikliendid",
   testimonials: [

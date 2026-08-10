@@ -38,7 +38,7 @@ export default function CareerForm() {
           </p>
 
           <form ref={formRef} action={formAction}>
-            <div hidden aria-hidden="true">
+            <div hidden aria-hidden="true" style={{ display: "none" }}>
               <label htmlFor="career-website_url">Website</label>
               <input type="text" id="career-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>

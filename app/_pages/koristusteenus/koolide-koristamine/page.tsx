@@ -119,7 +119,7 @@ const etText: SchoolCleaningText = {
     { quote: "Pidev koristuskvaliteedi jälgimine tagab ka tervislikuma õpikeskkonna ja tervemad lapsed.", shortQuote: "Pidev koristuskvaliteedi jälgimine tagab ka tervislikuma õpikeskkonna ja tervemad lapsed." },
   ],
   tarmoAuthor: "Tehnikakõrgkooli arendusprorektor Tarmo",
-  caseStudyText: "<strong>Tehnikakõrgkooli lahendus:</strong> 2800 õpilasega kooli kaardistasime kriitilised alad (peakoridorid, söökla, WC-ruumid, spordisaal). Rakendasime hommikuse desinfitseerimisprotokolli ja õhtuse sügava sanitaarhoolduse. 6 nädala jooksul vähenesid haiguspäevad oluliselt.",
+  caseStudyText: "<strong>Tehnikakõrgkooli lahendus:</strong> ligi 2800 õppijaga kõrgkooli puhul kaardistasime kriitilised alad (peakoridorid, söökla, WC-ruumid, spordisaal). Rakendasime hommikuse desinfitseerimisprotokolli ja õhtuse sügava sanitaarhoolduse. 6 nädala jooksul vähenesid haiguspäevad oluliselt.",
   processTitle: "Kuidas SPS koolikoristuse käivitab?",
   processIntro: "Haridusasutuse koristus algab päevakava, liikumisteede ja hügieeniriskide kaardistamisest.",
   processSteps: [

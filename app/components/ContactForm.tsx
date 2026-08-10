@@ -16,7 +16,9 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("contactForm")
   const locale = useLocale() as Locale
   const pathname = usePathname()
-  const isRepairPage = getCurrentEtPath(pathname, locale).startsWith("/remonditeenused-tallinnas")
+  const etPath = getCurrentEtPath(pathname, locale)
+  const isRepairPage = etPath.startsWith("/remonditeenused-tallinnas")
+  const isSpecialCleaningPage = etPath === "/puhastusteenused"
   const privacyPath = localizePath("/andmekaitsetingimused", locale)
   const repairCopy = {
     et: {
@@ -32,6 +34,12 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
       subtitle: "Опишите необходимую работу, и мы свяжемся с вами, как правило, в течение одного рабочего дня.",
     },
   }[locale]
+  const formHeading = isRepairPage
+    ? repairCopy.heading
+    : isSpecialCleaningPage && locale === "et"
+      ? "Aitame leida sobiva lahenduse teie puhastusvajadustele"
+      : t("heading")
+  const formSubtitle = isRepairPage ? repairCopy.subtitle : t("subtitle")
 
   useEffect(() => {
     if (state.success && formRef.current) {
@@ -43,13 +51,13 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
       <div className="max-w-[800px] mx-auto px-[5%]">
         <div className="form-card">
           <div className="section-tag mx-auto w-fit">{t("sectionTag")}</div>
-          <TwoToneHeading text={isRepairPage ? repairCopy.heading : t("heading")} className="mb-6 text-center" />
+          <TwoToneHeading text={formHeading} className="mb-6 text-center" />
           <p className="text-[15px] text-[#5a6474] mb-6 font-light text-center">
-            {isRepairPage ? repairCopy.subtitle : t("subtitle")}
+            {formSubtitle}
           </p>
 
           <form ref={formRef} action={formAction}>
-            <div hidden aria-hidden="true">
+            <div hidden aria-hidden="true" style={{ display: "none" }}>
               <label htmlFor="contact-website_url">Website</label>
               <input type="text" id="contact-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>

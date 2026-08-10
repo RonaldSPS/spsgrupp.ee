@@ -10,6 +10,11 @@ import { localizePath, type Locale } from "@/lib/slug-map";
 export default function Trust({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("trust")
   const locale = useLocale() as Locale
+  const certificatesAlt = {
+    et: "SPS Grupp ISO 9001 ja ISO 14001",
+    en: "SPS Grupp ISO 9001 and ISO 14001",
+    ru: "SPS Grupp ISO 9001 и ISO 14001",
+  }[locale]
 
   const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
@@ -88,7 +93,7 @@ export default function Trust({ animDelay }: { animDelay?: number }) {
             >
               <Image
                 src="/9001-14001-ENG.webp"
-                alt="SPS Grupp ISO 9001 and ISO 14001"
+                alt={certificatesAlt}
                 width={640}
                 height={460}
                 className="w-full h-auto"

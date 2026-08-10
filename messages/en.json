@@ -87,7 +87,7 @@
     "employees": "300+ employees",
     "trained": "Trained",
     "area": "Over 1,000,000 m²",
-    "areaDaily": "Daily",
+    "areaDaily": "under our maintenance",
     "regularTitle": "Regular cleaning",
     "regularText": "Daily and periodic maintenance that keeps your workplace consistently clean and presentable.",
     "regularNote": "Standard cleaning products and tools required for the agreed service scope are included in the quote.",
@@ -803,7 +803,7 @@
       "item2Short": "Continuous monitoring of cleaning quality also ensures a healthier learning environment and healthier children."
     },
     "caseStudy": {
-      "text": "<strong>The Tallinn University of Applied Sciences solution:</strong> for a school of 2,800 pupils we mapped the critical areas (main corridors, canteen, toilets, sports hall). We implemented a morning disinfection protocol and evening deep sanitary maintenance. Within 6 weeks, sick days decreased significantly."
+      "text": "<strong>The Tallinn University of Applied Sciences solution:</strong> for a university of applied sciences with nearly 2,800 students, we mapped the critical areas (main corridors, canteen, toilets, sports hall). We implemented a morning disinfection protocol and evening deep sanitary maintenance. Within 6 weeks, sick days decreased significantly."
     },
     "pricing": {
       "tag": "Pricing",
@@ -1145,10 +1145,10 @@
     },
     "problem": {
       "heading": "How does recruitment work?",
-      "para1Strong": "All candidates must complete a trial day.",
-      "para1Text": "During the day, your cleaning skills and attitude to work are assessed.",
-      "para2Strong": "Once the trial day is completed, the works manager will let you know whether you are suitable for employment.",
-      "para2Text": "If you are selected, a contract is signed with you and you start receiving the agreed pay."
+      "para1Strong": "With suitable candidates, we agree on the next steps and, if needed, a practical skills assessment.",
+      "para1Text": "We agree all stages and terms with you in advance.",
+      "para2Strong": "If you are selected, a contract is signed with you.",
+      "para2Text": "You will receive the agreed pay from your first day of employment."
     },
     "stats": {
       "tag": "SPS Grupp",

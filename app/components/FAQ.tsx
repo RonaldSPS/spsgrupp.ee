@@ -18,13 +18,20 @@ export default function FAQ({ items, animDelay }: { items?: FAQItem[]; animDelay
   const messages = useMessages()
   const locale = useLocale() as Locale
   const pathname = usePathname()
-  const isRepairPage = getCurrentEtPath(pathname, locale).startsWith("/remonditeenused-tallinnas")
+  const etPath = getCurrentEtPath(pathname, locale)
+  const isRepairPage = etPath.startsWith("/remonditeenused-tallinnas")
+  const isSpecialCleaningPage = etPath === "/puhastusteenused"
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const repairDescription = {
     et: "Vastame kõige levinumatele küsimustele remonditeenuste kohta.",
     en: "Answers to the most common questions about repair services.",
     ru: "Ответы на самые распространённые вопросы о ремонтных услугах.",
   }[locale]
+  const faqDescription = isRepairPage
+    ? repairDescription
+    : isSpecialCleaningPage && locale === "et"
+      ? "Vastame kõige levinumatele küsimustele eripuhastustööde kohta."
+      : t("description")
 
   const msgItems = ((messages as Record<string, unknown>).faq as { items: FAQItem[] })?.items || []
   const faq = items ?? msgItems
@@ -37,7 +44,7 @@ export default function FAQ({ items, animDelay }: { items?: FAQItem[]; animDelay
           <div>
             <TwoToneHeading text={t("heading")} />
             <p className="text-[15px] text-[#2f353f] leading-[1.7] mb-6 font-light">
-              {isRepairPage ? repairDescription : t("description")}
+              {faqDescription}
             </p>
             <a
               href="#pakkumine"

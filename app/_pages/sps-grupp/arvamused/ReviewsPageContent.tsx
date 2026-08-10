@@ -35,6 +35,16 @@ interface ReviewsPageText {
   cardCta: string
 }
 
+function formatReviewCount(locale: Locale, n: number): string {
+  if (locale === "et") return `${n} arvamus${n === 1 ? "" : "t"}`
+  if (locale === "en") return `${n} review${n === 1 ? "" : "s"}`
+  const mod10 = n % 10
+  const mod100 = n % 100
+  if (mod10 === 1 && mod100 !== 11) return `${n} отзыв`
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${n} отзыва`
+  return `${n} отзывов`
+}
+
 interface Props {
   locale: Locale
   categories: TestimonialCategoryGroup[]
@@ -136,7 +146,7 @@ export default function ReviewsPageContent({ locale, categories, text }: Props) 
                   <div className="flex items-center gap-3 mb-8">
                     <h2 className="text-[24px] font-bold text-[#17345a]">{category.title}</h2>
                     <span className="text-[15px] text-[#5a6474] bg-[#f0f2f5] rounded-full px-3 py-0.5">
-                      {category.testimonials.length}
+                      {formatReviewCount(locale, category.testimonials.length)}
                     </span>
                     <Link
                       href={localizePath(category.href, locale)}

@@ -46,7 +46,7 @@ export const et: OutdoorServicePageData = {
     title: "Mida lepime enne lumekoristuse algust kokku?",
     intro: "Kinnistu suurus, prioriteetsed alad ja reageerimise kiirus mõjutavad nii töökorraldust kui hinda. Lepime need enne hooaja algust selgelt kokku.",
     items: [
-      { title: "Ülevaatus ja alade määramine", description: "Märgime parklad, teed, trepid ja sissepääsud. Määrame millised alad on esmased ning kuhu lund lükatakse." },
+      { title: "Ülevaatus ja alade määramine", description: "Märgime parklad, teed, trepid ja sissepääsud. Määrame, millised alad on esmased ning kuhu lund lükatakse." },
       { title: "Reageerimise aeg ja meetod", description: "Lepime kokku millise lumesaju korral ja kui kiiresti reageerime. Valime sobiva tehnika ning libedusetõrje materjali." },
       { title: "Hooaeg ja arveldus", description: "Täpsustame hooaja kestuse, arveldusperioodi ja selle, kuidas toimub lisatööde (näiteks lume äravedu) tellimine." },
     ],
