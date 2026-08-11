@@ -52,7 +52,7 @@ const etText: CareersText = {
   h1Line1: "Tule meile tööle",
   h1Line2: "Liitu meie meeskonnaga",
   heroDescription: "Meil töötab üle 300 inimese. Varasem töökogemus pole oluline, juhendame oma töötajaid kohapeal.",
-  ctaButton: "Registreeru proovipäevale",
+  ctaButton: "Kandideeri",
   breadcrumbHome: "Avaleht",
   breadcrumbCurrent: "Tule meile tööle",
   problemHeading: "Kuidas toimub värbamine?",
@@ -68,7 +68,7 @@ const etText: CareersText = {
     { title: "Kvaliteetsed ja mugavad tööriided", desc: "Professionaalne varustus" },
     { title: "Kaasaegsed ja ergonoomilised töövahendid", desc: "Tõhusad ja ohutud seadmed" },
     { title: "Ametlik töösuhe ja sotsiaalsed garantiid", desc: "Selged kokkulepped ja turvatunne" },
-    { title: "Tervisekontroll", desc: "Regulaarne tervise jälgimine" },
+    { title: "Töötervishoiu tervisekontroll", desc: "" },
     { title: "Tunnustus pikaajalise töö eest", desc: "Staaži hindamine ja premeerimine" },
     { title: "Rahaline toetus erijuhtudel", desc: "Toetus ootamatutes olukordades" },
   ],
@@ -299,7 +299,7 @@ export function TuleMeileToolePageView({ locale }: { locale: Locale }) {
                       </div>
                       <div>
                         <h3 className="text-[16px] font-bold text-[#17345a] mb-1">{item.title}</h3>
-                        <p className="text-[15px] text-[#5a6474] leading-[1.6]">{item.desc}</p>
+                        {item.desc ? <p className="text-[15px] text-[#5a6474] leading-[1.6]">{item.desc}</p> : null}
                       </div>
                     </div>
                   </div>

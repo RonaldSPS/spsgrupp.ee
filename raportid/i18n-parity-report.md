@@ -1,6 +1,6 @@
 # i18n Parity Report
 
-Generated: 2026-08-06T16:36:35.610Z
+Generated: 2026-08-11T11:48:15.521Z
 Pages checked: 36
 
 ## Summary
@@ -12,45 +12,45 @@ Pages checked: 36
 | Pages with process step mismatch | 0 |
 | Pages with FAQ count mismatch | 0 |
 | Pages with ET text on non-ET pages | 0 |
-| Pages with errors | 0 |
+| Pages with errors | 36 |
 
 ## Per-Page Details
 
 | ET Path | EN OK | RU OK | Sections OK | Pricing OK | FAQ OK | Process OK | ET Text | Errors |
 |---------|-------|-------|-------------|------------|--------|------------|---------|--------|
-| / | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/kontori-koristus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/kaubanduspindade-koristus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/tootmishoonete-koristus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koolide-koristamine | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/akende-pesu | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/fassaadipesu | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/grafiti-eemaldamine | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/kojameheteenus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/lehtedekoristamine | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/lumekoristus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/muruniitmine | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused/ehitusjargne-koristus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused/eskalaatorite-suvapuhastus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused/koroonaviiruse-jargne-puhastus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused/porandate-hooldus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /puhastusteenused/vaipade-puhastus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/elektritood | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/torutood | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/siseviimistlustood | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/sanitaarremont-ja-umberehitus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/plaatimistood | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/katuse-remont | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /remonditeenused-tallinnas/lammutustood | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /sps-grupp | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /kontakt | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /tule-meile-toole | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /ehitusprahi-aravedu | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
-| /andmekaitsetingimused | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | - |
+| / | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/kontori-koristus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/kaubanduspindade-koristus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/tootmishoonete-koristus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koolide-koristamine | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/akende-pesu | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/fassaadipesu | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/grafiti-eemaldamine | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/kojameheteenus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/lehtedekoristamine | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/lumekoristus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/muruniitmine | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused/ehitusjargne-koristus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused/eskalaatorite-suvapuhastus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused/koroonaviiruse-jargne-puhastus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused/porandate-hooldus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /puhastusteenused/vaipade-puhastus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/elektritood | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/torutood | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/siseviimistlustood | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/sanitaarremont-ja-umberehitus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/plaatimistood | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/katuse-remont | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /remonditeenused-tallinnas/lammutustood | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /sps-grupp | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /kontakt | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /tule-meile-toole | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /ehitusprahi-aravedu | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |
+| /andmekaitsetingimused | ✗ | ✗ | ✓ | ✓ | ✓ | ✓ | ✓ | HTTP 0; No title; No H1; No JSON-LD |

@@ -198,8 +198,8 @@
   },
   "careerForm": {
     "sectionTag": "Careers",
-    "heading": "Register for a trial day",
-    "subtitle": "Fill out the form below and we will contact you to arrange a trial day.",
+    "heading": "Fill in the application form",
+    "subtitle": "Fill out the form below and we will contact you.",
     "nameLabel": "Name *",
     "namePlaceholder": "Your name",
     "emailLabel": "E-mail *",
@@ -379,7 +379,7 @@
       "chip1Label": "offices",
       "chip2Badge": "ISO 9001",
       "chip2Label": "certified",
-      "chip3Badge": "Vetted",
+      "chip3Badge": "Trained",
       "chip3Label": "staff",
       "h1Line1": "Office Cleaning",
       "h1Line2": "in Tallinn and Harjumaa",
@@ -396,7 +396,7 @@
       "para2Strong1": "Office cleanliness directly affects two things:",
       "para2Text1": "employee wellbeing and clients' first impressions. A clean and hygienic workplace supports wellbeing and helps reduce the risk of infections spreading.",
       "para2Strong2": "Staff receive instructions tailored to each site.",
-      "para2Text2": "The cleaning plan includes agreed rules for working around IT equipment, documents and customer-facing surfaces."
+      "para2Text2": "The team knows how to work in rooms with IT equipment and confidential documents."
     },
     "services": {
       "tag": "Service Content",
@@ -799,8 +799,8 @@
       "item0Short": "The school building has been clean, tidy and maintained. Cleanliness and order affect the daily wellbeing of pupils, teachers and all staff.",
       "item1Quote": "I want to share positive feedback about the school building's cleaning. The school building is clean, tidy and well maintained. Cleanliness and order create a pleasant learning and working environment for both pupils and staff.",
       "item1Short": "The school building is clean, tidy and well maintained. Cleanliness and order create a pleasant learning and working environment.",
-      "item2Quote": "Continuous monitoring of cleaning quality also ensures a healthier learning environment and healthier children.",
-      "item2Short": "Continuous monitoring of cleaning quality also ensures a healthier learning environment and healthier children."
+      "item2Quote": "Continuous monitoring of cleaning quality also helps maintain a clean and pleasant learning environment.",
+      "item2Short": "Continuous monitoring of cleaning quality also helps maintain a clean and pleasant learning environment."
     },
     "caseStudy": {
       "text": "<strong>The Tallinn University of Applied Sciences solution:</strong> for a university of applied sciences with nearly 2,800 students, we mapped the critical areas (main corridors, canteen, toilets, sports hall). We implemented a morning disinfection protocol and evening deep sanitary maintenance. Within 6 weeks, sick days decreased significantly."
@@ -1119,7 +1119,7 @@
       "h1Line1": "Join SPS Grupp",
       "h1Line2": "and become part of our team",
       "description": "More than 300 people work with us. Previous work experience is not important; we guide our employees on site.",
-      "ctaButton": "Register for a trial day",
+      "ctaButton": "Apply",
       "breadcrumbHome": "Home",
       "breadcrumbCurrent": "Come work for us"
     },
@@ -1136,8 +1136,8 @@
       "item3Desc": "efficient and safe equipment",
       "item4Title": "Official Employment and Social Guarantees",
       "item4Desc": "clear agreements and security",
-      "item5Title": "Health Check",
-      "item5Desc": "regular health monitoring",
+      "item5Title": "Occupational health check",
+      "item5Desc": "",
       "item6Title": "Recognition for Long-Term Service",
       "item6Desc": "seniority recognition and rewards",
       "item7Title": "Financial Support in Special Cases",

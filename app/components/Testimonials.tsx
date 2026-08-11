@@ -11,7 +11,7 @@ const testimonialPools: Record<Locale, TestimonialData[]> = {
   et: [
     { shortQuote: "Hommikul tuli vastu puhas ja korras kööginurk. Sellised tähelepanelikud teod jäävad silma.", author: "Käthlin", initials: "K", logo: "/arvamused-logod/kathlin.png", quote: "" },
     { shortQuote: "Lao ja tootmiskoristuse tööd said korrektselt tehtud, koostöö sujus hästi ning jäime tulemusega rahule.", author: "Heigar", initials: "H", logo: "/arvamused-logod/heigar.png", quote: "" },
-    { shortQuote: "Pidev koristuskvaliteedi jälgimine tagab tervislikuma õpikeskkonna ja tervemad lapsed.", author: "Tarmo", initials: "T", quote: "" },
+    { shortQuote: "Pidev koristuskvaliteedi jälgimine aitab hoida puhta ja meeldiva õpikeskkonna.", author: "Tarmo", initials: "T", quote: "" },
     { shortQuote: "Tööd olid läbi mõeldud, korralikult planeeritud ja professionaalselt teostatud.", author: "Juta", initials: "J", logo: "/arvamused-logod/juta.png", quote: "" },
     { shortQuote: "Suhtlus on selge ning vajalikud küsimused saavad lahendatud kiiresti ja professionaalselt.", author: "Renat", initials: "R", logo: "/arvamused-logod/renat.png", quote: "" },
     { shortQuote: "Kontoriruumid on olnud puhtad ja korras ning üldine mulje on väga hea.", author: "Ingrid", initials: "I", logo: "/arvamused-logod/ingrid.png", quote: "" },
@@ -20,7 +20,7 @@ const testimonialPools: Record<Locale, TestimonialData[]> = {
   en: [
     { shortQuote: "In the morning, the kitchen area was clean and tidy. Thoughtful actions like this stand out.", author: "Käthlin", initials: "K", logo: "/arvamused-logod/kathlin.png", quote: "" },
     { shortQuote: "The warehouse and production cleaning was completed properly, cooperation went smoothly and we were pleased with the result.", author: "Heigar", initials: "H", logo: "/arvamused-logod/heigar.png", quote: "" },
-    { shortQuote: "Continuous monitoring of cleaning quality helps ensure a healthier learning environment and healthier children.", author: "Tarmo", initials: "T", quote: "" },
+    { shortQuote: "Continuous monitoring of cleaning quality helps maintain a clean and pleasant learning environment.", author: "Tarmo", initials: "T", quote: "" },
     { shortQuote: "The work was well considered, properly planned and professionally carried out.", author: "Juta", initials: "J", logo: "/arvamused-logod/juta.png", quote: "" },
     { shortQuote: "Communication is clear, and the necessary questions are resolved quickly and professionally.", author: "Renat", initials: "R", logo: "/arvamused-logod/renat.png", quote: "" },
     { shortQuote: "The office premises have been clean and tidy, and the overall impression is very good.", author: "Ingrid", initials: "I", logo: "/arvamused-logod/ingrid.png", quote: "" },
@@ -29,7 +29,7 @@ const testimonialPools: Record<Locale, TestimonialData[]> = {
   ru: [
     { shortQuote: "Утром кухонная зона была чистой и аккуратной. Такие внимательные поступки не остаются незамеченными.", author: "Käthlin", initials: "K", logo: "/arvamused-logod/kathlin.png", quote: "" },
     { shortQuote: "Уборка склада и производства была выполнена аккуратно, сотрудничество прошло гладко, и мы довольны результатом.", author: "Heigar", initials: "H", logo: "/arvamused-logod/heigar.png", quote: "" },
-    { shortQuote: "Постоянный контроль качества уборки помогает поддерживать более здоровую учебную среду.", author: "Tarmo", initials: "T", quote: "" },
+    { shortQuote: "Постоянный контроль качества уборки помогает поддерживать чистую и приятную учебную среду.", author: "Tarmo", initials: "T", quote: "" },
     { shortQuote: "Работы были хорошо продуманы, тщательно спланированы и профессионально выполнены.", author: "Juta", initials: "J", logo: "/arvamused-logod/juta.png", quote: "" },
     { shortQuote: "Общение понятное, а необходимые вопросы решаются быстро и профессионально.", author: "Renat", initials: "R", logo: "/arvamused-logod/renat.png", quote: "" },
     { shortQuote: "Офисные помещения были чистыми и аккуратными, общее впечатление очень хорошее.", author: "Ingrid", initials: "I", logo: "/arvamused-logod/ingrid.png", quote: "" },

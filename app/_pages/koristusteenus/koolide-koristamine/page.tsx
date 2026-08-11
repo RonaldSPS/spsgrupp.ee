@@ -116,7 +116,7 @@ const etText: SchoolCleaningText = {
   testimonials: [
     { quote: "Soovime avaldada tunnustust koolimaja koristusega tegelevale meeskonnale väga hea töö eest. Koolimaja on olnud puhas, korras ja hooldatud ning on näha, et koristustöid tehakse järjepidevalt ja kohusetundlikult.", shortQuote: "Koolimaja on olnud puhas, korras ja hooldatud. Puhtus ja korrashoid mõjutavad igapäevaselt nii õpilaste, õpetajate kui ka kogu personali heaolu." },
     { quote: "Soovin jagada positiivset tagasisidet koolimaja koristuse kohta. Koolimaja on puhas, korras ja hästi hooldatud. Puhtus ja kord loovad meeldiva õpi- ja töökeskkonna nii õpilastele kui ka personalile.", shortQuote: "Koolimaja on puhas, korras ja hästi hooldatud. Puhtus ja kord loovad meeldiva õpi- ja töökeskkonna." },
-    { quote: "Pidev koristuskvaliteedi jälgimine tagab ka tervislikuma õpikeskkonna ja tervemad lapsed.", shortQuote: "Pidev koristuskvaliteedi jälgimine tagab ka tervislikuma õpikeskkonna ja tervemad lapsed." },
+    { quote: "Pidev koristuskvaliteedi jälgimine aitab hoida puhta ja meeldiva õpikeskkonna.", shortQuote: "Pidev koristuskvaliteedi jälgimine aitab hoida puhta ja meeldiva õpikeskkonna." },
   ],
   tarmoAuthor: "Tehnikakõrgkooli arendusprorektor Tarmo",
   caseStudyText: "<strong>Tehnikakõrgkooli lahendus:</strong> ligi 2800 õppijaga kõrgkooli puhul kaardistasime kriitilised alad (peakoridorid, söökla, WC-ruumid, spordisaal). Rakendasime hommikuse desinfitseerimisprotokolli ja õhtuse sügava sanitaarhoolduse. 6 nädala jooksul vähenesid haiguspäevad oluliselt.",

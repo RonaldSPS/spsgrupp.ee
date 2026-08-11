@@ -198,8 +198,8 @@
   },
   "careerForm": {
     "sectionTag": "Karjäär",
-    "heading": "Registreeru proovipäevale",
-    "subtitle": "Täida allolev vorm ja võtame sinuga ühendust, et leppida kokku proovipäev.",
+    "heading": "Täida kandideerimisvorm",
+    "subtitle": "Täida allolev vorm ja võtame sinuga ühendust.",
     "nameLabel": "Nimi *",
     "namePlaceholder": "Sinu nimi",
     "emailLabel": "E-mail *",
@@ -632,7 +632,7 @@
       "h1Line1": "Tule meile tööle",
       "h1Line2": "Liitu SPS Grupi meeskonnaga",
       "description": "Otsime usaldusväärseid inimesi puhastus- ja hooldustöödele Tallinnas ja Harjumaal. Varasem kogemus ei ole alati vajalik, juhendame kohapeal.",
-      "ctaButton": "Registreeru proovipäevale"
+      "ctaButton": "Kandideeri"
     },
     "services": {
       "tag": "Hüved",
@@ -648,8 +648,8 @@
     },
     "problem": {
       "heading": "Kuidas kandideerimine käib?",
-      "paragraph1": "Täida vorm ja meie personalimeeskond võtab sinuga ühendust. Sobivusel lepime kokku proovipäeva.",
-      "paragraph2": "Proovipäeval tutvud töökorraldusega ning töödejuhataja hindab, milline objekt ja graafik sulle kõige paremini sobib."
+      "paragraph1": "Täida vorm ja meie personalimeeskond võtab sinuga ühendust. Sobivusel lepime kokku järgmised sammud.",
+      "paragraph2": "Vajadusel hindame praktilisi tööoskusi ning lepime kokku, milline objekt ja graafik sulle kõige paremini sobib."
     }
   },
   "reviews": {

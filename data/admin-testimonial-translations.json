@@ -244,19 +244,19 @@
       {
         "language": "en",
         "categoryTitle": "School cleaning",
-        "quote": "Continuous monitoring of cleaning quality also ensures a healthier learning environment and healthier children.",
-        "shortQuote": "Continuous monitoring of cleaning quality ensures a healthier learning environment and healthier children.",
+        "quote": "Continuous monitoring of cleaning quality also helps maintain a clean and pleasant learning environment.",
+        "shortQuote": "Continuous monitoring of cleaning quality helps maintain a clean and pleasant learning environment.",
         "status": "auto",
-        "sourceHash": "d8c451d4a6f06cfe156aace3",
+        "sourceHash": "29cacb430962a66bae654654",
         "updatedAt": "2026-07-14T08:51:17.045Z"
       },
       {
         "language": "ru",
         "categoryTitle": "Уборка школ",
-        "quote": "Постоянный контроль качества уборки обеспечивает более здоровую учебную среду и более здоровых детей.",
-        "shortQuote": "Постоянный контроль качества уборки обеспечивает более здоровую учебную среду и более здоровых детей.",
+        "quote": "Постоянный контроль качества уборки также помогает поддерживать чистую и приятную учебную среду.",
+        "shortQuote": "Постоянный контроль качества уборки помогает поддерживать чистую и приятную учебную среду.",
         "status": "auto",
-        "sourceHash": "d8c451d4a6f06cfe156aace3",
+        "sourceHash": "29cacb430962a66bae654654",
         "updatedAt": "2026-07-14T08:51:17.045Z"
       }
     ],

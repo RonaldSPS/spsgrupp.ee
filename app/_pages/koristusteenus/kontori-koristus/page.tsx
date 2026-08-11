@@ -70,7 +70,7 @@ const etText: OfficeCleaningText = {
   heroChips: [
     { value: "50+", label: "kontorit" },
     { value: "ISO 9001", label: "sertifitseeritud" },
-    { value: "Kontrollitud", label: "personal" },
+    { value: "Koolitatud", label: "personal" },
   ],
   h1Line1: "Kontori koristus",
   h1Line2: "Tallinnas ja Harjumaal",
@@ -84,8 +84,8 @@ const etText: OfficeCleaningText = {
   problemP1Text: "Tolm koguneb kappide peale, prügikastid on hommikul endiselt täis ja WC-s lõpevad tarvikud kõige ebasobivamal hetkel. Töötajad märkavad ja kliendid samuti.",
   problemP2Strong1: "Kontori puhtus mõjutab töötajate heaolu ja klientide esmamuljet.",
   problemP2Text1: "Puhas ja hügieeniline töökeskkond aitab toetada töötajate heaolu ja vähendada nakkuste leviku riski.",
-  problemP2Strong2: "SPS Grupis läbib iga koristaja koolituse just kontorikeskkonna jaoks.",
-  problemP2Text2: "Me teame, kuidas käsitleda IT-tehnikat, tundlikke dokumente ja esinduspindu nii, et te ei pea enam muretsema.",
+  problemP2Strong2: "Meeskond saab objekti eripärale vastava juhendamise.",
+  problemP2Text2: "Oskame töötada ruumides, kus asuvad IT-seadmed ja konfidentsiaalsed dokumendid.",
   servicesTag: "Teenuse sisu",
   servicesHeading: "Mida sisaldab kontori koristusteenus?",
   services: [
@@ -450,7 +450,7 @@ export function KontoriKoristusPageView({ locale }: { locale: Locale }) {
                   </div>
                   <div className="text-[#2f353f] text-[15px] leading-[1.6]">
                     <strong className="text-[#17345a] block mb-1">{item.bold}</strong>
-                    {item.desc ? <span className="text-[#5a6474]">{item.desc}</span> : null}
+                    {item.desc ? <span className="text-[#5a6474]">&ndash; {item.desc}</span> : null}
                   </div>
                 </div>
               ))}
