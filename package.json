@@ -14,7 +14,8 @@
     "test:json-ld": "tsx --test lib/__tests__/json-ld-generator.test.ts",
     "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts lib/__tests__/spam-detector.test.ts && tsx scripts/i18n-validate.ts",
     "i18n:parity": "tsx scripts/i18n-parity-check.ts",
-    "i18n:validate": "tsx scripts/i18n-validate.ts"
+    "i18n:validate": "tsx scripts/i18n-validate.ts",
+    "db:restore": "tsx scripts/restore-supabase.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

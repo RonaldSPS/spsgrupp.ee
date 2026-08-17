@@ -106,6 +106,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             Sisene keskkonna parooliga või oma e-posti ja parooliga
           </p>
           {error && <p className="text-[15px] text-red-600 mb-4">{error}</p>}
+          {error.includes("Andmebaasi") && (
+            <p className="text-[15px] text-[#92400e] bg-[#fef3c7] rounded-lg px-3 py-2 mb-4">
+              Andmebaas on tõenäoliselt pausil. Logi sisse keskkonna parooliga (jäta e-post tühjaks) ja käivita andmebaas: Seaded → Andmebaas → „Käivita andmebaas“.
+            </p>
+          )}
           <input
             type="email"
             value={loginEmail}

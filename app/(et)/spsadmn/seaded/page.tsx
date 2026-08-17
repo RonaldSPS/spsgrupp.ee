@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 interface AdminUser {
   id: number
@@ -29,7 +30,28 @@ const emptyAutoReply: AutoReplyState = {
   bodies: { et: "", en: "", ru: "" },
 }
 
+interface MeResponse {
+  user: { id: number; email: string; displayName: string; role: string; isEnvAdmin?: boolean } | null
+}
+
+// One retry rides out transient pooler stalls; 401 means the session is gone
+// and sends the user back to the login screen instead of a dead-end error.
+async function fetchMe(): Promise<{ res: Response | null; data: MeResponse | null }> {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch("/api/spsadmn/me")
+      if (res.status === 401) return { res, data: null }
+      if (res.ok) return { res, data: (await res.json()) as MeResponse }
+    } catch {
+      // network hiccup — retry once
+    }
+    if (attempt === 0) await new Promise((r) => setTimeout(r, 800))
+  }
+  return { res: null, data: null }
+}
+
 export default function SeadedPage() {
+  const router = useRouter()
   const [activeTab, setActiveTab] = useState<"general" | "users">("general")
   const [currentRole, setCurrentRole] = useState<string | null>(null)
   const [meError, setMeError] = useState(false)
@@ -48,6 +70,10 @@ export default function SeadedPage() {
   const [settingsLoading, setSettingsLoading] = useState(true)
   const [settingsSaving, setSettingsSaving] = useState(false)
   const [settingsMessage, setSettingsMessage] = useState("")
+
+  // Database status / restore (Supabase auto-pause recovery)
+  const [dbStatus, setDbStatus] = useState<{ configured: boolean; projectStatus: string | null; dbOk: boolean } | null>(null)
+  const [dbRestoring, setDbRestoring] = useState(false)
 
   // Admin users
   const [users, setUsers] = useState<AdminUser[]>([])
@@ -95,16 +121,19 @@ export default function SeadedPage() {
       .finally(() => setSettingsLoading(false))
   }
 
-  const fetchUsers = () => {
+  const fetchUsers = (me?: MeResponse["user"]) => {
     setUsersLoading(true)
+    const mePromise = me !== undefined
+      ? Promise.resolve({ user: me } as MeResponse)
+      : fetch("/api/spsadmn/me").then((r) => r.json())
     Promise.all([
       fetch("/api/spsadmn/seaded/admins").then((r) => r.json()),
-      fetch("/api/spsadmn/me").then((r) => r.json()),
+      mePromise,
     ]).then(([adminsData, meData]) => {
       const dbUsers: AdminUser[] = (adminsData.users || [])
-      const me = meData.user
-      if (me && me.isEnvAdmin) {
-        setUsers([{ id: 0, email: "", displayName: me.displayName, role: me.role, active: true, isEnvAdmin: true }, ...dbUsers])
+      const meUser = meData.user
+      if (meUser && meUser.isEnvAdmin) {
+        setUsers([{ id: 0, email: "", displayName: meUser.displayName, role: meUser.role, active: true, isEnvAdmin: true }, ...dbUsers])
       } else {
         setUsers(dbUsers)
       }
@@ -114,16 +143,58 @@ export default function SeadedPage() {
   const isAdmin = currentRole === "admin"
 
   useEffect(() => {
-    fetch("/api/spsadmn/me").then(r => {
-      if (!r.ok) throw new Error("me request failed")
-      return r.json()
-    }).then(data => {
-      if (data.user) setCurrentRole(data.user.role)
-      else setMeError(true)
-    }).catch(() => setMeError(true))
+    fetchMe().then(({ res, data }) => {
+      if (res?.status === 401) {
+        // Session expired/invalid — send back to the login screen
+        router.push("/spsadmn/")
+        return
+      }
+      if (data?.user) {
+        setCurrentRole(data.user.role)
+        fetchUsers(data.user)
+        if (data.user.role === "admin") fetchDbStatus()
+      } else {
+        setMeError(true)
+        fetchUsers()
+      }
+    })
     fetchSettings()
-    fetchUsers()
-  }, [])
+  }, [router])
+
+  const fetchDbStatus = async () => {
+    try {
+      const res = await fetch("/api/spsadmn/db")
+      if (res.ok) setDbStatus(await res.json())
+    } catch {}
+  }
+
+  const restoreDb = async () => {
+    setDbRestoring(true)
+    try {
+      const res = await fetch("/api/spsadmn/db", { method: "POST" })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        alert(data.error || "Andmebaasi käivitamine ebaõnnestus")
+        return
+      }
+      // Restore takes ~1–3 min — poll until the project is active AND the DB answers.
+      const deadline = Date.now() + 5 * 60 * 1000
+      for (;;) {
+        await new Promise((r) => setTimeout(r, 5000))
+        try {
+          const s = await fetch("/api/spsadmn/db")
+          const sd = await s.json()
+          setDbStatus(sd)
+          if (sd.dbOk && (!sd.projectStatus || sd.projectStatus.startsWith("ACTIVE"))) break
+        } catch {}
+        if (Date.now() > deadline) break
+      }
+      fetchSettings()
+      fetchUsers()
+    } finally {
+      setDbRestoring(false)
+    }
+  }
 
   const saveSettings = async () => {
     setSettingsSaving(true)
@@ -274,7 +345,7 @@ export default function SeadedPage() {
       )}
       {meError && (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-10 text-center mb-6">
-          <p className="text-[15px] text-red-600">Kasutaja andmete laadimine ebaõnnestus. Kontrolli andmebaasi ühendust ja värskenda lehte.</p>
+          <p className="text-[15px] text-red-600">Kasutaja andmete laadimine ebaõnnestus. Värskenda lehte — kui viga püsib, logi välja ja sisse uuesti.</p>
         </div>
       )}
       {!meError && currentRole === null && (
@@ -290,6 +361,39 @@ export default function SeadedPage() {
 
       {isAdmin && activeTab === "general" && (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-6">
+          <h2 className="text-[20px] font-bold text-[#17345a] mb-4">Andmebaas</h2>
+          <div className="mb-8 border border-[rgba(23,52,90,0.12)] rounded-xl p-4 sm:p-5">
+            {dbStatus === null ? (
+              <p className="text-[15px] text-[#5a6474]">Laadin olekut...</p>
+            ) : (
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${dbStatus.dbOk ? "bg-[#2d9e6b]" : "bg-[#d97706]"}`} />
+                  <p className="text-[15px] text-[#17345a] font-medium">
+                    {dbStatus.dbOk
+                      ? "Andmebaas on aktiivne ja vastab päringutele"
+                      : "Andmebaas ei vasta — tõenäoliselt on Supabase'i projekt pausil"}
+                  </p>
+                </div>
+                {!dbStatus.dbOk && (
+                  dbStatus.configured ? (
+                    <button
+                      onClick={restoreDb}
+                      disabled={dbRestoring}
+                      className="bg-[#17345a] text-white py-2.5 px-6 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors disabled:opacity-60"
+                    >
+                      {dbRestoring ? "Käivitan... (1–3 minutit)" : "Käivita andmebaas"}
+                    </button>
+                  ) : (
+                    <p className="text-[15px] text-[#92400e]">
+                      Automaatkäivitus pole seadistatud (Verceli env: SUPABASE_ACCESS_TOKEN, SUPABASE_PROJECT_REF). Alternatiiv: <code className="bg-[#f8fafc] px-1 rounded">npm run db:restore</code>
+                    </p>
+                  )
+                )}
+              </div>
+            )}
+          </div>
+
           <h2 className="text-[20px] font-bold text-[#17345a] mb-4">E-posti saajad</h2>
 
           {settingsLoading ? (
