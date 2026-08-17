@@ -328,5 +328,7 @@ async function main() {
 
 main().catch((err) => {
   console.error(err instanceof Error ? err.message : err)
-  process.exit(1)
+  // exitCode instead of exit(): let in-flight fetch handles drain cleanly
+  // (process.exit mid-teardown trips a libuv assertion on Node 24/win32).
+  process.exitCode = 1
 })
