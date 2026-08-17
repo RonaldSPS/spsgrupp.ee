@@ -8,6 +8,7 @@ import TwoToneHeading from "./TwoToneHeading"
 import ScrollAnimation from "./ScrollAnimation"
 import { submitContactForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
+import { getGclid } from "./analytics/gclid"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -44,6 +45,9 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   // Source page URL, sent with the submission so admin sees where it came from.
   // Written directly to the hidden input after mount so SSR HTML matches hydration.
   const pageUrlRef = useRef<HTMLInputElement>(null)
+  // Google Ads click id (gclid), same hidden-input pattern. Filled from the
+  // landing URL or the Conversion Linker `_gcl_aw` cookie; "" without consent.
+  const gclidRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (state.success && formRef.current) {
@@ -71,6 +75,9 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
     if (pageUrlRef.current) {
       pageUrlRef.current.value = window.location.href
     }
+    if (gclidRef.current) {
+      gclidRef.current.value = getGclid()
+    }
   }, [])
 
   const content = (
@@ -88,6 +95,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
               <input type="text" id="contact-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
             <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
+            <input type="hidden" name="gclid" ref={gclidRef} defaultValue="" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">

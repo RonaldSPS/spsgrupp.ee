@@ -22,6 +22,8 @@ export interface FormSubmissionInput {
   isSpam?: boolean
   /** URL of the page the form was submitted from. "" when unknown (older rows). */
   pageUrl?: string
+  /** Google Ads click id from the hidden form field (contact form only). "" when none. */
+  gclid?: string
 }
 
 export interface FormSubmission {
@@ -44,6 +46,7 @@ export interface FormSubmission {
   notes: string
   isSpam: boolean
   pageUrl: string
+  gclid: string
   createdAt: string
 }
 
@@ -83,7 +86,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
     const parsed = JSON.parse(raw)
     const rows = Array.isArray(parsed) ? parsed : parsed?.submissions
     if (!Array.isArray(rows)) return []
-    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl existed.
+    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid existed.
     return rows.map((row) => ({
       ...row,
       fee: normalizeAmount(row.fee),
@@ -91,6 +94,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       notes: typeof row.notes === "string" ? row.notes : "",
       isSpam: row.isSpam === true,
       pageUrl: typeof row.pageUrl === "string" ? row.pageUrl : "",
+      gclid: typeof row.gclid === "string" ? row.gclid : "",
     }))
   } catch {
     return []
@@ -122,6 +126,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     attachmentName: input.attachmentName ?? "",
     isSpam: input.isSpam ?? false,
     pageUrl: input.pageUrl ?? "",
+    gclid: input.gclid ?? "",
   })
 }
 
@@ -146,6 +151,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     notes: "",
     isSpam: input.isSpam ?? false,
     pageUrl: input.pageUrl ?? "",
+    gclid: input.gclid ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -221,6 +227,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     notes: row.notes ?? "",
     isSpam: row.isSpam ?? false,
     pageUrl: row.pageUrl ?? "",
+    gclid: row.gclid ?? "",
     createdAt: row.createdAt.toISOString(),
   }))
 }

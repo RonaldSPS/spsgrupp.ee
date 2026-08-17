@@ -99,6 +99,16 @@ function sanitizePageUrl(value: string | FormDataEntryValue | null): string {
   return ""
 }
 
+/**
+ * Google Ads click id from the form's hidden gclid field. Attacker-controlled,
+ * so only the charset real click ids use is kept, capped at 100 chars.
+ */
+function sanitizeGclid(value: string | FormDataEntryValue | null): string {
+  if (typeof value !== "string") return ""
+  const cleaned = value.replace(/[^A-Za-z0-9_-]/g, "")
+  return cleaned.slice(0, 100)
+}
+
 function validatePhone(phone: string): boolean {
   const cleaned = phone.replace(/[\s\-()]+/g, "")
   return /^\+?\d{6,20}$/.test(cleaned)
@@ -411,6 +421,7 @@ export async function submitContactForm(
   const consent = formData.get("privacy_consent")
   const attachmentFile = formData.get("attachment")
   const pageUrl = sanitizePageUrl(formData.get("page_url"))
+  const gclid = sanitizeGclid(formData.get("gclid"))
 
   const errors: string[] = []
 
@@ -465,6 +476,7 @@ export async function submitContactForm(
       attachmentName: validatedAttachment?.filename ?? "",
       isSpam: true,
       pageUrl,
+      gclid,
     })
     return { success: true, isSpam: true }
   }
@@ -483,6 +495,7 @@ export async function submitContactForm(
     message,
     attachmentName: validatedAttachment?.filename ?? "",
     pageUrl,
+    gclid,
   })
 
   const subject = `${copy.contactSubject}: ${name}${company ? " / " + company : ""}`
@@ -491,6 +504,7 @@ export async function submitContactForm(
     `${copy.labels.email}: ${email}`,
     `${copy.labels.phone}: ${phone}`,
     `${copy.labels.company}: ${company || "-"}`,
+    ...(gclid ? [`GCLID: ${gclid}`] : []),
     ``,
     `${copy.messageHeading}:`,
     message || "-",

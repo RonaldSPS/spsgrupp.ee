@@ -39,6 +39,8 @@ const CSV_HEADER = [
   "Sõnum",
   "Manus",
   "Keel",
+  "Leht",
+  "GCLID",
 ]
 
 function csvCell(value: string): string {
@@ -69,6 +71,8 @@ function toRow(s: FormSubmission): string[] {
     s.message,
     s.attachmentName,
     LOCALE_LABELS[s.locale] ?? s.locale,
+    s.pageUrl,
+    s.gclid,
   ]
 }
 

@@ -20,6 +20,7 @@ interface Submission {
   notes: string
   isSpam: boolean
   pageUrl: string
+  gclid: string
   createdAt: string
 }
 
@@ -388,6 +389,11 @@ export default function AdminSubmissionsPage() {
                           {pageUrlLabel(s.pageUrl)}
                         </a>
                       ) : "–"}
+                      {s.gclid && (
+                        <span className="block text-[#5a6474] mt-1 break-all" title={s.gclid}>
+                          GCLID: {s.gclid.length > 16 ? `${s.gclid.slice(0, 16)}…` : s.gclid}
+                        </span>
+                      )}
                     </td>
                     {isContact ? (
                       <>
