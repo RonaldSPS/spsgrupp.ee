@@ -1,28 +1,4 @@
 import "server-only"
-import { createTransport } from "nodemailer"
-import type { Transporter } from "nodemailer"
-
-function getTransporter(): Transporter {
-  const host = process.env.SMTP_HOST
-  const port = process.env.SMTP_PORT
-  const user = process.env.SMTP_USER
-  const pass = process.env.SMTP_PASS
-
-  if (!host || !port || !user || !pass) {
-    throw new Error("SMTP configuration is incomplete. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS.")
-  }
-
-  return createTransport({
-    host,
-    port: parseInt(port, 10),
-    secure: port === "465",
-    auth: { user, pass },
-  })
-}
-
-function getFromAddress(): string {
-  return process.env.SMTP_FROM || process.env.SMTP_USER || ""
-}
 
 export interface EmailAttachment {
   filename: string
@@ -30,22 +6,52 @@ export interface EmailAttachment {
   contentType: string
 }
 
+function getApiKey(): string {
+  const key = process.env.RESEND_API_KEY || process.env.Resend_API
+  if (!key) {
+    throw new Error("Resend configuration is incomplete. Set RESEND_API_KEY.")
+  }
+  return key
+}
+
+function getFromAddress(): string {
+  return process.env.EMAIL_FROM || "SPS Grupp <info@spsgrupp.ee>"
+}
+
 export async function sendEmail(params: {
   to: string
   subject: string
   text: string
   attachments?: EmailAttachment[]
+  replyTo?: string
 }): Promise<{ success: boolean; error?: string }> {
   try {
-    const transporter = getTransporter()
-    const from = getFromAddress()
-    await transporter.sendMail({
-      from,
-      to: params.to,
-      subject: params.subject,
-      text: params.text,
-      attachments: params.attachments,
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getApiKey()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: getFromAddress(),
+        to: params.to.split(",").map((addr) => addr.trim()).filter(Boolean),
+        subject: params.subject,
+        text: params.text,
+        reply_to: params.replyTo
+          ? params.replyTo.split(",").map((addr) => addr.trim()).filter(Boolean)
+          : undefined,
+        attachments: params.attachments?.map((att) => ({
+          filename: att.filename,
+          content: att.content.toString("base64"),
+          content_type: att.contentType,
+        })),
+      }),
     })
+
+    if (!response.ok) {
+      const body = await response.text().catch(() => "")
+      return { success: false, error: `Resend API ${response.status}: ${body}` }
+    }
     return { success: true }
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown email error"

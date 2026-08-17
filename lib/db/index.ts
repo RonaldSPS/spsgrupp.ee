@@ -16,7 +16,8 @@ export function getDb(): PostgresJsDatabase<typeof schema> {
         max: 1,
         prepare: false,
         connect_timeout: 10,
-        idle_timeout: 30,
+        idle_timeout: 10,
+        max_lifetime: 60 * 5,
       })
       _db = drizzle(_client, { schema })
     } catch (error) {
@@ -25,6 +26,22 @@ export function getDb(): PostgresJsDatabase<typeof schema> {
     }
   }
   return _db
+}
+
+/**
+ * Drop the pooled connection after a stalled/failed read. postgres-js cannot
+ * detect a half-open socket, and with `max: 1` one wedged query would block
+ * every later query until process restart. Clearing the singleton makes the
+ * next read open a fresh connection instead.
+ */
+export async function resetDbConnection(): Promise<void> {
+  const client = _client
+  _client = null
+  _db = null
+  if (client) {
+    // Do not await: end() can hang on a wedged socket.
+    void client.end({ timeout: 1 }).catch(() => {})
+  }
 }
 
 export const db = new Proxy({} as PostgresJsDatabase<typeof schema>, {

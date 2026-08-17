@@ -5,6 +5,7 @@ import path from "path"
 import { db } from "@/lib/db"
 import { adminUsers } from "@/lib/db/schema"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse, getCurrentAdminUser, hashAdminPassword, requireAdminRole } from "@/lib/auth"
+import { syncAdminUsersSnapshotFromDb } from "@/lib/admin-users-snapshot"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
@@ -147,6 +148,7 @@ export async function POST(request: Request) {
         role: safeRole,
         active: true,
       }).returning()
+      void syncAdminUsersSnapshotFromDb()
 
       return NextResponse.json({
         success: true,
@@ -226,6 +228,7 @@ export async function PUT(request: Request) {
       if (fields.active !== undefined) updates.active = fields.active
 
       await db.update(adminUsers).set(updates).where(eq(adminUsers.id, id))
+      void syncAdminUsersSnapshotFromDb()
 
       return NextResponse.json({ success: true }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
@@ -269,6 +272,7 @@ export async function DELETE(request: Request) {
       }
 
       await db.delete(adminUsers).where(eq(adminUsers.id, id))
+      void syncAdminUsersSnapshotFromDb()
       return NextResponse.json({ success: true }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })

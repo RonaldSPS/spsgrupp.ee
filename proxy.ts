@@ -36,6 +36,43 @@ function timingSafeEqual(a: string, b: string): boolean {
   return result === 0
 }
 
+const DB_AUTH_TIMEOUT_MS = 5000
+const DB_DOWN_COOLDOWN_MS = 10_000
+let dbDownUntil = 0
+
+async function validateTokenViaSnapshot(token: string, timestamp: string, userId: number): Promise<boolean> {
+  try {
+    const { readAdminUsersSnapshot } = await import("@/lib/admin-users-snapshot")
+    const snapshot = await readAdminUsersSnapshot()
+    const user = snapshot?.find((u) => u.id === userId)
+    if (!user || !user.active) return false
+    const providedHash = token.split("_")[2]
+    const expectedHash = await hmacSha256(user.passwordHash, `${timestamp}_${userId}`)
+    return timingSafeEqual(expectedHash, providedHash)
+  } catch {
+    return false
+  }
+}
+
+function withAuthReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Admin auth database read timed out")),
+      DB_AUTH_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
 async function validateToken(token: string): Promise<boolean> {
   if (!token.startsWith(TOKEN_PREFIX)) return false
   const payload = token.slice(TOKEN_PREFIX.length)
@@ -59,17 +96,25 @@ async function validateToken(token: string): Promise<boolean> {
   if (parts.length === 3) {
     const userId = parseInt(parts[1], 10)
     if (isNaN(userId)) return false
+    if (Date.now() < dbDownUntil) {
+      return validateTokenViaSnapshot(token, timestamp, userId)
+    }
     try {
       const { db } = await import("@/lib/db")
       const { adminUsers } = await import("@/lib/db/schema")
       const { eq } = await import("drizzle-orm")
-      const rows = await db.select({ passwordHash: adminUsers.passwordHash, active: adminUsers.active }).from(adminUsers).where(eq(adminUsers.id, userId)).limit(1)
+      const rows = await withAuthReadTimeout(db.select({ passwordHash: adminUsers.passwordHash, active: adminUsers.active }).from(adminUsers).where(eq(adminUsers.id, userId)).limit(1))
+      dbDownUntil = 0
       if (rows.length === 0 || !rows[0].active) return false
       const providedHash = parts[2]
       const expectedHash = await hmacSha256(rows[0].passwordHash, `${timestamp}_${userId}`)
       return timingSafeEqual(expectedHash, providedHash)
     } catch {
-      return false
+      // DB unreachable: free the wedged connection and fall back to the local
+      // snapshot so logged-in admins are not kicked out during a DB outage.
+      dbDownUntil = Date.now() + DB_DOWN_COOLDOWN_MS
+      void import("@/lib/db").then((m) => m.resetDbConnection()).catch(() => {})
+      return validateTokenViaSnapshot(token, timestamp, userId)
     }
   }
 

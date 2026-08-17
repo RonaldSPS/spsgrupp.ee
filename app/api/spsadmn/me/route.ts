@@ -5,6 +5,7 @@ import path from "path"
 import { db } from "@/lib/db"
 import { adminUsers } from "@/lib/db/schema"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse, getCurrentAdminUser, hashAdminPassword } from "@/lib/auth"
+import { syncAdminUsersSnapshotFromDb } from "@/lib/admin-users-snapshot"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
@@ -103,6 +104,7 @@ export async function PUT(request: Request) {
           role: "admin",
           active: true,
         }).returning()
+        void syncAdminUsersSnapshotFromDb()
 
         return NextResponse.json({
           success: true,
@@ -147,6 +149,7 @@ export async function PUT(request: Request) {
       }
 
       await db.update(adminUsers).set(updates).where(eq(adminUsers.id, currentUser.id))
+      void syncAdminUsersSnapshotFromDb()
 
       return NextResponse.json({ success: true }, {
         headers: { "Cache-Control": "no-store, max-age=0" },

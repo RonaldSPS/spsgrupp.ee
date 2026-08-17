@@ -112,6 +112,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             onChange={(e) => setLoginEmail(e.target.value)}
             placeholder="E-post (ainult andmebaasi kasutajale)"
             className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-3 text-[16px] mb-3 focus:outline-none focus:border-[#3abeff]"
+            autoFocus
           />
           <input
             type="password"
@@ -119,7 +120,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Parool"
             className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-3 text-[16px] mb-4 focus:outline-none focus:border-[#3abeff]"
-            autoFocus
           />
           <button
             type="submit"

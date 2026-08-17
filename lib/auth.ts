@@ -1,6 +1,7 @@
 import "server-only"
 import { cookies } from "next/headers"
 import { createHash } from "crypto"
+import { readAdminUsersSnapshot, type AdminUserSnapshot } from "@/lib/admin-users-snapshot"
 
 const COOKIE_NAME = "sps_admin_token"
 const TOKEN_PREFIX = "sps_"
@@ -50,13 +51,40 @@ function timingSafeEqual(a: string, b: string): boolean {
   return result === 0
 }
 
-async function getAdminUsersFromDb(): Promise<Array<{ id: number; email: string; passwordHash: string; displayName: string; role: string; active: boolean }> | null> {
-  if (!process.env.DATABASE_URL) return null
+const DB_AUTH_TIMEOUT_MS = 5000
+const DB_DOWN_COOLDOWN_MS = 10_000
+let dbDownUntil = 0
+
+function withAuthReadTimeout<T>(promise: Promise<T>): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timeoutId = setTimeout(
+      () => reject(new Error("Admin auth database read timed out")),
+      DB_AUTH_TIMEOUT_MS,
+    )
+    promise.then(
+      (value) => {
+        clearTimeout(timeoutId)
+        resolve(value)
+      },
+      (error) => {
+        clearTimeout(timeoutId)
+        reject(error)
+      },
+    )
+  })
+}
+
+async function getAdminUsersFromDb(): Promise<AdminUserSnapshot[] | null> {
+  if (!process.env.DATABASE_URL) return readAdminUsersSnapshot()
+  // After a DB failure, serve the snapshot for a short cooldown instead of
+  // making every request wait for another timeout.
+  if (Date.now() < dbDownUntil) return readAdminUsersSnapshot()
   try {
     const { db } = await import("@/lib/db")
     const { adminUsers } = await import("@/lib/db/schema")
     const { eq, and } = await import("drizzle-orm")
-    const rows = await db.select().from(adminUsers).where(and(eq(adminUsers.active, true)))
+    const rows = await withAuthReadTimeout(db.select().from(adminUsers).where(and(eq(adminUsers.active, true))))
+    dbDownUntil = 0
     return rows.map((r) => ({
       id: r.id,
       email: r.email,
@@ -65,8 +93,20 @@ async function getAdminUsersFromDb(): Promise<Array<{ id: number; email: string;
       role: r.role,
       active: r.active,
     }))
-  } catch {
-    return null
+  } catch (error) {
+    console.error("[auth] getAdminUsersFromDb failed:", error instanceof Error ? error.message : error)
+    dbDownUntil = Date.now() + DB_DOWN_COOLDOWN_MS
+    // Free the wedged pooled connection so the next read reconnects, and keep
+    // login working from the local snapshot while the DB is unreachable.
+    void import("@/lib/db").then((m) => m.resetDbConnection()).catch(() => {})
+    return readAdminUsersSnapshot()
+  }
+}
+
+export class AdminUserStoreUnavailableError extends Error {
+  constructor() {
+    super("Admin user store is unavailable")
+    this.name = "AdminUserStoreUnavailableError"
   }
 }
 
@@ -79,13 +119,12 @@ export async function createAdminToken(password: string, email?: string): Promis
     }
 
     const users = await getAdminUsersFromDb()
-    if (users) {
-      for (const user of users) {
-        if (user.active && user.passwordHash === hashPasswordSha256(password)) {
-          const timestamp = Date.now().toString()
-          const hash = await hmacSha256(user.passwordHash, `${timestamp}_${user.id}`)
-          return TOKEN_PREFIX + timestamp + "_" + user.id + "_" + hash
-        }
+    if (users === null) throw new AdminUserStoreUnavailableError()
+    for (const user of users) {
+      if (user.active && user.passwordHash === hashPasswordSha256(password)) {
+        const timestamp = Date.now().toString()
+        const hash = await hmacSha256(user.passwordHash, `${timestamp}_${user.id}`)
+        return TOKEN_PREFIX + timestamp + "_" + user.id + "_" + hash
       }
     }
 
@@ -93,7 +132,7 @@ export async function createAdminToken(password: string, email?: string): Promis
   }
 
   const users = await getAdminUsersFromDb()
-  if (!users) return null
+  if (users === null) throw new AdminUserStoreUnavailableError()
 
   const cleanEmail = email.trim().toLowerCase()
   const hashedPw = hashPasswordSha256(password)
@@ -145,31 +184,36 @@ export async function getAdminTokenInfo(token: string): Promise<AdminUserInfo | 
   if (!token.startsWith(TOKEN_PREFIX)) return null
   const payload = token.slice(TOKEN_PREFIX.length)
   const parts = payload.split("_")
-  if (parts.length < 2) return null
 
-  // DB user (3+ parts: ts_userId_hash)
-  const maybeUserId = parseInt(parts[1], 10)
-  if (!isNaN(maybeUserId)) {
+  // DB user (3 parts: ts_userId_hash). Only a 3-part token may resolve to a
+  // DB user: a 2-part env-admin token carries a hex HMAC in parts[1], and
+  // parseInt would misread a hash starting with decimal digits as a user id.
+  if (parts.length === 3) {
+    const userId = parseInt(parts[1], 10)
+    if (isNaN(userId)) return null
     const users = await getAdminUsersFromDb()
-    if (users) {
-      const user = users.find((u) => u.id === maybeUserId)
-      if (user) {
-        return {
-          id: user.id,
-          email: user.email,
-          displayName: user.displayName,
-          role: user.role as AdminRole,
-        }
-      }
+    if (!users) return null
+    const user = users.find((u) => u.id === userId)
+    if (!user) return null
+    return {
+      id: user.id,
+      email: user.email,
+      displayName: user.displayName,
+      role: user.role as AdminRole,
     }
   }
 
-  return {
-    id: 0,
-    email: "admin",
-    displayName: "Peaadmin",
-    role: "admin",
+  // Env-based admin (2 parts: ts_hash)
+  if (parts.length === 2) {
+    return {
+      id: 0,
+      email: "admin",
+      displayName: "Peaadmin",
+      role: "admin",
+    }
   }
+
+  return null
 }
 
 export async function validateAdminRequest(): Promise<boolean> {

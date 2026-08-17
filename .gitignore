@@ -41,6 +41,9 @@ env.*.local
 # Local extracted WordPress backup data
 /.wordpress-backups/
 
+# Admin auth snapshot (contains password hashes — never commit)
+/data/admin-users.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

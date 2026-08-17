@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { createAdminToken, setAdminCookie, noStoreResponse } from "@/lib/auth"
+import { createAdminToken, setAdminCookie, noStoreResponse, AdminUserStoreUnavailableError } from "@/lib/auth"
 import { checkLoginRateLimit, rateLimitResponse } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
@@ -32,6 +32,9 @@ export async function POST(request: Request) {
     try {
       token = await createAdminToken(password, email)
     } catch (e) {
+      if (e instanceof AdminUserStoreUnavailableError) {
+        return noStoreResponse(JSON.stringify({ error: "Andmebaasi ühendus ebaõnnestus. Proovi mõne sekundi pärast uuesti." }), 503)
+      }
       console.error("Auth config error:", e)
       return noStoreResponse(JSON.stringify({ error: "Server configuration error" }), 500)
     }
