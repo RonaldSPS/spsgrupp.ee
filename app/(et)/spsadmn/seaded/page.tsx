@@ -11,12 +11,40 @@ interface AdminUser {
   isEnvAdmin?: boolean
 }
 
+type AutoReplyKind = "contact" | "career"
+
+const AUTOREPLY_LOCALES = ["et", "en", "ru"] as const
+type AutoReplyLocale = (typeof AUTOREPLY_LOCALES)[number]
+
+/** Empty template = the built-in default text for that language is used. */
+interface AutoReplyState {
+  enabled: boolean
+  subjects: Record<AutoReplyLocale, string>
+  bodies: Record<AutoReplyLocale, string>
+}
+
+const emptyAutoReply: AutoReplyState = {
+  enabled: true,
+  subjects: { et: "", en: "", ru: "" },
+  bodies: { et: "", en: "", ru: "" },
+}
+
 export default function SeadedPage() {
   const [activeTab, setActiveTab] = useState<"general" | "users">("general")
-  const [currentRole, setCurrentRole] = useState<string>("manager")
+  const [currentRole, setCurrentRole] = useState<string | null>(null)
+  const [meError, setMeError] = useState(false)
 
   // General settings
   const [emailRecipients, setEmailRecipients] = useState("")
+  const [careerEmailRecipients, setCareerEmailRecipients] = useState("")
+  const [autoReplies, setAutoReplies] = useState<Record<AutoReplyKind, AutoReplyState>>({
+    contact: emptyAutoReply,
+    career: emptyAutoReply,
+  })
+  const [autoReplyTabs, setAutoReplyTabs] = useState<Record<AutoReplyKind, AutoReplyLocale>>({
+    contact: "et",
+    career: "et",
+  })
   const [settingsLoading, setSettingsLoading] = useState(true)
   const [settingsSaving, setSettingsSaving] = useState(false)
   const [settingsMessage, setSettingsMessage] = useState("")
@@ -48,7 +76,21 @@ export default function SeadedPage() {
     fetch("/api/spsadmn/seaded")
       .then((r) => r.json())
       .then((data) => {
-        setEmailRecipients(data.settings?.email_recipients || "info@spsgrupp.ee")
+        const s = data.settings ?? {}
+        setEmailRecipients(s.email_recipients || "info@spsgrupp.ee")
+        setCareerEmailRecipients(s.career_email_recipients || "personal@spsgrupp.ee")
+        setAutoReplies({
+          contact: {
+            enabled: s.autoreply_contact_enabled !== "0",
+            subjects: { et: s.autoreply_contact_subject_et || "", en: s.autoreply_contact_subject_en || "", ru: s.autoreply_contact_subject_ru || "" },
+            bodies: { et: s.autoreply_contact_body_et || "", en: s.autoreply_contact_body_en || "", ru: s.autoreply_contact_body_ru || "" },
+          },
+          career: {
+            enabled: s.autoreply_career_enabled !== "0",
+            subjects: { et: s.autoreply_career_subject_et || "", en: s.autoreply_career_subject_en || "", ru: s.autoreply_career_subject_ru || "" },
+            bodies: { et: s.autoreply_career_body_et || "", en: s.autoreply_career_body_en || "", ru: s.autoreply_career_body_ru || "" },
+          },
+        })
       })
       .finally(() => setSettingsLoading(false))
   }
@@ -72,9 +114,13 @@ export default function SeadedPage() {
   const isAdmin = currentRole === "admin"
 
   useEffect(() => {
-    fetch("/api/spsadmn/me").then(r => r.json()).then(data => {
+    fetch("/api/spsadmn/me").then(r => {
+      if (!r.ok) throw new Error("me request failed")
+      return r.json()
+    }).then(data => {
       if (data.user) setCurrentRole(data.user.role)
-    }).catch(() => {})
+      else setMeError(true)
+    }).catch(() => setMeError(true))
     fetchSettings()
     fetchUsers()
   }, [])
@@ -83,10 +129,22 @@ export default function SeadedPage() {
     setSettingsSaving(true)
     setSettingsMessage("")
     try {
+      const settings: Record<string, string> = {
+        email_recipients: emailRecipients,
+        career_email_recipients: careerEmailRecipients,
+      }
+      for (const kind of ["contact", "career"] as const) {
+        const ar = autoReplies[kind]
+        settings[`autoreply_${kind}_enabled`] = ar.enabled ? "1" : "0"
+        for (const locale of AUTOREPLY_LOCALES) {
+          settings[`autoreply_${kind}_subject_${locale}`] = ar.subjects[locale]
+          settings[`autoreply_${kind}_body_${locale}`] = ar.bodies[locale]
+        }
+      }
       const res = await fetch("/api/spsadmn/seaded", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ settings: { email_recipients: emailRecipients } }),
+        body: JSON.stringify({ settings }),
       })
       if (res.ok) {
         setSettingsMessage("Seaded salvestatud")
@@ -214,7 +272,17 @@ export default function SeadedPage() {
           </button>
         </div>
       )}
-      {!isAdmin && (
+      {meError && (
+        <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-10 text-center mb-6">
+          <p className="text-[15px] text-red-600">Kasutaja andmete laadimine ebaõnnestus. Kontrolli andmebaasi ühendust ja värskenda lehte.</p>
+        </div>
+      )}
+      {!meError && currentRole === null && (
+        <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-10 text-center mb-6">
+          <p className="text-[15px] text-[#5a6474]">Laadin...</p>
+        </div>
+      )}
+      {!meError && currentRole !== null && !isAdmin && (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-10 text-center mb-6">
           <p className="text-[15px] text-[#5a6474]">Süsteemi seadete muutmine on lubatud ainult peaadministraatorile.</p>
         </div>
@@ -223,21 +291,44 @@ export default function SeadedPage() {
       {isAdmin && activeTab === "general" && (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-6">
           <h2 className="text-[20px] font-bold text-[#17345a] mb-4">E-posti saajad</h2>
-          <p className="text-[15px] text-[#5a6474] mb-4">
-            Siia saadetakse kõik kontaktvormi päringud. Lisa mitu aadressi eraldatuna komaga (,).
-          </p>
 
           {settingsLoading ? (
             <p className="text-[15px] text-[#5a6474]">Laadin...</p>
           ) : (
             <div>
-              <input
-                type="text"
-                value={emailRecipients}
-                onChange={(e) => setEmailRecipients(e.target.value)}
-                className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)] mb-4"
-                placeholder="info@spsgrupp.ee, personal@spsgrupp.ee"
-              />
+              <div className="mb-5">
+                <label htmlFor="settings-email-recipients" className="block text-[15px] font-medium text-[#17345a] mb-1">
+                  Kontaktvormi päringud
+                </label>
+                <p className="text-[15px] text-[#5a6474] mb-2">
+                  Siia saadetakse kõik kontaktvormi (hinnapäringu) päringud. Lisa mitu aadressi eraldatuna komaga (,).
+                </p>
+                <input
+                  id="settings-email-recipients"
+                  type="text"
+                  value={emailRecipients}
+                  onChange={(e) => setEmailRecipients(e.target.value)}
+                  className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
+                  placeholder="info@spsgrupp.ee"
+                />
+              </div>
+
+              <div className="mb-5">
+                <label htmlFor="settings-career-email-recipients" className="block text-[15px] font-medium text-[#17345a] mb-1">
+                  Tööavaldused (&quot;Tule meile tööle&quot;)
+                </label>
+                <p className="text-[15px] text-[#5a6474] mb-2">
+                  Siia saadetakse kõik tööavaldused. Lisa mitu aadressi eraldatuna komaga (,).
+                </p>
+                <input
+                  id="settings-career-email-recipients"
+                  type="text"
+                  value={careerEmailRecipients}
+                  onChange={(e) => setCareerEmailRecipients(e.target.value)}
+                  className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
+                  placeholder="personal@spsgrupp.ee"
+                />
+              </div>
 
               <div className="flex items-center gap-3">
                 <button
@@ -253,6 +344,94 @@ export default function SeadedPage() {
                   </span>
                 )}
               </div>
+
+              <hr className="my-8 border-[rgba(23,52,90,0.08)]" />
+
+              <h2 className="text-[20px] font-bold text-[#17345a] mb-2">Automaatvastused</h2>
+              <p className="text-[15px] text-[#5a6474] mb-6">
+                Vormi saatnud inimesele saadetakse automaatne kinnituskiri. Tühja välja korral kasutatakse vaiketeksti
+                vastavas keeles. Võtme sõna <code className="bg-[#f8fafc] px-1 rounded">{"{name}"}</code> asendatakse saatja nimega.
+                Samalt aadressilt saadetakse ühe vormi kohta kinnitus kuni korra 24 tunni jooksul.
+              </p>
+
+              {(["contact", "career"] as const).map((kind) => {
+                const ar = autoReplies[kind]
+                const locale = autoReplyTabs[kind]
+                const title = kind === "contact" ? "Kontaktvorm (hinnapäring)" : "Tööavaldus (\"Tule meile tööle\")"
+                return (
+                  <div key={kind} className="border border-[rgba(23,52,90,0.12)] rounded-xl p-4 sm:p-5 mb-4">
+                    <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
+                      <h3 className="text-[16px] font-bold text-[#17345a]">{title}</h3>
+                      <label className="flex items-center gap-2 text-[15px] font-medium text-[#17345a] cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={ar.enabled}
+                          onChange={(e) =>
+                            setAutoReplies((prev) => ({ ...prev, [kind]: { ...prev[kind], enabled: e.target.checked } }))
+                          }
+                          className="w-4 h-4 accent-[#17345a]"
+                        />
+                        Automaatvastus sees
+                      </label>
+                    </div>
+
+                    <div className="flex gap-1 mb-3 bg-[#f8fafc] rounded-lg p-1 w-fit">
+                      {AUTOREPLY_LOCALES.map((l) => (
+                        <button
+                          key={l}
+                          type="button"
+                          onClick={() => setAutoReplyTabs((prev) => ({ ...prev, [kind]: l }))}
+                          className={`px-3 py-1 rounded-md text-[15px] font-medium uppercase transition-colors ${
+                            locale === l ? "bg-[#17345a] text-white" : "text-[#5a6474] hover:bg-white"
+                          }`}
+                        >
+                          {l}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-col gap-1 mb-3">
+                      <label htmlFor={`autoreply-${kind}-subject`} className="text-[15px] font-medium text-[#17345a]">
+                        Pealkiri ({locale.toUpperCase()})
+                      </label>
+                      <input
+                        id={`autoreply-${kind}-subject`}
+                        type="text"
+                        value={ar.subjects[locale]}
+                        onChange={(e) =>
+                          setAutoReplies((prev) => ({
+                            ...prev,
+                            [kind]: { ...prev[kind], subjects: { ...prev[kind].subjects, [locale]: e.target.value } },
+                          }))
+                        }
+                        disabled={!ar.enabled}
+                        className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)] disabled:bg-[#f8fafc] disabled:text-[#9aa5b1]"
+                        placeholder="Vaiketekst"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor={`autoreply-${kind}-body`} className="text-[15px] font-medium text-[#17345a]">
+                        Sisu ({locale.toUpperCase()})
+                      </label>
+                      <textarea
+                        id={`autoreply-${kind}-body`}
+                        rows={8}
+                        value={ar.bodies[locale]}
+                        onChange={(e) =>
+                          setAutoReplies((prev) => ({
+                            ...prev,
+                            [kind]: { ...prev[kind], bodies: { ...prev[kind].bodies, [locale]: e.target.value } },
+                          }))
+                        }
+                        disabled={!ar.enabled}
+                        className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)] resize-y disabled:bg-[#f8fafc] disabled:text-[#9aa5b1]"
+                        placeholder="Vaiketekst"
+                      />
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           )}
         </div>

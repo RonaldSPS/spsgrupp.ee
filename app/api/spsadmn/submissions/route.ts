@@ -9,10 +9,12 @@ export function parseSubmissionFilter(searchParams: URLSearchParams): FormSubmis
   const form = searchParams.get("form")
   const from = searchParams.get("from")
   const to = searchParams.get("to")
+  const spam = searchParams.get("spam")
   return {
     form: form === "contact" || form === "career" ? form : undefined,
     from: from && DATE_RE.test(from) ? from : undefined,
     to: to && DATE_RE.test(to) ? to : undefined,
+    spamOnly: spam === "1" ? true : undefined,
   }
 }
 

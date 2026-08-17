@@ -1,4 +1,4 @@
-import { pgTable, integer, text, boolean, timestamp, real, serial, uniqueIndex } from "drizzle-orm/pg-core"
+import { pgTable, integer, text, boolean, timestamp, real, serial, numeric, uniqueIndex } from "drizzle-orm/pg-core"
 
 export const blogEdits = pgTable("blog_edits", {
   id: integer("id").primaryKey(),
@@ -141,5 +141,9 @@ export const formSubmissions = pgTable("form_submissions", {
   workload: text("workload").notNull().default(""),
   workTime: text("work_time").notNull().default(""),
   attachmentName: text("attachment_name").notNull().default(""),
+  fee: numeric("fee", { precision: 12, scale: 2 }),
+  profit: numeric("profit", { precision: 12, scale: 2 }),
+  notes: text("notes").notNull().default(""),
+  isSpam: boolean("is_spam").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })

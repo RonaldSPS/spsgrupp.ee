@@ -3,18 +3,24 @@
 import { headers } from "next/headers"
 import { checkRateLimit } from "@/lib/rate-limit"
 import { sendEmail, type EmailAttachment } from "@/lib/email"
-import { saveFormSubmission } from "@/lib/form-submissions"
+import { saveFormSubmission, hasRecentSubmission } from "@/lib/form-submissions"
+import { assessSubmission } from "@/lib/spam"
+import { AUTOREPLY_DEFAULTS } from "@/lib/autoreply-defaults"
 
 const DUPE_WINDOW_MS = 8000
 const recentHashes = new Map<string, number>()
 
-async function getEmailRecipients(): Promise<string> {
+/** At most one auto-reply per recipient address per this window (per form). */
+const AUTOREPLY_COOLDOWN_HOURS = 24
+
+/** Read one admin setting (system_settings / admin-settings.json). Null when unset/empty. */
+async function getSettingValue(settingKey: string): Promise<string | null> {
   try {
     if (process.env.DATABASE_URL) {
       const { db } = await import("@/lib/db")
       const { systemSettings } = await import("@/lib/db/schema")
       const { eq } = await import("drizzle-orm")
-      const rows = await db.select().from(systemSettings).where(eq(systemSettings.key, "email_recipients"))
+      const rows = await db.select().from(systemSettings).where(eq(systemSettings.key, settingKey))
       if (rows[0]?.value) return rows[0].value
     } else {
       const { promises: fs } = await import("fs")
@@ -22,7 +28,7 @@ async function getEmailRecipients(): Promise<string> {
       try {
         const raw = await fs.readFile(path.join(process.cwd(), "data", "admin-settings.json"), "utf-8")
         const data = JSON.parse(raw)
-        if (data.settings?.email_recipients) return data.settings.email_recipients
+        if (data.settings?.[settingKey]) return data.settings[settingKey]
       } catch {
         // fallback
       }
@@ -30,7 +36,33 @@ async function getEmailRecipients(): Promise<string> {
   } catch {
     // fallback
   }
-  return "info@spsgrupp.ee"
+  return null
+}
+
+async function getEmailRecipients(settingKey: string, fallback: string): Promise<string> {
+  return (await getSettingValue(settingKey)) ?? fallback
+}
+
+interface AutoReplyTemplate {
+  enabled: boolean
+  subject: string
+  body: string
+}
+
+/** Auto-reply template for a form + locale: admin settings override the built-in drafts. */
+async function getAutoReplyTemplate(
+  kind: "contact" | "career",
+  locale: ActionLocale,
+  copy: ActionCopy,
+): Promise<AutoReplyTemplate> {
+  const enabledSetting = await getSettingValue(`autoreply_${kind}_enabled`)
+  const subject = await getSettingValue(`autoreply_${kind}_subject_${locale}`)
+  const body = await getSettingValue(`autoreply_${kind}_body_${locale}`)
+  return {
+    enabled: enabledSetting !== "0",
+    subject: subject ?? (kind === "contact" ? copy.autoReplyContactSubject : copy.autoReplyCareerSubject),
+    body: body ?? (kind === "contact" ? copy.autoReplyContactBody : copy.autoReplyCareerBody),
+  }
 }
 
 function escapeText(input: string | FormDataEntryValue | null): string {
@@ -176,6 +208,10 @@ interface ActionCopy {
   careerSubject: string
   messageHeading: string
   extraInfoHeading: string
+  autoReplyContactSubject: string
+  autoReplyContactBody: string
+  autoReplyCareerSubject: string
+  autoReplyCareerBody: string
   workloadOptions: Record<string, string>
   workTimeOptions: Record<string, string>
 }
@@ -210,6 +246,10 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Karjääriavaldus",
     messageHeading: "Teade",
     extraInfoHeading: "Lisainfo",
+    autoReplyContactSubject: AUTOREPLY_DEFAULTS.et.contact.subject,
+    autoReplyContactBody: AUTOREPLY_DEFAULTS.et.contact.body,
+    autoReplyCareerSubject: AUTOREPLY_DEFAULTS.et.career.subject,
+    autoReplyCareerBody: AUTOREPLY_DEFAULTS.et.career.body,
     workloadOptions: { full: "Täistööaeg", part: "Osaline tööaeg" },
     workTimeOptions: {
       day: "Päevane tööaeg (8.00–17.00)",
@@ -247,6 +287,10 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Career application",
     messageHeading: "Message",
     extraInfoHeading: "Additional information",
+    autoReplyContactSubject: AUTOREPLY_DEFAULTS.en.contact.subject,
+    autoReplyContactBody: AUTOREPLY_DEFAULTS.en.contact.body,
+    autoReplyCareerSubject: AUTOREPLY_DEFAULTS.en.career.subject,
+    autoReplyCareerBody: AUTOREPLY_DEFAULTS.en.career.body,
     workloadOptions: { full: "Full-time", part: "Part-time" },
     workTimeOptions: {
       day: "Day shift (8:00–17:00)",
@@ -284,6 +328,10 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Заявка на работу",
     messageHeading: "Сообщение",
     extraInfoHeading: "Дополнительная информация",
+    autoReplyContactSubject: AUTOREPLY_DEFAULTS.ru.contact.subject,
+    autoReplyContactBody: AUTOREPLY_DEFAULTS.ru.contact.body,
+    autoReplyCareerSubject: AUTOREPLY_DEFAULTS.ru.career.subject,
+    autoReplyCareerBody: AUTOREPLY_DEFAULTS.ru.career.body,
     workloadOptions: { full: "Полная занятость", part: "Частичная занятость" },
     workTimeOptions: {
       day: "Дневная смена (8:00–17:00)",
@@ -379,9 +427,34 @@ export async function submitContactForm(
     return { error: copy.duplicateContact }
   }
 
+  const locale = await getActionLocale()
+
+  const spam = assessSubmission({ name, email, message, form: "contact" })
+  if (spam.flagged) {
+    // Saved for admin review, but no e-mails are sent. The submitter sees a
+    // normal success message so spammers get no feedback.
+    console.warn(`Spam-flagged contact submission (${spam.reasons.join("; ")}), email: ${email}`)
+    await saveFormSubmission({
+      form: "contact",
+      locale,
+      name,
+      email,
+      phone,
+      company,
+      message,
+      attachmentName: validatedAttachment?.filename ?? "",
+      isSpam: true,
+    })
+    return { success: true }
+  }
+
+  // Cool-down check must run BEFORE saving this submission, otherwise the
+  // current row would trip it and no auto-reply would ever be sent.
+  const autoReplyCoolingDown = await hasRecentSubmission(email, "contact", AUTOREPLY_COOLDOWN_HOURS)
+
   await saveFormSubmission({
     form: "contact",
-    locale: await getActionLocale(),
+    locale,
     name,
     email,
     phone,
@@ -401,7 +474,7 @@ export async function submitContactForm(
     message || "-",
   ].join("\n")
 
-  const recipients = await getEmailRecipients()
+  const recipients = await getEmailRecipients("email_recipients", "info@spsgrupp.ee")
   const result = await sendEmail({
     to: recipients,
     subject,
@@ -411,6 +484,19 @@ export async function submitContactForm(
 
   if (!result.success) {
     return { error: copy.sendFailed }
+  }
+
+  const autoReply = await getAutoReplyTemplate("contact", locale, copy)
+  if (autoReply.enabled && !autoReplyCoolingDown) {
+    const replyResult = await sendEmail({
+      to: email,
+      subject: autoReply.subject,
+      text: format(autoReply.body, { name }),
+      replyTo: recipients,
+    })
+    if (!replyResult.success) {
+      console.error("Contact auto-reply failed:", replyResult.error)
+    }
   }
 
   return { success: true }
@@ -469,9 +555,35 @@ export async function submitCareerForm(
     return { error: copy.duplicateCareer }
   }
 
+  const locale = await getActionLocale()
+
+  const spam = assessSubmission({ name, email, message: info, form: "career" })
+  if (spam.flagged) {
+    // Saved for admin review, but no e-mails are sent. The submitter sees a
+    // normal success message so spammers get no feedback.
+    console.warn(`Spam-flagged career submission (${spam.reasons.join("; ")}), email: ${email}`)
+    await saveFormSubmission({
+      form: "career",
+      locale,
+      name,
+      email,
+      phone,
+      region,
+      workload,
+      workTime,
+      message: info,
+      isSpam: true,
+    })
+    return { success: true }
+  }
+
+  // Cool-down check must run BEFORE saving this submission, otherwise the
+  // current row would trip it and no auto-reply would ever be sent.
+  const autoReplyCoolingDown = await hasRecentSubmission(email, "career", AUTOREPLY_COOLDOWN_HOURS)
+
   await saveFormSubmission({
     form: "career",
-    locale: await getActionLocale(),
+    locale,
     name,
     email,
     phone,
@@ -494,14 +606,28 @@ export async function submitCareerForm(
     info || "-",
   ].join("\n")
 
+  const careerRecipients = await getEmailRecipients("career_email_recipients", "personal@spsgrupp.ee")
   const result = await sendEmail({
-    to: "personal@spsgrupp.ee",
+    to: careerRecipients,
     subject,
     text: body,
   })
 
   if (!result.success) {
     return { error: copy.sendFailed }
+  }
+
+  const autoReply = await getAutoReplyTemplate("career", locale, copy)
+  if (autoReply.enabled && !autoReplyCoolingDown) {
+    const replyResult = await sendEmail({
+      to: email,
+      subject: autoReply.subject,
+      text: format(autoReply.body, { name }),
+      replyTo: careerRecipients,
+    })
+    if (!replyResult.success) {
+      console.error("Career auto-reply failed:", replyResult.error)
+    }
   }
 
   return { success: true }

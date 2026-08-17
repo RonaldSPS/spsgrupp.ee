@@ -16,4 +16,6 @@ CREATE TABLE IF NOT EXISTS "form_submissions" (
 --> statement-breakpoint
 ALTER TABLE "form_submissions" ENABLE ROW LEVEL SECURITY;
 --> statement-breakpoint
+DROP POLICY IF EXISTS "auth_all_form_submissions" ON "form_submissions";
+--> statement-breakpoint
 CREATE POLICY "auth_all_form_submissions" ON "form_submissions" FOR ALL TO authenticated USING (true) WITH CHECK (true);

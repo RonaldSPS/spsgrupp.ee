@@ -19,6 +19,7 @@ export interface FormSubmissionInput {
   workload?: string
   workTime?: string
   attachmentName?: string
+  isSpam?: boolean
 }
 
 export interface FormSubmission {
@@ -34,16 +35,38 @@ export interface FormSubmission {
   workload: string
   workTime: string
   attachmentName: string
+  /** Decimal string (e.g. "123.45"), "" when not set. Admin-entered. */
+  fee: string
+  /** Decimal string (e.g. "123.45"), "" when not set. Admin-entered. */
+  profit: string
+  notes: string
+  isSpam: boolean
   createdAt: string
+}
+
+export interface FormSubmissionFinancials {
+  fee?: string | null
+  profit?: string | null
+  notes?: string
 }
 
 export interface FormSubmissionFilter {
   form?: "contact" | "career"
   from?: string
   to?: string
+  /** When true, only spam-flagged rows are returned. */
+  spamOnly?: boolean
 }
 
 const MAX_ROWS = 2000
+
+/** Normalize a stored fee/profit value (numeric string from DB, number from JSON, or missing) to a decimal string. */
+function normalizeAmount(value: unknown): string {
+  if (value === null || value === undefined || value === "") return ""
+  const n = Number(value)
+  if (!Number.isFinite(n)) return ""
+  return String(Math.round(n * 100) / 100)
+}
 
 async function jsonFilePath(): Promise<string> {
   const path = await import("path")
@@ -56,7 +79,15 @@ async function readJsonRows(): Promise<FormSubmission[]> {
     const raw = await fs.readFile(await jsonFilePath(), "utf-8")
     const parsed = JSON.parse(raw)
     const rows = Array.isArray(parsed) ? parsed : parsed?.submissions
-    return Array.isArray(rows) ? rows : []
+    if (!Array.isArray(rows)) return []
+    // Tolerate rows written before fee/profit/notes/isSpam existed.
+    return rows.map((row) => ({
+      ...row,
+      fee: normalizeAmount(row.fee),
+      profit: normalizeAmount(row.profit),
+      notes: typeof row.notes === "string" ? row.notes : "",
+      isSpam: row.isSpam === true,
+    }))
   } catch {
     return []
   }
@@ -85,6 +116,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     workload: input.workload ?? "",
     workTime: input.workTime ?? "",
     attachmentName: input.attachmentName ?? "",
+    isSpam: input.isSpam ?? false,
   })
 }
 
@@ -104,6 +136,10 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     workload: input.workload ?? "",
     workTime: input.workTime ?? "",
     attachmentName: input.attachmentName ?? "",
+    fee: "",
+    profit: "",
+    notes: "",
+    isSpam: input.isSpam ?? false,
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -135,6 +171,7 @@ function toDate(to: string): Date {
 
 function matchesFilter(row: FormSubmission, filter: FormSubmissionFilter): boolean {
   if (filter.form && row.form !== filter.form) return false
+  if (filter.spamOnly && !row.isSpam) return false
   const time = new Date(row.createdAt).getTime()
   if (Number.isNaN(time)) return false
   if (filter.from && time < fromDate(filter.from).getTime()) return false
@@ -149,6 +186,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
 
   const conditions = []
   if (filter.form) conditions.push(eq(formSubmissions.form, filter.form))
+  if (filter.spamOnly) conditions.push(eq(formSubmissions.isSpam, true))
   if (filter.from) conditions.push(gte(formSubmissions.createdAt, fromDate(filter.from)))
   if (filter.to) conditions.push(lte(formSubmissions.createdAt, toDate(filter.to)))
 
@@ -172,6 +210,10 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     workload: row.workload,
     workTime: row.workTime,
     attachmentName: row.attachmentName,
+    fee: normalizeAmount(row.fee),
+    profit: normalizeAmount(row.profit),
+    notes: row.notes ?? "",
+    isSpam: row.isSpam ?? false,
     createdAt: row.createdAt.toISOString(),
   }))
 }
@@ -193,4 +235,97 @@ export async function getFormSubmissions(filter: FormSubmissionFilter): Promise<
     }
   }
   return readFromJson(filter)
+}
+
+async function updateInDb(id: number, data: FormSubmissionFinancials): Promise<void> {
+  const { db } = await import("@/lib/db")
+  const { formSubmissions } = await import("@/lib/db/schema")
+  const { eq } = await import("drizzle-orm")
+  const set: Record<string, string | null> = {}
+  if (data.fee !== undefined) set.fee = normalizeAmount(data.fee) || null
+  if (data.profit !== undefined) set.profit = normalizeAmount(data.profit) || null
+  if (data.notes !== undefined) set.notes = data.notes
+  if (Object.keys(set).length === 0) return
+  await db.update(formSubmissions).set(set).where(eq(formSubmissions.id, id))
+}
+
+async function updateInJson(id: number, data: FormSubmissionFinancials): Promise<boolean> {
+  const rows = await readJsonRows()
+  const row = rows.find((r) => Number(r.id) === id)
+  if (!row) return false
+  if (data.fee !== undefined) row.fee = normalizeAmount(data.fee)
+  if (data.profit !== undefined) row.profit = normalizeAmount(data.profit)
+  if (data.notes !== undefined) row.notes = data.notes
+  await writeJsonRows(rows)
+  return true
+}
+
+/**
+ * Update admin-entered financial fields (Tasu/Kasum/Märkused) on a submission.
+ * Returns false when the row does not exist or storage fails.
+ */
+export async function updateFormSubmission(id: number, data: FormSubmissionFinancials): Promise<boolean> {
+  try {
+    if (process.env.DATABASE_URL) {
+      try {
+        await updateInDb(id, data)
+        return true
+      } catch (error) {
+        console.error("DB update failed, falling back to JSON storage:", error)
+      }
+    }
+    return await updateInJson(id, data)
+  } catch (error) {
+    console.error("Failed to update form submission:", error)
+    return false
+  }
+}
+
+/**
+ * Auto-reply cool-down ledger: has this e-mail address submitted this form
+ * within the last `withinHours` hours? Used to send at most one auto-reply
+ * per address per window. Call BEFORE saving the current submission.
+ * Fails closed (returns true) when storage is unreachable, so an outage
+ * suppresses auto-replies instead of multiplying them.
+ */
+export async function hasRecentSubmission(
+  email: string,
+  form: "contact" | "career",
+  withinHours: number,
+): Promise<boolean> {
+  const emailLower = email.trim().toLowerCase()
+  if (!emailLower) return true
+  const threshold = new Date(Date.now() - withinHours * 3600_000)
+
+  if (process.env.DATABASE_URL) {
+    try {
+      const { db } = await import("@/lib/db")
+      const { formSubmissions } = await import("@/lib/db/schema")
+      const { and, eq, gte, sql } = await import("drizzle-orm")
+      const rows = await db
+        .select({ id: formSubmissions.id })
+        .from(formSubmissions)
+        .where(and(
+          eq(formSubmissions.form, form),
+          gte(formSubmissions.createdAt, threshold),
+          sql`lower(${formSubmissions.email}) = ${emailLower}`,
+        ))
+        .limit(1)
+      return rows.length > 0
+    } catch (error) {
+      console.error("DB recent-submission check failed, falling back to JSON storage:", error)
+    }
+  }
+
+  try {
+    const rows = await readJsonRows()
+    const thresholdMs = threshold.getTime()
+    return rows.some((row) =>
+      row.form === form
+      && row.email.trim().toLowerCase() === emailLower
+      && new Date(row.createdAt).getTime() >= thresholdMs
+    )
+  } catch {
+    return true
+  }
 }
