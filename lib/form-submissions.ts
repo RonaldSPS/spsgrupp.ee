@@ -20,6 +20,8 @@ export interface FormSubmissionInput {
   workTime?: string
   attachmentName?: string
   isSpam?: boolean
+  /** URL of the page the form was submitted from. "" when unknown (older rows). */
+  pageUrl?: string
 }
 
 export interface FormSubmission {
@@ -41,6 +43,7 @@ export interface FormSubmission {
   profit: string
   notes: string
   isSpam: boolean
+  pageUrl: string
   createdAt: string
 }
 
@@ -80,13 +83,14 @@ async function readJsonRows(): Promise<FormSubmission[]> {
     const parsed = JSON.parse(raw)
     const rows = Array.isArray(parsed) ? parsed : parsed?.submissions
     if (!Array.isArray(rows)) return []
-    // Tolerate rows written before fee/profit/notes/isSpam existed.
+    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl existed.
     return rows.map((row) => ({
       ...row,
       fee: normalizeAmount(row.fee),
       profit: normalizeAmount(row.profit),
       notes: typeof row.notes === "string" ? row.notes : "",
       isSpam: row.isSpam === true,
+      pageUrl: typeof row.pageUrl === "string" ? row.pageUrl : "",
     }))
   } catch {
     return []
@@ -117,6 +121,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     workTime: input.workTime ?? "",
     attachmentName: input.attachmentName ?? "",
     isSpam: input.isSpam ?? false,
+    pageUrl: input.pageUrl ?? "",
   })
 }
 
@@ -140,6 +145,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     profit: "",
     notes: "",
     isSpam: input.isSpam ?? false,
+    pageUrl: input.pageUrl ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -214,6 +220,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     profit: normalizeAmount(row.profit),
     notes: row.notes ?? "",
     isSpam: row.isSpam ?? false,
+    pageUrl: row.pageUrl ?? "",
     createdAt: row.createdAt.toISOString(),
   }))
 }
@@ -277,6 +284,41 @@ export async function updateFormSubmission(id: number, data: FormSubmissionFinan
     return await updateInJson(id, data)
   } catch (error) {
     console.error("Failed to update form submission:", error)
+    return false
+  }
+}
+
+async function deleteFromDb(ids: number[]): Promise<void> {
+  const { db } = await import("@/lib/db")
+  const { formSubmissions } = await import("@/lib/db/schema")
+  const { inArray } = await import("drizzle-orm")
+  await db.delete(formSubmissions).where(inArray(formSubmissions.id, ids))
+}
+
+async function deleteFromJson(ids: number[]): Promise<void> {
+  const doomed = new Set(ids.map(Number))
+  const rows = await readJsonRows()
+  await writeJsonRows(rows.filter((row) => !doomed.has(Number(row.id))))
+}
+
+/**
+ * Delete submissions by id (admin "Kustuta valitud"). Unknown ids are ignored.
+ * Returns false only when storage fails entirely.
+ */
+export async function deleteFormSubmissions(ids: number[]): Promise<boolean> {
+  try {
+    if (process.env.DATABASE_URL) {
+      try {
+        await deleteFromDb(ids)
+        return true
+      } catch (error) {
+        console.error("DB delete failed, falling back to JSON storage:", error)
+      }
+    }
+    await deleteFromJson(ids)
+    return true
+  } catch (error) {
+    console.error("Failed to delete form submissions:", error)
     return false
   }
 }

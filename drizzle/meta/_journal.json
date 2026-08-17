@@ -1,62 +1,69 @@
-{
-  "version": "7",
-  "dialect": "postgresql",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "7",
-      "when": 1783935720707,
-      "tag": "0000_melodic_stature",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1783968010416,
-      "tag": "0001_dynamic_content_translations",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1784046510000,
-      "tag": "0002_testimonials",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1784100000000,
-      "tag": "0003_blog_active_and_admin_settings",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1784200000000,
-      "tag": "0004_enable_rls",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1784300000000,
-      "tag": "0005_form_submissions",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1784400000000,
-      "tag": "0006_submission_financials",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1784500000000,
-      "tag": "0007_submission_spam_flag",
-      "breakpoints": true
-    }
-  ]
+﻿{
+    "version":  "7",
+    "dialect":  "postgresql",
+    "entries":  [
+                    {
+                        "idx":  0,
+                        "version":  "7",
+                        "when":  1783935720707,
+                        "tag":  "0000_melodic_stature",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  1,
+                        "version":  "7",
+                        "when":  1783968010416,
+                        "tag":  "0001_dynamic_content_translations",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  2,
+                        "version":  "7",
+                        "when":  1784046510000,
+                        "tag":  "0002_testimonials",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  3,
+                        "version":  "7",
+                        "when":  1784100000000,
+                        "tag":  "0003_blog_active_and_admin_settings",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  4,
+                        "version":  "7",
+                        "when":  1784200000000,
+                        "tag":  "0004_enable_rls",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  5,
+                        "version":  "7",
+                        "when":  1784300000000,
+                        "tag":  "0005_form_submissions",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  6,
+                        "version":  "7",
+                        "when":  1784400000000,
+                        "tag":  "0006_submission_financials",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  7,
+                        "version":  "7",
+                        "when":  1784500000000,
+                        "tag":  "0007_submission_spam_flag",
+                        "breakpoints":  true
+                    },
+                    {
+                        "idx":  8,
+                        "version":  "7",
+                        "when":  1784600000000,
+                        "tag":  "0008_submission_page_url",
+                        "breakpoints":  true
+                    }
+                ]
 }

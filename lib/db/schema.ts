@@ -145,5 +145,6 @@ export const formSubmissions = pgTable("form_submissions", {
   profit: numeric("profit", { precision: 12, scale: 2 }),
   notes: text("notes").notNull().default(""),
   isSpam: boolean("is_spam").notNull().default(false),
+  pageUrl: text("page_url").notNull().default(""),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })
