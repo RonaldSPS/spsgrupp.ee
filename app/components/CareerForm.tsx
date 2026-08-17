@@ -2,9 +2,11 @@
 
 import { useActionState, useEffect, useRef } from "react"
 import { useLocale, useTranslations } from "next-intl"
+import { usePathname } from "next/navigation"
+import { sendGTMEvent } from "@next/third-parties/google"
 import TwoToneHeading from "./TwoToneHeading"
 import { submitCareerForm } from "@/lib/actions"
-import { localizePath, type Locale } from "@/lib/slug-map"
+import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -14,6 +16,8 @@ export default function CareerForm() {
   const [state, formAction, pending] = useActionState(submitCareerForm, initialState)
   const formRef = useRef<HTMLFormElement>(null)
   const privacyPath = localizePath("/andmekaitsetingimused", locale)
+  const pathname = usePathname()
+  const etPath = getCurrentEtPath(pathname, locale)
   const workTimeOptions = [
     { value: "day", label: t("workTimeDay") },
     { value: "evening", label: t("workTimeEvening") },
@@ -21,11 +25,37 @@ export default function CareerForm() {
     { value: "any", label: t("workTimeAny") },
   ]
 
+  // Source page URL, sent with the submission so admin sees where it came from.
+  // Written directly to the hidden input after mount so SSR HTML matches hydration.
+  const pageUrlRef = useRef<HTMLInputElement>(null)
+
   useEffect(() => {
     if (state.success && formRef.current) {
+      // Fire the GTM conversion event for real submissions only (the server
+      // flags honeypot/spam fake-successes with isSpam). The email is read
+      // before the form resets so GTM's Enhanced Conversions tag can hash it.
+      if (!state.isSpam) {
+        const emailInput = formRef.current.elements.namedItem("email") as HTMLInputElement | null
+        sendGTMEvent({
+          event: "form_submit",
+          form_id: "career",
+          page_path: etPath,
+          locale,
+          user_data: { email: emailInput?.value ?? "" },
+        })
+      }
       formRef.current.reset()
     }
-  }, [state.success])
+    // etPath/locale are stable for the mounted page; re-running on identity
+    // change is harmless (success state gates the push).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.success, state.isSpam])
+
+  useEffect(() => {
+    if (pageUrlRef.current) {
+      pageUrlRef.current.value = window.location.href
+    }
+  }, [])
 
   return (
     <section className="form-section py-[100px] bg-[#eceef1]" id="pakkumine">
@@ -42,6 +72,7 @@ export default function CareerForm() {
               <label htmlFor="career-website_url">Website</label>
               <input type="text" id="career-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
+            <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">

@@ -86,6 +86,19 @@ function validateEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
 
+/**
+ * Source-page URL submitted by the form. Attacker-controlled, so only
+ * http(s) or root-relative values are kept (no javascript:/protocol-relative),
+ * capped at 500 chars. "" when missing or suspicious.
+ */
+function sanitizePageUrl(value: string | FormDataEntryValue | null): string {
+  if (typeof value !== "string") return ""
+  const trimmed = value.trim()
+  if (trimmed.startsWith("/") && !trimmed.startsWith("//")) return trimmed.slice(0, 500)
+  if (/^https?:\/\//i.test(trimmed)) return trimmed.slice(0, 500)
+  return ""
+}
+
 function validatePhone(phone: string): boolean {
   const cleaned = phone.replace(/[\s\-()]+/g, "")
   return /^\+?\d{6,20}$/.test(cleaned)
@@ -184,6 +197,12 @@ interface FormState {
   success?: boolean
   error?: string
   fields?: Record<string, string>
+  /**
+   * Set on fake-success responses (honeypot / spam-flagged). The UI still
+   * shows the normal success message, but the client must not fire the
+   * GTM `form_submit` conversion event for these.
+   */
+  isSpam?: boolean
 }
 
 type ActionLocale = "et" | "en" | "ru"
@@ -381,7 +400,7 @@ export async function submitContactForm(
 
   const honeypot = formData.get("website_url")
   if (honeypot) {
-    return { success: true }
+    return { success: true, isSpam: true }
   }
 
   const name = escapeText(formData.get("name"))
@@ -391,6 +410,7 @@ export async function submitContactForm(
   const message = escapeText(formData.get("message"))
   const consent = formData.get("privacy_consent")
   const attachmentFile = formData.get("attachment")
+  const pageUrl = sanitizePageUrl(formData.get("page_url"))
 
   const errors: string[] = []
 
@@ -444,8 +464,9 @@ export async function submitContactForm(
       message,
       attachmentName: validatedAttachment?.filename ?? "",
       isSpam: true,
+      pageUrl,
     })
-    return { success: true }
+    return { success: true, isSpam: true }
   }
 
   // Cool-down check must run BEFORE saving this submission, otherwise the
@@ -461,6 +482,7 @@ export async function submitContactForm(
     company,
     message,
     attachmentName: validatedAttachment?.filename ?? "",
+    pageUrl,
   })
 
   const subject = `${copy.contactSubject}: ${name}${company ? " / " + company : ""}`
@@ -513,7 +535,7 @@ export async function submitCareerForm(
 
   const honeypot = formData.get("website_url")
   if (honeypot) {
-    return { success: true }
+    return { success: true, isSpam: true }
   }
 
   const name = escapeText(formData.get("name"))
@@ -524,6 +546,7 @@ export async function submitCareerForm(
   const workTime = escapeText(formData.get("work_time"))
   const info = escapeText(formData.get("info"))
   const consent = formData.get("privacy_consent")
+  const pageUrl = sanitizePageUrl(formData.get("page_url"))
 
   const errors: string[] = []
 
@@ -573,8 +596,9 @@ export async function submitCareerForm(
       workTime,
       message: info,
       isSpam: true,
+      pageUrl,
     })
-    return { success: true }
+    return { success: true, isSpam: true }
   }
 
   // Cool-down check must run BEFORE saving this submission, otherwise the
@@ -591,6 +615,7 @@ export async function submitCareerForm(
     workload,
     workTime,
     message: info,
+    pageUrl,
   })
 
   const subject = `${copy.careerSubject}: ${name}`

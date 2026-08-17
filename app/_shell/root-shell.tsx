@@ -1,11 +1,16 @@
 import type { Metadata } from "next"
 import { Geist_Mono, Ubuntu } from "next/font/google"
+import { GoogleTagManager } from "@next/third-parties/google"
 import { I18nProvider } from "@/lib/i18n-provider"
 import etMessages from "@/messages/et.json"
 import enMessages from "@/messages/en.json"
 import ruMessages from "@/messages/ru.json"
 import { renderLdJson } from "@/lib/json-ld-generator"
 import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils"
+import CookieConsentBanner from "@/app/components/analytics/CookieConsentBanner"
+import { CONSENT_DEFAULT_SNIPPET } from "@/app/components/analytics/consent"
+
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID
 
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
@@ -129,6 +134,13 @@ export function RootShell({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+        {gtmId ? (
+          // Consent Mode v2 defaults must run before GTM loads (GTM loads
+          // after hydration, so this parse-time inline script always wins).
+          <script
+            dangerouslySetInnerHTML={{ __html: CONSENT_DEFAULT_SNIPPET }}
+          />
+        ) : null}
         <I18nProvider locale={locale} messages={messages}>
           <a
             href="#main-content"
@@ -143,7 +155,9 @@ export function RootShell({
             }}
           />
           {children}
+          {gtmId ? <CookieConsentBanner /> : null}
         </I18nProvider>
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       </body>
     </html>
   )

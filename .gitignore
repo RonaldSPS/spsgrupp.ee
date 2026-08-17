@@ -45,6 +45,9 @@ env.*.local
 # Admin auth snapshot (contains password hashes — never commit)
 /data/admin-users.json
 
+# Google service-account key for analytics reporting (never commit)
+/.secrets/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

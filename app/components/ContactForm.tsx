@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useRef } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
+import { sendGTMEvent } from "@next/third-parties/google"
 import TwoToneHeading from "./TwoToneHeading"
 import ScrollAnimation from "./ScrollAnimation"
 import { submitContactForm } from "@/lib/actions"
@@ -40,12 +41,37 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
       ? "Aitame leida sobiva lahenduse teie puhastusvajadustele"
       : t("heading")
   const formSubtitle = isRepairPage ? repairCopy.subtitle : t("subtitle")
+  // Source page URL, sent with the submission so admin sees where it came from.
+  // Written directly to the hidden input after mount so SSR HTML matches hydration.
+  const pageUrlRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (state.success && formRef.current) {
+      // Fire the GTM conversion event for real submissions only (the server
+      // flags honeypot/spam fake-successes with isSpam). The email is read
+      // before the form resets so GTM's Enhanced Conversions tag can hash it.
+      if (!state.isSpam) {
+        const emailInput = formRef.current.elements.namedItem("email") as HTMLInputElement | null
+        sendGTMEvent({
+          event: "form_submit",
+          form_id: "contact",
+          page_path: etPath,
+          locale,
+          user_data: { email: emailInput?.value ?? "" },
+        })
+      }
       formRef.current.reset()
     }
-  }, [state.success])
+    // etPath/locale are stable for the mounted page; re-running on identity
+    // change is harmless (success state gates the push).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.success, state.isSpam])
+
+  useEffect(() => {
+    if (pageUrlRef.current) {
+      pageUrlRef.current.value = window.location.href
+    }
+  }, [])
 
   const content = (
       <div className="max-w-[800px] mx-auto px-[5%]">
@@ -61,6 +87,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
               <label htmlFor="contact-website_url">Website</label>
               <input type="text" id="contact-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
+            <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">

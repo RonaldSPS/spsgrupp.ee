@@ -15,10 +15,12 @@
     "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts lib/__tests__/spam-detector.test.ts && tsx scripts/i18n-validate.ts",
     "i18n:parity": "tsx scripts/i18n-parity-check.ts",
     "i18n:validate": "tsx scripts/i18n-validate.ts",
-    "db:restore": "tsx scripts/restore-supabase.ts"
+    "db:restore": "tsx scripts/restore-supabase.ts",
+    "report:analytics": "tsx scripts/analytics-report.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
+    "@next/third-parties": "^16.3.1",
     "@vercel/blob": "^2.5.0",
     "drizzle-orm": "^0.45.2",
     "next": "^16.3.0",
@@ -42,6 +44,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "^16.3.0",
+    "google-auth-library": "^11.0.2",
     "tailwindcss": "^4",
     "tsx": "^4.23.5",
     "typescript": "^5"
