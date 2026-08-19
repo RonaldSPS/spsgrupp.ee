@@ -134,6 +134,9 @@ describe("generateReviewSchema", () => {
     const rating = schema.reviewRating as Record<string, unknown>
     assert.strictEqual(rating.ratingValue, 5)
     assert.strictEqual(rating.bestRating, 5)
+    // Google review snippets require itemReviewed on every Review node
+    const itemReviewed = schema.itemReviewed as Record<string, unknown>
+    assert.strictEqual(itemReviewed["@id"], "https://spsgrupp.ee/#organization")
   })
 })
 
@@ -162,6 +165,7 @@ describe("generateReviewsPageSchema", () => {
     assert.strictEqual(graph.length, 3)
     assert.strictEqual(graph[1]["@type"], "Review")
     assert.strictEqual(graph[2]["@type"], "Review")
+    assert.strictEqual((graph[1].itemReviewed as Record<string, unknown>)["@id"], "https://spsgrupp.ee/#organization")
   })
 })
 

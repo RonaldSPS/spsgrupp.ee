@@ -79,6 +79,9 @@ export function generateReviewSchema({ author, text, ratingValue }: ReviewInput)
       bestRating: 5,
       worstRating: 1,
     },
+    // Required by Google for review snippets: every review rates the
+    // organization (links to the root-shell Organization node by @id).
+    itemReviewed: { "@id": `${canonicalUrl("/")}#organization` },
   }
 }
 
