@@ -126,13 +126,17 @@ function buildCspHeader(): string {
   // Google tag stack (GTM + GA4 + Ads + Consent Mode) hosts must be whitelisted
   // or the browser blocks gtm.js and every collect call — verified 2026-08:
   // plain script-src 'self' silently killed all tracking after launch.
+  // Host lists follow https://developers.google.com/tag-platform/security/guides/csp
+  // (GA4 with advertising features + Google Ads conversion/linker sections).
+  // Note: *.g.doubleclick.net does NOT cover ad.doubleclick.net — both needed.
   return [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://tagassistant.google.com`,
-    `style-src 'self' 'unsafe-inline'`,
-    "img-src 'self' blob: data: https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net https://*.google.com https://www.google.ee https://www.googleadservices.com https://pagead2.googlesyndication.com",
-    "font-src 'self'",
-    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://www.google.ee https://www.googleadservices.com https://pagead2.googlesyndication.com",
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://tagassistant.google.com https://tagmanager.google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net`,
+    `style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com`,
+    "img-src 'self' blob: data: https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net https://ad.doubleclick.net https://google.com https://*.google.com https://www.google.ee https://www.google.fi https://www.google.lv https://www.google.lt https://www.googleadservices.com https://pagead2.googlesyndication.com https://ssl.gstatic.com https://www.gstatic.com",
+    "font-src 'self' https://fonts.gstatic.com",
+    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://ad.doubleclick.net https://google.com https://*.google.com https://www.google.ee https://www.google.fi https://www.google.lv https://www.google.lt https://www.googleadservices.com https://pagead2.googlesyndication.com",
+    "frame-src https://www.googletagmanager.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
