@@ -27,6 +27,11 @@ container. The site only loads the container and pushes events to the
   - renders `<GoogleTagManager gtmId=…>` from `@next/third-parties/google`
     (loads after hydration via next/script)
   - renders `<CookieConsentBanner />`
+- `proxy.ts` `buildCspHeader()` — the site-wide Content-Security-Policy
+  whitelists the Google tag hosts (`googletagmanager.com` in script-src,
+  `google-analytics.com`/`g.doubleclick.net`/… in img-src + connect-src).
+  **Do not remove these** — a plain `script-src 'self'` blocks gtm.js and all
+  collect calls (this silently killed all tracking 17–24.08.2026).
 - `app/components/analytics/consent.ts` — consent storage key
   (`localStorage["sps_consent"]`), `applyConsent()` pushes
   `gtag('consent','update',…)` onto the dataLayer.
@@ -116,12 +121,22 @@ Existing container `GTM-KP5VZH9Q` already contains: Google Tag
 Enhanced Conversions. When creating a *new* container, replicate at least:
 - Google Tag (GA4 measurement ID) — All Pages
 - Google Tag (Ads ID) + Conversion Linker — Initialization, All Pages
-- Custom Event trigger `form_submit` → GA4 Event tag (name e.g. `päring`)
-- Optional: Ads User-provided Data (Enhanced Conversions) tag on the same
-  trigger, reading `user_data.email` from the dataLayer
-- Known leftover: the "tööotsija Trigger" exception on the päring tag was
-  built for the old site — point it at dataLayer variable `form_id = career`
-  if career submissions should not count as leads.
+- Custom Event trigger `form_submit` → GA4 Event tag (name `päring`), with a
+  blocking trigger "tööotsija Trigger" = Custom Event `form_submit` where
+  dataLayer `form_id = career` (job applications don't count as leads; fixed
+  2026-08-24 from the old URL-based `/tule-meile-toole/` exception that only
+  covered ET)
+- Ads User-provided Data (Enhanced Conversions) tag on the same `form_submit`
+  trigger, reading `user_data.email` from the dataLayer via
+  "DLV - Kliendi Email Variable" (must read `user_data.email`, NOT the old
+  `customerEmail`)
+- Removed 2026-08-24 (WordPress leftovers): "User email hash Tag" (jQuery
+  `submit_success` listener — threw `jQuery is not defined` on every page),
+  "chtml listner Tag" (CF7 `wpcf7mailsent` listener), test AjaxComplete
+  tag/trigger, cf7submission + aitäh + tel-copy-5 triggers, and an unused
+  constant pointing at the old GA4 property `G-F68B7T28B6`. Kept:
+  "kopeerimise Tag" (cHTML copy listener) — Email/Tel copy tags depend on its
+  `textCopied` dataLayer event.
 
 ## 5. Reporting (traffic analysis)
 

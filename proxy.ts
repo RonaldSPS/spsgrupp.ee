@@ -123,12 +123,16 @@ async function validateToken(token: string): Promise<boolean> {
 
 function buildCspHeader(): string {
   const isDev = process.env.NODE_ENV === "development"
+  // Google tag stack (GTM + GA4 + Ads + Consent Mode) hosts must be whitelisted
+  // or the browser blocks gtm.js and every collect call — verified 2026-08:
+  // plain script-src 'self' silently killed all tracking after launch.
   return [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+    `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://tagassistant.google.com`,
     `style-src 'self' 'unsafe-inline'`,
-    "img-src 'self' blob: data:",
+    "img-src 'self' blob: data: https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net https://*.google.com https://www.google.ee https://www.googleadservices.com https://pagead2.googlesyndication.com",
     "font-src 'self'",
+    "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://*.google.com https://www.google.ee https://www.googleadservices.com https://pagead2.googlesyndication.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",
