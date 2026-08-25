@@ -40,8 +40,17 @@ container. The site only loads the container and pushes events to the
   hydration only when no stored choice. A stored "granted" is re-applied on
   every load.
 - `app/components/ContactForm.tsx` + `app/components/CareerForm.tsx` — on
-  real (non-spam) success push via `sendGTMEvent`:
-  `{ event: "form_submit", form_id: "contact"|"career", page_path, locale, user_data: { email } }`.
+  real (non-spam) success push TWO events with identical payloads:
+  1. `form_submission_success` via `pushFormSubmissionSuccess()`
+     (`app/components/analytics/form-conversion.ts`) — a hardcoded raw
+     `window.dataLayer.push()` with zero dependencies, fired FIRST. This is
+     the stable conversion signal: **do not rename the event or change its
+     payload** — conversions have been lost several times to technical
+     changes, and GTM conversion triggers should bind to this event.
+  2. `form_submit` via `sendGTMEvent` (`@next/third-parties`) — kept for the
+     existing GA4 "päring" tag + triggers.
+  Payload for both:
+  `{ event, form_id: "contact"|"career", page_path, locale, user_data: { email } }`.
   `lib/actions.ts` returns `isSpam: true` on honeypot/spam fake-successes so
   spam never becomes a conversion. `user_data.email` feeds GTM's Enhanced
   Conversions tag (hashed client-side by GTM).
@@ -126,10 +135,16 @@ Enhanced Conversions. When creating a *new* container, replicate at least:
   dataLayer `form_id = career` (job applications don't count as leads; fixed
   2026-08-24 from the old URL-based `/tule-meile-toole/` exception that only
   covered ET)
-- Ads User-provided Data (Enhanced Conversions) tag on the same `form_submit`
-  trigger, reading `user_data.email` from the dataLayer via
+- Custom Event trigger `form_submission_success` → Google Ads conversion
+  tag, with the equivalent career blocker (Custom Event
+  `form_submission_success` where dataLayer `form_id = career`). The site
+  pushes this event with a hardcoded raw `dataLayer.push()` (see §2) so the
+  Ads conversion survives any refactor of the analytics stack — bind
+  conversion tags to THIS event, not `form_submit`.
+- Ads User-provided Data (Enhanced Conversions) tag on the form events,
+  reading `user_data.email` from the dataLayer via
   "DLV - Kliendi Email Variable" (must read `user_data.email`, NOT the old
-  `customerEmail`)
+  `customerEmail`). Both form events carry `user_data.email`.
 - Removed 2026-08-24 (WordPress leftovers): "User email hash Tag" (jQuery
   `submit_success` listener — threw `jQuery is not defined` on every page),
   "chtml listner Tag" (CF7 `wpcf7mailsent` listener), test AjaxComplete

@@ -9,6 +9,7 @@ import ScrollAnimation from "./ScrollAnimation"
 import { submitContactForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 import { getGclid } from "./analytics/gclid"
+import { pushFormSubmissionSuccess } from "./analytics/form-conversion"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -56,12 +57,17 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
       // before the form resets so GTM's Enhanced Conversions tag can hash it.
       if (!state.isSpam) {
         const emailInput = formRef.current.elements.namedItem("email") as HTMLInputElement | null
+        const email = emailInput?.value ?? ""
+        // Hardcoded raw dataLayer push FIRST — the stable conversion signal
+        // (form_submission_success) must fire even if the sendGTMEvent
+        // wrapper below ever breaks in a refactor/upgrade.
+        pushFormSubmissionSuccess({ form_id: "contact", page_path: etPath, locale, email })
         sendGTMEvent({
           event: "form_submit",
           form_id: "contact",
           page_path: etPath,
           locale,
-          user_data: { email: emailInput?.value ?? "" },
+          user_data: { email },
         })
       }
       formRef.current.reset()
