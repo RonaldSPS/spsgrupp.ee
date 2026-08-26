@@ -3,9 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata-helper";
 export const metadata = generatePageMetadata({
   path: "/koristusteenus",
   locale: "et",
-  title: "Koristusteenus Tallinnas | SPS Grupp",
+  title: "Koristusteenused Tallinnas — kontorid, kaubandus, tootmine | SPS Grupp",
   description:
-    "Regulaarne koristusteenus kontoritele, kaubanduspindadele ja tootmishoonetele Tallinnas. ISO 9001, paindlik graafik. Küsi tasuta pakkumist!",
+    "Koristusfirma äriklientidele: kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001. Tasuta ülevaatus — vastus 1 tööpäevaga!",
   imagePath: "/Koristusteenused-HERO.jpg",
 });
 

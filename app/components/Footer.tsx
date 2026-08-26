@@ -35,12 +35,14 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
   const footerColumns = [
     { items: [
       { label: m("officeCleaning"), href: "/koristusteenus/kontori-koristus/" },
+      { label: m("maintenanceCleaning"), href: "/koristusteenus/hoolduskoristus/" },
       { label: m("commercialCleaning"), href: "/koristusteenus/kaubanduspindade-koristus/" },
       { label: m("industrialCleaning"), href: "/koristusteenus/tootmishoonete-koristus/" },
     ]},
     { items: [
       { label: m("windowCleaning"), href: "/koristusteenus/valikoristus/akende-pesu/" },
       { label: m("carpetCleaning"), href: "/puhastusteenused/vaipade-puhastus/" },
+      { label: m("deepCleaning"), href: "/puhastusteenused/suurpuhastus/" },
       { label: m("floorMaintenance"), href: "/puhastusteenused/porandate-hooldus/" },
       { label: m("constructionWaste"), href: "/ehitusprahi-aravedu/" },
       { label: m("postConstructionCleaning"), href: "/puhastusteenused/ehitusjargne-koristus/" },

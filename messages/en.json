@@ -20,6 +20,8 @@
     "cleaningServices": "Cleaning Services",
     "indoorCleaning": "Indoor Cleaning",
     "officeCleaning": "Office Cleaning",
+    "maintenanceCleaning": "Regular Cleaning",
+    "deepCleaning": "Deep Cleaning",
     "commercialCleaning": "Commercial Space Cleaning",
     "industrialCleaning": "Industrial Facility Cleaning",
     "schoolCleaning": "School Cleaning",
@@ -339,7 +341,9 @@
       "item6Title": "Sanitary Facility Disinfection",
       "item6Desc": "including supply replenishment",
       "item7Title": "Flexible Scheduling",
-      "item7Desc": "daily, 2–5 times per week or at the required frequency"
+      "item7Desc": "daily, 2–5 times per week or at the required frequency",
+      "item8Title": "Regular Cleaning",
+      "item8Desc": "recurring contract cleaning 1–7 times per week"
     },
     "whyUs": {
       "tag": "Why Us",

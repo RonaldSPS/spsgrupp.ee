@@ -15,11 +15,11 @@ import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils";
 
 export const metadata: Metadata = {
   title: "Koristusfirma Tallinnas | SPS Grupp",
-  description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses. ISO 9001 ja ISO 14001. Küsi pakkumist!",
+  description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses, 200+ klienti, ISO 9001/14001. Tasuta ülevaatus — vastus 1 tööpäevaga!",
   metadataBase: new URL(BASE_URL),
   openGraph: {
     title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses.",
+    description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses.",
     url: canonicalUrl("/"),
     type: "website",
     locale: "et_EE",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "Alates 2006. aastast tegutsev koristusfirma Tallinnas. Üle 1 000 000 m² meie hoolduses.",
+    description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses.",
     images: [absoluteUrl("/FrontHeroCar.jpg")],
   },
   alternates: {

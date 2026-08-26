@@ -100,7 +100,7 @@ const etText: OfficeCleaningText = {
     { bold: "Sageli puudutatavate pindade desinfitseerimine", desc: "ukselingid, lülitid" },
   ],
   servicesLinksLabel: "Vaata lisaks:",
-  servicesLinks: ["Akende pesu", "Vaipade puhastus", "Põrandate hooldus", "Desinfitseerimine", "Kontorikoristuse kontrollnimekiri"],
+  servicesLinks: ["Akende pesu", "Vaipade puhastus", "Põrandate hooldus", "Desinfitseerimine", "Kontorikoristuse kontrollnimekiri", "Hoolduskoristus", "Suurpuhastus"],
   whyUsTag: "Miks meie",
   whyUsHeading: "Miks üle 50 kontori usaldab koristuse SPS Grupile?",
   whyUsImage: "/kontorikoristus2.jpg",
@@ -301,6 +301,8 @@ const servicesLinkHrefs = [
   "/puhastusteenused/porandate-hooldus/",
   "/puhastusteenused/koroonaviiruse-jargne-puhastus/",
   "/blog/kontori-koristusteenuse-kontrollnimekiri/",
+  "/koristusteenus/hoolduskoristus/",
+  "/puhastusteenused/suurpuhastus/",
 ];
 
 export default function KontoriKoristus() {

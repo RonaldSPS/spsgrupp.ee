@@ -221,7 +221,7 @@ for (const [namespace, rule] of Object.entries(pageViewRules)) {
 
 /* ---------- 5. Service-detail definition files (lib/pages/definitions) ---------- */
 
-const DEFINITION_COUNT = 26
+const DEFINITION_COUNT = 28
 const definitionEntries = Object.entries(serviceDetailByEtPath)
 if (definitionEntries.length !== DEFINITION_COUNT) {
   error(`definitions index has ${definitionEntries.length} entries, expected ${DEFINITION_COUNT}`)

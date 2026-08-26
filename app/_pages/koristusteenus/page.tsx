@@ -53,15 +53,15 @@ interface CleaningHubText {
 }
 
 const etText: CleaningHubText = {
-  serviceName: "Koristusteenus Tallinnas",
-  serviceDescription: "Regulaarne koristusteenus kontoritele, kaubanduspindadele ja tootmishoonetele Tallinnas. ISO 9001, paindlik graafik.",
+  serviceName: "Koristusteenused Tallinnas",
+  serviceDescription: "Regulaarsed koristusteenused kontoritele, kaubanduspindadele ja tootmishoonetele Tallinnas ja Harjumaal. ISO 9001, paindlik graafik.",
   ariaLabel: "Koristusteenus",
   heroChips: [
     { value: "Üle 1 000 000 m²", label: "meie hoolduses" },
     { value: "ISO 9001 & 14001", label: "sertifitseeritud" },
     { value: "300+ koolitatud", label: "töötajat" },
   ],
-  h1Line1: "Regulaarne koristusteenus äripindadele",
+  h1Line1: "Koristusteenused äripindadele",
   h1Line2: "Tallinnas ja Harjumaal",
   heroDescription: 'Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll. Hind alates <strong class="text-white font-medium">1,20 €/m²</strong>.',
   ctaButton: "Küsi tasuta koristusteenuse pakkumist",
@@ -84,10 +84,11 @@ const etText: CleaningHubText = {
     { bold: "Esindus- ja vastuvõtupindade erihooldus", desc: "" },
     { bold: "Ühiskasutatavate alade hooldus", desc: "koridorid, trepikojad, liftid" },
     { bold: "Sanitaarruumide desinfitseerimine", desc: "tarvikutega varustamine" },
+    { bold: "Hoolduskoristus", desc: "regulaarne lepinguline koristus 1–7 korda nädalas", href: "/koristusteenus/hoolduskoristus" },
     { bold: "Paindlik graafik", desc: "iga päev, 2–5 korda nädalas või soovitud sagedusega" },
   ],
   whyUsTag: "Miks meie",
-  whyUsHeading: "Mis eristab SPS Grupi koristusteenust turul?",
+  whyUsHeading: "Miks valida SPS Grupp oma koristusfirmaks Tallinnas?",
   whyUsImage: "/Koristusteenus2.jpg",
   whyUsImageAlt: "SPS Grupp koristusteenus",
   whyUs: [
@@ -158,7 +159,7 @@ function localizedText(locale: Exclude<Locale, "et">): CleaningHubText {
     problemP2After2: str(problem.paragraph2After2),
     servicesTag: str(services.tag) || etText.servicesTag,
     servicesHeading: str(services.heading) || etText.servicesHeading,
-    services: Array.from({ length: 8 }, (_, index) => ({
+    services: Array.from({ length: 9 }, (_, index) => ({
       bold: str(services[`item${index}Title`]) || etText.services[index].bold,
       desc: str(services[`item${index}Desc`]),
       href: etText.services[index].href,

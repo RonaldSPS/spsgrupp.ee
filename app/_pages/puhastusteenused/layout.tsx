@@ -3,9 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata-helper";
 export const metadata = generatePageMetadata({
   path: "/puhastusteenused",
   locale: "et",
-  title: "Puhastusteenused Tallinnas | SPS Grupp",
+  title: "Puhastusteenused Tallinnas — eritööd äriklientidele | SPS Grupp",
   description:
-    "Professionaalsed puhastusteenused äriklientidele Tallinnas. Põrandate süvapuhastus, vaibad, ehitusjärgne koristus, desinfitseerimine. Küsi pakkumist!",
+    "Põrandate süvapesu, vaipade puhastus, ehitusjärgne koristus, desinfitseerimine ja põrandate hooldus Tallinnas ja Harjumaal. ISO 9001. Tasuta pakkumine — vastus 1 tööpäevaga!",
   imagePath: "/puhastusteenused1.jpg",
 });
 

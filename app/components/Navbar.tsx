@@ -59,6 +59,7 @@ export default function Navbar() {
             href: "/koristusteenus/",
             items: [
               { label: t('megaMenu.officeCleaning'), href: "/koristusteenus/kontori-koristus/" },
+              { label: t('megaMenu.maintenanceCleaning'), href: "/koristusteenus/hoolduskoristus/" },
               { label: t('megaMenu.commercialCleaning'), href: "/koristusteenus/kaubanduspindade-koristus/" },
               { label: t('megaMenu.industrialCleaning'), href: "/koristusteenus/tootmishoonete-koristus/" },
               { label: t('megaMenu.schoolCleaning'), href: "/koolide-koristamine/" },
@@ -86,6 +87,7 @@ export default function Navbar() {
             items: [
               { label: t('megaMenu.windowCleaning'), href: "/koristusteenus/valikoristus/akende-pesu/" },
               { label: t('megaMenu.carpetCleaning'), href: "/puhastusteenused/vaipade-puhastus/" },
+              { label: t('megaMenu.deepCleaning'), href: "/puhastusteenused/suurpuhastus/" },
               { label: t('megaMenu.floorMaintenance'), href: "/puhastusteenused/porandate-hooldus/" },
               { label: t('megaMenu.constructionWaste'), href: "/ehitusprahi-aravedu/" },
               { label: t('megaMenu.postConstructionCleaning'), href: "/puhastusteenused/ehitusjargne-koristus/" },

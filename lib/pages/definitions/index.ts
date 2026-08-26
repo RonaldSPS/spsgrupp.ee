@@ -25,6 +25,8 @@ import { serviceDetail as siseviimistlustood } from './siseviimistlustood'
 import { serviceDetail as torutood } from './torutood'
 import { serviceDetail as ventilatsioonideEhitusJaHooldus } from './ventilatsioonide-ehitus-ja-hooldus'
 import { serviceDetail as ehitusprahiAravedu } from './ehitusprahi-aravedu'
+import { serviceDetail as hoolduskoristus } from './hoolduskoristus'
+import { serviceDetail as suurpuhastus } from './suurpuhastus'
 
 /**
  * Every ServiceDetailTemplate-backed page (26) mapped to its content definition.
@@ -58,4 +60,6 @@ export const serviceDetailByEtPath: Record<string, ServiceDetailDefs> = {
   '/remonditeenused-tallinnas/torutood': torutood,
   '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': ventilatsioonideEhitusJaHooldus,
   '/ehitusprahi-aravedu': ehitusprahiAravedu,
+  '/koristusteenus/hoolduskoristus': hoolduskoristus,
+  '/puhastusteenused/suurpuhastus': suurpuhastus,
 }

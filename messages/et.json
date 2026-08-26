@@ -20,6 +20,8 @@
     "cleaningServices": "Koristusteenused",
     "indoorCleaning": "Sisekoristus",
     "officeCleaning": "Kontori koristus",
+    "maintenanceCleaning": "Hoolduskoristus",
+    "deepCleaning": "Suurpuhastus",
     "commercialCleaning": "Kaubanduspindade koristus",
     "industrialCleaning": "Tootmishoonete koristus",
     "schoolCleaning": "Koolide koristus",

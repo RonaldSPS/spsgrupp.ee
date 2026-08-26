@@ -12,6 +12,7 @@ import { EhitusprahiPageView } from '@/app/_pages/ehitusprahi-aravedu/page'
 import { PuhastusteenusedPageView } from '@/app/_pages/puhastusteenused/page'
 import { RemonditeenusedPageView } from '@/app/_pages/remonditeenused-tallinnas/page'
 import { VaipadePuhastusPageView } from '@/app/_pages/puhastusteenused/vaipade-puhastus/page'
+import { SuurpuhastusPageView } from '@/app/_pages/puhastusteenused/suurpuhastus/page'
 import { EhitusjargneKoristusPageView } from '@/app/_pages/puhastusteenused/ehitusjargne-koristus/page'
 import { EskalaatoriteSuvapuhastusPageView } from '@/app/_pages/puhastusteenused/eskalaatorite-suvapuhastus/page'
 import { DesinfitseeriminePageView } from '@/app/_pages/puhastusteenused/desinfitseerimine/page'
@@ -29,6 +30,7 @@ import { ValikoristusPageView } from '@/app/_pages/koristusteenus/valikoristus/p
 import { KontaktPageView } from '@/app/_pages/kontakt/page'
 import { SpsGruppPageView } from '@/app/_pages/sps-grupp/page'
 import { KontoriKoristusPageView } from '@/app/_pages/koristusteenus/kontori-koristus/page'
+import { HoolduskoristusPageView } from '@/app/_pages/koristusteenus/hoolduskoristus/page'
 import { KaubanduspindadeKoristusPageView } from '@/app/_pages/koristusteenus/kaubanduspindade-koristus/page'
 import { TootmishooneteKoristusPageView } from '@/app/_pages/koristusteenus/tootmishoonete-koristus/page'
 import { KoolideKoristaminePageView } from '@/app/_pages/koristusteenus/koolide-koristamine/page'
@@ -50,6 +52,7 @@ export const localizedPageRegistry: Record<string, LocalizedPageRenderer> = {
   '/puhastusteenused': (locale) => <PuhastusteenusedPageView locale={locale} />,
   '/remonditeenused-tallinnas': (locale) => <RemonditeenusedPageView locale={locale} />,
   '/puhastusteenused/vaipade-puhastus': (locale) => <VaipadePuhastusPageView locale={locale} />,
+  '/puhastusteenused/suurpuhastus': (locale) => <SuurpuhastusPageView locale={locale} />,
   '/puhastusteenused/ehitusjargne-koristus': (locale) => <EhitusjargneKoristusPageView locale={locale} />,
   '/puhastusteenused/eskalaatorite-suvapuhastus': (locale) => <EskalaatoriteSuvapuhastusPageView locale={locale} />,
   '/puhastusteenused/koroonaviiruse-jargne-puhastus': (locale) => <DesinfitseeriminePageView locale={locale} />,
@@ -67,6 +70,7 @@ export const localizedPageRegistry: Record<string, LocalizedPageRenderer> = {
   '/kontakt': (locale) => <KontaktPageView locale={locale} />,
   '/sps-grupp': (locale) => <SpsGruppPageView locale={locale} />,
   '/koristusteenus/kontori-koristus': (locale) => <KontoriKoristusPageView locale={locale} />,
+  '/koristusteenus/hoolduskoristus': (locale) => <HoolduskoristusPageView locale={locale} />,
   '/koristusteenus/kaubanduspindade-koristus': (locale) => <KaubanduspindadeKoristusPageView locale={locale} />,
   '/koristusteenus/tootmishoonete-koristus': (locale) => <TootmishooneteKoristusPageView locale={locale} />,
   '/koolide-koristamine': (locale) => <KoolideKoristaminePageView locale={locale} />,
