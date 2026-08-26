@@ -1,5 +1,6 @@
 "use client"
 
+import Script from "next/script"
 import { useActionState, useEffect, useRef } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
@@ -29,6 +30,13 @@ export default function CareerForm() {
   // Source page URL, sent with the submission so admin sees where it came from.
   // Written directly to the hidden input after mount so SSR HTML matches hydration.
   const pageUrlRef = useRef<HTMLInputElement>(null)
+  // Anti-bot time trap: mount timestamp. Bots that POST instantly are caught
+  // server-side; stays empty without JS and the check is skipped then.
+  const startedAtRef = useRef<HTMLInputElement>(null)
+  // Cloudflare Turnstile (invisible). Rendered only when the public site key
+  // is configured; the widget auto-fills the hidden `cf-turnstile-response`
+  // input inside the form and auto-refreshes the 300 s token.
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
   useEffect(() => {
     if (state.success && formRef.current) {
@@ -61,6 +69,9 @@ export default function CareerForm() {
     if (pageUrlRef.current) {
       pageUrlRef.current.value = window.location.href
     }
+    if (startedAtRef.current) {
+      startedAtRef.current.value = String(Date.now())
+    }
   }, [])
 
   return (
@@ -79,6 +90,13 @@ export default function CareerForm() {
               <input type="text" id="career-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
             <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
+            <input type="hidden" name="form_started_at" ref={startedAtRef} defaultValue="" />
+            {turnstileSiteKey && (
+              <>
+                <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
+                <div className="cf-turnstile" data-sitekey={turnstileSiteKey} data-size="invisible" />
+              </>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">

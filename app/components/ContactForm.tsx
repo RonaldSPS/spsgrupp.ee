@@ -1,5 +1,6 @@
 "use client"
 
+import Script from "next/script"
 import { useActionState, useEffect, useRef } from "react"
 import { useLocale, useTranslations } from "next-intl"
 import { usePathname } from "next/navigation"
@@ -49,6 +50,13 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   // Google Ads click id (gclid), same hidden-input pattern. Filled from the
   // landing URL or the Conversion Linker `_gcl_aw` cookie; "" without consent.
   const gclidRef = useRef<HTMLInputElement>(null)
+  // Anti-bot time trap: mount timestamp. Bots that POST instantly are caught
+  // server-side; stays empty without JS and the check is skipped then.
+  const startedAtRef = useRef<HTMLInputElement>(null)
+  // Cloudflare Turnstile (invisible). Rendered only when the public site key
+  // is configured; the widget auto-fills the hidden `cf-turnstile-response`
+  // input inside the form and auto-refreshes the 300 s token.
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
   useEffect(() => {
     if (state.success && formRef.current) {
@@ -84,6 +92,9 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
     if (gclidRef.current) {
       gclidRef.current.value = getGclid()
     }
+    if (startedAtRef.current) {
+      startedAtRef.current.value = String(Date.now())
+    }
   }, [])
 
   const content = (
@@ -102,6 +113,13 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
             </div>
             <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
             <input type="hidden" name="gclid" ref={gclidRef} defaultValue="" />
+            <input type="hidden" name="form_started_at" ref={startedAtRef} defaultValue="" />
+            {turnstileSiteKey && (
+              <>
+                <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" />
+                <div className="cf-turnstile" data-sitekey={turnstileSiteKey} data-size="invisible" />
+              </>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-3.5">
               <div className="flex flex-col gap-1.25">

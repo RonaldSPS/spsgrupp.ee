@@ -16,6 +16,8 @@ export interface SpamAssessmentInput {
   email: string
   message: string
   form: "contact" | "career"
+  /** Optional; contact form only. Used for generated-company detection. */
+  company?: string
 }
 
 export interface SpamAssessment {
@@ -90,6 +92,48 @@ function countOccurrences(text: string, re: RegExp): number {
   return matches ? matches.length : 0
 }
 
+const VOWELS = new Set("aeiouõäöüyAEIOUÕÄÖÜY")
+const CONSONANT_RUN_RE = /[bcdfghjklmnpqrstvwxz]{6,}/i
+/** Foreign legal suffixes that generated spam companies love ("Vajxcoy LLC"). */
+const COMPANY_SUFFIX_RE = /\b(?:llc|ltd|inc|llp|gmbh|corp|co)\.?$/i
+
+/**
+ * Heuristic for bot-generated gibberish like "omHItThaCbRFPkXmVwfcQMa" or
+ * "YCcRMBKqAdlcYBLf": a single long token with lots of case flips, almost no
+ * vowels, or an Estonian-impossible consonant run. Short tokens are never
+ * flagged — real names/words stay safe.
+ */
+function looksLikeRandomToken(token: string): boolean {
+  if (token.length < 10 || /\d/.test(token)) return false
+  let caseFlips = 0
+  let vowelCount = 0
+  for (let i = 0; i < token.length; i++) {
+    const ch = token[i]
+    if (VOWELS.has(ch)) vowelCount++
+    if (i > 0) {
+      const prevLower = token[i - 1] >= "a" && token[i - 1] <= "z"
+      const curLower = ch >= "a" && ch <= "z"
+      const prevUpper = token[i - 1] >= "A" && token[i - 1] <= "Z"
+      const curUpper = ch >= "A" && ch <= "Z"
+      if ((prevLower && curUpper) || (prevUpper && curLower)) caseFlips++
+    }
+  }
+  return caseFlips >= 3 || vowelCount / token.length <= 0.22 || CONSONANT_RUN_RE.test(token)
+}
+
+/** The whole field is one gibberish token ("MXutidLoKuLPuqHo"). */
+function isSingleRandomToken(value: string): boolean {
+  const trimmed = value.trim()
+  return !/\s/.test(trimmed) && looksLikeRandomToken(trimmed)
+}
+
+/** Every long token in the field is gibberish and at least one exists. */
+function isMostlyRandomTokens(value: string): boolean {
+  const tokens = value.trim().split(/\s+/)
+  const long = tokens.filter((t) => t.length >= 10)
+  return long.length >= 2 && long.every(looksLikeRandomToken)
+}
+
 export function assessSubmission(input: SpamAssessmentInput): SpamAssessment {
   const reasons: string[] = []
   const name = input.name.toLowerCase()
@@ -114,6 +158,22 @@ export function assessSubmission(input: SpamAssessmentInput): SpamAssessment {
 
   if (DISPOSABLE_DOMAINS.has(emailDomain)) {
     reasons.push("disposable e-mail domain")
+  }
+
+  // Bot-generated gibberish (random names/messages with no links or phrases,
+  // e.g. "omHItThaCbRFPkXmVwfcQMa" / "YCcRMBKqAdlcYBLf"). Runs on the ORIGINAL
+  // casing — case flips are the strongest signal and lowercasing erases them.
+  if (isSingleRandomToken(input.name) || isMostlyRandomTokens(input.name)) {
+    reasons.push("name looks randomly generated")
+  }
+  if (isSingleRandomToken(input.message) || isMostlyRandomTokens(input.message)) {
+    reasons.push("message looks randomly generated")
+  }
+  if (input.company) {
+    const core = input.company.trim().replace(COMPANY_SUFFIX_RE, "").trim()
+    if (core && isSingleRandomToken(core)) {
+      reasons.push("company looks randomly generated")
+    }
   }
 
   return { flagged: reasons.length > 0, reasons }

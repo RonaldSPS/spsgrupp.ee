@@ -5,6 +5,7 @@ import { checkRateLimit } from "@/lib/rate-limit"
 import { sendEmail, type EmailAttachment } from "@/lib/email"
 import { saveFormSubmission, hasRecentSubmission } from "@/lib/form-submissions"
 import { assessSubmission } from "@/lib/spam"
+import { isTurnstileEnabled, verifyTurnstileToken } from "@/lib/turnstile"
 import { AUTOREPLY_DEFAULTS } from "@/lib/autoreply-defaults"
 
 const DUPE_WINDOW_MS = 8000
@@ -399,6 +400,35 @@ async function checkFormRateLimit(): Promise<boolean> {
   return allowed
 }
 
+/**
+ * Bots submit instantly; humans need a few seconds to fill the form. The
+ * forms stamp `Date.now()` into the hidden `form_started_at` input on mount
+ * (client-side, so SSG HTML stays stable). Missing/invalid values (no-JS
+ * browsers) simply skip the check — content scoring still applies.
+ */
+const MIN_FORM_FILL_MS = 3000
+
+function isFormFilledTooFast(formData: FormData): boolean {
+  const startedAt = Number(formData.get("form_started_at"))
+  return (
+    Number.isFinite(startedAt) && startedAt > 0 && Date.now() - startedAt < MIN_FORM_FILL_MS
+  )
+}
+
+/**
+ * Cloudflare Turnstile gate. No-op until TURNSTILE_SECRET_KEY is configured;
+ * once configured, a missing/invalid token fails closed with a generic
+ * localized error (not saved, no e-mail — but unlike bots a human with a
+ * blocked script sees feedback and can retry).
+ */
+async function passesTurnstile(formData: FormData): Promise<boolean> {
+  if (!isTurnstileEnabled()) return true
+  const token = formData.get("cf-turnstile-response")
+  const hdrs = await headers()
+  const ip = hdrs.get("x-forwarded-for")?.split(",")[0]?.trim()
+  return verifyTurnstileToken(typeof token === "string" ? token : "", ip)
+}
+
 export async function submitContactForm(
   _prevState: FormState,
   formData: FormData,
@@ -411,6 +441,13 @@ export async function submitContactForm(
   const honeypot = formData.get("website_url")
   if (honeypot) {
     return { success: true, isSpam: true }
+  }
+  if (isFormFilledTooFast(formData)) {
+    // Fake success, nothing saved — same treatment as the honeypot.
+    return { success: true, isSpam: true }
+  }
+  if (!(await passesTurnstile(formData))) {
+    return { error: copy.sendFailed }
   }
 
   const name = escapeText(formData.get("name"))
@@ -460,7 +497,7 @@ export async function submitContactForm(
 
   const locale = await getActionLocale()
 
-  const spam = assessSubmission({ name, email, message, form: "contact" })
+  const spam = assessSubmission({ name, email, message, form: "contact", company })
   if (spam.flagged) {
     // Saved for admin review, but no e-mails are sent. The submitter sees a
     // normal success message so spammers get no feedback.
@@ -550,6 +587,13 @@ export async function submitCareerForm(
   const honeypot = formData.get("website_url")
   if (honeypot) {
     return { success: true, isSpam: true }
+  }
+  if (isFormFilledTooFast(formData)) {
+    // Fake success, nothing saved — same treatment as the honeypot.
+    return { success: true, isSpam: true }
+  }
+  if (!(await passesTurnstile(formData))) {
+    return { error: copy.sendFailed }
   }
 
   const name = escapeText(formData.get("name"))

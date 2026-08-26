@@ -90,4 +90,47 @@ describe("assessSubmission", () => {
     })
     assert.strictEqual(result.flagged, false)
   })
+
+  // Real samples from the Aug 2026 bot wave (random name/message, "LLC").
+  it("flags a random-looking single-token name", () => {
+    const result = assessSubmission({ ...cleanContact, name: "omHItThaCbRFPkXmVwfcQMa" })
+    assert.strictEqual(result.flagged, true)
+    assert.ok(result.reasons.includes("name looks randomly generated"))
+  })
+
+  it("flags a random-looking single-token message", () => {
+    const result = assessSubmission({ ...cleanContact, message: "YCcRMBKqAdlcYBLf" })
+    assert.strictEqual(result.flagged, true)
+    assert.ok(result.reasons.includes("message looks randomly generated"))
+  })
+
+  it("flags a mostly-gibberish multi-token message", () => {
+    const result = assessSubmission({ ...cleanContact, message: "lnTAvUCJLJecleKzPOtIG MXutidLoKuLPuqHo" })
+    assert.strictEqual(result.flagged, true)
+  })
+
+  it("flags a generated-looking company with a legal suffix", () => {
+    const result = assessSubmission({ ...cleanContact, company: "Qzxjvkwwptkf LLC" })
+    assert.strictEqual(result.flagged, true)
+    assert.ok(result.reasons.includes("company looks randomly generated"))
+  })
+
+  it("does not flag a normal company with a legal suffix", () => {
+    const result = assessSubmission({ ...cleanContact, company: "Metsahaldur Ltd" })
+    assert.strictEqual(result.flagged, false)
+  })
+
+  it("does not flag a single-word Estonian name or message", () => {
+    const result = assessSubmission({
+      ...cleanContact,
+      name: "Madis",
+      message: "Pakkumistpalun",
+    })
+    assert.strictEqual(result.flagged, false)
+  })
+
+  it("does not flag an all-caps acronym message", () => {
+    const result = assessSubmission({ ...cleanContact, message: "AS KAUBAMAJA" })
+    assert.strictEqual(result.flagged, false)
+  })
 })
