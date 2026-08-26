@@ -69,6 +69,26 @@ body {
   overflow-x: hidden;
 }
 
+/* Admin table scrollers: force classic, always-visible scrollbars.
+   Default overlay scrollbars hide until the user starts scrolling, which made
+   the päringud table's horizontal scrollbar effectively undiscoverable. */
+.admin-table-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(23, 52, 90, 0.35) rgba(23, 52, 90, 0.08);
+}
+.admin-table-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.admin-table-scroll::-webkit-scrollbar-thumb {
+  background: rgba(23, 52, 90, 0.35);
+  border-radius: 6px;
+}
+.admin-table-scroll::-webkit-scrollbar-track {
+  background: rgba(23, 52, 90, 0.08);
+  border-radius: 6px;
+}
+
 *:focus-visible {
   outline: 2px solid #3abeff;
   outline-offset: 2px;

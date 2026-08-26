@@ -218,6 +218,23 @@ export default function AdminSubmissionsPage() {
 
   const tableWidth = colWidths.reduce((sum, w) => sum + w, 0)
 
+  // Synced always-visible horizontal scrollbar above the table — the native
+  // one sits at the bottom of the table box and is easy to miss on tall tables.
+  const topScrollRef = useRef<HTMLDivElement>(null)
+  const tableScrollRef = useRef<HTMLDivElement>(null)
+  const scrollSyncing = useRef(false)
+
+  const syncScroll = (from: "top" | "table") => () => {
+    if (scrollSyncing.current) return
+    const top = topScrollRef.current
+    const box = tableScrollRef.current
+    if (!top || !box) return
+    scrollSyncing.current = true
+    if (from === "top") box.scrollLeft = top.scrollLeft
+    else top.scrollLeft = box.scrollLeft
+    scrollSyncing.current = false
+  }
+
   const queryString = useCallback(() => {
     const params = new URLSearchParams()
     if (formFilter) params.set("form", formFilter)
@@ -449,17 +466,34 @@ export default function AdminSubmissionsPage() {
               Lähtesta veerulaiused
             </button>
           </div>
-          <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] overflow-x-auto">
+          {/* Synced top scrollbar: the table box's own horizontal scrollbar is at
+              the bottom of a tall box and easy to miss — this one is always in view. */}
+          <div
+            ref={topScrollRef}
+            onScroll={syncScroll("top")}
+            aria-hidden="true"
+            className="admin-table-scroll overflow-x-auto overflow-y-hidden mb-1.5 h-3.5 rounded-lg"
+          >
+            <div style={{ width: tableWidth, height: 1 }} />
+          </div>
+          {/* Tall table: cap the box height so the horizontal scrollbar is always
+              visible without scrolling the page to the bottom of all rows;
+              vertical scrolling happens inside the box with a sticky header. */}
+          <div
+            ref={tableScrollRef}
+            onScroll={syncScroll("table")}
+            className="admin-table-scroll bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] overflow-auto max-h-[75vh]"
+          >
             <table className="table-fixed text-left text-[15px]" style={{ width: tableWidth }}>
               <colgroup>
                 {colWidths.map((w, i) => (
                   <col key={i} style={{ width: w }} />
                 ))}
               </colgroup>
-              <thead>
+              <thead className="sticky top-0 z-10">
                 <tr className="border-b border-[rgba(23,52,90,0.08)] text-[#5a6474]">
                   {TABLE_COLUMNS.map((col, i) => (
-                    <th key={col.label || "valik"} className={`relative px-4 py-3 font-medium ${col.headerClass ?? ""}`}>
+                    <th key={col.label || "valik"} className={`relative bg-white px-4 py-3 font-medium ${col.headerClass ?? ""}`}>
                       {i === 0 ? (
                         <input
                           type="checkbox"
