@@ -30,6 +30,28 @@ const emptyAutoReply: AutoReplyState = {
   bodies: { et: "", en: "", ru: "" },
 }
 
+/** Cryptographically secure random password (CSPRNG), one char per class guaranteed. */
+function generateSecurePassword(length = 16): string {
+  const lower = "abcdefghijkmnpqrstuvwxyz"
+  const upper = "ABCDEFGHJKLMNPQRSTUVWXYZ"
+  const digits = "23456789"
+  const symbols = "!@#$%&*+-=?"
+  const all = lower + upper + digits + symbols
+  const rand = (max: number) => {
+    const buf = new Uint32Array(1)
+    window.crypto.getRandomValues(buf)
+    return buf[0] % max
+  }
+  const chars = [lower, upper, digits, symbols].map((set) => set[rand(set.length)])
+  while (chars.length < length) chars.push(all[rand(all.length)])
+  // Fisher-Yates shuffle so the guaranteed chars aren't always first
+  for (let i = chars.length - 1; i > 0; i--) {
+    const j = rand(i + 1)
+    ;[chars[i], chars[j]] = [chars[j], chars[i]]
+  }
+  return chars.join("")
+}
+
 interface MeResponse {
   user: { id: number; email: string; displayName: string; role: string; isEnvAdmin?: boolean } | null
 }
@@ -89,7 +111,7 @@ export default function SeadedPage() {
   // New user form
   const [newEmail, setNewEmail] = useState("")
   const [newPassword, setNewPassword] = useState("")
-  const [newName, setNewName] = useState("")
+  const [showNewPassword, setShowNewPassword] = useState(false)
   const [newRole, setNewRole] = useState("manager")
 
   // Edit user
@@ -235,15 +257,19 @@ export default function SeadedPage() {
       const res = await fetch("/api/spsadmn/seaded/admins", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: newEmail, password: newPassword, displayName: newName, role: newRole }),
+        body: JSON.stringify({ email: newEmail, password: newPassword, role: newRole }),
       })
       if (res.ok) {
+        const data = await res.json().catch(() => ({}))
         setNewEmail("")
         setNewPassword("")
-        setNewName("")
+        setShowNewPassword(false)
         setNewRole("manager")
         setShowAddUser(false)
         fetchUsers()
+        if (data.emailSent === false) {
+          alert("Kasutaja loodud, kuid teavitusmeili saatmine ebaõnnestus. Anna konto andmed kasutajale ise edasi.")
+        }
       } else {
         const data = await res.json().catch(() => ({ error: "Viga" }))
         alert(data.error || "Kasutaja loomine ebaõnnestus")
@@ -321,7 +347,7 @@ export default function SeadedPage() {
   return (
     <div>
       <h1 className="text-[24px] sm:text-[32px] font-bold text-[#17345a] mb-2">Seaded</h1>
-      <p className="text-[15px] text-[#5a6474] mb-6">Halda süsteemi seadeid ja administraatoreid</p>
+      <p className="text-[15px] text-[#5a6474] mb-6">Halda süsteemi seadeid ja kasutajaid</p>
 
       {isAdmin && (
         <div className="flex gap-1 mb-6 bg-white rounded-xl p-1 border border-[rgba(23,52,90,0.08)] w-fit">
@@ -544,7 +570,7 @@ export default function SeadedPage() {
       {isAdmin && activeTab === "users" && (
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-[20px] font-bold text-[#17345a]">Administraatorid</h2>
+            <h2 className="text-[20px] font-bold text-[#17345a]">Kasutajad</h2>
             <button
               onClick={() => { setShowAddUser(!showAddUser); cancelEdit() }}
               className="bg-[#3abeff] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#2ba8e8] transition-colors flex items-center gap-2"
@@ -558,7 +584,8 @@ export default function SeadedPage() {
 
           {showAddUser && (
             <form onSubmit={addUser} className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-6 mb-4">
-              <h3 className="text-[16px] font-bold text-[#17345a] mb-4">Uus administrautor</h3>
+              <h3 className="text-[16px] font-bold text-[#17345a] mb-1">Uus kasutaja</h3>
+              <p className="text-[15px] text-[#5a6474] mb-4">Uuele kasutajale saadetakse konto andmetega teavitus e-posti teel.</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="flex flex-col gap-1">
                   <label className="text-[15px] font-medium text-[#17345a]">E-mail *</label>
@@ -567,13 +594,47 @@ export default function SeadedPage() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-[15px] font-medium text-[#17345a]">Parool *</label>
-                  <input type="password" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)}
-                    className="px-3 py-2 border border-[rgba(23,52,90,0.12)] rounded-lg text-[15px] text-[#2d3748] outline-none focus:border-[#5ab5da]" />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="text-[15px] font-medium text-[#17345a]">Nimi</label>
-                  <input type="text" value={newName} onChange={(e) => setNewName(e.target.value)}
-                    className="px-3 py-2 border border-[rgba(23,52,90,0.12)] rounded-lg text-[15px] text-[#2d3748] outline-none focus:border-[#5ab5da]" />
+                  <div className="relative">
+                    <input
+                      type={showNewPassword ? "text" : "password"}
+                      required
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      className="w-full px-3 py-2 pr-[70px] border border-[rgba(23,52,90,0.12)] rounded-lg text-[15px] text-[#2d3748] outline-none focus:border-[#5ab5da]"
+                    />
+                    <div className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => { setNewPassword(generateSecurePassword()); setShowNewPassword(true) }}
+                        title="Genereeri turvaline parool"
+                        aria-label="Genereeri turvaline parool"
+                        className="w-8 h-8 flex items-center justify-center rounded-lg text-[#5a6474] hover:bg-[#eef7fc] hover:text-[#17345a] transition-colors"
+                      >
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowNewPassword((v) => !v)}
+                        title={showNewPassword ? "Peida parool" : "Näita parooli"}
+                        aria-label={showNewPassword ? "Peida parool" : "Näita parooli"}
+                        className="w-8 h-8 flex items-center justify-center rounded-lg text-[#5a6474] hover:bg-[#eef7fc] hover:text-[#17345a] transition-colors"
+                      >
+                        {showNewPassword ? (
+                          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24" />
+                            <line x1="1" y1="1" x2="23" y2="23" />
+                          </svg>
+                        ) : (
+                          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                            <circle cx="12" cy="12" r="3" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label className="text-[15px] font-medium text-[#17345a]">Roll</label>
@@ -588,7 +649,7 @@ export default function SeadedPage() {
                 <button type="submit" className="bg-[#17345a] text-white py-2 px-5 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors">
                   Loo kasutaja
                 </button>
-                <button type="button" onClick={() => setShowAddUser(false)}
+                <button type="button" onClick={() => { setShowAddUser(false); setShowNewPassword(false) }}
                   className="py-2 px-5 rounded-xl text-[15px] font-medium text-[#5a6474] hover:bg-gray-100 transition-colors border border-[rgba(23,52,90,0.12)]">
                   Tühista
                 </button>

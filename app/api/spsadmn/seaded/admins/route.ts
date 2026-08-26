@@ -6,6 +6,7 @@ import { db } from "@/lib/db"
 import { adminUsers } from "@/lib/db/schema"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse, getCurrentAdminUser, hashAdminPassword, requireAdminRole } from "@/lib/auth"
 import { syncAdminUsersSnapshotFromDb } from "@/lib/admin-users-snapshot"
+import { sendEmail } from "@/lib/email"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 
@@ -77,6 +78,31 @@ export async function GET(request: Request) {
   }, true)
 }
 
+/** Notify the newly created user about their account. Failures only log — user creation must not fail because of email. */
+async function sendNewUserNotice(email: string, password: string, role: string, origin: string): Promise<boolean> {
+  const result = await sendEmail({
+    to: email,
+    subject: "SPS Grupi halduspaneeli konto on loodud",
+    text: [
+      "Tere!",
+      "",
+      "Sinule on loodud SPS Grupi veebilehe halduspaneeli konto.",
+      "",
+      `E-mail: ${email}`,
+      `Parool: ${password}`,
+      `Roll: ${role === "admin" ? "Admin" : "Manager"}`,
+      "",
+      `Logi sisse: ${origin}/spsadmn/`,
+      "",
+      "Küsimuste korral võta ühendust peaadministraatoriga.",
+    ].join("\n"),
+  })
+  if (!result.success) {
+    console.error("New admin user notice email failed:", result.error)
+  }
+  return result.success
+}
+
 export async function POST(request: Request) {
   return withRateLimit(request, async () => {
     try {
@@ -92,7 +118,7 @@ export async function POST(request: Request) {
       const { email, password, displayName, role } = body as {
         email: string
         password: string
-        displayName: string
+        displayName?: string
         role: string
       }
 
@@ -133,8 +159,10 @@ export async function POST(request: Request) {
         }
         data.users.push(newUser)
         await writeUsersJson(data)
+        const emailSent = await sendNewUserNotice(newUser.email, password, newUser.role, new URL(request.url).origin)
         return NextResponse.json({
           success: true,
+          emailSent,
           user: { id: newUser.id, email: newUser.email, displayName: newUser.displayName, role: newUser.role, active: newUser.active },
         }, {
           headers: { "Cache-Control": "no-store, max-age=0" },
@@ -150,8 +178,11 @@ export async function POST(request: Request) {
       }).returning()
       void syncAdminUsersSnapshotFromDb()
 
+      const emailSent = await sendNewUserNotice(inserted.email, password, inserted.role, new URL(request.url).origin)
+
       return NextResponse.json({
         success: true,
+        emailSent,
         user: {
           id: inserted.id,
           email: inserted.email,

@@ -193,8 +193,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     </>
   )
 
+  // min-w-0 is required: body is a flex container (root-shell), and without it
+  // this flex item won't shrink below the päringud table's intrinsic width —
+  // the page would grow and body overflow-x:hidden would clip the table instead
+  // of letting the table's own overflow-x-auto scrollbar appear.
   return (
-    <div className="min-h-screen bg-[#eceef1]">
+    <div className="min-h-screen min-w-0 bg-[#eceef1]">
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex w-[240px] bg-[#17345a] text-white min-h-screen flex-col shrink-0 fixed left-0 top-0 bottom-0 z-30">
         {sidebarContent}
