@@ -416,10 +416,13 @@ function isFormFilledTooFast(formData: FormData): boolean {
 }
 
 /**
- * Cloudflare Turnstile gate. No-op until TURNSTILE_SECRET_KEY is configured;
- * once configured, a missing/invalid token fails closed with a generic
- * localized error (not saved, no e-mail — but unlike bots a human with a
- * blocked script sees feedback and can retry).
+ * Cloudflare Turnstile gate. No-op until BOTH TURNSTILE_SECRET_KEY and
+ * NEXT_PUBLIC_TURNSTILE_SITE_KEY are configured (a secret without the public
+ * site key can never produce a token — treated as disabled so a Vercel env
+ * misconfiguration can't take down every form); once configured, a
+ * missing/invalid token fails closed with a generic localized error
+ * (not saved, no e-mail — but unlike bots a human with a blocked script
+ * sees feedback and can retry).
  */
 async function passesTurnstile(formData: FormData): Promise<boolean> {
   if (!isTurnstileEnabled()) return true
