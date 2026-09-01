@@ -48,6 +48,9 @@ env.*.local
 # Google service-account key for analytics reporting (never commit)
 /.secrets/
 
+# Scratch dir (GSC pulls, probe dumps, debug logs — local working data)
+/tmp/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

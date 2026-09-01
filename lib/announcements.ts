@@ -116,10 +116,14 @@ export async function getActiveAnnouncements(): Promise<Announcement[]> {
 export async function getAnnouncementBySlug(slug: string): Promise<Announcement | undefined> {
   return withDbOrJson(
     async () => {
-      const rows = await db.select()
-        .from(jobAnnouncements)
-        .where(eq(jobAnnouncements.slug, slug))
-        .limit(1)
+      // withReadTimeout: without it a paused/slow Supabase connection hangs the
+      // job page render indefinitely (observed >15 s during a pause, 2026-09).
+      const rows = await withReadTimeout(
+        db.select()
+          .from(jobAnnouncements)
+          .where(eq(jobAnnouncements.slug, slug))
+          .limit(1)
+      )
       if (rows.length > 0) return rows[0] as unknown as Announcement
       if (await jsonFileExists()) {
         const all = await getAnnouncementsFromJson()
