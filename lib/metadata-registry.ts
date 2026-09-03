@@ -85,7 +85,7 @@ export const pageMetadata: Record<string, { title: string; description: string }
   },
   '/puhastusteenused/porandate-hooldus': {
     title: 'Põrandate hooldus Tallinnas — Põrandakate puhastus | SPS Grupp',
-    description: 'Professionaalne põrandate hooldus: kristalliseerimine, vahatamine, süvapesu.',
+    description: 'Professionaalne põrandate hooldus: vahatamine, süvapesu.',
   },
   '/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine': {
     title: 'Suitsu- ja tulekahjustuste puhastamine Tallinnas | SPS Grupp',

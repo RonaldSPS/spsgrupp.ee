@@ -48,7 +48,6 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
       { label: m("postConstructionCleaning"), href: "/puhastusteenused/ehitusjargne-koristus/" },
       { label: m("fireDamageCleaning"), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/" },
       { label: m("escalatorDeepCleaning"), href: "/puhastusteenused/eskalaatorite-suvapuhastus/" },
-      { label: m("disinfection"), href: "/puhastusteenused/koroonaviiruse-jargne-puhastus/" },
       { label: m("pavingCleaning"), href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/" },
       { label: m("graffitiRemoval"), href: "/koristusteenus/valikoristus/grafiti-eemaldamine/" },
       { label: m("facadeCleaning"), href: "/koristusteenus/valikoristus/fassaadipesu/" },

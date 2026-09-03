@@ -32,11 +32,11 @@ export const et: OutdoorServicePageData = {
   priceTitle: "Kuidas kujuneb akende pesu hind?",
   priceIntro: "Akende pesu hind sõltub pinna suurusest, aknatüübist, juurdepääsu keerukusest ja töö sagedusest.",
   priceCards: [
-    { size: "Kontori aknapesu", area: "Madala kõrgusega", price: "2 €/m²", period: "alates", highlight: true },
-    { size: "Klaasfassaadid", area: "Teleskoopvarrega", price: "3 €/m²", period: "alates" },
-    { size: "Kõrghooned", area: "Ronimisvarustusega", price: "5 €/m²", period: "alates" },
+    { size: "Kontori aknapesu", area: "Madala kõrgusega", price: "1 €/m²", period: "alates", highlight: true },
+    { size: "Klaasfassaadid", area: "Teleskoopvarrega", price: "0,9 €/m²", period: "alates" },
+    { size: "Kõrghooned", area: "Ronimisvarustusega", price: "2 €/m²", period: "alates" },
   ],
-  priceNote: "Regulaarse hoolduse puhul on optimaalne soovitus klaashoonetele 4 korda aastas. Regulaarse hoolduslepingu korral kehtib soodushind.",
+  priceNote: "Soovituslik sagedus 2–4 korda aastas, sõltuvalt objekti tingimustest. Regulaarse hoolduslepingu korral kehtib soodushind.",
   serviceInfoBlock: {
     tag: "Pesuplaan",
     title: "Mida lepime enne aknapesu kokku?",
@@ -87,11 +87,11 @@ export const en: OutdoorServicePageData = {
   priceTitle: "How is the cost of window cleaning determined?",
   priceIntro: "Window cleaning price depends on surface area, window type, access complexity and frequency of cleaning.",
   priceCards: [
-    { size: "Office windows", area: "Low height", price: "2 EUR/m²", period: "from", highlight: true },
-    { size: "Glass facades", area: "With telescopic pole", price: "3 EUR/m²", period: "from" },
-    { size: "High-rise", area: "With access equipment", price: "5 EUR/m²", period: "from" },
+    { size: "Office windows", area: "Low height", price: "1 EUR/m²", period: "from", highlight: true },
+    { size: "Glass facades", area: "With telescopic pole", price: "0.9 EUR/m²", period: "from" },
+    { size: "High-rise", area: "With access equipment", price: "2 EUR/m²", period: "from" },
   ],
-  priceNote: "For regular maintenance, 4 times per year is optimal for glass buildings. A regular maintenance contract qualifies for a discounted rate.",
+  priceNote: "Recommended frequency 2–4 times per year, depending on the site's conditions. A regular maintenance contract qualifies for a discounted rate.",
   serviceInfoBlock: {
     tag: "Cleaning plan",
     title: "What do we agree on before window cleaning?",
@@ -142,11 +142,11 @@ export const ru: OutdoorServicePageData = {
   priceTitle: "Как определяется стоимость мойки окон?",
   priceIntro: "Цена зависит от площади поверхности, типа окон, сложности доступа и частоты работ.",
   priceCards: [
-    { size: "Офисные окна", area: "Низкая высота", price: "2 €/м²", period: "от", highlight: true },
-    { size: "Стеклянные фасады", area: "Телескопическая штанга", price: "3 €/м²", period: "от" },
-    { size: "Высотные здания", area: "Альпинистское снаряжение", price: "5 €/м²", period: "от" },
+    { size: "Офисные окна", area: "Низкая высота", price: "1 €/м²", period: "от", highlight: true },
+    { size: "Стеклянные фасады", area: "Телескопическая штанга", price: "0,9 €/м²", period: "от" },
+    { size: "Высотные здания", area: "Альпинистское снаряжение", price: "2 €/м²", period: "от" },
   ],
-  priceNote: "При регулярном обслуживании для стеклянных зданий оптимально 4 раза в год. При договоре обслуживания действует сниженная цена.",
+  priceNote: "Рекомендуемая частота 2–4 раза в год, в зависимости от условий объекта. При договоре обслуживания действует сниженная цена.",
   serviceInfoBlock: {
     tag: "План мойки",
     title: "О чём мы договариваемся перед мойкой окон?",

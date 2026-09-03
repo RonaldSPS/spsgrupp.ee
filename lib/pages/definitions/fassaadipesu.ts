@@ -32,9 +32,9 @@ export const et: OutdoorServicePageData = {
   priceTitle: "Kuidas kujuneb fassaadipesu hind?",
   priceIntro: "Hind sõltub pinna suurusest, fassaaditüübist, määrdumisastmest ja ligipääsu keerukusest.",
   priceCards: [
-    { size: "Krohvfassaadi pesu", area: "Keskmise survega", price: "3 €/m²", period: "alates", highlight: true },
-    { size: "Klinkertellise pesu", area: "Spetsiaalsed vahendid", price: "3,5 €/m²", period: "alates" },
-    { size: "Klaasfassaadi pesu", area: "Tulemuse kontrolliga", price: "4 €/m²", period: "alates" },
+    { size: "Krohvfassaadi pesu", area: "Keskmise survega", price: "2 €/m²", period: "alates", highlight: true },
+    { size: "Kivifassaadi pesu", area: "Spetsiaalsed vahendid", price: "2 €/m²", period: "alates" },
+    { size: "Klaasfassaadi pesu", area: "Tulemuse kontrolliga", price: "0,9 €/m²", period: "alates" },
   ],
   priceNote: "Regulaarne ülevaatus aitab pesu õigel ajal planeerida ja säilitada pinna seisukorda. Kõrghoonete pesu (ronimisvarustusega): lisatasu.",
   serviceInfoBlock: {
@@ -87,9 +87,9 @@ export const en: OutdoorServicePageData = {
   priceTitle: "How is the cost of facade cleaning determined?",
   priceIntro: "The price depends on surface area, facade type, level of soiling and access complexity.",
   priceCards: [
-    { size: "Render facade", area: "Medium pressure", price: "3 EUR/m²", period: "from", highlight: true },
-    { size: "Clinker brick", area: "Specialist products", price: "3.5 EUR/m²", period: "from" },
-    { size: "Glass facade", area: "With result check", price: "4 EUR/m²", period: "from" },
+    { size: "Render facade", area: "Medium pressure", price: "2 EUR/m²", period: "from", highlight: true },
+    { size: "Stone facade", area: "Specialist products", price: "2 EUR/m²", period: "from" },
+    { size: "Glass facade", area: "With result check", price: "0.9 EUR/m²", period: "from" },
   ],
   priceNote: "Regular inspection helps plan cleaning at the right time and maintain surface condition. High-rise cleaning (with rope access): surcharge applies.",
   serviceInfoBlock: {
@@ -142,9 +142,9 @@ export const ru: OutdoorServicePageData = {
   priceTitle: "Как определяется стоимость мойки фасадов?",
   priceIntro: "Цена зависит от площади поверхности, типа фасада, степени загрязнения и сложности доступа.",
   priceCards: [
-    { size: "Штукатурный фасад", area: "Среднее давление", price: "3 €/м²", period: "от", highlight: true },
-    { size: "Клинкерный кирпич", area: "Специальные средства", price: "3,5 €/м²", period: "от" },
-    { size: "Стеклянный фасад", area: "С контролем результата", price: "4 €/м²", period: "от" },
+    { size: "Штукатурный фасад", area: "Среднее давление", price: "2 €/м²", period: "от", highlight: true },
+    { size: "Каменный фасад", area: "Специальные средства", price: "2 €/м²", period: "от" },
+    { size: "Стеклянный фасад", area: "С контролем результата", price: "0,9 €/м²", period: "от" },
   ],
   priceNote: "Регулярный осмотр помогает планировать мойку вовремя и сохранять состояние поверхности. Мойка высотных зданий (альпинистским снаряжением): доплата.",
   serviceInfoBlock: {

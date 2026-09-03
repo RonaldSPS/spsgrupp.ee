@@ -32,9 +32,9 @@ export const et: OutdoorServicePageData = {
   priceTitle: "Kuidas kujuneb suurpuhastuse hind?",
   priceIntro: "Suurpuhastuse hind sõltub pindalast, määrdumisastmest, tööde sisust ja ligipääsust. Täpne pakkumine pärast objekti ülevaatust või fotode põhjal.",
   priceCards: [
-    { size: "Kontor suurpuhastus", area: "bürood ja äripinnad", price: "Pakkumine", period: "objekti järgi", highlight: true },
-    { size: "Tootmis- ja laopinnad", area: "suured pinnad, masinpesu", price: "Pakkumine", period: "objekti järgi" },
-    { size: "Kortermajade ühisalad", area: "trepikojad, koridorid", price: "Pakkumine", period: "objekti järgi" },
+    { size: "Kontori suurpuhastus", area: "bürood ja äripinnad", price: "1,5 €/m²", period: "alates", highlight: true },
+    { size: "Tootmis- ja laopindade suurpuhastus", area: "", price: "1 €/m²", period: "alates" },
+    { size: "Kaubanduspinnad", area: "", price: "1 €/m²", period: "alates" },
   ],
   priceNote: "Suurpuhastus on soodsam koos regulaarse hoolduskoristuse lepinguga — küsi kombineeritud pakkumist.",
   serviceInfoBlock: {
@@ -87,9 +87,9 @@ export const en: OutdoorServicePageData = {
   priceTitle: "How is the price of deep cleaning determined?",
   priceIntro: "The price depends on the area, level of soiling, scope of work and access. An exact quote follows a site assessment or photos.",
   priceCards: [
-    { size: "Office deep cleaning", area: "offices and business premises", price: "Quote", period: "per site", highlight: true },
-    { size: "Production and warehouse", area: "large areas, machine scrubbing", price: "Quote", period: "per site" },
-    { size: "Apartment building common areas", area: "stairwells, corridors", price: "Quote", period: "per site" },
+    { size: "Office deep cleaning", area: "offices and business premises", price: "1.5 EUR/m²", period: "from", highlight: true },
+    { size: "Deep cleaning of production and warehouse areas", area: "", price: "1 EUR/m²", period: "from" },
+    { size: "Retail premises", area: "", price: "1 EUR/m²", period: "from" },
   ],
   priceNote: "Deep cleaning is more affordable together with a regular cleaning contract — ask for a combined quote.",
   serviceInfoBlock: {
@@ -142,9 +142,9 @@ export const ru: OutdoorServicePageData = {
   priceTitle: "Как формируется цена генеральной уборки?",
   priceIntro: "Цена зависит от площади, степени загрязнения, объёма работ и доступа. Точное предложение — после оценки объекта или по фотографиям.",
   priceCards: [
-    { size: "Генеральная уборка офиса", area: "офисы и коммерческие помещения", price: "Предложение", period: "по объекту", highlight: true },
-    { size: "Производственные и складские", area: "большие площади, машинная мойка", price: "Предложение", period: "по объекту" },
-    { size: "Общие зоны жилых домов", area: "лестничные клетки, коридоры", price: "Предложение", period: "по объекту" },
+    { size: "Генеральная уборка офиса", area: "офисы и коммерческие помещения", price: "1,5 €/м²", period: "от", highlight: true },
+    { size: "Генеральная уборка производственных и складских помещений", area: "", price: "1 €/м²", period: "от" },
+    { size: "Торговые площади", area: "", price: "1 €/м²", period: "от" },
   ],
   priceNote: "Генеральная уборка выгоднее вместе с договором регулярной уборки — запросите комбинированное предложение.",
   serviceInfoBlock: {
