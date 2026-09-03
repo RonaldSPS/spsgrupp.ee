@@ -22,8 +22,10 @@ container. The site only loads the container and pushes events to the
 
 - `app/_shell/root-shell.tsx` — reads `NEXT_PUBLIC_GTM_ID`; when set:
   - renders the Consent Mode v2 defaults inline script (`CONSENT_DEFAULT_SNIPPET`)
-    *before* GTM — all storage denied except `security_storage`,
-    `wait_for_update: 500`, `ads_data_redaction: true`
+    *before* GTM — only the Ads signals (`ad_storage`/`ad_user_data`/
+    `ad_personalization`) are denied until consent; `analytics_storage` and
+    functionality/personalization are granted by default (minimal-restriction
+    policy, see §6), `wait_for_update: 500`, `ads_data_redaction: true`
   - renders `<GoogleTagManager gtmId=…>` from `@next/third-parties/google`
     (loads after hydration via next/script)
   - renders `<CookieConsentBanner />`
@@ -34,11 +36,17 @@ container. The site only loads the container and pushes events to the
   collect calls (this silently killed all tracking 17–24.08.2026).
 - `app/components/analytics/consent.ts` — consent storage key
   (`localStorage["sps_consent"]`), `applyConsent()` pushes
-  `gtag('consent','update',…)` onto the dataLayer.
+  `gtag('consent','update',…)` onto the dataLayer, `pushConsentEvent()`
+  pushes the consent-funnel events.
 - `app/components/analytics/CookieConsentBanner.tsx` — ET/EN/RU banner
   (messages namespace `cookieConsent`). Hidden in SSR HTML; appears after
-  hydration only when no stored choice. A stored "granted" is re-applied on
-  every load.
+  hydration only when no stored choice. A stored choice is re-applied on
+  every load. Pushes `consent_banner_shown` once per display and
+  `consent_accept` / `consent_decline` on click (raw dataLayer pushes, with
+  `locale`) so the accept/decline rate is measurable in GA4. GTM wiring:
+  one Custom Event trigger with "Use regex matching" on the event name
+  `^consent_(banner_shown|accept|decline)$` → one GA4 Event tag whose Event
+  Name is the built-in `{{Event}}` variable. Do not rename the events.
 - `app/components/ContactForm.tsx` + `app/components/CareerForm.tsx` — on
   real (non-spam) success push TWO events with identical payloads:
   1. `form_submission_success` via `pushFormSubmissionSuccess()`
@@ -180,10 +188,19 @@ auth via `google-auth-library` (scopes `analytics.readonly` +
 
 ## 6. Consent & privacy notes
 
-- Consent Mode v2 defaults: everything denied except `security_storage`.
-  Banner accept → all storages granted; decline → stays denied. Choice in
+- Minimal-restriction policy (owner decision 03.09.2026): only the signals
+  Google's EU User Consent Policy requires consent for are gated —
+  `ad_storage`, `ad_user_data`, `ad_personalization` are denied by default
+  for everyone and granted only on banner accept. Granting those by default
+  would breach Google's terms for EEA traffic — do not do it.
+  `analytics_storage`, `functionality_storage` and `personalization_storage`
+  are GRANTED by default (and stay granted even on decline), so GA4 audience
+  measurement is not affected by the banner. This is "advanced" consent
+  mode: denied ads consent still sends cookieless pings, which power Ads
+  conversion modeling — the most measurement Google allows without consent.
+  Banner accept → ads signals granted; decline → ads stay denied. Choice in
   `localStorage["sps_consent"]` (`granted`/`denied`).
-- With denied consent, GA4/Ads still receive cookieless pings (modeling),
-  `_gcl_aw` is not written, and the gclid form field stays empty — expected.
+- With denied ads consent, `_gcl_aw` is not written and the gclid form field
+  stays empty — expected.
 - The banner markup never appears in SSR HTML (hydration-safe via
   `useSyncExternalStore`), so SSG byte output is unaffected by it.
