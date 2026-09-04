@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server"
 const COOKIE_NAME = "sps_admin_token"
 const TOKEN_PREFIX = "sps_"
 // Legacy non-ASCII (RU) redirects. next.config.ts redirect sources can NOT
-// match Cyrillic paths — the config matcher runs against the percent-encoded
+// match Cyrillic paths - the config matcher runs against the percent-encoded
 // pathname, so those entries never fired (GSC 2026-09: every legacy RU URL
 // was a live 404). The proxy decodes the pathname, so matching works here.
 // Keys: decoded pathname without trailing slash. Values: canonical target.
@@ -26,7 +26,7 @@ const LEGACY_RU_REDIRECTS: Record<string, string> = {
   "/ru/услуги-по-ремонту-в-таллинне/pipeworks": "/ru/услуги-по-ремонту-в-таллинне/сантехнические-работы/",
   "/ru/услуги-по-ремонту-в-таллинне/строительство-и-обслуживание-вентил": "/ru/услуги-по-ремонту-в-таллинне/монтаж-и-обслуживание-вентиляции/",
   "/ru/профессиональная-внешняя-отделка-в-т": "/ru/уборка-и-обслуживание-территорий/",
-  // NB: the old WP slug mixes scripts — leading "m" and the "e" in "мытьe" are
+  // NB: the old WP slug mixes scripts - leading "m" and the "e" in "мытьe" are
   // LATIN (U+006D/U+0065), the rest Cyrillic. Written with escapes to stay exact.
   "/ru/профессиональная-внешняя-отделка-в-т/mытьe-окон": "/ru/уборка-и-обслуживание-территорий/мойка-окон/",
   "/ru/профессиональная-внешняя-отделка-в-т/профессиональное-мытье-окон-в-таллин": "/ru/уборка-и-обслуживание-территорий/мойка-окон/",
@@ -189,11 +189,11 @@ async function validateToken(token: string): Promise<boolean> {
 function buildCspHeader(): string {
   const isDev = process.env.NODE_ENV === "development"
   // Google tag stack (GTM + GA4 + Ads + Consent Mode) hosts must be whitelisted
-  // or the browser blocks gtm.js and every collect call — verified 2026-08:
+  // or the browser blocks gtm.js and every collect call - verified 2026-08:
   // plain script-src 'self' silently killed all tracking after launch.
   // Host lists follow https://developers.google.com/tag-platform/security/guides/csp
   // (GA4 with advertising features + Google Ads conversion/linker sections).
-  // Note: *.g.doubleclick.net does NOT cover ad.doubleclick.net — both needed.
+  // Note: *.g.doubleclick.net does NOT cover ad.doubleclick.net - both needed.
   return [
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://tagassistant.google.com https://tagmanager.google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://challenges.cloudflare.com`,

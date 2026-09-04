@@ -1,7 +1,7 @@
 /**
  * Seeds the auto-reply ("Automaatvastused") default texts into system_settings
  * so they are visible and editable in /spsadmn/seaded/. Safe to re-run:
- * onConflictDoNothing — existing (admin-edited) values are never overwritten.
+ * onConflictDoNothing - existing (admin-edited) values are never overwritten.
  * Requires DATABASE_URL.
  *   npx tsx scripts/seed-autoreply-settings.ts
  */
@@ -26,7 +26,7 @@ const LOCALES: AutoReplyLocale[] = ["et", "en", "ru"]
 
 async function main() {
   if (!process.env.DATABASE_URL) {
-    console.error("DATABASE_URL is not set — cannot seed settings")
+    console.error("DATABASE_URL is not set - cannot seed settings")
     process.exit(1)
   }
 

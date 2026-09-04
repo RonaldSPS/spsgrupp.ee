@@ -86,7 +86,7 @@ const etPaths = [
   '/andmekaitsetingimused',
 ]
 
-// Slug map is derived from lib/pages/registry via lib/slug-map — single
+// Slug map is derived from lib/pages/registry via lib/slug-map - single
 // source of truth. Do not hardcode localized paths in this script.
 import { localizedPaths } from '../lib/slug-map'
 
@@ -129,7 +129,7 @@ function extractTitle(html: string): string | null {
 }
 
 function extractH1(html: string): string | null {
-  // H1s may contain nested markup (<br>, <span>) — match across tags and
+  // H1s may contain nested markup (<br>, <span>) - match across tags and
   // strip inner elements to recover the visible text.
   const m = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)
   if (!m) return null
@@ -222,7 +222,7 @@ function extractPricingTexts(html: string): string[] {
 
 function extractHasEtText(html: string, locale: Locale): boolean {
   if (locale === 'et') return false
-  // Check visible text only — strip script/style contents (the serialized
+  // Check visible text only - strip script/style contents (the serialized
   // RSC payload contains JSON field names like "breadcrumbAvaleht").
   const visible = html
     .replace(/<script[\s\S]*?<\/script>/g, ' ')
@@ -445,7 +445,7 @@ async function main() {
   console.log(sectionMismatches.length === 0 ? 'All pages have matching section order!' : `${sectionMismatches.length} pages have section order mismatches`)
 
   if (!args.strict) {
-    console.log('(non-blocking mode — exiting 0)')
+    console.log('(non-blocking mode - exiting 0)')
   }
 }
 

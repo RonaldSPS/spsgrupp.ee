@@ -42,7 +42,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: current, slug } = await params
   // Dotted paths (foo.xml, *.php) skip the ET rewrite in proxy.ts and land here
-  // with a bogus [locale] segment — they must 404, not render the homepage.
+  // with a bogus [locale] segment - they must 404, not render the homepage.
   if (current !== 'et' && current !== 'en' && current !== 'ru') notFound()
   const path = resolvePath(slug)
 

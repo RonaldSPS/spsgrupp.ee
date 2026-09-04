@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 // ASCII-only legacy redirects live here. Non-ASCII (Cyrillic) legacy redirects
-// live in proxy.ts (LEGACY_RU_REDIRECTS) — next.config redirect matching runs
+// live in proxy.ts (LEGACY_RU_REDIRECTS) - next.config redirect matching runs
 // against the percent-encoded pathname, so Cyrillic sources never match here.
 const localizedLegacyRedirects = [
   ["/en/cleaning-services-in-tallinn/cleaning-up-retail-spaces", "/en/cleaning-services-in-tallinn/retail-cleaning/"],
@@ -215,7 +215,7 @@ const nextConfig: NextConfig = {
       { source: "/herokontakt", destination: "/kontakt/", permanent: true },
       { source: "/tanan", destination: "/kontakt/", permanent: true },
       // Old duplicate about-page + removed /sps-grupp subpages
-      // (NB: /sps-grupp/arvamused is a live page — redirect only dead children)
+      // (NB: /sps-grupp/arvamused is a live page - redirect only dead children)
       { source: "/sps-grupp-2", destination: "/sps-grupp/", permanent: true },
       { source: "/sps-grupp/ettevotte-juhtimine", destination: "/sps-grupp/", permanent: true },
       { source: "/sps-grupp/iso-sertifikaadid", destination: "/sps-grupp/", permanent: true },

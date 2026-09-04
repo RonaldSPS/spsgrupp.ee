@@ -205,7 +205,7 @@ for (const [namespace, rule] of Object.entries(pageViewRules)) {
       if (!caseStudy?.text) error(`${locale}/${namespace}: caseStudy.text missing`)
     }
     if (rule.heroBreadcrumbs) {
-      // PageViews read hero.breadcrumb* with an ET fallback — a missing key
+      // PageViews read hero.breadcrumb* with an ET fallback - a missing key
       // leaks Estonian breadcrumb text onto EN/RU pages (parity ET-text flag).
       const hero = content.hero as JsonObject | undefined
       for (const field of ['breadcrumbHome', 'breadcrumbService', 'breadcrumbCurrent']) {

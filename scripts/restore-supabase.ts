@@ -49,7 +49,7 @@ async function main() {
   console.log(`Projekti staatus: ${status}`)
 
   if (!status.startsWith("ACTIVE")) {
-    console.log("Projekt ei ole aktiivne — käivitan taastamise (restore)...")
+    console.log("Projekt ei ole aktiivne - käivitan taastamise (restore)...")
     await api("POST", `/projects/${REF}/restore`)
 
     const deadline = Date.now() + POLL_TIMEOUT_MS
@@ -60,7 +60,7 @@ async function main() {
       if (status.startsWith("ACTIVE")) break
     }
     if (!status.startsWith("ACTIVE")) {
-      console.error("Projekt ei taastunud 5 minuti jooksul — kontrolli Supabase dashboardi.")
+      console.error("Projekt ei taastunud 5 minuti jooksul - kontrolli Supabase dashboardi.")
       process.exit(1)
     }
   }

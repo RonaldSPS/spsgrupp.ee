@@ -27,7 +27,7 @@ describe("assessSubmission", () => {
   it("tolerates a single link in the message", () => {
     const result = assessSubmission({
       ...cleanContact,
-      message: "Meie ettevõtte leht: https://example.ee — palun hinnapakkumist.",
+      message: "Meie ettevõtte leht: https://example.ee - palun hinnapakkumist.",
     })
     assert.strictEqual(result.flagged, false)
   })

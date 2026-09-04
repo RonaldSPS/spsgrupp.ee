@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Sanitaarremont Tallinnas | SPS Grupp",
   description:
-    "Sanitaarruumide remont ja ümberehitus ärihoonetes Tallinnas — WC-d, dušid, plaatimine, toru- ja elektritööd. Küsi pakkumist!",
+    "Sanitaarruumide remont ja ümberehitus ärihoonetes Tallinnas - WC-d, dušid, plaatimine, toru- ja elektritööd. Küsi pakkumist!",
   imagePath: "/sanitaarremont-1.jpg",
 });
 

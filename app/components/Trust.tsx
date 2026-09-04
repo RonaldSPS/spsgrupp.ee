@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -112,7 +112,7 @@ export default function Trust({ animDelay }: { animDelay?: number }) {
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/regulaarnekoristusteenus.jpg"
-                alt={`${t("regularTitle")} — SPS Grupp`}
+                alt={`${t("regularTitle")} - SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -132,7 +132,7 @@ export default function Trust({ animDelay }: { animDelay?: number }) {
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/puhastusteenused2.jpg"
-                alt={`${t("specialTitle")} — SPS Grupp`}
+                alt={`${t("specialTitle")} - SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -152,7 +152,7 @@ export default function Trust({ animDelay }: { animDelay?: number }) {
             <div className="w-full h-[180px] relative overflow-hidden rounded-xl mb-6">
               <Image
                 src="/valikoristus.jpg"
-                alt={`${t("outdoorTitle")} — SPS Grupp`}
+                alt={`${t("outdoorTitle")} - SPS Grupp`}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"

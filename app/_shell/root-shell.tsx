@@ -21,7 +21,7 @@ const ubuntu = Ubuntu({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-  // Used only for below-the-fold price numbers — skip the head preload.
+  // Used only for below-the-fold price numbers - skip the head preload.
   preload: false,
 })
 
@@ -79,7 +79,7 @@ export type SiteLocale = keyof typeof messagesByLocale
 export const rootMetadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: "SPS Grupp",
-  description: "SPS Grupp — Hästi juhitud ettevõte",
+  description: "SPS Grupp - Hästi juhitud ettevõte",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },

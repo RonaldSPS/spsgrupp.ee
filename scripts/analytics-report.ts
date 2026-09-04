@@ -2,7 +2,7 @@
  * Analytics digest: GA4 traffic + Google Ads cost data + Search Console.
  *
  * Pulls read-only reports through the Google REST APIs using a service
- * account (no gRPC deps — plain fetch):
+ * account (no gRPC deps - plain fetch):
  *   - GA4 Data API   https://analyticsdata.googleapis.com/v1beta
  *   - Search Console https://www.googleapis.com/webmasters/v3
  *
@@ -201,7 +201,7 @@ async function main() {
   const prevVals = prev ?? []
 
   out.push(`# SPS Grupp analytics digest`, ``, `**Period:** ${rangeLabel} (${DAYS} days, vs previous ${DAYS})`, ``)
-  out.push(`## GA4 — overview`)
+  out.push(`## GA4 - overview`)
   out.push(`| Metric | Current | Previous |`)
   out.push(`|---|---|---|`)
   const labels = ["Sessions", "Users", "New users", "Engagement rate", "Key events"]
@@ -221,7 +221,7 @@ async function main() {
     orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
     limit: 10,
   })
-  out.push(``, `## GA4 — sessions by channel`)
+  out.push(``, `## GA4 - sessions by channel`)
   out.push(`| Channel | Sessions | Key events |`)
   out.push(`|---|---|---|`)
   for (const row of channels.rows ?? []) {
@@ -238,7 +238,7 @@ async function main() {
     orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
     limit: 15,
   })
-  out.push(``, `## GA4 — top pages`)
+  out.push(``, `## GA4 - top pages`)
   out.push(`| Page | Sessions |`)
   out.push(`|---|---|`)
   for (const row of pages.rows ?? []) {
@@ -283,7 +283,7 @@ async function main() {
     dimensions: [],
   })
   const t = gscTotals.rows?.[0]
-  out.push(``, `## Search Console — totals`)
+  out.push(``, `## Search Console - totals`)
   if (t) {
     out.push(
       `Clicks **${Math.round(t.clicks)}** · Impressions **${Math.round(t.impressions)}** · CTR **${(t.ctr * 100).toFixed(2)}%** · Avg position **${t.position.toFixed(1)}**`,
@@ -299,7 +299,7 @@ async function main() {
     dimensions: ["query"],
     rowLimit: 20,
   })
-  out.push(``, `## GSC — top queries`)
+  out.push(``, `## GSC - top queries`)
   out.push(`| Query | Clicks | Impr. | CTR | Pos |`)
   out.push(`|---|---|---|---|---|`)
   for (const row of (gscQueries.rows ?? []).slice(0, 20)) {
@@ -314,7 +314,7 @@ async function main() {
     dimensions: ["page"],
     rowLimit: 15,
   })
-  out.push(``, `## GSC — top pages`)
+  out.push(``, `## GSC - top pages`)
   out.push(`| Page | Clicks | Impr. | CTR | Pos |`)
   out.push(`|---|---|---|---|---|`)
   for (const row of (gscPages.rows ?? []).slice(0, 15)) {

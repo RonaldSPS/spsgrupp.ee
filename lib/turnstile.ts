@@ -6,7 +6,7 @@
  *   verification) and NEXT_PUBLIC_TURNSTILE_SITE_KEY (renders the widget in
  *   the client bundle). A secret without the public site key means no token
  *   can ever be produced, so enforcing then would fail closed on EVERY real
- *   submission — that misconfiguration must behave as "disabled", not as a
+ *   submission - that misconfiguration must behave as "disabled", not as a
  *   site-wide form outage.
  * - When enabled, a missing/invalid token FAILS CLOSED: the submitter gets a
  *   generic "send failed, try again" error (localized copy), the submission

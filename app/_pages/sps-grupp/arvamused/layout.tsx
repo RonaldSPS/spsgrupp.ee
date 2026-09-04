@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Arvamused ja tagasiside | SPS Grupp",
   description:
-    "Loe meie klientide tagasisidet ja arvamusi. SPS Grupp on usaldusväärne koristuspartner — kontori-, kooli- ja puhastusteenused Tallinnas ja Harjumaal.",
+    "Loe meie klientide tagasisidet ja arvamusi. SPS Grupp on usaldusväärne koristuspartner - kontori-, kooli- ja puhastusteenused Tallinnas ja Harjumaal.",
   imagePath: "/images/arvamused.jpg",
 });
 

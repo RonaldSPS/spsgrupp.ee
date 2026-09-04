@@ -186,10 +186,10 @@ function HooajaKaart({ hooaeg, isLast }: { hooaeg: Hooaeg; isLast: boolean }) {
 export default function SeasonalServicesBlock() {
   const locale = useLocale();
   const seasonalImageAlt = locale === "ru"
-    ? "Круглогодичное обслуживание территории — SPS Grupp"
+    ? "Круглогодичное обслуживание территории - SPS Grupp"
     : locale === "en"
-      ? "Year-round grounds maintenance — SPS Grupp"
-      : "Välihooldus aastaringselt — SPS Grupp";
+      ? "Year-round grounds maintenance - SPS Grupp"
+      : "Välihooldus aastaringselt - SPS Grupp";
 
   return (
     <section
@@ -215,7 +215,7 @@ export default function SeasonalServicesBlock() {
 
         {/* Kahe tulbaga sisu */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-[50px] items-start">
-          {/* VASAK TULP — 4 hooaja kaarti */}
+          {/* VASAK TULP - 4 hooaja kaarti */}
           <div className="bg-[#ffffffa0] backdrop-blur-[5px] rounded-2xl border border-[#85cbe9]/20 overflow-hidden">
             {hooajad.map((hooaeg, idx) => (
               <HooajaKaart
@@ -226,7 +226,7 @@ export default function SeasonalServicesBlock() {
             ))}
           </div>
 
-          {/* PAREM TULP — pilt + hoolduslepingu lühijutt */}
+          {/* PAREM TULP - pilt + hoolduslepingu lühijutt */}
           <div className="flex flex-col gap-6">
             {/* Pildi placeholder */}
             <div className="relative rounded-2xl overflow-hidden aspect-[3/4] bg-[#e2e8f0]">
@@ -260,7 +260,7 @@ export default function SeasonalServicesBlock() {
                 <span className="text-white text-[15px] font-bold">Aastane hooldusleping</span>
               </div>
               <p className="text-white/80 text-[15px] leading-[1.7] mb-4">
-                Kõik hooajalised teenused ühes paketis — muru niitmisest lumekoristuseni.
+                Kõik hooajalised teenused ühes paketis - muru niitmisest lumekoristuseni.
                 Fikseeritud kuumakse, kindel graafik ja kiire reageerimine.
               </p>
               <a

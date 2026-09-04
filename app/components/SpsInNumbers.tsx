@@ -11,7 +11,7 @@ const copy = {
       "SPS Grupp OÜ on 2006. aastal asutatud Eesti koristus- ja remonditeenuste ettevõte, kelle 300+ töötajat hooldavad üle 1 000 000 m² rohkem kui 200 ärikliendi objektidel Tallinnas ja Harjumaal.",
     facts: [
       { value: "2006", text: "SPS Grupp OÜ asutati 2006. aastal ja tegutseb Eesti ärikinnisvara hooldusturul alates sellest aastast." },
-      { value: "300+", text: "Ettevõttes töötab üle 300 inimese — puhastusteenindajad, hooldustöölised, elektrikud ja torumehed." },
+      { value: "300+", text: "Ettevõttes töötab üle 300 inimese - puhastusteenindajad, hooldustöölised, elektrikud ja torumehed." },
       { value: "200+", text: "Meid usaldab enam kui 200 äriklienti: büroohooned, kauplused, tootmishooned ja korteriühistud." },
       { value: "1 000 000+ m²", text: "Meie hoolduses on üle 1 000 000 m² äripindu Tallinnas ja Harjumaal." },
       { value: "ISO", text: "SPS Grupp on sertifitseeritud ISO 9001 (kvaliteedijuhtimine) ja ISO 14001 (keskkonnajuhtimine) standardite kohaselt." },
@@ -23,7 +23,7 @@ const copy = {
       "SPS Grupp OÜ is an Estonian cleaning and renovation company founded in 2006, whose 300+ employees maintain over 1,000,000 m² for more than 200 business clients in Tallinn and Harju County.",
     facts: [
       { value: "2006", text: "SPS Grupp OÜ was founded in 2006 and has served the Estonian commercial property maintenance market ever since." },
-      { value: "300+", text: "The company employs more than 300 people — cleaners, maintenance workers, electricians and plumbers." },
+      { value: "300+", text: "The company employs more than 300 people - cleaners, maintenance workers, electricians and plumbers." },
       { value: "200+", text: "We are trusted by over 200 business clients: office buildings, retail spaces, industrial sites and housing associations." },
       { value: "1,000,000+ m²", text: "We maintain over 1,000,000 m² of commercial space in Tallinn and Harju County." },
       { value: "ISO", text: "SPS Grupp is certified to ISO 9001 (quality management) and ISO 14001 (environmental management) standards." },
@@ -32,10 +32,10 @@ const copy = {
   ru: {
     tag: "SPS Grupp в цифрах",
     summary:
-      "SPS Grupp OÜ — эстонская компания клининговых и ремонтных услуг, основанная в 2006 году; её 300+ сотрудников обслуживают более 1 000 000 м² для более чем 200 бизнес-клиентов в Таллинне и Харьюмаа.",
+      "SPS Grupp OÜ - эстонская компания клининговых и ремонтных услуг, основанная в 2006 году; её 300+ сотрудников обслуживают более 1 000 000 м² для более чем 200 бизнес-клиентов в Таллинне и Харьюмаа.",
     facts: [
       { value: "2006", text: "SPS Grupp OÜ основана в 2006 году и с тех пор работает на рынке обслуживания коммерческой недвижимости Эстонии." },
-      { value: "300+", text: "В компании работает более 300 человек — уборщики, работники по обслуживанию, электрики и сантехники." },
+      { value: "300+", text: "В компании работает более 300 человек - уборщики, работники по обслуживанию, электрики и сантехники." },
       { value: "200+", text: "Нам доверяют более 200 бизнес-клиентов: офисные здания, торговые помещения, производственные объекты и квартирные товарищества." },
       { value: "1 000 000+ м²", text: "На нашем обслуживании более 1 000 000 м² коммерческих площадей в Таллинне и Харьюмаа." },
       { value: "ISO", text: "SPS Grupp сертифицирована по стандартам ISO 9001 (менеджмент качества) и ISO 14001 (экологический менеджмент)." },
@@ -43,7 +43,7 @@ const copy = {
   },
 } as const
 
-/** Self-contained quotable facts block (AEO) — every sentence stands alone. */
+/** Self-contained quotable facts block (AEO) - every sentence stands alone. */
 export default function SpsInNumbers() {
   const locale = useLocale() as Locale
   const t = copy[locale]

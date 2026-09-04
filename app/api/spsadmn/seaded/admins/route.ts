@@ -78,7 +78,7 @@ export async function GET(request: Request) {
   }, true)
 }
 
-/** Notify the newly created user about their account. Failures only log — user creation must not fail because of email. */
+/** Notify the newly created user about their account. Failures only log - user creation must not fail because of email. */
 async function sendNewUserNotice(email: string, password: string, role: string, origin: string): Promise<boolean> {
   const result = await sendEmail({
     to: email,

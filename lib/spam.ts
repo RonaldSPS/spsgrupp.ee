@@ -101,7 +101,7 @@ const COMPANY_SUFFIX_RE = /\b(?:llc|ltd|inc|llp|gmbh|corp|co)\.?$/i
  * Heuristic for bot-generated gibberish like "omHItThaCbRFPkXmVwfcQMa" or
  * "YCcRMBKqAdlcYBLf": a single long token with lots of case flips, almost no
  * vowels, or an Estonian-impossible consonant run. Short tokens are never
- * flagged — real names/words stay safe.
+ * flagged - real names/words stay safe.
  */
 function looksLikeRandomToken(token: string): boolean {
   if (token.length < 10 || /\d/.test(token)) return false
@@ -162,7 +162,7 @@ export function assessSubmission(input: SpamAssessmentInput): SpamAssessment {
 
   // Bot-generated gibberish (random names/messages with no links or phrases,
   // e.g. "omHItThaCbRFPkXmVwfcQMa" / "YCcRMBKqAdlcYBLf"). Runs on the ORIGINAL
-  // casing — case flips are the strongest signal and lowercasing erases them.
+  // casing - case flips are the strongest signal and lowercasing erases them.
   if (isSingleRandomToken(input.name) || isMostlyRandomTokens(input.name)) {
     reasons.push("name looks randomly generated")
   }

@@ -194,7 +194,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   )
 
   // min-w-0 is required: body is a flex container (root-shell), and without it
-  // this flex item won't shrink below the päringud table's intrinsic width —
+  // this flex item won't shrink below the päringud table's intrinsic width -
   // the page would grow and body overflow-x:hidden would clip the table instead
   // of letting the table's own overflow-x-auto scrollbar appear.
   return (
@@ -266,7 +266,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                 <div className="text-[15px] text-[#5a6474] mb-3">
                   Roll: <span className="font-medium text-[#17345a]">{currentUser?.role === "admin" ? "Administraator" : "Manager"}</span>
-                  {currentUser?.isEnvAdmin && <span className="block mt-1 text-[#92400e] bg-[#fef3c7] rounded-lg px-2 py-1">Keskkonna administraator — loo konto, et hallata profiili</span>}
+                  {currentUser?.isEnvAdmin && <span className="block mt-1 text-[#92400e] bg-[#fef3c7] rounded-lg px-2 py-1">Keskkonna administraator - loo konto, et hallata profiili</span>}
                 </div>
 
                 <div className="flex flex-col gap-3">

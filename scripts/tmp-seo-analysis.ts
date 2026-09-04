@@ -174,7 +174,7 @@ async function main() {
     out.gsc.totals[name] = totals.rows?.[0] ?? null
   }
 
-  // keyword -> leht (viimane 28p) — dump ALL query+page rows for local aggregation
+  // keyword -> leht (viimane 28p) - dump ALL query+page rows for local aggregation
   const qp = await gsc(token, { ...PERIODS.cur28, dimensions: ["query", "page"], rowLimit: 25000 })
   out.gsc.queryPageRows = (qp.rows ?? []).map((r: any) => ({
     q: (r.keys?.[0] ?? "").toLowerCase(), page: r.keys?.[1], clicks: r.clicks, impr: r.impressions, pos: r.position,

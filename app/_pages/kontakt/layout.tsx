@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Võta ühendust SPS Grupiga | SPS Grupp",
   description:
-    "Võtke ühendust SPS Grupiga — professionaalne koristus- ja remonditeenuste partner Tallinnas ja Harjumaal. Tasuta konsultatsioon, kiire reageerimine ja personaalne hinnapakkumine äriklientidele ja korteriühistutele.",
+    "Võtke ühendust SPS Grupiga - professionaalne koristus- ja remonditeenuste partner Tallinnas ja Harjumaal. Tasuta konsultatsioon, kiire reageerimine ja personaalne hinnapakkumine äriklientidele ja korteriühistutele.",
   imagePath: "/FrontHeroCar.jpg",
 });
 

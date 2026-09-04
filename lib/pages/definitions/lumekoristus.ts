@@ -15,7 +15,7 @@ export const et: OutdoorServicePageData = {
     { value: "200+", label: "objekti", tone: "navy" },
   ],
   problemTitle: "Kas teie kinnistu on talveks valmis?",
-  problemLead: "Lumi ja jää on midagi enamat kui ebamugavus — need on ohutusrisk töötajatele, külastajatele ja klientidele. Koristamata sissepääsud, parklad ja kõnniteed võivad põhjustada õnnetusi.",
+  problemLead: "Lumi ja jää on midagi enamat kui ebamugavus - need on ohutusrisk töötajatele, külastajatele ja klientidele. Koristamata sissepääsud, parklad ja kõnniteed võivad põhjustada õnnetusi.",
   problemDescription: "SPS Grupp tagab usaldusväärse lumekoristuse ja libedusetõrje ärikinnistutele. Jälgime ilmaprognoosi ja reageerime ennetavalt, et teie kinnistu oleks turvaline ja ligipääsetav.",
   serviceTitle: "Mida sisaldab lumekoristuse teenus?",
   serviceCards: [
@@ -74,7 +74,7 @@ export const en: OutdoorServicePageData = {
     { value: "200+", label: "properties", tone: "navy" },
   ],
   problemTitle: "Is your property ready for winter?",
-  problemLead: "Snow and ice are more than an inconvenience — they are a safety risk for employees, visitors and customers. Uncleared entrances, car parks and pavements can lead to accidents.",
+  problemLead: "Snow and ice are more than an inconvenience - they are a safety risk for employees, visitors and customers. Uncleared entrances, car parks and pavements can lead to accidents.",
   problemDescription: "SPS Grupp provides reliable snow clearing and gritting for commercial properties. We monitor weather conditions and respond proactively so your site remains accessible and safe.",
   serviceTitle: "What does snow removal include?",
   serviceCards: [
@@ -133,7 +133,7 @@ export const ru: OutdoorServicePageData = {
     { value: "200+", label: "объектов", tone: "navy" },
   ],
   problemTitle: "Готов ли ваш объект к зиме?",
-  problemLead: "Снег и лёд — это не просто неудобство, а риск для безопасности сотрудников, посетителей и клиентов. Неочищенные входы, парковки и тротуары могут привести к несчастным случаям.",
+  problemLead: "Снег и лёд - это не просто неудобство, а риск для безопасности сотрудников, посетителей и клиентов. Неочищенные входы, парковки и тротуары могут привести к несчастным случаям.",
   problemDescription: "SPS Grupp обеспечивает надёжную уборку снега и посыпку для коммерческих объектов. Мы следим за погодой и реагируем заблаговременно, чтобы ваша территория оставалась доступной и безопасной.",
   serviceTitle: "Что входит в услугу по уборке снега?",
   serviceCards: [
@@ -176,7 +176,7 @@ export const ru: OutdoorServicePageData = {
     { q: "Нужно ли звонить вам при снегопаде?", a: "При договоре обслуживания мы следим за прогнозом погоды и начинаем работы на согласованных условиях без отдельного заказа." },
     { q: "Используете ли вы соль или щебень для посыпки?", a: "Метод зависит от погоды и типа покрытия. При необходимости комбинируем антигололёдное средство с гранитным щебнем." },
     { q: "Что если вы не успеете вовремя и кто-то поскользнётся?", a: "Порядок работ и реагирование определяются договором и погодными условиями. Ответственность за возможный случай оценивается по конкретным обстоятельствам, договору и условиям страхования." },
-    { q: "Вывозите ли вы скопившийся снег с территории?", a: "Да, вывоз снега — дополнительная услуга. Обычно требуется после сильных снегопадов, когда на парковке не остаётся места." },
+    { q: "Вывозите ли вы скопившийся снег с территории?", a: "Да, вывоз снега - дополнительная услуга. Обычно требуется после сильных снегопадов, когда на парковке не остаётся места." },
   ],
 }
 

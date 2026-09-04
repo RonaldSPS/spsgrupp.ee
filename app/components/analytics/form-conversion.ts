@@ -1,11 +1,11 @@
 /**
  * Hardcoded form-conversion event pushed straight onto the GTM dataLayer.
  *
- * Deliberately dependency-free: no `@next/third-parties`, no gtag shim — a
+ * Deliberately dependency-free: no `@next/third-parties`, no gtag shim - a
  * raw `window.dataLayer.push()` works with any GTM loader and cannot break
  * when the analytics stack is refactored. Conversion tracking has been lost
  * several times to technical changes, so this event name and payload shape
- * must stay STABLE. Do not rename `form_submission_success` — GTM conversion
+ * must stay STABLE. Do not rename `form_submission_success` - GTM conversion
  * triggers listen for exactly this string.
  *
  * This is pushed IN ADDITION to the `form_submit` event (sendGTMEvent), which

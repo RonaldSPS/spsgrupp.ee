@@ -348,7 +348,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     invalidPhone: "Пожалуйста, введите корректный номер телефона.",
     fileInvalidFormat: "Этот формат файла не поддерживается. Допустимы JPG, PNG и PDF.",
     fileEmpty: "Файл пуст.",
-    fileTooLarge: "Файл слишком большой. Максимальный размер — 10 МБ.",
+    fileTooLarge: "Файл слишком большой. Максимальный размер - 10 МБ.",
     fileTypeUnknown: "Не удалось подтвердить тип файла.",
     consentRequired: "Необходимо согласиться с политикой конфиденциальности.",
     duplicateContact: "Этот запрос уже отправлен. Пожалуйста, подождите перед повторной попыткой.",
@@ -404,7 +404,7 @@ async function checkFormRateLimit(): Promise<boolean> {
  * Bots submit instantly; humans need a few seconds to fill the form. The
  * forms stamp `Date.now()` into the hidden `form_started_at` input on mount
  * (client-side, so SSG HTML stays stable). Missing/invalid values (no-JS
- * browsers) simply skip the check — content scoring still applies.
+ * browsers) simply skip the check - content scoring still applies.
  */
 const MIN_FORM_FILL_MS = 3000
 
@@ -418,10 +418,10 @@ function isFormFilledTooFast(formData: FormData): boolean {
 /**
  * Cloudflare Turnstile gate. No-op until BOTH TURNSTILE_SECRET_KEY and
  * NEXT_PUBLIC_TURNSTILE_SITE_KEY are configured (a secret without the public
- * site key can never produce a token — treated as disabled so a Vercel env
+ * site key can never produce a token - treated as disabled so a Vercel env
  * misconfiguration can't take down every form); once configured, a
  * missing/invalid token fails closed with a generic localized error
- * (not saved, no e-mail — but unlike bots a human with a blocked script
+ * (not saved, no e-mail - but unlike bots a human with a blocked script
  * sees feedback and can retry).
  */
 async function passesTurnstile(formData: FormData): Promise<boolean> {
@@ -446,7 +446,7 @@ export async function submitContactForm(
     return { success: true, isSpam: true }
   }
   if (isFormFilledTooFast(formData)) {
-    // Fake success, nothing saved — same treatment as the honeypot.
+    // Fake success, nothing saved - same treatment as the honeypot.
     return { success: true, isSpam: true }
   }
   if (!(await passesTurnstile(formData))) {
@@ -592,7 +592,7 @@ export async function submitCareerForm(
     return { success: true, isSpam: true }
   }
   if (isFormFilledTooFast(formData)) {
-    // Fake success, nothing saved — same treatment as the honeypot.
+    // Fake success, nothing saved - same treatment as the honeypot.
     return { success: true, isSpam: true }
   }
   if (!(await passesTurnstile(formData))) {

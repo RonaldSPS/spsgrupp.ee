@@ -65,7 +65,7 @@ async function fetchMe(): Promise<{ res: Response | null; data: MeResponse | nul
       if (res.status === 401) return { res, data: null }
       if (res.ok) return { res, data: (await res.json()) as MeResponse }
     } catch {
-      // network hiccup — retry once
+      // network hiccup - retry once
     }
     if (attempt === 0) await new Promise((r) => setTimeout(r, 800))
   }
@@ -167,7 +167,7 @@ export default function SeadedPage() {
   useEffect(() => {
     fetchMe().then(({ res, data }) => {
       if (res?.status === 401) {
-        // Session expired/invalid — send back to the login screen
+        // Session expired/invalid - send back to the login screen
         router.push("/spsadmn/")
         return
       }
@@ -199,7 +199,7 @@ export default function SeadedPage() {
         alert(data.error || "Andmebaasi käivitamine ebaõnnestus")
         return
       }
-      // Restore takes ~1–3 min — poll until the project is active AND the DB answers.
+      // Restore takes ~1–3 min - poll until the project is active AND the DB answers.
       const deadline = Date.now() + 5 * 60 * 1000
       for (;;) {
         await new Promise((r) => setTimeout(r, 5000))
@@ -371,7 +371,7 @@ export default function SeadedPage() {
       )}
       {meError && (
         <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-10 text-center mb-6">
-          <p className="text-[15px] text-red-600">Kasutaja andmete laadimine ebaõnnestus. Värskenda lehte — kui viga püsib, logi välja ja sisse uuesti.</p>
+          <p className="text-[15px] text-red-600">Kasutaja andmete laadimine ebaõnnestus. Värskenda lehte - kui viga püsib, logi välja ja sisse uuesti.</p>
         </div>
       )}
       {!meError && currentRole === null && (
@@ -398,7 +398,7 @@ export default function SeadedPage() {
                   <p className="text-[15px] text-[#17345a] font-medium">
                     {dbStatus.dbOk
                       ? "Andmebaas on aktiivne ja vastab päringutele"
-                      : "Andmebaas ei vasta — tõenäoliselt on Supabase'i projekt pausil"}
+                      : "Andmebaas ei vasta - tõenäoliselt on Supabase'i projekt pausil"}
                   </p>
                 </div>
                 {!dbStatus.dbOk && (

@@ -276,6 +276,7 @@ export default function KaubanduspindadeKoristus() {
 
 export function KaubanduspindadeKoristusPageView({ locale }: { locale: Locale }) {
   const t = getText(locale);
+  const pricingCtaLabel = { et: "Küsi hinnapakkumist", en: "Request a quote", ru: "Запросить ценовое предложение" }[locale];
 
   return (
     <>
@@ -492,6 +493,20 @@ export function KaubanduspindadeKoristusPageView({ locale }: { locale: Locale })
               </div>
 
               <Hinnakalkulaator locale={locale} />
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href="#pakkumine"
+                onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }}
+                className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer"
+              >
+                {pricingCtaLabel}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>

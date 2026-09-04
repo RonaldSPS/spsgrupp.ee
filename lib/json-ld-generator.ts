@@ -129,7 +129,7 @@ export interface PriceCardInput {
 
 /** Parse a localized price card ("2 €/m²", "1,20 €/m²", "al. 180 €/kuu",
  *  "from 350 EUR per month", "от 250 EUR") into a numeric min price + unit.
- *  Unit is read from the price string and period only — the area field
+ *  Unit is read from the price string and period only - the area field
  *  describes the size tier ("up to 1 m²"), not the price unit. */
 export function parsePriceCard(card: PriceCardInput): { minPrice: number; unitText?: string } | null {
   const m = card.price.match(/(\d+(?:[.,]\d+)?)/)

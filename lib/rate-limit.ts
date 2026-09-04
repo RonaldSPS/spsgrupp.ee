@@ -195,7 +195,7 @@ export async function checkRateLimit(
   try {
     return await checkRateLimitRedis(request, maxRequests, windowMs, BAN_THRESHOLD, BAN_DURATION_MS, false)
   } catch {
-    // Store unavailable — fall back to process-local limiting for this call.
+    // Store unavailable - fall back to process-local limiting for this call.
     return checkRateLimitMemory(request, maxRequests, windowMs)
   }
 }

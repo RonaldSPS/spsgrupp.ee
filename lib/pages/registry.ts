@@ -6,7 +6,7 @@ import type enMessages from '@/messages/en.json'
  * Every public page declares its canonical Estonian path, localized EN/RU
  * slugs, optional parent (for breadcrumbs), content namespace (messages/*.json)
  * and hero image. All other page maps (slug lookups, namespace maps, hero
- * images) are derived from this list — do not duplicate path data elsewhere.
+ * images) are derived from this list - do not duplicate path data elsewhere.
  *
  * Pages with `localized: false` (e.g. blog) have no EN/RU URLs and are
  * excluded from slug lookups, sitemap alternates and language switching.

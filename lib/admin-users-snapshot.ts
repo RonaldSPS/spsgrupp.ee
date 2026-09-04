@@ -1,7 +1,7 @@
 /**
  * Local JSON snapshot of the admin_users table. Lets admin login survive a
  * Supabase outage: when the DB read fails, auth falls back to this snapshot.
- * Contains password hashes, so the file is gitignored and never committed —
+ * Contains password hashes, so the file is gitignored and never committed -
  * on Vercel the env ADMIN_PASSWORD login remains the no-DB backdoor.
  */
 import { promises as fs } from "fs"

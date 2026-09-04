@@ -9,7 +9,7 @@ export interface LocalePaths {
 
 /**
  * Keyed by live Estonian path (no trailing slash, root = '/').
- * Derived from lib/pages/registry — do not add paths here directly.
+ * Derived from lib/pages/registry - do not add paths here directly.
  */
 export const localizedPaths: Record<string, LocalePaths> = Object.fromEntries(
   localizedPages.map((page) => [page.etPath, { en: page.en as string, ru: page.ru as string }]),
@@ -52,7 +52,7 @@ export function getCurrentEtPath(pathname: string, locale: Locale): string {
   const normalizedPathname = normalizePath(pathname)
   if (locale === 'et') {
     // ET pages prerender under the internal /et prefix (proxy rewrites the
-    // public unprefixed URL to it) — strip it so active-state lookups match.
+    // public unprefixed URL to it) - strip it so active-state lookups match.
     if (normalizedPathname === '/et') return '/'
     if (normalizedPathname.startsWith('/et/')) return normalizePath(normalizedPathname.slice(3))
     return normalizedPathname

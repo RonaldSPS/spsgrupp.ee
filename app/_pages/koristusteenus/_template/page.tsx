@@ -18,47 +18,47 @@ import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
  * Kohusta linke, pilte, tekste ja hinnakirja vastavalt teenusele.
  *
  * Väljad, mida tuleb täita:
- *   {TEENUSE_NIMETUS}           — nt "Kontori koristus"
- *   {TEENUSE_SLUG}              — nt "kontori-koristus" (URL-friendly)
- *   {TAGASISUNNATUSLINK}        — nt "/koristusteenus/kontori-koristus" (täis URL)
- *   {HERO_PILT}                 — hero taustapilt (nt "/kontorikoristus1.jpg")
- *   {HERO_PEALKIRI}             — hero H1 pealkiri
- *   {HERO_PEALKIRI_VÄRVILINE}   — H1 värviline osa (nt "Tallinnas ja Harjumaal")
- *   {HERO_KIRJELDUS}            — lühike tutvustav tekst (1-2 lauset)
- *   {HERO_HIND}                 — alghinna fraas (nt "1,2 €/m²")
- *   {HERO_CTA_TEKST}            — CTA nupu tekst (nt "Küsi kontori koristuse pakkumist")
- *   {PROBLEEM_PEALKIRI}         — TwoToneHeading probleemisektsioonis
- *   {PROBLEEM_TEKST_VASAK}      — veerg 1: mure kirjeldus
- *   {PROBLEEM_TEKST_PAREM}      — veerg 2: miks see on oluline + lahendus
- *   {TEENUSE_SISU_PEALKIRI}     — TwoToneHeading teenuse sisu sektsioonis ("Mida sisaldab X teenus?")
- *   {TEENUSE_SISU_KAARDID}      — massiiv {bold, desc} objektidega (9 kaarti)
- *   {MIKS_MEIE_PEALKIRI}        — TwoToneHeading miks-meie sektsioonis
- *   {MIKS_MEIE_KAARDID}         — massiiv {title, desc} objektidega (4 kaarti)
- *   {MIKS_MEIE_PILT}            — pildi src (nt "/kontorikoristus2.jpg")
- *   {MIKS_MEIE_PILT_ALT}        — pildi alt tekst
- *   {HIND_PEALKIRI}             — TwoToneHeading hinna sektsioonis
- *   {HIND_KIRJELDUS}            — sissejuhatav tekst hinna sektsioonis
- *   {HIND_KAARDID}              — massiiv {size, area, price, period, highlight?} objektidega (3 kaarti)
- *   {HIND_ALGHINNAD}            — alghindade tekst (nt "Regulaarse hoolduskoristuse hind algab 1,2 €/m²...")
- *   {FOOTER_CTA_TITLE}          — FooterCTA pealkiri
- *   {FOOTER_CTA_DESCRIPTION}    — FooterCTA kirjeldus
- *   {BREADCRUMB_TEENUS}         — leivapuru viimane tase (nt "Kontori koristus")
- *   {SOTSIAALNE_TÕESTUS_SECTION_TAG} — section-tag silt (nt "Klientide tagasiside")
- *   {SOTSIAALNE_TÕESTUS_PEALKIRI}    — TwoToneHeading (nt "Tallinna ja Harjumaa objektid")
- *   {SOTSIAALNE_TÕESTUS_KIRJELDUS}   — lühike kirjeldustekst
- *   {STAT1_NUMBER}, {STAT1_LABEL} ... — 3 statistikakaarti
+ *   {TEENUSE_NIMETUS}           - nt "Kontori koristus"
+ *   {TEENUSE_SLUG}              - nt "kontori-koristus" (URL-friendly)
+ *   {TAGASISUNNATUSLINK}        - nt "/koristusteenus/kontori-koristus" (täis URL)
+ *   {HERO_PILT}                 - hero taustapilt (nt "/kontorikoristus1.jpg")
+ *   {HERO_PEALKIRI}             - hero H1 pealkiri
+ *   {HERO_PEALKIRI_VÄRVILINE}   - H1 värviline osa (nt "Tallinnas ja Harjumaal")
+ *   {HERO_KIRJELDUS}            - lühike tutvustav tekst (1-2 lauset)
+ *   {HERO_HIND}                 - alghinna fraas (nt "1,2 €/m²")
+ *   {HERO_CTA_TEKST}            - CTA nupu tekst (nt "Küsi kontori koristuse pakkumist")
+ *   {PROBLEEM_PEALKIRI}         - TwoToneHeading probleemisektsioonis
+ *   {PROBLEEM_TEKST_VASAK}      - veerg 1: mure kirjeldus
+ *   {PROBLEEM_TEKST_PAREM}      - veerg 2: miks see on oluline + lahendus
+ *   {TEENUSE_SISU_PEALKIRI}     - TwoToneHeading teenuse sisu sektsioonis ("Mida sisaldab X teenus?")
+ *   {TEENUSE_SISU_KAARDID}      - massiiv {bold, desc} objektidega (9 kaarti)
+ *   {MIKS_MEIE_PEALKIRI}        - TwoToneHeading miks-meie sektsioonis
+ *   {MIKS_MEIE_KAARDID}         - massiiv {title, desc} objektidega (4 kaarti)
+ *   {MIKS_MEIE_PILT}            - pildi src (nt "/kontorikoristus2.jpg")
+ *   {MIKS_MEIE_PILT_ALT}        - pildi alt tekst
+ *   {HIND_PEALKIRI}             - TwoToneHeading hinna sektsioonis
+ *   {HIND_KIRJELDUS}            - sissejuhatav tekst hinna sektsioonis
+ *   {HIND_KAARDID}              - massiiv {size, area, price, period, highlight?} objektidega (3 kaarti)
+ *   {HIND_ALGHINNAD}            - alghindade tekst (nt "Regulaarse hoolduskoristuse hind algab 1,2 €/m²...")
+ *   {FOOTER_CTA_TITLE}          - FooterCTA pealkiri
+ *   {FOOTER_CTA_DESCRIPTION}    - FooterCTA kirjeldus
+ *   {BREADCRUMB_TEENUS}         - leivapuru viimane tase (nt "Kontori koristus")
+ *   {SOTSIAALNE_TÕESTUS_SECTION_TAG} - section-tag silt (nt "Klientide tagasiside")
+ *   {SOTSIAALNE_TÕESTUS_PEALKIRI}    - TwoToneHeading (nt "Tallinna ja Harjumaa objektid")
+ *   {SOTSIAALNE_TÕESTUS_KIRJELDUS}   - lühike kirjeldustekst
+ *   {STAT1_NUMBER}, {STAT1_LABEL} ... - 3 statistikakaarti
  *
  * HOOLEPINGU BLOKI PLACEHOLDERID (valikuline, kommenteeritud välja):
- *   {HOOLDUSLEPING_SECTION_TAG}  — section-tag silt (nt "Hooldusleping")
- *   {HOOLDUSLEPING_PEALKIRI}     — TwoToneHeading
- *   {HOOLDUSLEPING_TEKST}        — 2-3 lõiku teksti
- *   {HOOLDUSLEPING_PILT}         — pildi src
- *   {HOOLDUSLEPING_PILT_ALT}     — pildi alt tekst
+ *   {HOOLDUSLEPING_SECTION_TAG}  - section-tag silt (nt "Hooldusleping")
+ *   {HOOLDUSLEPING_PEALKIRI}     - TwoToneHeading
+ *   {HOOLDUSLEPING_TEKST}        - 2-3 lõiku teksti
+ *   {HOOLDUSLEPING_PILT}         - pildi src
+ *   {HOOLDUSLEPING_PILT_ALT}     - pildi alt tekst
  */
 
 export default function TeenuseLeht() {
   // ====================================================================
-  // ANDMED — Asenda kõik allolevad väärtused vastava teenuse andmetega
+  // ANDMED - Asenda kõik allolevad väärtused vastava teenuse andmetega
   // ====================================================================
 
   /* ---------- HERO ---------- */
@@ -196,7 +196,7 @@ export default function TeenuseLeht() {
   const breadcrumbTeenus = "{BREADCRUMB_TEENUS}";
 
   // ====================================================================
-  // RENDER — Allolevat HTML-struktuuri tavaliselt muutma ei pea
+  // RENDER - Allolevat HTML-struktuuri tavaliselt muutma ei pea
   // ====================================================================
 
   return (
@@ -330,7 +330,7 @@ export default function TeenuseLeht() {
           </section>
         </ScrollAnimation>
 
-        {/* Hoolduslepingu eelised (valikuline — sobib väli- ja hooldusteenuste lehtedele) */}
+        {/* Hoolduslepingu eelised (valikuline - sobib väli- ja hooldusteenuste lehtedele) */}
         {/* TODO: Lisa see sektsioon vaid siis, kui teenusel on aastahoolduslepingu loogika */}
         {/* <ScrollAnimation animation="fade-up">
         <section className="py-[100px] bg-white">
@@ -346,7 +346,7 @@ export default function TeenuseLeht() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[60px] items-center">
               <div className="text-[16px] text-[#2f353f] leading-[1.8] font-light">
-                {HOOLDUSLEPING_TEKST — 2-3 lõiku hoolduslepingu eelistest}
+                {HOOLDUSLEPING_TEKST - 2-3 lõiku hoolduslepingu eelistest}
               </div>
               <div className="relative rounded-2xl overflow-hidden">
                 <Image
@@ -486,7 +486,7 @@ export default function TeenuseLeht() {
           </section>
         </ScrollAnimation>
 
-        {/* Sotsiaalne tõestus — kohandatud sektsioon */}
+        {/* Sotsiaalne tõestus - kohandatud sektsioon */}
         <ScrollAnimation animation="fade-up">
         <section className="py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
           <div className="max-w-[1280px] mx-auto px-[5%]">

@@ -3,14 +3,14 @@
  * (rendered by RootShell before GTM loads) and the CookieConsentBanner.
  *
  * Minimal-restriction policy (owner decision 03.09.2026): only the signals
- * Google's EU User Consent Policy actually requires consent for are gated —
+ * Google's EU User Consent Policy actually requires consent for are gated -
  * `ad_storage`, `ad_user_data` and `ad_personalization` stay DENIED until
  * the visitor accepts (granting those by default would breach Google's
  * terms for EEA traffic). Everything else, incl. `analytics_storage`, is
  * GRANTED by default so audience measurement stays intact and the banner
  * effectively controls ads consent only. This is "advanced" consent mode:
  * tags load immediately and send cookieless pings while ads consent is
- * denied, so Ads conversion modeling keeps working — the most data Google
+ * denied, so Ads conversion modeling keeps working - the most data Google
  * allows without consent.
  *
  * The banner flips state via gtag('consent', 'update', ...) which queues
@@ -58,7 +58,7 @@ export function storeConsent(choice: ConsentChoice) {
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, choice)
   } catch {
-    // private mode etc. — consent still applies for this page view
+    // private mode etc. - consent still applies for this page view
   }
 }
 
@@ -77,7 +77,7 @@ export function applyConsent(choice: ConsentChoice) {
     ad_storage: ads,
     ad_user_data: ads,
     ad_personalization: ads,
-    // Analytics stays granted either way — the choice gates ads consent only.
+    // Analytics stays granted either way - the choice gates ads consent only.
     analytics_storage: "granted",
     functionality_storage: "granted",
     personalization_storage: "granted",
@@ -86,8 +86,8 @@ export function applyConsent(choice: ConsentChoice) {
 
 /**
  * Consent-banner funnel events for the accept/decline rate, pushed straight
- * onto the GTM dataLayer (raw push, zero deps — same contract and stability
- * requirements as `form_submission_success`). Do not rename — GTM listens
+ * onto the GTM dataLayer (raw push, zero deps - same contract and stability
+ * requirements as `form_submission_success`). Do not rename - GTM listens
  * for exactly these event names:
  *   consent_banner_shown · consent_accept · consent_decline
  * GTM wiring: one Custom Event trigger, "Use regex matching" on the Event

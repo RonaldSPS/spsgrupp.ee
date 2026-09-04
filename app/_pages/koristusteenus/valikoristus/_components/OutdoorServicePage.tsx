@@ -72,6 +72,7 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
   }
 
   const homeLabel = { et: "Avaleht", en: "Home", ru: "Главная" }[locale] ?? "Avaleht"
+  const priceCtaLabel = { et: "Küsi hinnapakkumist", en: "Request a quote", ru: "Запросить ценовое предложение" }[locale] ?? "Küsi hinnapakkumist"
   const parentLabel = data.parentBreadcrumb?.label ?? ""
   const parentPath = data.parentBreadcrumb?.etPath ?? ""
   const breadcrumbAria = { et: "Jäljerida", en: "Breadcrumb", ru: "Навигационная цепочка" }[locale] ?? "Breadcrumb"
@@ -168,17 +169,29 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
                 <TwoToneHeading text={data.serviceTitle} />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {data.serviceCards.map((item, i) => (
-                  <div key={i} className="bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-colors duration-300 border border-transparent hover:bg-white/80">
-                    <div className="text-[#5a6474] text-[15px] mb-2">
-                      <span className="font-mono inline-block border-b border-[#5a6474] pb-px pr-5">{String(i + 1).padStart(2, "0")}.</span>
+                {data.serviceCards.map((item, i) => {
+                  const cardClassName = "bg-[#ffffff78] backdrop-blur-[5px] p-5 rounded-xl transition-colors duration-300 border border-transparent hover:bg-white/80";
+                  const cardContent = (
+                    <>
+                      <div className="text-[#5a6474] text-[15px] mb-2">
+                        <span className="font-mono inline-block border-b border-[#5a6474] pb-px pr-5">{String(i + 1).padStart(2, "0")}.</span>
+                      </div>
+                      <div className="text-[#2f353f] text-[15px] leading-[1.6]">
+                        <strong className="text-[#17345a] block mb-1">{item.bold}</strong>
+                        <span className="text-[#5a6474]">{item.desc}</span>
+                      </div>
+                    </>
+                  );
+                  return item.href ? (
+                    <Link key={i} href={localizePath(item.href, locale)} className={`${cardClassName} block no-underline`}>
+                      {cardContent}
+                    </Link>
+                  ) : (
+                    <div key={i} className={cardClassName}>
+                      {cardContent}
                     </div>
-                    <div className="text-[#2f353f] text-[15px] leading-[1.6]">
-                      <strong className="text-[#17345a] block mb-1">{item.bold}</strong>
-                      <span className="text-[#5a6474]">{item.desc}</span>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -234,6 +247,15 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
                 ))}
               </div>
               <p className="text-[15px] text-[#5a6474] max-w-[720px] mx-auto text-center">{data.priceNote}</p>
+              <div className="text-center mt-8">
+                <a href="#pakkumine" onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }} className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer">
+                  {priceCtaLabel}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </section>
         </ScrollAnimation>

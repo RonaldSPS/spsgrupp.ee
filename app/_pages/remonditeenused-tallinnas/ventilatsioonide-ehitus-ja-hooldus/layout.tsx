@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Ventilatsioonide ehitus ja hooldus Tallinnas | SPS Grupp",
   description:
-    "Ventilatsioonisüsteemide projekteerimine, paigaldus ja hooldus Tallinnas — kontorid, kaubandus, tootmishooned. Küsi pakkumist!",
+    "Ventilatsioonisüsteemide projekteerimine, paigaldus ja hooldus Tallinnas - kontorid, kaubandus, tootmishooned. Küsi pakkumist!",
   imagePath: "/ventilatsioon-1.jpg",
 });
 

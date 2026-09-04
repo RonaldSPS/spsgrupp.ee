@@ -20,7 +20,7 @@ export const et: OutdoorServicePageData = {
     { bold: "Klaasfassaadide ja klaasseinte puhastus", desc: "Professionaalne puhastus eri tüüpi klaaspindadele ja triibuvaba tulemuse kontroll." },
     { bold: "Kaubanduskeskuste vitriinid ja sissepääsud", desc: "Regulaarne vitriinide ja sissepääsude hooldus esindusliku ilme tagamiseks." },
     { bold: "Aknaraamide, tihendite ja aknalaudade puhastus", desc: "Täispuhastus koos raamide, tihendite ja aknalaudadega." },
-    { bold: "Ehitusjärgne akende puhastus", desc: "Tolm, mört, kleebised — eemaldame kõik ehitusjäägid." },
+    { bold: "Ehitusjärgne akende puhastus", desc: "Tolm, mört, kleebised - eemaldame kõik ehitusjäägid." },
   ],
   reasonsTitle: "Miks valida SPS Grupp akende pesu partneriks?",
   reasons: [
@@ -75,7 +75,7 @@ export const en: OutdoorServicePageData = {
     { bold: "Glass facade and glass wall cleaning", desc: "Professional cleaning for different glass types with streak-free inspection." },
     { bold: "Retail centre shopfronts and entrances", desc: "Regular maintenance of shopfronts and entrances to keep them presentable." },
     { bold: "Window frame, seal and sill cleaning", desc: "Full cleaning including frames, seals and sills." },
-    { bold: "Post-construction window cleaning", desc: "Dust, mortar, stickers — we remove all construction residue." },
+    { bold: "Post-construction window cleaning", desc: "Dust, mortar, stickers - we remove all construction residue." },
   ],
   reasonsTitle: "Why choose SPS Grupp as your window cleaning partner?",
   reasons: [
@@ -130,7 +130,7 @@ export const ru: OutdoorServicePageData = {
     { bold: "Очистка стеклянных фасадов и перегородок", desc: "Профессиональная очистка различных типов стеклянных поверхностей с контролем результата." },
     { bold: "Витрины и входы торговых центров", desc: "Регулярное обслуживание витрин и входов для поддержания презентабельного вида." },
     { bold: "Очистка оконных рам, уплотнителей и подоконников", desc: "Полная очистка вместе с рамами, уплотнителями и подоконниками." },
-    { bold: "Послестроительная мойка окон", desc: "Пыль, раствор, наклейки — удаляем все строительные остатки." },
+    { bold: "Послестроительная мойка окон", desc: "Пыль, раствор, наклейки - удаляем все строительные остатки." },
   ],
   reasonsTitle: "Почему выбрать SPS Grupp партнёром по мойке окон?",
   reasons: [
@@ -154,7 +154,7 @@ export const ru: OutdoorServicePageData = {
     items: [
       { title: "Объём мойки", description: "Определяем, моются ли стёкла с одной или обеих сторон и включает ли работа очистку рам, уплотнителей и подоконников." },
       { title: "Доступ и метод", description: "Выбираем подходящее решение в зависимости от высоты здания: телескопическая штанга, подъёмник, альпинистское снаряжение или ручная мойка." },
-      { title: "Время и частота", description: "Согласовываем рабочее время с минимальными неудобствами для пользователей здания, а при необходимости — регулярный график обслуживания." },
+      { title: "Время и частота", description: "Согласовываем рабочее время с минимальными неудобствами для пользователей здания, а при необходимости - регулярный график обслуживания." },
     ],
   },
   footerTitle: "Вернём свет в ваш офис",
@@ -164,7 +164,7 @@ export const ru: OutdoorServicePageData = {
     { q: "Как можно выполнять мойку окон, не нарушая работу?", a: "Подстраиваемся под ваш рабочий график. Работаем до открытия офисов, после закрытия или по выходным. Для высотных зданий работаем снаружи, что не нарушает работу внутри." },
     { q: "Моете ли вы окна высотных зданий?", a: "Да, это одна из наших основных специализаций. Используем подъёмники, альпинистское снаряжение и телескопические штанги. Все специалисты сертифицированы для высотных работ." },
     { q: "Что делать, если после мойки появились разводы?", a: "Если после приёмки работ вы заметите разводы или другие недостатки, вызванные нашей работой, сообщите нам. Рассмотрим ситуацию и согласуем решение." },
-    { q: "Когда лучше заказать мойку окон стеклянного здания?", a: "Весна (апрель–май) после периода цветения и осень (октябрь–ноябрь) перед зимой — наиболее подходящее время. Плюс регулярное квартальное обслуживание." },
+    { q: "Когда лучше заказать мойку окон стеклянного здания?", a: "Весна (апрель–май) после периода цветения и осень (октябрь–ноябрь) перед зимой - наиболее подходящее время. Плюс регулярное квартальное обслуживание." },
   ],
 }
 

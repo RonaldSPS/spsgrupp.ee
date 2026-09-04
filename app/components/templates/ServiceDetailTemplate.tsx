@@ -4,12 +4,14 @@ import OutdoorServicePage from "@/app/_pages/koristusteenus/valikoristus/_compon
 import type { Locale } from "@/lib/slug-map";
 
 /* ------------------------------------------------------------------ */
-/* Data types (moved from OutdoorServicePage.tsx — single source here) */
+/* Data types (moved from OutdoorServicePage.tsx - single source here) */
 /* ------------------------------------------------------------------ */
 
 type ServiceCard = {
   bold: string;
   desc: string;
+  /** Optional canonical ET path - renders the card as a link to the localized service page. */
+  href?: string;
 };
 
 type ReasonCard = {

@@ -23,7 +23,7 @@ import { testimonialTranslations, jobTranslations } from "../lib/db/schema"
 
 async function main() {
   if (!process.env.DATABASE_URL) {
-    console.error("DATABASE_URL is not set — nothing to sync from")
+    console.error("DATABASE_URL is not set - nothing to sync from")
     process.exit(1)
   }
 

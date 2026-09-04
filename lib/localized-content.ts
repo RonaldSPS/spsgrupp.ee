@@ -10,14 +10,14 @@ const messagesByLocale = {
   ru: ruMessages,
 } as const
 
-/** Derived from lib/pages/registry — do not add entries here directly. */
+/** Derived from lib/pages/registry - do not add entries here directly. */
 export const contentNamespacesByPath: Record<string, LocalizedContentNamespace> = Object.fromEntries(
   publicPages
     .filter((page) => page.namespace)
     .map((page) => [page.etPath, page.namespace as LocalizedContentNamespace]),
 )
 
-/** Derived from lib/pages/registry — do not add entries here directly. */
+/** Derived from lib/pages/registry - do not add entries here directly. */
 export const heroImagesByPath: Record<string, string> = Object.fromEntries(
   publicPages
     .filter((page) => page.heroImage)

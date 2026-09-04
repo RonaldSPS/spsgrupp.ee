@@ -1,7 +1,7 @@
 /**
  * Generates public/llms.txt (ET), public/llms-en.txt, public/llms-ru.txt from
  * lib/pages/registry.ts + lib/pages/definitions/ (service one-liners and
- * starting prices) — single source of truth, so the files cannot drift.
+ * starting prices) - single source of truth, so the files cannot drift.
  * Run: npx tsx scripts/generate-llms-txt.ts
  */
 import { promises as fs } from "node:fs"
@@ -49,7 +49,7 @@ const FACTS: Record<Locale, Facts> = {
     servicesHeading: "Teenused",
     intro:
       "SPS Grupp OÜ (asutatud 2006) on professionaalne koristus- ja remonditeenuste ettevõte: 300+ töötajat, 200+ klienti, üle 1 000 000 m² hoolduses. Teenindame ärikliente Tallinnas ja Harjumaal. ISO 9001 ja ISO 14001 sertifitseeritud.",
-    quoteCta: "Küsi tasuta hinnapakkumist kontaktivormi kaudu või telefonil — vastame ühe tööpäevaga.",
+    quoteCta: "Küsi tasuta hinnapakkumist kontaktivormi kaudu või telefonil - vastame ühe tööpäevaga.",
     contactHeading: "Kontakt",
     phone: "+372 662 3328",
     email: "info@spsgrupp.ee",
@@ -78,7 +78,7 @@ const FACTS: Record<Locale, Facts> = {
     servicesHeading: "Services",
     intro:
       "SPS Grupp OÜ (founded 2006) is a professional cleaning and renovation services company: 300+ employees, 200+ clients, over 1,000,000 m² under maintenance. We serve business clients in Tallinn and Harju County, Estonia. ISO 9001 and ISO 14001 certified.",
-    quoteCta: "Request a free quote via the contact form or by phone — we respond within one business day.",
+    quoteCta: "Request a free quote via the contact form or by phone - we respond within one business day.",
     contactHeading: "Contact",
     phone: "+372 662 3328",
     email: "info@spsgrupp.ee",
@@ -106,8 +106,8 @@ const FACTS: Record<Locale, Facts> = {
     certsHeading: "Сертификаты",
     servicesHeading: "Услуги",
     intro:
-      "SPS Grupp OÜ (основана в 2006 году) — компания профессиональных клининговых и ремонтных услуг: 300+ сотрудников, 200+ клиентов, более 1 000 000 м² на обслуживании. Работаем с бизнес-клиентами в Таллинне и Харьюмаа, Эстония. Сертифицированы по ISO 9001 и ISO 14001.",
-    quoteCta: "Запросите бесплатное ценовое предложение через контактную форму или по телефону — отвечаем в течение одного рабочего дня.",
+      "SPS Grupp OÜ (основана в 2006 году) - компания профессиональных клининговых и ремонтных услуг: 300+ сотрудников, 200+ клиентов, более 1 000 000 м² на обслуживании. Работаем с бизнес-клиентами в Таллинне и Харьюмаа, Эстония. Сертифицированы по ISO 9001 и ISO 14001.",
+    quoteCta: "Запросите бесплатное ценовое предложение через контактную форму или по телефону - отвечаем в течение одного рабочего дня.",
     contactHeading: "Контакты",
     phone: "+372 662 3328",
     email: "info@spsgrupp.ee",
@@ -191,8 +191,8 @@ function buildFile(locale: Locale): string {
       const seo = serviceDetailByEtPath[page.etPath][locale].seo
       const price = priceLabel(page.etPath, locale)
       const url = canonicalUrl(localizePath(page.etPath, locale))
-      const pricePart = price ? ` — **${price}**` : ""
-      lines.push(`- ${seo.serviceName} — ${seo.serviceDescription}${pricePart} — ${url}`)
+      const pricePart = price ? ` - **${price}**` : ""
+      lines.push(`- ${seo.serviceName} - ${seo.serviceDescription}${pricePart} - ${url}`)
     }
     lines.push("")
   }

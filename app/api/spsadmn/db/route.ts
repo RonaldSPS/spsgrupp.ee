@@ -11,7 +11,7 @@ import { verifySameOrigin } from "@/lib/csrf"
  * POST → käivitab Supabase'i projekti restore'i, kui see on pausil.
  *
  * Vajab Verceli keskkonnamuutujaid SUPABASE_ACCESS_TOKEN ja
- * SUPABASE_PROJECT_REF — pausil oleku korral ei saa neid andmebaasist lugeda,
+ * SUPABASE_PROJECT_REF - pausil oleku korral ei saa neid andmebaasist lugeda,
  * seega peavad nad olema serveri env'is.
  */
 const SUPABASE_API = "https://api.supabase.com/v1"
@@ -89,7 +89,7 @@ export async function POST(request: Request) {
 
       const status = await getProjectStatus(env.token, env.ref)
       if (status === null) {
-        return noStoreResponse(JSON.stringify({ error: "Supabase'i staatuse päring ebaõnnestus — kontrolli SUPABASE_ACCESS_TOKEN väärtust" }), 502)
+        return noStoreResponse(JSON.stringify({ error: "Supabase'i staatuse päring ebaõnnestus - kontrolli SUPABASE_ACCESS_TOKEN väärtust" }), 502)
       }
       if (status.startsWith("ACTIVE")) {
         return NextResponse.json(

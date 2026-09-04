@@ -58,7 +58,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 /**
  * User-resizable table columns: drag a header's right edge to change the width.
  * Widths persist in localStorage and are restored on the next visit.
- * TABLE_COLUMNS and DEFAULT_COL_WIDTHS are matched by index — keep them in sync.
+ * TABLE_COLUMNS and DEFAULT_COL_WIDTHS are matched by index - keep them in sync.
  */
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
@@ -175,7 +175,7 @@ export default function AdminSubmissionsPage() {
         setColWidths(parsed as number[])
       }
     } catch {
-      // corrupted storage — keep defaults
+      // corrupted storage - keep defaults
     }
   }, [])
 
@@ -218,7 +218,7 @@ export default function AdminSubmissionsPage() {
 
   const tableWidth = colWidths.reduce((sum, w) => sum + w, 0)
 
-  // Synced always-visible horizontal scrollbar above the table — the native
+  // Synced always-visible horizontal scrollbar above the table - the native
   // one sits at the bottom of the table box and is easy to miss on tall tables.
   const topScrollRef = useRef<HTMLDivElement>(null)
   const tableScrollRef = useRef<HTMLDivElement>(null)
@@ -467,7 +467,7 @@ export default function AdminSubmissionsPage() {
             </button>
           </div>
           {/* Synced top scrollbar: the table box's own horizontal scrollbar is at
-              the bottom of a tall box and easy to miss — this one is always in view. */}
+              the bottom of a tall box and easy to miss - this one is always in view. */}
           <div
             ref={topScrollRef}
             onScroll={syncScroll("top")}

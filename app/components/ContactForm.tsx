@@ -66,7 +66,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
       if (!state.isSpam) {
         const emailInput = formRef.current.elements.namedItem("email") as HTMLInputElement | null
         const email = emailInput?.value ?? ""
-        // Hardcoded raw dataLayer push FIRST — the stable conversion signal
+        // Hardcoded raw dataLayer push FIRST - the stable conversion signal
         // (form_submission_success) must fire even if the sendGTMEvent
         // wrapper below ever breaks in a refactor/upgrade.
         pushFormSubmissionSuccess({ form_id: "contact", page_path: etPath, locale, email })

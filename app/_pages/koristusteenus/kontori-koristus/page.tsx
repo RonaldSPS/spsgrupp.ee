@@ -106,7 +106,7 @@ const etText: OfficeCleaningText = {
   whyUsImage: "/kontorikoristus2.jpg",
   whyUsImageAlt: "Koristusfirma kontori koristus",
   whyUs: [
-    { title: "Kontorihoolduse kogemus alates 2006. aastast", desc: "Oleme koristanud kõiki kontoritüüpe — väikestest IT-büroodest suurte peakontorite ja ministeeriumideni. Teame, mis töötab ja mis mitte." },
+    { title: "Kontorihoolduse kogemus alates 2006. aastast", desc: "Oleme koristanud kõiki kontoritüüpe - väikestest IT-büroodest suurte peakontorite ja ministeeriumideni. Teame, mis töötab ja mis mitte." },
     { title: "Vastutuskindlustusega teenus", desc: "SPS Grupil on kehtiv vastutuskindlustus, mis annab kliendile täiendava kaitse võimalike varakahjude korral." },
     { title: "Konfidentsiaalsus ja andmekaitse", desc: "Iga töötaja allkirjastab konfidentsiaalsuslepingu. Teie dokumentatsioon ja tehnika on turvalistes kätes." },
     { title: "ISO 9001 kvaliteedijuhtimine", desc: "Objektijuhi korraldatud regulaarne kvaliteedikontroll aitab puudused kiiresti tuvastada ja lahendada." },
@@ -123,7 +123,7 @@ const etText: OfficeCleaningText = {
     { quote: "Soovin edastada erakordselt positiivse tagasiside kontorikoristuse kohta. Kontor on puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel ning see on leidnud positiivset tähelepanu ka meie töötajate seas.", shortQuote: "Kontor on puhas, korras ja hooldatud. Tehtud töö kvaliteet on järjepidevalt kõrgel tasemel." },
     { quote: "Soovin jagada positiivset tagasisidet kontori koristuse kohta. Kontoriruumid on olnud puhtad ja korras ning üldine mulje on väga hea. Oleme puhastusteenuse kvaliteedi ja töö tulemusega väga rahul.", shortQuote: "Kontoriruumid on olnud puhtad ja korras ning üldine mulje on väga hea." },
     { quote: "Puhas ja korrastatud kontor loob parema töökeskkonna nii töötajatele kui ka külastajatele. SPS Grupp on aidanud meil seda taset järjepidevalt hoida. Teenus on professionaalne, kvaliteetne ja hästi korraldatud.", shortQuote: "Puhas ja korrastatud kontor loob parema töökeskkonna. SPS Grupp on aidanud meil seda taset järjepidevalt hoida." },
-    { quote: "Suur aitäh koristajale, et ta pani eilsest üritusest jäänud mustad nõud nõudepesumasinasse. Hommikul tuli vastu puhas ja korras kööginurk. Sellised väikesed, kuid väga tähelepanelikud teod jäävad silma ning näitavad hoolivust ja professionaalset suhtumist.", shortQuote: "Suur aitäh koristajale — hommikul tuli vastu puhas ja korras kööginurk. Sellised tähelepanelikud teod jäävad silma." },
+    { quote: "Suur aitäh koristajale, et ta pani eilsest üritusest jäänud mustad nõud nõudepesumasinasse. Hommikul tuli vastu puhas ja korras kööginurk. Sellised väikesed, kuid väga tähelepanelikud teod jäävad silma ning näitavad hoolivust ja professionaalset suhtumist.", shortQuote: "Suur aitäh koristajale - hommikul tuli vastu puhas ja korras kööginurk. Sellised tähelepanelikud teod jäävad silma." },
   ],
   processTitle: "Kuidas SPS kontorikoristuse käivitab?",
   processIntro: "Parem teenus algab enne esimest koristuskorda. SPS kaardistab kõigepealt, kuidas teie kontor päriselt töötab, ja ehitab tööplaani selle põhjal.",
@@ -138,7 +138,7 @@ const etText: OfficeCleaningText = {
   footerDescription: "Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest.",
   faq: [
     { q: "Kui tihti tuleks kontorit koristada?", a: "Enamikule kontoritest soovitame koristust 3–5 korda nädalas. Tiheda liiklusega alad vajavad igapäevast koristust, väiksemad kontorid saavad hakkama 2–3 korraga nädalas." },
-    { q: "Kas kontorikoristus toimub tööajal või väljaspool?", a: "Tavaliselt koristame töövälisel ajal — varahommikul enne tööpäeva algust või õhtul pärast tööaega. Soovi korral saame korraldada ka päevase koristuse madala liiklusega aegadel." },
+    { q: "Kas kontorikoristus toimub tööajal või väljaspool?", a: "Tavaliselt koristame töövälisel ajal - varahommikul enne tööpäeva algust või õhtul pärast tööaega. Soovi korral saame korraldada ka päevase koristuse madala liiklusega aegadel." },
     { q: "Mida kontori koristus sisaldab?", a: "Tolmuimejaga puhastus, pindade pühkimine, prügi väljaviimine, sanitaarruumide puhastus, köögi ja puhkeala koristus. Lisateenustena pakume akende pesu, vaipade süvapuhastust ja desinfitseerimist." },
     { q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?", a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Eritööde puhul valitakse vahendid konkreetse ülesande järgi." },
     { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist." },
@@ -311,6 +311,7 @@ export default function KontoriKoristus() {
 
 export function KontoriKoristusPageView({ locale }: { locale: Locale }) {
   const t = getText(locale);
+  const pricingCtaLabel = { et: "Küsi hinnapakkumist", en: "Request a quote", ru: "Запросить ценовое предложение" }[locale];
   const localizedServiceLinks = servicesLinkHrefs.map((etPath) => {
     const trimmed = etPath.replace(/\/+$/, "");
     const localized = localizePath(trimmed, locale);
@@ -545,6 +546,20 @@ export function KontoriKoristusPageView({ locale }: { locale: Locale }) {
               </div>
 
               <Hinnakalkulaator locale={locale} />
+            </div>
+
+            <div className="text-center mt-12">
+              <a
+                href="#pakkumine"
+                onClick={(e) => { e.preventDefault(); document.getElementById('pakkumine')?.scrollIntoView({ behavior: 'smooth' }); }}
+                className="btn-primary text-[15px] py-2.5 px-4 cursor-pointer"
+              >
+                {pricingCtaLabel}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>

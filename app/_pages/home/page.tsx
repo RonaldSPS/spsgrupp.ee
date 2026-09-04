@@ -15,7 +15,7 @@ import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils";
 
 export const metadata: Metadata = {
   title: "Koristusfirma Tallinnas | SPS Grupp",
-  description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses, 200+ klienti, ISO 9001/14001. Tasuta ülevaatus — vastus 1 tööpäevaga!",
+  description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses, 200+ klienti, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!",
   metadataBase: new URL(BASE_URL),
   openGraph: {
     title: "Koristusfirma Tallinnas | SPS Grupp",
