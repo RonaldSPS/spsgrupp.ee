@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
@@ -33,10 +33,26 @@ export default function Industries({ animDelay }: { animDelay?: number }) {
   };
 
   const [isHovered, setIsHovered] = useState(false);
+  // Only auto-advance while the section is on screen AND the tab is visible.
+  // An off-screen/hidden carousel re-render can push the LCP paint seconds later.
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    if (isHovered) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => setInView(entries[0]?.isIntersecting ?? false),
+      { rootMargin: "0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isHovered || !inView) return;
     const interval = setInterval(() => {
+      if (document.visibilityState !== "visible") return;
       if (!isAnimating) {
         setPrevActive(active);
         setActive((prev) => (prev + 1) % industryKeys.length);
@@ -46,7 +62,7 @@ export default function Industries({ animDelay }: { animDelay?: number }) {
     }, 4500);
 
     return () => clearInterval(interval);
-  }, [isAnimating, active, isHovered]);
+  }, [isAnimating, active, isHovered, inView]);
 
   const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
@@ -117,6 +133,7 @@ export default function Industries({ animDelay }: { animDelay?: number }) {
 
   return (
     <section
+      ref={sectionRef}
       className="industries-section py-[100px] bg-white"
       id="valdkonnad"
       onMouseEnter={() => setIsHovered(true)}
