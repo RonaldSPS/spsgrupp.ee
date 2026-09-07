@@ -273,7 +273,8 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
                     src="/9001-14001-ENG.webp"
                     alt={t.certificatesImageAlt}
                     width={600}
-                    height={700}
+                    height={848}
+                    sizes="(max-width: 768px) 90vw, 536px"
                     className="w-full h-auto object-contain"
                     style={{ color: "#2d3748" }}
                   />

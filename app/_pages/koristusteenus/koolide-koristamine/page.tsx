@@ -563,7 +563,7 @@ export function KoolideKoristaminePageView({ locale }: { locale: Locale }) {
                     src="/SPS-TarmoSildberg.mp4"
                     controls
                     preload="none"
-                    poster="/TarmoHero.jpg"
+                    poster="/TarmoHero-poster.webp"
                     className="w-full h-auto"
                     style={{ borderRadius: "24px" }}
                   />

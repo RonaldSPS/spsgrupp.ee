@@ -95,7 +95,8 @@ export default function Trust({ animDelay }: { animDelay?: number }) {
                 src="/9001-14001-ENG.webp"
                 alt={certificatesAlt}
                 width={640}
-                height={460}
+                height={904}
+                sizes="(max-width: 768px) 90vw, 536px"
                 className="w-full h-auto"
                 style={{ }}
               />

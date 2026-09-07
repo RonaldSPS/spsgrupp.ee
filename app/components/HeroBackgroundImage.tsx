@@ -19,6 +19,7 @@ export default function HeroBackgroundImage({
       alt={alt}
       fill
       preload={preload}
+      fetchPriority={preload ? "high" : undefined}
       className="object-cover z-0"
       style={{ objectPosition }}
       sizes="100vw"

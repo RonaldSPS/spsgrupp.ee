@@ -37,7 +37,7 @@ export default function Hero() {
       className="hero-section relative overflow-hidden min-h-[75vh] max-h-[800px] flex items-center px-[5%] pt-[120px] pb-[40px] sm:pb-[60px]"
       aria-label={t("ariaLabel")}
     >
-      <Image src="/FrontHeroCar.jpg" alt="" fill preload sizes="100vw" className="object-cover z-0" />
+      <Image src="/FrontHeroCar.jpg" alt="" fill preload fetchPriority="high" sizes="100vw" className="object-cover z-0" />
       <div className="max-w-[1280px] mx-auto w-full relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:gap-[60px] items-start">
           <div
