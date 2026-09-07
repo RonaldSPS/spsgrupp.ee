@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Geist_Mono, Ubuntu } from "next/font/google"
-import DeferredGoogleTagManager from "@/app/components/analytics/DeferredGoogleTagManager"
+import { GoogleTagManager } from "@next/third-parties/google"
 import { I18nProvider } from "@/lib/i18n-provider"
 import etMessages from "@/messages/et.json"
 import enMessages from "@/messages/en.json"
@@ -157,7 +157,7 @@ export function RootShell({
           {children}
           {gtmId ? <CookieConsentBanner /> : null}
         </I18nProvider>
-        {gtmId ? <DeferredGoogleTagManager gtmId={gtmId} /> : null}
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       </body>
     </html>
   )
