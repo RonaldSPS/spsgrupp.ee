@@ -16,7 +16,9 @@
     "i18n:parity": "tsx scripts/i18n-parity-check.ts",
     "i18n:validate": "tsx scripts/i18n-validate.ts",
     "db:restore": "tsx scripts/restore-supabase.ts",
-    "report:analytics": "tsx scripts/analytics-report.ts"
+    "report:analytics": "tsx scripts/analytics-report.ts",
+    "report:ads": "tsx scripts/ads-report.ts",
+    "setup:ads-auth": "tsx scripts/ads-oauth-setup.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

@@ -119,10 +119,10 @@ Already done in this repo — see §2. In a fresh project:
 - **GSC:** https://search.google.com/search-console → property selector →
   `https://spsgrupp.ee/` → **Settings** → **Users and permissions** →
   Add user → same email → **Restricted** → Add.
-- **Google Ads:** nothing. Cost/click data reaches the report through the
-  GA4 ↔ Ads link (GA4 Admin → Product links). Only if search-term-level Ads
-  data is ever needed would the Google Ads API (developer token + OAuth) be
-  required.
+- **Google Ads:** for the GA4-based report — nothing. Cost/click data
+  reaches it through the GA4 ↔ Ads link (GA4 Admin → Product links).
+  For **direct account access** (impression share, conversion actions,
+  search terms, keywords) set up the Google Ads API per §7.
 
 ### 4.4 Vercel
 Project → Settings → Environment Variables → add
@@ -164,8 +164,11 @@ Enhanced Conversions. When creating a *new* container, replicate at least:
 ## 5. Reporting (traffic analysis)
 
 ```bash
-npm run report:analytics          # last 28 days vs previous 28
+npm run report:analytics          # GA4 + GSC + Ads cost via the GA4 link, last 28 days
+npm run report:ads                # direct Ads API: campaigns, impression share,
+                                  # conversion actions, search terms (needs §7 setup)
 tsx scripts/analytics-report.ts --days=7
+tsx scripts/ads-report.ts --days=30
 ```
 
 Output digest: GA4 overview (sessions/users/new users/engagement/key events
@@ -186,7 +189,46 @@ auth via `google-auth-library` (scopes `analytics.readonly` +
 | GSC `403` | service account added to a different GSC property than `GSC_SITE_URL` (URL-prefix vs domain property are different objects) |
 | Ads section says "no data" | GA4 ↔ Ads not linked, or no active campaigns in the period |
 
-## 6. Consent & privacy notes
+## 6. Google Ads API (direct account access)
+
+The GA4-link report (§5) only sees cost/clicks/impressions. Direct account
+data — impression share (and WHY share is lost: budget vs rank/ad-quality),
+the actual conversion-action list (explains UI "conversions" vs real form
+submits), search terms (brand vs non-brand split) — comes from the Google
+Ads API. One-time setup:
+
+1. **Developer token.** In Google Ads (signed in as the account owner):
+   *Admin → Access and security / API Center → Developer token* → Apply for
+   access (basic access is enough; approval is usually instant).
+2. **Enable the API + OAuth client** in the existing GCP project
+   (`spsgrupp`, same one as §4.2):
+   - https://console.cloud.google.com/apis/library/googleads.googleapis.com → Enable.
+   - *APIs & Services → OAuth consent screen* → scope
+     `https://www.googleapis.com/auth/adwords` → add the Ads-owning Google
+     account as a test user (app can stay in "Testing" mode).
+   - *Credentials → Create Credentials → OAuth client ID* → type
+     **Desktop app** → copy client id + secret.
+3. **Mint the refresh token** (a browser opens; sign in with the
+   Ads-owning Google account and approve):
+   ```bash
+   npm run setup:ads-auth
+   ```
+4. Add to `.env.local` (git-ignored):
+   ```
+   GOOGLE_ADS_DEVELOPER_TOKEN=...
+   GOOGLE_ADS_CLIENT_ID=...apps.googleusercontent.com
+   GOOGLE_ADS_CLIENT_SECRET=...
+   GOOGLE_ADS_REFRESH_TOKEN=...
+   GOOGLE_ADS_CUSTOMER_ID=1234567890   # 10 digits, no dashes
+   ```
+5. Run: `npm run report:ads` (optionally `--days=30`).
+
+Read-only: the scripts only call `googleAds:search` — nothing in the
+account is modified. Note: Google's current policy does not allow granting
+the service account (§4.3) Ads access — user OAuth per the steps above is
+the supported path.
+
+## 7. Consent & privacy notes
 
 - Minimal-restriction policy (owner decision 03.09.2026): only the signals
   Google's EU User Consent Policy requires consent for are gated —
