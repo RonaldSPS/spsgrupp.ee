@@ -51,6 +51,10 @@ env.*.local
 # Scratch dir (GSC pulls, probe dumps, debug logs — local working data)
 /tmp/
 
+# Reports, audits, backups — local working data, not needed for the site
+/raportid/
+/output/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
