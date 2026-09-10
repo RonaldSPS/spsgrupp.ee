@@ -81,6 +81,7 @@ export default function SeadedPage() {
   // General settings
   const [emailRecipients, setEmailRecipients] = useState("")
   const [careerEmailRecipients, setCareerEmailRecipients] = useState("")
+  const [reportEmailRecipients, setReportEmailRecipients] = useState("")
   const [autoReplies, setAutoReplies] = useState<Record<AutoReplyKind, AutoReplyState>>({
     contact: emptyAutoReply,
     career: emptyAutoReply,
@@ -127,6 +128,7 @@ export default function SeadedPage() {
         const s = data.settings ?? {}
         setEmailRecipients(s.email_recipients || "info@spsgrupp.ee")
         setCareerEmailRecipients(s.career_email_recipients || "personal@spsgrupp.ee")
+        setReportEmailRecipients(s.report_email_recipients || "ronald@outline.ee")
         setAutoReplies({
           contact: {
             enabled: s.autoreply_contact_enabled !== "0",
@@ -225,6 +227,7 @@ export default function SeadedPage() {
       const settings: Record<string, string> = {
         email_recipients: emailRecipients,
         career_email_recipients: careerEmailRecipients,
+        report_email_recipients: reportEmailRecipients,
       }
       for (const kind of ["contact", "career"] as const) {
         const ar = autoReplies[kind]
@@ -457,6 +460,23 @@ export default function SeadedPage() {
                   onChange={(e) => setCareerEmailRecipients(e.target.value)}
                   className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
                   placeholder="personal@spsgrupp.ee"
+                />
+              </div>
+
+              <div className="mb-5">
+                <label htmlFor="settings-report-email-recipients" className="block text-[15px] font-medium text-[#17345a] mb-1">
+                  Nädalaraport (reede 09:00)
+                </label>
+                <p className="text-[15px] text-[#5a6474] mb-2">
+                  Siia saadetakse iganädalane turundusraport (GSC + GA4 + Ads + päringud). Lisa mitu aadressi eraldatuna komaga (,).
+                </p>
+                <input
+                  id="settings-report-email-recipients"
+                  type="text"
+                  value={reportEmailRecipients}
+                  onChange={(e) => setReportEmailRecipients(e.target.value)}
+                  className="w-full px-4 py-3 border border-[rgba(23,52,90,0.12)] rounded-xl text-[15px] text-[#2d3748] outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
+                  placeholder="ronald@outline.ee"
                 />
               </div>
 

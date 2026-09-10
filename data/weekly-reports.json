@@ -1,0 +1,5568 @@
+{
+  "reports": [
+    {
+      "id": 1,
+      "weekStart": "2026-09-02",
+      "weekEnd": "2026-09-08",
+      "createdAt": "2026-09-10T09:54:06.883Z",
+      "snapshot": {
+        "generatedAt": "2026-09-10T09:54:03.550Z",
+        "period": {
+          "start": "2026-09-02",
+          "end": "2026-09-08",
+          "prevStart": "2026-08-26",
+          "prevEnd": "2026-09-01"
+        },
+        "ga4": {
+          "current": {
+            "sessions": 252,
+            "users": 207,
+            "newUsers": 199,
+            "engagementRate": 0.5198412698412699,
+            "keyEvents": 15
+          },
+          "previous": {
+            "sessions": 63,
+            "users": 46,
+            "newUsers": 37,
+            "engagementRate": 0.7301587301587301,
+            "keyEvents": 6
+          },
+          "channels": [
+            {
+              "channel": "Direct",
+              "sessions": 110,
+              "keyEvents": 2
+            },
+            {
+              "channel": "Organic Search",
+              "sessions": 82,
+              "keyEvents": 8
+            },
+            {
+              "channel": "Paid Search",
+              "sessions": 37,
+              "keyEvents": 2
+            },
+            {
+              "channel": "Referral",
+              "sessions": 13,
+              "keyEvents": 1
+            },
+            {
+              "channel": "AI Assistant",
+              "sessions": 8,
+              "keyEvents": 2
+            },
+            {
+              "channel": "Unassigned",
+              "sessions": 2,
+              "keyEvents": 0
+            }
+          ],
+          "topPages": [
+            {
+              "path": "/",
+              "sessions": 137
+            },
+            {
+              "path": "/kontakt/",
+              "sessions": 43
+            },
+            {
+              "path": "/puhastusteenused/",
+              "sessions": 39
+            },
+            {
+              "path": "/tule-meile-toole/",
+              "sessions": 20
+            },
+            {
+              "path": "/ru/",
+              "sessions": 11
+            },
+            {
+              "path": "/koristusteenus/kontori-koristus/",
+              "sessions": 10
+            },
+            {
+              "path": "/koristusteenus/valikoristus/akende-pesu/",
+              "sessions": 7
+            },
+            {
+              "path": "/ehitusprahi-aravedu/",
+              "sessions": 5
+            },
+            {
+              "path": "/en/",
+              "sessions": 5
+            },
+            {
+              "path": "/en/come-work-for-us/",
+              "sessions": 5
+            },
+            {
+              "path": "/en/contact-sps-group/",
+              "sessions": 5
+            },
+            {
+              "path": "/puhastusteenused/ehitusjargne-koristus/",
+              "sessions": 5
+            },
+            {
+              "path": "/puhastusteenused/vaipade-puhastus/",
+              "sessions": 5
+            },
+            {
+              "path": "/ru/приходите-работать-к-нам/",
+              "sessions": 5
+            },
+            {
+              "path": "/sps-grupp/arvamused/",
+              "sessions": 5
+            }
+          ],
+          "daily": [
+            {
+              "date": "20260902",
+              "sessions": 13
+            },
+            {
+              "date": "20260903",
+              "sessions": 38
+            },
+            {
+              "date": "20260904",
+              "sessions": 37
+            },
+            {
+              "date": "20260905",
+              "sessions": 11
+            },
+            {
+              "date": "20260906",
+              "sessions": 20
+            },
+            {
+              "date": "20260907",
+              "sessions": 81
+            },
+            {
+              "date": "20260908",
+              "sessions": 52
+            }
+          ]
+        },
+        "gsc": {
+          "current": {
+            "clicks": 71,
+            "impressions": 2631,
+            "ctr": 0.026985936906119345,
+            "position": 11.821740782972254,
+            "days": 7
+          },
+          "previous": {
+            "clicks": 68,
+            "impressions": 2535,
+            "ctr": 0.026824457593688362,
+            "position": 13.997633136094674,
+            "days": 7
+          },
+          "topQueries": [
+            {
+              "query": "puhastusteenused",
+              "clicks": 1,
+              "impressions": 277,
+              "ctr": 0.0036101083032490976,
+              "position": 8.220216606498195
+            },
+            {
+              "query": "puhastusteenused tallinn",
+              "clicks": 0,
+              "impressions": 114,
+              "ctr": 0,
+              "position": 17.228070175438596
+            },
+            {
+              "query": "ehitusprahi",
+              "clicks": 0,
+              "impressions": 46,
+              "ctr": 0,
+              "position": 8.630434782608695
+            },
+            {
+              "query": "ehitusprahi äravedu",
+              "clicks": 0,
+              "impressions": 41,
+              "ctr": 0,
+              "position": 16.121951219512194
+            },
+            {
+              "query": "электромонтажные работы",
+              "clicks": 0,
+              "impressions": 40,
+              "ctr": 0,
+              "position": 10.225
+            },
+            {
+              "query": "клининг таллинн",
+              "clicks": 0,
+              "impressions": 37,
+              "ctr": 0,
+              "position": 11.432432432432432
+            },
+            {
+              "query": "sps",
+              "clicks": 8,
+              "impressions": 35,
+              "ctr": 0.22857142857142856,
+              "position": 1.1428571428571428
+            },
+            {
+              "query": "koristusfirma",
+              "clicks": 1,
+              "impressions": 35,
+              "ctr": 0.02857142857142857,
+              "position": 4.857142857142858
+            },
+            {
+              "query": "katuse remont",
+              "clicks": 0,
+              "impressions": 34,
+              "ctr": 0,
+              "position": 8.323529411764707
+            },
+            {
+              "query": "sps grupp oü",
+              "clicks": 9,
+              "impressions": 27,
+              "ctr": 0.3333333333333333,
+              "position": 1.2962962962962963
+            },
+            {
+              "query": "ehituspraht",
+              "clicks": 0,
+              "impressions": 25,
+              "ctr": 0,
+              "position": 12.72
+            },
+            {
+              "query": "lammutustööd",
+              "clicks": 1,
+              "impressions": 24,
+              "ctr": 0.041666666666666664,
+              "position": 5.5
+            },
+            {
+              "query": "чистка ковров таллинн",
+              "clicks": 0,
+              "impressions": 23,
+              "ctr": 0,
+              "position": 9.869565217391305
+            },
+            {
+              "query": "kontori koristus",
+              "clicks": 1,
+              "impressions": 22,
+              "ctr": 0.045454545454545456,
+              "position": 5.545454545454546
+            },
+            {
+              "query": "вывоз строительного мусора таллинн",
+              "clicks": 1,
+              "impressions": 22,
+              "ctr": 0.045454545454545456,
+              "position": 2.909090909090909
+            },
+            {
+              "query": "ehitusjäätmete äravedu",
+              "clicks": 0,
+              "impressions": 22,
+              "ctr": 0,
+              "position": 16.909090909090907
+            },
+            {
+              "query": "химчистка ковров таллинн",
+              "clicks": 2,
+              "impressions": 20,
+              "ctr": 0.1,
+              "position": 14.2
+            },
+            {
+              "query": "siseviimistlustööd tallinnas",
+              "clicks": 0,
+              "impressions": 19,
+              "ctr": 0,
+              "position": 28.157894736842106
+            },
+            {
+              "query": "вывоз мусора таллинн",
+              "clicks": 0,
+              "impressions": 18,
+              "ctr": 0,
+              "position": 10.88888888888889
+            },
+            {
+              "query": "sps grupp",
+              "clicks": 7,
+              "impressions": 17,
+              "ctr": 0.4117647058823529,
+              "position": 1
+            },
+            {
+              "query": "katuse parandus",
+              "clicks": 0,
+              "impressions": 17,
+              "ctr": 0,
+              "position": 7.764705882352941
+            },
+            {
+              "query": "elektritööd tallinnas",
+              "clicks": 0,
+              "impressions": 16,
+              "ctr": 0,
+              "position": 27.25
+            },
+            {
+              "query": "plumbing",
+              "clicks": 0,
+              "impressions": 16,
+              "ctr": 0,
+              "position": 9.9375
+            },
+            {
+              "query": "elektrisüsteemide hooldus",
+              "clicks": 0,
+              "impressions": 15,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "kojamehe teenus",
+              "clicks": 0,
+              "impressions": 15,
+              "ctr": 0,
+              "position": 8.733333333333334
+            },
+            {
+              "query": "уборочные фирмы",
+              "clicks": 0,
+              "impressions": 15,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "elektritööd harjumaal",
+              "clicks": 0,
+              "impressions": 13,
+              "ctr": 0,
+              "position": 9.307692307692308
+            },
+            {
+              "query": "välikoristus",
+              "clicks": 0,
+              "impressions": 13,
+              "ctr": 0,
+              "position": 13.538461538461538
+            },
+            {
+              "query": "sp service oü",
+              "clicks": 1,
+              "impressions": 12,
+              "ctr": 0.08333333333333333,
+              "position": 6.666666666666667
+            },
+            {
+              "query": "уборка таллинн",
+              "clicks": 1,
+              "impressions": 12,
+              "ctr": 0.08333333333333333,
+              "position": 11.5
+            },
+            {
+              "query": "akende pesu",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 21.083333333333332
+            },
+            {
+              "query": "lammutusjäätmete äravedu",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 4.5
+            },
+            {
+              "query": "parketi vigastuste hooldus",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 24.333333333333332
+            },
+            {
+              "query": "plumbing repair",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 9.083333333333334
+            },
+            {
+              "query": "уборочные фирмы в таллинне",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 24.583333333333332
+            },
+            {
+              "query": "фирмы по уборке в таллинне",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 18.166666666666668
+            },
+            {
+              "query": "katuseremont",
+              "clicks": 1,
+              "impressions": 11,
+              "ctr": 0.09090909090909091,
+              "position": 7.090909090909091
+            },
+            {
+              "query": "aknapesu tooted",
+              "clicks": 0,
+              "impressions": 11,
+              "ctr": 0,
+              "position": 13.181818181818182
+            },
+            {
+              "query": "уборка территории",
+              "clicks": 0,
+              "impressions": 11,
+              "ctr": 0,
+              "position": 8.818181818181818
+            },
+            {
+              "query": "уборка снега таллинн",
+              "clicks": 0,
+              "impressions": 10,
+              "ctr": 0,
+              "position": 5.8
+            },
+            {
+              "query": "фирма по уборке",
+              "clicks": 0,
+              "impressions": 10,
+              "ctr": 0,
+              "position": 17.5
+            },
+            {
+              "query": "muru niitmine tallinnas",
+              "clicks": 1,
+              "impressions": 9,
+              "ctr": 0.1111111111111111,
+              "position": 10
+            },
+            {
+              "query": "lumekoristus",
+              "clicks": 0,
+              "impressions": 9,
+              "ctr": 0,
+              "position": 47.22222222222222
+            },
+            {
+              "query": "plaatimistööd",
+              "clicks": 0,
+              "impressions": 9,
+              "ctr": 0,
+              "position": 9.222222222222221
+            },
+            {
+              "query": "muruniitmine",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 7.75
+            },
+            {
+              "query": "сантехник таллинн",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 30.25
+            },
+            {
+              "query": "akende pesu for this site",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 4.285714285714286
+            },
+            {
+              "query": "graffiti eemaldamine",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 1.4285714285714286
+            },
+            {
+              "query": "kontori koristus for this site",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 1.1428571428571428
+            },
+            {
+              "query": "koristusfirma tallinn",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 5.857142857142857
+            },
+            {
+              "query": "lumekoristus tallinn",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 20.571428571428573
+            },
+            {
+              "query": "plumbing repair services",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "tiling",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 7.285714285714286
+            },
+            {
+              "query": "бесплатный вывоз мусора",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "уборка листьев",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 6.142857142857143
+            },
+            {
+              "query": "уборка снега",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 13.285714285714286
+            },
+            {
+              "query": "büroo koristus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 1.8333333333333335
+            },
+            {
+              "query": "ehitusprahi äravedu tallinnas",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 8.166666666666668
+            },
+            {
+              "query": "house facade cleaning",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "kontori koristusteenus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "lumekoristus pärnu",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 27.5
+            },
+            {
+              "query": "puhastusteenused pärnus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 18
+            },
+            {
+              "query": "põrandahooldus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 44.833333333333336
+            },
+            {
+              "query": "snow removal contractors",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 38
+            },
+            {
+              "query": "ventilatsioonitööd",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 53.333333333333336
+            },
+            {
+              "query": "välikoristus korteriühistule",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 10.833333333333334
+            },
+            {
+              "query": "вывоз садового мусора",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 5.166666666666667
+            },
+            {
+              "query": "мойка брусчатки",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "обслуживание и ремонт вентиляции",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 10.166666666666666
+            },
+            {
+              "query": "уборщица таллинн",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 20.666666666666668
+            },
+            {
+              "query": "desinfitseerimine",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 15.2
+            },
+            {
+              "query": "elektrik tallinnas",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 29.6
+            },
+            {
+              "query": "eskalaator",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 11.6
+            },
+            {
+              "query": "paagipuhastussüsteemid",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 22.2
+            },
+            {
+              "query": "roofing",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 8.6
+            },
+            {
+              "query": "suurpuhastus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 36.4
+            },
+            {
+              "query": "вывоз строительного мусора",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 5.4
+            },
+            {
+              "query": "обслуживание вентиляционных систем",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 1.2
+            },
+            {
+              "query": "ремонт и обслуживание систем вентиляции",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 15.4
+            },
+            {
+              "query": "уборка",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 30.8
+            },
+            {
+              "query": "фирма по уборке помещений",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 17
+            },
+            {
+              "query": "cleaning jobs in tallinn",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 4.75
+            },
+            {
+              "query": "elektritööd",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 55.25
+            },
+            {
+              "query": "kontori suurpuhastus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "koolide puhastus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 2.5
+            },
+            {
+              "query": "koristusfirmad tallinnas",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 9.75
+            },
+            {
+              "query": "kortermaja välikoristus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 5.75
+            },
+            {
+              "query": "lumekoristus hinnad",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 15.75
+            },
+            {
+              "query": "ventilatsioonisüsteemide hooldus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 50
+            },
+            {
+              "query": "клининговая фирма",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 16.75
+            },
+            {
+              "query": "клининговые услуги",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 22.5
+            },
+            {
+              "query": "мойка окон таллинн",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 10.5
+            },
+            {
+              "query": "обслуживание вентиляции",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 19.75
+            },
+            {
+              "query": "услуги клининга",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 35
+            },
+            {
+              "query": "aknapesu",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 25.666666666666668
+            },
+            {
+              "query": "elektrik harjumaal",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 26.333333333333332
+            },
+            {
+              "query": "elektrik tallinn",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 32.66666666666667
+            },
+            {
+              "query": "janar pops",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 5.666666666666667
+            },
+            {
+              "query": "kontori puhastus",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "kontorikoristus",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 2.333333333333333
+            }
+          ],
+          "prevQueries": [
+            {
+              "query": "sps grupp oü",
+              "clicks": 8,
+              "impressions": 19,
+              "ctr": 0.42105263157894735,
+              "position": 1.4210526315789473
+            },
+            {
+              "query": "sps",
+              "clicks": 7,
+              "impressions": 39,
+              "ctr": 0.1794871794871795,
+              "position": 1.0256410256410255
+            },
+            {
+              "query": "sps grupp",
+              "clicks": 7,
+              "impressions": 15,
+              "ctr": 0.4666666666666667,
+              "position": 1.0666666666666667
+            },
+            {
+              "query": "katuse remont",
+              "clicks": 2,
+              "impressions": 32,
+              "ctr": 0.0625,
+              "position": 8.78125
+            },
+            {
+              "query": "lammutustööd",
+              "clicks": 2,
+              "impressions": 40,
+              "ctr": 0.05,
+              "position": 5.725
+            },
+            {
+              "query": "lammutustööd tallinnas",
+              "clicks": 2,
+              "impressions": 9,
+              "ctr": 0.2222222222222222,
+              "position": 3.3333333333333335
+            },
+            {
+              "query": "ehitusprahi äravedu",
+              "clicks": 1,
+              "impressions": 65,
+              "ctr": 0.015384615384615385,
+              "position": 15.938461538461539
+            },
+            {
+              "query": "katuseremont",
+              "clicks": 1,
+              "impressions": 10,
+              "ctr": 0.1,
+              "position": 9
+            },
+            {
+              "query": "krohv",
+              "clicks": 1,
+              "impressions": 1,
+              "ctr": 1,
+              "position": 1
+            },
+            {
+              "query": "plaatimistööd",
+              "clicks": 1,
+              "impressions": 13,
+              "ctr": 0.07692307692307693,
+              "position": 10.76923076923077
+            },
+            {
+              "query": "ventilation installers near me",
+              "clicks": 1,
+              "impressions": 1,
+              "ctr": 1,
+              "position": 3
+            },
+            {
+              "query": "клининг таллинн",
+              "clicks": 1,
+              "impressions": 36,
+              "ctr": 0.027777777777777776,
+              "position": 14
+            },
+            {
+              "query": "ремонт крыши цена",
+              "clicks": 1,
+              "impressions": 5,
+              "ctr": 0.2,
+              "position": 5
+            },
+            {
+              "query": "akende pesemine",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 64.75
+            },
+            {
+              "query": "akende pesu",
+              "clicks": 0,
+              "impressions": 39,
+              "ctr": 0,
+              "position": 25.333333333333332
+            },
+            {
+              "query": "akende pesu for this site",
+              "clicks": 0,
+              "impressions": 35,
+              "ctr": 0,
+              "position": 10.914285714285715
+            },
+            {
+              "query": "akende pesu tallinnas",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 19.2
+            },
+            {
+              "query": "aknapesu",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 26.666666666666668
+            },
+            {
+              "query": "aknapesu hind",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 17
+            },
+            {
+              "query": "aknapesu tooted",
+              "clicks": 0,
+              "impressions": 13,
+              "ctr": 0,
+              "position": 11.692307692307692
+            },
+            {
+              "query": "betoonisõlme moderniseerimine",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 40
+            },
+            {
+              "query": "betoonitööd tallinnas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 35.5
+            },
+            {
+              "query": "blumbing",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "büroo koristus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "carpet cleaning",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "carpet cleaning company",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "clean company",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "cleaning business",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 50.5
+            },
+            {
+              "query": "cleaning companies",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 9.833333333333334
+            },
+            {
+              "query": "cleaning company",
+              "clicks": 0,
+              "impressions": 9,
+              "ctr": 0,
+              "position": 15.333333333333334
+            },
+            {
+              "query": "cleaning jobs",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "cleaning jobs in tallinn",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "cleaning service tallinn",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "cleaning services",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 23
+            },
+            {
+              "query": "clining servis",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "cloakroom",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 6
+            },
+            {
+              "query": "concrete contractors",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 17
+            },
+            {
+              "query": "concrete crack repair",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "construction clean up companies near me",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "construction cleaning service",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 16
+            },
+            {
+              "query": "contractors disposal",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 90
+            },
+            {
+              "query": "desinfitseerimine",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 17.666666666666668
+            },
+            {
+              "query": "ehitusjärgne koristus",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 10.714285714285714
+            },
+            {
+              "query": "ehitusjäätmete äravedu",
+              "clicks": 0,
+              "impressions": 15,
+              "ctr": 0,
+              "position": 19.466666666666665
+            },
+            {
+              "query": "ehitusprahi",
+              "clicks": 0,
+              "impressions": 39,
+              "ctr": 0,
+              "position": 7.6923076923076925
+            },
+            {
+              "query": "ehitusprahi konteiner",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 27.428571428571427
+            },
+            {
+              "query": "ehitusprahi konteineri rent",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 52.8
+            },
+            {
+              "query": "ehitusprahi utiliseerimine",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 35
+            },
+            {
+              "query": "ehitusprahi vastuvõtt tallinnas",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 15
+            },
+            {
+              "query": "ehitusprahi vedu",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 30
+            },
+            {
+              "query": "ehitusprahi äravedu harjumaa",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 8.5
+            },
+            {
+              "query": "ehitusprahi äravedu tallinn",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 9
+            },
+            {
+              "query": "ehitusprahi äravedu tallinnas",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 6
+            },
+            {
+              "query": "ehitusprahi äravedu tartu",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 35.5
+            },
+            {
+              "query": "ehituspraht",
+              "clicks": 0,
+              "impressions": 40,
+              "ctr": 0,
+              "position": 12.125
+            },
+            {
+              "query": "ekspress.delfi",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "electrical instalations",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "electrical repair service",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 14
+            },
+            {
+              "query": "electrical works",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "electrician",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 63
+            },
+            {
+              "query": "electrician near me",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 14
+            },
+            {
+              "query": "electricity repair service",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 14
+            },
+            {
+              "query": "elektrik harjumaal",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 21
+            },
+            {
+              "query": "elektrik tallinn",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 33.5
+            },
+            {
+              "query": "elektrik tallinnas",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 29
+            },
+            {
+              "query": "elektrisüsteemide hooldus",
+              "clicks": 0,
+              "impressions": 13,
+              "ctr": 0,
+              "position": 11.384615384615385
+            },
+            {
+              "query": "elektritööd",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 24
+            },
+            {
+              "query": "elektritööd harjumaal",
+              "clicks": 0,
+              "impressions": 14,
+              "ctr": 0,
+              "position": 9
+            },
+            {
+              "query": "elektritööd tallinn",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 19.285714285714285
+            },
+            {
+              "query": "elektritööd tallinnas",
+              "clicks": 0,
+              "impressions": 22,
+              "ctr": 0,
+              "position": 21.318181818181817
+            },
+            {
+              "query": "emergency roof repair",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 20
+            },
+            {
+              "query": "eskalaator",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 16.8
+            },
+            {
+              "query": "eterniidi äravedu",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 40
+            },
+            {
+              "query": "facade maintenance services",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "fire and smoke damage cleaning for factories",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 49
+            },
+            {
+              "query": "fire damage restoration service",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 53
+            },
+            {
+              "query": "floor refinishing service tallinn",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "graffiti eemaldamine",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "grafiti",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 3.5
+            },
+            {
+              "query": "grafiti eemaldamine",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "gutter company near me",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "hoolduskoristus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "house facade cleaning",
+              "clicks": 0,
+              "impressions": 22,
+              "ctr": 0,
+              "position": 6.818181818181818
+            },
+            {
+              "query": "house repair",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 27
+            },
+            {
+              "query": "industrial carpet cleaning companies",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 68
+            },
+            {
+              "query": "janar pops",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "kalme koristus valgas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 38.5
+            },
+            {
+              "query": "katuse hooldus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 6
+            },
+            {
+              "query": "katuse parandus",
+              "clicks": 0,
+              "impressions": 22,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "katuse parandustööd",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 14
+            },
+            {
+              "query": "katusetööd tallinnas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 38.5
+            },
+            {
+              "query": "katuste remont",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 10.6
+            },
+            {
+              "query": "kaubanduskeskuse puhastusteenus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 71.75
+            },
+            {
+              "query": "keskkonnasõbralik puhastusteenus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 49
+            },
+            {
+              "query": "kodukoristus tallinn",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 59
+            },
+            {
+              "query": "kodukoristus tallinnas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 60.5
+            },
+            {
+              "query": "kojamehe teenus",
+              "clicks": 0,
+              "impressions": 14,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "kojamehe tööpakkumine",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 17.5
+            },
+            {
+              "query": "kontori koristus",
+              "clicks": 0,
+              "impressions": 46,
+              "ctr": 0,
+              "position": 3.217391304347826
+            },
+            {
+              "query": "kontori koristus for this site",
+              "clicks": 0,
+              "impressions": 34,
+              "ctr": 0,
+              "position": 1.0588235294117647
+            },
+            {
+              "query": "kontori koristusteenus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 3.8333333333333335
+            },
+            {
+              "query": "kontori puhastus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 19
+            },
+            {
+              "query": "kontori suurpuhastus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 20.4
+            },
+            {
+              "query": "kontorikoristus",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "koolide puhastus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 2.5
+            },
+            {
+              "query": "koristaja palk",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 17.666666666666668
+            },
+            {
+              "query": "koristaja tallinn",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 61
+            },
+            {
+              "query": "koristaja tallinnas",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 68.8
+            },
+            {
+              "query": "koristaja tunnitasu",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 15
+            },
+            {
+              "query": "koristus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 33
+            },
+            {
+              "query": "koristusfirma",
+              "clicks": 0,
+              "impressions": 21,
+              "ctr": 0,
+              "position": 5.523809523809524
+            },
+            {
+              "query": "koristusfirma tallinn",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 6
+            },
+            {
+              "query": "koristusfirmad",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 12.666666666666666
+            },
+            {
+              "query": "koristusfirmad tallinnas",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 6.333333333333333
+            },
+            {
+              "query": "koristusteenus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 21
+            },
+            {
+              "query": "koristusteenused",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "koristusteenused tallinnas",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 29.6
+            },
+            {
+              "query": "korteriühistu välikoristus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 10.5
+            },
+            {
+              "query": "kortermaja välikoristus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 5.75
+            },
+            {
+              "query": "kõnniteede puhastus",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 23
+            },
+            {
+              "query": "küttetorude paigaldus tallinnas",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 20
+            },
+            {
+              "query": "küttetorude parandus tallinnas",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 30.333333333333332
+            },
+            {
+              "query": "lammutusjäätmete äravedu",
+              "clicks": 0,
+              "impressions": 13,
+              "ctr": 0,
+              "position": 4.3076923076923075
+            },
+            {
+              "query": "lammutusteenus",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 30.666666666666668
+            },
+            {
+              "query": "lammutustööd tallinn",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 2
+            },
+            {
+              "query": "lammutustööde hinnad",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "lao suurpuhastus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 18
+            },
+            {
+              "query": "lawn mowing",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "lehekoristus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 53
+            },
+            {
+              "query": "lume äravedu",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 59.5
+            },
+            {
+              "query": "lumekoristus",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 46.5
+            },
+            {
+              "query": "lumekoristus hinnad",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 20
+            },
+            {
+              "query": "lumekoristus pärnu",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 25.285714285714285
+            },
+            {
+              "query": "lumekoristus tallinn",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 19.6
+            },
+            {
+              "query": "lumekoristus traktoriga",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 30
+            },
+            {
+              "query": "lumekoristus valgas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 27.5
+            },
+            {
+              "query": "lumelükkamine tallinnas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 24
+            },
+            {
+              "query": "lumetõrje tehnika",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 13.333333333333334
+            },
+            {
+              "query": "lumevedu",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 24
+            },
+            {
+              "query": "mudjacking companies",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "muru niitmine tallinnas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "muruniitmine",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "muruniitmise hind",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 9
+            },
+            {
+              "query": "office cleaning part time jobs",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "okidoki работа уборка",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "paagipuhastussüsteemid",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 23.428571428571427
+            },
+            {
+              "query": "parim survepesur",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 23.5
+            },
+            {
+              "query": "parketi vigastuste hooldus",
+              "clicks": 0,
+              "impressions": 14,
+              "ctr": 0,
+              "position": 23.357142857142858
+            },
+            {
+              "query": "pavement cleaning services",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 72
+            },
+            {
+              "query": "plaatimine tallinnas",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 35.5
+            },
+            {
+              "query": "plaatimistööd ettevõte eesti",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 31
+            },
+            {
+              "query": "plaatimistööd harjumaa hind",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 34
+            },
+            {
+              "query": "plumber tallinn",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "plumbing",
+              "clicks": 0,
+              "impressions": 10,
+              "ctr": 0,
+              "position": 9.6
+            },
+            {
+              "query": "plumbing company",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "plumbing repair",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "post construction cleaning",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 32.5
+            },
+            {
+              "query": "prügisorteerimine",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 20
+            },
+            {
+              "query": "public service plumbers",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "puhastusfirmad tallinnas",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 27.666666666666668
+            },
+            {
+              "query": "puhastusteenused",
+              "clicks": 0,
+              "impressions": 35,
+              "ctr": 0,
+              "position": 5.057142857142857
+            },
+            {
+              "query": "puhastusteenused kuressaares",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 23
+            },
+            {
+              "query": "puhastusteenused pärnus",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 15
+            },
+            {
+              "query": "puhastusteenused tallinn",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "puhastusteenused tallinnas",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 10.875
+            },
+            {
+              "query": "põrandahooldus",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 37.42857142857143
+            },
+            {
+              "query": "põrandate hooldus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "põrandate hooldus oü",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 26
+            },
+            {
+              "query": "remonditööd",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 68.33333333333333
+            },
+            {
+              "query": "remonditööd tallinnas",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 49
+            },
+            {
+              "query": "roof checks",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "roofing",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 11.5
+            },
+            {
+              "query": "sanitaarremont",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 19
+            },
+            {
+              "query": "silver bakhoff",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 11.5
+            },
+            {
+              "query": "siseviimistlustööd",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 32
+            },
+            {
+              "query": "siseviimistlustööd tallinnas",
+              "clicks": 0,
+              "impressions": 27,
+              "ctr": 0,
+              "position": 27.555555555555557
+            },
+            {
+              "query": "sisevärvimine",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 19.5
+            },
+            {
+              "query": "snow cleaning services",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 61
+            },
+            {
+              "query": "snow removal contractors",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 39
+            },
+            {
+              "query": "sp grupp oü",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "sp service oü",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 6
+            },
+            {
+              "query": "sps cleaning",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 19
+            },
+            {
+              "query": "sps cleaning services",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 22
+            },
+            {
+              "query": "sps group",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 3.25
+            },
+            {
+              "query": "sps grup",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "sps kate",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 40.5
+            },
+            {
+              "query": "staff cleaning",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "suurpuhastus",
+              "clicks": 0,
+              "impressions": 9,
+              "ctr": 0,
+              "position": 31.11111111111111
+            },
+            {
+              "query": "tap cleaning service",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "territooriumi koristus",
+              "clicks": 0,
+              "impressions": 10,
+              "ctr": 0,
+              "position": 37.6
+            },
+            {
+              "query": "tiling",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "tootmise puhastus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 54.166666666666664
+            },
+            {
+              "query": "tootmise suurpuhastus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 52.6
+            },
+            {
+              "query": "tootmisliinide puhastus",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 54.5
+            },
+            {
+              "query": "torutööd harjumaal",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 27
+            },
+            {
+              "query": "tänavakivi puhastus",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 60.666666666666664
+            },
+            {
+              "query": "tänavakivide pesu",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "tänavakivide puhastus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 62.8
+            },
+            {
+              "query": "tänavate koristus",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "vaibapesu",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 44
+            },
+            {
+              "query": "vaibapesu tallinnas",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 15
+            },
+            {
+              "query": "vaipade puhastus",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 43.4
+            },
+            {
+              "query": "veesüsteemide hooldus",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 58.5
+            },
+            {
+              "query": "vent service",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "ventilation specialist",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 2
+            },
+            {
+              "query": "ventilatsiooni ehitus",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 28
+            },
+            {
+              "query": "ventilatsiooni ehitus pärnus",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 37
+            },
+            {
+              "query": "ventilatsiooni ehitus tallinnas",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "ventilatsiooni hooldus tallinnas",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 33
+            },
+            {
+              "query": "ventilatsiooni remont",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 38
+            },
+            {
+              "query": "ventilatsioonilahendused tallinnas",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 21.333333333333332
+            },
+            {
+              "query": "ventilatsioonisüsteemide ehitus",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 31.75
+            },
+            {
+              "query": "ventilatsioonitööd",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 65.5
+            },
+            {
+              "query": "viilkatuse remont",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "välikoristus",
+              "clicks": 0,
+              "impressions": 19,
+              "ctr": 0,
+              "position": 20.36842105263158
+            },
+            {
+              "query": "välikoristus korteriühistule",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 9.4
+            },
+            {
+              "query": "väliterritooriumi hooldus",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 26.333333333333332
+            },
+            {
+              "query": "väliterritooriumi korrashoid",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 43.166666666666664
+            },
+            {
+              "query": "window cleaning",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "äripindade koristus",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 35.5
+            },
+            {
+              "query": "äripindade puhastustööd",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 66.5
+            },
+            {
+              "query": "бесплатный вывоз мусора",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 9.6
+            },
+            {
+              "query": "бизнес клининг",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "вывезти строительный мусор цена",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "вывоз мусор",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 15
+            },
+            {
+              "query": "вывоз мусора",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 15.333333333333334
+            },
+            {
+              "query": "вывоз мусора таллинн",
+              "clicks": 0,
+              "impressions": 26,
+              "ctr": 0,
+              "position": 11.153846153846153
+            },
+            {
+              "query": "вывоз садового мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "вывоз строительного мусора",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 7.714285714285714
+            },
+            {
+              "query": "вывоз строительного мусора таллинн",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 3.142857142857143
+            },
+            {
+              "query": "вывоз строительных отходов",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "вывозим мусор",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "генеральная уборка таллинн",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 40.75
+            },
+            {
+              "query": "глубокая чистка ковров",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "дезинфекция",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 6.4
+            },
+            {
+              "query": "демонтаж",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 9
+            },
+            {
+              "query": "демонтаж таллинн",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "дизинфекция",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "заказать мусорный контейнер для вывоза мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 25
+            },
+            {
+              "query": "изготовление гардеробной",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 9
+            },
+            {
+              "query": "клининг",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 61
+            },
+            {
+              "query": "клининговая компания",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 13.5
+            },
+            {
+              "query": "клининговая фирма",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 18.4
+            },
+            {
+              "query": "клининговые услуги",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 49.666666666666664
+            },
+            {
+              "query": "контейнер для мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "контейнер для строительного мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 11
+            },
+            {
+              "query": "кровельные работы",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "кто вывозит мусор",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "мойка брусчатки",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "мойка окон таллинн",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 9.666666666666666
+            },
+            {
+              "query": "мойка тротуарной плитки",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "мойка фасада",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "мусор дпоп",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "мусор дроб",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 5
+            },
+            {
+              "query": "мусор/",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "мытье окон",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "ночная работа по уборке",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 36.75
+            },
+            {
+              "query": "обслуживание вентиляции",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 18
+            },
+            {
+              "query": "обслуживание вентиляционных систем",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 14
+            },
+            {
+              "query": "обслуживание систем вентиляции",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 18
+            },
+            {
+              "query": "плиточные работы",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "прачечная",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 77
+            },
+            {
+              "query": "прием строительного мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "приём строительного мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "продезинфицировать",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 6
+            },
+            {
+              "query": "работа по уборке в таллинне",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 14.8
+            },
+            {
+              "query": "работа по уборке в таллинне blrt grupp",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 10.5
+            },
+            {
+              "query": "работа уборка офисов",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 5.5
+            },
+            {
+              "query": "рабочее место уборщицы",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 42
+            },
+            {
+              "query": "ремонт и обслуживание приточной вентиляции",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 5.666666666666667
+            },
+            {
+              "query": "ремонт и обслуживание систем вентиляции",
+              "clicks": 0,
+              "impressions": 4,
+              "ctr": 0,
+              "position": 8.75
+            },
+            {
+              "query": "ремонт крыш",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 8
+            },
+            {
+              "query": "санация помещения",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "сколько стоит ремонт крыши",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 1
+            },
+            {
+              "query": "снос",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 4
+            },
+            {
+              "query": "снос дома таллинн",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 4.333333333333334
+            },
+            {
+              "query": "спс",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 3
+            },
+            {
+              "query": "строительный мусор вывоз",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 9.666666666666666
+            },
+            {
+              "query": "уборка",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 37.583333333333336
+            },
+            {
+              "query": "уборка листьев",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 5.5
+            },
+            {
+              "query": "уборка помещений",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "уборка помещений работа",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 38
+            },
+            {
+              "query": "уборка снега",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 17.666666666666668
+            },
+            {
+              "query": "уборка снега таллинн",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 9.6
+            },
+            {
+              "query": "уборка таллинн",
+              "clicks": 0,
+              "impressions": 10,
+              "ctr": 0,
+              "position": 24.6
+            },
+            {
+              "query": "уборка территории",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "уборочные фирмы",
+              "clicks": 0,
+              "impressions": 14,
+              "ctr": 0,
+              "position": 11.357142857142858
+            },
+            {
+              "query": "уборочные фирмы в таллинне",
+              "clicks": 0,
+              "impressions": 15,
+              "ctr": 0,
+              "position": 18.533333333333335
+            },
+            {
+              "query": "уборочные фирмы в эстонии",
+              "clicks": 0,
+              "impressions": 10,
+              "ctr": 0,
+              "position": 21.4
+            },
+            {
+              "query": "уборщик",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "уборщица таллинн",
+              "clicks": 0,
+              "impressions": 14,
+              "ctr": 0,
+              "position": 20.714285714285715
+            },
+            {
+              "query": "услуги клининга",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 33.625
+            },
+            {
+              "query": "услуги плиточника",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "услуги по уборке",
+              "clicks": 0,
+              "impressions": 5,
+              "ctr": 0,
+              "position": 17.2
+            },
+            {
+              "query": "услуги уборки",
+              "clicks": 0,
+              "impressions": 7,
+              "ctr": 0,
+              "position": 37.57142857142857
+            },
+            {
+              "query": "утилизация мусора",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 14.5
+            },
+            {
+              "query": "утилизация строительного мусора",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "фирма по уборке",
+              "clicks": 0,
+              "impressions": 12,
+              "ctr": 0,
+              "position": 17.666666666666668
+            },
+            {
+              "query": "фирма по уборке помещений",
+              "clicks": 0,
+              "impressions": 15,
+              "ctr": 0,
+              "position": 33.06666666666667
+            },
+            {
+              "query": "фирмы по уборке в таллинне",
+              "clicks": 0,
+              "impressions": 6,
+              "ctr": 0,
+              "position": 17.333333333333332
+            },
+            {
+              "query": "фирмы по уборке помещений",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 6.666666666666667
+            },
+            {
+              "query": "химчистка ковра",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 12
+            },
+            {
+              "query": "химчистка ковров",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "химчистка ковров таллинн",
+              "clicks": 0,
+              "impressions": 8,
+              "ctr": 0,
+              "position": 14.375
+            },
+            {
+              "query": "чистка брусчатки",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 7
+            },
+            {
+              "query": "чистка ковра",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 13
+            },
+            {
+              "query": "чистка ковров",
+              "clicks": 0,
+              "impressions": 3,
+              "ctr": 0,
+              "position": 9
+            },
+            {
+              "query": "чистка ковров таллинн",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "электромонтаж",
+              "clicks": 0,
+              "impressions": 2,
+              "ctr": 0,
+              "position": 10
+            },
+            {
+              "query": "электроработы",
+              "clicks": 0,
+              "impressions": 1,
+              "ctr": 0,
+              "position": 6
+            }
+          ],
+          "topPages": [
+            {
+              "page": "https://spsgrupp.ee/",
+              "clicks": 28,
+              "impressions": 198,
+              "ctr": 0.1414141414141414,
+              "position": 4.015151515151516
+            },
+            {
+              "page": "https://spsgrupp.ee/en/",
+              "clicks": 4,
+              "impressions": 53,
+              "ctr": 0.07547169811320754,
+              "position": 7.188679245283019
+            },
+            {
+              "page": "https://spsgrupp.ee/kontakt/",
+              "clicks": 3,
+              "impressions": 100,
+              "ctr": 0.03,
+              "position": 2.06
+            },
+            {
+              "page": "https://spsgrupp.ee/koristusteenus/kontori-koristus/",
+              "clicks": 2,
+              "impressions": 81,
+              "ctr": 0.024691358024691357,
+              "position": 5.777777777777778
+            },
+            {
+              "page": "https://spsgrupp.ee/puhastusteenused/",
+              "clicks": 2,
+              "impressions": 461,
+              "ctr": 0.004338394793926247,
+              "position": 9.726681127982646
+            },
+            {
+              "page": "https://spsgrupp.ee/ru/",
+              "clicks": 2,
+              "impressions": 65,
+              "ctr": 0.03076923076923077,
+              "position": 25.49230769230769
+            },
+            {
+              "page": "https://spsgrupp.ee/ru/%D0%B2%D1%8B%D0%B2%D0%BE%D0%B7-%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE-%D0%BC%D1%83%D1%81%D0%BE%D1%80%D0%B0/",
+              "clicks": 2,
+              "impressions": 151,
+              "ctr": 0.013245033112582781,
+              "position": 8.08609271523179
+            },
+            {
+              "page": "https://spsgrupp.ee/ru/%D0%BA%D0%BB%D0%B8%D0%BD%D0%B8%D0%BD%D0%B3%D0%BE%D0%B2%D1%8B%D0%B5-%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0/%D1%87%D0%B8%D1%81%D1%82%D0%BA%D0%B0-%D0%BA%D0%BE%D0%B2%D1%80%D0%BE%D0%B2/",
+              "clicks": 2,
+              "impressions": 58,
+              "ctr": 0.034482758620689655,
+              "position": 9.844827586206897
+            },
+            {
+              "page": "https://spsgrupp.ee/ru/%D0%BF%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F-%D0%B2%D0%BD%D0%B5%D1%88%D0%BD%D1%8F%D1%8F-%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D0%BA%D0%B0-%D0%B2-%D1%82/%D0%BC%D0%BE%D0%B9%D0%BA%D0%B0-%D0%B8-%D1%83%D1%85%D0%BE%D0%B4-%D0%B7%D0%B0-%D1%83%D0%BB%D0%B8%D1%87%D0%BD%D0%BE%D0%B9-%D0%B1%D1%80%D1%83%D1%81%D1%87%D0%B0%D1%82%D0%BA%D0%BE%D0%B9-%D1%81%D1%82%D1%80/",
+              "clicks": 2,
+              "impressions": 8,
+              "ctr": 0.25,
+              "position": 4.25
+            },
+            {
+              "page": "https://spsgrupp.ee/ehitusprahi-aravedu/",
+              "clicks": 1,
+              "impressions": 182,
+              "ctr": 0.005494505494505495,
+              "position": 12.763736263736265
+            },
+            {
+              "page": "https://spsgrupp.ee/en/cleaning-services-for-business-clients/professional-floor-maintenance-in-tallinn/",
+              "clicks": 1,
+              "impressions": 3,
+              "ctr": 0.3333333333333333,
+              "position": 64.33333333333334
+            },
+            {
+              "page": "https://spsgrupp.ee/en/come-work-for-us/",
+              "clicks": 1,
+              "impressions": 27,
+              "ctr": 0.037037037037037035,
+              "position": 5.037037037037037
+            },
+            {
+              "page": "https://spsgrupp.ee/en/outdoor-cleaning-and-grounds-care/snow-clearing/",
+              "clicks": 1,
+              "impressions": 25,
+              "ctr": 0.04,
+              "position": 39.16
+            },
+            {
+              "page": "https://spsgrupp.ee/herokontakt/",
+              "clicks": 1,
+              "impressions": 11,
+              "ctr": 0.09090909090909091,
+              "position": 3.1818181818181817
+            },
+            {
+              "page": "https://spsgrupp.ee/koristusteenus/valikoristus/grafiti-eemaldamine/",
+              "clicks": 1,
+              "impressions": 22,
+              "ctr": 0.045454545454545456,
+              "position": 2.5
+            },
+            {
+              "page": "https://spsgrupp.ee/koristusteenus/valikoristus/muruniitmine/",
+              "clicks": 1,
+              "impressions": 31,
+              "ctr": 0.03225806451612903,
+              "position": 9.193548387096774
+            },
+            {
+              "page": "https://spsgrupp.ee/puhastusteenused/ehitusjargne-koristus/",
+              "clicks": 1,
+              "impressions": 22,
+              "ctr": 0.045454545454545456,
+              "position": 4.181818181818182
+            },
+            {
+              "page": "https://spsgrupp.ee/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/",
+              "clicks": 1,
+              "impressions": 11,
+              "ctr": 0.09090909090909091,
+              "position": 11.181818181818182
+            },
+            {
+              "page": "https://spsgrupp.ee/puhastusteenused/vaipade-puhastus/",
+              "clicks": 1,
+              "impressions": 24,
+              "ctr": 0.041666666666666664,
+              "position": 14.916666666666666
+            },
+            {
+              "page": "https://spsgrupp.ee/remonditeenused-tallinnas/elektritood/",
+              "clicks": 1,
+              "impressions": 68,
+              "ctr": 0.014705882352941176,
+              "position": 21
+            },
+            {
+              "page": "https://spsgrupp.ee/remonditeenused-tallinnas/katuse-remont/",
+              "clicks": 1,
+              "impressions": 96,
+              "ctr": 0.010416666666666666,
+              "position": 8.302083333333332
+            },
+            {
+              "page": "https://spsgrupp.ee/remonditeenused-tallinnas/lammutustood/",
+              "clicks": 1,
+              "impressions": 36,
+              "ctr": 0.027777777777777776,
+              "position": 6.222222222222222
+            },
+            {
+              "page": "https://spsgrupp.ee/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/",
+              "clicks": 1,
+              "impressions": 5,
+              "ctr": 0.2,
+              "position": 5
+            },
+            {
+              "page": "https://spsgrupp.ee/ru/%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B0-sps/%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%D1%8B/",
+              "clicks": 1,
+              "impressions": 1,
+              "ctr": 1,
+              "position": 2
+            },
+            {
+              "page": "https://spsgrupp.ee/ru/%D0%BA%D0%BB%D0%B8%D0%BD%D0%B8%D0%BD%D0%B3%D0%BE%D0%B2%D1%8B%D0%B5-%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8-%D0%B4%D0%BB%D1%8F-%D0%B1%D0%B8%D0%B7%D0%BD%D0%B5%D1%81%D0%B0/%D0%B4%D0%B5%D0%B7%D0%B8%D0%BD%D1%84%D0%B5%D0%BA%D1%86%D0%B8%D1%8F/",
+              "clicks": 1,
+              "impressions": 10,
+              "ctr": 0.1,
+              "position": 6.8
+            }
+          ],
+          "families": [
+            {
+              "id": "koristusfirma",
+              "label": "koristusfirma",
+              "current": {
+                "impressions": 46,
+                "clicks": 1,
+                "position": 5.434782608695653
+              },
+              "previous": {
+                "impressions": 28,
+                "clicks": 0,
+                "position": 6.392857142857143
+              }
+            },
+            {
+              "id": "koristusfirma-tallinnas",
+              "label": "koristusfirma tallinnas",
+              "current": {
+                "impressions": 11,
+                "clicks": 0,
+                "position": 7.2727272727272725
+              },
+              "previous": {
+                "impressions": 4,
+                "clicks": 0,
+                "position": 6.25
+              }
+            },
+            {
+              "id": "kontori-koristus",
+              "label": "kontori koristus",
+              "current": {
+                "impressions": 38,
+                "clicks": 1,
+                "position": 4.368421052631579
+              },
+              "previous": {
+                "impressions": 91,
+                "clicks": 0,
+                "position": 3.318681318681319
+              }
+            },
+            {
+              "id": "kontorikoristus",
+              "label": "kontorikoristus",
+              "current": {
+                "impressions": 3,
+                "clicks": 0,
+                "position": 2.333333333333333
+              },
+              "previous": {
+                "impressions": 2,
+                "clicks": 0,
+                "position": 3
+              }
+            },
+            {
+              "id": "buroode-koristus",
+              "label": "büroode koristus",
+              "current": {
+                "impressions": 6,
+                "clicks": 0,
+                "position": 1.8333333333333333
+              },
+              "previous": {
+                "impressions": 5,
+                "clicks": 0,
+                "position": 1
+              }
+            },
+            {
+              "id": "hoolduskoristus",
+              "label": "hoolduskoristus",
+              "current": {
+                "impressions": 2,
+                "clicks": 0,
+                "position": 6
+              },
+              "previous": {
+                "impressions": 1,
+                "clicks": 0,
+                "position": 5
+              }
+            },
+            {
+              "id": "puhastusteenused",
+              "label": "puhastusteenused",
+              "current": {
+                "impressions": 400,
+                "clicks": 2,
+                "position": 11.2025
+              },
+              "previous": {
+                "impressions": 57,
+                "clicks": 0,
+                "position": 14.68421052631579
+              }
+            },
+            {
+              "id": "puhastusteenused-tallinnas",
+              "label": "puhastusteenused tallinnas",
+              "current": {
+                "impressions": 115,
+                "clicks": 1,
+                "position": 17.234782608695653
+              },
+              "previous": {
+                "impressions": 10,
+                "clicks": 0,
+                "position": 10.9
+              }
+            },
+            {
+              "id": "koristusteenused",
+              "label": "koristusteenused",
+              "current": {
+                "impressions": 12,
+                "clicks": 0,
+                "position": 15.083333333333334
+              },
+              "previous": {
+                "impressions": 13,
+                "clicks": 0,
+                "position": 15.76923076923077
+              }
+            },
+            {
+              "id": "koristusteenused-tallinnas",
+              "label": "koristusteenused tallinnas",
+              "current": {
+                "impressions": 3,
+                "clicks": 0,
+                "position": 37
+              },
+              "previous": {
+                "impressions": 5,
+                "clicks": 0,
+                "position": 29.6
+              }
+            },
+            {
+              "id": "puhastusfirma",
+              "label": "puhastusfirma",
+              "current": {
+                "impressions": 2,
+                "clicks": 0,
+                "position": 26
+              },
+              "previous": {
+                "impressions": 3,
+                "clicks": 0,
+                "position": 27.666666666666668
+              }
+            },
+            {
+              "id": "aripindade-koristus",
+              "label": "äripindade koristus",
+              "current": {
+                "impressions": 2,
+                "clicks": 0,
+                "position": 65
+              },
+              "previous": {
+                "impressions": 4,
+                "clicks": 0,
+                "position": 51
+              }
+            },
+            {
+              "id": "akende-pesu",
+              "label": "akende pesu",
+              "current": {
+                "impressions": 35,
+                "clicks": 0,
+                "position": 15.285714285714286
+              },
+              "previous": {
+                "impressions": 103,
+                "clicks": 0,
+                "position": 19.941747572815533
+              }
+            },
+            {
+              "id": "akende-pesu-tallinnas",
+              "label": "akende pesu tallinnas",
+              "current": {
+                "impressions": 2,
+                "clicks": 0,
+                "position": 15
+              },
+              "previous": {
+                "impressions": 5,
+                "clicks": 0,
+                "position": 19.2
+              }
+            },
+            {
+              "id": "suurpuhastus",
+              "label": "suurpuhastus",
+              "current": {
+                "impressions": 13,
+                "clicks": 0,
+                "position": 19.307692307692307
+              },
+              "previous": {
+                "impressions": 20,
+                "clicks": 0,
+                "position": 33.15
+              }
+            },
+            {
+              "id": "porandate-suvapesu",
+              "label": "põrandate süvapesu",
+              "current": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              },
+              "previous": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              }
+            },
+            {
+              "id": "fassaadipesu",
+              "label": "fassaadipesu",
+              "current": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              },
+              "previous": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              }
+            },
+            {
+              "id": "eripuhastustood",
+              "label": "eripuhastustööd",
+              "current": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              },
+              "previous": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              }
+            },
+            {
+              "id": "toostuskoristus",
+              "label": "tööstuskoristus",
+              "current": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              },
+              "previous": {
+                "impressions": 0,
+                "clicks": 0,
+                "position": null
+              }
+            },
+            {
+              "id": "ehitusprahi-aravedu",
+              "label": "ehitusprahi/jäätmete äravedu",
+              "current": {
+                "impressions": 165,
+                "clicks": 0,
+                "position": 13.696969696969697
+              },
+              "previous": {
+                "impressions": 205,
+                "clicks": 1,
+                "position": 14.78048780487805
+              }
+            },
+            {
+              "id": "ru-kliining",
+              "label": "клининг (RU)",
+              "current": {
+                "impressions": 143,
+                "clicks": 1,
+                "position": 13.13986013986014
+              },
+              "previous": {
+                "impressions": 145,
+                "clicks": 1,
+                "position": 19.551724137931036
+              }
+            },
+            {
+              "id": "en-cleaning",
+              "label": "cleaning company/services (EN)",
+              "current": {
+                "impressions": 19,
+                "clicks": 0,
+                "position": 9.31578947368421
+              },
+              "previous": {
+                "impressions": 55,
+                "clicks": 0,
+                "position": 14.836363636363636
+              }
+            }
+          ],
+          "newQueries": [
+            {
+              "query": "puhastusteenused tallinn",
+              "clicks": 0,
+              "impressions": 114,
+              "ctr": 0,
+              "position": 17.228070175438596
+            },
+            {
+              "query": "электромонтажные работы",
+              "clicks": 0,
+              "impressions": 40,
+              "ctr": 0,
+              "position": 10.225
+            },
+            {
+              "query": "чистка ковров таллинн",
+              "clicks": 0,
+              "impressions": 23,
+              "ctr": 0,
+              "position": 9.869565217391305
+            },
+            {
+              "query": "sp service oü",
+              "clicks": 1,
+              "impressions": 12,
+              "ctr": 0.08333333333333333,
+              "position": 6.666666666666667
+            }
+          ]
+        },
+        "ads": {
+          "available": true,
+          "campaigns": [
+            {
+              "name": "Otsing - Teenused - 2026",
+              "status": "ENABLED",
+              "cost": 155.717376,
+              "clicks": 44,
+              "impressions": 553,
+              "ctr": 0.07956600361663653,
+              "avgCpc": 3.539031272727273,
+              "conversions": 1,
+              "allConversions": 5,
+              "impressionShare": 0.3381974248927039,
+              "rankLostIS": 0.2446351931330472,
+              "budgetLostIS": 0.4171673819742489,
+              "topIS": 0.28498727735368956,
+              "absTopIS": 0.10602205258693809
+            }
+          ],
+          "brand": {
+            "cost": 5.15,
+            "clicks": 1,
+            "conversions": 2
+          },
+          "nonBrand": {
+            "cost": 70.491612,
+            "clicks": 14,
+            "conversions": 2
+          },
+          "topTerms": [
+            {
+              "term": "kontorikoristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 13.72,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 1
+            },
+            {
+              "term": "kontori koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 11,
+              "clicks": 1,
+              "impressions": 4,
+              "conversions": 0
+            },
+            {
+              "term": "ehitusjärgne koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 8.35,
+              "clicks": 1,
+              "impressions": 7,
+              "conversions": 0
+            },
+            {
+              "term": "puhastusteenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 5.571731,
+              "clicks": 1,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sps grupp",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 5.15,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 2
+            },
+            {
+              "term": "eripuhastustööd",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 4.764503,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "korteri puhastusteenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 4.23,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "cleaning service tallinn",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 4.15,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 1
+            },
+            {
+              "term": "koristusteenused tallinn",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 4.01,
+              "clicks": 1,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "kleenest eesti oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 3.18,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "survepesu",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 3.01,
+              "clicks": 1,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "luuclean",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 2.557671,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "koristusteenus tallinn",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 2.26,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "vihmaveerennide puhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 2.05,
+              "clicks": 1,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "färsk",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 1.637707,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "cleanstep puhastus oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "keemiline puhastus lasnamäe",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "kodupuhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "koristusfirma",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristusfirmad",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "liivaprits",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "minuteenused ee",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "oneclean puhastusteenused",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "parkla puhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "pesumajad",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "puhastus import",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "puhastusteenused",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 8,
+              "conversions": 0
+            },
+            {
+              "term": "puhastusteenused tallinnas",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "puhastusässad",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "sisekoristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "sol eesti",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "soodapritsitööd",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "suurpuhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sära puhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "süvapuhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "tondi puhastustööd",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "ventilatsiooni puhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 6,
+              "conversions": 0
+            },
+            {
+              "term": "ventilatsiooni puhastus tallinnas",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "välikoristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "äripindade puhastusteenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "airbnb koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "heakorrateenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "hoolduskoristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "hotel cleaning services",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "kleenest eesti oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "kontori suurpuhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "koristusfirma",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "koristusfirma tallinnas",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristusteenus tallinn",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "otsin koristajat",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "prof puhastus oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "puhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 5,
+              "conversions": 0
+            },
+            {
+              "term": "puhastusteenused tartus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sisekoristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "smartclean",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "trepikodade koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "trepikoja koristamine",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "trepikoja koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "after construction cleaning",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "builders cleaning",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "eesti ehitusfirmad",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "cloverhome",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "globalcleaning",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "kinnisvarahooldus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristaja",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 5,
+              "conversions": 0
+            },
+            {
+              "term": "koristus 24",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristusfirma",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 4,
+              "conversions": 0
+            },
+            {
+              "term": "koristusteenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 22,
+              "conversions": 0
+            },
+            {
+              "term": "koristusteenus tallinn",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "koristusteenus tallinnas",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 4,
+              "conversions": 0
+            },
+            {
+              "term": "koristusteenused tallinnas",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "madratsite puhastus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "newplanet",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "rentokil eesti",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "süvapesu",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "tphooldus ee",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "уборочная фирма в таллинне",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 5,
+              "conversions": 0
+            },
+            {
+              "term": "a k t projekt oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "cloverhome oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "eripuhastustööd",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "k&r puhastus oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "kolimiskoristus tallinnas",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "koristustiim",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "korteri puhastusteenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "krausberg eesti",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sol koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sol puhastusteenus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "akt projekt",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "kendra ee",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 3,
+              "conversions": 0
+            },
+            {
+              "term": "koristusfirma",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "term": "koristusplaan",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sol baltics oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 4,
+              "conversions": 0
+            },
+            {
+              "term": "sol koristus",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sp service oü",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 1,
+              "conversions": 0
+            },
+            {
+              "term": "sps",
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 2,
+              "conversions": 0
+            }
+          ],
+          "keywords": [
+            {
+              "keyword": "puhastus teenus",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 30.210143,
+              "clicks": 11,
+              "impressions": 76,
+              "conversions": 0
+            },
+            {
+              "keyword": "koristustööd",
+              "matchType": "BROAD",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 22.66,
+              "clicks": 6,
+              "impressions": 107,
+              "conversions": 0
+            },
+            {
+              "keyword": "kontorikoristus",
+              "matchType": "EXACT",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 13.72,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirma",
+              "matchType": "BROAD",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 11.597671,
+              "clicks": 4,
+              "impressions": 39,
+              "conversions": 0
+            },
+            {
+              "keyword": "kontori koristus",
+              "matchType": "EXACT",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 11,
+              "clicks": 1,
+              "impressions": 4,
+              "conversions": 0
+            },
+            {
+              "keyword": "hoolduskoristus",
+              "matchType": "BROAD",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 9.454503,
+              "clicks": 3,
+              "impressions": 46,
+              "conversions": 0
+            },
+            {
+              "keyword": "kontorikoristus",
+              "matchType": "BROAD",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 9.047707,
+              "clicks": 3,
+              "impressions": 40,
+              "conversions": 0
+            },
+            {
+              "keyword": "ehitusjärgne koristus",
+              "matchType": "EXACT",
+              "qualityScore": 7,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 8.35,
+              "clicks": 1,
+              "impressions": 7,
+              "conversions": 0
+            },
+            {
+              "keyword": "kontori koristus",
+              "matchType": "PHRASE",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 7.88,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "keyword": "koristusteenused",
+              "matchType": "PHRASE",
+              "qualityScore": 3,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 7.1,
+              "clicks": 3,
+              "impressions": 19,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastus teenused",
+              "matchType": "BROAD",
+              "qualityScore": 7,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 6.4,
+              "clicks": 3,
+              "impressions": 42,
+              "conversions": 0
+            },
+            {
+              "keyword": "koristusteenuse hind",
+              "matchType": "BROAD",
+              "qualityScore": 7,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 5.15,
+              "clicks": 1,
+              "impressions": 15,
+              "conversions": 0
+            },
+            {
+              "keyword": "koristusteenus",
+              "matchType": "PHRASE",
+              "qualityScore": 5,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 4.15,
+              "clicks": 1,
+              "impressions": 29,
+              "conversions": 1
+            },
+            {
+              "keyword": "puhastusteenused tallinnas",
+              "matchType": "BROAD",
+              "qualityScore": 2,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 3.05,
+              "clicks": 1,
+              "impressions": 46,
+              "conversions": 0
+            },
+            {
+              "keyword": "trepikodade koristus",
+              "matchType": "BROAD",
+              "qualityScore": 5,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 2.71,
+              "clicks": 2,
+              "impressions": 16,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenused tallinnas",
+              "matchType": "PHRASE",
+              "qualityScore": 2,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 2.26,
+              "clicks": 1,
+              "impressions": 2,
+              "conversions": 0
+            },
+            {
+              "keyword": "ehitusjärgne koristus",
+              "matchType": "BROAD",
+              "qualityScore": 7,
+              "campaign": "Otsing - Teenused - 2026",
+              "cost": 0.977352,
+              "clicks": 1,
+              "impressions": 5,
+              "conversions": 0
+            },
+            {
+              "keyword": "auto",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "autos",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "sol",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "tehnika",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "iss",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "sol",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "tartu",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "iss",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "autole",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "pesu",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kanalisatsiooni",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "autodele",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "köögi",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "ehituskoristus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "koristamine",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenused",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "liisu puhastusteenused oü",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "sol puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "tondi puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "keemiline puhastus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "iss koristus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenused tartus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "lamellkardinate pesu tartus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "lohesurfi koolitus koristus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "salvkaevu puhastaminse teenus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "torupuhastusteenus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "vaibapuhastus tartus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristuse hind",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kvatro koristus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "koristusfirma",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "ventilatsiooni puhastus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kontori koristus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "ehitusjärgne koristus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "ehitusjärgne koristus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "fassaadipesu hind",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "eripuhastustööd",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kontori koristus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirma",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirmad",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "aadli puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "iss puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kendra puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenused tallinnas",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "tartu puhastusteenused",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirmad tartus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kaevu",
+              "matchType": "BROAD",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristus tallinn",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "e õpe jkhk puhastusteenindus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "e õpe puhastusteenindus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "villaste vaipkatete puhastusteenus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kaks kokaõpetjat puhastusteenindus õpetaja",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "looduslikud puhastusteenused tartus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirma tartus maaler grupp",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirmad tallinn nõmme omanikud",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja reklaamlause",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja riided",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "äriplaan puhastusteenindus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "vaipade keemiline puhastus tartus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodupuhastus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "suurpuhastus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "akende puhastus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindus",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "insil puhastusteenused oü",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristusteenus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja koolitus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja palk",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja tööpakkumised",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "viimsi keemiline puhastus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenused tallinnas",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "fassaadipesu",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusfirmad tallinnas",
+              "matchType": "PHRASE",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristus tallinnas",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristaja",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "keemiline puhastus kristiine keskus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodu koristusteenus",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "kodukoristus viimsi",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "clean big puhastusteenused oü",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja tööülesanded",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            },
+            {
+              "keyword": "puhastusteenindaja lasnamäele",
+              "matchType": "EXACT",
+              "qualityScore": null,
+              "campaign": "Otsing - Teenused - JNV002",
+              "cost": 0,
+              "clicks": 0,
+              "impressions": 0,
+              "conversions": 0
+            }
+          ],
+          "totals": {
+            "cost": 155.717376,
+            "clicks": 44,
+            "impressions": 553,
+            "conversions": 5
+          }
+        },
+        "forms": {
+          "current": {
+            "contact": 1,
+            "career": 0,
+            "spam": 0,
+            "gclidLeads": 0,
+            "feeTotal": 0,
+            "profitTotal": 0
+          },
+          "previous": {
+            "contact": 7,
+            "career": 0,
+            "spam": 0,
+            "gclidLeads": 2,
+            "feeTotal": 0,
+            "profitTotal": 0
+          },
+          "topPages": [
+            {
+              "pageUrl": "https://spsgrupp.ee/koristusteenus/hoolduskoristus/",
+              "count": 1
+            }
+          ]
+        },
+        "errors": []
+      },
+      "insights": [
+        {
+          "area": "seo",
+          "severity": "negative",
+          "title": "„puhastusteenused tallinnas\" langes 10,9 → 17,2",
+          "detail": "115 näitamist sel nädalal (eelmine: 10).",
+          "action": "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab kandjalehte? Kui kandja on sama, tugevda lehe sisu ja siselinke; kui kandja vahetub, suuna siselinkidega õigele lehele."
+        },
+        {
+          "area": "ga4",
+          "severity": "negative",
+          "title": "GA4 mõõtmine võib olla katki (keskmiselt 36 sessiooni/päevas, 2 päeva alla 20)",
+          "detail": "Tavapärane tase on 30–50 sessiooni/päevas. Alla 20/päevas = tracking-tõrge (vt CSP/consent/GTM), mitte liikluse langus.",
+          "action": "Kontrolli GTM-i laadimist live-is (DevTools → Network: gtm.js), CSP päiseid ja consent-mode'i. Ära tõlgenda selle nädala GA4-numbreid enne taastumist."
+        },
+        {
+          "area": "ads",
+          "severity": "warning",
+          "title": "1 mitte-brändi päringut kulutavad raha ilma konversioonideta",
+          "detail": "„kontori koristus\" (11,00 €)",
+          "action": "Kui päringud ei sobi teenusevalikusse, lisa negatiivseteks märksõnadeks; kui sobivad, aga ei konverteeri, vaata maandumislehe pakkumist."
+        },
+        {
+          "area": "ads",
+          "severity": "warning",
+          "title": "Quality Score 3/10: „koristustööd\"",
+          "detail": "107 näitamist, CPC tõenäoliselt ülehinnatud madala kvaliteedi tõttu.",
+          "action": "Kontrolli oodatud CTR-i, reklaami asjakohasust ja maandumislehte — lisa märksõna reklaami pealkirja ja maandumislehe pealkirja."
+        },
+        {
+          "area": "ads",
+          "severity": "warning",
+          "title": "Quality Score 3/10: „puhastusfirma\"",
+          "detail": "39 näitamist, CPC tõenäoliselt ülehinnatud madala kvaliteedi tõttu.",
+          "action": "Kontrolli oodatud CTR-i, reklaami asjakohasust ja maandumislehte — lisa märksõna reklaami pealkirja ja maandumislehe pealkirja."
+        },
+        {
+          "area": "ads",
+          "severity": "warning",
+          "title": "Quality Score 3/10: „hoolduskoristus\"",
+          "detail": "46 näitamist, CPC tõenäoliselt ülehinnatud madala kvaliteedi tõttu.",
+          "action": "Kontrolli oodatud CTR-i, reklaami asjakohasust ja maandumislehte — lisa märksõna reklaami pealkirja ja maandumislehe pealkirja."
+        },
+        {
+          "area": "ads",
+          "severity": "warning",
+          "title": "Quality Score 3/10: „kontorikoristus\"",
+          "detail": "40 näitamist, CPC tõenäoliselt ülehinnatud madala kvaliteedi tõttu.",
+          "action": "Kontrolli oodatud CTR-i, reklaami asjakohasust ja maandumislehte — lisa märksõna reklaami pealkirja ja maandumislehe pealkirja."
+        },
+        {
+          "area": "forms",
+          "severity": "warning",
+          "title": "Kontaktpäringuid tuli 1 (eesmärk ≥4/nädal = ≥15/kuu)",
+          "detail": "Eelmine nädal: 7. Päris päringud (DB) on konversioonide tõde — GA4 key events'i ei kasutata topelt-loenduse tõttu.",
+          "action": "Kui liiklus on korras, aga päringuid pole, on probleem konversioonis: lihtsusta vormi (vähem välju), too kontaktandmed lehe üles ja lisa usaldussignaale (klientide logod, arvustused)."
+        },
+        {
+          "area": "seo",
+          "severity": "opportunity",
+          "title": "Löögkaugusel: „koristusfirma\" pos 5,4 (46 näitamist/nädal)",
+          "detail": "Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.",
+          "action": "Täienda „koristusfirma\" kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt."
+        },
+        {
+          "area": "seo",
+          "severity": "opportunity",
+          "title": "Löögkaugusel: „kontori koristus\" pos 4,4 (38 näitamist/nädal)",
+          "detail": "Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.",
+          "action": "Täienda „kontori koristus\" kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt."
+        },
+        {
+          "area": "seo",
+          "severity": "opportunity",
+          "title": "Löögkaugusel: „puhastusteenused\" pos 11,2 (400 näitamist/nädal)",
+          "detail": "Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.",
+          "action": "Täienda „puhastusteenused\" kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt."
+        },
+        {
+          "area": "seo",
+          "severity": "opportunity",
+          "title": "Löögkaugusel: „ehitusprahi/jäätmete äravedu\" pos 13,7 (165 näitamist/nädal)",
+          "detail": "Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.",
+          "action": "Täienda „ehitusprahi/jäätmete äravedu\" kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt."
+        },
+        {
+          "area": "seo",
+          "severity": "opportunity",
+          "title": "4 uut päringut on ilmunud nähtavusele",
+          "detail": "„puhastusteenused tallinn\" (114 näitamist, pos 17,2), „электромонтажные работы\" (40 näitamist, pos 10,2), „чистка ковров таллинн\" (23 näitamist, pos 9,9), „sp service oü\" (12 näitamist, pos 6,7)",
+          "action": "Vaata päringud läbi: kas mõnele pole meil eraldi lehte? Mahukamale uuele päringule kaalu eraldi lehte või blogipostitust; olemasoleva lehe päringud lisa lehe sisse (FAQ või alapealkiri)."
+        },
+        {
+          "area": "ads",
+          "severity": "opportunity",
+          "title": "„Otsing - Teenused - 2026\" kaotab 42 % nähtavusest eelarve tõttu",
+          "detail": "Näitamisosa 34 %, kulu 155,72 € nädalas.",
+          "action": "Kui kampaania konversioonid on tasuvad, tõsta päevaeelarvet — kaotatud näitamised on otseselt kaotatud päringud."
+        },
+        {
+          "area": "ads",
+          "severity": "opportunity",
+          "title": "55 % Ads-eelarvest läheb brändipäringutele",
+          "detail": "Brändi-klikid oleks enamasti tulnud ka orgaaniliselt (pos 1). Brändikulu 5,15 € vs mitte-brändi 70,49 €.",
+          "action": "Kaalu brändikampaania eelarve kärpimist miinimumini ja raha suunamist mitte-brändi teenusepäringutesse, kus orgaaniline positsioon on nõrk (vt peatabel pos 10+)."
+        },
+        {
+          "area": "ads",
+          "severity": "opportunity",
+          "title": "Konverteerivad mitte-brändi päringud — kandke orgaanikasse",
+          "detail": "„kontorikoristus\" (1 konv, 13,72 €), „cleaning service tallinn\" (1 konv, 4,15 €)",
+          "action": "Kontrolli, kas neil päringutel on orgaaniline leht ja positsioon. Kui orgaaniline koht on nõrk, täienda lehte või loo eraldi sihtleht — Ads tõestab, et päring konverteerib."
+        },
+        {
+          "area": "seo",
+          "severity": "positive",
+          "title": "„puhastusteenused\" tõusis 14,7 → 11,2",
+          "detail": "400 näitamist, 2 klikki sel nädalal.",
+          "action": "Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga."
+        },
+        {
+          "area": "seo",
+          "severity": "positive",
+          "title": "„akende pesu\" tõusis 19,9 → 15,3",
+          "detail": "35 näitamist, 0 klikki sel nädalal.",
+          "action": "Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga."
+        },
+        {
+          "area": "seo",
+          "severity": "positive",
+          "title": "„suurpuhastus\" tõusis 33,2 → 19,3",
+          "detail": "13 näitamist, 0 klikki sel nädalal.",
+          "action": "Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga."
+        },
+        {
+          "area": "seo",
+          "severity": "positive",
+          "title": "„клининг (RU)\" tõusis 19,6 → 13,1",
+          "detail": "143 näitamist, 1 klikki sel nädalal.",
+          "action": "Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga."
+        },
+        {
+          "area": "seo",
+          "severity": "positive",
+          "title": "„cleaning company/services (EN)\" tõusis 14,8 → 9,3",
+          "detail": "19 näitamist, 0 klikki sel nädalal.",
+          "action": "Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga."
+        }
+      ],
+      "narrative": "",
+      "emailSentAt": null,
+      "emailError": ""
+    }
+  ]
+}

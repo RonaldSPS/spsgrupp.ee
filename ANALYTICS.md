@@ -82,6 +82,8 @@ Public IDs are not secrets (they appear in page source).
 | `GOOGLE_ADS_ID=AW-944834915` | informational | Ads account tag id (configured in GTM) |
 | `GSC_SITE_URL=https://spsgrupp.ee/` | local (reporting) | Search Console API target (must match the property exactly) |
 | `GOOGLE_APPLICATION_CREDENTIALS=.secrets/gcp-analytics.json` | local (reporting) | path to the service-account JSON key |
+| `GCP_SERVICE_ACCOUNT_JSON={"type":"service_account",...}` | **Vercel** (weekly report cron) | the same key as a JSON-string env var — approved exception (10.09.2026) to the "key never leaves the machine" rule so the Friday cron can call the APIs |
+| `DEEPSEEK_API_KEY` / `DEEPSEEK_MODEL` | **Vercel + local** (weekly report) | LLM narrative provider (default, key already present); falls back to rules-only when unset. Alternative provider: `ANTHROPIC_API_KEY` / `ANTHROPIC_MODEL` (wins when both are set) |
 
 `.secrets/` is git-ignored. Never commit the key.
 
@@ -122,7 +124,8 @@ Already done in this repo — see §2. In a fresh project:
 - **Google Ads:** for the GA4-based report — nothing. Cost/click data
   reaches it through the GA4 ↔ Ads link (GA4 Admin → Product links).
   For **direct account access** (impression share, conversion actions,
-  search terms, keywords) set up the Google Ads API per §7.
+  search terms, keywords) set up the Google Ads API per §6 — the service
+  account is added as a user in the Ads account, same pattern as GA4/GSC.
 
 ### 4.4 Vercel
 Project → Settings → Environment Variables → add
@@ -189,44 +192,112 @@ auth via `google-auth-library` (scopes `analytics.readonly` +
 | GSC `403` | service account added to a different GSC property than `GSC_SITE_URL` (URL-prefix vs domain property are different objects) |
 | Ads section says "no data" | GA4 ↔ Ads not linked, or no active campaigns in the period |
 
+## 5b. Weekly marketing report (automated, Fridays)
+
+Every Friday 06:00 UTC (09:00 EEST) Vercel Cron hits `/api/cron/weekly-report/`
+(`vercel.json`, CRON_SECRET-protected like keepalive) which:
+
+1. **Collects** the last-7-days vs previous-7-days snapshot
+   (`lib/reporting/snapshot.ts`): GA4 (overview/channels/top pages/per-day
+   tracking health), GSC (totals, full query sets both weeks, pages), Ads API
+   (campaigns with impression share, search terms brand/non-brand, keywords +
+   QS), and `form_submissions` aggregates (real inquiries = conversion truth,
+   incl. gclid-attributed leads). A failing source lands in `snapshot.errors`
+   and never aborts the rest.
+2. **Aggregates 22 tracked keyword families** (`lib/reporting/keyword-families.ts`
+   — the same märksõnaperekonnad as the manual raportid/ reports, RU/EN/
+   ehitusprahi clusters included; position = impression-weighted average).
+3. **Rules engine** (`lib/reporting/insights.ts`) produces Estonian findings +
+   concrete next actions per area (SEO/Ads/GA4/forms/strategy), using the
+   manual reports' conventions (±2 pos = stable, <10 impressions = noise,
+   pre-launch baseline 9.0 clicks/day, goal ≥15 inquiries/month).
+4. **LLM narrative** (`lib/reporting/llm.ts`, plain fetch, no SDK) writes
+   Kokkuvõte / Märkimisväärseimad liikumised / Järgmise nädala prioriteedid /
+   Sisu- ja kampaaniasoovitused. Provider: DeepSeek (`DEEPSEEK_API_KEY`,
+   model override `DEEPSEEK_MODEL`, default `deepseek-chat`) — or Anthropic
+   when `ANTHROPIC_API_KEY` is also set (`ANTHROPIC_MODEL`, default
+   `claude-sonnet-4-5`). With no key the report ships rules-only.
+5. **Stores** in `weekly_reports` (migration `drizzle/0010`, one row per week,
+   upsert; JSON fallback `data/weekly-reports.json`) — this is the trend
+   memory that powers the admin "Trend" charts.
+6. **E-mails** an HTML report (`lib/reporting/notify.ts`, Resend) to the
+   `report_email_recipients` admin setting (Seaded → E-posti saajad, fallback
+   ronald@outline.ee). `lib/email.ts` gained an optional `html` body.
+
+Admin UI: `/spsadmn/raportid/` (list + "Genereeri raport kohe" →
+`POST /api/spsadmn/reports`, `{sendEmail:false}` default) and
+`/spsadmn/raportid/[id]/` (scorecards, trends, narrative, insights, keyword
+family table with ▲/■/▼, top queries, Ads campaigns, forms).
+
+Local run: `npm run report:weekly` (generation only — e-mail is a
+server-only path; test delivery via the deployed cron route with `?send=0`).
+
+Vercel env needed by the cron (all present as of 10.09.2026):
+`GCP_SERVICE_ACCOUNT_JSON`, `GA4_PROPERTY_ID`, `GSC_SITE_URL`,
+`GOOGLE_ADS_DEVELOPER_TOKEN`, `GOOGLE_ADS_CUSTOMER_ID`, `DEEPSEEK_API_KEY`,
+`CRON_SECRET` + `Resend_API` (pre-existing).
+
 ## 6. Google Ads API (direct account access)
 
 The GA4-link report (§5) only sees cost/clicks/impressions. Direct account
 data — impression share (and WHY share is lost: budget vs rank/ad-quality),
 the actual conversion-action list (explains UI "conversions" vs real form
 submits), search terms (brand vs non-brand split) — comes from the Google
-Ads API. One-time setup:
+Ads API. Setup below reflects the state as of 09.2026.
 
-1. **Developer token.** In Google Ads (signed in as the account owner):
-   *Admin → Access and security / API Center → Developer token* → Apply for
-   access (basic access is enough; approval is usually instant).
-2. **Enable the API + OAuth client** in the existing GCP project
-   (`spsgrupp`, same one as §4.2):
-   - https://console.cloud.google.com/apis/library/googleads.googleapis.com → Enable.
-   - *APIs & Services → OAuth consent screen* → scope
-     `https://www.googleapis.com/auth/adwords` → add the Ads-owning Google
-     account as a test user (app can stay in "Testing" mode).
-   - *Credentials → Create Credentials → OAuth client ID* → type
-     **Desktop app** → copy client id + secret.
-3. **Mint the refresh token** (a browser opens; sign in with the
-   Ads-owning Google account and approve):
-   ```bash
-   npm run setup:ads-auth
+**Access model (2026 change).** API access levels now live on the *Google
+Cloud project* ("cloud-managed access levels"): Test → Explorer (production
+reads, ~2.9k ops/day) → Basic (15k ops/day) → Standard. They are managed on
+the Google Ads API page in the Cloud console (APIs & Services → Enabled
+APIs → Google Ads API); the Ads UI API Center shows a "no longer managed
+here" notice. The developer token is still sent with requests but is no
+longer the gating credential — and the first API call permanently pairs a
+token with the Cloud project, so always use credentials from the `spsgrupp`
+project.
+
+One-time setup (all completed 09.2026):
+
+1. **Manager account + developer token.** The API Center exists only in
+   *manager* accounts — a regular client account (ours: `3967281610`) never
+   shows it. Create a free manager account
+   (https://ads.google.com/home/tools/manager-accounts/), link the client
+   account (manager: Accounts → + → Link existing account; accept in the
+   client under Admin → Access and security → Managers), then open
+   https://ads.google.com/aw/apicenter and complete the API Access form to
+   get the 22-char developer token.
+2. **Cloud project `spsgrupp`:** enable the Google Ads API
+   (https://console.cloud.google.com/apis/library/googleads.googleapis.com).
+3. **Access level upgrade.** Fresh projects start at TEST — production
+   calls fail with `CLOUD_PROJECT_NOT_APPROVED_FOR_PRODUCTION`. Apply for
+   Explorer on the Google Ads API page in the Cloud console (approved
+   within minutes). Brand verification of the OAuth consent screen
+   (Audience: External + In production; Branding filled → Verify → Publish)
+   accelerates any later Basic review.
+4. **Auth — service account (what the script uses).** Add
+   `sps-analytics-reader@spsgrupp.iam.gserviceaccount.com` as a user in the
+   Ads account (Admin → Access and security → Users; currently Standard,
+   Read only would suffice). `scripts/ads-report.ts` mints access tokens
+   from `.secrets/gcp-analytics.json` with the `adwords` scope — no OAuth
+   consent flow needed. (Fallback: user OAuth — Desktop-app OAuth client in
+   `spsgrupp` with the `adwords` scope on the consent screen, then
+   `npm run setup:ads-auth`. Google now requires 2SV — and from 08.2026
+   passkeys — for minting new refresh tokens, another reason the SA path is
+   primary.)
+5. `.env.local` (git-ignored, already set):
    ```
-4. Add to `.env.local` (git-ignored):
+   GOOGLE_ADS_DEVELOPER_TOKEN=...        # from the manager account's API Center
+   GOOGLE_ADS_CUSTOMER_ID=3967281610     # 10 digits, no dashes
+   GOOGLE_ADS_CLIENT_ID / GOOGLE_ADS_CLIENT_SECRET / GOOGLE_ADS_REFRESH_TOKEN
+                                         # OAuth fallback path only
+   # GOOGLE_ADS_LOGIN_CUSTOMER_ID unset — the SA has direct account access
    ```
-   GOOGLE_ADS_DEVELOPER_TOKEN=...
-   GOOGLE_ADS_CLIENT_ID=...apps.googleusercontent.com
-   GOOGLE_ADS_CLIENT_SECRET=...
-   GOOGLE_ADS_REFRESH_TOKEN=...
-   GOOGLE_ADS_CUSTOMER_ID=1234567890   # 10 digits, no dashes
-   ```
-5. Run: `npm run report:ads` (optionally `--days=30`).
+6. Run: `npm run report:ads` (optionally `--days=30`).
 
 Read-only: the scripts only call `googleAds:search` — nothing in the
-account is modified. Note: Google's current policy does not allow granting
-the service account (§4.3) Ads access — user OAuth per the steps above is
-the supported path.
+account is modified. Script notes: uses Ads API `v25` (a 404 *HTML* error
+means the version was sunset — bump `ADS_API_VERSION`); the REST API
+returns camelCase keys, normalized to snake_case by `snakeKeys()`;
+`conversion_action.counting_method` no longer exists in v25.
 
 ## 7. Consent & privacy notes
 

@@ -1,4 +1,4 @@
-import { pgTable, integer, text, boolean, timestamp, real, serial, numeric, uniqueIndex } from "drizzle-orm/pg-core"
+import { pgTable, integer, text, boolean, timestamp, real, serial, numeric, uniqueIndex, jsonb, date } from "drizzle-orm/pg-core"
 
 export const blogEdits = pgTable("blog_edits", {
   id: integer("id").primaryKey(),
@@ -127,6 +127,20 @@ export const adminUsers = pgTable("admin_users", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
+
+export const weeklyReports = pgTable("weekly_reports", {
+  id: serial("id").primaryKey(),
+  weekStart: date("week_start").notNull(),
+  weekEnd: date("week_end").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  snapshot: jsonb("snapshot").notNull(),
+  insights: jsonb("insights").notNull().default([]),
+  narrative: text("narrative").notNull().default(""),
+  emailSentAt: timestamp("email_sent_at", { withTimezone: true }),
+  emailError: text("email_error").notNull().default(""),
+}, (table) => ({
+  weekUnique: uniqueIndex("weekly_reports_week_idx").on(table.weekStart, table.weekEnd),
+}))
 
 export const formSubmissions = pgTable("form_submissions", {
   id: serial("id").primaryKey(),

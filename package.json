@@ -18,6 +18,7 @@
     "db:restore": "tsx scripts/restore-supabase.ts",
     "report:analytics": "tsx scripts/analytics-report.ts",
     "report:ads": "tsx scripts/ads-report.ts",
+    "report:weekly": "tsx scripts/weekly-report.ts",
     "setup:ads-auth": "tsx scripts/ads-oauth-setup.ts"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "@next/third-parties": "^16.3.1",
     "@vercel/blob": "^2.5.0",
     "drizzle-orm": "^0.45.2",
+    "google-auth-library": "^11.0.2",
     "next": "^16.3.0",
     "next-intl": "^4.13.2",
     "nodemailer": "^9.0.3",
@@ -46,7 +48,6 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "^16.3.0",
-    "google-auth-library": "^11.0.2",
     "tailwindcss": "^4",
     "tsx": "^4.23.5",
     "typescript": "^5"

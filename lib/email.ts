@@ -22,6 +22,8 @@ export async function sendEmail(params: {
   to: string
   subject: string
   text: string
+  /** Optional HTML body; `text` remains the plain-text fallback part. */
+  html?: string
   attachments?: EmailAttachment[]
   replyTo?: string
 }): Promise<{ success: boolean; error?: string }> {
@@ -37,6 +39,7 @@ export async function sendEmail(params: {
         to: params.to.split(",").map((addr) => addr.trim()).filter(Boolean),
         subject: params.subject,
         text: params.text,
+        html: params.html,
         reply_to: params.replyTo
           ? params.replyTo.split(",").map((addr) => addr.trim()).filter(Boolean)
           : undefined,
