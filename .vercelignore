@@ -3,12 +3,19 @@
 .vercel
 node_modules
 coverage
-out
-build
+/out
+/build
 *.log
 *.tsbuildinfo
 .env*
 env.local
 env.*.local
 .wordpress-backups
-raportid
+# Root-only: local working data (unanchored names would also hide app routes,
+# e.g. raportid/ matched app/(et)/spsadmn/raportid/ and silently 404'd it)
+/raportid
+/output
+/tmp
+# Secrets — never upload to deployment source
+/.secrets
+/data/admin-users.json
