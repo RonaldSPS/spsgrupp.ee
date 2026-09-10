@@ -1,9 +1,11 @@
 /**
  * One-time Google Ads OAuth2 setup: mints a refresh token for the Ads API.
  *
- * Why: the Google Ads API requires an OAuth2 *user* (not a service account
- * without domain-wide delegation). This script runs the standard loopback
- * consent flow once and prints the refresh token to store in .env.local.
+ * This is the FALLBACK auth path — scripts/ads-report.ts prefers the service
+ * account (.secrets/gcp-analytics.json, added as a user in the Ads account).
+ * Use this only if service-account access is unavailable. Note that minting
+ * new refresh tokens now requires 2SV (and passkeys from 08.2026) on the
+ * authorizing Google account.
  *
  * Prerequisites (see ANALYTICS.md "Google Ads API" section):
  *   1. Google Ads developer token (Ads UI -> Admin -> API Center).

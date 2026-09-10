@@ -12,12 +12,16 @@
  *
  * Setup (one-time, see ANALYTICS.md "Google Ads API" section):
  *   .env.local:
- *     GOOGLE_ADS_DEVELOPER_TOKEN=...        # Ads UI -> Admin -> API Center
- *     GOOGLE_ADS_CLIENT_ID=...              # GCP project spsgrupp, "Desktop app" OAuth client
- *     GOOGLE_ADS_CLIENT_SECRET=...
- *     GOOGLE_ADS_REFRESH_TOKEN=...          # minted by npm run setup:ads-auth
+ *     GOOGLE_ADS_DEVELOPER_TOKEN=...        # Ads MANAGER account -> https://ads.google.com/aw/apicenter
+ *                                           # (API Center exists only in manager accounts)
  *     GOOGLE_ADS_CUSTOMER_ID=1234567890     # 10 digits, no dashes
  *     GOOGLE_ADS_LOGIN_CUSTOMER_ID=...      # optional, only if access goes via an MCC manager
+ *   Auth — either:
+ *     a) service account (preferred): .secrets/gcp-analytics.json (same key as
+ *        analytics-report.ts), with the SA email added as a Read-only user in
+ *        the Ads account (Admin -> Access and security -> Users)
+ *     b) user OAuth: GOOGLE_ADS_CLIENT_ID / GOOGLE_ADS_CLIENT_SECRET /
+ *        GOOGLE_ADS_REFRESH_TOKEN (minted by npm run setup:ads-auth)
  *
  * Usage:
  *   npm run report:ads                # last 90 days
@@ -25,6 +29,7 @@
  */
 
 import { readFileSync, existsSync } from "node:fs"
+import { GoogleAuth } from "google-auth-library"
 
 /* ---------- env ---------- */
 
@@ -49,16 +54,37 @@ const CLIENT_SECRET = process.env.GOOGLE_ADS_CLIENT_SECRET
 const REFRESH_TOKEN = process.env.GOOGLE_ADS_REFRESH_TOKEN
 const CUSTOMER_ID = (process.env.GOOGLE_ADS_CUSTOMER_ID ?? "").replace(/-/g, "")
 const LOGIN_CUSTOMER_ID = (process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID ?? "").replace(/-/g, "")
+/** Service-account key (same file as analytics-report.ts) — the preferred auth path. */
+const KEY_FILE = process.env.GOOGLE_APPLICATION_CREDENTIALS ?? ".secrets/gcp-analytics.json"
+const HAS_OAUTH = Boolean(REFRESH_TOKEN && CLIENT_ID && CLIENT_SECRET)
 
 /** Bump when Google sunsets this version (a 404/INVALID_VERSION error means: bump). */
-const ADS_API_VERSION = "v19"
+const ADS_API_VERSION = "v25"
 
 const daysFlag = process.argv.find((a) => a.startsWith("--days="))
 const DAYS = daysFlag ? Math.max(1, parseInt(daysFlag.slice(7), 10) || 90) : 90
 
-/* ---------- auth (OAuth2 refresh-token grant) ---------- */
+/* ---------- auth (service account preferred, OAuth2 refresh-token as fallback) ---------- */
 
 async function getAccessToken(): Promise<string> {
+  if (!HAS_OAUTH) {
+    // Service account: its email must be added as a user (Read only) in the
+    // Google Ads account (Admin -> Access and security -> Users).
+    if (!existsSync(KEY_FILE)) {
+      throw new Error(
+        `No auth available: neither the OAuth trio (GOOGLE_ADS_REFRESH_TOKEN/CLIENT_ID/CLIENT_SECRET) ` +
+          `nor a service-account key at ${KEY_FILE}. See ANALYTICS.md "Google Ads API" section.`,
+      )
+    }
+    const auth = new GoogleAuth({
+      keyFile: KEY_FILE,
+      scopes: ["https://www.googleapis.com/auth/adwords"],
+    })
+    const client = await auth.getClient()
+    const token = await client.getAccessToken()
+    if (!token.token) throw new Error("Failed to mint an access token from the service-account key")
+    return token.token
+  }
   const res = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -83,6 +109,20 @@ async function getAccessToken(): Promise<string> {
 
 type Row = Record<string, Record<string, unknown> | undefined>
 
+/** The REST API returns camelCase keys; the report code uses proto snake_case. */
+function snakeKeys(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(snakeKeys)
+  if (value !== null && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value as Record<string, unknown>).map(([k, v]) => [
+        k.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`),
+        snakeKeys(v),
+      ]),
+    )
+  }
+  return value
+}
+
 async function gaql(token: string, query: string): Promise<Row[]> {
   const url = `https://googleads.googleapis.com/${ADS_API_VERSION}/customers/${CUSTOMER_ID}/googleAds:search`
   const headers: Record<string, string> = {
@@ -105,7 +145,7 @@ async function gaql(token: string, query: string): Promise<Row[]> {
       throw new Error(`GAQL failed (${res.status}): ${text.slice(0, 500)}\n\nQuery was:\n${query}`)
     }
     const data = (await res.json()) as { results?: Row[]; nextPageToken?: string }
-    rows.push(...(data.results ?? []))
+    rows.push(...(data.results ?? []).map((r) => snakeKeys(r) as Row))
     pageToken = data.nextPageToken
   } while (pageToken)
   return rows
@@ -140,20 +180,24 @@ function dateRange(days: number) {
 async function main() {
   const missing: string[] = []
   if (!DEVELOPER_TOKEN) missing.push("GOOGLE_ADS_DEVELOPER_TOKEN")
-  if (!CLIENT_ID) missing.push("GOOGLE_ADS_CLIENT_ID")
-  if (!CLIENT_SECRET) missing.push("GOOGLE_ADS_CLIENT_SECRET")
-  if (!REFRESH_TOKEN) missing.push("GOOGLE_ADS_REFRESH_TOKEN")
   if (!CUSTOMER_ID) missing.push("GOOGLE_ADS_CUSTOMER_ID")
+  if (!HAS_OAUTH && !existsSync(KEY_FILE)) {
+    missing.push(`auth: GOOGLE_ADS_REFRESH_TOKEN/CLIENT_ID/CLIENT_SECRET or a service-account key at ${KEY_FILE}`)
+  }
   if (missing.length) {
     console.error(
       [
         `Missing env vars in .env.local: ${missing.join(", ")}`,
         ``,
         `One-time setup (see ANALYTICS.md "Google Ads API" section):`,
-        `  1. Ads UI -> Admin -> API Center -> copy the developer token`,
-        `  2. GCP project spsgrupp -> enable Google Ads API -> create "Desktop app" OAuth client`,
-        `  3. npm run setup:ads-auth  (mints the refresh token)`,
-        `  4. Add all five GOOGLE_ADS_* vars to .env.local`,
+        `  1. Developer token: Ads MANAGER account -> https://ads.google.com/aw/apicenter`,
+        `     (API Center exists only in manager accounts - create a free one and`,
+        `     link the client account under it if you only have a regular account)`,
+        `  2. Auth, either:`,
+        `     a. add the service-account email as a Read-only user in the Ads account`,
+        `        (Admin -> Access and security -> Users) - uses ${KEY_FILE}`,
+        `     b. or npm run setup:ads-auth (user OAuth, needs CLIENT_ID/SECRET)`,
+        `  3. Set GOOGLE_ADS_DEVELOPER_TOKEN + GOOGLE_ADS_CUSTOMER_ID in .env.local`,
       ].join("\n"),
     )
     process.exitCode = 1
@@ -172,16 +216,16 @@ async function main() {
   const actions = await gaql(
     token,
     `SELECT conversion_action.name, conversion_action.category, conversion_action.status,
-            conversion_action.origin, conversion_action.counting_method,
+            conversion_action.origin,
             conversion_action.include_in_conversions_metric, conversion_action.primary_for_goal
      FROM conversion_action`,
   )
   out.push(`## Conversion actions`)
-  out.push(`| Name | Category | Status | Origin | Counting | In "Conversions" col | Primary |`)
-  out.push(`|---|---|---|---|---|---|---|`)
+  out.push(`| Name | Category | Status | Origin | In "Conversions" col | Primary |`)
+  out.push(`|---|---|---|---|---|---|`)
   for (const r of actions) {
     out.push(
-      `| ${field(r, "conversion_action", "name")} | ${field(r, "conversion_action", "category")} | ${field(r, "conversion_action", "status")} | ${field(r, "conversion_action", "origin")} | ${field(r, "conversion_action", "counting_method")} | ${field(r, "conversion_action", "include_in_conversions_metric")} | ${field(r, "conversion_action", "primary_for_goal")} |`,
+      `| ${field(r, "conversion_action", "name")} | ${field(r, "conversion_action", "category")} | ${field(r, "conversion_action", "status")} | ${field(r, "conversion_action", "origin")} | ${field(r, "conversion_action", "include_in_conversions_metric")} | ${field(r, "conversion_action", "primary_for_goal")} |`,
     )
   }
 
