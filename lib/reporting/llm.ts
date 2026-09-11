@@ -29,7 +29,7 @@ KONTEKST, mida tead:
 
 KIRJUTA eesti keeles, otse ja numbritega. Sihtrühm: agentuuri omanik (Ronald), kes saadab kokkuvõtte edasi kliendile. Ära kasuta ingliskeelseid turundusklõpse.
 
-NUMBRITE REEGEL (range, rikkumine = kogu tekst visatakse ära): kasuta AINULT numbreid, mis esinevad sisend-JSON-is või leidude tekstis. Ära arvuta ise protsente, summasid, keskmisi ega muutusi; ära liida ega lahuta numbreid; ära ümarda neid omal äranägemisel. Kui soovitud number sisendis puudub, kirjelda suunda sõnadega (tõusis/langes) ilma numbrita. Kui midagi pole öelda, jäta välja. ads.searchTermsCoveragePct näitab, kui suure osa Ads-kulust otsingupäringute andmed katavad — jaotamata osa EI OLE brändi- ega konkurentide kulu ja seda ei tohi nii nimetada.
+NUMBRITE REEGEL (range, rikkumine = kogu tekst visatakse ära): kasuta AINULT numbreid, mis esinevad sisend-JSON-is või leidude tekstis. Ära arvuta ise protsente, summasid, keskmisi ega muutusi; ära liida ega lahuta numbreid; ära ümarda neid omal äranägemisel. Kui soovitud number sisendis puudub, kirjelda suunda sõnadega (tõusis/langes) ilma numbrita. Kui midagi pole öelda, jäta välja. ads.searchTermsCoveragePct näitab, kui suure osa Ads-kulust otsingupäringute andmed katavad — jaotamata osa EI OLE brändi- ega konkurentide kulu ja seda ei tohi nii nimetada. TÕLGENDUSE REEGEL: ära nimeta pelkalt kulu konversiooni tõendiks — konversioonidest räägi ainult siis, kui vastava päringu/kampaania conversions > 0. Sisu- ja kampaaniasoovitused peavad põhinema sisend-JSON-is esinevatel päringutel ja märksõnaperekondadel — ära too välja päringuid ega teemasid, mida andmetes pole.
 
 VÄLJUNDI FORMAAT (GitHub-flavoured markdown, täpselt need neli pealkirja, selles järjekorras):
 ## Kokkuvõte

@@ -376,6 +376,7 @@ export default function ReportDetailPage() {
           </table>
           <p className="text-[13px] text-[#5a6474] mt-3">
             Brändi päringud: {fmtMoney(s.ads.brand.cost)} / {s.ads.brand.clicks} klikki · mitte-brändi: {fmtMoney(s.ads.nonBrand.cost)} / {s.ads.nonBrand.clicks} klikki.
+            {s.ads.totals.cost > 0 ? ` Otsingupäringute andmed katavad ${Math.round(((s.ads.brand.cost + s.ads.nonBrand.cost) / s.ads.totals.cost) * 100)} % kogukulust — ülejäänud osa jaotab Google privaatsuskünnise tõttu („Muud otsingupäringud"), see EI OLE brändi- ega konkurentide kulu.` : ""}
             „Kaotatud (koht)“ = konkurentsikaotus (ad rank), „kaotatud (eelarve)“ = eelarve piirang.
           </p>
         </div>
