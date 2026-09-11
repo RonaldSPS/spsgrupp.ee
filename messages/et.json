@@ -72,6 +72,11 @@
     "para2": "Keskendume äriklientidele ning arvestame hoone kasutuse, ettevõtte töökorralduse ja objekti eripäraga.",
     "para3": "Leiame sobiva lahenduse nii keskmistele kui ka suurettevõtetele.",
     "para4": "Koostöö algab vajaduste kaardistamisest ja läbipaistvast hinnapakkumisest.",
+    "para5Pre": "Vaata lähemalt meie teenusevalikut: ",
+    "para5Link1": "koristusteenused",
+    "para5Mid": " ja ",
+    "para5Link2": "puhastusteenused",
+    "para5Post": ".",
     "ctaButton": "Küsi pakkumist"
   },
   "trust": {
@@ -172,6 +177,14 @@
       {
         "q": "Miks valida SPS Grupp?",
         "a": "Tegutseme alates 2006. aastast, meil on ISO 9001 ja ISO 14001 sertifitseeritud juhtimissüsteemid, enam kui 300 töötajat ning üle 200 kliendi."
+      },
+      {
+        "q": "Mida teeb koristusfirma SPS Grupp?",
+        "a": "Oleme 2006. aastast Tallinnas tegutsev koristusfirma ja hooldame kontori-, kaubandus- ning tootmispindu kokku üle 1 000 000 m². Teenusevalikusse kuuluvad regulaarne koristus, hoolduskoristus, välikoristus ja ühekordsed puhastustööd suurpuhastusest fassaadipesuni."
+      },
+      {
+        "q": "Kuidas valida ettevõttele usaldusväärne koristusfirma?",
+        "a": "Küsi kogemust, kvaliteedijuhtimist ja viiteid. SPS Gruppil on ISO 9001 ja ISO 14001 sertifikaadid, üle 300 koolitatud töötaja ning iga objekti tööd jälgib objektijuht. Koostöö algab alati tasuta ülevaatusest ja läbipaistvast hinnapakkumisest."
       }
     ]
   },

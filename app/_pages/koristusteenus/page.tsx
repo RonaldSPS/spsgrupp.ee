@@ -36,6 +36,11 @@ interface CleaningHubText {
   problemP2After1: string;
   problemP2Strong2: string;
   problemP2After2: string;
+  problemP3Pre: string;
+  problemP3Link1: string;
+  problemP3Mid: string;
+  problemP3Link2: string;
+  problemP3Post: string;
   servicesTag: string;
   servicesHeading: string;
   services: { bold: string; desc: string; href?: string }[];
@@ -74,6 +79,11 @@ const etText: CleaningHubText = {
   problemP2After1: "Kontoris on kaableid ja tehnikat, mida ei tohi märjalt käsitleda. Kaubanduspinnal on kõrge liiklus ja tootmishoonetes kehtivad ranged ohutusnõuded.",
   problemP2Strong2: "Oleme alates 2006. aastast kujundanud välja toimiva teenindus- ja kvaliteedijuhtimise süsteemi.",
   problemP2After2: "",
+  problemP3Pre: "Kui igapäevasest koristusest ei piisa, pakuvad lahendust meie ",
+  problemP3Link1: "puhastusteenused",
+  problemP3Mid: ". SPS Grupp on ",
+  problemP3Link2: "koristusfirma",
+  problemP3Post: ", keda usaldab üle 200 Eesti ettevõtte.",
   servicesTag: "Teenuse sisu",
   servicesHeading: "Millistele äripindadele SPS Grupp koristusteenust pakub?",
   services: [
@@ -157,6 +167,11 @@ function localizedText(locale: Exclude<Locale, "et">): CleaningHubText {
     problemP2After1: str(problem.paragraph2After1) || etText.problemP2After1,
     problemP2Strong2: str(problem.paragraph2Strong2) || etText.problemP2Strong2,
     problemP2After2: str(problem.paragraph2After2),
+    problemP3Pre: str(problem.paragraph3Pre) || etText.problemP3Pre,
+    problemP3Link1: str(problem.paragraph3Link1) || etText.problemP3Link1,
+    problemP3Mid: str(problem.paragraph3Mid) || etText.problemP3Mid,
+    problemP3Link2: str(problem.paragraph3Link2) || etText.problemP3Link2,
+    problemP3Post: str(problem.paragraph3Post) || etText.problemP3Post,
     servicesTag: str(services.tag) || etText.servicesTag,
     servicesHeading: str(services.heading) || etText.servicesHeading,
     services: Array.from({ length: 9 }, (_, index) => ({
@@ -338,6 +353,13 @@ export function KoristusteenusPageView({ locale }: { locale: Locale }) {
                 <strong>{t.problemP2Strong2}</strong>{t.problemP2After2 ? ` ${t.problemP2After2}` : ""}
               </div>
             </div>
+            <p className="mt-8 text-[16px] text-[#2f353f] leading-[1.8] font-light">
+              {t.problemP3Pre}
+              <Link href={localizePath("/puhastusteenused", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link1}</Link>
+              {t.problemP3Mid}
+              <Link href={localizePath("/", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link2}</Link>
+              {t.problemP3Post}
+            </p>
           </div>
         </section>
         </ScrollAnimation>

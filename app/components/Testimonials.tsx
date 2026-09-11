@@ -7,7 +7,7 @@ import ScrollAnimation from "./ScrollAnimation"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
 import { localizePath, type Locale } from "@/lib/slug-map"
 
-const testimonialPools: Record<Locale, TestimonialData[]> = {
+export const testimonialPools: Record<Locale, TestimonialData[]> = {
   et: [
     { shortQuote: "Hommikul tuli vastu puhas ja korras kööginurk. Sellised tähelepanelikud teod jäävad silma.", author: "Käthlin", initials: "K", logo: "/arvamused-logod/kathlin.png", quote: "" },
     { shortQuote: "Lao ja tootmiskoristuse tööd said korrektselt tehtud, koostöö sujus hästi ning jäime tulemusega rahule.", author: "Heigar", initials: "H", logo: "/arvamused-logod/heigar.png", quote: "" },

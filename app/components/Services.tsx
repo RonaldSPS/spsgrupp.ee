@@ -1,11 +1,14 @@
 "use client"
 
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import TwoToneHeading from "./TwoToneHeading";
 import ScrollAnimation from "./ScrollAnimation";
+import { localizePath, type Locale } from "@/lib/slug-map";
 
 export default function Services({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("services")
+  const locale = useLocale() as Locale
 
   const scrollToForm = () => {
     const el = document.getElementById("pakkumine")
@@ -37,6 +40,13 @@ export default function Services({ animDelay }: { animDelay?: number }) {
               <span className="text-[62px] font-bold text-[#85cbe94d] leading-none shrink-0">04</span>
               <p>{t("para4")}</p>
             </div>
+            <p className="text-[15px] mt-4">
+              {t("para5Pre")}
+              <Link href={localizePath("/koristusteenus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t("para5Link1")}</Link>
+              {t("para5Mid")}
+              <Link href={localizePath("/puhastusteenused", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t("para5Link2")}</Link>
+              {t("para5Post")}
+            </p>
           </div>
           <div className="mt-10 text-center">
             <button

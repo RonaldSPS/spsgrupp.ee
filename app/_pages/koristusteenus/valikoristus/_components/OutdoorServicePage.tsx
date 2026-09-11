@@ -2,11 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import Navbar from "../../../../components/Navbar";
 import HeroBackgroundImage from "../../../../components/HeroBackgroundImage";
 import Footer from "../../../../components/Footer";
 import FooterCTA from "../../../../components/FooterCTA";
 import ContactForm from "../../../../components/ContactForm";
+import Logos from "../../../../components/Logos";
+import TestimonialSlider from "../../../../components/TestimonialSlider";
+import { testimonialPools } from "../../../../components/Testimonials";
 import TwoToneHeading from "../../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../../components/ScrollAnimation";
 import FAQ from "../../../../components/FAQ";
@@ -62,6 +66,7 @@ function ReasonIcon({ index }: { index: number }) {
 }
 
 export default function OutdoorServicePage({ data, locale, tooprotsess }: { data: OutdoorServicePageData; locale: Locale; tooprotsess?: ReactNode }) {
+  const tTestimonials = useTranslations("testimonials")
   const sectionTag = (key: string) => {
     const tags: Record<string, Record<string, string>> = {
       services: { et: "Teenuse sisu", en: "Service content", ru: "Состав услуги" },
@@ -271,6 +276,22 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
         <ScrollAnimation animation="fade-up">
           <section data-section="footer-cta">
             <FooterCTA title={data.footerTitle} description={data.footerDescription} />
+          </section>
+        </ScrollAnimation>
+        <ScrollAnimation animation="fade-up">
+          <section data-section="logos">
+            <Logos />
+          </section>
+        </ScrollAnimation>
+        <ScrollAnimation animation="fade-up">
+          <section data-section="testimonials" className="py-[100px] bg-white">
+            <div className="max-w-[1280px] mx-auto px-[5%]">
+              <div className="text-center mb-14">
+                <div className="section-tag mx-auto w-fit">{tTestimonials("sectionTag")}</div>
+                <TwoToneHeading text={tTestimonials("heading")} className="text-center" />
+              </div>
+              <TestimonialSlider testimonials={testimonialPools[locale]} />
+            </div>
           </section>
         </ScrollAnimation>
         <ScrollAnimation animation="fade-up">

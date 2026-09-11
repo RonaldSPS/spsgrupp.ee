@@ -72,6 +72,11 @@
     "para2": "Good service does not depend on the cleaner alone. What matters is the system: a clear work plan, regular quality control and quick response to situations that inevitably arise in daily operations.",
     "para3": "SPS Grupp has focused on business clients for years. Our cleaning service is based on standardised processes, a trained team and digital task tracking.",
     "para4": "If you are looking for a partner who maintains consistent quality year after year, get in touch. We start by mapping your needs and providing a transparent quote.",
+    "para5Pre": "Take a closer look at our services: ",
+    "para5Link1": "cleaning services",
+    "para5Mid": " and ",
+    "para5Link2": "specialist cleaning",
+    "para5Post": ".",
     "ctaButton": "Request a quote"
   },
   "trust": {
@@ -172,6 +177,14 @@
       {
         "q": "Why choose SPS Grupp over another cleaning company?",
         "a": "We have operated since 2006, use ISO 9001 and ISO 14001 certified management systems, employ more than 300 people, and serve over 200 clients. Our activities are covered by liability insurance subject to the terms of the insurance policy."
+      },
+      {
+        "q": "What does the cleaning company SPS Grupp do?",
+        "a": "We are a cleaning company operating in Tallinn since 2006, maintaining over 1,000,000 m² of office, retail and industrial premises. Our services cover regular cleaning, maintenance cleaning, outdoor cleaning and one-off specialist work from deep cleaning to facade washing."
+      },
+      {
+        "q": "How do I choose a reliable cleaning company for my business?",
+        "a": "Ask about experience, quality management and references. SPS Grupp holds ISO 9001 and ISO 14001 certificates, employs over 300 trained staff and every site's work is monitored by a site manager. Cooperation always starts with a free assessment and a transparent quote."
       }
     ]
   },
@@ -321,7 +334,12 @@
       "paragraph2Strong1": "Commercial cleaning is not a one-size-fits-all service. It is a system that must fit your building, your employees, and your operational requirements.",
       "paragraph2After1": "Offices have cables and equipment that must not be cleaned using wet methods. Retail spaces have high traffic and customers must always see a clean environment. Industrial facilities have oils, greases, and strict safety requirements.",
       "paragraph2Strong2": "SPS Grupp has developed its service and quality-management system since 2006.",
-      "paragraph2After2": "The work plan is tailored to the type of premises, usage level and safety requirements."
+      "paragraph2After2": "The work plan is tailored to the type of premises, usage level and safety requirements.",
+      "paragraph3Pre": "When routine cleaning is not enough, our ",
+      "paragraph3Link1": "specialist cleaning services",
+      "paragraph3Mid": " provide the solution. SPS Grupp is a ",
+      "paragraph3Link2": "cleaning company",
+      "paragraph3Post": " trusted by more than 200 Estonian businesses."
     },
     "services": {
       "tag": "Service Content",
