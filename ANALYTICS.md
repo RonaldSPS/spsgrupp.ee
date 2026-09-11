@@ -214,7 +214,7 @@ Every Friday 06:00 UTC (09:00 EEST) Vercel Cron hits `/api/cron/weekly-report/`
 4. **LLM narrative** (`lib/reporting/llm.ts`, plain fetch, no SDK) writes
    Kokkuvõte / Märkimisväärseimad liikumised / Järgmise nädala prioriteedid /
    Sisu- ja kampaaniasoovitused. Provider: DeepSeek (`DEEPSEEK_API_KEY`,
-   model override `DEEPSEEK_MODEL`, default `deepseek-chat`) — or Anthropic
+   model override `DEEPSEEK_MODEL`, default `deepseek-v4-flash`) — or Anthropic
    when `ANTHROPIC_API_KEY` is also set (`ANTHROPIC_MODEL`, default
    `claude-sonnet-4-5`). With no key the report ships rules-only.
    **Number audit** (`lib/reporting/number-audit.ts`): the narrative may only

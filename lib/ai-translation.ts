@@ -64,7 +64,8 @@ export async function translateJsonWithDeepseek<T extends object>({
           Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          model: "deepseek-chat",
+          // Pinned V4 id — the legacy "deepseek-chat" alias is deprecated.
+          model: process.env.DEEPSEEK_MODEL ?? "deepseek-v4-flash",
           max_tokens: 12000,
           temperature: 0.1,
           messages: [

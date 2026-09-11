@@ -255,7 +255,9 @@ async function callAnthropic(apiKey: string, userContent: string): Promise<strin
 
 /** DeepSeek chat completions (OpenAI-compatible schema). */
 async function callDeepseek(apiKey: string, userContent: string): Promise<string | null> {
-  const model = process.env.DEEPSEEK_MODEL ?? "deepseek-chat"
+  // NB: pin the V4 model id — the legacy "deepseek-chat" alias (V4-Flash
+  // non-thinking) is officially deprecated and may stop resolving.
+  const model = process.env.DEEPSEEK_MODEL ?? "deepseek-v4-flash"
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
   try {

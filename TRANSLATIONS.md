@@ -538,7 +538,7 @@ async function translateBatch(missingObj, targetLang) {
       'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
-      model: 'deepseek-chat',
+      model: 'deepseek-v4-flash',
       max_tokens: 16384,
       temperature: 0.1,
       messages: [{
@@ -917,7 +917,7 @@ async function callDeepseek(
       'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'deepseek-chat',
+      model: 'deepseek-v4-flash',
       max_tokens: 8192,
       temperature: 0.1,
       messages: [{
