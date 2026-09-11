@@ -217,13 +217,18 @@ function adsInsights(ads: AdsData, out: Insight[]): void {
     }
   }
 
-  const nonBrandShare = t.cost > 0 ? ads.nonBrand.cost / t.cost : 0
-  if (ads.brand.cost > 0 && nonBrandShare < 0.5) {
+  // NB: search_term_view never covers 100% of spend — Google hides low-volume
+  // terms ("Other search terms"). Compare brand only against ATTRIBUTED spend
+  // and require a meaningful absolute amount, otherwise the remainder bucket
+  // (~half the weekly cost here) would be misreported as brand spend.
+  const attributedCost = ads.brand.cost + ads.nonBrand.cost
+  const brandShare = attributedCost > 0 ? ads.brand.cost / attributedCost : 0
+  if (ads.brand.cost >= 10 && brandShare >= 0.3) {
     out.push({
       area: "ads",
       severity: "opportunity",
-      title: `${Math.round((1 - nonBrandShare) * 100)} % Ads-eelarvest läheb brändipäringutele`,
-      detail: `Brändi-klikid oleks enamasti tulnud ka orgaaniliselt (pos 1). Brändikulu ${ads.brand.cost.toFixed(2).replace(".", ",")} € vs mitte-brändi ${ads.nonBrand.cost.toFixed(2).replace(".", ",")} €.`,
+      title: `${Math.round(brandShare * 100)} % päringutega seostatud Ads-kulust läheb brändipäringutele`,
+      detail: `Brändi-klikid oleks enamasti tulnud ka orgaaniliselt (pos 1). Brändikulu ${ads.brand.cost.toFixed(2).replace(".", ",")} € vs mitte-brändi ${ads.nonBrand.cost.toFixed(2).replace(".", ",")} €. Otsingupäringute andmed katavad ${t.cost > 0 ? Math.round((attributedCost / t.cost) * 100) : 0} % kogukulust (${t.cost.toFixed(2).replace(".", ",")} €) — ülejäänu on Google'i privaatsuskünnise tõttu jaotamata, mitte brändikulu.`,
       action: "Kaalu brändikampaania eelarve kärpimist miinimumini ja raha suunamist mitte-brändi teenusepäringutesse, kus orgaaniline positsioon on nõrk (vt peatabel pos 10+).",
     })
   }

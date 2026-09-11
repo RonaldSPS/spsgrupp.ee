@@ -217,6 +217,14 @@ Every Friday 06:00 UTC (09:00 EEST) Vercel Cron hits `/api/cron/weekly-report/`
    model override `DEEPSEEK_MODEL`, default `deepseek-chat`) — or Anthropic
    when `ANTHROPIC_API_KEY` is also set (`ANTHROPIC_MODEL`, default
    `claude-sonnet-4-5`). With no key the report ships rules-only.
+   **Number audit** (`lib/reporting/number-audit.ts`): the narrative may only
+   contain numbers that appear in the real inputs (digest JSON, full insights,
+   system context) — Estonian formatting normalized ("11,6", "1 000 000"),
+   1-decimal rounding tolerated. Any invented/derived number discards the
+   whole narrative and the report ships rules-only (added 11.09.2026 after
+   the "55 % / 85,2 € brand spend" incident, where an insights rule dumped the
+   unattributed search-term bucket into "brand" — also fixed: brand share is
+   now computed only against attributed spend and needs ≥10 € + ≥30 %).
 5. **Stores** in `weekly_reports` (migration `drizzle/0010`, one row per week,
    upsert; JSON fallback `data/weekly-reports.json`) — this is the trend
    memory that powers the admin "Trend" charts.

@@ -11,6 +11,7 @@
  */
 
 import type { Insight, ReportSnapshot } from "./types"
+import { auditNarrativeNumbers } from "./number-audit"
 
 const TIMEOUT_MS = 90_000
 const MAX_TOKENS = 2500
@@ -26,7 +27,9 @@ KONTEKST, mida tead:
 - Märksõnaperekonnad kattuvad teadlikult; ±2 positsiooni = stabiilne.
 - „Konkurentsianalüüs" põhineb Ads'i rank-lost impression share'il ja GSC positsiooniliikumistel (Semrush-tüüpi tööriista pole).
 
-KIRJUTA eesti keeles, otse ja numbritega. Sihtrühm: agentuuri omanik (Ronald), kes saadab kokkuvõtte edasi kliendile. Ära kasuta ingliskeelseid turundusklõpse. Ära leiuta numbreid, mida andmetes pole — kui midagi pole öelda, jäta välja.
+KIRJUTA eesti keeles, otse ja numbritega. Sihtrühm: agentuuri omanik (Ronald), kes saadab kokkuvõtte edasi kliendile. Ära kasuta ingliskeelseid turundusklõpse.
+
+NUMBRITE REEGEL (range, rikkumine = kogu tekst visatakse ära): kasuta AINULT numbreid, mis esinevad sisend-JSON-is või leidude tekstis. Ära arvuta ise protsente, summasid, keskmisi ega muutusi; ära liida ega lahuta numbreid; ära ümarda neid omal äranägemisel. Kui soovitud number sisendis puudub, kirjelda suunda sõnadega (tõusis/langes) ilma numbrita. Kui midagi pole öelda, jäta välja. ads.searchTermsCoveragePct näitab, kui suure osa Ads-kulust otsingupäringute andmed katavad — jaotamata osa EI OLE brändi- ega konkurentide kulu ja seda ei tohi nii nimetada.
 
 VÄLJUNDI FORMAAT (GitHub-flavoured markdown, täpselt need neli pealkirja, selles järjekorras):
 ## Kokkuvõte
@@ -80,6 +83,10 @@ interface Digest {
     }[]
     brandCost: number
     nonBrandCost: number
+    /** Share of total ad cost that has search-term attribution (0-100). The
+     *  rest is Google's unattributed "Other search terms" bucket - it is NOT
+     *  brand spend and must not be reported as such. */
+    searchTermsCoveragePct: number | null
     topTerms: { term: string; cost: number; clicks: number; conversions: number }[]
   }
   forms?: {
@@ -157,6 +164,7 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       })),
       brandCost: r1(a.brand.cost),
       nonBrandCost: r1(a.nonBrand.cost),
+      searchTermsCoveragePct: a.totals.cost > 0 ? r1(((a.brand.cost + a.nonBrand.cost) / a.totals.cost) * 100) : null,
       topTerms: a.topTerms.slice(0, 15).map((t) => ({ term: t.term, cost: r1(t.cost), clicks: t.clicks, conversions: r1(t.conversions) })),
     }
   }
@@ -191,8 +199,23 @@ export async function generateNarrative(snapshot: ReportSnapshot, insights: Insi
     `Koosta nende põhjal nädalaraporti analüütiline osa.\n\n` +
     JSON.stringify(digest, null, 1)
 
-  if (anthropicKey) return callAnthropic(anthropicKey, userContent)
-  return callDeepseek(deepseekKey!, userContent)
+  if (anthropicKey) return finalize(await callAnthropic(anthropicKey, userContent), digest, insights)
+  return finalize(await callDeepseek(deepseekKey!, userContent), digest, insights)
+}
+
+/**
+ * Gate the LLM output through the number audit: any number not present in
+ * the real inputs (digest, insights, system context) means the model
+ * invented or derived a figure — discard the narrative, ship rules-only.
+ */
+function finalize(text: string | null, digest: Digest, insights: Insight[]): string | null {
+  if (!text) return null
+  const violations = auditNarrativeNumbers(text, [JSON.stringify(digest), JSON.stringify(insights), SYSTEM_PROMPT])
+  if (violations.length > 0) {
+    console.error(`Narrative number audit failed — invented/derived numbers: ${violations.join(", ")}. Falling back to rules-only.`)
+    return null
+  }
+  return text
 }
 
 async function callAnthropic(apiKey: string, userContent: string): Promise<string | null> {
