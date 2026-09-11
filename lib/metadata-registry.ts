@@ -68,8 +68,8 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Professionaalne tänavakivide pesu, liivaprits ja hooldus. Taastame pinnakatte esialgse välimuse.',
   },
   '/puhastusteenused': {
-    title: 'Puhastusteenused Tallinnas - eritööd äriklientidele | SPS Grupp',
-    description: 'Põrandate süvapesu, vaipade puhastus, ehitusjärgne koristus, desinfitseerimine ja põrandate hooldus Tallinnas ja Harjumaal. ISO 9001. Tasuta pakkumine - vastus 1 tööpäevaga!',
+    title: 'Puhastusteenused Tallinnas - äriklientidele | SPS Grupp',
+    description: 'Puhastusteenused äriklientidele: põrandate süvapesu, vaipade puhastus, suurpuhastus, ehitusjärgne koristus ja desinfitseerimine Tallinnas ja Harjumaal. ISO 9001. Tasuta pakkumine - vastus 1 tööpäevaga!',
   },
   '/puhastusteenused/ehitusjargne-koristus': {
     title: 'Ehitusjärgne koristus Tallinnas - Ehitusjärgne puhastus | SPS Grupp',
@@ -338,7 +338,7 @@ export const localizedPageMetadata: Partial<
       description: 'Регулярная договорная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа, 1–7 раз в неделю, от 1,20 €/м² в месяц. Бесплатная оценка - ответ в течение 1 рабочего дня!',
     },
     '/puhastusteenused/suurpuhastus': {
-      title: 'Генеральная уборка в Таллине - тщательная уборка для бизнеса | SPS Grupp',
+      title: 'Генеральная уборка в Таллинне - тщательная уборка для бизнеса | SPS Grupp',
       description: 'Генеральная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. Машинная мойка полов, удаление известкового налёта, скрытые зоны. Бесплатное предложение - ответ в течение 1 рабочего дня!',
     },
     '/koristusteenus/kaubanduspindade-koristus': {
@@ -354,8 +354,8 @@ export const localizedPageMetadata: Partial<
       description: 'Регулярная уборка школ и детских садов от 1,20 €/м² в месяц. Обслуживаем объекты площадью от 800 м².',
     },
     '/puhastusteenused': {
-      title: 'Специализированные клининговые услуги в Таллинне | SPS Grupp',
-      description: 'Глубокая мойка полов, чистка ковров, послестроительная уборка, дезинфекция и уход за полами в Таллинне и Харьюмаа. ISO 9001. Бесплатное предложение - ответ в течение 1 рабочего дня!',
+      title: 'Клининговые услуги в Таллинне для бизнеса | SPS Grupp',
+      description: 'Глубокая мойка полов, чистка ковров, генеральная и послестроительная уборка, дезинфекция и уход за полами в Таллинне и Харьюмаа. ISO 9001. Бесплатное предложение - ответ в течение 1 рабочего дня!',
     },
     '/remonditeenused-tallinnas/plaatimistood': {
       title: 'Укладка плитки в Таллинне и Харьюмаа | SPS Grupp',
@@ -392,8 +392,8 @@ export const localizedPageMetadata: Partial<
       description: 'Вывоз строительных отходов и мусора в Таллинне и Харьюмаа. Доставку контейнеров согласуем под ваш объём и график. Бесплатное предложение - ответ в течение 1 рабочего дня!',
     },
     '/koristusteenus/valikoristus/akende-pesu': {
-      title: 'Мойка окон в Таллине | SPS Grupp',
-      description: 'Мойка окон на коммерческих зданиях в Таллине. Мойка окон высотных зданий, стеклянные фасады, регулярное обслуживание.',
+      title: 'Мойка окон в Таллинне | SPS Grupp',
+      description: 'Мойка окон на коммерческих зданиях в Таллинне. Мойка окон высотных зданий, стеклянные фасады, регулярное обслуживание.',
     },
     '/koristusteenus/valikoristus/fassaadipesu': {
       title: 'Мойка фасадов в Таллине | SPS Grupp',
@@ -428,16 +428,16 @@ export const localizedPageMetadata: Partial<
       description: 'Профессиональная очистка после пожара и задымления в Таллине. Удаление сажи, запахов и остатков в согласованном объеме работ.',
     },
     '/puhastusteenused/vaipade-puhastus': {
-      title: 'Химчистка ковров в Таллине | SPS Grupp',
-      description: 'Профессиональная чистка и химическая стирка ковров в офисах Таллина. Удаление аллергенов.',
+      title: 'Чистка ковров в Таллинне - химчистка для офисов | SPS Grupp',
+      description: 'Профессиональная чистка и химчистка ковров в офисах и коммерческих помещениях Таллинна и Харьюмаа. Удаление пятен и аллергенов. Бесплатное предложение!',
     },
     '/remonditeenused-tallinnas': {
       title: 'Ремонтные услуги в Таллине | SPS Grupp',
       description: 'Ремонтные услуги для коммерческой недвижимости в Таллине. Электромонтажные, сантехнические, плиточные и вентиляционные работы - всё в одном месте.',
     },
     '/remonditeenused-tallinnas/elektritood': {
-      title: 'Электромонтажные работы в Таллине | SPS Grupp',
-      description: 'Электроуслуги для коммерческой недвижимости в Таллине. Монтаж, ремонт, обслуживание, электрощиты.',
+      title: 'Электромонтажные работы в Таллинне | SPS Grupp',
+      description: 'Электромонтажные работы для коммерческой недвижимости в Таллинне и Харьюмаа. Монтаж, ремонт, обслуживание, электрощиты, LED-освещение.',
     },
     '/remonditeenused-tallinnas/katuse-remont': {
       title: 'Ремонт кровли в Таллине | SPS Grupp',

@@ -325,7 +325,7 @@ Namespaced by page/feature. Every hardcoded string from all 50+ pages and 22 com
     "janitorService": "Kojamehe teenus",
     "snowRemoval": "Lumekoristus",
     "cleaningServices2": "Puhastusteenused",
-    "specialCleaning": "Eripuhastustööd",
+    "specialCleaning": "Puhastusteenused",
     "windowCleaning": "Akende pesu",
     "carpetCleaning": "Vaipade puhastus",
     "floorMaintenance": "Põrandate hooldus",
@@ -405,7 +405,7 @@ Namespaced by page/feature. Every hardcoded string from all 50+ pages and 22 com
   "footer": {
     "cleaningServices": "Koristusteenused",
     "indoorCleaning": "Sisekoristus",
-    "specialCleaning": "Eripuhastustööd",
+    "specialCleaning": "Puhastusteenused",
     "outdoorCleaning": "Välikoristus",
     "renovationServices": "Remonditeenused",
     "contact": "Kontakt",

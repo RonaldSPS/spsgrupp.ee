@@ -15,12 +15,12 @@ export const et: OutdoorServicePageData = {
   problemDescription: "Suurpuhastus on ühekordne põhjalik puhastus, mis taastab ruumi algse seisukorra. SPS Grupp teeb suurpuhastusi kontoritele, kaubandus- ja tootmispindadele ning kortermajade ühisaladele - professionaalsete masinate ja vahenditega.",
   serviceTitle: "Mida sisaldab suurpuhastus?",
   serviceCards: [
-    { bold: "Põrandate masinpesu ja süvapuhastus", desc: "Kõik põrandatüübid, ka liigne kaitsevahendi eemaldus." },
+    { bold: "Põrandate masinpesu ja süvapuhastus", desc: "Kõik põrandatüübid, ka liigne kaitsevahendi eemaldus.", href: "/puhastusteenused/porandate-hooldus" },
     { bold: "Sanitaarruumide põhjalik puhastus", desc: "Katlakivi, vuugid, desinfitseerimine." },
     { bold: "Kõrged ja varjatud alad", desc: "Riiulite pealsed, ventilatsiooniavad, tehnika taga ja all." },
     { bold: "Klaas- ja peegelpindade pesu", desc: "Sisepinnad, klaasseinad ja uksed." },
     { bold: "Kööginurkade ja puhkeruumide süvapuhastus", desc: "Tehnika sees ja taga, rasv ja katlakivi." },
-    { bold: "Tekstiilide ja vaipade puhastus", desc: "Vajadusel koos vaipade ja pehme mööbli süvapuhastusega." },
+    { bold: "Tekstiilide ja vaipade puhastus", desc: "Vajadusel koos vaipade ja pehme mööbli süvapuhastusega.", href: "/puhastusteenused/vaipade-puhastus" },
   ],
   reasonsTitle: "Miks tellida suurpuhastus SPS Grupilt?",
   reasons: [
@@ -36,7 +36,7 @@ export const et: OutdoorServicePageData = {
     { size: "Tootmis- ja laopindade suurpuhastus", area: "", price: "1 €/m²", period: "alates" },
     { size: "Kaubanduspinnad", area: "", price: "1 €/m²", period: "alates" },
   ],
-  priceNote: "Suurpuhastus on soodsam koos regulaarse hoolduskoristuse lepinguga - küsi kombineeritud pakkumist.",
+  priceNote: "Suurpuhastus on soodsam koos regulaarse hoolduskoristuse lepinguga - küsi kombineeritud pakkumist. Hinnad uuendatud septembris 2026.",
   serviceInfoBlock: {
     tag: "Tööplaani kokkulepe",
     title: "Mida lepime enne suurpuhastust kokku?",
@@ -55,6 +55,7 @@ export const et: OutdoorServicePageData = {
     { q: "Kas töö segab meie igapäevast tegevust?", a: "Planeerime töö teie ajakava järgi - õhtuti, nädalavahetustel või etapiviisiliselt alade kaupa, nii et tegevus saab jätkuda." },
     { q: "Kas teete suurpuhastust ka kodudele?", a: "Meie põhifookus on äripinnad, kuid teeme suurpuhastusi ka kortermajade ühisaladel ja eraklientidele objektist sõltuvalt - kirjutage või helistage, vaatame objekti üle." },
     { q: "Mida pean enne suurpuhastust ette valmistama?", a: "Tavaliselt ei midagi - lepime ülevaatusel kokku, kas ja kuidas tuleb mööblit liigutada või alasid tühjendada. Vajadusel teeme selle ise." },
+    { q: "Mis maksab suurpuhastus 2026. aastal?", a: "Kontorite ja äripindade suurpuhastus alates 1,5 €/m², tootmis- ja laopindadel ning kaubanduspindadel alates 1 €/m². Täpne hind sõltub pindalast, määrdumisastmest ja tööde sisust - saatke fotod või kutsuge meid tasuta ülevaatusele." },
   ],
 }
 
@@ -70,12 +71,12 @@ export const en: OutdoorServicePageData = {
   problemDescription: "Deep cleaning is a one-off thorough clean that restores the room to its original state. SPS Grupp carries out deep cleaning for offices, retail and production premises and apartment building common areas - with professional machines and products.",
   serviceTitle: "What does deep cleaning include?",
   serviceCards: [
-    { bold: "Machine scrubbing and deep cleaning of floors", desc: "All floor types, including removal of excess protective agents." },
+    { bold: "Machine scrubbing and deep cleaning of floors", desc: "All floor types, including removal of excess protective agents.", href: "/puhastusteenused/porandate-hooldus" },
     { bold: "Thorough washroom cleaning", desc: "Limescale, joints, disinfection." },
     { bold: "High and hidden areas", desc: "Shelving tops, ventilation grilles, behind and beneath equipment." },
     { bold: "Glass and mirror cleaning", desc: "Interior surfaces, glass walls and doors." },
     { bold: "Kitchenette and break room deep cleaning", desc: "Inside and behind appliances, grease and limescale." },
-    { bold: "Textile and carpet cleaning", desc: "Combined with carpet and upholstery deep cleaning where needed." },
+    { bold: "Textile and carpet cleaning", desc: "Combined with carpet and upholstery deep cleaning where needed.", href: "/puhastusteenused/vaipade-puhastus" },
   ],
   reasonsTitle: "Why order deep cleaning from SPS Grupp?",
   reasons: [
@@ -91,7 +92,7 @@ export const en: OutdoorServicePageData = {
     { size: "Deep cleaning of production and warehouse areas", area: "", price: "1 EUR/m²", period: "from" },
     { size: "Retail premises", area: "", price: "1 EUR/m²", period: "from" },
   ],
-  priceNote: "Deep cleaning is more affordable together with a regular cleaning contract - ask for a combined quote.",
+  priceNote: "Deep cleaning is more affordable together with a regular cleaning contract - ask for a combined quote. Prices updated September 2026.",
   serviceInfoBlock: {
     tag: "Work plan agreement",
     title: "What do we agree before a deep clean?",
@@ -110,6 +111,7 @@ export const en: OutdoorServicePageData = {
     { q: "Will the work disrupt our daily operations?", a: "We plan the work around your schedule - evenings, weekends or in stages area by area, so operations can continue." },
     { q: "Do you also deep-clean homes?", a: "Our main focus is business premises, but we also do deep cleaning for apartment building common areas and, depending on the site, for private clients - write or call and we will review the site." },
     { q: "Do I need to prepare anything before a deep clean?", a: "Usually nothing - at the assessment we agree whether and how furniture should be moved or areas cleared. If needed, we do it ourselves." },
+    { q: "How much does deep cleaning cost in 2026?", a: "Deep cleaning for offices and business premises from 1.5 EUR/m², production, warehouse and retail premises from 1 EUR/m². The exact price depends on the area, level of soiling and scope of work - send photos or invite us for a free assessment." },
   ],
 }
 
@@ -125,12 +127,12 @@ export const ru: OutdoorServicePageData = {
   problemDescription: "Генеральная уборка - это разовая тщательная уборка, восстанавливающая помещение до первоначального состояния. SPS Grupp выполняет генеральные уборки офисов, торговых и производственных помещений и общих зон жилых домов - профессиональными машинами и средствами.",
   serviceTitle: "Что входит в генеральную уборку?",
   serviceCards: [
-    { bold: "Машинная мойка и глубокая чистка полов", desc: "Все типы полов, включая удаление излишков защитных средств." },
+    { bold: "Машинная мойка и глубокая чистка полов", desc: "Все типы полов, включая удаление излишков защитных средств.", href: "/puhastusteenused/porandate-hooldus" },
     { bold: "Тщательная уборка санузлов", desc: "Известковый налёт, швы, дезинфекция." },
     { bold: "Высокие и скрытые зоны", desc: "Верх стеллажей, вентиляционные решётки, за и под техникой." },
     { bold: "Мойка стеклянных и зеркальных поверхностей", desc: "Внутренние поверхности, стеклянные стены и двери." },
     { bold: "Глубокая чистка кухонь и комнат отдыха", desc: "Внутри и за техникой, жир и известковый налёт." },
-    { bold: "Чистка текстиля и ковров", desc: "При необходимости вместе с глубокой чисткой ковров и мягкой мебели." },
+    { bold: "Чистка текстиля и ковров", desc: "При необходимости вместе с глубокой чисткой ковров и мягкой мебели.", href: "/puhastusteenused/vaipade-puhastus" },
   ],
   reasonsTitle: "Почему заказывать генеральную уборку у SPS Grupp?",
   reasons: [
@@ -146,7 +148,7 @@ export const ru: OutdoorServicePageData = {
     { size: "Генеральная уборка производственных и складских помещений", area: "", price: "1 €/м²", period: "от" },
     { size: "Торговые площади", area: "", price: "1 €/м²", period: "от" },
   ],
-  priceNote: "Генеральная уборка выгоднее вместе с договором регулярной уборки - запросите комбинированное предложение.",
+  priceNote: "Генеральная уборка выгоднее вместе с договором регулярной уборки - запросите комбинированное предложение. Цены обновлены в сентябре 2026.",
   serviceInfoBlock: {
     tag: "Согласование плана",
     title: "О чём мы договариваемся до генеральной уборки?",
@@ -165,6 +167,7 @@ export const ru: OutdoorServicePageData = {
     { q: "Помешает ли работа нашей повседневной деятельности?", a: "Планируем работу под ваш график - вечерами, в выходные или поэтапно по зонам, чтобы деятельность продолжалась." },
     { q: "Делаете ли вы генеральную уборку в домах?", a: "Наш основной фокус - коммерческие помещения, но мы делаем генеральную уборку и в общих зонах жилых домов, а в зависимости от объекта и у частных клиентов - напишите или позвоните, оценим объект." },
     { q: "Нужно ли что-то подготовить до генеральной уборки?", a: "Обычно ничего - при осмотре договоримся, нужно ли и как передвигать мебель или освобождать зоны. При необходимости сделаем это сами." },
+    { q: "Сколько стоит генеральная уборка в 2026 году?", a: "Генеральная уборка офисов и коммерческих помещений от 1,5 €/м², производственных, складских и торговых помещений - от 1 €/м². Точная цена зависит от площади, степени загрязнения и состава работ - пришлите фото или пригласите нас на бесплатную оценку." },
   ],
 }
 

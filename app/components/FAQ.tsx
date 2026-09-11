@@ -30,7 +30,7 @@ export default function FAQ({ items, animDelay }: { items?: FAQItem[]; animDelay
   const faqDescription = isRepairPage
     ? repairDescription
     : isSpecialCleaningPage && locale === "et"
-      ? "Vastame kõige levinumatele küsimustele eripuhastustööde kohta."
+      ? "Vastame kõige levinumatele küsimustele puhastusteenuste kohta."
       : t("description")
 
   const msgItems = ((messages as Record<string, unknown>).faq as { items: FAQItem[] })?.items || []

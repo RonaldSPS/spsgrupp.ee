@@ -17,10 +17,10 @@ export const et: OutdoorServicePageData = {
   serviceCards: [
     { bold: "Kontori- ja bürooaknade regulaarne pesu", desc: "Pesu seest ja väljast professionaalsete vahenditega." },
     { bold: "Kõrghoonete aknapesu", desc: "Tõstukite ja ronimisvarustusega, sertifitseeritud tehnikud." },
-    { bold: "Klaasfassaadide ja klaasseinte puhastus", desc: "Professionaalne puhastus eri tüüpi klaaspindadele ja triibuvaba tulemuse kontroll." },
+    { bold: "Klaasfassaadide ja klaasseinte puhastus", desc: "Professionaalne puhastus eri tüüpi klaaspindadele ja triibuvaba tulemuse kontroll.", href: "/koristusteenus/valikoristus/fassaadipesu" },
     { bold: "Kaubanduskeskuste vitriinid ja sissepääsud", desc: "Regulaarne vitriinide ja sissepääsude hooldus esindusliku ilme tagamiseks." },
     { bold: "Aknaraamide, tihendite ja aknalaudade puhastus", desc: "Täispuhastus koos raamide, tihendite ja aknalaudadega." },
-    { bold: "Ehitusjärgne akende puhastus", desc: "Tolm, mört, kleebised - eemaldame kõik ehitusjäägid." },
+    { bold: "Ehitusjärgne akende puhastus", desc: "Tolm, mört, kleebised - eemaldame kõik ehitusjäägid.", href: "/puhastusteenused/ehitusjargne-koristus" },
   ],
   reasonsTitle: "Miks valida SPS Grupp akende pesu partneriks?",
   reasons: [
@@ -36,7 +36,7 @@ export const et: OutdoorServicePageData = {
     { size: "Klaasfassaadid", area: "Teleskoopvarrega", price: "0,9 €/m²", period: "alates" },
     { size: "Kõrghooned", area: "Ronimisvarustusega", price: "2 €/m²", period: "alates" },
   ],
-  priceNote: "Soovituslik sagedus 2–4 korda aastas, sõltuvalt objekti tingimustest. Regulaarse hoolduslepingu korral kehtib soodushind.",
+  priceNote: "Soovituslik sagedus 2–4 korda aastas, sõltuvalt objekti tingimustest. Regulaarse hoolduslepingu korral kehtib soodushind. Hinnad uuendatud septembris 2026.",
   serviceInfoBlock: {
     tag: "Pesuplaan",
     title: "Mida lepime enne aknapesu kokku?",
@@ -55,6 +55,7 @@ export const et: OutdoorServicePageData = {
     { q: "Kas teete ka kõrghoonete aknapesu?", a: "Jah, see on üks meie põhispetsialiseerumistest. Kasutame tõstukeid, ronimisvarustust ja teleskoopvarrega süsteeme. Kõik tehnikud on sertifitseeritud kõrgtöödeks." },
     { q: "Mis juhtub, kui aknapesu järel tekivad triibud?", a: "Kui märkate pärast töö vastuvõtmist meie tööst tingitud triipe või muid puudusi, andke neist teada. Vaatame olukorra üle ja lepime kokku sobiva lahenduse vastavalt töö tingimustele." },
     { q: "Millal on parim aeg klaashoone aknapesu tellida?", a: "Kevad (aprill–mai) pärast õietolmu perioodi ja sügis (oktoober–november) enne talve on kõige sobivamad. Lisaks regulaarne kvartaalne hooldus." },
+    { q: "Mis maksab akende pesu 2026. aastal?", a: "Kontori aknapesu alates 1 €/m², klaasfassaadid teleskoopvarrega alates 0,9 €/m² ja kõrghooned ronimisvarustusega alates 2 €/m². Täpne hind sõltub pinna suurusest, aknatüübist ja ligipääsust." },
   ],
 }
 
@@ -72,10 +73,10 @@ export const en: OutdoorServicePageData = {
   serviceCards: [
     { bold: "Regular office window cleaning", desc: "Interior and exterior cleaning with professional equipment." },
     { bold: "High-rise window cleaning", desc: "With lifts and rope-access equipment, certified technicians." },
-    { bold: "Glass facade and glass wall cleaning", desc: "Professional cleaning for different glass types with streak-free inspection." },
+    { bold: "Glass facade and glass wall cleaning", desc: "Professional cleaning for different glass types with streak-free inspection.", href: "/koristusteenus/valikoristus/fassaadipesu" },
     { bold: "Retail centre shopfronts and entrances", desc: "Regular maintenance of shopfronts and entrances to keep them presentable." },
     { bold: "Window frame, seal and sill cleaning", desc: "Full cleaning including frames, seals and sills." },
-    { bold: "Post-construction window cleaning", desc: "Dust, mortar, stickers - we remove all construction residue." },
+    { bold: "Post-construction window cleaning", desc: "Dust, mortar, stickers - we remove all construction residue.", href: "/puhastusteenused/ehitusjargne-koristus" },
   ],
   reasonsTitle: "Why choose SPS Grupp as your window cleaning partner?",
   reasons: [
@@ -91,7 +92,7 @@ export const en: OutdoorServicePageData = {
     { size: "Glass facades", area: "With telescopic pole", price: "0.9 EUR/m²", period: "from" },
     { size: "High-rise", area: "With access equipment", price: "2 EUR/m²", period: "from" },
   ],
-  priceNote: "Recommended frequency 2–4 times per year, depending on the site's conditions. A regular maintenance contract qualifies for a discounted rate.",
+  priceNote: "Recommended frequency 2–4 times per year, depending on the site's conditions. A regular maintenance contract qualifies for a discounted rate. Prices updated September 2026.",
   serviceInfoBlock: {
     tag: "Cleaning plan",
     title: "What do we agree on before window cleaning?",
@@ -110,6 +111,7 @@ export const en: OutdoorServicePageData = {
     { q: "Do you also clean high-rise windows?", a: "Yes, this is one of our core specialisms. We use lifts, rope-access equipment and telescopic pole systems. All technicians are certified for working at height." },
     { q: "What happens if streaks appear after cleaning?", a: "If you notice streaks or other defects caused by our work after acceptance, let us know. We will review the situation and agree a suitable solution based on the conditions of the work." },
     { q: "When is the best time to book a glass building window clean?", a: "Spring (April–May) after the pollen season and autumn (October–November) before winter are most suitable. Plus regular quarterly maintenance." },
+    { q: "How much does window cleaning cost in 2026?", a: "Office window cleaning from 1 EUR/m², glass facades with telescopic pole from 0.9 EUR/m² and high-rise buildings with rope access from 2 EUR/m². The exact price depends on the surface area, window type and access." },
   ],
 }
 
@@ -127,10 +129,10 @@ export const ru: OutdoorServicePageData = {
   serviceCards: [
     { bold: "Регулярная мойка офисных окон", desc: "Мойка изнутри и снаружи профессиональными средствами." },
     { bold: "Мойка окон высотных зданий", desc: "С подъёмниками и альпинистским снаряжением, сертифицированные специалисты." },
-    { bold: "Очистка стеклянных фасадов и перегородок", desc: "Профессиональная очистка различных типов стеклянных поверхностей с контролем результата." },
+    { bold: "Очистка стеклянных фасадов и перегородок", desc: "Профессиональная очистка различных типов стеклянных поверхностей с контролем результата.", href: "/koristusteenus/valikoristus/fassaadipesu" },
     { bold: "Витрины и входы торговых центров", desc: "Регулярное обслуживание витрин и входов для поддержания презентабельного вида." },
     { bold: "Очистка оконных рам, уплотнителей и подоконников", desc: "Полная очистка вместе с рамами, уплотнителями и подоконниками." },
-    { bold: "Послестроительная мойка окон", desc: "Пыль, раствор, наклейки - удаляем все строительные остатки." },
+    { bold: "Послестроительная мойка окон", desc: "Пыль, раствор, наклейки - удаляем все строительные остатки.", href: "/puhastusteenused/ehitusjargne-koristus" },
   ],
   reasonsTitle: "Почему выбрать SPS Grupp партнёром по мойке окон?",
   reasons: [
@@ -146,7 +148,7 @@ export const ru: OutdoorServicePageData = {
     { size: "Стеклянные фасады", area: "Телескопическая штанга", price: "0,9 €/м²", period: "от" },
     { size: "Высотные здания", area: "Альпинистское снаряжение", price: "2 €/м²", period: "от" },
   ],
-  priceNote: "Рекомендуемая частота 2–4 раза в год, в зависимости от условий объекта. При договоре обслуживания действует сниженная цена.",
+  priceNote: "Рекомендуемая частота 2–4 раза в год, в зависимости от условий объекта. При договоре обслуживания действует сниженная цена. Цены обновлены в сентябре 2026.",
   serviceInfoBlock: {
     tag: "План мойки",
     title: "О чём мы договариваемся перед мойкой окон?",
@@ -165,6 +167,7 @@ export const ru: OutdoorServicePageData = {
     { q: "Моете ли вы окна высотных зданий?", a: "Да, это одна из наших основных специализаций. Используем подъёмники, альпинистское снаряжение и телескопические штанги. Все специалисты сертифицированы для высотных работ." },
     { q: "Что делать, если после мойки появились разводы?", a: "Если после приёмки работ вы заметите разводы или другие недостатки, вызванные нашей работой, сообщите нам. Рассмотрим ситуацию и согласуем решение." },
     { q: "Когда лучше заказать мойку окон стеклянного здания?", a: "Весна (апрель–май) после периода цветения и осень (октябрь–ноябрь) перед зимой - наиболее подходящее время. Плюс регулярное квартальное обслуживание." },
+    { q: "Сколько стоит мойка окон в 2026 году?", a: "Мойка офисных окон от 1 €/м², стеклянных фасадов телескопической штангой от 0,9 €/м² и высотных зданий с альпинистским снаряжением от 2 €/м². Точная цена зависит от площади, типа окон и доступа." },
   ],
 }
 
