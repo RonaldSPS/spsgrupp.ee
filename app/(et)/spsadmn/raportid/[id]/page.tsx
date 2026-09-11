@@ -91,6 +91,28 @@ export default function ReportDetailPage() {
   const [trend, setTrend] = useState<ReportSummary[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+  const [sending, setSending] = useState(false)
+  const [emailMessage, setEmailMessage] = useState("")
+
+  const resendEmail = async () => {
+    setSending(true)
+    setEmailMessage("")
+    try {
+      const res = await fetch(`/api/spsadmn/reports/${id}`, { method: "POST" })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok && data.email?.success) {
+        setEmailMessage(`E-kiri saadetud: ${data.email.recipients}`)
+        const fresh = await fetch(`/api/spsadmn/reports/${id}`).then((r) => r.json()).catch(() => null)
+        if (fresh?.report) setReport(fresh.report)
+      } else {
+        setEmailMessage(`Viga: ${data.email?.error || data.error || "saatmine ebaõnnestus"}`)
+      }
+    } catch {
+      setEmailMessage("Viga: e-kirja saatmine ebaõnnestus")
+    } finally {
+      setSending(false)
+    }
+  }
 
   useEffect(() => {
     if (!Number.isFinite(id)) return
@@ -139,6 +161,18 @@ export default function ReportDetailPage() {
                 ? <span className="text-red-600">e-kirja viga: {report.emailError}</span>
                 : "e-kirja pole saadetud"}
           </p>
+        </div>
+        <div className="flex flex-col items-end gap-2">
+          <button
+            onClick={resendEmail}
+            disabled={sending}
+            className="bg-[#17345a] text-white py-2 px-5 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors disabled:opacity-60"
+          >
+            {sending ? "Saadan…" : report.emailSentAt ? "Saada e-kiri uuesti" : "Saada e-kiri"}
+          </button>
+          {emailMessage && (
+            <p className={`text-[15px] ${emailMessage.startsWith("Viga") ? "text-red-600" : "text-[#2d9e6b]"}`}>{emailMessage}</p>
+          )}
         </div>
       </div>
 

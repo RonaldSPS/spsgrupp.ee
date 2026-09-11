@@ -29,6 +29,7 @@ export default function ReportsPage() {
   const [reports, setReports] = useState<ReportSummary[]>([])
   const [loading, setLoading] = useState(true)
   const [generating, setGenerating] = useState(false)
+  const [deleting, setDeleting] = useState<number | null>(null)
   const [message, setMessage] = useState("")
 
   const fetchReports = () => {
@@ -42,6 +43,30 @@ export default function ReportsPage() {
   useEffect(() => {
     fetchReports()
   }, [])
+
+  const remove = async (r: ReportSummary) => {
+    if (!window.confirm(`Kustuta raport ${fmtDate(r.weekStart)} – ${fmtDate(r.weekEnd)}?`)) return
+    setDeleting(r.id)
+    setMessage("")
+    try {
+      const res = await fetch("/api/spsadmn/reports", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids: [r.id] }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (res.ok) {
+        setMessage("Raport kustutatud.")
+        fetchReports()
+      } else {
+        setMessage(`Viga: ${data.error || "kustutamine ebaõnnestus"}`)
+      }
+    } catch {
+      setMessage("Viga: kustutamine ebaõnnestus")
+    } finally {
+      setDeleting(null)
+    }
+  }
 
   const generate = async () => {
     setGenerating(true)
@@ -122,7 +147,7 @@ export default function ReportsPage() {
                     )}
                   </div>
                 </div>
-                <div className="flex gap-5 text-[15px] text-[#2d3748]">
+                <div className="flex items-center gap-5 text-[15px] text-[#2d3748]">
                   <div className="text-center">
                     <div className="font-bold text-[#17345a]">{fmtNum(r.stats.gscClicksPerDay)}</div>
                     <div className="text-[12px] text-[#5a6474]">klikki/päev</div>
@@ -143,6 +168,13 @@ export default function ReportsPage() {
                     <div className="font-bold text-[#17345a]">{r.insightsCount}</div>
                     <div className="text-[12px] text-[#5a6474]">leidu</div>
                   </div>
+                  <button
+                    onClick={(e) => { e.preventDefault(); e.stopPropagation(); void remove(r) }}
+                    disabled={deleting === r.id}
+                    className="self-center ml-2 text-[15px] text-red-600 border border-red-200 rounded-lg px-3 py-1.5 hover:bg-red-50 transition-colors disabled:opacity-60"
+                  >
+                    {deleting === r.id ? "Kustutan…" : "Kustuta"}
+                  </button>
                 </div>
               </div>
             </Link>

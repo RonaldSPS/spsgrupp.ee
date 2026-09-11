@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { validateAdminRequest, unauthorizedResponse, noStoreResponse, requireAdminRole } from "@/lib/auth"
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
-import { listWeeklyReports } from "@/lib/reporting/store"
+import { listWeeklyReports, deleteWeeklyReports } from "@/lib/reporting/store"
 import { generateWeeklyReport } from "@/lib/reporting/generate"
 import { sendReportEmail } from "@/lib/reporting/notify"
 
@@ -78,6 +78,36 @@ export async function POST(request: Request) {
         JSON.stringify({ error: error instanceof Error ? error.message : "Raporti genereerimine ebaõnnestus" }),
         500,
       )
+    }
+  }, true)
+}
+
+/** DELETE — remove stored reports. Body: { ids: number[] }. */
+export async function DELETE(request: Request) {
+  return withRateLimit(request, async () => {
+    try {
+      if (!(await validateAdminRequest())) return unauthorizedResponse()
+      if (!verifySameOrigin(request)) {
+        return noStoreResponse(JSON.stringify({ error: "Invalid origin" }), 403)
+      }
+      const roleCheck = await requireAdminRole()
+      if (roleCheck) return roleCheck
+
+      const body = (await request.json().catch(() => null)) as { ids?: unknown } | null
+      const ids = Array.isArray(body?.ids)
+        ? body!.ids.map(Number).filter((n) => Number.isInteger(n) && n > 0)
+        : []
+      if (ids.length === 0 || ids.length > 200) {
+        return noStoreResponse(JSON.stringify({ error: "Invalid ids" }), 400)
+      }
+
+      const deleted = await deleteWeeklyReports(ids)
+      return NextResponse.json({ success: true, deleted }, {
+        headers: { "Cache-Control": "no-store, max-age=0" },
+      })
+    } catch (error) {
+      console.error("Reports DELETE error:", error)
+      return noStoreResponse(JSON.stringify({ error: "Raporti kustutamine ebaõnnestus" }), 500)
     }
   }, true)
 }

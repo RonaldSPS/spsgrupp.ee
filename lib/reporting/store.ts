@@ -157,6 +157,30 @@ export async function getWeeklyReport(id: number): Promise<StoredReport | null> 
   return rows.find((r) => Number(r.id) === Number(id)) ?? null
 }
 
+/** Delete reports by id. Returns the number of deleted rows. */
+export async function deleteWeeklyReports(ids: number[]): Promise<number> {
+  const unique = [...new Set(ids)]
+  if (unique.length === 0) return 0
+  if (process.env.DATABASE_URL) {
+    try {
+      const { db } = await import("@/lib/db")
+      const { weeklyReports } = await import("@/lib/db/schema")
+      const { inArray } = await import("drizzle-orm")
+      const rows = await db
+        .delete(weeklyReports)
+        .where(inArray(weeklyReports.id, unique))
+        .returning({ id: weeklyReports.id })
+      return rows.length
+    } catch (error) {
+      console.error("DB report delete failed, falling back to JSON storage:", error)
+    }
+  }
+  const rows = await readJsonReports()
+  const keep = rows.filter((r) => !unique.includes(Number(r.id)))
+  await writeJsonReports(keep)
+  return rows.length - keep.length
+}
+
 export async function markReportEmailSent(id: number, error?: string): Promise<void> {
   const sentAt = error ? null : new Date()
   const errorText = error ?? ""
