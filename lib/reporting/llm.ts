@@ -12,6 +12,7 @@
 
 import type { Insight, ReportSnapshot } from "./types"
 import { auditNarrativeNumbers } from "./number-audit"
+import { STRATEGY_CONTEXT } from "./strategy"
 
 const TIMEOUT_MS = 90_000
 const MAX_TOKENS = 2500
@@ -19,6 +20,7 @@ const MAX_TOKENS = 2500
 const SYSTEM_PROMPT = `Oled SPS Grupi (spsgrupp.ee) peamised turundusstrateeg ja SEO/Ads-analüütik. SPS Grupp on Tallinna koristus- ja hooldusteenuste ettevõte: kontorite koristus, hoolduskoristus, puhastusteenused, akende pesu, ehitusjärgne koristus, lammutustööd, remont.
 
 KONTEKST, mida tead:
+${STRATEGY_CONTEXT}
 - Uus veebileht läks live'i 17.08.2026 (enne: vana WordPress). Pre-launch baasjoon: 9,0 orgaanilist klikki/päevas.
 - Kaks kuldstandardit: „koristusfirma" ja „kontori koristus".
 - Päris päringud (vormide DB) on konversioonitõde, mitte GA4 key events. Eesmärk ≥15 kontaktpäringut/kuu.

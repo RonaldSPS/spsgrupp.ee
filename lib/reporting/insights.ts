@@ -18,6 +18,7 @@ import type {
   KeywordFamilyStat,
   ReportSnapshot,
 } from "./types"
+import { TARGET_REGION } from "./strategy"
 
 /** Pre-launch organic baseline (20.07–16.08.2026): 9,0 GSC klikki päevas. */
 const PRE_LAUNCH_CLICKS_PER_DAY = 9.0
@@ -360,7 +361,7 @@ function strategyInsights(snapshot: ReportSnapshot, out: Insight[]): void {
         severity: "opportunity",
         title: `Üle poole päringutest sõltub tasulisest liiklusest`,
         detail: `gclid-päringud ${forms.current.gclidLeads} / ${totalLeads} kokku (alampiir — nõusolekuta klikke ei mõõdeta). Tasulise liikluse sõltuvus on risk.`,
-        action: "Tasakaalusta: (1) SEO — löögkaugus-perekondade sisu; (2) e-posti kampaania olemasolevatele klientidele (hooajaline hoolduskoristuse pakkumine); (3) kaalu Meta/Facebook kampaaniat B2C segmentidesse (nt akende pesu, suurpuhastus) — madalam CPC kui otsingus.",
+        action: `Tasakaalusta: (1) SEO — löögkaugus-perekondade sisu; (2) e-posti kampaania olemasolevatele klientidele (hooajaline hoolduskoristuse pakkumine); (3) kaalu Meta/Facebook kampaaniat ${TARGET_REGION} B2B sihtrühmale (kinnisvarahaldurid, korteriühistud — põhieesmärk on hoolduskoristuse lepingud) — madalam CPC kui otsingus.`,
       })
     }
   }
@@ -371,7 +372,7 @@ function strategyInsights(snapshot: ReportSnapshot, out: Insight[]): void {
       severity: "opportunity",
       title: "Kaks nädalat ilma kontaktpäringuteta — vaja aktiivset nõudluse loomist",
       detail: "Orgaaniline + tasuline liiklus ei too praegu päringuid.",
-      action: "Aktiivsed kanalid: saada olemasolevatele klientidele e-kiri (sügishooaja hoolduskoristus / akende pesu enne talve), loo Meta-kampaania Tartu/Tallinna B2C sihtrühmale ja vaata üle avalehe pakkumine.",
+      action: `Aktiivsed kanalid: saada olemasolevatele klientidele e-kiri (sügishooaja hoolduskoristuse pakkumine), loo Meta-kampaania ${TARGET_REGION} kinnisvarahalduritele ja korteriühistutele (hoolduskoristus) ja vaata üle avalehe pakkumine.`,
     })
   }
 }
