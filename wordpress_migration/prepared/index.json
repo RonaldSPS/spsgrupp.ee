@@ -256,6 +256,28 @@
   ],
   "posts": [
     {
+      "id": 9001,
+      "title": "Ehitusprahi ja -jäätmete äravedu Tallinnas: mahud, hinnad ja töökorraldus",
+      "slug": "ehitusprahi-jaatmete-aravedu-tallinnas-mahud-hinnad-tookorraldus",
+      "date": "2026-09-11 10:00:00",
+      "language": "et",
+      "featuredImage": "/ehitusprahi-aravedu-1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9002,
+      "title": "Suurpuhastus: millal tellida ja mida see sisaldab?",
+      "slug": "suurpuhastus-millal-tellida-ja-mida-see-sisaldab",
+      "date": "2026-09-11 12:00:00",
+      "language": "et",
+      "featuredImage": "/puhastusteenused1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
       "id": 6582,
       "title": "Keskkonnasõbralikud puhastusvahendid - miks need on olulised?",
       "slug": "keskkonnasobralikud-puhastusvahendid",
@@ -319,7 +341,7 @@
       "featuredImage": "/blog-media/2023/01/SPS_Grupp_vibu2.svg",
       "featuredImageSource": "first-content-image",
       "contentStatus": "article",
-      "migrationStatus": "ready"
+      "migrationStatus": "excluded-stub"
     },
     {
       "id": 6364,
@@ -363,7 +385,7 @@
       "featuredImage": "/blog-media/2023/01/SPS_Grupp_ariteenused2.svg",
       "featuredImageSource": "first-content-image",
       "contentStatus": "article",
-      "migrationStatus": "ready"
+      "migrationStatus": "excluded-stub"
     },
     {
       "id": 6371,
