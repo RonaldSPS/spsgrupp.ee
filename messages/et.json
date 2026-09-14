@@ -206,7 +206,7 @@
     "attachmentHint": "Lubatud: JPG, PNG, PDF kuni 10 MB",
     "privacyConsent": "Olen tutvunud andmekaitsetingimustega ja nõustun oma andmete töötlemisega päringule vastamise eesmärgil. *",
     "privacyLink": "andmekaitsetingimustega",
-    "adsConsent": "Nõustun analüütika- ja reklaamiküpsiste kasutamisega (Google Analytics, Google Ads). See aitab meil mõõta, kuidas külastajad meie lehele jõuavad. Vabatahtlik: päringu saab saata ka nõustumata.",
+    "adsConsent": "Olen nõus jagama infot, kuidas SPS Grupi päringuni jõudsin. Salvestatakse lehele jõudmise allikas. Infot jagatakse Google platvormidega.",
     "submitButton": "Saada päring",
     "submitting": "Saadan...",
     "successMessage": "Täname! Teie päring on saadetud. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",

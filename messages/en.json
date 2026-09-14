@@ -206,7 +206,7 @@
     "attachmentHint": "Allowed: JPG, PNG, PDF up to 10 MB",
     "privacyConsent": "I have read the privacy policy and consent to the processing of my data. *",
     "privacyLink": "privacy policy",
-    "adsConsent": "I agree to the use of analytics and advertising cookies (Google Analytics, Google Ads). This helps us measure how visitors reach our website. Optional: you can send the inquiry without agreeing.",
+    "adsConsent": "I agree to share information on how I reached SPS Grupp's inquiry form. The source of the visit is stored. The information is shared with Google platforms.",
     "submitButton": "Send Inquiry",
     "submitting": "Sending...",
     "successMessage": "Thank you! Your inquiry has been sent. We will generally contact you within one business day.",
