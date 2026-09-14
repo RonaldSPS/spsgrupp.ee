@@ -67,7 +67,9 @@ container. The site only loads the container and pushes events to the
   param or the `_gcl_aw` cookie (written by GTM's Conversion Linker; absent
   when ads consent is denied). Stored in `form_submissions.gclid`
   (migration `drizzle/0009_submission_gclid.sql`), shown under the "Leht"
-  cell in `/spsadmn/paringud`, added to the notification email + CSV export.
+  cell in `/spsadmn/paringud` and in the CSV export. The notification
+  e-mail shows only a localized source label (`copy.adSource` in
+  `lib/actions.ts`, e.g. "Allikas: Google Ads reklaam") — never the raw id.
 
 ## 3. Environment variables
 

@@ -238,6 +238,9 @@ interface ActionCopy {
   careerSubject: string
   messageHeading: string
   extraInfoHeading: string
+  /** Human-readable "came from a Google Ads click" line for the notification
+   *  e-mail (shown instead of the raw gclid; the id itself stays in DB/CSV). */
+  adSource: string
   autoReplyContactSubject: string
   autoReplyContactBody: string
   autoReplyCareerSubject: string
@@ -276,6 +279,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Karjääriavaldus",
     messageHeading: "Teade",
     extraInfoHeading: "Lisainfo",
+    adSource: "Allikas: Google Ads reklaam",
     autoReplyContactSubject: AUTOREPLY_DEFAULTS.et.contact.subject,
     autoReplyContactBody: AUTOREPLY_DEFAULTS.et.contact.body,
     autoReplyCareerSubject: AUTOREPLY_DEFAULTS.et.career.subject,
@@ -317,6 +321,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Career application",
     messageHeading: "Message",
     extraInfoHeading: "Additional information",
+    adSource: "Source: Google Ads ad",
     autoReplyContactSubject: AUTOREPLY_DEFAULTS.en.contact.subject,
     autoReplyContactBody: AUTOREPLY_DEFAULTS.en.contact.body,
     autoReplyCareerSubject: AUTOREPLY_DEFAULTS.en.career.subject,
@@ -358,6 +363,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Заявка на работу",
     messageHeading: "Сообщение",
     extraInfoHeading: "Дополнительная информация",
+    adSource: "Источник: реклама Google Ads",
     autoReplyContactSubject: AUTOREPLY_DEFAULTS.ru.contact.subject,
     autoReplyContactBody: AUTOREPLY_DEFAULTS.ru.contact.body,
     autoReplyCareerSubject: AUTOREPLY_DEFAULTS.ru.career.subject,
@@ -544,7 +550,7 @@ export async function submitContactForm(
     `${copy.labels.email}: ${email}`,
     `${copy.labels.phone}: ${phone}`,
     `${copy.labels.company}: ${company || "-"}`,
-    ...(gclid ? [`GCLID: ${gclid}`] : []),
+    ...(gclid ? [copy.adSource] : []),
     ``,
     `${copy.messageHeading}:`,
     message || "-",
