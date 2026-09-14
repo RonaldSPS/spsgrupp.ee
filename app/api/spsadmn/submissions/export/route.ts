@@ -40,8 +40,20 @@ const CSV_HEADER = [
   "Manus",
   "Keel",
   "Leht",
+  "Allikas",
   "GCLID",
 ]
+
+/** Same labels as the paringud admin table (keep in sync). */
+function sourceLabel(source: string): string {
+  if (!source) return "Teadmata"
+  if (source === "google_ads") return "Google Ads"
+  if (source === "direct") return "Otsene (viitajata)"
+  if (source.startsWith("organic:")) return `Otsing: ${source.slice("organic:".length)}`
+  if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
+  if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
+  return "Teadmata"
+}
 
 function csvCell(value: string): string {
   // CSV formula-injection guard: cells starting with = + - @ (or tab/CR) are
@@ -72,6 +84,7 @@ function toRow(s: FormSubmission): string[] {
     s.attachmentName,
     LOCALE_LABELS[s.locale] ?? s.locale,
     s.pageUrl,
+    sourceLabel(s.source),
     s.gclid,
   ]
 }

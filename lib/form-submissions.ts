@@ -24,6 +24,8 @@ export interface FormSubmissionInput {
   pageUrl?: string
   /** Google Ads click id from the hidden form field (contact form only). "" when none. */
   gclid?: string
+  /** Classified lead source code (google_ads / utm:.. / organic:.. / referral:.. / direct). "" when unknown. */
+  source?: string
 }
 
 export interface FormSubmission {
@@ -47,6 +49,7 @@ export interface FormSubmission {
   isSpam: boolean
   pageUrl: string
   gclid: string
+  source: string
   createdAt: string
 }
 
@@ -86,7 +89,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
     const parsed = JSON.parse(raw)
     const rows = Array.isArray(parsed) ? parsed : parsed?.submissions
     if (!Array.isArray(rows)) return []
-    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid existed.
+    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid/source existed.
     return rows.map((row) => ({
       ...row,
       fee: normalizeAmount(row.fee),
@@ -95,6 +98,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       isSpam: row.isSpam === true,
       pageUrl: typeof row.pageUrl === "string" ? row.pageUrl : "",
       gclid: typeof row.gclid === "string" ? row.gclid : "",
+      source: typeof row.source === "string" ? row.source : "",
     }))
   } catch {
     return []
@@ -127,6 +131,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     isSpam: input.isSpam ?? false,
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
+    source: input.source ?? "",
   })
 }
 
@@ -152,6 +157,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     isSpam: input.isSpam ?? false,
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
+    source: input.source ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -228,6 +234,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     isSpam: row.isSpam ?? false,
     pageUrl: row.pageUrl ?? "",
     gclid: row.gclid ?? "",
+    source: row.source ?? "",
     createdAt: row.createdAt.toISOString(),
   }))
 }

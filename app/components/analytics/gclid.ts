@@ -4,17 +4,21 @@
  * Google Ads auto-tagging appends ?gclid=... to the landing URL; GTM's
  * Conversion Linker tag then persists it in the first-party `_gcl_aw` cookie
  * (format: "GCL.<unix-ts>.<gclid>"). We read the URL param first (freshest
- * click wins) and fall back to the cookie, so the id is available on any
- * page the visitor eventually submits a form from.
- *
- * Consent-safe by construction: with ad_storage denied, Conversion Linker
- * writes no `_gcl_aw` cookie and the field stays empty.
+ * click wins), then the sessionStorage landing-capture from attribution.ts
+ * (consent-independent - works for visitors who declined the cookie banner),
+ * and finally the `_gcl_aw` cookie, so the id is available on any page the
+ * visitor eventually submits a form from.
  */
+import { getCapturedGclid } from "./attribution"
+
 export function getGclid(): string {
   if (typeof window === "undefined") return ""
 
   const fromUrl = new URLSearchParams(window.location.search).get("gclid")
   if (fromUrl) return fromUrl.slice(0, 100)
+
+  const captured = getCapturedGclid()
+  if (captured) return captured.slice(0, 100)
 
   const match = document.cookie.match(/(?:^|;\s*)_gcl_aw=([^;]+)/)
   if (match) {

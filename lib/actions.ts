@@ -110,6 +110,29 @@ function sanitizeGclid(value: string | FormDataEntryValue | null): string {
   return cleaned.slice(0, 100)
 }
 
+/**
+ * Classified lead source from the form's hidden `source` field (codes like
+ * "google_ads", "utm:google/cpc", "organic:google", "referral:delfi.ee",
+ * "direct"; "" = unknown). Attacker-controlled, so only the charset the
+ * client-side classifier emits is kept, capped at 120 chars.
+ */
+function sanitizeSource(value: string | FormDataEntryValue | null): string {
+  if (typeof value !== "string") return ""
+  return value.toLowerCase().replace(/[^a-z0-9:._\/-]/g, "").slice(0, 120)
+}
+
+/** Human-readable, localized label for a stored source code (e-mails/admin). */
+function describeSource(source: string, copy: ActionCopy): string {
+  const labels = copy.sourceLabels
+  if (!source) return labels.unknown
+  if (source === "google_ads") return labels.googleAds
+  if (source === "direct") return labels.direct
+  if (source.startsWith("organic:")) return format(labels.organic, { detail: source.slice("organic:".length) })
+  if (source.startsWith("referral:")) return format(labels.referral, { detail: source.slice("referral:".length) })
+  if (source.startsWith("utm:")) return format(labels.campaign, { detail: source.slice("utm:".length) })
+  return labels.unknown
+}
+
 function validatePhone(phone: string): boolean {
   const cleaned = phone.replace(/[\s\-()]+/g, "")
   return /^\+?\d{6,20}$/.test(cleaned)
@@ -238,9 +261,18 @@ interface ActionCopy {
   careerSubject: string
   messageHeading: string
   extraInfoHeading: string
-  /** Human-readable "came from a Google Ads click" line for the notification
-   *  e-mail (shown instead of the raw gclid; the id itself stays in DB/CSV). */
-  adSource: string
+  /** Localized labels for the classified lead source (see sanitizeSource);
+   *  shown in the notification e-mail as "Allikas: …" - never the raw code.
+   *  {detail} is the engine/host/utm payload of the source code. */
+  sourceHeading: string
+  sourceLabels: {
+    googleAds: string
+    organic: string
+    referral: string
+    campaign: string
+    direct: string
+    unknown: string
+  }
   autoReplyContactSubject: string
   autoReplyContactBody: string
   autoReplyCareerSubject: string
@@ -279,7 +311,15 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Karjääriavaldus",
     messageHeading: "Teade",
     extraInfoHeading: "Lisainfo",
-    adSource: "Allikas: Google Ads reklaam",
+    sourceHeading: "Allikas",
+    sourceLabels: {
+      googleAds: "Google Ads reklaam",
+      organic: "Otsingumootor ({detail})",
+      referral: "Viitav leht: {detail}",
+      campaign: "Kampaania: {detail}",
+      direct: "Otsene külastus (viitaja puudub)",
+      unknown: "Teadmata",
+    },
     autoReplyContactSubject: AUTOREPLY_DEFAULTS.et.contact.subject,
     autoReplyContactBody: AUTOREPLY_DEFAULTS.et.contact.body,
     autoReplyCareerSubject: AUTOREPLY_DEFAULTS.et.career.subject,
@@ -321,7 +361,15 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Career application",
     messageHeading: "Message",
     extraInfoHeading: "Additional information",
-    adSource: "Source: Google Ads ad",
+    sourceHeading: "Source",
+    sourceLabels: {
+      googleAds: "Google Ads ad",
+      organic: "Search engine ({detail})",
+      referral: "Referral: {detail}",
+      campaign: "Campaign: {detail}",
+      direct: "Direct visit (no referrer)",
+      unknown: "Unknown",
+    },
     autoReplyContactSubject: AUTOREPLY_DEFAULTS.en.contact.subject,
     autoReplyContactBody: AUTOREPLY_DEFAULTS.en.contact.body,
     autoReplyCareerSubject: AUTOREPLY_DEFAULTS.en.career.subject,
@@ -363,7 +411,15 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     careerSubject: "Заявка на работу",
     messageHeading: "Сообщение",
     extraInfoHeading: "Дополнительная информация",
-    adSource: "Источник: реклама Google Ads",
+    sourceHeading: "Источник",
+    sourceLabels: {
+      googleAds: "реклама Google Ads",
+      organic: "поисковая система ({detail})",
+      referral: "переход с сайта: {detail}",
+      campaign: "кампания: {detail}",
+      direct: "прямой заход (без реферера)",
+      unknown: "неизвестно",
+    },
     autoReplyContactSubject: AUTOREPLY_DEFAULTS.ru.contact.subject,
     autoReplyContactBody: AUTOREPLY_DEFAULTS.ru.contact.body,
     autoReplyCareerSubject: AUTOREPLY_DEFAULTS.ru.career.subject,
@@ -468,6 +524,7 @@ export async function submitContactForm(
   const attachmentFile = formData.get("attachment")
   const pageUrl = sanitizePageUrl(formData.get("page_url"))
   const gclid = sanitizeGclid(formData.get("gclid"))
+  const source = sanitizeSource(formData.get("source"))
 
   const errors: string[] = []
 
@@ -523,6 +580,7 @@ export async function submitContactForm(
       isSpam: true,
       pageUrl,
       gclid,
+      source,
     })
     return { success: true, isSpam: true }
   }
@@ -542,6 +600,7 @@ export async function submitContactForm(
     attachmentName: validatedAttachment?.filename ?? "",
     pageUrl,
     gclid,
+    source,
   })
 
   const subject = `${copy.contactSubject}: ${name}${company ? " / " + company : ""}`
@@ -550,7 +609,7 @@ export async function submitContactForm(
     `${copy.labels.email}: ${email}`,
     `${copy.labels.phone}: ${phone}`,
     `${copy.labels.company}: ${company || "-"}`,
-    ...(gclid ? [copy.adSource] : []),
+    `${copy.sourceHeading}: ${describeSource(source, copy)}`,
     ``,
     `${copy.messageHeading}:`,
     message || "-",
@@ -614,6 +673,7 @@ export async function submitCareerForm(
   const info = escapeText(formData.get("info"))
   const consent = formData.get("privacy_consent")
   const pageUrl = sanitizePageUrl(formData.get("page_url"))
+  const source = sanitizeSource(formData.get("source"))
 
   const errors: string[] = []
 
@@ -664,6 +724,7 @@ export async function submitCareerForm(
       message: info,
       isSpam: true,
       pageUrl,
+      source,
     })
     return { success: true, isSpam: true }
   }
@@ -683,6 +744,7 @@ export async function submitCareerForm(
     workTime,
     message: info,
     pageUrl,
+    source,
   })
 
   const subject = `${copy.careerSubject}: ${name}`
@@ -693,6 +755,7 @@ export async function submitCareerForm(
     `${copy.labels.region}: ${region || "-"}`,
     `${copy.labels.workload}: ${copy.workloadOptions[workload] || workload || "-"}`,
     `${copy.labels.workTime}: ${copy.workTimeOptions[workTime] || workTime || "-"}`,
+    `${copy.sourceHeading}: ${describeSource(source, copy)}`,
     ``,
     `${copy.extraInfoHeading}:`,
     info || "-",

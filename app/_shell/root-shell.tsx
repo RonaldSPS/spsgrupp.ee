@@ -8,6 +8,7 @@ import ruMessages from "@/messages/ru.json"
 import { renderLdJson } from "@/lib/json-ld-generator"
 import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils"
 import CookieConsentBanner from "@/app/components/analytics/CookieConsentBanner"
+import AttributionCapture from "@/app/components/analytics/AttributionCapture"
 import { CONSENT_DEFAULT_SNIPPET } from "@/app/components/analytics/consent"
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID
@@ -155,6 +156,7 @@ export function RootShell({
             }}
           />
           {children}
+          <AttributionCapture />
           {gtmId ? <CookieConsentBanner /> : null}
         </I18nProvider>
         {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}

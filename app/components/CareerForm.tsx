@@ -9,6 +9,7 @@ import TwoToneHeading from "./TwoToneHeading"
 import { submitCareerForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 import { pushFormSubmissionSuccess } from "./analytics/form-conversion"
+import { getAttributionSource } from "./analytics/attribution"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -30,6 +31,9 @@ export default function CareerForm() {
   // Source page URL, sent with the submission so admin sees where it came from.
   // Written directly to the hidden input after mount so SSR HTML matches hydration.
   const pageUrlRef = useRef<HTMLInputElement>(null)
+  // Classified lead source (google_ads / utm:.. / organic:.. / referral:.. /
+  // direct / ""), same hidden-input pattern. Consent-independent.
+  const sourceRef = useRef<HTMLInputElement>(null)
   // Anti-bot time trap: mount timestamp. Bots that POST instantly are caught
   // server-side; stays empty without JS and the check is skipped then.
   const startedAtRef = useRef<HTMLInputElement>(null)
@@ -59,19 +63,29 @@ export default function CareerForm() {
         })
       }
       formRef.current.reset()
+      fillHiddenFields()
     }
     // etPath/locale are stable for the mounted page; re-running on identity
     // change is harmless (success state gates the push).
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.success, state.isSpam])
 
-  useEffect(() => {
+  // Fills the hidden fields after mount and again after a successful submit
+  // (form.reset() restores defaultValue="" and would otherwise wipe them).
+  const fillHiddenFields = () => {
     if (pageUrlRef.current) {
       pageUrlRef.current.value = window.location.href
+    }
+    if (sourceRef.current) {
+      sourceRef.current.value = getAttributionSource()
     }
     if (startedAtRef.current) {
       startedAtRef.current.value = String(Date.now())
     }
+  }
+
+  useEffect(() => {
+    fillHiddenFields()
   }, [])
 
   return (
@@ -90,6 +104,7 @@ export default function CareerForm() {
               <input type="text" id="career-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
             </div>
             <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
+            <input type="hidden" name="source" ref={sourceRef} defaultValue="" />
             <input type="hidden" name="form_started_at" ref={startedAtRef} defaultValue="" />
             {turnstileSiteKey && (
               <>

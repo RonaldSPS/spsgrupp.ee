@@ -64,12 +64,28 @@ container. The site only loads the container and pushes events to the
   Conversions tag (hashed client-side by GTM).
 - `app/components/analytics/gclid.ts` + hidden `gclid` field in
   **ContactForm only** — Google Ads click id, read from the landing URL
-  param or the `_gcl_aw` cookie (written by GTM's Conversion Linker; absent
-  when ads consent is denied). Stored in `form_submissions.gclid`
+  param, then the consent-independent sessionStorage landing-capture, then
+  the `_gcl_aw` cookie (written by GTM's Conversion Linker; absent when ads
+  consent is denied). Stored in `form_submissions.gclid`
   (migration `drizzle/0009_submission_gclid.sql`), shown under the "Leht"
-  cell in `/spsadmn/paringud` and in the CSV export. The notification
-  e-mail shows only a localized source label (`copy.adSource` in
-  `lib/actions.ts`, e.g. "Allikas: Google Ads reklaam") — never the raw id.
+  cell in `/spsadmn/paringud` and in the CSV export.
+- `app/components/analytics/attribution.ts` + hidden `source` field in
+  **both forms** — classified lead source (`google_ads` /
+  `utm:<source>[/<medium>]` / `organic:<engine>` / `referral:<host>` /
+  `direct`; `""` = unknown, never guessed as SEO). `AttributionCapture`
+  (root-shell, NOT gated on GTM/consent) copies the landing URL's
+  gclid/UTM params + external referrer hostname into sessionStorage
+  `sps_attr` on the first pageview of the tab session, so the source
+  survives in-site navigation even when the visitor declines the cookie
+  banner. Stored in `form_submissions.source` (migration
+  `drizzle/0011_submission_source.sql`), shown as the "Allikas" column in
+  paringud + CSV export. The notification e-mail always shows a localized
+  `Allikas: …` label (`describeSource()` + `copy.sourceLabels` in
+  `lib/actions.ts`; "Teadmata" when unknown) — never the raw gclid.
+- ContactForm carries a voluntary analytics/ads-cookie consent checkbox
+  (messages key `contactForm.adsConsent`) — unchecked by default, mirrors
+  the stored consent after mount; toggling calls `storeConsent` +
+  `applyConsent` (same mechanism as the banner, no funnel event).
 
 ## 3. Environment variables
 

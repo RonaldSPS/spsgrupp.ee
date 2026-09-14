@@ -161,5 +161,6 @@ export const formSubmissions = pgTable("form_submissions", {
   isSpam: boolean("is_spam").notNull().default(false),
   pageUrl: text("page_url").notNull().default(""),
   gclid: text("gclid").notNull().default(""),
+  source: text("source").notNull().default(""),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })

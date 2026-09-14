@@ -21,6 +21,7 @@ interface Submission {
   isSpam: boolean
   pageUrl: string
   gclid: string
+  source: string
   createdAt: string
 }
 
@@ -63,7 +64,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 140, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -75,6 +76,7 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "Sõnum" },
   { label: "Keel" },
   { label: "Leht" },
+  { label: "Allikas" },
   { label: "Tasu", headerClass: "text-right" },
   { label: "Kasum", headerClass: "text-right" },
   { label: "Märkused" },
@@ -106,6 +108,21 @@ function pageUrlLabel(url: string): string {
   } catch {
     return url
   }
+}
+
+/**
+ * Human-readable label for a classified lead-source code
+ * (google_ads / utm:.. / organic:.. / referral:.. / direct; "" = unknown).
+ * Conservative by design: unknown stays "Teadmata", never guessed as SEO.
+ */
+function sourceLabel(source: string): string {
+  if (!source) return "Teadmata"
+  if (source === "google_ads") return "Google Ads"
+  if (source === "direct") return "Otsene (viitajata)"
+  if (source.startsWith("organic:")) return `Otsing: ${source.slice("organic:".length)}`
+  if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
+  if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
+  return "Teadmata"
 }
 
 /**
@@ -517,7 +534,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={10} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={11} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -583,6 +600,11 @@ export default function AdminSubmissionsPage() {
                           GCLID: {s.gclid.length > 16 ? `${s.gclid.slice(0, 16)}…` : s.gclid}
                         </span>
                       )}
+                    </td>
+                    <td className="px-4 py-3 break-words">
+                      <span className={s.source ? "text-[#17345a] font-medium" : "text-[#8a94a3]"}>
+                        {sourceLabel(s.source)}
+                      </span>
                     </td>
                     {isContact ? (
                       <>
