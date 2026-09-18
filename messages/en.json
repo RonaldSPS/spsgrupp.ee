@@ -340,7 +340,9 @@
       "paragraph3Link1": "specialist cleaning services",
       "paragraph3Mid": " provide the solution. SPS Grupp is a ",
       "paragraph3Link2": "cleaning company",
-      "paragraph3Post": " trusted by more than 200 Estonian businesses."
+      "paragraph3Mid2": " trusted by more than 200 Estonian businesses, and our core service is contracted ",
+      "paragraph3Link3": "regular cleaning",
+      "paragraph3Post": "."
     },
     "services": {
       "tag": "Service Content",
@@ -513,7 +515,11 @@
       "q3": "What if something is missed or not cleaned properly?",
       "a3": "Your site manager arranges regular quality checks and helps resolve shortcomings quickly. Our activities are covered by liability insurance subject to the terms of the insurance contract.",
       "q4": "Do you provide cleaning supplies and equipment?",
-      "a4": "Yes, we bring all professional cleaning products and equipment. We use certified, low-environmental-impact products wherever possible, compliant with ISO 14001."
+      "a4": "Yes, we bring all professional cleaning products and equipment. We use certified, low-environmental-impact products wherever possible, compliant with ISO 14001.",
+      "q5": "How much does office cleaning cost per month?",
+      "a5": "The price depends on the area, cleaning frequency and scope of work. As a guide, regular cleaning for an office of 800 m² starts from €960 per month (from €1.20/m² per month). We confirm the exact price after a free site assessment.",
+      "q6": "What is the minimum size for office cleaning?",
+      "a6": "We take on office cleaning contracts for premises of 800 m² and above - from that size up we can guarantee a dedicated team, a site manager and regular quality control. For smaller offices we recommend our one-off specialist cleaning services."
     }
   },
   "kaubanduspindadeKoristus": {
@@ -572,7 +578,7 @@
     "whyUs": {
       "tag": "Why Us",
       "heading": "Why retailers choose SPS Grupp",
-      "image": "/kaubanduspindade-koristus-2.jpg",
+      "image": "/images/kruiisiterminal/terminal-dusting-1200x1400.webp",
       "imageAlt": "Retail cleaning by SPS Grupp",
       "reason0Title": "Extensive shopping centre cleaning experience",
       "reason0Desc": "We have served large shopping centres and retail chains in Tallinn for years. We know what customers notice and what they don't.",

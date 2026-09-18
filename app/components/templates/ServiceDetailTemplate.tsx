@@ -56,6 +56,8 @@ export type OutdoorServicePageData = {
   problemDescription: string;
   serviceTitle: string;
   serviceCards: ServiceCard[];
+  /** Optional "Vaata ka" link row rendered below the service cards (internal links to sibling services). */
+  relatedLinks?: { label: string; href: string }[];
   reasonsTitle: string;
   reasons: ReasonCard[];
   priceTitle: string;

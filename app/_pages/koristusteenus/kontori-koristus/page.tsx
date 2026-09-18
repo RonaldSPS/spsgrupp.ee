@@ -6,6 +6,7 @@ import Navbar from "../../../components/Navbar";
 import HeroBackgroundImage from "../../../components/HeroBackgroundImage";
 import Footer from "../../../components/Footer";
 import TestimonialSlider from "../../../components/TestimonialSlider";
+import Logos from "../../../components/Logos";
 import FAQ from "../../../components/FAQ";
 import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
@@ -141,7 +142,9 @@ const etText: OfficeCleaningText = {
     { q: "Kas kontorikoristus toimub tööajal või väljaspool?", a: "Tavaliselt koristame töövälisel ajal - varahommikul enne tööpäeva algust või õhtul pärast tööaega. Soovi korral saame korraldada ka päevase koristuse madala liiklusega aegadel." },
     { q: "Mida kontori koristus sisaldab?", a: "Tolmuimejaga puhastus, pindade pühkimine, prügi väljaviimine, sanitaarruumide puhastus, köögi ja puhkeala koristus. Lisateenustena pakume akende pesu, vaipade süvapuhastust ja desinfitseerimist." },
     { q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?", a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Eritööde puhul valitakse vahendid konkreetse ülesande järgi." },
-    { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist." },
+    { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Pärast tasuta objekti ülevaatust saadame hinnapakkumise ühe tööpäeva jooksul. Koristustööd algavad tavaliselt 1–2 nädala jooksul pärast lepingu sõlmimist - täpne aeg sõltub objekti mahust ja meeskonna saadavusest." },
+    { q: "Kui palju maksab kontori koristus kuus?", a: "Hind sõltub pindalast, koristuse sagedusest ja tööde mahust. Orienteeruvalt on alates 800 m² suuruse kontori regulaarse koristuse kuuhind alates 960 € (1,20 €/m² kuus). Täpse hinna kinnitame tasuta objekti ülevaatuse järel." },
+    { q: "Milline on kontorikoristuse miinimummaht?", a: "Kontorikoristuse lepinguid teeme alates 800 m² suurustele büroodele - sellest mahust saame tagada kindla meeskonna, objektijuhi ja regulaarse kvaliteedikontrolli. Väiksematel pindadel soovitame vaadata meie ühekordseid puhastusteenuseid." },
   ],
 };
 
@@ -241,7 +244,7 @@ function localizedText(locale: Exclude<Locale, "et">): OfficeCleaningText {
     ] as [string, string]),
     footerTitle: str(footerCta.title) || etText.footerTitle,
     footerDescription: str(footerCta.description) || etText.footerDescription,
-    faq: [0, 1, 2, 3, 4].map((index) => ({
+    faq: [0, 1, 2, 3, 4, 5, 6].map((index) => ({
       q: str(faq[`q${index}`]) || etText.faq[index].q,
       a: str(faq[`a${index}`]) || etText.faq[index].a,
     })),
@@ -605,6 +608,11 @@ export function KontoriKoristusPageView({ locale }: { locale: Locale }) {
           title={t.footerTitle}
           description={t.footerDescription}
         />
+        </ScrollAnimation>
+
+        {/* Kliendilogod */}
+        <ScrollAnimation animation="fade-up">
+        <Logos />
         </ScrollAnimation>
 
         {/* Contact Form */}

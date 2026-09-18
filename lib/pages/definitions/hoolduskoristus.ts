@@ -5,7 +5,7 @@ const enParent = { etPath: "/koristusteenus", label: "Cleaning services" };
 const ruParent = { etPath: "/koristusteenus", label: "Услуги уборки" };
 
 export const et: OutdoorServicePageData = {
-  ariaLabel: "Hoolduskoristus", heroImage: "/Koristusteenused-HERO.jpg", image: "/Koristusteenus2.jpg", imageAlt: "SPS Grupp hoolduskoristus äripindadel",
+  ariaLabel: "Hoolduskoristus", heroImage: "/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp", image: "/images/kruiisiterminal/terminal-duster-portrait-1200x1400.webp", imageAlt: "SPS Grupp hoolduskoristus äripindadel",
   title: "Hoolduskoristus", titleAccent: "äripindadele Tallinnas ja Harjumaal",
   intro: "Lepingueline regulaarne koristus kontoritele, kaubandus- ja tootmispindadele - 1–7 korda nädalas, kokkulepitud mahus ja graafikus. Kindel personal, objektijuht ja regulaarne kvaliteedikontroll.",
   cta: "Küsi hoolduskoristuse pakkumist", breadcrumb: "Hoolduskoristus", parentBreadcrumb: etParent,
@@ -21,6 +21,11 @@ export const et: OutdoorServicePageData = {
     { bold: "Kööginurkade ja puhkeruumide koristus", desc: "Tasapinnad, tehnika ja istumisalad." },
     { bold: "Puutepindade desinfitseerimine", desc: "Ukselingid, lülitid ja muud sageli puudutatavad pinnad." },
     { bold: "Valvekoristus", desc: "Soovi korral puhastusteenindaja objektil kogu tööpäeva vältel." },
+  ],
+  relatedLinks: [
+    { label: "Kontori koristus", href: "/koristusteenus/kontori-koristus" },
+    { label: "Kaubanduspindade koristus", href: "/koristusteenus/kaubanduspindade-koristus" },
+    { label: "Tootmishoonete koristus", href: "/koristusteenus/tootmishoonete-koristus" },
   ],
   reasonsTitle: "Miks valida SPS Grupp hoolduskoristuse partneriks?",
   reasons: [
@@ -55,12 +60,14 @@ export const et: OutdoorServicePageData = {
     { q: "Kas koristus toimub tööajal või väljaspool?", a: "Tavaliselt koristame töövälisel ajal - varahommikul enne tööpäeva algust või õhtul pärast tööaega. Soovi korral korraldame ka päevase valvekoristuse." },
     { q: "Kas sama koristaja käib meil alati?", a: "Jah - igale objektile määratakse kindel meeskond, kes tunneb teie ruumide eripärasid. Haiguste ja puhkuste ajal on tagatud koolitatud asendaja." },
     { q: "Kuidas saab hoolduskoristusega alustada?", a: "Võtke ühendust - teeme tasuta objekti ülevaatuse, koostame koristusplaani ja hinnapakkumise. Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist." },
+    { q: "Milline on hoolduskoristuse miinimummaht?", a: "Teeme hoolduskoristuse lepinguid alates 800 m² suurustele äripindadele - sellest mahust saame tagada kindla meeskonna, objektijuhi ja kvaliteedikontrolli. Väiksematel pindadel soovitame meie ühekordseid puhastusteenuseid." },
+    { q: "Kui paindlikud on hoolduskoristuse lepingu tingimused?", a: "Leping tehakse kokkulepitud tähtajaks ja mahus. Tööde mahtu ja sagedust saab kokkuleppel kohandada, kui teie vajadused muutuvad - näiteks hooaja või kasutuskoormuse järgi. Täpsed tingimused lepime kirja enne koostöö algust." },
   ],
 }
 
 
 export const en: OutdoorServicePageData = {
-  ariaLabel: "Regular cleaning", heroImage: "/Koristusteenused-HERO.jpg", image: "/Koristusteenus2.jpg", imageAlt: "SPS Grupp regular cleaning of business premises",
+  ariaLabel: "Regular cleaning", heroImage: "/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp", image: "/images/kruiisiterminal/terminal-duster-portrait-1200x1400.webp", imageAlt: "SPS Grupp regular cleaning of business premises",
   title: "Regular cleaning", titleAccent: "for business premises in Tallinn and Harjumaa",
   intro: "Contract-based regular cleaning for offices, retail and production premises - 1–7 times a week, at an agreed scope and schedule. Dedicated staff, a site manager and regular quality control.",
   cta: "Request a regular cleaning quote", breadcrumb: "Regular cleaning", parentBreadcrumb: enParent,
@@ -76,6 +83,11 @@ export const en: OutdoorServicePageData = {
     { bold: "Kitchenette and break room cleaning", desc: "Surfaces, appliances and seating areas." },
     { bold: "Disinfection of touch points", desc: "Door handles, switches and other frequently touched surfaces." },
     { bold: "Day porter service", desc: "On request, a cleaning attendant on site throughout the working day." },
+  ],
+  relatedLinks: [
+    { label: "Office cleaning", href: "/koristusteenus/kontori-koristus" },
+    { label: "Retail cleaning", href: "/koristusteenus/kaubanduspindade-koristus" },
+    { label: "Industrial facility cleaning", href: "/koristusteenus/tootmishoonete-koristus" },
   ],
   reasonsTitle: "Why choose SPS Grupp as your regular cleaning partner?",
   reasons: [
@@ -110,12 +122,14 @@ export const en: OutdoorServicePageData = {
     { q: "Does cleaning happen during or outside working hours?", a: "We usually clean outside working hours - early morning before the workday or in the evening. A day porter service can also be arranged on request." },
     { q: "Will we always have the same cleaner?", a: "Yes - every site gets a dedicated team that knows your premises. A trained replacement is guaranteed during sickness and holidays." },
     { q: "How do we get started with regular cleaning?", a: "Contact us - we will do a free site assessment, prepare a cleaning plan and a quote. The start date is agreed after assessing the scope and team availability." },
+    { q: "What is the minimum scope for regular cleaning?", a: "We take on regular cleaning contracts for business premises of 800 m² and above - from this size up we can guarantee a dedicated team, a site manager and quality control. For smaller premises we recommend our one-off specialist cleaning services." },
+    { q: "How flexible are the contract terms for regular cleaning?", a: "The contract is concluded for an agreed term and scope. The scope and frequency can be adjusted by agreement as your needs change - for example with the season or usage load. We fix the exact terms in writing before the cooperation starts." },
   ],
 }
 
 
 export const ru: OutdoorServicePageData = {
-  ariaLabel: "Регулярная уборка", heroImage: "/Koristusteenused-HERO.jpg", image: "/Koristusteenus2.jpg", imageAlt: "SPS Grupp регулярная уборка коммерческих помещений",
+  ariaLabel: "Регулярная уборка", heroImage: "/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp", image: "/images/kruiisiterminal/terminal-duster-portrait-1200x1400.webp", imageAlt: "SPS Grupp регулярная уборка коммерческих помещений",
   title: "Регулярная уборка", titleAccent: "коммерческих помещений в Таллинне и Харьюмаа",
   intro: "Договорная регулярная уборка офисов, торговых и производственных помещений - 1–7 раз в неделю, в согласованном объёме и по графику. Постоянный персонал, менеджер объекта и регулярный контроль качества.",
   cta: "Запросить предложение по регулярной уборке", breadcrumb: "Регулярная уборка", parentBreadcrumb: ruParent,
@@ -131,6 +145,11 @@ export const ru: OutdoorServicePageData = {
     { bold: "Уборка кухонь и комнат отдыха", desc: "Поверхности, техника и зоны отдыха." },
     { bold: "Дезинфекция точек касания", desc: "Дверные ручки, выключатели и другие часто используемые поверхности." },
     { bold: "Дневной дежурный уборщик", desc: "По желанию - сотрудник на объекте в течение всего рабочего дня." },
+  ],
+  relatedLinks: [
+    { label: "Уборка офисов", href: "/koristusteenus/kontori-koristus" },
+    { label: "Уборка торговых помещений", href: "/koristusteenus/kaubanduspindade-koristus" },
+    { label: "Уборка производственных зданий", href: "/koristusteenus/tootmishoonete-koristus" },
   ],
   reasonsTitle: "Почему выбрать SPS Grupp партнёром по регулярной уборке?",
   reasons: [
@@ -165,6 +184,8 @@ export const ru: OutdoorServicePageData = {
     { q: "Уборка происходит в рабочее время или вне его?", a: "Обычно мы убираем вне рабочего времени - рано утром до начала рабочего дня или вечером. По запросу организуем и дневную дежурную уборку." },
     { q: "У нас всегда будет один и тот же уборщик?", a: "Да - за каждым объектом закрепляется постоянная команда, которая знает особенности ваших помещений. На время болезней и отпусков гарантирована обученная замена." },
     { q: "Как начать пользоваться регулярной уборкой?", a: "Свяжитесь с нами - мы проведём бесплатную оценку объекта, составим план уборки и предложение цены. Дата начала работ согласовывается после оценки объёма и доступности команды." },
+    { q: "Каков минимальный объём для регулярной уборки?", a: "Мы заключаем договоры на регулярную уборку для коммерческих помещений от 800 м² - начиная с этого объёма гарантируем постоянную команду, менеджера объекта и контроль качества. Для помещений меньшей площади рекомендуем разовые клининговые услуги." },
+    { q: "Насколько гибкие условия договора на регулярную уборку?", a: "Договор заключается на согласованный срок и объём. Объём и частоту работ можно по согласованию корректировать при изменении ваших потребностей - например, в зависимости от сезона или загрузки объекта. Точные условия фиксируем письменно до начала сотрудничества." },
   ],
 }
 

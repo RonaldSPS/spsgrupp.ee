@@ -40,6 +40,8 @@ interface CleaningHubText {
   problemP3Link1: string;
   problemP3Mid: string;
   problemP3Link2: string;
+  problemP3Mid2: string;
+  problemP3Link3: string;
   problemP3Post: string;
   servicesTag: string;
   servicesHeading: string;
@@ -83,7 +85,9 @@ const etText: CleaningHubText = {
   problemP3Link1: "puhastusteenused",
   problemP3Mid: ". SPS Grupp on ",
   problemP3Link2: "koristusfirma",
-  problemP3Post: ", keda usaldab üle 200 Eesti ettevõtte.",
+  problemP3Mid2: ", keda usaldab üle 200 Eesti ettevõtte, ja meie põhiteenus on lepinguline ",
+  problemP3Link3: "hoolduskoristus",
+  problemP3Post: ".",
   servicesTag: "Teenuse sisu",
   servicesHeading: "Millistele äripindadele SPS Grupp koristusteenust pakub?",
   services: [
@@ -171,6 +175,8 @@ function localizedText(locale: Exclude<Locale, "et">): CleaningHubText {
     problemP3Link1: str(problem.paragraph3Link1) || etText.problemP3Link1,
     problemP3Mid: str(problem.paragraph3Mid) || etText.problemP3Mid,
     problemP3Link2: str(problem.paragraph3Link2) || etText.problemP3Link2,
+    problemP3Mid2: str(problem.paragraph3Mid2),
+    problemP3Link3: str(problem.paragraph3Link3),
     problemP3Post: str(problem.paragraph3Post) || etText.problemP3Post,
     servicesTag: str(services.tag) || etText.servicesTag,
     servicesHeading: str(services.heading) || etText.servicesHeading,
@@ -358,6 +364,12 @@ export function KoristusteenusPageView({ locale }: { locale: Locale }) {
               <Link href={localizePath("/puhastusteenused", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link1}</Link>
               {t.problemP3Mid}
               <Link href={localizePath("/", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link2}</Link>
+              {t.problemP3Link3 ? (
+                <>
+                  {t.problemP3Mid2}
+                  <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link3}</Link>
+                </>
+              ) : null}
               {t.problemP3Post}
             </p>
           </div>

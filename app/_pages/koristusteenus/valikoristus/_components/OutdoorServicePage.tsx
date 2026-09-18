@@ -78,6 +78,7 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
 
   const homeLabel = { et: "Avaleht", en: "Home", ru: "Главная" }[locale] ?? "Avaleht"
   const priceCtaLabel = { et: "Küsi hinnapakkumist", en: "Request a quote", ru: "Запросить ценовое предложение" }[locale] ?? "Küsi hinnapakkumist"
+  const relatedLabel = { et: "Vaata ka:", en: "See also:", ru: "Смотрите также:" }[locale] ?? "Vaata ka:"
   const parentLabel = data.parentBreadcrumb?.label ?? ""
   const parentPath = data.parentBreadcrumb?.etPath ?? ""
   const breadcrumbAria = { et: "Jäljerida", en: "Breadcrumb", ru: "Навигационная цепочка" }[locale] ?? "Breadcrumb"
@@ -198,6 +199,19 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
                   );
                 })}
               </div>
+              {data.relatedLinks && data.relatedLinks.length > 0 && (
+                <div className="text-center mt-10">
+                  <p className="text-[15px] text-[#5a6474] leading-[1.8]">
+                    {relatedLabel}{" "}
+                    {data.relatedLinks.map((link, i) => (
+                      <span key={i}>
+                        {i > 0 ? " · " : ""}
+                        <Link href={localizePath(link.href, locale)} className="text-[#17345a] underline font-medium hover:text-[#1e4a7a]">{link.label}</Link>
+                      </span>
+                    ))}
+                  </p>
+                </div>
+              )}
             </div>
           </section>
         </ScrollAnimation>
