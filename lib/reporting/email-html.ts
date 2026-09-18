@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { Insight, StoredReport } from "./types"
+import type { Insight, LeadRow, StoredReport } from "./types"
 
 const SEV_META: Record<Insight["severity"], { label: string; color: string; bg: string }> = {
   negative: { label: "Kriitiline", color: "#b91c1c", bg: "#fee2e2" },
@@ -100,6 +100,67 @@ function deltaSub(cur: number, prev: number, invertGood = false): string {
   return `<span style="color:${color}">${arrow} ${pct > 0 ? "+" : ""}${pct} %</span> eelmise nädalaga`
 }
 
+const MAINTENANCE_LABELS: Record<LeadRow["maintenance"], { label: string; color: string; bg: string }> = {
+  yes: { label: "Regulaarne hooldus", color: "#166534", bg: "#dcfce7" },
+  likely: { label: "Tõenäoliselt regulaarne", color: "#1d4ed8", bg: "#dbeafe" },
+  no: { label: "Ühekordne/muu", color: "#5a6474", bg: "#f1f5f9" },
+}
+
+function leadChannel(lead: LeadRow): string {
+  if (lead.viaAds) return "Google Ads"
+  if (lead.source.startsWith("organic:")) return `Orgaaniline (${lead.source.slice("organic:".length)})`
+  if (lead.source.startsWith("referral:")) return `Viide (${lead.source.slice("referral:".length)})`
+  if (lead.source.startsWith("utm:")) return `Kampaania (${lead.source.slice(4)})`
+  if (lead.source === "direct") return "Otse"
+  return "–"
+}
+
+function leadPath(pageUrl: string): string {
+  try {
+    return new URL(pageUrl).pathname
+  } catch {
+    return pageUrl || "–"
+  }
+}
+
+/** Nädala päringute tabel koos hoolduskoristuse klassifikatsiooniga (kliendi põhieesmärk eraldi välja toodud). */
+function leadsSection(leads: LeadRow[]): { html: string; text: string[] } {
+  if (leads.length === 0) return { html: "", text: [] }
+  const yes = leads.filter((l) => l.maintenance === "yes").length
+  const likely = leads.filter((l) => l.maintenance === "likely").length
+  const headline = `Nädala päringud: ${yes + likely > 0 ? `${yes + likely} soovis regulaarset hoolduskoristust (${yes} selget${likely > 0 ? ` + ${likely} tõenäolist` : ""})` : "hoolduskoristuse päringuid ei olnud"}`
+  const rows = leads
+    .map((l) => {
+      const m = MAINTENANCE_LABELS[l.maintenance]
+      const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
+      return (
+        `<tr>` +
+        `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#5a6474;white-space:nowrap">${escapeHtml(date)}</td>` +
+        `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#17345a;font-weight:bold">${escapeHtml(l.company || "—")}</td>` +
+        `<td style="padding:6px 8px;border-top:1px solid #edf0f4"><span style="display:inline-block;background:${m.bg};color:${m.color};font-size:12px;font-weight:bold;border-radius:8px;padding:2px 8px">${m.label}</span></td>` +
+        `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#4a5568">${escapeHtml(leadChannel(l))}</td>` +
+        `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:13px;color:#5a6474">${escapeHtml(leadPath(l.pageUrl))}</td>` +
+        `</tr>` +
+        `<tr><td colspan="5" style="padding:0 8px 8px;font-size:13px;color:#4a5568">${escapeHtml(l.summary)}</td></tr>`
+      )
+    })
+    .join("\n")
+  const html =
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Nädala päringud</h2>` +
+    `<p style="font-size:15px;color:#2d3748;margin:4px 0 8px"><strong>${escapeHtml(headline)}</strong> — põhieesmärk on B2B regulaarse hoolduskoristuse lepingud, seega on need eraldi välja toodud.</p>` +
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden">${rows}</table>`
+  const text = [
+    "NÄDALA PÄRINGUD",
+    headline,
+    ...leads.map((l) => {
+      const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
+      return `- ${date} ${l.company || "—"} [${MAINTENANCE_LABELS[l.maintenance].label}; ${leadChannel(l)}; ${leadPath(l.pageUrl)}] ${l.summary}`
+    }),
+    "",
+  ]
+  return { html, text }
+}
+
 export function buildReportEmail(report: StoredReport, adminUrl: string): { subject: string; html: string; text: string } {
   const s = report.snapshot
   const subject = `SPS nädalaraport ${s.period.start} – ${s.period.end}`
@@ -114,7 +175,9 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
     cards.push(scoreCard("Sessioonid (GA4)", String(Math.round(s.ga4.current.sessions)), deltaSub(s.ga4.current.sessions, s.ga4.previous.sessions)))
   }
   if (s.ads?.available) {
-    cards.push(scoreCard("Ads kulu", `${s.ads.totals.cost.toFixed(0)} €`, `${s.ads.totals.clicks} klikki · ${s.ads.totals.conversions.toFixed(1)} konv`))
+    const gclidLeads = s.forms?.current.gclidLeads ?? 0
+    const convNote = gclidLeads > 0 ? ` · ${gclidLeads} päringut (DB)` : ""
+    cards.push(scoreCard("Ads kulu", `${s.ads.totals.cost.toFixed(0)} €`, `${s.ads.totals.clicks} klikki · ${s.ads.totals.conversions.toFixed(1)} konv (Ads)${convNote}`))
   }
   if (s.forms) {
     cards.push(scoreCard("Kontaktpäringud", String(s.forms.current.contact), deltaSub(s.forms.current.contact, s.forms.previous.contact)))
@@ -149,6 +212,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   }
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
+  const leads = leadsSection(s.forms?.leads ?? [])
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
     : ""
@@ -162,6 +226,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   </div>
   ${errorsNote}
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
+  ${leads.html}
   ${narrativeHtml}
   <h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Leiud ja järgmised sammud</h2>
   ${insightSections.join("\n")}
@@ -178,6 +243,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
     `SPS Grupp — nädalaraport ${s.period.start} – ${s.period.end}`,
     "",
   ]
+  textLines.push(...leads.text)
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")
   }

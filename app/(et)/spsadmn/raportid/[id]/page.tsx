@@ -218,7 +218,10 @@ export default function ReportDetailPage() {
         )}
         {s.ads?.available && (
           <Card label="Ads kulu" value={fmtMoney(s.ads.totals.cost)}>
-            <span className="text-[#5a6474]">{s.ads.totals.clicks} klikki · {s.ads.totals.conversions.toFixed(1).replace(".", ",")} konv</span>
+            <span className="text-[#5a6474]">
+              {s.ads.totals.clicks} klikki · {s.ads.totals.conversions.toFixed(1).replace(".", ",")} konv (Ads)
+              {(s.forms?.current.gclidLeads ?? 0) > 0 ? ` · ${s.forms?.current.gclidLeads} päringut (DB)` : ""}
+            </span>
           </Card>
         )}
         {s.forms && (
@@ -448,6 +451,42 @@ export default function ReportDetailPage() {
                 </tbody>
               </table>
             </>
+          )}
+          {(s.forms.leads ?? []).length > 0 && (
+            <div className="mt-5">
+              <h3 className="text-[15px] font-bold text-[#17345a] mb-1">Nädala päringud (hoolduskoristuse klassifikatsioon)</h3>
+              <p className="text-[13px] text-[#5a6474] mb-2">
+                Põhieesmärk eraldi välja toodud: „regulaarne hooldus“ = selge korduvus sõnumis, „tõenäoliselt regulaarne“ = ettevõtte äripinna koristus ilma ühekordse märgita.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-[14px] min-w-[640px]">
+                  <thead>
+                    <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
+                      <th className="py-2 pr-3 font-medium">Kuupäev</th>
+                      <th className="py-2 pr-3 font-medium">Ettevõte</th>
+                      <th className="py-2 pr-3 font-medium">Hooldus?</th>
+                      <th className="py-2 pr-3 font-medium">Allikas</th>
+                      <th className="py-2 font-medium">Sõnum (lühidalt)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(s.forms.leads ?? []).map((l) => (
+                      <tr key={l.id} className="border-b border-[#f4f6f9] last:border-0 align-top">
+                        <td className="py-2 pr-3 text-[#5a6474] whitespace-nowrap">{l.createdAt.slice(0, 10).split("-").reverse().join(".")}</td>
+                        <td className="py-2 pr-3 font-medium text-[#17345a]">{l.company || "—"}</td>
+                        <td className="py-2 pr-3">
+                          <span className={`inline-block text-[12px] font-bold rounded-lg px-2 py-0.5 ${l.maintenance === "yes" ? "bg-green-100 text-green-700" : l.maintenance === "likely" ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-[#5a6474]"}`}>
+                            {l.maintenance === "yes" ? "Regulaarne hooldus" : l.maintenance === "likely" ? "Tõenäoliselt regulaarne" : "Ühekordne/muu"}
+                          </span>
+                        </td>
+                        <td className="py-2 pr-3 text-[#4a5568]">{l.viaAds ? "Google Ads" : l.source ? l.source : "–"}</td>
+                        <td className="py-2 text-[#4a5568]">{l.summary}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
         </div>
       )}

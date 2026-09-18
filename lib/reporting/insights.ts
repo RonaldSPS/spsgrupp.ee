@@ -136,16 +136,25 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
 }
 
 function ga4Insights(ga4: Ga4Data, out: Insight[]): void {
-  /* Tracking health first — broken measurement invalidates everything else. */
-  if (ga4.daily.length > 0) {
-    const avg = ga4.daily.reduce((s, d) => s + d.sessions, 0) / ga4.daily.length
-    const deadDays = ga4.daily.filter((d) => d.sessions < 20).length
+  /* Tracking health first — broken measurement invalidates everything else.
+   * Only weekdays count: a B2B site naturally dips below 20 sessions on
+   * Sat/Sun (12.-13.09.2026 false alarm), while real outages (CSP 17–24.08,
+   * consent deploy 03.09) also break weekday numbers. */
+  const isWeekday = (yyyymmdd: string): boolean => {
+    const d = new Date(`${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}T00:00:00Z`).getUTCDay()
+    return d >= 1 && d <= 5
+  }
+  const weekdays = ga4.daily.filter((d) => isWeekday(d.date))
+  const base = weekdays.length > 0 ? weekdays : ga4.daily
+  if (base.length > 0) {
+    const avg = base.reduce((s, d) => s + d.sessions, 0) / base.length
+    const deadDays = base.filter((d) => d.sessions < 20).length
     if (avg < 20 || deadDays >= 2) {
       out.push({
         area: "ga4",
         severity: "negative",
-        title: `GA4 mõõtmine võib olla katki (keskmiselt ${round1(avg)} sessiooni/päevas, ${deadDays} päeva alla 20)`,
-        detail: "Tavapärane tase on 30–50 sessiooni/päevas. Alla 20/päevas = tracking-tõrge (vt CSP/consent/GTM), mitte liikluse langus.",
+        title: `GA4 mõõtmine võib olla katki (keskmiselt ${round1(avg)} sessiooni/tööpäevas, ${deadDays} tööpäeva alla 20)`,
+        detail: "Tavapärane tase on 30–50 sessiooni tööpäevas. Alla 20/tööpäevas = tracking-tõrge (vt CSP/consent/GTM), mitte liikluse langus. Nädalavahetused on B2B-lehel loomulikult madalad ega lähe arvesse.",
         action: "Kontrolli GTM-i laadimist live-is (DevTools → Network: gtm.js), CSP päiseid ja consent-mode'i. Ära tõlgenda selle nädala GA4-numbreid enne taastumist.",
       })
       return // further GA4 conclusions are unreliable
@@ -293,6 +302,40 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
       title: `Kontaktpäringuid tuli ${c.contact} (eesmärk ≥${WEEKLY_CONTACT_GOAL}/nädal täidetud)`,
       detail: `Eelmine nädal: ${p.contact}${c.feeTotal > 0 ? ` · tasu kokku ${c.feeTotal.toFixed(2).replace(".", ",")} €` : ""}${c.profitTotal > 0 ? ` · kasum ${c.profitTotal.toFixed(2).replace(".", ",")} €` : ""}.`,
       action: "Hoia kursis, millistelt lehtedelt päringud tulevad (lehe-tabel allpool) — tugevda neid lehti veelgi.",
+    })
+  }
+
+  /* Põhieesmärk (strategy.ts): regulaarse hoolduskoristuse B2B-päringud eraldi. */
+  const leads = forms.leads ?? []
+  if (c.contact > 0) {
+    const yes = leads.filter((l) => l.maintenance === "yes")
+    const likely = leads.filter((l) => l.maintenance === "likely")
+    const fmtLead = (l: (typeof leads)[number]) =>
+      `${l.company || "—"} (${l.maintenance === "yes" ? "regulaarne" : l.maintenance === "likely" ? "tõenäoline" : "ühekordne/muu"}${l.viaAds ? ", Ads" : ""})`
+    const count = yes.length + likely.length
+    out.push({
+      area: "forms",
+      severity: count > 0 ? "positive" : "warning",
+      title: `Regulaarse hoolduskoristuse päringuid: ${count} (${yes.length} selget${likely.length > 0 ? ` + ${likely.length} tõenäolist` : ""}) ${c.contact} kontaktist`,
+      detail:
+        leads.length > 0
+          ? leads.slice(0, 6).map(fmtLead).join("; ") + "."
+          : "Päringuid sel nädalal ei olnud.",
+      action:
+        count > 0
+          ? "Vasta hoolduspäringutele objekti ülevaatuse ja lepingulise pakkumisega — need on korduvate püsimaksetega põhieesmärk."
+          : "Hoolduspäringuid ei tulnud — kontrolli, kas Ads'i hoolduskoristuse märksõnad ja sihtleht on aktiivsed ning kas /koristusteenus/hoolduskoristus/ on menüüst ja hubidest leitav.",
+    })
+  }
+
+  if (c.gclidLeads > 0 && ads?.available && ads.totals.conversions === 0) {
+    out.push({
+      area: "forms",
+      severity: "warning",
+      title: `Ads'i raport näitab 0 konversiooni, kuid päringute andmebaasis on ${c.gclidLeads} Ads-päringut`,
+      detail:
+        "Erinevus tuleb nõusolekurežiimist: reklaamiküpsised (ad_storage) on kuni bänneri nõustumiseni keelatud ja enamik külastajaid bänneriga ei tegele — Google ei saa neid konversioone omistada, kuigi vorm laekus (gclid salvestub meie andmebaasi nõusolekust sõltumatult). GA4-s on form_submit-sündmused olemas. Ads'i „Conversions“-veerg on seega alampiir, mitte mõõtmistõrge.",
+      action: "Hinda Ads'i tulemuslikkust päringute tabeli (DB) järgi, mitte Ads'i konversiooniveeru järgi. Konversioonide täpsemaks omistamiseks aitab nõusoleku määra tõstmine (bänneri sõnumi testimine).",
     })
   }
 

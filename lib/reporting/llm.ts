@@ -24,6 +24,8 @@ ${STRATEGY_CONTEXT}
 - Uus veebileht läks live'i 17.08.2026 (enne: vana WordPress). Pre-launch baasjoon: 9,0 orgaanilist klikki/päevas.
 - Kaks kuldstandardit: „koristusfirma" ja „kontori koristus".
 - Päris päringud (vormide DB) on konversioonitõde, mitte GA4 key events. Eesmärk ≥15 kontaktpäringut/kuu.
+- forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk).
+- Ads'i „conversions" on nõusolekurežiimi tõttu alampiir — kui forms.gclidLeads > 0, aga ads.conversions = 0, selgita seda nõusolekuga, mitte mõõtmistõrkena.
 - GSC positsioon = näitamistega kaalutud keskmine. <10 näitamist/nädal = statistiline müra, mitte trend.
 - Äsja lisatud lehed: /koristusteenus/hoolduskoristus/ ja /puhastusteenused/suurpuhastus/.
 - Märksõnaperekonnad kattuvad teadlikult; ±2 positsiooni = stabiilne.
@@ -97,6 +99,9 @@ interface Digest {
     career: number
     spam: number
     gclidLeads: number
+    maintenanceYes: number
+    maintenanceLikely: number
+    leads: { company: string; maintenance: string; viaAds: boolean; summary: string }[]
     feeTotal: number
     profitTotal: number
   }
@@ -138,7 +143,14 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
 
   if (snapshot.ga4) {
     const g = snapshot.ga4
-    const avgDaily = g.daily.length > 0 ? g.daily.reduce((s, x) => s + x.sessions, 0) / g.daily.length : 0
+    /* Weekday-only average — B2B weekends dip below 20 naturally (see insights.ts). */
+    const isWeekday = (yyyymmdd: string): boolean => {
+      const d = new Date(`${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}T00:00:00Z`).getUTCDay()
+      return d >= 1 && d <= 5
+    }
+    const weekdays = g.daily.filter((x) => isWeekday(x.date))
+    const base = weekdays.length > 0 ? weekdays : g.daily
+    const avgDaily = base.length > 0 ? base.reduce((s, x) => s + x.sessions, 0) / base.length : 0
     d.ga4 = {
       sessions: g.current.sessions,
       prevSessions: g.previous.sessions,
@@ -172,12 +184,16 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
   }
 
   if (snapshot.forms) {
+    const leads = snapshot.forms.leads ?? []
     d.forms = {
       contact: snapshot.forms.current.contact,
       prevContact: snapshot.forms.previous.contact,
       career: snapshot.forms.current.career,
       spam: snapshot.forms.current.spam,
       gclidLeads: snapshot.forms.current.gclidLeads,
+      maintenanceYes: leads.filter((l) => l.maintenance === "yes").length,
+      maintenanceLikely: leads.filter((l) => l.maintenance === "likely").length,
+      leads: leads.slice(0, 10).map((l) => ({ company: l.company, maintenance: l.maintenance, viaAds: l.viaAds, summary: l.summary })),
       feeTotal: snapshot.forms.current.feeTotal,
       profitTotal: snapshot.forms.current.profitTotal,
     }

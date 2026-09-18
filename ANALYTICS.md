@@ -298,7 +298,15 @@ One-time setup (all completed 09.2026):
    Explorer on the Google Ads API page in the Cloud console (approved
    within minutes). Brand verification of the OAuth consent screen
    (Audience: External + In production; Branding filled → Verify → Publish)
-   accelerates any later Basic review.
+   accelerates any later Basic review. **Explorer limit:** KeywordPlanIdeaService
+   (`generateKeywordIdeas`, `generateKeywordHistoricalMetrics`) returns 403
+   `DEVELOPER_TOKEN_NOT_APPROVED` — keyword search volumes require **Basic**.
+   **Basic approved 16.09.2026** (Cloud console → Google Ads API overview →
+   brand verification: OAuth app name must match the homepage brand —
+   „SPS Grupp", not „SPS Ads Reports" — then automated approval within
+   minutes). Planner pulls: `scripts/tmp-kw-hist-metrics.ts`
+   (`customers/{id}:generateKeywordHistoricalMetrics`, Estonia =
+   `geoTargetConstants/2233`, Estonian = `languageConstants/1022`).
 4. **Auth — service account (what the script uses).** Add
    `sps-analytics-reader@spsgrupp.iam.gserviceaccount.com` as a user in the
    Ads account (Admin → Access and security → Users; currently Standard,

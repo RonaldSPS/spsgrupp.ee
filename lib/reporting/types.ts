@@ -143,14 +143,40 @@ export interface FormsPeriod {
   spam: number
   /** Contact submissions carrying a gclid = attributable to Google Ads. */
   gclidLeads: number
+  /** Contact submissions wanting regular maintenance cleaning (yes + likely). */
+  maintenanceLeads: number
   feeTotal: number
   profitTotal: number
+}
+
+/**
+ * Päringu klassifikatsioon põhieesmärgi (regulaarne hoolduskoristus B2B) suhtes:
+ *   yes    = sõnumis on selge korduvus/sagedus või lepingu viide
+ *   likely = ettevõtte äripinna koristus ilma ühekordse töö märgita
+ *   no     = ühekordne töö, B2C-laadne või muu
+ */
+export type LeadMaintenance = "yes" | "likely" | "no"
+
+export interface LeadRow {
+  id: number
+  createdAt: string
+  company: string
+  maintenance: LeadMaintenance
+  /** Ads-seos: gclid väli, gclid page_url-s või source = google_ads. */
+  viaAds: boolean
+  /** Kanal (source-kood, nt google_ads / organic:google / direct; "" = teadmata). */
+  source: string
+  pageUrl: string
+  /** Sõnumi lühikokkuvõte (üks rida, kuni ~160 märki). */
+  summary: string
 }
 
 export interface FormsData {
   current: FormsPeriod
   previous: FormsPeriod
   topPages: { pageUrl: string; count: number }[]
+  /** Nädala kontaktpäringud (spämmita) kvaliteedikontrolliks — uusimad ees. */
+  leads: LeadRow[]
 }
 
 export interface ReportSnapshot {
