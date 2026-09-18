@@ -6,7 +6,7 @@ export const metadata = generatePageMetadata({
   title: "Põrandate hooldus Tallinnas | SPS Grupp",
   description:
     "Põrandate hooldus ja süvapuhastus Tallinnas. PVC, parkett, betoon, kivi, keraamika. Vahatamine ja poleerimine. Küsi pakkumist!",
-  imagePath: "/porandate-hooldus-1.webp",
+  imagePath: "/images/kruiisiterminal/terminal-scrubber-corridor-1920x1080.webp",
 });
 
 export default function PorandateHooldusLayout({

@@ -10,7 +10,7 @@ const industryKeys = ["office", "retail", "industrial", "hospitality", "healthca
 
 const industryImages = [
   "/images/industries/kontorid-1600x920.webp",
-  "/images/industries/kaubanduskeskused-1600x920.webp",
+  "/images/kruiisiterminal/terminal-atrium-wide-1600x920.webp",
   "/tootmishoonete-koristus.webp",
   "/images/industries/hotellid-1600x920.webp",
   "/desinfitseerimine-1.jpg",

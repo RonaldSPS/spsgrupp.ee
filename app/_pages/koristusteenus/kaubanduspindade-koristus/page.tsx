@@ -98,7 +98,7 @@ const etText: RetailCleaningText = {
   ],
   whyUsTag: "Miks meie",
   whyUsHeading: "Miks kaubanduskeskused valivad SPS Grupi?",
-  whyUsImage: "/kaubanduspindade-koristus-2.jpg",
+  whyUsImage: "/images/kruiisiterminal/terminal-dusting-1200x1400.webp",
   whyUsImageAlt: "Kaubanduspinna koristus",
   whyUs: [
     { title: "Suur kogemus kaubanduskeskuste koristamisel", desc: "Oleme aastaid teenindanud suuri kaubanduskeskusi ja jaekette Tallinnas. Teame, mida kliendid märkavad ja mida mitte." },
@@ -299,7 +299,7 @@ export function KaubanduspindadeKoristusPageView({ locale }: { locale: Locale })
           id="avaleht"
           aria-label={t.ariaLabel}
         >
-          <HeroBackgroundImage src="/kaubanduspindade-koristus.jpg" preload alt="" />
+          <HeroBackgroundImage src="/images/kruiisiterminal/terminal-swingo-atrium-1920x1080.webp" preload alt="" />
           {/* Floating chips */}
           <div className="absolute top-1/2 -translate-y-1/2 right-[5%] max-w-[45%] flex flex-wrap gap-[20px] z-20 hidden md:flex">
             {t.heroChips.map((chip, i) => (
