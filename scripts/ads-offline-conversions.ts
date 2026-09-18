@@ -51,10 +51,12 @@ function googleTime(d: Date): string {
   return `${g("month")}/${g("day")}/${g("year")} ${g("hour")}:${g("minute")}:${g("second")} ${g("dayPeriod")}`
 }
 
+type LeadRow = { id: number; created_at: Date; gclid: string; fee: string | number }
+
 async function main() {
   if (!process.env.DATABASE_URL) throw new Error("DATABASE_URL puudub (.env.local)")
   const sql = postgres(process.env.DATABASE_URL, { max: 1 })
-  const rows = await sql`
+  const rows = await sql<LeadRow[]>`
     SELECT id, created_at, gclid, coalesce(fee, 0) AS fee
     FROM form_submissions
     WHERE gclid IS NOT NULL AND gclid <> ''
@@ -71,7 +73,7 @@ async function main() {
   }
 
   const header = "Google Click ID,Conversion Name,Conversion Time,Conversion Value,Conversion Currency"
-  const lines = rows.map((r: { id: number; created_at: Date; gclid: string; fee: string | number }) => {
+  const lines = rows.map((r) => {
     const value = Number(r.fee) > 0 ? Number(r.fee).toFixed(2) : ""
     const currency = value ? "EUR" : ""
     return [r.gclid, ACTION_NAME, googleTime(new Date(r.created_at)), value, currency].join(",")
