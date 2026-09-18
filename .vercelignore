@@ -19,3 +19,4 @@ env.*.local
 # Secrets — never upload to deployment source
 /.secrets
 /data/admin-users.json
+/data/offline-conversions-*.csv
