@@ -9,7 +9,7 @@
  * (same methodology as the manual reports).
  */
 
-import type { GscQuery, KeywordFamilyStat } from "./types"
+import type { GscQuery, GscQueryPage, KeywordFamilyStat } from "./types"
 
 interface KeywordFamilyDef {
   id: string
@@ -59,12 +59,30 @@ function aggregate(rows: GscQuery[]): { impressions: number; clicks: number; pos
   }
 }
 
-export function computeFamilyStats(current: GscQuery[], previous: GscQuery[]): KeywordFamilyStat[] {
+/** Kandjaleht: the page carrying the most impressions in a query×page row set. */
+function dominantPage(rows: GscQueryPage[]): { page: string; impressions: number } | null {
+  const byPage = new Map<string, number>()
+  for (const r of rows) byPage.set(r.page, (byPage.get(r.page) ?? 0) + r.impressions)
+  let best: { page: string; impressions: number } | null = null
+  for (const [page, impressions] of byPage) {
+    if (!best || impressions > best.impressions) best = { page, impressions }
+  }
+  return best
+}
+
+export function computeFamilyStats(
+  current: GscQuery[],
+  previous: GscQuery[],
+  queryPageCurrent: GscQueryPage[] = [],
+  queryPagePrevious: GscQueryPage[] = [],
+): KeywordFamilyStat[] {
   return KEYWORD_FAMILIES.map((fam) => ({
     id: fam.id,
     label: fam.label,
     current: aggregate(current.filter((q) => fam.pattern.test(q.query))),
     previous: aggregate(previous.filter((q) => fam.pattern.test(q.query))),
+    carrier: dominantPage(queryPageCurrent.filter((r) => fam.pattern.test(r.query))),
+    prevCarrier: dominantPage(queryPagePrevious.filter((r) => fam.pattern.test(r.query))),
   }))
 }
 
@@ -72,11 +90,20 @@ export function computeFamilyStats(current: GscQuery[], previous: GscQuery[]): K
 const BRAND_RE = /\bsps\b|sps[\s-]?(grupp|group)/i
 
 /** Queries with real impressions now that were absent/invisible in the previous period. */
-export function findNewQueries(current: GscQuery[], previous: GscQuery[], minImpressions = 10): GscQuery[] {
+export function findNewQueries(
+  current: GscQuery[],
+  previous: GscQuery[],
+  minImpressions = 10,
+  queryPage: GscQueryPage[] = [],
+): GscQuery[] {
   const prevByQuery = new Map(previous.map((q) => [q.query, q.impressions]))
   return current
     .filter((q) => q.impressions >= minImpressions)
     .filter((q) => (prevByQuery.get(q.query) ?? 0) < minImpressions / 2)
     .filter((q) => !BRAND_RE.test(q.query))
     .sort((a, b) => b.impressions - a.impressions)
+    .map((q) => {
+      const carrier = dominantPage(queryPage.filter((r) => r.query === q.query))
+      return carrier ? { ...q, page: carrier.page } : q
+    })
 }

@@ -59,6 +59,8 @@ export interface GscQuery {
   impressions: number
   ctr: number
   position: number
+  /** Kandjaleht (dominant page by impressions), set on newQueries when known. */
+  page?: string
 }
 
 export interface GscPage {
@@ -69,12 +71,25 @@ export interface GscPage {
   position: number
 }
 
+/** One query×page row — which landing page Google serves for a query. */
+export interface GscQueryPage {
+  query: string
+  page: string
+  clicks: number
+  impressions: number
+  position: number
+}
+
 /** Aggregated stats for one tracked keyword family (märksõnapere). */
 export interface KeywordFamilyStat {
   id: string
   label: string
   current: { impressions: number; clicks: number; position: number | null }
   previous: { impressions: number; clicks: number; position: number | null }
+  /** Kandjaleht: dominant landing page in the current period, by impressions. */
+  carrier?: { page: string; impressions: number } | null
+  /** Previous period's dominant page — for carrier-swap detection. */
+  prevCarrier?: { page: string; impressions: number } | null
 }
 
 export interface GscData {

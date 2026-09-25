@@ -60,8 +60,10 @@ interface Digest {
       prevPos: number | null
       impressions: number
       clicks: number
+      /** Kandjaleht (dominant landing page), when query×page data is available. */
+      carrier?: string
     }[]
-    newQueries: { query: string; impressions: number; position: number }[]
+    newQueries: { query: string; impressions: number; position: number; page?: string }[]
     topQueries: { query: string; clicks: number; impressions: number; position: number }[]
   }
   ga4?: {
@@ -135,8 +137,9 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
           prevPos: f.previous.position === null ? null : r1(f.previous.position),
           impressions: f.current.impressions,
           clicks: f.current.clicks,
+          carrier: f.carrier?.page,
         })),
-      newQueries: g.newQueries.slice(0, 12).map((q) => ({ query: q.query, impressions: q.impressions, position: r1(q.position) })),
+      newQueries: g.newQueries.slice(0, 12).map((q) => ({ query: q.query, impressions: q.impressions, position: r1(q.position), page: q.page })),
       topQueries: g.topQueries.slice(0, 15).map((q) => ({ query: q.query, clicks: q.clicks, impressions: q.impressions, position: r1(q.position) })),
     }
   }

@@ -31,6 +31,8 @@ const round1 = (n: number) => Math.round(n * 10) / 10
 const fmtPos = (p: number | null | undefined) => (p === null || p === undefined ? "–" : round1(p).toFixed(1).replace(".", ","))
 const pctChange = (cur: number, prev: number): number | null =>
   prev === 0 ? (cur > 0 ? 100 : null) : ((cur - prev) / prev) * 100
+/** Kandjalehe viide tegevusse ("" kui teadmata). */
+const carrierLine = (f: KeywordFamilyStat): string => (f.carrier ? `Kandjaleht: ${f.carrier.page}. ` : "")
 
 function gscInsights(gsc: GscData, out: Insight[]): void {
   const curPerDay = gsc.current.clicks / gsc.current.days
@@ -88,8 +90,8 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       area: "seo",
       severity: "positive",
       title: `„${f.label}" tõusis ${fmtPos(f.previous.position)} → ${fmtPos(f.current.position)}`,
-      detail: `${f.current.impressions} näitamist, ${f.current.clicks} klikki sel nädalal.`,
-      action: "Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga.",
+      detail: `${f.current.impressions} näitamist, ${f.current.clicks} klikki sel nädalal.${f.carrier ? ` Kandjaleht: ${f.carrier.page}` : ""}`,
+      action: `${carrierLine(f)}Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga.`,
     })
   }
   for (const f of fallers.slice(0, 5)) {
@@ -97,8 +99,10 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       area: "seo",
       severity: "negative",
       title: `„${f.label}" langes ${fmtPos(f.previous.position)} → ${fmtPos(f.current.position)}`,
-      detail: `${f.current.impressions} näitamist sel nädalal (eelmine: ${f.previous.impressions}).`,
-      action: "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab kandjalehte? Kui kandja on sama, tugevda lehe sisu ja siselinke; kui kandja vahetub, suuna siselinkidega õigele lehele.",
+      detail: `${f.current.impressions} näitamist sel nädalal (eelmine: ${f.previous.impressions}).${f.carrier ? ` Kandjaleht: ${f.carrier.page}` : ""}`,
+      action: f.carrier
+        ? `${carrierLine(f)}Tugevda selle lehe sisu ja siselinke. Kontrolli ka GSC-st, kas kandjaleht püsib sama — kui Google vahetab kandjalehte, suuna siselinkidega õigele lehele.`
+        : "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab kandjalehte? Kui kandja on sama, tugevda lehe sisu ja siselinke; kui kandja vahetub, suuna siselinkidega õigele lehele.",
     })
   }
   for (const f of striking.slice(0, 4)) {
@@ -106,8 +110,20 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       area: "seo",
       severity: "opportunity",
       title: `Löögkaugusel: „${f.label}" pos ${fmtPos(f.current.position)} (${f.current.impressions} näitamist/nädal)`,
-      detail: "Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.",
-      action: `Täienda „${f.label}" kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt.`,
+      detail: `Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.${f.carrier ? ` Kandjaleht: ${f.carrier.page}` : ""}`,
+      action: `${carrierLine(f)}Täienda kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt.`,
+    })
+  }
+
+  /* --- carrier swap: Google changed which page serves a family --- */
+  const swapped = families.filter((f) => f.carrier && f.prevCarrier && f.carrier.page !== f.prevCarrier.page)
+  for (const f of swapped.slice(0, 3)) {
+    out.push({
+      area: "seo",
+      severity: "warning",
+      title: `„${f.label}" kandjaleht vahetus`,
+      detail: `Google näitab päringuid nüüd lehel ${f.carrier!.page} (eelmine nädal: ${f.prevCarrier!.page}).`,
+      action: "Suuna siselingid tahtlikult õigele (konversioonivõimelisele) lehele ja tugevda just seda; kui vahetus on ajutine Google'i testimine, hoia mõlemad lehed sisult tugevad, aga ankrud õigel kandjal.",
     })
   }
   for (const f of lowCtr.slice(0, 3)) {
@@ -124,13 +140,15 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
   /* --- new queries = new keyword/blog candidates --- */
   const fresh = gsc.newQueries.slice(0, 6)
   if (fresh.length > 0) {
-    const list = fresh.map((q) => `„${q.query}" (${q.impressions} näitamist, pos ${fmtPos(q.position)})`).join(", ")
+    const list = fresh
+      .map((q) => `„${q.query}" (${q.impressions} näitamist, pos ${fmtPos(q.position)}${q.page ? `, leht ${q.page}` : ""})`)
+      .join(", ")
     out.push({
       area: "seo",
       severity: "opportunity",
       title: `${fresh.length} uut päringut on ilmunud nähtavusele`,
       detail: list,
-      action: "Vaata päringud läbi: kas mõnele pole meil eraldi lehte? Mahukamale uuele päringule kaalu eraldi lehte või blogipostitust; olemasoleva lehe päringud lisa lehe sisse (FAQ või alapealkiri).",
+      action: "Vaata päringud koos nende kandjalehtedega läbi: kas mõnele päringule langeb sobimatu leht või puudub eraldi leht üldse? Mahukamale uuele päringule kaalu eraldi lehte või blogipostitust; olemasoleva lehe päringud lisa lehe sisse (FAQ või alapealkiri).",
     })
   }
 }

@@ -217,14 +217,18 @@ Every Friday 06:00 UTC (09:00 EEST) Vercel Cron hits `/api/cron/weekly-report/`
 
 1. **Collects** the last-7-days vs previous-7-days snapshot
    (`lib/reporting/snapshot.ts`): GA4 (overview/channels/top pages/per-day
-   tracking health), GSC (totals, full query sets both weeks, pages), Ads API
+   tracking health), GSC (totals, full query sets both weeks, pages, and
+   query×page rows — kandjaleht per query/family, 25000-row cap), Ads API
    (campaigns with impression share, search terms brand/non-brand, keywords +
    QS), and `form_submissions` aggregates (real inquiries = conversion truth,
    incl. gclid-attributed leads). A failing source lands in `snapshot.errors`
    and never aborts the rest.
 2. **Aggregates 22 tracked keyword families** (`lib/reporting/keyword-families.ts`
    — the same märksõnaperekonnad as the manual raportid/ reports, RU/EN/
-   ehitusprahi clusters included; position = impression-weighted average).
+   ehitusprahi clusters included; position = impression-weighted average; each
+   family also gets its kandjaleht = dominant landing page by impressions for
+   both weeks, so the rules engine can name the carrier page and detect
+   Google switching carriers week-over-week).
 3. **Rules engine** (`lib/reporting/insights.ts`) produces Estonian findings +
    concrete next actions per area (SEO/Ads/GA4/forms/strategy), using the
    manual reports' conventions (±2 pos = stable, <10 impressions = noise,
