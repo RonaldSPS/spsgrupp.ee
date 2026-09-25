@@ -25,6 +25,23 @@ const ONEOFF_SIGNAL =
 const PREMISES_SIGNAL =
   /kontor\w*|büroo\w*|äripind\w*|äriruum\w*|kaubandus\w*|kauplus\w*|laos?\b|lao\w*|tootmis\w*|tootmishoone\w*|restoran\w*|kohvik\w*|hoone\w*|trepi\w*|ühistu\w*|korteriühistu\w*|ruum\w*|põrand\w*|\bwc\b|tualet\w*|saal\w*/i
 
+/**
+ * Testpäringud ei lähe raporti arvestusse (kliendi korduv palve 25.09.2026 —
+ * "jätke testpäringud arvestusest välja"). Signaalid: agentuuri nimi/outline
+ * või sõnum algab test-sõnaga ("testing, puhastage 45 tuutu" muster).
+ */
+const TEST_ACTOR = /outline/i
+const TEST_MESSAGE = /^\s*(test|testing|testimine|testimaks)\b/i
+
+export function isTestSubmission(row: FormSubmission): boolean {
+  return (
+    TEST_ACTOR.test(row.company) ||
+    TEST_ACTOR.test(row.name) ||
+    TEST_ACTOR.test(row.email) ||
+    TEST_MESSAGE.test(row.message)
+  )
+}
+
 function classifyMaintenance(company: string, message: string): LeadMaintenance {
   if (MAINTENANCE_SIGNAL.test(message)) return "yes"
   if (ONEOFF_SIGNAL.test(message)) return "no"
@@ -67,10 +84,13 @@ function aggregate(rows: FormSubmission[], leads: LeadRow[] | null): FormsPeriod
 }
 
 export async function pullForms(period: ReportPeriod): Promise<FormsData> {
-  const [curRows, prevRows] = await Promise.all([
+  const [curRowsAll, prevRowsAll] = await Promise.all([
     getFormSubmissions({ from: period.start, to: period.end }),
     getFormSubmissions({ from: period.prevStart, to: period.prevEnd }),
   ])
+
+  const curRows = curRowsAll.filter((r) => !isTestSubmission(r))
+  const prevRows = prevRowsAll.filter((r) => !isTestSubmission(r))
 
   const leads = curRows
     .filter((row) => row.form === "contact" && !row.isSpam)
@@ -86,9 +106,14 @@ export async function pullForms(period: ReportPeriod): Promise<FormsData> {
     .sort((a, b) => b.count - a.count)
     .slice(0, 10)
 
+  const current = aggregate(curRows, leads)
+  current.tests = curRowsAll.length - curRows.length
+  const previous = aggregate(prevRows, null)
+  previous.tests = prevRowsAll.length - prevRows.length
+
   return {
-    current: aggregate(curRows, leads),
-    previous: aggregate(prevRows, null),
+    current,
+    previous,
     topPages,
     leads,
   }

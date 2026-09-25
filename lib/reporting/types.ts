@@ -162,6 +162,8 @@ export interface FormsPeriod {
   maintenanceLeads: number
   feeTotal: number
   profitTotal: number
+  /** Testpäringud, mis jäeti arvestusest välja (forms.ts isTestSubmission). */
+  tests?: number
 }
 
 /**
