@@ -337,6 +337,38 @@ means the version was sunset — bump `ADS_API_VERSION`); the REST API
 returns camelCase keys, normalized to snake_case by `snakeKeys()`;
 `conversion_action.counting_method` no longer exists in v25.
 
+### 6b. Offline conversions (gclid-based, automated daily)
+
+Why: consent-mode gating of `ad_storage` means the browser Ads tag records
+only a fraction of real inquiries; the gclid is stored in `form_submissions`
+consent-independently, so server-side upload restores the true signal for
+Smart Bidding (real inquiries + Tasu values instead of bare clicks).
+
+Two paths (both read `form_submissions` contact rows with a gclid, excluding
+spam and test submissions — `isTestSubmission` in `lib/reporting/forms.ts`):
+
+1. **Automated (primary):** `lib/reporting/offline-conversions.ts` → daily
+   Vercel Cron `app/api/cron/offline-conversions/` (05:00 UTC, `vercel.json`,
+   CRON_SECRET) uploads the trailing 14-day window via the **Data Manager API**
+   (`events:ingest`; `UploadClickConversions` is restricted to legacy users —
+   verified 25.09.2026). Local run: `npm run report:offline-conversions-upload`
+   (`--dry-run` supported). Idempotency: stable `transactionId = form-<id>`.
+   The conversion action "Vormipäring (gclid offline import)" is resolved by
+   name and auto-created as a **secondary** UPLOAD_CLICKS action when missing;
+   flipping it to PRIMARY is a deliberate manual step in the Ads UI.
+   Prereqs: `datamanager.googleapis.com` enabled in the GCP project +
+   service account with at least "Standard" access on the Ads account.
+   Note: a newly created conversion action is visible to the Data Manager API
+   only after propagation (observed ~35 min; Google documents 4–6 h) — an
+   immediate first upload fails with `destination_references NOT_FOUND`,
+   just retry later.
+2. **Manual fallback:** `npm run report:offline-conversions` writes
+   `data/offline-conversions-<date>.csv` (gitignored) for Ads → Data manager
+   upload.
+
+Note: conversion values come from the admin-entered Tasu column in paringud;
+rows without a fee upload as count-only conversions.
+
 ## 7. Consent & privacy notes
 
 - Minimal-restriction policy (owner decision 03.09.2026): only the signals

@@ -21,7 +21,8 @@
     "report:weekly": "tsx scripts/weekly-report.ts",
     "setup:ads-auth": "tsx scripts/ads-oauth-setup.ts",
     "setup:gbp-auth": "tsx scripts/gbp-oauth-setup.ts",
-    "report:offline-conversions": "tsx scripts/ads-offline-conversions.ts"
+    "report:offline-conversions": "tsx scripts/ads-offline-conversions.ts",
+    "report:offline-conversions-upload": "tsx scripts/ads-offline-conversions-upload.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
