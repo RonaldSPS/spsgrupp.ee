@@ -56,6 +56,8 @@ export const et: OutdoorServicePageData = {
     { q: "Kas teete suurpuhastust ka kodudele?", a: "Meie põhifookus on äripinnad, kuid teeme suurpuhastusi ka kortermajade ühisaladel ja eraklientidele objektist sõltuvalt - kirjutage või helistage, vaatame objekti üle." },
     { q: "Mida pean enne suurpuhastust ette valmistama?", a: "Tavaliselt ei midagi - lepime ülevaatusel kokku, kas ja kuidas tuleb mööblit liigutada või alasid tühjendada. Vajadusel teeme selle ise." },
     { q: "Mis maksab suurpuhastus 2026. aastal?", a: "Kontorite ja äripindade suurpuhastus alates 1,5 €/m², tootmis- ja laopindadel ning kaubanduspindadel alates 1 €/m². Täpne hind sõltub pindalast, määrdumisastmest ja tööde sisust - saatke fotod või kutsuge meid tasuta ülevaatusele." },
+    { q: "Millal on parim aeg suurpuhastuse tellimiseks?", a: "Tüüpilised ajad on hooajaline värskendus kevadel ja sügisel, kolimine, enne auditit või müüki, pärast remonti ning enne suursündmust või tähtsat külastust." },
+    { q: "Kas suurpuhastust saab kombineerida hoolduskoristuse lepinguga?", a: "Jah - suurpuhastus on soodsam koos regulaarse hoolduskoristuse lepinguga, küsi kombineeritud pakkumist. Paljud kliendid kasutavad mõlemat teenust: suurpuhastus taastab puhtustaseme ja hoolduskoristus aitab seda säilitada." },
   ],
 }
 
@@ -112,6 +114,8 @@ export const en: OutdoorServicePageData = {
     { q: "Do you also deep-clean homes?", a: "Our main focus is business premises, but we also do deep cleaning for apartment building common areas and, depending on the site, for private clients - write or call and we will review the site." },
     { q: "Do I need to prepare anything before a deep clean?", a: "Usually nothing - at the assessment we agree whether and how furniture should be moved or areas cleared. If needed, we do it ourselves." },
     { q: "How much does deep cleaning cost in 2026?", a: "Deep cleaning for offices and business premises from 1.5 EUR/m², production, warehouse and retail premises from 1 EUR/m². The exact price depends on the area, level of soiling and scope of work - send photos or invite us for a free assessment." },
+    { q: "When is the best time to book a deep clean?", a: "Typical moments are a seasonal refresh in spring and autumn, moving, before an audit or sale, after renovation, and before a major event or important visit." },
+    { q: "Can deep cleaning be combined with a regular cleaning contract?", a: "Yes - deep cleaning is more affordable together with a regular cleaning contract, ask for a combined quote. Many clients use both: the deep clean restores the level of cleanliness and regular cleaning helps maintain it." },
   ],
 }
 
@@ -168,6 +172,8 @@ export const ru: OutdoorServicePageData = {
     { q: "Делаете ли вы генеральную уборку в домах?", a: "Наш основной фокус - коммерческие помещения, но мы делаем генеральную уборку и в общих зонах жилых домов, а в зависимости от объекта и у частных клиентов - напишите или позвоните, оценим объект." },
     { q: "Нужно ли что-то подготовить до генеральной уборки?", a: "Обычно ничего - при осмотре договоримся, нужно ли и как передвигать мебель или освобождать зоны. При необходимости сделаем это сами." },
     { q: "Сколько стоит генеральная уборка в 2026 году?", a: "Генеральная уборка офисов и коммерческих помещений от 1,5 €/м², производственных, складских и торговых помещений - от 1 €/м². Точная цена зависит от площади, степени загрязнения и состава работ - пришлите фото или пригласите нас на бесплатную оценку." },
+    { q: "Когда лучше всего заказывать генеральную уборку?", a: "Типичные поводы - сезонное обновление весной и осенью, переезд, перед аудитом или продажей, после ремонта, а также перед крупным событием или важным визитом." },
+    { q: "Можно ли совместить генеральную уборку с договором регулярной уборки?", a: "Да - генеральная уборка выгоднее вместе с договором регулярной уборки, запросите комбинированное предложение. Многие клиенты используют обе услуги: генеральная уборка восстанавливает уровень чистоты, а регулярная помогает его поддерживать." },
   ],
 }
 

@@ -76,6 +76,10 @@
     "para5Link1": "koristusteenused",
     "para5Mid": " ja ",
     "para5Link2": "puhastusteenused",
+    "para5Mid2": ", regulaarseks korrashoiuks ka ",
+    "para5Link3": "kontori koristus",
+    "para5Mid3": " ja ",
+    "para5Link4": "hoolduskoristus",
     "para5Post": ".",
     "ctaButton": "Küsi pakkumist"
   },
@@ -185,6 +189,18 @@
       {
         "q": "Kuidas valida ettevõttele usaldusväärne koristusfirma?",
         "a": "Küsi kogemust, kvaliteedijuhtimist ja viiteid. SPS Gruppil on ISO 9001 ja ISO 14001 sertifikaadid, üle 300 koolitatud töötaja ning iga objekti tööd jälgib objektijuht. Koostöö algab alati tasuta ülevaatusest ja läbipaistvast hinnapakkumisest."
+      },
+      {
+        "q": "Kas pakute kontorikoristust ja büroode regulaarset koristust?",
+        "a": "Jah. Regulaarne kontorikoristus sobib alates 800 m² büroodele ja äripindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Koristame töövälisel ajal - varahommikul või pärast tööpäeva - ning graafiku lepime kokku teie töökorralduse järgi."
+      },
+      {
+        "q": "Kas hooldate ka trepikodasid, koridore ja hoone ümbrust?",
+        "a": "Jah. Ühiskasutatavate alade hooldusse kuuluvad koridorid, trepikojad ja liftid. Hoone ümbruse eest hoolitseme kojamehe teenuse ja välikoristusega aastaringselt, sh lumekoristuse ja lehtede koristamisega."
+      },
+      {
+        "q": "Millistes piirkondades koristusfirma SPS Grupp töötab?",
+        "a": "Teenindame objekte Tallinnas ja Harjumaal - nii tagame kiire reageerimise, objektijuhi kohaloleku ja regulaarse kvaliteedikontrolli igal objektil. Väljapoole Harjumaad regulaarset koristusteenust ei paku."
       }
     ]
   },

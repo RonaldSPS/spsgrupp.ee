@@ -3,7 +3,7 @@ import { generatePageMetadata } from "@/lib/metadata-helper";
 export const metadata = generatePageMetadata({
   path: "/sps-grupp",
   locale: "et",
-  title: "SPS Grupp – edukate ettevõtete koristusfirma Tallinnas",
+  title: "SPS Grupp tutvustus – kogemus ja standardid | SPS Grupp",
   description:
     "SPS Grupp on usaldusväärne partner koristus-, remondi- ja hooldusteenustes äriklientidele. Pakume professionaalset teenust Tallinnas ja Harjumaal alates 2006. aastast.",
   imagePath: "/FrontHeroCar.jpg",

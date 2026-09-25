@@ -26,6 +26,7 @@ export const et: OutdoorServicePageData = {
     { label: "Kontori koristus", href: "/koristusteenus/kontori-koristus" },
     { label: "Kaubanduspindade koristus", href: "/koristusteenus/kaubanduspindade-koristus" },
     { label: "Tootmishoonete koristus", href: "/koristusteenus/tootmishoonete-koristus" },
+    { label: "Suurpuhastus", href: "/puhastusteenused/suurpuhastus" },
   ],
   reasonsTitle: "Miks valida SPS Grupp hoolduskoristuse partneriks?",
   reasons: [
@@ -88,6 +89,7 @@ export const en: OutdoorServicePageData = {
     { label: "Office cleaning", href: "/koristusteenus/kontori-koristus" },
     { label: "Retail cleaning", href: "/koristusteenus/kaubanduspindade-koristus" },
     { label: "Industrial facility cleaning", href: "/koristusteenus/tootmishoonete-koristus" },
+    { label: "Deep cleaning", href: "/puhastusteenused/suurpuhastus" },
   ],
   reasonsTitle: "Why choose SPS Grupp as your regular cleaning partner?",
   reasons: [
@@ -150,6 +152,7 @@ export const ru: OutdoorServicePageData = {
     { label: "Уборка офисов", href: "/koristusteenus/kontori-koristus" },
     { label: "Уборка торговых помещений", href: "/koristusteenus/kaubanduspindade-koristus" },
     { label: "Уборка производственных зданий", href: "/koristusteenus/tootmishoonete-koristus" },
+    { label: "Генеральная уборка", href: "/puhastusteenused/suurpuhastus" },
   ],
   reasonsTitle: "Почему выбрать SPS Grupp партнёром по регулярной уборке?",
   reasons: [

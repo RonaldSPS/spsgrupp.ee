@@ -76,6 +76,10 @@
     "para5Link1": "cleaning services",
     "para5Mid": " and ",
     "para5Link2": "specialist cleaning",
+    "para5Mid2": ", and for regular maintenance also ",
+    "para5Link3": "office cleaning",
+    "para5Mid3": " and ",
+    "para5Link4": "maintenance cleaning",
     "para5Post": ".",
     "ctaButton": "Request a quote"
   },
@@ -185,6 +189,18 @@
       {
         "q": "How do I choose a reliable cleaning company for my business?",
         "a": "Ask about experience, quality management and references. SPS Grupp holds ISO 9001 and ISO 14001 certificates, employs over 300 trained staff and every site's work is monitored by a site manager. Cooperation always starts with a free assessment and a transparent quote."
+      },
+      {
+        "q": "Do you provide office cleaning and regular cleaning for business premises?",
+        "a": "Yes. Regular office cleaning suits offices and commercial premises from 800 m² in Tallinn and Harjumaa, from €1.20/m² per month. We clean outside business hours - early morning or after the workday - and the schedule is agreed around your operations."
+      },
+      {
+        "q": "Do you also maintain stairwells, corridors and the building surroundings?",
+        "a": "Yes. Common-area maintenance covers corridors, stairwells and lifts. The surroundings are looked after through groundskeeping and outdoor cleaning year-round, including snow clearing and leaf removal."
+      },
+      {
+        "q": "In which areas does the SPS Grupp cleaning company operate?",
+        "a": "We serve sites in Tallinn and Harjumaa - this is how we guarantee fast response, on-site management and regular quality control at every object. Outside Harjumaa we do not provide regular cleaning services."
       }
     ]
   },

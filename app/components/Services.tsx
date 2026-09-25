@@ -45,6 +45,10 @@ export default function Services({ animDelay }: { animDelay?: number }) {
               <Link href={localizePath("/koristusteenus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t("para5Link1")}</Link>
               {t("para5Mid")}
               <Link href={localizePath("/puhastusteenused", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t("para5Link2")}</Link>
+              {t("para5Mid2")}
+              <Link href={localizePath("/koristusteenus/kontori-koristus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t("para5Link3")}</Link>
+              {t("para5Mid3")}
+              <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t("para5Link4")}</Link>
               {t("para5Post")}
             </p>
           </div>
