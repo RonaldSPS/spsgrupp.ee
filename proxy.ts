@@ -68,11 +68,17 @@ const LEGACY_RU_REDIRECTS: Record<string, string> = {
   "/ru/возможна-ли-сортировка-мусора-в-офисе": "/blog/kas-prugi-sorteerimine-kontoris-on-voimalik/",
   "/ru/2025/02/13/здравствуйте": "/ru/",
   "/ru/puhastusvahendite-moju-tervisele-ja-allergiariskid": "/blog/",
+  // Older RU generations (Wayback CDX audit 2026-09-30)
+  "/ru/новости": "/ru/",
+  "/ru/для-бизнес-клиентов": "/ru/клининговые-услуги-для-бизнеса/",
+  "/ru/повышает-ли-фирма-по-уборке-цены": "/blog/miks-puhastusteenuste-hinnad-tousevad/",
 }
 
 // Prefix rules for legacy non-ASCII paths (checked after exact matches).
 const LEGACY_RU_PREFIX_REDIRECTS: [string, string][] = [
   ["/ru/category/", "/ru/"],
+  ["/ru/faq-items/", "/ru/"],
+  ["/ru/faq_category/", "/ru/"],
 ]
 
 function getAdminPassword(): string {
@@ -302,6 +308,8 @@ export async function proxy(request: NextRequest) {
   const isPublicEtPath =
     !normalizedPathname.startsWith("/api/") &&
     !normalizedPathname.startsWith("/blog") &&
+    // Ahrefs verification route must serve as-is, not rewrite to /et
+    !normalizedPathname.startsWith("/ahrefs_") &&
     normalizedPathname !== "/en" &&
     !normalizedPathname.startsWith("/en/") &&
     normalizedPathname !== "/ru" &&
