@@ -512,6 +512,9 @@ const nextConfig: NextConfig = {
       { source: "/wc-paberid-ja-dosaatorid", destination: "/", permanent: true },
       { source: "/prugikotid", destination: "/", permanent: true },
       { source: "/avalehekulg", destination: "/", permanent: true },
+      // Hotlinked image in a geenius.delfi.ee (DR 82) article - file is lost
+      // (pre-2022 backup only); 301 preserves the link equity.
+      { source: "/wp-content/uploads/2023/10/koristajavahetus5_800.jpg", destination: "/puhastusteenused/", permanent: true },
       { source: "/sliderfront", destination: "/", permanent: true },
       { source: "/test", destination: "/", permanent: true },
       { source: "/test354", destination: "/", permanent: true },
