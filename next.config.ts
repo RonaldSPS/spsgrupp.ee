@@ -437,6 +437,8 @@ const nextConfig: NextConfig = {
       { source: "/muru-niitmine", destination: "/koristusteenus/valikoristus/muruniitmine/", permanent: true },
       { source: "/valiterritooriumi-korrashoid", destination: "/koristusteenus/valikoristus/", permanent: true },
       { source: "/kinnisvara-korrashoid", destination: "/koristusteenus/", permanent: true },
+      { source: "/ariklientidele", destination: "/koristusteenus/", permanent: true },
+      { source: "/kontor", destination: "/koristusteenus/kontori-koristus/", permanent: true },
       { source: "/majahoidja-teenus-4", destination: "/koristusteenus/valikoristus/kojameheteenus/", permanent: true },
       { source: "/vaipade-puhastus", destination: "/puhastusteenused/vaipade-puhastus/", permanent: true },
       { source: "/vaipade-keemiline-puhastus", destination: "/puhastusteenused/vaipade-puhastus/", permanent: true },
