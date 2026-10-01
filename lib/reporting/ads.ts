@@ -9,7 +9,7 @@
  */
 
 import { getGoogleAccessToken, type ReportPeriod } from "./google-auth"
-import type { AdsCampaign, AdsData, AdsKeyword, AdsTerm } from "./types"
+import type { AdsCampaign, AdsConversionBreakdown, AdsData, AdsKeyword, AdsTerm } from "./types"
 
 const SCOPES = ["https://www.googleapis.com/auth/adwords"]
 /** Bump when Google sunsets this version (a 404 HTML error means: bump). */
@@ -183,6 +183,32 @@ export async function pullAds(period: ReportPeriod): Promise<AdsData> {
     }
   })
 
+  /* --- conversions per conversion action (primary goals only = "Conversions"
+   * column) — splits real form submits from phone/email clicks. Segment
+   * queries can fail on older API versions: degrade gracefully. --- */
+  let conversionBreakdown: AdsConversionBreakdown[] = []
+  try {
+    const convRows = await run(
+      `SELECT segments.conversion_action_name, segments.conversion_action_category,
+              metrics.conversions
+       FROM campaign
+       WHERE ${between} AND metrics.conversions > 0`,
+    )
+    const byAction = new Map<string, AdsConversionBreakdown>()
+    for (const r of convRows) {
+      const seg = (r.segments ?? {}) as Record<string, unknown>
+      const name = String(seg.conversion_action_name ?? "?")
+      const category = String(seg.conversion_action_category ?? "UNKNOWN")
+      const key = `${name}::${category}`
+      const entry = byAction.get(key) ?? { name, category, conversions: 0 }
+      entry.conversions += num(field(r, "metrics", "conversions"))
+      byAction.set(key, entry)
+    }
+    conversionBreakdown = [...byAction.values()].sort((a, b) => b.conversions - a.conversions)
+  } catch {
+    /* breakdown puudub — raport kuvab vana kokkuvõtliku konversioonide arvu */
+  }
+
   const totals = {
     cost: campaigns.reduce((s, c) => s + c.cost, 0),
     clicks: campaigns.reduce((s, c) => s + c.clicks, 0),
@@ -190,5 +216,5 @@ export async function pullAds(period: ReportPeriod): Promise<AdsData> {
     conversions: campaigns.reduce((s, c) => s + c.allConversions, 0),
   }
 
-  return { available: true, campaigns, brand, nonBrand, topTerms, keywords, totals }
+  return { available: true, campaigns, brand, nonBrand, topTerms, keywords, totals, conversionBreakdown }
 }

@@ -31,7 +31,8 @@ const PREMISES_SIGNAL =
  * või sõnum algab test-sõnaga ("testing, puhastage 45 tuutu" muster).
  */
 const TEST_ACTOR = /outline/i
-const TEST_MESSAGE = /^\s*(test|testing|testimine|testimaks)\b/i
+/** Alguses test-sõna VÕI sõnumis ise deklareeritud proovipäring ("See on päringu proov" — kliendi oma test 25.09.2026). */
+const TEST_MESSAGE = /^\s*(test|testing|testimine|testimaks)\b|päringu?\s+proov\b/i
 
 export function isTestSubmission(row: FormSubmission): boolean {
   return (

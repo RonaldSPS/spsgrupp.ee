@@ -257,7 +257,9 @@ Every Friday 06:00 UTC (09:00 EEST) Vercel Cron hits `/api/cron/weekly-report/`
 Admin UI: `/spsadmn/raportid/` (list + "Genereeri raport kohe" →
 `POST /api/spsadmn/reports`, `{sendEmail:false}` default) and
 `/spsadmn/raportid/[id]/` (scorecards, trends, narrative, insights, keyword
-family table with ▲/■/▼, top queries, Ads campaigns, forms).
+family table with ▲/■/▼, top queries, Ads campaigns, Ads conversions by
+action — vorm vs telefon/e-post klikid (client request 01.10.2026), forms
+with the hoolduskoristuse päringute maksumus line).
 
 Local run: `npm run report:weekly` (generation only — e-mail is a
 server-only path; test delivery via the deployed cron route with `?send=0`).

@@ -4,7 +4,47 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { Insight, LeadRow, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, Insight, LeadRow, StoredReport } from "./types"
+
+export interface AdsConvSplit {
+  form: number
+  contact: number
+  other: number
+  hasData: boolean
+}
+
+/**
+ * Jaota Ads'i konversioonid kategooria alusel: päris vormipäringud eraldi
+ * telefoni/e-posti klikkidest (kliendi palve 01.10.2026). hasData=false, kui
+ * snapshot on vanast formaadist (breakdown puudub) — siis kuvatakse vana
+ * kokkuvõtlikku arvu.
+ */
+export function splitAdsConversions(ads: { conversionBreakdown?: AdsConversionBreakdown[] } | null | undefined): AdsConvSplit {
+  const out: AdsConvSplit = { form: 0, contact: 0, other: 0, hasData: ads?.conversionBreakdown !== undefined }
+  for (const b of ads?.conversionBreakdown ?? []) {
+    if (b.category === "SUBMIT_LEAD_FORM") out.form += b.conversions
+    else if (b.category === "CONTACT" || b.category === "PHONE_CALL_LEAD") out.contact += b.conversions
+    else out.other += b.conversions
+  }
+  return out
+}
+
+const fmtEur = (n: number) => `${n.toFixed(2).replace(".", ",")} €`
+const fmtConv = (n: number) => n.toFixed(1).replace(".", ",")
+
+/**
+ * Hoolduskoristuse päringute maksumus Adsist (kliendi palve 01.10.2026 —
+ * tuua raportis eraldi välja). null, kui Ads'i andmed puuduvad või kulu on 0.
+ */
+export function maintenanceCostLine(leads: LeadRow[], ads: AdsData | null | undefined): string | null {
+  if (!ads?.available || ads.totals.cost <= 0) return null
+  const maintTotal = leads.filter((l) => l.maintenance !== "no").length
+  const maintAds = leads.filter((l) => l.maintenance !== "no" && l.viaAds).length
+  if (maintAds > 0) {
+    return `Hoolduskoristuse päringute maksumus Adsist: ${fmtEur(ads.totals.cost / maintAds)}/päring — perioodi Ads-kulu ${fmtEur(ads.totals.cost)} ÷ ${maintAds} Adsist tulnud hoolduspäringut (üle kanalite kokku ${maintTotal}).`
+  }
+  return `Adsist hoolduskoristuse päringuid sel perioodil ei tulnud (Ads-kulu ${fmtEur(ads.totals.cost)})${maintTotal > 0 ? ` — üle kanalite oli hoolduspäringuid ${maintTotal}` : ""}.`
+}
 
 const SEV_META: Record<Insight["severity"], { label: string; color: string; bg: string }> = {
   negative: { label: "Kriitiline", color: "#b91c1c", bg: "#fee2e2" },
@@ -124,11 +164,12 @@ function leadPath(pageUrl: string): string {
 }
 
 /** Nädala päringute tabel koos hoolduskoristuse klassifikatsiooniga (kliendi põhieesmärk eraldi välja toodud). */
-function leadsSection(leads: LeadRow[]): { html: string; text: string[] } {
+function leadsSection(leads: LeadRow[], ads: AdsData | null): { html: string; text: string[] } {
   if (leads.length === 0) return { html: "", text: [] }
   const yes = leads.filter((l) => l.maintenance === "yes").length
   const likely = leads.filter((l) => l.maintenance === "likely").length
   const headline = `Nädala päringud: ${yes + likely > 0 ? `${yes + likely} soovis regulaarset hoolduskoristust (${yes} selget${likely > 0 ? ` + ${likely} tõenäolist` : ""})` : "hoolduskoristuse päringuid ei olnud"}`
+  const costLine = maintenanceCostLine(leads, ads)
   const rows = leads
     .map((l) => {
       const m = MAINTENANCE_LABELS[l.maintenance]
@@ -148,10 +189,14 @@ function leadsSection(leads: LeadRow[]): { html: string; text: string[] } {
   const html =
     `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Nädala päringud</h2>` +
     `<p style="font-size:15px;color:#2d3748;margin:4px 0 8px"><strong>${escapeHtml(headline)}</strong> — põhieesmärk on B2B regulaarse hoolduskoristuse lepingud, seega on need eraldi välja toodud.</p>` +
+    (costLine
+      ? `<p style="font-size:15px;color:#17345a;margin:4px 0 8px;background:#f0f7ff;border:1px solid #d7e7fa;border-radius:8px;padding:8px 12px">${escapeHtml(costLine)}</p>`
+      : "") +
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden">${rows}</table>`
   const text = [
     "NÄDALA PÄRINGUD",
     headline,
+    ...(costLine ? [costLine] : []),
     ...leads.map((l) => {
       const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
       return `- ${date} ${l.company || "—"} [${MAINTENANCE_LABELS[l.maintenance].label}; ${leadChannel(l)}; ${leadPath(l.pageUrl)}] ${l.summary}`
@@ -177,7 +222,11 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   if (s.ads?.available) {
     const gclidLeads = s.forms?.current.gclidLeads ?? 0
     const convNote = gclidLeads > 0 ? ` · ${gclidLeads} päringut (DB)` : ""
-    cards.push(scoreCard("Ads kulu", `${s.ads.totals.cost.toFixed(0)} €`, `${s.ads.totals.clicks} klikki · ${s.ads.totals.conversions.toFixed(1)} konv (Ads)${convNote}`))
+    const split = splitAdsConversions(s.ads)
+    const convText = split.hasData
+      ? `konv (Ads): vorm ${fmtConv(split.form)} · tel/e-post ${fmtConv(split.contact)}${split.other > 0 ? ` · muu ${fmtConv(split.other)}` : ""}`
+      : `${fmtConv(s.ads.totals.conversions)} konv (Ads)`
+    cards.push(scoreCard("Ads kulu", `${s.ads.totals.cost.toFixed(0)} €`, `${s.ads.totals.clicks} klikki · ${convText}${convNote}`))
   }
   if (s.forms) {
     cards.push(scoreCard("Kontaktpäringud", String(s.forms.current.contact), deltaSub(s.forms.current.contact, s.forms.previous.contact)))
@@ -212,7 +261,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   }
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
-  const leads = leadsSection(s.forms?.leads ?? [])
+  const leads = leadsSection(s.forms?.leads ?? [], s.ads)
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
     : ""

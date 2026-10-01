@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import type { Insight, StoredReport } from "@/lib/reporting/types"
-import { markdownToHtml } from "@/lib/reporting/email-html"
+import { markdownToHtml, splitAdsConversions, maintenanceCostLine } from "@/lib/reporting/email-html"
 
 interface ReportSummary {
   id: number
@@ -33,6 +33,17 @@ const r1 = (n: number) => Math.round(n * 10) / 10
 const fmtPos = (p: number | null | undefined) => (p === null || p === undefined ? "–" : r1(p).toFixed(1).replace(".", ","))
 const fmtMoney = (n: number) => `${n.toFixed(2).replace(".", ",")} €`
 const fmtPct = (n: number | null) => (n === null ? "–" : `${Math.round(n * 100)} %`)
+const fmtConv = (n: number) => n.toFixed(1).replace(".", ",")
+
+/** Ads konversioonitoimingu kategooria → inimloetav silt (eristus: vorm vs telefon/e-post klikk). */
+const CONV_CATEGORY_LABELS: Record<string, string> = {
+  SUBMIT_LEAD_FORM: "Vormipäring",
+  CONTACT: "Telefon/e-post klikk",
+  PHONE_CALL_LEAD: "Telefonikõne",
+  PAGE_VIEW: "Lehevaatamine",
+  PURCHASE: "Ost",
+  DEFAULT: "Määramata",
+}
 
 /** ▲ improved · ■ stable (±2) · ▼ dropped — the manual reports' convention. */
 function posArrow(cur: number | null, prev: number | null): { symbol: string; classes: string } {
@@ -142,6 +153,8 @@ export default function ReportDetailPage() {
 
   const prevQueryMap = new Map((s.gsc?.prevQueries ?? []).map((q) => [q.query, q]))
   const families = (s.gsc?.families ?? []).filter((f) => f.current.impressions > 0 || f.previous.impressions > 0)
+  const adsConvSplit = s.ads?.available ? splitAdsConversions(s.ads) : null
+  const maintCost = maintenanceCostLine(s.forms?.leads ?? [], s.ads)
 
   return (
     <div className="max-w-[1100px]">
@@ -219,7 +232,10 @@ export default function ReportDetailPage() {
         {s.ads?.available && (
           <Card label="Ads kulu" value={fmtMoney(s.ads.totals.cost)}>
             <span className="text-[#5a6474]">
-              {s.ads.totals.clicks} klikki · {s.ads.totals.conversions.toFixed(1).replace(".", ",")} konv (Ads)
+              {s.ads.totals.clicks} klikki ·{" "}
+              {adsConvSplit?.hasData
+                ? `konv (Ads): vorm ${fmtConv(adsConvSplit.form)} · tel/e-post ${fmtConv(adsConvSplit.contact)}${adsConvSplit.other > 0 ? ` · muu ${fmtConv(adsConvSplit.other)}` : ""}`
+                : `${fmtConv(s.ads.totals.conversions)} konv (Ads)`}
               {(s.forms?.current.gclidLeads ?? 0) > 0 ? ` · ${s.forms?.current.gclidLeads} päringut (DB)` : ""}
             </span>
           </Card>
@@ -419,6 +435,39 @@ export default function ReportDetailPage() {
         </div>
       )}
 
+      {/* Ads conversions by action — hinnapäringud vs telefon/e-post klikid (kliendi palve 01.10.2026) */}
+      {s.ads?.available && s.ads.conversionBreakdown !== undefined && (
+        <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
+          <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Ads konversioonid toiminguti</h2>
+          <p className="text-[13px] text-[#5a6474] mb-3">
+            Ainult primaarsed toimingud (Adsi „Conversions“ veerg). „Vormipäring“ = päris hinnapäring; „Telefon/e-post klikk“ EI OLE päring. Päringute tõde on andmebaasi tabel allpool.
+          </p>
+          <table className="w-full text-[14px] min-w-[480px]">
+            <thead>
+              <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
+                <th className="py-2 pr-3 font-medium">Toiming</th>
+                <th className="py-2 pr-3 font-medium">Tüüp</th>
+                <th className="py-2 font-medium text-right">Konv (nädal)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {s.ads.conversionBreakdown.map((b) => (
+                <tr key={`${b.name}-${b.category}`} className="border-b border-[#f4f6f9] last:border-0">
+                  <td className="py-2 pr-3 text-[#17345a]">{b.name}</td>
+                  <td className="py-2 pr-3 text-[#4a5568]">{CONV_CATEGORY_LABELS[b.category] ?? b.category}</td>
+                  <td className="py-2 text-right">{fmtConv(b.conversions)}</td>
+                </tr>
+              ))}
+              {s.ads.conversionBreakdown.length === 0 && (
+                <tr>
+                  <td colSpan={3} className="py-2 text-[#5a6474]">Primaarseid konversioone sel perioodil ei registreeritud.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      )}
+
       {/* Forms */}
       {s.forms && (
         <div className="bg-white rounded-2xl p-6 mb-6">
@@ -458,6 +507,9 @@ export default function ReportDetailPage() {
               <p className="text-[13px] text-[#5a6474] mb-2">
                 Põhieesmärk eraldi välja toodud: „regulaarne hooldus“ = selge korduvus sõnumis, „tõenäoliselt regulaarne“ = ettevõtte äripinna koristus ilma ühekordse märgita.
               </p>
+              {maintCost && (
+                <p className="text-[14px] text-[#17345a] bg-[#f0f7ff] border border-[#d7e7fa] rounded-lg px-3 py-2 mb-2">{maintCost}</p>
+              )}
               <div className="overflow-x-auto">
                 <table className="w-full text-[14px] min-w-[640px]">
                   <thead>

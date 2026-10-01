@@ -26,6 +26,7 @@ ${STRATEGY_CONTEXT}
 - Päris päringud (vormide DB) on konversioonitõde, mitte GA4 key events. Eesmärk ≥15 kontaktpäringut/kuu.
 - forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk).
 - Ads'i „conversions" on nõusolekurežiimi tõttu alampiir — kui forms.gclidLeads > 0, aga ads.conversions = 0, selgita seda nõusolekuga, mitte mõõtmistõrkena.
+- ads.conversionsForm / conversionsContact / conversionsOther jaotavad Ads'i konversioonid: päris vormipäringud vs telefoni/e-posti klikid (EI OLE hinnapäringud) vs muu; null = jaotust pole. Kliendi püsipalve: hinnapäringud tuleb telefoni/e-posti klikkidest ALATI eristada. forms.maintenanceViaAds = Adsist tulnud hoolduskoristuse päringud (yes+likely) ja forms.adsCostPerMaintenanceLead = nende maksumus €/päring (null, kui polnud) — kui pole null, too „Kokkuvõttes“ hoolduskoristuse päringute maksumus eraldi välja.
 - GSC positsioon = näitamistega kaalutud keskmine. <10 näitamist/nädal = statistiline müra, mitte trend.
 - Äsja lisatud lehed: /koristusteenus/hoolduskoristus/ ja /puhastusteenused/suurpuhastus/.
 - Märksõnaperekonnad kattuvad teadlikult; ±2 positsiooni = stabiilne.
@@ -78,6 +79,11 @@ interface Digest {
     cost: number
     clicks: number
     conversions: number
+    /** Konversioonid jaotatuna: päris vormipäringud (SUBMIT_LEAD_FORM). null = jaotust pole. */
+    conversionsForm: number | null
+    /** Telefoni/e-posti klikid (CONTACT, PHONE_CALL_LEAD) — EI OLE hinnapäringud. */
+    conversionsContact: number | null
+    conversionsOther: number | null
     campaigns: {
       name: string
       cost: number
@@ -103,6 +109,10 @@ interface Digest {
     gclidLeads: number
     maintenanceYes: number
     maintenanceLikely: number
+    /** Hoolduskoristuse päringud (yes+likely), mis tulid Adsist. */
+    maintenanceViaAds: number
+    /** Ads-kulu ÷ maintenanceViaAds (null, kui Ads-hoolduspäringuid polnud). */
+    adsCostPerMaintenanceLead: number | null
     leads: { company: string; maintenance: string; viaAds: boolean; summary: string }[]
     feeTotal: number
     profitTotal: number
@@ -166,10 +176,20 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
 
   if (snapshot.ads) {
     const a = snapshot.ads
+    const split = a.conversionBreakdown === undefined
+      ? null
+      : {
+          form: a.conversionBreakdown.filter((b) => b.category === "SUBMIT_LEAD_FORM").reduce((s, b) => s + b.conversions, 0),
+          contact: a.conversionBreakdown.filter((b) => b.category === "CONTACT" || b.category === "PHONE_CALL_LEAD").reduce((s, b) => s + b.conversions, 0),
+          other: a.conversionBreakdown.filter((b) => b.category !== "SUBMIT_LEAD_FORM" && b.category !== "CONTACT" && b.category !== "PHONE_CALL_LEAD").reduce((s, b) => s + b.conversions, 0),
+        }
     d.ads = {
       cost: r1(a.totals.cost),
       clicks: a.totals.clicks,
       conversions: r1(a.totals.conversions),
+      conversionsForm: split === null ? null : r1(split.form),
+      conversionsContact: split === null ? null : r1(split.contact),
+      conversionsOther: split === null ? null : r1(split.other),
       campaigns: a.campaigns.map((c) => ({
         name: c.name,
         cost: r1(c.cost),
@@ -188,6 +208,8 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
 
   if (snapshot.forms) {
     const leads = snapshot.forms.leads ?? []
+    const maintenanceViaAds = leads.filter((l) => l.maintenance !== "no" && l.viaAds).length
+    const adsCost = snapshot.ads?.available ? snapshot.ads.totals.cost : null
     d.forms = {
       contact: snapshot.forms.current.contact,
       prevContact: snapshot.forms.previous.contact,
@@ -196,6 +218,9 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       gclidLeads: snapshot.forms.current.gclidLeads,
       maintenanceYes: leads.filter((l) => l.maintenance === "yes").length,
       maintenanceLikely: leads.filter((l) => l.maintenance === "likely").length,
+      maintenanceViaAds,
+      adsCostPerMaintenanceLead:
+        adsCost !== null && maintenanceViaAds > 0 ? r1(adsCost / maintenanceViaAds) : null,
       leads: leads.slice(0, 10).map((l) => ({ company: l.company, maintenance: l.maintenance, viaAds: l.viaAds, summary: l.summary })),
       feeTotal: snapshot.forms.current.feeTotal,
       profitTotal: snapshot.forms.current.profitTotal,

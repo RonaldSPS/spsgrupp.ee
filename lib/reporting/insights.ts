@@ -359,11 +359,13 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
 
   if (c.gclidLeads > 0 && ads?.available && ads.totals.cost > 0) {
     const cpl = ads.totals.cost / c.gclidLeads
+    const maintAds = leads.filter((l) => l.maintenance !== "no" && l.viaAds).length
+    const maintNote = ` Adsiga seotud (gclid/allikas) hoolduskoristuse-suunalisi: ${maintAds}${maintAds > 0 ? ` — maksumus ${(ads.totals.cost / maintAds).toFixed(2).replace(".", ",")} €/päring` : ""}.`
     out.push({
       area: "forms",
       severity: cpl > 80 ? "warning" : "positive",
       title: `Ads tootis ${c.gclidLeads} päringut — hind ${cpl.toFixed(2).replace(".", ",")} €/päring`,
-      detail: `Ads-kulu nädalas ${ads.totals.cost.toFixed(2).replace(".", ",")} €, gclid-ga seotud kontaktpäringud ${c.gclidLeads}. Märkus: gclid puudub, kui reklaamipõhine nõusolek puudub — tegelik arv võib olla suurem.`,
+      detail: `Ads-kulu nädalas ${ads.totals.cost.toFixed(2).replace(".", ",")} €, gclid-ga seotud kontaktpäringud ${c.gclidLeads}.${maintNote} Märkus: gclid puudub, kui reklaamipõhine nõusolek puudub — tegelik arv võib olla suurem.`,
       action: cpl > 80
         ? "Päringu hind on kõrge: kontrolli otsinguterminite tabelit ja lisa mitte-konverteerivad terminid negatiivseteks; suuna eelarve konverteerivatele terminitele."
         : "Päringu hind on tasuv — skaleeri: tõsta eelarvet kampaaniatel, mis neid päringuid toovad.",

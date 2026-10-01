@@ -142,6 +142,18 @@ export interface AdsKeyword {
   conversions: number
 }
 
+/**
+ * Ads'i konversioonid toimingu kaupa („Conversions" veerg = ainult primaarsed
+ * toimingud). Kliendi palve 01.10.2026: eristada päris hinnapäringud telefoni
+ * ja e-posti klikkidest — kategooria alusel (SUBMIT_LEAD_FORM = vorm,
+ * CONTACT / PHONE_CALL_LEAD = telefon/e-post klikk).
+ */
+export interface AdsConversionBreakdown {
+  name: string
+  category: string
+  conversions: number
+}
+
 export interface AdsData {
   available: boolean
   campaigns: AdsCampaign[]
@@ -150,6 +162,8 @@ export interface AdsData {
   topTerms: AdsTerm[]
   keywords: AdsKeyword[]
   totals: { cost: number; clicks: number; impressions: number; conversions: number }
+  /** Valikuline — vanades salvestatud raportites puudub. */
+  conversionBreakdown?: AdsConversionBreakdown[]
 }
 
 export interface FormsPeriod {
