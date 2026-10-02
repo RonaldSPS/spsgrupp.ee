@@ -17,9 +17,16 @@ import type { FormsData, FormsPeriod, LeadMaintenance, LeadRow, ReportPeriod } f
 const MAINTENANCE_SIGNAL =
   /(\d+\s*[x×]|korda?|korduvalt)\s*(nädalas|ndalas|kuus|kuu\b|kvartalis|kvartali|aastas)|regulaar\w*|hooldus\w*|leping\w*|igapäev\w*|püsiv\w*|pideva?t|graafik\w*|nädalas|ndalas/i
 
-/** Ühekordse/muu töö signaal — võidab, kui selget korduvust pole. */
+/**
+ * Ühekordse/muu töö signaal — võidab, kui selget korduvust pole.
+ * 02.10.2026 karmistatud (kliendi palve: ühekordseid töid ei tohi
+ * hoolduskoristuse päringuna käsitleda — nt Siili 13 korteriühistu
+ * tänavakivide samblikupesu märgistati ekslikult "tõenäoliselt regulaarne",
+ * sest käituks äripinna-signaalist "korteriühistu"): välispindade pesu,
+ * sammal, fassaad, muruniit jt ilma korduvuseta = ühekordne.
+ */
 const ONEOFF_SIGNAL =
-  /ühekord\w*|ehitusjärg\w*|remondijärg\w*|kolimisjärg\w*|suurpuhast\w*|akende?\s+(pesu|pesemine|puhastus)|vaip\w*|diivan\w*|mööbl\w*|lammut\w*|ehitusprahi|jäätme\w*|ventilatsiooni|gra?ffiti?|lum\w+\s*koristus|süvapesu|süvapuhastus|põhjalik\w*\s+\w*(puhastus|koristus)/i
+  /ühekord\w*|ehitusjärg\w*|remondijärg\w*|kolimisjärg\w*|suurpuhast\w*|akende?\s+(pesu|pesemine|puhastus)|vaip\w*|diivan\w*|mööbl\w*|lammut\w*|ehitusprahi|jäätme\w*|ventilatsiooni|gra?ffiti?|lum\w+\s*koristus|süvapesu|süvapuhastus|põhjalik\w*\s+\w*(puhastus|koristus)|tänavakiv\w*|asfal\w*|sammal\w*|samblik\w*|survepesu|kõrgsurve\w*|fassaad\w*|kõnnitee\w*|muruniit\w*|muru\s*niit\w*|heki?\w*\s*(lõik|korrast)\w*/i
 
 /** Äripinna signaal (B2B objekt) — "tõenäoliselt regulaarne" kui korduvust pole otseselt öeldud. */
 const PREMISES_SIGNAL =
@@ -43,7 +50,35 @@ export function isTestSubmission(row: FormSubmission): boolean {
   )
 }
 
-function classifyMaintenance(company: string, message: string): LeadMaintenance {
+/**
+ * Tööotsingud ei ole hinnapäringud ja ei lähe raporti kontaktide arvestusse
+ * (kliendi palve 02.10.2026 — "tööotsinguid ei peaks hinnapäringute hulka
+ * arvestama, võtame need välja"; 24.09 tuli 2 pelga "Housekeeping"-sõnumiga
+ * kontakti töötukassa.ee viite kaudu). Kehtib AINULT kontaktivormile —
+ * career-vormi read on seaduslikud tööavaldused ja loendatakse career-all.
+ * Signaalid: tööportaali viide, pelk ametinimetus sõnumis või selge
+ * tööotsingu fraas.
+ */
+const JOB_BOARD_REFERRAL =
+  /^referral:(www\.)?(tootukassa\.ee|cv\.ee|cvkeskus\.ee|cvonline\.|indeed\.|monster\.|goworkabit\.|tööportaal)/i
+/** Sõnum on pelk ametinimetus (kuni paar sõna) — tööotsija, mitte tellimus. (\p{L}, sest \w ei kata kirillitsat.) */
+const JOB_TITLE_MESSAGE =
+  /^\s*(housekeeping|cleaner|cleaning\s*(lady|man|person)|koristaja\p{L}*|puhastaja\p{L}*|valvekoristaja\p{L}*|kojamees|hooldaja\p{L}*|уборщик\p{L}*|уборщиц\p{L}*)\s*[.!]?\s*$/iu
+/** Selge tööotsingu fraas sõnumis. */
+const JOB_INTENT_MESSAGE =
+  /tööd\s+otsi|otsin\s+tööd|tööotsing|tööle\s+asum|vabu?\s+töökoh\w*|looking\s+for\s+(a\s+)?(job|work)|seeking\s+(a\s+)?(job|work)|job\s+application|ищу\s+работу|нужна\s+работа/i
+
+export function isJobSeeker(row: FormSubmission): boolean {
+  if (row.form !== "contact") return false
+  return (
+    JOB_BOARD_REFERRAL.test(row.source) ||
+    JOB_TITLE_MESSAGE.test(row.message) ||
+    JOB_INTENT_MESSAGE.test(row.message)
+  )
+}
+
+/** Exported for tests. */
+export function classifyMaintenance(company: string, message: string): LeadMaintenance {
   if (MAINTENANCE_SIGNAL.test(message)) return "yes"
   if (ONEOFF_SIGNAL.test(message)) return "no"
   if (company.trim() && PREMISES_SIGNAL.test(message)) return "likely"
@@ -90,8 +125,9 @@ export async function pullForms(period: ReportPeriod): Promise<FormsData> {
     getFormSubmissions({ from: period.prevStart, to: period.prevEnd }),
   ])
 
-  const curRows = curRowsAll.filter((r) => !isTestSubmission(r))
-  const prevRows = prevRowsAll.filter((r) => !isTestSubmission(r))
+  const counted = (r: FormSubmission) => !isTestSubmission(r) && !isJobSeeker(r)
+  const curRows = curRowsAll.filter(counted)
+  const prevRows = prevRowsAll.filter(counted)
 
   const leads = curRows
     .filter((row) => row.form === "contact" && !row.isSpam)
@@ -108,9 +144,11 @@ export async function pullForms(period: ReportPeriod): Promise<FormsData> {
     .slice(0, 10)
 
   const current = aggregate(curRows, leads)
-  current.tests = curRowsAll.length - curRows.length
+  current.tests = curRowsAll.filter(isTestSubmission).length
+  current.jobSeekers = curRowsAll.filter((r) => !isTestSubmission(r) && isJobSeeker(r)).length
   const previous = aggregate(prevRows, null)
-  previous.tests = prevRowsAll.length - prevRows.length
+  previous.tests = prevRowsAll.filter(isTestSubmission).length
+  previous.jobSeekers = prevRowsAll.filter((r) => !isTestSubmission(r) && isJobSeeker(r)).length
 
   return {
     current,

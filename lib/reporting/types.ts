@@ -178,6 +178,8 @@ export interface FormsPeriod {
   profitTotal: number
   /** Testpäringud, mis jäeti arvestusest välja (forms.ts isTestSubmission). */
   tests?: number
+  /** Tööotsingud (kontaktivorm), mis jäeti arvestusest välja (forms.ts isJobSeeker, kliendi palve 02.10.2026). */
+  jobSeekers?: number
 }
 
 /**

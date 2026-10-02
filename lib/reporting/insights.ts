@@ -12,6 +12,7 @@
 import type {
   AdsData,
   FormsData,
+  FormsPeriod,
   Ga4Data,
   GscData,
   Insight,
@@ -301,6 +302,14 @@ function isBrand(term: string): boolean {
   return /\bsps\b|sps[\s-]?(grupp|group)/i.test(term)
 }
 
+/** Märkus arvestusest välja jäetud ridade kohta (testpäringud + tööotsingud). */
+function excludedNote(c: FormsPeriod): string {
+  const parts: string[] = []
+  if (c.tests) parts.push(`${c.tests} testpäring${c.tests === 1 ? "" : "ut"}`)
+  if (c.jobSeekers) parts.push(`${c.jobSeekers} tööotsing${c.jobSeekers === 1 ? "" : "ut"}`)
+  return parts.length ? ` Arvestusest on välja jäetud ${parts.join(" ja ")}.` : ""
+}
+
 function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): void {
   const c = forms.current
   const p = forms.previous
@@ -310,7 +319,7 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
       area: "forms",
       severity: "warning",
       title: `Kontaktpäringuid tuli ${c.contact} (eesmärk ≥${WEEKLY_CONTACT_GOAL}/nädal = ≥15/kuu)`,
-      detail: `Eelmine nädal: ${p.contact}. Päris päringud (DB) on konversioonide tõde — GA4 key events'i ei kasutata topelt-loenduse tõttu.${c.tests ? ` Arvestusest on välja jäetud ${c.tests} testpäring.` : ""}`,
+      detail: `Eelmine nädal: ${p.contact}. Päris päringud (DB) on konversioonide tõde — GA4 key events'i ei kasutata topelt-loenduse tõttu.${excludedNote(c)}`,
       action: "Kui liiklus on korras, aga päringuid pole, on probleem konversioonis: lihtsusta vormi (vähem välju), too kontaktandmed lehe üles ja lisa usaldussignaale (klientide logod, arvustused).",
     })
   } else {
@@ -318,7 +327,7 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
       area: "forms",
       severity: "positive",
       title: `Kontaktpäringuid tuli ${c.contact} (eesmärk ≥${WEEKLY_CONTACT_GOAL}/nädal täidetud)`,
-      detail: `Eelmine nädal: ${p.contact}${c.feeTotal > 0 ? ` · tasu kokku ${c.feeTotal.toFixed(2).replace(".", ",")} €` : ""}${c.profitTotal > 0 ? ` · kasum ${c.profitTotal.toFixed(2).replace(".", ",")} €` : ""}.${c.tests ? ` Arvestusest on välja jäetud ${c.tests} testpäring.` : ""}`,
+      detail: `Eelmine nädal: ${p.contact}${c.feeTotal > 0 ? ` · tasu kokku ${c.feeTotal.toFixed(2).replace(".", ",")} €` : ""}${c.profitTotal > 0 ? ` · kasum ${c.profitTotal.toFixed(2).replace(".", ",")} €` : ""}.${excludedNote(c)}`,
       action: "Hoia kursis, millistelt lehtedelt päringud tulevad (lehe-tabel allpool) — tugevda neid lehti veelgi.",
     })
   }

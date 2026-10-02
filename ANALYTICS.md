@@ -347,7 +347,9 @@ consent-independently, so server-side upload restores the true signal for
 Smart Bidding (real inquiries + Tasu values instead of bare clicks).
 
 Two paths (both read `form_submissions` contact rows with a gclid, excluding
-spam and test submissions — `isTestSubmission` in `lib/reporting/forms.ts`):
+spam, test submissions and job-seekers — `isTestSubmission`/`isJobSeeker`
+in `lib/reporting/forms.ts`; job-seekers excluded since 02.10.2026 per client
+request, they are not price inquiries):
 
 1. **Automated (primary):** `lib/reporting/offline-conversions.ts` → daily
    Vercel Cron `app/api/cron/offline-conversions/` (05:00 UTC, `vercel.json`,

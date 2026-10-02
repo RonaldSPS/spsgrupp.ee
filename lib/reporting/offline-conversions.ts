@@ -28,7 +28,7 @@
  */
 
 import { getFormSubmissions, type FormSubmission } from "../form-submissions"
-import { isTestSubmission } from "./forms"
+import { isJobSeeker, isTestSubmission } from "./forms"
 import { getGoogleAccessToken } from "./google-auth"
 
 /** Bump when Google sunsets this version (a 404/INVALID_VERSION error means: bump). */
@@ -179,7 +179,8 @@ export async function uploadOfflineConversions(options?: {
   const since = new Date(Date.now() - sinceDays * 24 * 3600 * 1000).toISOString().slice(0, 10)
   const rows = await getFormSubmissions({ from: since })
   const candidates = rows.filter(
-    (r) => r.form === "contact" && !r.isSpam && Boolean(r.gclid) && !isTestSubmission(r),
+    // Tööotsingud ei ole päris hinnapäringud — neid Adsi konversioonina ei impordita (kliendi palve 02.10.2026).
+    (r) => r.form === "contact" && !r.isSpam && Boolean(r.gclid) && !isTestSubmission(r) && !isJobSeeker(r),
   )
 
   const summary: OfflineUploadSummary = {

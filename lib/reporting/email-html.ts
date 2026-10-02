@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { AdsConversionBreakdown, AdsData, Insight, LeadRow, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, FormsPeriod, Insight, LeadRow, StoredReport } from "./types"
 
 export interface AdsConvSplit {
   form: number
@@ -163,13 +163,23 @@ function leadPath(pageUrl: string): string {
   }
 }
 
+/** Arvestusest välja jäetud ridade märkus (testpäringud + tööotsingud, kliendi palved 25.09/02.10.2026). */
+function excludedLine(current: FormsPeriod | undefined): string | null {
+  if (!current) return null
+  const parts: string[] = []
+  if (current.jobSeekers) parts.push(`${current.jobSeekers} tööotsing${current.jobSeekers === 1 ? "" : "ut"} (ei ole hinnapäring)`)
+  if (current.tests) parts.push(`${current.tests} testpäring${current.tests === 1 ? "" : "ut"}`)
+  return parts.length ? `Arvestusest on välja jäetud ${parts.join(" ja ")}.` : null
+}
+
 /** Nädala päringute tabel koos hoolduskoristuse klassifikatsiooniga (kliendi põhieesmärk eraldi välja toodud). */
-function leadsSection(leads: LeadRow[], ads: AdsData | null): { html: string; text: string[] } {
+function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeriod): { html: string; text: string[] } {
   if (leads.length === 0) return { html: "", text: [] }
   const yes = leads.filter((l) => l.maintenance === "yes").length
   const likely = leads.filter((l) => l.maintenance === "likely").length
   const headline = `Nädala päringud: ${yes + likely > 0 ? `${yes + likely} soovis regulaarset hoolduskoristust (${yes} selget${likely > 0 ? ` + ${likely} tõenäolist` : ""})` : "hoolduskoristuse päringuid ei olnud"}`
   const costLine = maintenanceCostLine(leads, ads)
+  const excluded = excludedLine(current)
   const rows = leads
     .map((l) => {
       const m = MAINTENANCE_LABELS[l.maintenance]
@@ -192,11 +202,15 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null): { html: string; te
     (costLine
       ? `<p style="font-size:15px;color:#17345a;margin:4px 0 8px;background:#f0f7ff;border:1px solid #d7e7fa;border-radius:8px;padding:8px 12px">${escapeHtml(costLine)}</p>`
       : "") +
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden">${rows}</table>`
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden">${rows}</table>` +
+    (excluded
+      ? `<p style="font-size:13px;color:#5a6474;margin:6px 0 0">${escapeHtml(excluded)}</p>`
+      : "")
   const text = [
     "NÄDALA PÄRINGUD",
     headline,
     ...(costLine ? [costLine] : []),
+    ...(excluded ? [excluded] : []),
     ...leads.map((l) => {
       const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
       return `- ${date} ${l.company || "—"} [${MAINTENANCE_LABELS[l.maintenance].label}; ${leadChannel(l)}; ${leadPath(l.pageUrl)}] ${l.summary}`
@@ -261,7 +275,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   }
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
-  const leads = leadsSection(s.forms?.leads ?? [], s.ads)
+  const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current)
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
     : ""

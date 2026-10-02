@@ -24,7 +24,7 @@ ${STRATEGY_CONTEXT}
 - Uus veebileht läks live'i 17.08.2026 (enne: vana WordPress). Pre-launch baasjoon: 9,0 orgaanilist klikki/päevas.
 - Kaks kuldstandardit: „koristusfirma" ja „kontori koristus".
 - Päris päringud (vormide DB) on konversioonitõde, mitte GA4 key events. Eesmärk ≥15 kontaktpäringut/kuu.
-- forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk).
+- forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk). Tööotsingud (forms.jobSeekers) ja testpäringud on kontaktide arvust VÄLJA jäetud — ära loe neid päringuteks; kui jobSeekers > 0, märgi see ühe lausega ära (läbipaistvus).
 - Ads'i „conversions" on nõusolekurežiimi tõttu alampiir — kui forms.gclidLeads > 0, aga ads.conversions = 0, selgita seda nõusolekuga, mitte mõõtmistõrkena.
 - ads.conversionsForm / conversionsContact / conversionsOther jaotavad Ads'i konversioonid: päris vormipäringud vs telefoni/e-posti klikid (EI OLE hinnapäringud) vs muu; null = jaotust pole. Kliendi püsipalve: hinnapäringud tuleb telefoni/e-posti klikkidest ALATI eristada. forms.maintenanceViaAds = Adsist tulnud hoolduskoristuse päringud (yes+likely) ja forms.adsCostPerMaintenanceLead = nende maksumus €/päring (null, kui polnud) — kui pole null, too „Kokkuvõttes“ hoolduskoristuse päringute maksumus eraldi välja.
 - GSC positsioon = näitamistega kaalutud keskmine. <10 näitamist/nädal = statistiline müra, mitte trend.
@@ -106,6 +106,8 @@ interface Digest {
     prevContact: number
     career: number
     spam: number
+    /** Tööotsingud, mis on kontaktide arvestusest VÄLJA jäetud (mitte hinnapäringud). */
+    jobSeekers: number
     gclidLeads: number
     maintenanceYes: number
     maintenanceLikely: number
@@ -215,6 +217,7 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       prevContact: snapshot.forms.previous.contact,
       career: snapshot.forms.current.career,
       spam: snapshot.forms.current.spam,
+      jobSeekers: snapshot.forms.current.jobSeekers ?? 0,
       gclidLeads: snapshot.forms.current.gclidLeads,
       maintenanceYes: leads.filter((l) => l.maintenance === "yes").length,
       maintenanceLikely: leads.filter((l) => l.maintenance === "likely").length,

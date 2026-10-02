@@ -155,6 +155,13 @@ export default function ReportDetailPage() {
   const families = (s.gsc?.families ?? []).filter((f) => f.current.impressions > 0 || f.previous.impressions > 0)
   const adsConvSplit = s.ads?.available ? splitAdsConversions(s.ads) : null
   const maintCost = maintenanceCostLine(s.forms?.leads ?? [], s.ads)
+  const formsExcluded = (() => {
+    const cur = s.forms?.current
+    const parts: string[] = []
+    if ((cur?.jobSeekers ?? 0) > 0) parts.push(`${cur!.jobSeekers} tööotsing${cur!.jobSeekers === 1 ? "" : "ut"} (ei ole hinnapäring)`)
+    if ((cur?.tests ?? 0) > 0) parts.push(`${cur!.tests} testpäring${cur!.tests === 1 ? "" : "ut"}`)
+    return parts.length ? `Arvestusest on välja jäetud ${parts.join(" ja ")}.` : null
+  })()
 
   return (
     <div className="max-w-[1100px]">
@@ -507,6 +514,9 @@ export default function ReportDetailPage() {
               <p className="text-[13px] text-[#5a6474] mb-2">
                 Põhieesmärk eraldi välja toodud: „regulaarne hooldus“ = selge korduvus sõnumis, „tõenäoliselt regulaarne“ = ettevõtte äripinna koristus ilma ühekordse märgita.
               </p>
+              {formsExcluded && (
+                <p className="text-[13px] text-[#5a6474] mb-2">{formsExcluded}</p>
+              )}
               {maintCost && (
                 <p className="text-[14px] text-[#17345a] bg-[#f0f7ff] border border-[#d7e7fa] rounded-lg px-3 py-2 mb-2">{maintCost}</p>
               )}
