@@ -256,6 +256,28 @@
   ],
   "posts": [
     {
+      "id": 9003,
+      "title": "Mis on hoolduskoristus ja mida see ettevõttele tähendab?",
+      "slug": "mis-on-hoolduskoristus-ja-mida-see-ettevottele-tahendab",
+      "date": "2026-10-05 10:00:00",
+      "language": "et",
+      "featuredImage": "/regulaarnekoristusteenus.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9004,
+      "title": "Kui palju maksab koristusteenus? Hinnad ja hinna kujunemine ettevõttele",
+      "slug": "kui-palju-maksab-koristusteenus-hinnad-ja-hinna-kujunemine",
+      "date": "2026-10-05 12:00:00",
+      "language": "et",
+      "featuredImage": "/kontorikoristus1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
       "id": 9001,
       "title": "Ehitusprahi ja -jäätmete äravedu Tallinnas: mahud, hinnad ja töökorraldus",
       "slug": "ehitusprahi-jaatmete-aravedu-tallinnas-mahud-hinnad-tookorraldus",
