@@ -167,7 +167,7 @@ export const localizedPageMetadata: Partial<
   en: {
     '/': {
       title: 'Commercial Cleaning Company in Tallinn | SPS Grupp',
-      description: 'Cleaning and specialist cleaning services for business premises in Tallinn and Harjumaa. 300+ employees, 1,000,000+ m² maintained, 200+ clients, ISO 9001/14001. Free assessment - reply within 1 business day!',
+      description: 'Cleaning and specialist cleaning for business premises in Tallinn and Harjumaa. 300+ employees, ISO 9001/14001. Free assessment - reply within 1 business day!',
     },
     '/andmekaitsetingimused': {
       title: 'Privacy Policy | SPS Grupp',
@@ -311,6 +311,10 @@ export const localizedPageMetadata: Partial<
       title: 'Ventilation Services in Tallinn | SPS Grupp',
       description: 'Professional ventilation system installation, maintenance and repair for commercial properties. Improved air quality and energy efficiency.',
     },
+    '/kontakt': {
+      title: 'Contact SPS Grupp | SPS Grupp',
+      description: 'Contact SPS Grupp - professional cleaning and renovation services in Tallinn and Harjumaa. Free consultation and a tailored quote - reply within 1 business day!',
+    },
     '/sps-grupp': {
       title: 'About SPS Grupp – experience and standards | SPS Grupp',
       description: 'SPS Grupp is a reliable partner for cleaning, renovation, and maintenance services for business clients in Tallinn and Harjumaa since 2006.',
@@ -319,7 +323,7 @@ export const localizedPageMetadata: Partial<
   ru: {
     '/': {
       title: 'Клининговая компания в Таллинне | SPS Grupp',
-      description: 'Услуги уборки и специальной клининговой обработки коммерческих помещений в Таллинне и Харьюмаа. 300+ сотрудников, более 1 000 000 м² на обслуживании, 200+ клиентов, ISO 9001/14001. Бесплатная оценка объекта - ответ в течение 1 рабочего дня!',
+      description: 'Клининг и специализированная уборка для бизнеса в Таллинне и Харьюмаа. 300+ сотрудников, ISO 9001/14001. Бесплатная оценка - ответ за 1 рабочий день!',
     },
     '/andmekaitsetingimused': {
       title: 'Условия обработки и защиты персональных данных | SPS Grupp',
@@ -462,6 +466,10 @@ export const localizedPageMetadata: Partial<
     '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': {
       title: 'Строительство и обслуживание вентиляционных систем в Таллине | SPS Grupp',
       description: 'Строительство и обслуживание вентиляционных систем для коммерческой недвижимости в Таллине. Очистка воздуха, воздуховоды, оборудование.',
+    },
+    '/kontakt': {
+      title: 'Свяжитесь с SPS Grupp | SPS Grupp',
+      description: 'Свяжитесь с SPS Grupp - клининг и ремонт для бизнеса в Таллинне и Харьюмаа. Бесплатная консультация и предложение - ответ за 1 рабочий день!',
     },
     '/sps-grupp': {
       title: 'О компании SPS Grupp – опыт и стандарты | SPS Grupp',

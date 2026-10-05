@@ -23,7 +23,7 @@ import { TorutoodPageView } from '@/app/_pages/remonditeenused-tallinnas/torutoo
 import { SiseviimistlustoodPageView } from '@/app/_pages/remonditeenused-tallinnas/siseviimistlustood/page'
 import { SanitaarremontPageView } from '@/app/_pages/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/page'
 import { VentilatsioonidPageView } from '@/app/_pages/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/page'
-import { PlaatinistoodPageView } from '@/app/_pages/remonditeenused-tallinnas/plaatimistood/page'
+import { PlaatimistoodPageView } from '@/app/_pages/remonditeenused-tallinnas/plaatimistood/page'
 import { KatuseRemontPageView } from '@/app/_pages/remonditeenused-tallinnas/katuse-remont/page'
 import { LammutustoodPageView } from '@/app/_pages/remonditeenused-tallinnas/lammutustood/page'
 import { ValikoristusPageView } from '@/app/_pages/koristusteenus/valikoristus/page'
@@ -63,7 +63,7 @@ export const localizedPageRegistry: Record<string, LocalizedPageRenderer> = {
   '/remonditeenused-tallinnas/siseviimistlustood': (locale) => <SiseviimistlustoodPageView locale={locale} />,
   '/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus': (locale) => <SanitaarremontPageView locale={locale} />,
   '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': (locale) => <VentilatsioonidPageView locale={locale} />,
-  '/remonditeenused-tallinnas/plaatimistood': (locale) => <PlaatinistoodPageView locale={locale} />,
+  '/remonditeenused-tallinnas/plaatimistood': (locale) => <PlaatimistoodPageView locale={locale} />,
   '/remonditeenused-tallinnas/katuse-remont': (locale) => <KatuseRemontPageView locale={locale} />,
   '/remonditeenused-tallinnas/lammutustood': (locale) => <LammutustoodPageView locale={locale} />,
   '/koristusteenus/valikoristus': (locale) => <ValikoristusPageView locale={locale} />,

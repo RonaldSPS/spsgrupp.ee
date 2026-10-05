@@ -22,7 +22,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/tule-meile-toole/${a.slug}`,
     locale: "et",
     title: a.title + " | SPS Grupp",
-    description: (a.subtitle || a.title + " - " + a.location).slice(0, 160),
+    description: (
+      a.subtitle && a.subtitle.length >= 50
+        ? a.subtitle
+        : `${a.title}${a.location ? ` - ${a.location}` : ""}. Vaata pakkumise tingimusi ja kandideeri SPS Gruppi.`
+    ).slice(0, 160),
     imagePath: "/tuletoole-1.jpg",
   })
 }

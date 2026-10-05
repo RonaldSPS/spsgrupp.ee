@@ -15,7 +15,7 @@ export const metadata: Metadata = generatePageMetadata({
   path: "/blog",
   locale: "et",
   title: "Blogi | SPS Grupp",
-  description: "SPS Grupi blogi: artiklid ja uudised koristusteenuste kohta.",
+  description: "SPS Grupi blogi: artiklid, nõuanded ja uudised koristus- ja puhastusteenuste ning ärikinnisvara hoolduse kohta. Praktilised juhendid ja valdkonna trendid.",
   imagePath: "/FrontHeroCar.jpg",
 })
 

@@ -142,7 +142,11 @@ async function getDynamicMetadata(loc: 'en' | 'ru', path: string): Promise<Metad
     const image = absoluteUrl('/tuletoole-1.jpg')
     return {
       title: `${announcement.title} | SPS Grupp`,
-      description: (announcement.subtitle || `${announcement.title} - ${announcement.location}`).slice(0, 160),
+      description: (
+        announcement.subtitle && announcement.subtitle.length >= 50
+          ? announcement.subtitle
+          : `${announcement.title}${announcement.location ? ` - ${announcement.location}` : ""}. ${loc === 'en' ? "See details and apply at SPS Grupp." : "Смотрите детали и подавайте заявку в SPS Grupp."}`
+      ).slice(0, 160),
       alternates: { canonical },
       openGraph: {
         title: `${announcement.title} | SPS Grupp`,

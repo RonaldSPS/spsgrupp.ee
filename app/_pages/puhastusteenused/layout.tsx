@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Puhastusteenused äriklientidele Tallinnas | SPS Grupp",
   description:
-    "Puhastusteenused äriklientidele alates 1 €/m²: põrandate süvapesu, vaipade puhastus, suurpuhastus, ehitusjärgne koristus ja desinfitseerimine Tallinnas ja Harjumaal. ISO 9001. Tasuta pakkumine - vastus 1 tööpäevaga!",
+    "Puhastusteenused äriklientidele alates 1 €/m²: põrandate süvapesu, suurpuhastus ja ehitusjärgne koristus Tallinnas ja Harjumaal. Tasuta pakkumine!",
   imagePath: "/puhastusteenused1.jpg",
 });
 
