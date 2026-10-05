@@ -28,6 +28,18 @@ const localizedLegacyRedirects = [
   ["/en/professional-exterior-cleaning/street-paving-washing", "/en/outdoor-cleaning-and-grounds-care/paving-stone-cleaning/"],
 ] as const;
 
+// Old WP per-client reference pages (one page per client logo). The new site
+// has no per-client pages - the same clients live in the homepage logos strip
+// (/#kliendid). Reported as 404s by DataforSEO on 2026-10-05; 301 to the
+// homepage preserves the link equity.
+const legacyClientSlugs = [
+  "21-kool", "abakhan", "bestair", "citymotors", "draudimas", "eften",
+  "elering", "ericsson", "hobbyhall", "info-auto", "leibur", "maxima",
+  "mustikas", "myfitness", "nordichotels", "norma", "prike", "proekspert",
+  "puumarket", "rahvaraamat", "rimi", "sokos", "storz", "talleks",
+  "taltech", "teledyne", "uponor", "veho", "zoo",
+] as const;
+
 const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
@@ -456,6 +468,12 @@ const nextConfig: NextConfig = {
       { source: "/pehme-ja-nahkmoobli-puhastamine", destination: "/puhastusteenused/", permanent: true },
       { source: "/polengujargne-koristus-puhastus", destination: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/", permanent: true },
       { source: "/tee-ruumides-viirustele-uks-null", destination: "/puhastusteenused/koroonaviiruse-jargne-puhastus/", permanent: true },
+      // Old per-client reference pages -> homepage (client logos strip)
+      ...legacyClientSlugs.map((slug) => ({
+        source: `/${slug}`,
+        destination: "/",
+        permanent: true,
+      })),
       // Discontinued service lines -> closest live page
       { source: "/kinnisvara-haldusteenus", destination: "/", permanent: true },
       { source: "/kinnisvarahooldus", destination: "/", permanent: true },
