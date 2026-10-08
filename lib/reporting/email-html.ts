@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { AdsConversionBreakdown, AdsData, FormsPeriod, Insight, LeadRow, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, FormsPeriod, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
 
 export interface AdsConvSplit {
   form: number
@@ -172,6 +172,72 @@ function excludedLine(current: FormsPeriod | undefined): string | null {
   return parts.length ? `Arvestusest on välja jäetud ${parts.join(" ja ")}.` : null
 }
 
+const CHANGE_GROUP_LABELS: Record<string, string> = {
+  blog: "Blogi",
+  content: "Lehtede sisu ja tekstid",
+  seo: "Tehniline SEO",
+  technical: "Muud tehnilised täiendused",
+}
+
+const etCount = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`
+
+/**
+ * „Lehekülje arendus" reeglipõhine kokkuvõte (fallback LLM-summaryle).
+ * Jagatud admin-UIga — admin kasutab samu ridu, kui summary puudub.
+ */
+export function changesFallbackLines(changes: SiteChanges): string[] {
+  const lines: string[] = []
+  for (const group of changes.groups) {
+    if (group.key === "blog") {
+      if (changes.newBlogPosts.length > 0) {
+        lines.push(`Blogi: avaldati ${etCount(changes.newBlogPosts.length, "uus artikkel", "uut artiklit")} — ${changes.newBlogPosts.map((t) => `„${t}"`).join(", ")}.`)
+        const extra = group.count - changes.newBlogPosts.length
+        if (extra > 0) lines.push(`Blogi täiendused: ${etCount(extra, "muudatus", "muudatust")}.`)
+      } else {
+        lines.push(`Blogi: ${etCount(group.count, "täiendus", "täiendust")} (${group.items.slice(0, 3).join("; ")}).`)
+      }
+      continue
+    }
+    if (group.key === "technical") {
+      lines.push(`${CHANGE_GROUP_LABELS[group.key]}: ${etCount(group.count, "muudatus", "muudatust")}.`)
+      continue
+    }
+    const shown = group.items.slice(0, 4)
+    const rest = group.count - shown.length
+    lines.push(`${CHANGE_GROUP_LABELS[group.key]}: ${etCount(group.count, "muudatus", "muudatust")} — ${shown.join("; ")}${rest > 0 ? ` (ja ${rest} veel)` : ""}.`)
+  }
+  return lines
+}
+
+/** „Lehekülje arendus" sektsioon: LLM-summary kui olemas, muidu struktureeritud read. */
+function changesSection(changes: SiteChanges): { html: string; text: string[] } {
+  const since = changes.since.slice(0, 10).split("-").reverse().join(".")
+  const heading = `Lehekülje arendus (alates ${since})`
+  if (changes.commits === 0) {
+    const note = "Ülevaatusperioodil leheküljel muudatusi ei tehtud."
+    return {
+      html: `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">${escapeHtml(heading)}</h2>` +
+        `<p style="font-size:15px;color:#2d3748;margin:4px 0 8px">${escapeHtml(note)}</p>`,
+      text: [heading.toUpperCase(), note, ""],
+    }
+  }
+  if (changes.summary) {
+    return {
+      html: `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">${escapeHtml(heading)}</h2>` + markdownToHtml(changes.summary),
+      text: [heading.toUpperCase(), changes.summary, ""],
+    }
+  }
+  const lines = changesFallbackLines(changes)
+  return {
+    html:
+      `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">${escapeHtml(heading)}</h2>` +
+      `<ul style="margin:6px 0;padding-left:22px">` +
+      lines.map((l) => `<li style="margin:4px 0;font-size:15px;line-height:1.5;color:#2d3748">${escapeHtml(l)}</li>`).join("") +
+      `</ul>`,
+    text: [heading.toUpperCase(), ...lines.map((l) => `- ${l}`), ""],
+  }
+}
+
 /** Nädala päringute tabel koos hoolduskoristuse klassifikatsiooniga (kliendi põhieesmärk eraldi välja toodud). */
 function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeriod): { html: string; text: string[] } {
   if (leads.length === 0) return { html: "", text: [] }
@@ -276,6 +342,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current)
+  const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
     : ""
@@ -291,6 +358,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
   ${leads.html}
   ${narrativeHtml}
+  ${changes.html}
   <h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Leiud ja järgmised sammud</h2>
   ${insightSections.join("\n")}
   <p style="margin-top:24px;font-size:14px;color:#5a6474">
@@ -310,6 +378,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")
   }
+  textLines.push(...changes.text)
   textLines.push("LEIUD JA JÄRGMISED SAMMUD")
   for (const [area, items] of insightsByArea) {
     textLines.push("", `— ${AREA_LABELS[area]} —`)

@@ -212,6 +212,34 @@ export interface FormsData {
   leads: LeadRow[]
 }
 
+/**
+ * „Lehekülje arendus" — mis muudatusi lehel vahetult enne raportit tehti
+ * (git-põhine, changes.ts). Kliendi palve 08.10.2026: raport võtaks inimkeeles
+ * kokku, mis täiendusi süsteemi/lehtede sisus tehti ja kas avaldati blogisid.
+ */
+export type SiteChangeGroupKey = "blog" | "content" | "seo" | "technical"
+
+export interface SiteChangeGroup {
+  key: SiteChangeGroupKey
+  /** Commitide arv selles grupis (items on lühendatud väljavõte). */
+  count: number
+  /** Puhastatud inimkeelsed lühikirjeldused (kuni 8). */
+  items: string[]
+}
+
+export interface SiteChanges {
+  /** Ajavahemik (ISO): eelmise nädala raporti genereerimisaeg → selle raporti oma. */
+  since: string
+  until: string
+  /** Aknasse jäänud commitide koguarv (0 = muudatusi ei tehtud). */
+  commits: number
+  /** Avaldatud blogipostituste pealkirjad (uued prepared/posts JSON-id). */
+  newBlogPosts: string[]
+  groups: SiteChangeGroup[]
+  /** LLM-i kliendikeelne kokkuvõte; puudub, kui LLM seadistamata või ebaõnnestus. */
+  summary?: string
+}
+
 export interface ReportSnapshot {
   generatedAt: string
   period: { start: string; end: string; prevStart: string; prevEnd: string }
@@ -219,6 +247,8 @@ export interface ReportSnapshot {
   gsc: GscData | null
   ads: AdsData | null
   forms: FormsData | null
+  /** Lehel tehtud muudatused alates eelmisest raportist — valikuline (vanades raportites/git-history puududes puudub). */
+  changes?: SiteChanges
   /** Per-source failure notes (a failing API must not kill the whole report). */
   errors: string[]
 }

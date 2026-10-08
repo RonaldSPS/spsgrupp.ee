@@ -267,7 +267,20 @@ function finalize(text: string | null, digest: Digest, insights: Insight[]): str
   return text
 }
 
-async function callAnthropic(apiKey: string, userContent: string): Promise<string | null> {
+/**
+ * Generic one-shot LLM call for auxiliary summaries (e.g. the site-changes
+ * section): Anthropic first, DeepSeek as fallback, null when neither key is
+ * set. The main narrative keeps its own provider branch in generateNarrative.
+ */
+export async function callLlm(userContent: string, systemPrompt: string, maxTokens: number): Promise<string | null> {
+  const anthropicKey = process.env.ANTHROPIC_API_KEY
+  const deepseekKey = process.env.DEEPSEEK_API_KEY
+  if (anthropicKey) return callAnthropic(anthropicKey, userContent, systemPrompt, maxTokens)
+  if (deepseekKey) return callDeepseek(deepseekKey, userContent, systemPrompt, maxTokens)
+  return null
+}
+
+async function callAnthropic(apiKey: string, userContent: string, system: string = SYSTEM_PROMPT, maxTokens: number = MAX_TOKENS): Promise<string | null> {
   const model = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-5"
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
@@ -281,8 +294,8 @@ async function callAnthropic(apiKey: string, userContent: string): Promise<strin
       },
       body: JSON.stringify({
         model,
-        max_tokens: MAX_TOKENS,
-        system: SYSTEM_PROMPT,
+        max_tokens: maxTokens,
+        system,
         messages: [{ role: "user", content: userContent }],
       }),
       signal: controller.signal,
@@ -303,7 +316,7 @@ async function callAnthropic(apiKey: string, userContent: string): Promise<strin
 }
 
 /** DeepSeek chat completions (OpenAI-compatible schema). */
-async function callDeepseek(apiKey: string, userContent: string): Promise<string | null> {
+async function callDeepseek(apiKey: string, userContent: string, system: string = SYSTEM_PROMPT, maxTokens: number = MAX_TOKENS): Promise<string | null> {
   // NB: pin the V4 model id — the legacy "deepseek-chat" alias (V4-Flash
   // non-thinking) is officially deprecated and may stop resolving.
   const model = process.env.DEEPSEEK_MODEL ?? "deepseek-v4-flash"
@@ -318,9 +331,9 @@ async function callDeepseek(apiKey: string, userContent: string): Promise<string
       },
       body: JSON.stringify({
         model,
-        max_tokens: MAX_TOKENS,
+        max_tokens: maxTokens,
         messages: [
-          { role: "system", content: SYSTEM_PROMPT },
+          { role: "system", content: system },
           { role: "user", content: userContent },
         ],
       }),

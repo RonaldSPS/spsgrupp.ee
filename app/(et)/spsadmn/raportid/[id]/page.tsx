@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import type { Insight, StoredReport } from "@/lib/reporting/types"
-import { markdownToHtml, splitAdsConversions, maintenanceCostLine } from "@/lib/reporting/email-html"
+import { markdownToHtml, splitAdsConversions, maintenanceCostLine, changesFallbackLines } from "@/lib/reporting/email-html"
 
 interface ReportSummary {
   id: number
@@ -141,6 +141,10 @@ export default function ReportDetailPage() {
   }, [id])
 
   const narrativeHtml = useMemo(() => (report?.narrative ? markdownToHtml(report.narrative) : ""), [report])
+  const changesSummaryHtml = useMemo(
+    () => (report?.snapshot.changes?.summary ? markdownToHtml(report.snapshot.changes.summary) : ""),
+    [report],
+  )
 
   if (loading) return <p className="text-[15px] text-[#5a6474]">Laadin...</p>
   if (error || !report) return <p className="text-[15px] text-red-600">{error || "Raportit ei leitud"}</p>
@@ -278,6 +282,30 @@ export default function ReportDetailPage() {
           <h2 className="text-[18px] font-bold text-[#17345a] mb-2">Analüüs ja soovitused</h2>
           {/* LLM-generated Estonian narrative, sanitized via escapeHtml in markdownToHtml */}
           <div dangerouslySetInnerHTML={{ __html: narrativeHtml }} />
+        </div>
+      )}
+
+      {/* Lehekülje arendus — git-põhine muudatuste kokkuvõte alates eelmisest raportist */}
+      {s.changes && (
+        <div className="bg-white rounded-2xl p-6 mb-6">
+          <h2 className="text-[18px] font-bold text-[#17345a] mb-1">
+            Lehekülje arendus (alates {s.changes.since.slice(0, 10).split("-").reverse().join(".")})
+          </h2>
+          <p className="text-[13px] text-[#5a6474] mb-3">
+            Automaatne kokkuvõte lehel tehtud muudatustest kahe raporti vahel ({s.changes.commits} muudatust).
+          </p>
+          {s.changes.commits === 0 ? (
+            <p className="text-[15px] text-[#2d3748]">Ülevaatusperioodil leheküljel muudatusi ei tehtud.</p>
+          ) : changesSummaryHtml ? (
+            /* LLM kliendikeelne kokkuvõte, sanitized via escapeHtml in markdownToHtml */
+            <div dangerouslySetInnerHTML={{ __html: changesSummaryHtml }} />
+          ) : (
+            <ul className="list-disc pl-5 flex flex-col gap-1">
+              {changesFallbackLines(s.changes).map((line, i) => (
+                <li key={i} className="text-[15px] text-[#2d3748]">{line}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
 

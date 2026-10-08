@@ -9,6 +9,7 @@
 import { collectSnapshot } from "./snapshot"
 import { buildInsights } from "./insights"
 import { generateNarrative } from "./llm"
+import { collectSiteChanges } from "./changes"
 import { listWeeklyReports, saveWeeklyReport } from "./store"
 import type { Insight, StoredReport } from "./types"
 
@@ -16,12 +17,25 @@ const SEVERITY_ORDER: Record<Insight["severity"], number> = { negative: 0, warni
 
 export async function generateWeeklyReport(): Promise<StoredReport> {
   const snapshot = await collectSnapshot()
-  const insights = buildInsights(snapshot)
 
   /* GSC täiendab värskeimaid päevi järelkorras — kui eelmise raporti salvestatud
    * arv samale perioodile erineb selle nädala "eelmine periood" tõmmisest,
    * märgi see raportis ära (kliendi küsimus 25.09.2026: 7,4 vs 10,1 / +6 %). */
-  const latest = await listWeeklyReports(1).then((r) => r[0]).catch(() => undefined)
+  const recent = await listWeeklyReports(2).catch(() => [] as StoredReport[])
+  const latest = recent[0]
+
+  /* „Lehekülje arendus" (git-põhine muudatuste kokkuvõte, kliendi palve
+   * 08.10.2026): aken = eelmise NÄDALA raporti genereerimisest tänaseni.
+   * Sama nädala raportit vahele jättes ei kaha aken „Genereeri kohe"
+   * uuesti käivitamisel nulli (raport upsert'itakse sama nädala peale). */
+  const prevWeekReport = recent.find(
+    (r) => !(r.weekStart === snapshot.period.start && r.weekEnd === snapshot.period.end),
+  )
+  const changesSince = prevWeekReport?.snapshot.generatedAt ?? `${snapshot.period.start}T00:00:00.000Z`
+  const changes = await collectSiteChanges(changesSince, snapshot.generatedAt)
+  if (changes) snapshot.changes = changes
+
+  const insights = buildInsights(snapshot)
   const prevGsc = latest?.snapshot.gsc
   if (
     prevGsc &&
