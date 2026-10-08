@@ -58,8 +58,8 @@ const ORGANIZATION_SCHEMA = {
   sameAs: ["https://www.facebook.com/Puhastusteenused"],
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 59.4042,
-    longitude: 24.6843,
+    latitude: 59.4161835,
+    longitude: 24.6919117,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",

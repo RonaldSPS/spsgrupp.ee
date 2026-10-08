@@ -95,18 +95,18 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
                 {t("address")}
               </a>
               <a
-                href={`tel:${["+", "3", "7", "2", " ", "5", "5", "6", "0", " ", "5", "1", "4", "7"].join("")}`}
-                className="text-white/65 text-[15px] no-underline hover:text-[#85cbe9] block"
-                rel="nofollow"
-              >
-                {["+372", " ", "5560", " ", "5147"].join("")}
-              </a>
-              <a
                 href={`tel:${["+", "3", "7", "2", " ", "6", "6", "2", " ", "3", "3", "2", "8"].join("")}`}
                 className="text-white/65 text-[15px] no-underline hover:text-[#85cbe9] block"
                 rel="nofollow"
               >
                 {["+372", " ", "662", " ", "3328"].join("")}
+              </a>
+              <a
+                href={`tel:${["+", "3", "7", "2", " ", "5", "5", "6", "0", " ", "5", "1", "4", "7"].join("")}`}
+                className="text-white/65 text-[15px] no-underline hover:text-[#85cbe9] block"
+                rel="nofollow"
+              >
+                {["+372", " ", "5560", " ", "5147"].join("")}
               </a>
               <a
                 href={`mailto:${["i", "n", "f", "o", "@", "s", "p", "s", "g", "r", "u", "p", "p", ".", "e", "e"].join("")}`}

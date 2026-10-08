@@ -101,6 +101,14 @@ async function main() {
   }
 
   const code = await new Promise<string>((resolve, reject) => {
+    /* The timeout must be cleared on success and must close the server when it
+       fires - otherwise a pending timer / open listener keeps the process
+       alive for 10 minutes after the run has finished (holding the log file
+       open and breaking reruns). */
+    const timeout = setTimeout(() => {
+      server.close()
+      reject(new Error("Timed out waiting for consent (10 min)"))
+    }, 10 * 60 * 1000)
     server.on("request", (req, res) => {
       const url = new URL(req.url ?? "/", REDIRECT_URI)
       if (url.pathname !== callbackPath) {
@@ -112,10 +120,10 @@ async function main() {
       const errorParam = url.searchParams.get("error")
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" })
       res.end("<h1>OK</h1><p>Consent received - you can close this tab and return to the terminal.</p>")
+      clearTimeout(timeout)
       if (codeParam) resolve(codeParam)
       else reject(new Error(errorParam ?? "no authorization code in callback"))
     })
-    setTimeout(() => reject(new Error("Timed out waiting for consent (10 min)")), 10 * 60 * 1000)
   })
   server.close()
 
@@ -138,6 +146,11 @@ async function main() {
   console.log("TOKENS RECEIVED")
   console.log({ access_token: data.access_token ? "YES" : "NO", refresh_token: "YES" })
 
+  /* Print the refresh token BEFORE the connection test - a failing test must
+     never lose an otherwise valid token. */
+  console.log("\nAdd this line to .env.local (keep it secret, .env.local is git-ignored):\n")
+  console.log(`GOOGLE_GBP_REFRESH_TOKEN=${data.refresh_token}`)
+
   /* --- connection test: list the GBP accounts this user can manage --- */
   const accountsRes = await fetch("https://mybusinessaccountmanagement.googleapis.com/v1/accounts", {
     headers: { Authorization: `Bearer ${data.access_token}` },
@@ -148,12 +161,12 @@ async function main() {
 
   if (!accountsRes.ok) {
     console.error(`\naccounts.list failed with HTTP ${accountsRes.status} - see the error above.`)
+    console.error("The refresh token above is still valid - fix the API issue, then run: npm run report:gbp")
     process.exitCode = 1
     return
   }
 
-  console.log("\nSuccess. Add this line to .env.local (keep it secret, .env.local is git-ignored):\n")
-  console.log(`GOOGLE_GBP_REFRESH_TOKEN=${data.refresh_token}`)
+  console.log("\nSuccess - connection works. Verify with: npm run report:gbp")
 }
 
 main().catch((err) => {

@@ -1,11 +1,13 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
 import TwoToneHeading from "./TwoToneHeading"
 import ScrollAnimation from "./ScrollAnimation"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
 import { localizePath, type Locale } from "@/lib/slug-map"
+import { generateReviewsPageSchema, renderLdJson } from "@/lib/json-ld-generator"
 
 export const testimonialPools: Record<Locale, TestimonialData[]> = {
   et: [
@@ -49,7 +51,29 @@ export default function Testimonials({ animDelay }: { animDelay?: number }) {
     ru: "Хотите такой же результат? Получите предложение",
   }[locale]
 
-  const duo = [...items, ...items]
+  // The marquee loop (-50% translate) needs a second copy of the cards.
+  // It is cloned into the DOM only after hydration (with aria-hidden/inert),
+  // so served HTML contains each review exactly once and no aria-hidden
+  // markup at all - crawlers and AI agents always see the full testimonials.
+  const trackRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    const originals = Array.from(track.children)
+    const clones = originals.map((node) => {
+      const clone = node.cloneNode(true) as HTMLElement
+      clone.setAttribute("aria-hidden", "true")
+      clone.setAttribute("inert", "")
+      return clone
+    })
+    track.append(...clones)
+    return () => clones.forEach((clone) => clone.remove())
+  }, [])
+
+  // Review schema mirrors the visible cards; TestimonialCards renders 5 stars each.
+  const reviewsSchema = generateReviewsPageSchema(
+    items.map((item) => ({ author: item.author, text: item.shortQuote || item.quote, ratingValue: 5 })),
+  )
 
   const content = (
       <div className="max-w-[1280px] mx-auto px-[5%]">
@@ -64,12 +88,10 @@ export default function Testimonials({ animDelay }: { animDelay?: number }) {
         </div>
 
         <div className="overflow-hidden w-full">
-          <div className="testimonial-scroll-track flex items-center w-max" style={{ gap: `${GAP}px` }}>
-            {duo.map((t, i) => (
+          <div ref={trackRef} className="testimonial-scroll-track flex items-center w-max" style={{ gap: `${GAP}px` }}>
+            {items.map((t, i) => (
               <div
                 key={`${t.author}-${i}`}
-                aria-hidden={i >= items.length}
-                inert={i >= items.length ? true : undefined}
                 className="shrink-0 w-[280px] sm:w-[320px] md:w-[309px] self-stretch [&>div]:h-full"
               >
                 <TestimonialCards testimonials={[t]} cols={1} ctaLabel={cardCta} />
@@ -107,6 +129,7 @@ export default function Testimonials({ animDelay }: { animDelay?: number }) {
 
   return (
     <section className="testimonials-section py-[100px] bg-[#eceef1]" id="kliendid-arvustused">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: renderLdJson(reviewsSchema) }} />
       {animDelay === undefined ? content : (
         <ScrollAnimation animation="fade-up" delay={animDelay}>
           {content}

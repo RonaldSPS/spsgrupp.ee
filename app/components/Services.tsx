@@ -6,6 +6,13 @@ import TwoToneHeading from "./TwoToneHeading";
 import ScrollAnimation from "./ScrollAnimation";
 import { localizePath, type Locale } from "@/lib/slug-map";
 
+/* Geo part of the services H2, rendered as the light-blue accent line. */
+const headingAccentByLocale: Record<Locale, string> = {
+  et: "Tallinnas ja Harjumaal",
+  en: "in Tallinn and Harjumaa",
+  ru: "в Таллинне и Харьюмаа",
+};
+
 export default function Services({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("services")
   const locale = useLocale() as Locale
@@ -21,7 +28,7 @@ export default function Services({ animDelay }: { animDelay?: number }) {
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="mb-12 max-w-[800px] mx-auto">
           <div className="mb-[20px]">
-            <TwoToneHeading text={t("heading")} className="text-center" />
+            <TwoToneHeading text={t("heading")} accentText={headingAccentByLocale[locale]} className="text-center" />
           </div>
           <div className="text-[16px] text-[#333a46] leading-[1.3]">
             <div className="mb-[calc(var(--spacing)*2)] flex gap-5">
