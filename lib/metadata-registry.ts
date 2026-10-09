@@ -1,6 +1,6 @@
 export const pageMetadata: Record<string, { title: string; description: string }> = {
   '/': {
-    title: 'Koristusfirma Tallinnas | SPS Grupp',
+    title: 'Koristusfirma Tallinnas - vastus 1 tööpäevaga | SPS Grupp',
     description: 'Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses, 200+ klienti, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!',
   },
   '/koristusteenus': {
@@ -68,12 +68,12 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Professionaalne tänavakivide pesu, liivaprits ja hooldus. Taastame pinnakatte esialgse välimuse.',
   },
   '/puhastusteenused': {
-    title: 'Puhastusteenused äriklientidele Tallinnas | SPS Grupp',
+    title: 'Puhastusteenused Tallinnas - alates 1 €/m² | SPS Grupp',
     description: 'Puhastusteenused äriklientidele alates 1 €/m²: põrandate süvapesu, vaipade puhastus, suurpuhastus, ehitusjärgne koristus ja desinfitseerimine Tallinnas ja Harjumaal. ISO 9001. Tasuta pakkumine - vastus 1 tööpäevaga!',
   },
   '/puhastusteenused/ehitusjargne-koristus': {
-    title: 'Ehitusjärgne koristus Tallinnas - Ehitusjärgne puhastus | SPS Grupp',
-    description: 'Professionaalne ehitusjärgne koristus ja puhastus. Eemaldame ehitusprahi ja tolmu.',
+    title: 'Ehitusjärgne koristus Tallinnas - tasuta hindamine | SPS Grupp',
+    description: 'Ehitusjärgne koristus arendajatele ja ettevõtetele Tallinnas ja Harjumaal. Eemaldame ehitusprahi, tolmu ja plekid - objekt valmis kasutuseks. Tasuta hindamine, vastus 1 tööpäevaga!',
   },
   '/puhastusteenused/koroonaviiruse-jargne-puhastus': {
     title: 'Desinfitseerimine Tallinnas - Pindade desinfitseerimine | SPS Grupp',
