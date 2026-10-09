@@ -11,6 +11,7 @@
  */
 
 import { getFormSubmissions, type FormSubmission } from "../form-submissions"
+import { isoDate } from "./google-auth"
 import type { FormsData, FormsPeriod, LeadMaintenance, LeadRow, ReportPeriod } from "./types"
 
 /** Selge korduvuse/lepingu signaal: "3x nädalas", "korra nädalas", "kord kuus", "regulaarne", "hooldus", "leping" jm. */
@@ -119,10 +120,41 @@ function aggregate(rows: FormSubmission[], leads: LeadRow[] | null): FormsPeriod
   return out
 }
 
-export async function pullForms(period: ReportPeriod): Promise<FormsData> {
+/** ISO-kuupäeva nihutamine päevade võrra (UTC). */
+function shiftDays(iso: string, days: number): string {
+  const d = new Date(`${iso}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + days)
+  return d.toISOString().slice(0, 10)
+}
+
+/** Kahe ISO-kuupäeva vahe päevades, KAASA ARVATUD mõlemad otsad. */
+function inclusiveDays(start: string, end: string): number {
+  const ms = new Date(`${end}T00:00:00Z`).getTime() - new Date(`${start}T00:00:00Z`).getTime()
+  return Math.round(ms / 86_400_000) + 1
+}
+
+/**
+ * Päringute tegelik aken (kliendi palve 09.10.2026): vormipäringud
+ * salvestuvad reaalajas, seega peab raport kajastama KÕIKI päringuid kuni
+ * genereerimishetkeni (reede hommik) — Google'i statistika ~2-päevane
+ * viivitus ei tohi päringuid raportist välja jätta (08.10 saabunud päring
+ * jäi 01.10–07.10 aknaga raportist puudu). Eelmine aken on sama pikk ja
+ * lõpeb vahetult enne käesoleva algust, et nädalavõrdlus oleks õiglane.
+ */
+export function formsWindow(period: ReportPeriod, now?: Date): { start: string; end: string; prevStart: string; prevEnd: string } {
+  const start = period.start
+  const end = now ? isoDate(now) : period.end
+  const days = Math.max(inclusiveDays(start, end), 1)
+  const prevEnd = shiftDays(start, -1)
+  const prevStart = shiftDays(prevEnd, -(days - 1))
+  return { start, end, prevStart, prevEnd }
+}
+
+export async function pullForms(period: ReportPeriod, now?: Date): Promise<FormsData> {
+  const win = formsWindow(period, now)
   const [curRowsAll, prevRowsAll] = await Promise.all([
-    getFormSubmissions({ from: period.start, to: period.end }),
-    getFormSubmissions({ from: period.prevStart, to: period.prevEnd }),
+    getFormSubmissions({ from: win.start, to: win.end }),
+    getFormSubmissions({ from: win.prevStart, to: win.prevEnd }),
   ])
 
   const counted = (r: FormSubmission) => !isTestSubmission(r) && !isJobSeeker(r)
@@ -155,5 +187,6 @@ export async function pullForms(period: ReportPeriod): Promise<FormsData> {
     previous,
     topPages,
     leads,
+    window: win,
   }
 }

@@ -59,7 +59,7 @@ function aggregate(rows: GscQuery[]): { impressions: number; clicks: number; pos
   }
 }
 
-/** Kandjaleht: the page carrying the most impressions in a query×page row set. */
+/** Maandumisleht: the page carrying the most impressions in a query×page row set. */
 function dominantPage(rows: GscQueryPage[]): { page: string; impressions: number } | null {
   const byPage = new Map<string, number>()
   for (const r of rows) byPage.set(r.page, (byPage.get(r.page) ?? 0) + r.impressions)

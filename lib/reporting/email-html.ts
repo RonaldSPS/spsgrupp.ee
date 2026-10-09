@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { AdsConversionBreakdown, AdsData, FormsPeriod, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, FormsData, FormsPeriod, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
 
 export interface AdsConvSplit {
   form: number
@@ -239,13 +239,18 @@ function changesSection(changes: SiteChanges): { html: string; text: string[] } 
 }
 
 /** Nädala päringute tabel koos hoolduskoristuse klassifikatsiooniga (kliendi põhieesmärk eraldi välja toodud). */
-function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeriod): { html: string; text: string[] } {
+function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeriod, window?: FormsData["window"]): { html: string; text: string[] } {
   if (leads.length === 0) return { html: "", text: [] }
   const yes = leads.filter((l) => l.maintenance === "yes").length
   const likely = leads.filter((l) => l.maintenance === "likely").length
   const headline = `Nädala päringud: ${yes + likely > 0 ? `${yes + likely} soovis regulaarset hoolduskoristust (${yes} selget${likely > 0 ? ` + ${likely} tõenäolist` : ""})` : "hoolduskoristuse päringuid ei olnud"}`
   const costLine = maintenanceCostLine(leads, ads)
   const excluded = excludedLine(current)
+  /* Kliendi palve 09.10.2026: päringud on arvestatud kuni raporti koostamiseni
+   * (mitte Google'i ~2-päevase viivitusega perioodi lõpuni) — aken nähtavalt. */
+  const windowNote = window
+    ? `Päringute aken: ${window.start} – ${window.end} (kõik päringud kuni raporti koostamiseni; Google'i statistika allpool lõppeb ~2 päeva varem).`
+    : null
   const rows = leads
     .map((l) => {
       const m = MAINTENANCE_LABELS[l.maintenance]
@@ -271,12 +276,16 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden">${rows}</table>` +
     (excluded
       ? `<p style="font-size:13px;color:#5a6474;margin:6px 0 0">${escapeHtml(excluded)}</p>`
+      : "") +
+    (windowNote
+      ? `<p style="font-size:13px;color:#5a6474;margin:6px 0 0">${escapeHtml(windowNote)}</p>`
       : "")
   const text = [
     "NÄDALA PÄRINGUD",
     headline,
     ...(costLine ? [costLine] : []),
     ...(excluded ? [excluded] : []),
+    ...(windowNote ? [windowNote] : []),
     ...leads.map((l) => {
       const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
       return `- ${date} ${l.company || "—"} [${MAINTENANCE_LABELS[l.maintenance].label}; ${leadChannel(l)}; ${leadPath(l.pageUrl)}] ${l.summary}`
@@ -341,7 +350,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   }
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
-  const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current)
+  const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
@@ -365,7 +374,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
     Täisraport tabelite ja trendidega: <a href="${escapeHtml(adminUrl)}" style="color:#1d4ed8">${escapeHtml(adminUrl)}</a>
   </p>
   <p style="font-size:12px;color:#9aa5b1;margin-top:16px;border-top:1px solid #edf0f4;padding-top:10px">
-    Automaatne nädalaraport (reede 09:00) · Andmed: GSC, GA4, Google Ads API, päringute andmebaas · Andmete lõppkuupäev on ~2 päeva tagasi (Google'i viive).
+    Automaatne nädalaraport (reede 09:00) · Andmed: GSC, GA4, Google Ads API, päringute andmebaas · GSC/GA4/Ads-i andmed lõppevad ~2 päeva tagasi (Google'i viive); vormipäringud ja lehe muudatused on arvestatud kuni raporti koostamiseni.
   </p>
 </div>
 </body></html>`

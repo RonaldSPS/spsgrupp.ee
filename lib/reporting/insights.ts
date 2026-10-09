@@ -32,8 +32,8 @@ const round1 = (n: number) => Math.round(n * 10) / 10
 const fmtPos = (p: number | null | undefined) => (p === null || p === undefined ? "–" : round1(p).toFixed(1).replace(".", ","))
 const pctChange = (cur: number, prev: number): number | null =>
   prev === 0 ? (cur > 0 ? 100 : null) : ((cur - prev) / prev) * 100
-/** Kandjalehe viide tegevusse ("" kui teadmata). */
-const carrierLine = (f: KeywordFamilyStat): string => (f.carrier ? `Kandjaleht: ${f.carrier.page}. ` : "")
+/** Maandumislehe viide tegevusse ("" kui teadmata). */
+const carrierLine = (f: KeywordFamilyStat): string => (f.carrier ? `Maandumisleht: ${f.carrier.page}. ` : "")
 
 function gscInsights(gsc: GscData, out: Insight[]): void {
   const curPerDay = gsc.current.clicks / gsc.current.days
@@ -46,7 +46,7 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       severity: "negative",
       title: `Orgaanilised klikid languses (${round1(curPerDay)} → ${round1(prevPerDay)} klikki/päevas, ${Math.round(clicksDelta)} %)`,
       detail: "GSC klikkide päevamaht kukkus võrreldes eelmise nädalaga üle 15 %.",
-      action: "Kontrolli peatabeli langenud perekondi: kas langus on ühes klastris või laiem? Ühe klastri langus → vaata selle kandjalehte; laiem langus → kontrolli indekseerimist (GSC Pages) ja võimalikke tehnilisi tõrkeid.",
+      action: "Kontrolli peatabeli langenud perekondi: kas langus on ühes klastris või laiem? Ühe klastri langus → vaata selle maandumislehte; laiem langus → kontrolli indekseerimist (GSC Pages) ja võimalikke tehnilisi tõrkeid.",
     })
   } else if (clicksDelta !== null && clicksDelta >= 15) {
     out.push({
@@ -54,7 +54,7 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       severity: "positive",
       title: `Orgaanilised klikid tõusmas (${round1(prevPerDay)} → ${round1(curPerDay)} klikki/päevas, +${Math.round(clicksDelta)} %)`,
       detail: "GSC klikkide päevamaht kasvab nädalaga üle 15 %.",
-      action: "Tuvasta tõusu kandjad peatabelist ja kinnita tõus nende lehtede sisu/linkidega — tõusvad lehed reageerivad täiendustele kõige kiiremini.",
+      action: "Tuvasta tõusu maandumislehed peatabelist ja kinnita tõus nende lehtede sisu/linkidega — tõusvad lehed reageerivad täiendustele kõige kiiremini.",
     })
   }
 
@@ -64,7 +64,7 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       severity: "warning",
       title: `Klikkide päevamaht (${round1(curPerDay)}) on alla uue-lehe-eelse baasjoone (${PRE_LAUNCH_CLICKS_PER_DAY})`,
       detail: "Baasjoon 9,0 klikki/päevas on fikseeritud perioodist 20.07–16.08.2026 (enne uut lehte).",
-      action: "Prioritiseeri suurima mahuga löögkaugus-perekonnad (pos 4–15) — need annavad kiireima klikkide tagasitõusu.",
+      action: "Prioritiseeri suurima mahuga käeulatus-perekonnad (pos 4–15) — need annavad kiireima klikkide tagasitõusu.",
     })
   }
 
@@ -91,8 +91,8 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       area: "seo",
       severity: "positive",
       title: `„${f.label}" tõusis ${fmtPos(f.previous.position)} → ${fmtPos(f.current.position)}`,
-      detail: `${f.current.impressions} näitamist, ${f.current.clicks} klikki sel nädalal.${f.carrier ? ` Kandjaleht: ${f.carrier.page}` : ""}`,
-      action: `${carrierLine(f)}Kinnita tõus: värskenda kandjalehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga.`,
+      detail: `${f.current.impressions} näitamist, ${f.current.clicks} klikki sel nädalal.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}`,
+      action: `${carrierLine(f)}Kinnita tõus: värskenda maandumislehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga.`,
     })
   }
   for (const f of fallers.slice(0, 5)) {
@@ -100,19 +100,19 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       area: "seo",
       severity: "negative",
       title: `„${f.label}" langes ${fmtPos(f.previous.position)} → ${fmtPos(f.current.position)}`,
-      detail: `${f.current.impressions} näitamist sel nädalal (eelmine: ${f.previous.impressions}).${f.carrier ? ` Kandjaleht: ${f.carrier.page}` : ""}`,
+      detail: `${f.current.impressions} näitamist sel nädalal (eelmine: ${f.previous.impressions}).${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}`,
       action: f.carrier
-        ? `${carrierLine(f)}Tugevda selle lehe sisu ja siselinke. Kontrolli ka GSC-st, kas kandjaleht püsib sama — kui Google vahetab kandjalehte, suuna siselinkidega õigele lehele.`
-        : "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab kandjalehte? Kui kandja on sama, tugevda lehe sisu ja siselinke; kui kandja vahetub, suuna siselinkidega õigele lehele.",
+        ? `${carrierLine(f)}Tugevda selle lehe sisu ja siselinke. Kontrolli ka GSC-st, kas maandumisleht püsib sama — kui Google vahetab maandumislehte, suuna siselinkidega õigele lehele.`
+        : "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab maandumislehte? Kui maandumisleht on sama, tugevda lehe sisu ja siselinke; kui maandumisleht vahetub, suuna siselinkidega õigele lehele.",
     })
   }
   for (const f of striking.slice(0, 4)) {
     out.push({
       area: "seo",
       severity: "opportunity",
-      title: `Löögkaugusel: „${f.label}" pos ${fmtPos(f.current.position)} (${f.current.impressions} näitamist/nädal)`,
-      detail: `Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.${f.carrier ? ` Kandjaleht: ${f.carrier.page}` : ""}`,
-      action: `${carrierLine(f)}Täienda kandjalehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt.`,
+      title: `Käeulatuses: „${f.label}" pos ${fmtPos(f.current.position)} (${f.current.impressions} näitamist/nädal)`,
+      detail: `Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}`,
+      action: `${carrierLine(f)}Täienda maandumislehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt.`,
     })
   }
 
@@ -122,9 +122,9 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
     out.push({
       area: "seo",
       severity: "warning",
-      title: `„${f.label}" kandjaleht vahetus`,
+      title: `„${f.label}" maandumisleht vahetus`,
       detail: `Google näitab päringuid nüüd lehel ${f.carrier!.page} (eelmine nädal: ${f.prevCarrier!.page}).`,
-      action: "Suuna siselingid tahtlikult õigele (konversioonivõimelisele) lehele ja tugevda just seda; kui vahetus on ajutine Google'i testimine, hoia mõlemad lehed sisult tugevad, aga ankrud õigel kandjal.",
+      action: "Suuna siselingid tahtlikult õigele (konversioonivõimelisele) lehele ja tugevda just seda; kui vahetus on ajutine Google'i testimine, hoia mõlemad lehed sisult tugevad, aga ankrud õigel maandumislehel.",
     })
   }
   for (const f of lowCtr.slice(0, 3)) {
@@ -149,7 +149,7 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       severity: "opportunity",
       title: `${fresh.length} uut päringut on ilmunud nähtavusele`,
       detail: list,
-      action: "Vaata päringud koos nende kandjalehtedega läbi: kas mõnele päringule langeb sobimatu leht või puudub eraldi leht üldse? Mahukamale uuele päringule kaalu eraldi lehte või blogipostitust; olemasoleva lehe päringud lisa lehe sisse (FAQ või alapealkiri).",
+      action: "Vaata päringud koos nende maandumislehtedega läbi: kas mõnele päringule langeb sobimatu leht või puudub eraldi leht üldse? Mahukamale uuele päringule kaalu eraldi lehte või blogipostitust; olemasoleva lehe päringud lisa lehe sisse (FAQ või alapealkiri).",
     })
   }
 }
@@ -433,7 +433,7 @@ function strategyInsights(snapshot: ReportSnapshot, out: Insight[]): void {
         severity: "opportunity",
         title: `Üle poole päringutest sõltub tasulisest liiklusest`,
         detail: `gclid-päringud ${forms.current.gclidLeads} / ${totalLeads} kokku (alampiir — nõusolekuta klikke ei mõõdeta). Tasulise liikluse sõltuvus on risk.`,
-        action: `Tasakaalusta: (1) SEO — löögkaugus-perekondade sisu; (2) e-posti kampaania olemasolevatele klientidele (hooajaline hoolduskoristuse pakkumine); (3) kaalu Meta/Facebook kampaaniat ${TARGET_REGION} B2B sihtrühmale (kinnisvarahaldurid, korteriühistud — põhieesmärk on hoolduskoristuse lepingud) — madalam CPC kui otsingus.`,
+        action: `Tasakaalusta: (1) SEO — käeulatus-perekondade sisu; (2) e-posti kampaania olemasolevatele klientidele (hooajaline hoolduskoristuse pakkumine); (3) kaalu Meta/Facebook kampaaniat ${TARGET_REGION} B2B sihtrühmale (kinnisvarahaldurid, korteriühistud — põhieesmärk on hoolduskoristuse lepingud) — madalam CPC kui otsingus.`,
       })
     }
   }

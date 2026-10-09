@@ -61,7 +61,7 @@ interface Digest {
       prevPos: number | null
       impressions: number
       clicks: number
-      /** Kandjaleht (dominant landing page), when query×page data is available. */
+      /** Maandumisleht (dominant landing page), when query×page data is available. */
       carrier?: string
     }[]
     newQueries: { query: string; impressions: number; position: number; page?: string }[]

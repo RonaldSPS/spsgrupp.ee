@@ -1,7 +1,7 @@
 /**
  * Search Console pulls for the weekly report: totals, full query sets for
  * both weeks (needed for family aggregation + position movement), top pages,
- * and query×page rows (kandjaleht = which landing page Google serves per
+ * and query×page rows (maandumisleht = which landing page Google serves per
  * query — used for carrier-page insights and carrier-swap detection).
  * Methodology matches the manual reports: family position = impression-weighted
  * average over the query family (raportid/RAPORTI-KOOSTAMINE-JUHEND.md §8).

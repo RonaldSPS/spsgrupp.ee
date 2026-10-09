@@ -59,7 +59,7 @@ export interface GscQuery {
   impressions: number
   ctr: number
   position: number
-  /** Kandjaleht (dominant page by impressions), set on newQueries when known. */
+  /** Maandumisleht (dominant page by impressions), set on newQueries when known. */
   page?: string
 }
 
@@ -86,7 +86,7 @@ export interface KeywordFamilyStat {
   label: string
   current: { impressions: number; clicks: number; position: number | null }
   previous: { impressions: number; clicks: number; position: number | null }
-  /** Kandjaleht: dominant landing page in the current period, by impressions. */
+  /** Maandumisleht: dominant landing page in the current period, by impressions. */
   carrier?: { page: string; impressions: number } | null
   /** Previous period's dominant page — for carrier-swap detection. */
   prevCarrier?: { page: string; impressions: number } | null
@@ -210,6 +210,13 @@ export interface FormsData {
   topPages: { pageUrl: string; count: number }[]
   /** Nädala kontaktpäringud (spämmita) kvaliteedikontrolliks — uusimad ees. */
   leads: LeadRow[]
+  /**
+   * Päringute tegelik aken (kliendi palve 09.10.2026): vormipäringud on
+   * reaalajas, seega ulatub aken raporti genereerimishetkeni — mitte
+   * GSC/GA4/Ads-i ~2-päevase viivitusega perioodi lõppu. Eelmine aken on
+   * sama pikk, et nädalavõrdlus oleks õiglane. Puudub vanadelt snapshotidelt.
+   */
+  window?: { start: string; end: string; prevStart: string; prevEnd: string }
 }
 
 /**

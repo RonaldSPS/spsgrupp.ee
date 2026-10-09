@@ -218,15 +218,22 @@ Every Friday 06:00 UTC (09:00 EEST) Vercel Cron hits `/api/cron/weekly-report/`
 1. **Collects** the last-7-days vs previous-7-days snapshot
    (`lib/reporting/snapshot.ts`): GA4 (overview/channels/top pages/per-day
    tracking health), GSC (totals, full query sets both weeks, pages, and
-   query×page rows — kandjaleht per query/family, 25000-row cap), Ads API
+   query×page rows — maandumisleht per query/family, 25000-row cap), Ads API
    (campaigns with impression share, search terms brand/non-brand, keywords +
-   QS), and `form_submissions` aggregates (real inquiries = conversion truth,
-   incl. gclid-attributed leads). A failing source lands in `snapshot.errors`
-   and never aborts the rest.
+    QS), and `form_submissions` aggregates (real inquiries = conversion truth,
+    incl. gclid-attributed leads). A failing source lands in `snapshot.errors`
+    and never aborts the rest. **Forms window exception** (client request
+    09.10.2026): form submissions are real-time, so the forms window runs to
+    report-generation time (`formsWindow()` in `forms.ts`), not to the Google
+    2-day-lag period end — a Thursday inquiry must appear in Friday's report.
+    The previous forms window has the same length for a fair WoW comparison;
+    the actual window is stored on `snapshot.forms.window` and shown in the
+    e-mail leads section + admin detail. The git-based "Lehekülje arendus"
+    section likewise runs to `snapshot.generatedAt`.
 2. **Aggregates 22 tracked keyword families** (`lib/reporting/keyword-families.ts`
    — the same märksõnaperekonnad as the manual raportid/ reports, RU/EN/
    ehitusprahi clusters included; position = impression-weighted average; each
-   family also gets its kandjaleht = dominant landing page by impressions for
+   family also gets its maandumisleht = dominant landing page by impressions for
    both weeks, so the rules engine can name the carrier page and detect
    Google switching carriers week-over-week).
 3. **Rules engine** (`lib/reporting/insights.ts`) produces Estonian findings +

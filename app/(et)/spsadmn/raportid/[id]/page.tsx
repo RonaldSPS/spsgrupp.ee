@@ -542,6 +542,11 @@ export default function ReportDetailPage() {
               <p className="text-[13px] text-[#5a6474] mb-2">
                 Põhieesmärk eraldi välja toodud: „regulaarne hooldus“ = selge korduvus sõnumis, „tõenäoliselt regulaarne“ = ettevõtte äripinna koristus ilma ühekordse märgita.
               </p>
+              {s.forms.window && (
+                <p className="text-[13px] text-[#5a6474] mb-2">
+                  Päringute aken: {s.forms.window.start} – {s.forms.window.end} (kõik päringud kuni raporti koostamiseni; Google&apos;i statistika lõppeb ~2 päeva varem).
+                </p>
+              )}
               {formsExcluded && (
                 <p className="text-[13px] text-[#5a6474] mb-2">{formsExcluded}</p>
               )}
