@@ -26,10 +26,14 @@ const geistMono = Geist_Mono({
   preload: false,
 })
 
+// LocalBusiness (Organization + Place) is required so that the `geo` and
+// `openingHoursSpecification` properties below are valid per schema.org —
+// they do not exist on the plain `Organization` type and caused a
+// sitewide "Schema.org validation error" in SEO audits.
 const ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@id": `${canonicalUrl("/")}#organization`,
-  "@type": "Organization",
+  "@type": "LocalBusiness",
   name: "SPS Grupp OÜ",
   url: canonicalUrl("/"),
   logo: absoluteUrl("/SPS_LOGO.svg"),

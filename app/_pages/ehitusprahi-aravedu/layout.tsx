@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Ehitusprahi äravedu Tallinnas - kiire pakkumine | SPS Grupp",
   description:
-    "Ehitusjäätmete ja ehitusprahi äravedu Tallinnas ja Harjumaal. Konteinerite tarne lepime kokku Sinu mahu ja ajakava järgi. Küsi tasuta pakkumist - vastus 1 tööpäevaga!",
+    "Ehitusjäätmete ja ehitusprahi äravedu Tallinnas ja Harjumaal. Konteinerite tarne Sinu mahu ja ajakava järgi. Küsi tasuta pakkumist!",
   imagePath: "/ehitusprahi-aravedu-1.jpg",
 });
 

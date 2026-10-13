@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Suitsu- ja tulekahjustuste puhastamine | SPS Grupp",
   description:
-    "Suitsu- ja tulekahjustuste puhastamine Tallinnas: tahma, jääkide ja lõhna eemaldamine. Reageerimisaeg sõltub asukohast, töömahust ja meeskonna saadavusest. Küsi pakkumist!",
+    "Suitsu- ja tulekahjustuste puhastamine Tallinnas: tahma, jääkide ja lõhna eemaldamine. Reageerimisaeg 1 tööpäevaga. Küsi pakkumist!",
   imagePath: "/tulekahjustus1.jpg",
 });
 

@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "SPS Grupp tutvustus – kogemus ja standardid | SPS Grupp",
   description:
-    "SPS Grupp on usaldusväärne partner koristus-, remondi- ja hooldusteenustes äriklientidele. Pakume professionaalset teenust Tallinnas ja Harjumaal alates 2006. aastast.",
+    "SPS Grupp on usaldusväärne partner koristus-, remondi- ja hooldusteenustes äriklientidele Tallinnas ja Harjumaal alates 2006. aastast.",
   imagePath: "/FrontHeroCar.jpg",
 });
 

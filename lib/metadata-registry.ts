@@ -1,23 +1,23 @@
 export const pageMetadata: Record<string, { title: string; description: string }> = {
   '/': {
     title: 'Koristusfirma Tallinnas - vastus 1 tööpäevaga | SPS Grupp',
-    description: 'Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses, 200+ klienti, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!',
+    description: 'Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses. Tasuta ülevaatus - vastus 1 tööpäevaga!',
   },
   '/koristusteenus': {
     title: 'Koristusteenused Tallinnas - kontorid, kaubandus, tootmine | SPS Grupp',
-    description: 'Koristusfirma äriklientidele: kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!',
+    description: 'Koristusfirma äriklientidele: kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001.',
   },
   '/koristusteenus/kontori-koristus': {
     title: 'Kontori koristus Tallinnas - alates 1,20 €/m² | SPS Grupp',
-    description: 'Regulaarne kontorikoristus büroodele alates 800 m² Tallinnas ja Harjumaal. 50+ kontori usaldab SPS Gruppi. Tasuta audit, koolitatud personal, ISO 9001. Vastus 1 tööpäevaga!',
+    description: 'Regulaarne kontorikoristus büroodele alates 800 m² Tallinnas ja Harjumaal. 50+ kontori usaldab SPS Gruppi. Tasuta audit, ISO 9001.',
   },
   '/koristusteenus/hoolduskoristus': {
     title: 'Hoolduskoristus Tallinnas - äripindade regulaarne koristus | SPS Grupp',
-    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal, 1–7 korda nädalas, alates 1,20 €/m² kuus. Kindel personal, ISO 9001. Tasuta ülevaatus!',
+    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Kindel personal, ISO 9001.',
   },
   '/puhastusteenused/suurpuhastus': {
-    title: 'Suurpuhastus Tallinnas - põhjalik süvapuhastus äripindadele | SPS Grupp',
-    description: 'Suurpuhastus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Põrandate masinpesu, katlakivi eemaldus, varjatud alad. Tasuta pakkumine - vastus 1 tööpäevaga!',
+    title: 'Suurpuhastus Tallinnas - süvapuhastus äripindadele | SPS Grupp',
+    description: 'Suurpuhastus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Põrandate masinpesu, katlakivi eemaldus, varjatud alad.',
   },
   '/koristusteenus/kaubanduspindade-koristus': {
     title: 'Kaubanduspindade koristus - Kaupluste ja äripindade puhastus | SPS Grupp',
@@ -52,7 +52,7 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Kojameheteenus ja territooriumi igapäevane hooldus ärihoonetele. Usaldusväärne partner.',
   },
   '/koristusteenus/valikoristus/lehtedekoristamine': {
-    title: 'Lehtede koristus Tallinnas - sügisene territooriumi puhastus | SPS Grupp',
+    title: 'Lehtede koristamine Tallinnas - territooriumi puhastus | SPS Grupp',
     description: 'Lehtede koristus ja lehtede koristamine ärikinnistutel. Sügisene territooriumi puhastus, haljastusjäätmete äravedu vajadusel.',
   },
   '/koristusteenus/valikoristus/lumekoristus': {
@@ -69,11 +69,11 @@ export const pageMetadata: Record<string, { title: string; description: string }
   },
   '/puhastusteenused': {
     title: 'Puhastusteenused Tallinnas - alates 1 €/m² | SPS Grupp',
-    description: 'Puhastusteenused äriklientidele alates 1 €/m²: põrandate süvapesu, vaipade puhastus, suurpuhastus, ehitusjärgne koristus ja desinfitseerimine Tallinnas ja Harjumaal. ISO 9001. Tasuta pakkumine - vastus 1 tööpäevaga!',
+    description: 'Puhastusteenused äriklientidele alates 1 €/m²: põrandate süvapesu, suurpuhastus ja ehitusjärgne koristus Tallinnas ja Harjumaal. Tasuta pakkumine!',
   },
   '/puhastusteenused/ehitusjargne-koristus': {
     title: 'Ehitusjärgne koristus Tallinnas - tasuta hindamine | SPS Grupp',
-    description: 'Ehitusjärgne koristus arendajatele ja ettevõtetele Tallinnas ja Harjumaal. Eemaldame ehitusprahi, tolmu ja plekid - objekt valmis kasutuseks. Tasuta hindamine, vastus 1 tööpäevaga!',
+    description: 'Ehitusjärgne koristus Tallinnas. Hind ja tööde algusaeg sõltuvad objekti suurusest, seisukorrast ning meeskonna saadavusest. Küsi pakkumist!',
   },
   '/puhastusteenused/koroonaviiruse-jargne-puhastus': {
     title: 'Desinfitseerimine Tallinnas - Pindade desinfitseerimine | SPS Grupp',
@@ -133,7 +133,7 @@ export const pageMetadata: Record<string, { title: string; description: string }
   },
   '/ehitusprahi-aravedu': {
     title: 'Ehitusprahi äravedu Tallinnas - kiire pakkumine | SPS Grupp',
-    description: 'Ehitusjäätmete ja ehitusprahi äravedu Tallinnas ja Harjumaal. Konteinerite tarne lepime kokku Sinu mahu ja ajakava järgi. Küsi tasuta pakkumist - vastus 1 tööpäevaga!',
+    description: 'Ehitusjäätmete ja ehitusprahi äravedu Tallinnas ja Harjumaal. Konteinerite tarne Sinu mahu ja ajakava järgi. Küsi tasuta pakkumist!',
   },
   '/kontakt': {
     title: 'Võta ühendust - SPS Grupp koristusfirma | SPS Grupp',
@@ -175,19 +175,19 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus': {
       title: 'Cleaning Services in Tallinn - offices, retail, industrial | SPS Grupp',
-      description: 'A cleaning company for businesses: regular cleaning of offices, retail and production premises in Tallinn and Harjumaa. 300+ employees, ISO 9001/14001. Free assessment - reply within 1 business day!',
+      description: 'A cleaning company for businesses: regular cleaning of offices, retail and production premises in Tallinn and Harjumaa. 300+ employees, ISO 9001/14001.',
     },
     '/koristusteenus/kontori-koristus': {
       title: 'Office Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
-      description: 'Regular office cleaning for offices from 800 m² in Tallinn and Harjumaa. 50+ offices trust SPS Grupp. Free audit, trained staff, ISO 9001. Reply within 1 business day!',
+      description: 'Regular office cleaning for offices from 800 m² in Tallinn and Harjumaa. 50+ offices trust SPS Grupp. Free audit, ISO 9001.',
     },
     '/koristusteenus/hoolduskoristus': {
       title: 'Regular Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
-      description: 'Contract-based regular cleaning for offices, retail and production premises in Tallinn and Harjumaa, 1–7 times a week, from €1.20/m² per month. Free assessment - reply within 1 business day!',
+      description: 'Contract-based regular cleaning for offices, retail and production premises in Tallinn and Harjumaa, from €1.20/m² per month. Free assessment.',
     },
     '/puhastusteenused/suurpuhastus': {
-      title: 'Deep Cleaning in Tallinn - thorough cleaning for businesses | SPS Grupp',
-      description: 'Deep cleaning for offices, retail and production premises in Tallinn and Harjumaa. Machine scrubbing of floors, limescale removal, hidden areas. Free quote - reply within 1 business day!',
+      title: 'Deep Cleaning in Tallinn for Businesses | SPS Grupp',
+      description: 'Deep cleaning for offices, retail and production premises in Tallinn and Harjumaa. Machine scrubbing of floors, limescale removal, hidden areas.',
     },
     '/koristusteenus/kaubanduspindade-koristus': {
       title: 'Retail Space Cleaning in Tallinn and Harjumaa | SPS Grupp',
@@ -203,7 +203,7 @@ export const localizedPageMetadata: Partial<
     },
     '/puhastusteenused': {
       title: 'Specialist Cleaning Services in Tallinn | SPS Grupp',
-      description: 'Specialist cleaning for business clients from €1/m²: floor deep cleaning, carpet cleaning, post-construction cleaning, disinfection and floor maintenance in Tallinn and Harjumaa. ISO 9001. Free quote - reply within 1 business day!',
+      description: 'Specialist cleaning for businesses from €1/m²: floor deep cleaning, carpet cleaning, post-construction cleaning and floor maintenance in Tallinn and Harjumaa.',
     },
     '/remonditeenused-tallinnas/plaatimistood': {
       title: 'Tiling Services in Tallinn and Harjumaa | SPS Grupp',
@@ -211,7 +211,7 @@ export const localizedPageMetadata: Partial<
     },
     '/sps-grupp/arvamused': {
       title: 'Client Reviews and Feedback | SPS Grupp',
-      description: 'Read what SPS Grupp clients say about our cleaning, maintenance and renovation services.',
+      description: 'Read what SPS Grupp clients say about our cleaning, maintenance and renovation services in Tallinn and Harjumaa. Real feedback from real clients.',
     },
     '/koristusteenus/valikoristus': {
       title: 'Outdoor Cleaning in Tallinn and Harjumaa | SPS Grupp',
@@ -231,13 +231,13 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/valikoristus/muruniitmine': {
       title: 'Lawn Mowing in Tallinn and Harjumaa | SPS Grupp',
-      description: 'Regular lawn mowing and grounds maintenance for commercial properties and housing associations.',
+      description: 'Regular lawn mowing and grounds maintenance for commercial properties and housing associations in Tallinn and Harjumaa. Reliable seasonal service.',
     },
     // Moved from messages/en.json *.seo.serviceName/serviceDescription (Task 9; values unchanged).
 
     '/ehitusprahi-aravedu': {
       title: 'Construction Waste Removal in Tallinn | SPS Grupp',
-      description: 'Construction waste and debris removal in Tallinn and Harjumaa. Container delivery arranged to your volume and schedule. Free quote - reply within 1 business day!',
+      description: 'Construction waste and debris removal in Tallinn and Harjumaa. Container delivery to your volume and schedule. Free quote!',
     },
     '/koristusteenus/valikoristus/akende-pesu': {
       title: 'Window Cleaning Services in Tallinn | SPS Grupp',
@@ -285,7 +285,7 @@ export const localizedPageMetadata: Partial<
     },
     '/remonditeenused-tallinnas/elektritood': {
       title: 'Electrician in Tallinn - Electrical Work for Business | SPS Grupp',
-      description: 'Electrician in Tallinn: electrical installation, repair and maintenance for commercial properties, with the required scope and documentation agreed before work begins.',
+      description: 'Electrician in Tallinn: electrical installation, repair and maintenance for commercial properties, scope agreed before work begins.',
     },
     '/remonditeenused-tallinnas/katuse-remont': {
       title: 'Roof Repair Services in Tallinn | SPS Grupp',
@@ -331,27 +331,27 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus': {
       title: 'Услуги уборки в Таллинне - офисы, торговля, производство | SPS Grupp',
-      description: 'Клининговая компания для бизнеса: регулярная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. 300+ сотрудников, ISO 9001/14001. Бесплатная оценка - ответ в течение 1 рабочего дня!',
+      description: 'Клининговая компания для бизнеса: регулярная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. 300+ сотрудников, ISO 9001/14001.',
     },
     '/koristusteenus/kontori-koristus': {
       title: 'Уборка офисов в Таллинне - от 1,20 €/м² | SPS Grupp',
-      description: 'Регулярная уборка офисов площадью от 800 м² в Таллинне и Харьюмаа. Более 50 офисов доверяют SPS Grupp. Бесплатный аудит, обученный персонал, ISO 9001. Ответ в течение 1 рабочего дня!',
+      description: 'Регулярная уборка офисов от 800 м² в Таллинне и Харьюмаа. Более 50 офисов доверяют SPS Grupp. Бесплатный аудит, ISO 9001.',
     },
     '/koristusteenus/hoolduskoristus': {
       title: 'Регулярная уборка в Таллине - от 1,20 €/м² | SPS Grupp',
-      description: 'Регулярная договорная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа, 1–7 раз в неделю, от 1,20 €/м² в месяц. Бесплатная оценка - ответ в течение 1 рабочего дня!',
+      description: 'Регулярная договорная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа, от 1,20 €/м² в месяц. Бесплатная оценка.',
     },
     '/puhastusteenused/suurpuhastus': {
-      title: 'Генеральная уборка в Таллинне - тщательная уборка для бизнеса | SPS Grupp',
-      description: 'Генеральная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. Машинная мойка полов, удаление известкового налёта, скрытые зоны. Бесплатное предложение - ответ в течение 1 рабочего дня!',
+      title: 'Генеральная уборка в Таллинне для бизнеса | SPS Grupp',
+      description: 'Генеральная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. Машинная мойка полов, удаление известкового налёта.',
     },
     '/koristusteenus/kaubanduspindade-koristus': {
       title: 'Уборка торговых помещений в Таллинне | SPS Grupp',
-      description: 'Регулярная уборка торговых помещений от 1,20 €/м² в месяц. Минимальная площадь объекта - 800 м².',
+      description: 'Регулярная уборка торговых помещений от 1,20 €/м² в месяц. Минимальная площадь объекта - 800 м². Надёжный персонал и стабильное качество в Таллинне и Харьюмаа.',
     },
     '/koristusteenus/tootmishoonete-koristus': {
       title: 'Уборка промышленных зданий в Харьюмаа | SPS Grupp',
-      description: 'Регулярная уборка производственных помещений и складов от 1,20 €/м² в месяц, начиная с 800 м².',
+      description: 'Регулярная уборка производственных помещений и складов от 1,20 €/м² в месяц, начиная с 800 м². Опыт со сложными промышленными объектами. Бесплатная оценка.',
     },
     '/koolide-koristamine': {
       title: 'Уборка школ и детских садов в Таллинне | SPS Grupp',
@@ -359,15 +359,15 @@ export const localizedPageMetadata: Partial<
     },
     '/puhastusteenused': {
       title: 'Клининговые услуги в Таллинне для бизнеса | SPS Grupp',
-      description: 'Клининговые услуги для бизнеса от 1 EUR/м²: глубокая мойка полов, чистка ковров, генеральная и послестроительная уборка, дезинфекция и уход за полами в Таллинне и Харьюмаа. ISO 9001. Бесплатное предложение - ответ в течение 1 рабочего дня!',
+      description: 'Клининговые услуги для бизнеса от 1 EUR/м²: глубокая мойка полов, чистка ковров, генеральная уборка и уход за полами в Таллинне и Харьюмаа. ISO 9001.',
     },
     '/remonditeenused-tallinnas/plaatimistood': {
       title: 'Укладка плитки в Таллинне и Харьюмаа | SPS Grupp',
-      description: 'Профессиональная укладка напольной и настенной плитки в коммерческих и жилых помещениях.',
+      description: 'Профессиональная укладка напольной и настенной плитки в коммерческих и жилых помещениях в Таллинне и Харьюмаа. Опытные мастера, качественная работа.',
     },
     '/sps-grupp/arvamused': {
       title: 'Отзывы клиентов | SPS Grupp',
-      description: 'Отзывы клиентов SPS Grupp о клининге, обслуживании недвижимости и ремонтных работах.',
+      description: 'Отзывы клиентов SPS Grupp о клининге, обслуживании недвижимости и ремонтных работах в Таллинне. Реальные отзывы о качестве наших услуг.',
     },
     '/koristusteenus/valikoristus': {
       title: 'Уборка территорий в Таллинне и Харьюмаа | SPS Grupp',
@@ -375,15 +375,15 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/valikoristus/grafiti-eemaldamine': {
       title: 'Удаление граффити в Таллинне и Харьюмаа | SPS Grupp',
-      description: 'Быстрое и безопасное для поверхности удаление граффити с фасадов и других наружных поверхностей.',
+      description: 'Быстрое и безопасное для поверхности удаление граффити с фасадов и других наружных поверхностей в Таллинне и Харьюмаа. Быстрая реакция.',
     },
     '/koristusteenus/valikoristus/kojameheteenus': {
       title: 'Услуги дворника в Таллинне и Харьюмаа | SPS Grupp',
-      description: 'Ежедневное содержание территории для коммерческих объектов и квартирных товариществ.',
+      description: 'Ежедневное содержание территории для коммерческих объектов и квартирных товариществ в Таллинне и Харьюмаа. Надёжный партнёр по уходу за территорией.',
     },
     '/koristusteenus/valikoristus/lehtedekoristamine': {
       title: 'Уборка листьев в Таллинне и Харьюмаа | SPS Grupp',
-      description: 'Сезонный сбор и вывоз листьев с территорий коммерческих объектов и квартирных товариществ.',
+      description: 'Сезонный сбор и вывоз листьев с территорий коммерческих объектов и квартирных товариществ в Таллинне и Харьюмаа. Поддержание территории в порядке осенью.',
     },
     '/koristusteenus/valikoristus/muruniitmine': {
       title: 'Стрижка газонов в Таллинне и Харьюмаа | SPS Grupp',
@@ -393,7 +393,7 @@ export const localizedPageMetadata: Partial<
 
     '/ehitusprahi-aravedu': {
       title: 'Вывоз строительного мусора в Таллине | SPS Grupp',
-      description: 'Вывоз строительных отходов и мусора в Таллинне и Харьюмаа. Доставку контейнеров согласуем под ваш объём и график. Бесплатное предложение - ответ в течение 1 рабочего дня!',
+      description: 'Вывоз строительных отходов и мусора в Таллинне и Харьюмаа. Доставку контейнеров согласуем под ваш объём и график. Бесплатное предложение.',
     },
     '/koristusteenus/valikoristus/akende-pesu': {
       title: 'Мойка окон в Таллинне | SPS Grupp',
@@ -405,7 +405,7 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/valikoristus/lumekoristus': {
       title: 'Уборка снега в Таллине | SPS Grupp',
-      description: 'Уборка снега и борьба с гололедом в Таллине 24/7. Парковки, тротуары, входы. Сезонный договор.',
+      description: 'Уборка снега и борьба с гололёдом в Таллине и Харьюмаа 24/7. Парковки, тротуары, входы. Сезонный договор для коммерческих объектов.',
     },
     '/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus': {
       title: 'Мойка и уход за тротуарной плиткой в Таллине | SPS Grupp',
@@ -417,7 +417,7 @@ export const localizedPageMetadata: Partial<
     },
     '/puhastusteenused/eskalaatorite-suvapuhastus': {
       title: 'Глубокая очистка эскалаторов в Таллине | SPS Grupp',
-      description: 'Профессиональная глубокая очистка эскалаторов и движущихся лестниц в Таллине.',
+      description: 'Профессиональная глубокая очистка эскалаторов и движущихся лестниц в Таллине и Харьюмаа. Специальная техника и опыт. Бесплатное предложение.',
     },
     '/puhastusteenused/koroonaviiruse-jargne-puhastus': {
       title: 'Дезинфекция в Таллине | SPS Grupp',
@@ -425,7 +425,7 @@ export const localizedPageMetadata: Partial<
     },
     '/puhastusteenused/porandate-hooldus': {
       title: 'Уход за полами в Таллине | SPS Grupp',
-      description: 'Профессиональный уход за полами и глубокая очистка в Таллине. Все типы напольных покрытий.',
+      description: 'Профессиональный уход за полами и глубокая очистка в Таллине и Харьюмаа. Все типы напольных покрытий. Бесплатная оценка для коммерческих объектов.',
     },
     '/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine': {
       title: 'Очистка после пожара и задымления в Таллине | SPS Grupp',
@@ -449,7 +449,7 @@ export const localizedPageMetadata: Partial<
     },
     '/remonditeenused-tallinnas/lammutustood': {
       title: 'Демонтажные работы в Таллине | SPS Grupp',
-      description: 'Демонтажные работы и разборка конструкций в Таллине. Внутренний и наружный демонтаж.',
+      description: 'Демонтажные работы и разборка конструкций в Таллине и Харьюмаа. Внутренний и наружный демонтаж для коммерческих объектов. Бесплатная оценка.',
     },
     '/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus': {
       title: 'Санитарный ремонт и перепланировка в Таллине | SPS Grupp',
@@ -464,7 +464,7 @@ export const localizedPageMetadata: Partial<
       description: 'Сантехнические работы и ремонт водопровода для коммерческой недвижимости в Таллине. Аварийные протечки, трубопроводы, канализация.',
     },
     '/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus': {
-      title: 'Строительство и обслуживание вентиляционных систем в Таллине | SPS Grupp',
+      title: 'Монтаж и обслуживание вентиляции в Таллине | SPS Grupp',
       description: 'Строительство и обслуживание вентиляционных систем для коммерческой недвижимости в Таллине. Очистка воздуха, воздуховоды, оборудование.',
     },
     '/kontakt': {

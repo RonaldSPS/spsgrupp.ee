@@ -145,7 +145,7 @@ async function getDynamicMetadata(loc: 'en' | 'ru', path: string): Promise<Metad
       description: (
         announcement.subtitle && announcement.subtitle.length >= 50
           ? announcement.subtitle
-          : `${announcement.title}${announcement.location ? ` - ${announcement.location}` : ""}. ${loc === 'en' ? "See details and apply at SPS Grupp." : "Смотрите детали и подавайте заявку в SPS Grupp."}`
+          : `${announcement.title}${announcement.location ? ` - ${announcement.location}` : ""}. ${loc === 'en' ? "Join SPS Grupp: stable work, on-the-job training and a supportive team. See details and apply!" : "Присоединяйтесь к SPS Grupp: стабильная работа, обучение и дружная команда. Смотрите детали и подавайте заявку!"}`
       ).slice(0, 160),
       alternates: { canonical },
       openGraph: {

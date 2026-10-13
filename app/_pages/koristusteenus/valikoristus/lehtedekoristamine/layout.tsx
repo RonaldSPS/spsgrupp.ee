@@ -3,7 +3,7 @@ import { generatePageMetadata } from "@/lib/metadata-helper";
 export const metadata = generatePageMetadata({
   path: "/koristusteenus/valikoristus/lehtedekoristamine",
   locale: "et",
-  title: "Lehtede koristus Tallinnas - sügisene territooriumi puhastus | SPS Grupp",
+  title: "Lehtede koristamine Tallinnas - territooriumi puhastus | SPS Grupp",
   description:
     "Lehtede koristus ärikinnistutel, korteriühistutes ja välialadel. Lehtede kogumine, kõnniteede puhastus ja haljastusjäätmete äravedu.",
   imagePath: "/lehekoristus-1.webp",

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: (
       a.subtitle && a.subtitle.length >= 50
         ? a.subtitle
-        : `${a.title}${a.location ? ` - ${a.location}` : ""}. Vaata pakkumise tingimusi ja kandideeri SPS Gruppi.`
+        : `${a.title}${a.location ? ` - ${a.location}` : ""}. Tule tööle SPS Gruppi: stabiilne töökoht, väljaõpe ja hea meeskond. Vaata tingimusi ja kandideeri!`
     ).slice(0, 160),
     imagePath: "/tuletoole-1.jpg",
   })

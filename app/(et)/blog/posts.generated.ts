@@ -27,7 +27,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 9003,
-    "title": "Mis on hoolduskoristus ja mida see ettevõttele tähendab?",
+    "title": "Hoolduskoristus – mis see ettevõttele tähendab?",
     "slug": "mis-on-hoolduskoristus-ja-mida-see-ettevottele-tahendab",
     "date": "2026-10-05 10:00:00",
     "excerpt": "Kui koristus on juhuslik, on tulemus ebaühtlane ja keegi tegelikult ei vastuta. Hoolduskoristuse leping toob objektile kindla meeskonna, kirjaliku tööplaani ja regulaarse kvaliteedikontrolli.",
@@ -51,7 +51,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 9001,
-    "title": "Ehitusprahi ja -jäätmete äravedu Tallinnas: mahud, hinnad ja töökorraldus",
+    "title": "Ehitusprahi äravedu Tallinnas – mahud ja hinnad",
     "slug": "ehitusprahi-jaatmete-aravedu-tallinnas-mahud-hinnad-tookorraldus",
     "date": "2026-09-11 10:00:00",
     "excerpt": "Kui palju ehitusprahti objektil tekib, millist konteinerit on vaja ja kui palju maksab äravedu 2026. aastal? Anname praktilise ülevaate ehitusjäätmete kogumisest, sorteerimisest ja äraveost Tallinnas.",
@@ -63,10 +63,10 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 6582,
-    "title": "Keskkonnasõbralikud puhastusvahendid - miks need on olulised?",
+    "title": "Keskkonnasõbralikud puhastusvahendid",
     "slug": "keskkonnasobralikud-puhastusvahendid",
     "date": "2023-05-02 14:08:12",
-    "excerpt": "Enamikul tavapärastest puhastusvahenditest on negatiivne mõju keskkonnale, sest nad sisaldavad kemikaale, mis võivad põhjustada reostust ja kahjustada loodust. Seetõttu on oluline kaaluda keskkonnasõbralike puhastusvahendite kasutamist. Keskkonnasõbralikud puhastusvahendid - mida need tähendavad? Keskkonnasõbralikud pu",
+    "excerpt": "Enamikul tavapärastest puhastusvahenditest on keskkonnale negatiivne mõju. Kaaluge keskkonnasõbralike puhastusvahendite kasutamist.",
     "contentHtml": "<h2>Enamikul tavapärastest puhastusvahenditest on negatiivne mõju keskkonnale, sest nad sisaldavad kemikaale, mis võivad põhjustada reostust ja kahjustada loodust. Seetõttu on oluline kaaluda keskkonnasõbralike puhastusvahendite kasutamist.</h3>\n<a href=\"/blog-media/2023/05/keskkonnasobralikud_puhastusvahendid2.jpg\"><img class=\"alignnone wp-image-6585 size-full\" src=\"/blog-media/2023/05/keskkonnasobralikud_puhastusvahendid2.jpg\" alt=\"keskkonnasõbralikud puhastusvahendid 2\" width=\"1024\" height=\"1024\" /></a>\n<h2>Keskkonnasõbralikud puhastusvahendid - mida need tähendavad?</h2>\nKeskkonnasõbralikud puhastusvahendid on loodussõbralikud ja biolagunevad. Nad on valmistatud taastuvatest allikatest ning ei sisalda ohtlikke kemikaale ega ühendeid, mis võivad kahjustada keskkonda või inimeste tervist. Need professionaalsed puhastusvahendid on pakendatud ka keskkonnasõbralikult, kasutades taaskasutatud materjale või materjale, mis on lihtsalt taaskasutatavad.\n\n<a href=\"/blog-media/2023/05/keskkonnasobralikud_puhastusteenused3.jpg\"><img class=\"alignnone wp-image-6587 size-full\" src=\"/blog-media/2023/05/keskkonnasobralikud_puhastusteenused3.jpg\" alt=\"keskkonnasõbralikud puhastusvahendid 3\" width=\"1024\" height=\"1024\" /></a>\n<h2>Keskkonnasõbralikud puhastusteenused</h2>\nKeskkonnasõbralikud <a href=\"/koristusteenus/\">puhastusteenused</a> tähendavad, et koristusfirma kasutab oma töös ainult keskkonnasõbralikke puhastusvahendeid ja meetodeid. Nad kasutavad ka vähem vett ja energiat, mis aitab vähendada nende ökoloogilist jalajälge. Keskkonnasõbralikud puhastusteenused on suurepärane valik nii era- kui ka ärikliendile, kes soovivad säilitada puhta ja tervisliku keskkonna. SPS Grupp on Tallinna juhtiv <a href=\"https://spsgrupp.ee/\">koristusfirma</a>, mis pakub erinevaid puhastusteenuseid nii era- kui ka ärikliendile. Ettevõte kasutab oma töös ainult keskkonnasõbralikke puhastusvahendeid ja meetodeid, et tagada oma klientidele tervislik ja puhas keskkond.\n\n&nbsp;\n\n<a href=\"/blog-media/2023/05/keskkonnasobralikud_puhastusvahendid4.jpg\"><img class=\"alignnone wp-image-6589 size-full\" src=\"/blog-media/2023/05/keskkonnasobralikud_puhastusvahendid4.jpg\" alt=\"keskkonnasõbralikud puhastusvahendid 4\" width=\"1024\" height=\"1024\" /></a>\n<h2>Keskkonnasõbralike puhastusvahendite tunnused</h2>\n<h3>Keskkonnasõbralike puhastusvahendite kasutamise eesmärk on vähendada keskkonnale avaldatavat mõju. Seetõttu on oluline teada, millised tunnused teevad puhastusvahenditest keskkonnasõbralikud.</h3>\n<strong>Esiteks</strong> tuleks vaadata puhastusvahendi koostisosi. Keskkonnasõbralikud tooted on valmistatud biolagunevatest ainetest, mis tähendab, et need lagunevad looduses kiiresti ning ei jäta maha kahjulikke jääke. Samuti peaksid keskkonnasõbralikud puhastusvahendid olema valmistatud looduslikest koostisosadest nagu taimeõlid, sidrunhape ja eeterlikud õlid.\n\n<strong>Teiseks</strong> peaksid keskkonnasõbralikud puhastusvahendid olema pakendatud keskkonnasõbralikesse materjalidesse nagu taaskasutatavad plastikud või paber. See tagab, et pärast toote kasutamist ei kujuta pakendid ohtu keskkonnale.\n\n<strong>Kolmandaks</strong> peaksid keskkonnasõbralikud puhastusvahendid olema tõhusad ning suutma puhastada sama tõhusalt kui tavapärased puhastusvahendid. Nii saate nautida puhast kontorit, teades samal ajal, et te ei kahjusta keskkonda.\n\n&nbsp;\n\n<a href=\"/blog-media/2023/05/keskkonnasobralikud_puhastusteenused5.jpg\"><img class=\"alignnone wp-image-6591 size-full\" src=\"/blog-media/2023/05/keskkonnasobralikud_puhastusteenused5.jpg\" alt=\"keskkonnasõbralikud puhastusvahendid 5\" width=\"1024\" height=\"1024\" /></a>\n<h2>Keskkonnasõbralikud puhastusvahendid SPS Grupi koristusteenustes</h2>\nKeskkonnasõbralike puhastusvahendite kasutamine on üks viis, kuidas koristusfirma SPS Grupp püüab oma puhastusteenuseid keskkonnasõbralikumaks muuta. SPS Grupi koristajad kasutavad oma töös keskkonnasõbralikke puhastusvahendeid, mis on valmistatud looduslikest koostisosadest ning biolagunevatest ainetest.\n\nSPS Grupp on pühendunud ka keskkonnasõbralike koristustehnikate kasutamisele. Näiteks kasutab ettevõte mikrokiudlappe, mis aitavad vähendada puhastusvahendite kasutamist ja samal ajal tagavad koristustulemuste kõrge kvaliteedi. Lisaks kasutab SPS Grupp tolmuimejaid, mis on varustatud HEPA filtritega.\n\nLisaks on oluline märkida, et keskkonnasõbralikud puhastusvahendid on tavaliselt ka tervisele ohutumad. Need sisaldavad vähem kemikaale, mis võivad kahjustada nii keskkonda kui ka inimeste tervist. Kui kasutada tavapäraseid puhastusvahendeid, võib see õhus lenduvate kemikaalide tõttu põhjustada hingamisteede ärritust, peavalusid ja muid terviseprobleeme. Keskkonnasõbralike puhastusvahendite kasutamine vähendab nende riskidega seotud ohte.\n\nKokkuvõttes on <a href=\"https://www.facebook.com/Puhastusteenused\">keskkonnasõbralike puhastusvahendite</a> kasutamine kasulik nii keskkonnale kui ka inimeste tervisele. Koristusfirma SPS Grupp on võtnud eesmärgiks pakkuda oma klientidele võimalust kasutada keskkonnasõbralikke puhastusvahendeid ning seeläbi panustada oma osa puhtama ja tervislikuma keskkonna loomisesse. Kui otsite puhastusteenuseid Tallinnas, siis võtke ühendust SPS Grupiga ja uurige, millised keskkonnasõbralikud puhastusvahendid neil kasutusel on. Nii saate tagada oma kodu või kontori puhtuse ja samal ajal aidata kaasa säästlikule tulevikule.\n\n&nbsp;",
     "featuredImage": "/blog-media/2023/05/keskkonnasobralikud-_puhastusvahendid1.jpg",
     "featuredImageSource": "wordpress",
@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
     "title": "Kas prügi sorteerimine kontoris on võimalik",
     "slug": "kas-prugi-sorteerimine-kontoris-on-voimalik",
     "date": "2023-03-10 11:38:19",
-    "excerpt": "Prügi sorteerimine kogub hoogu ja seda nõuab ka uus jäätmeseadus. Uurime, kuidas muuta jäätmete sorteerimine kontoris loomulikuks igapäeva osaks ja selle abil vähendada olulisel määral jälge keskkonnale. Prügi sorteerimine on hea samm keskkonnasõbralikuks ettevõtteks saamisel Alles hiljuti oli kontorite kõige suuremaks",
+    "excerpt": "Prügi sorteerimine kogub hoogu ja seda nõuab ka uus jäätmeseadus. Uurime, kuidas muuta jäätmete sorteerimine kontoris loomulikuks igapäeva osaks.",
     "contentHtml": "<strong>Prügi sorteerimine kogub hoogu ja seda nõuab ka uus jäätmeseadus. Uurime, kuidas muuta jäätmete sorteerimine kontoris loomulikuks igapäeva osaks ja selle abil vähendada olulisel määral jälge keskkonnale.</strong>\n\n<a href=\"/blog-media/2023/03/SPS_Grupp_prugi_sorteerimine.jpg\"><img class=\"wp-image-5201 size-full\" src=\"/blog-media/2023/03/SPS_Grupp_prugi_sorteerimine.jpg\" alt=\"Prügi sorteerimine, SPS Grupp, keskkonnasõbralik ettevõte\" width=\"1200\" height=\"801\" /></a> Prügi sorteerimine on hea samm keskkonnasõbralikuks ettevõtteks saamisel\n\nAlles hiljuti oli kontorite kõige suuremaks jäätmerühmaks paber. Digitaliseerimise käigus on see aga muutunud ning täna täidavad kontorite prügikaste kõige enam erinevad pakendid. Pakendid on valmistatud materjalidest, millele on võimalik anda uus elu, kuid seda vaid juhul, kui neid eraldi kogutakse. Uuringud on näidanud, et prügi sorteerimise puhul annab parima tulemuse see, kui neid sorteeritakse kohe sellel hetkel, mil need tekivad. Hiljem on jäätmeid üksteisest eraldada pea võimatu ja nii läheb väärtuslik materjal raisku. Selleks, et eristada taaskasutatavad materjalid muust prügist,  on vaja loobuda kogu prügi ühte ämbrisse loopimisest. Õnneks on tänapäeval prügi sorteerimise lahenduste valik lai ning jutustada ka mitmeid edulugusid.\n<h2>Miks ja kuidas üldse prügi sorteerida!</h3>\nPrügi sorteerimisel ei tasu üle mõelda. Kõige lihtsam on meelde jätta, et kõik pakendid, mille sees on olnud mistahes toode, käivad alati pakendikonteinerisse. Olgu nendeks siis jogurti- ja võikarbid, õli- ja majoneesipudelid, kileümbrised või -kotid, pakkekile, aga ka mahla- ja piimapakid, konservikarbid ja purgid jne. Kõik pakendid pestakse tööstuslikult üle, seetõttu pole mõtet vett ja energiat topelt kulutada. Küll aga tuleks need toidust-joogist tühjendada ja vaadata, et need oleks piisavalt kuivad, et ülejäänud pakendeid konteineris ära ei määri.\n<h2>Aga kodukeemia?</h3>\nPakendikonteinerisse võib panna lisaks ka tarbekauba pakendeid: šampooni- ja kreemipudeleid, pakkekilet, puhastusvahendite pudeleid, pesupulbri koti ja teisi toodete ümber olevaid plastpakendeid. Kõik need tuleb enne muidugi tühjaks kasutada. Seega, pakend on alati pakend ja läheb pakendikonteinerisse. „Tarbijana me ei pea teadma, millisest materjalist pakendeid saab ümber töödelda ja millised lõpetavad tegelikult energiatootmiseks otse põletusahjus. Selle otsuse teevad meie eest ära jäätmekäitlejad, kes peavad vastavalt ka õiglast hinda maksma,“ ütles keskkonnaminister.\n<h2>Milliseid prügi sorteerimislahendusi on pakkuda?</h3>\n<a href=\"https://www.puhastusimport.ee/et/\">Puhastusimpordist </a>leiab igaüks endale sobiva jäätmekäitluslahenduse. Paindlik, innovatiivne ja keskkonnasõbralik <a href=\"https://www.puhastusimport.ee/et/longopac-prugikaitlussusteemi-tooted/longopac-raamid-ja-prugisorteerimissusteemid\">Longopac</a> jäätmekäitlussüsteem pakub sobivaid lahendusi igasse ruumi. Vali moodne 1-4 osaline sorteerimisjaam või paigalda prügikotiraam kasvõi olemasoleva mööbli sisse. Longopac sobitub ideaalselt iga ruumi interjööriga.\n\nUnikaalne ja keskkonda hoidev prügikäitlussüsteem on välja töötatud Rootsis ning see võimaldab nutikamat jäätmekäitlust ja ainulaadset pakendamislahendust. <a href=\"https://www.puhastusimport.ee/et/longopac-prugikaitlussusteemi-tooted/longopac-raamid-ja-prugisorteerimissusteemid\">Longopac</a> prügi sorteerimise süsteem muudab jäätmete kogumise tavaliste prügikottidega võrreldes tõhusamaks ja ökonoomsemaks, sest prügikott on tehtud oluliselt õhemast ja tugevamast plastikust ning plastikut kulub täpselt nii palju, kui jäätmete pakendamiseks parasjagu vaja on. Kui tavaliste prügikottide puhul tuleb sageli ette olukordi, kus prügikott visatakse pooltühjalt minema, siis Longopaci puhul on prügikotid alati 100%-liselt täis ning materjalikulu on palju väiksem.\n\nÜheks raskeimaks sammuks jäätmete sorteerimisel kontoris on töötajate harjumuste muutmine. Oleme kuulnud mitmeid edulugusid, kuidas laudade alt prügikastide eemaldamisega, muutub ühise sorteerimisjaama külastamine harjumuseks ning prügi sorteerimine igapäeva loomulikuks osaks. „<em>Kui muudad jäätmete sorteerimise inimeste jaoks lihtsaks ja mugavaks, siis võid olla kindel, et algatusega tullakse suure rõõmuga kaasa. Igaüks meist ju tahab hoida loodust ja prügisorteerimine on hea koht alustamiseks,</em>“ julgustas Puhastusimpordi tootejuht Siim Sildnik.\n<h2>Aga, kui meie firma ei soovi ise prügi sorteerimisega tegeleda?</h3>\nTegelikult ei peagi ettevõtted ise jäätmemajandusega tegelema, kuid saavad siiski olla keskkonnasõbralikud. Selleks tuleb appi kutsuda korralik koristusfirma. <a href=\"https://spsgrupp.ee/\">Koristusfirma SPS grupp </a>organiseerib igapäevaste <a href=\"/koristusteenus/\">koristusteenuste </a>käigus klientide jäätmekogumise ise, viib sisse jäätmete eriliigilise kogumise ning korraldab selle äraveo nii, et jäätmed omavahel ei segune. \"<em>Kasutame samuti Puhastusimport Longopac lahendust ja see on ennast tõestanud lugematutel kordadel, kui lihtne ja efektiivne süsteem</em>\", räägib SPS Grupp juhataja Silver Bakhoff. \"<em>Näiteks Lennujaama <a href=\"/koristusteenus/\">puhastusteenuste </a>korraldamisel 4 aasta jooksul andsime taaskasutusse 50 tonni paberit ja pappi. Rõõmustavad ka koristajad, sest püüame nende tööd lihtsamaks teha koolitades oma kliente prügi sorteerima ning seeläbi teevad nad märkamatult koristajate elu lihtsamaks</em>\", mainib Silver.\n\n<strong>Aina enam ettevõtteid võtab prügi sorteerimist tõsiselt. Kas teie firmas on prügiga asjad korras? Kas olete abiks tekkiva prügi taaskasutusse andmisel ning kannate ettevõttena keskkonnasõbralikku mainet?</strong>\n\n&nbsp;",
     "featuredImage": "/blog-media/2023/03/SPS_Grupp_prugi_sorteerimine.jpg",
     "featuredImageSource": "wordpress",
@@ -87,10 +87,10 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 5001,
-    "title": "Kuidas saavutada keskkonnasõbralikud puhastusteenused",
+    "title": "Keskkonnasõbralik koristus – kuidas saavutada?",
     "slug": "kuidas-saavutada-keskkonnasobralikud-puhastusteenused",
     "date": "2023-02-13 16:47:59",
-    "excerpt": "Keskkonnasõbralikud puhastusteenused koosnevad mitmetest nüanssidest, alustame puhastusvahenditest. Loodussõbralike puhastusvahendite valimine võib tavakasutajale tunduda üle jõu käiv – valikuvõimalusi ja koostisosi on lõputult. Siiski on koristusfirmadelt võtta mõned nõksud, mis aitavad selles segaduses hakkama saada.",
+    "excerpt": "Keskkonnasõbralikud puhastusteenused koosnevad mitmetest nüanssidest, alustame puhastusvahenditest. Koristusfirmade nõksud, mis aitavad selles segaduses hakkama saada.",
     "contentHtml": "Keskkonnasõbralikud <a href=\"/koristusteenus/\">puhastusteenused</a> koosnevad mitmetest nüanssidest, alustame puhastusvahenditest.\nLoodussõbralike puhastusvahendite valimine võib tavakasutajale tunduda üle jõu käiv – valikuvõimalusi ja koostisosi on lõputult. Siiski on koristusfirmadelt võtta mõned nõksud, mis aitavad selles segaduses hakkama saada.\n\nMõned tootjad pööravad erilist tähelepanu koostisosadele ja kasutavad ainult taimseid koostisosi. Nii saavad puhastusvahendid olla  biolagunevad ja mittetoksilised. Need on keskkonnale ohutud, mis teevad neist suurepärase valiku kõikjal, kus on kokkupuude elusolenditega.\n\n<a href=\"/blog-media/2023/02/SPS_Grupp_keskonnasobralikud_puhastusteenused.jpg\"><img class=\"wp-image-5002 size-full\" src=\"/blog-media/2023/02/SPS_Grupp_keskonnasobralikud_puhastusteenused.jpg\" alt=\"Keskkonnasõbralikud puhastusteenused\" width=\"1000\" height=\"667\" /></a> Keskkonnasõbralikud puhastusteenused jälgivad tervet teenuse ringi alustades vahendite valikuga ja lõpetades jäätmekäitlusega.\n<h2>Keskkonnasõbralikud puhastusteenused, mida see tähendab?</h2>\n<a href=\"https://www.postimees.ee/7713455/kuidas-saavutada-keskkonnasobralikud-puhastusteenused\">Keskkonnasõbralike puhastusvahendite</a> valimine on vaid üks osa jätkusuutlikkusest.\n\nAlustame põhitõdedest. Termin “Keskkonnasõbralikkus” on tegelikult reguleerimata ja sellel puudub töötav juriidiline määratlus.\n\nÜldises mõttes on kõigil ettekujutus keskkonnasõbralikust tootest. Aga sõnumit “See on keskkonnale ohutu” kasutavad mõnikord ettevõtted, kes üritavad oma koostises ohtlikke koostisosi varjata. Vahest viidatakse nendele koostisosadele tõenäoliselt ülimalt üldises terminoloogias, nagu \"puhastusaine\", \"värvaine\" või \"säilitusaine\". Ostmisel peaksite otsima tooteid, millel on täielik koostisosade läbipaistvus, et saaksite vähendada kokkupuudet kemikaalidega või vältida teatud aineid, mille suhtes võite olla allergilised.\"\n\n<strong>Vältida tasuks</strong>\n\nKvaternaarsed ammooniumkatioonid\nAmmoniaak\nFtalaadid\nEtanoolamiinid\nIsotiasolinooni säilitusained\nPFAS ühendid\n\n„Keskkonnasõbralik” ei ole ainus ebamäärane silt – sama kehtib ka termini „looduslik” kohta, millel pole samuti juriidilist määratlust ja mis ei ole reguleeritud. Mõistet \"taimne\" kasutavatel toodetel on aga valemid, mis sisaldavad teatud protsenti biopõhiseid koostisosi. „Taimne“ märgis ei garanteeri aga, et kõik koostisained on taimsed, nii et see on veel üks nüanss, millele tuleb tähelepanu pöörata.\n<h3>Tervise ja ohutuse esikohale seadmine</h3>\nKeskkonnasõbralikud <a href=\"/koristusteenus/\">puhastusteenused</a> tagavad tervise ja ohutuse. Mõned tooted, nagu WC-poti puhastusvahendid, on valmistatud söövitavate kemikaalidega, mis võivad põletada silmi, nahka ja isegi teie hingamisteid. Vesinikkloriidhapet või naatriumhüpokloriti (valgendit) sisaldavad tooted võivad samuti põhjustada tõsiseid nahakahjustusi.\n\nKeskkonnasõbralikud tooted keskenduvad ka jäätmete vähendamisele. Neil on sageli koostisosi, mis võivad looduslikult laguneda ja need on pakendatud taaskasutatavatesse või biolagunevatesse materjalidesse.\n\nKas teadsite, et 91 protsenti plastist ei võeta ringlusse ja see jääb prügimäele lihtsalt reostusena?\n\nLisaks pakendile on oluline vaadata, kus tooted on valmistatud. Lähipiirkonna päritoluga kaupade ringlus tekitab vähem süsinikdioksiidi heiteid, kasutavad vähem energiat ja neil on väiksem süsiniku jalajälg kui kaubad, mis on tarnitud mujalt maailmast.\n<h3>Ökomärgised ja sertifikaadid</h3>\nPõhjadmaades loetakse usaldusväärseks Nordic Swan märgisega tooteid. Puhastusteenuste tellimisel tasub jälgida, et koristusfirma kogu tegevus oleks keskkonna sertifikaatidega kaetud.\n\n<h4>Nordic Swan</h4>\nNordic Swan ökomärgis annab märgise toodetele, mis jälgivad keskkonnasõbralikkust toote eluea jooksul, Nii võetakse toote keskkonnasõbralikkuse hindamisel aluseks kasutatav tooraine, tootmine, toote kasutamine ja jäätmekäitlus.\n\n<img class=\"content-media\" src=\"/blog-media/2023/02/nordic-ecolabel.svg\" alt=\"\" loading=\"lazy\">\n<h4>ELi ökomärgis</h4>\nELi ökomärgis on Euroopa Liidu ametlik vabatahtlik keskkonnakaitsemärgis. 1992. aastal loodud ja kõikjal Euroopas ja maailmas tunnustatud ELi ökomärgis sertifitseerib tooteid, millel on garanteeritud, sõltumatult kontrollitud väike keskkonnamõju. ELi ökomärgise saamiseks peavad kaubad ja teenused vastama kõrgetele keskkonnastandarditele kogu oma olelusringi jooksul: alates tooraine kaevandamisest kuni tootmise ja turustamiseni ning toote kõrvaldamiseni kasutuselt. Samuti julgustab märgis ettevõtteid töötama välja uuenduslikke tooteid, mis on vastupidavad, kergesti parandatavad ja taaskasutatavad.\n\n<img class=\"content-media\" src=\"/blog-media/2023/02/Ecolabel-1024x1024-1.png\" alt=\"\" loading=\"lazy\">\n<h4>ISO 14001</h4>\nISO 14001 sätestab keskkonnajuhtimissüsteemi kriteeriumid ja seda saab sertifitseerida. See kaardistab raamistiku, mida ettevõte või organisatsioon saab tõhusa keskkonnajuhtimissüsteemi loomiseks järgida.\nMõeldud igat tüüpi organisatsioonidele, sõltumata selle tegevusest või sektorist, võib see anda ettevõtte juhtkonnale ja töötajatele ning välistele sidusrühmadele kindlustunde, et keskkonnamõju mõõdetakse ja parandatakse.\n\n<img class=\"content-media\" src=\"/blog-media/2023/02/iso14001-4013280819.png\" alt=\"\" loading=\"lazy\">\n<h4>Green Globe'i ärisertifikaat</h4>\nTänapäeval vajavad kõigi tööstusharude ettevõtted sertifikaati, et anda sõltumatu tagatis, et nende ettevõtted toimivad jätkusuutlikult. Green Globe'i rahvusvahelise jätkusuutlikkuse standardi on kasutusele võtnud kõik reisimist ja turismi toetavad ettevõtted, sealhulgas kongressipaigad, koosolekute planeerijad, aga ka fondivalitsejad ja suhtekorraldusfirmad.\n\n<img class=\"content-media\" src=\"/blog-media/2023/02/green-globe-logo.png\" alt=\"\" loading=\"lazy\">\n<h3>Kas sinus on motivatsiooni võtta kasutusele keskkonnasõbralikud puhstusteenused?</h3>\nKunagi varem pole motivatsioon luua jätkusuutlikku tulevikku olnud nii kõrgel kui praegu. Meil kõigil on võimalus olla osa lahendusest. Paljud ettevõtted töötavad targemalt ja keskkonnasõbralikumalt. Väiksema energiakulu, veekulu ja muude ressursside kasutamine pole mitte ainult keskkonnale kasulik – see on kasulik ka majanduslikult. Tulevased turuliidrid on need, kes on uute ja keskkonnasõbralikumate lahendustega esimesed.\n<h4>Tule uuri lähemalt, kuidas <a href=\"https://spsgrupp.ee/\">koristusfirma SPS Grupp</a> suhtub keskkonnasäästlikke koristusteenuste pakkumisse ning millised on nende töövõtted loodushoiu saavutamisel. <a href=\"https://spsgrupp.ee/kontakt/\">Võta meiega ühendust.</a></h4>",
     "featuredImage": "/blog-media/2023/02/SPS_Grupp_keskonnasobralikud_puhastusteenused.jpg",
     "featuredImageSource": "wordpress",
@@ -111,7 +111,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 4687,
-    "title": "Kuidas üks Tallinna kontor vähendas koristuskulusid 30%",
+    "title": "Kuidas kontor vähendas koristuskulusid 30%",
     "slug": "kuidas-tallinna-kontor-vahendas-koristuskulusid",
     "date": "2023-01-11 15:18:43",
     "excerpt": "Üks Tallinna keskmise suurusega tehnoloogiaettevõte vahetas oma koristaja professionaalse koristusteenuse vastu ja vähendas koristuskulusid peaaegu kolmandiku võrra. Lisaks rahalisele võidule paranes koristuse kvaliteet ja kadus asendamise mure.",
@@ -123,10 +123,10 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 4216,
-    "title": "Mis on koristusteenuse proovitöö ja vastutuskindlustus?",
+    "title": "Koristusteenuse proovitöö ja vastutuskindlustus",
     "slug": "mis-on-koristusteenuse-proovitoo-ja-vastutuskindlustus",
     "date": "2022-12-04 21:13:07",
-    "excerpt": "Kujutage ette et olete võtnud kolmelt erinevalt puhastusettevõttelt hinnapakkumise oma lao betoonpõranda süvapesuks. Oma üllatuseks avastate et kõik pakkumised on suhteliselt sarnase maksumusega. Mõned eurod siia – sinna – Teie suure laopinna puhul ei ole see väga määrav. Mille alusel siis valik langetada? Ilmselgelt o",
+    "excerpt": "Kolm pakkumist lao betoonpõranda süvapesuks on peaaegu sama hinnaga. Mille alusel valida? Paluge ettevõtetel teha proovitöö ja kontrollige tsiviilvastutuskindlustust.",
     "contentHtml": "Kujutage ette et olete võtnud kolmelt erinevalt puhastusettevõttelt hinnapakkumise oma lao betoonpõranda süvapesuks. Oma üllatuseks avastate et kõik pakkumised on suhteliselt sarnase maksumusega. Mõned eurod siia – sinna – Teie suure laopinna puhul ei ole see väga määrav.\n\n<strong>Mille alusel siis valik langetada?</strong>\n\nIlmselgelt on kõige lihtsam valikut langetada konkreetse tulemuse põhjal. Seetõttu paluge ettevõtetel teostada Teie põrandal\n<h2><a href=\"/koristusteenus/\">Koristusteenuse</a> proovitöö</h2>\n<strong> </strong>Meie praktikas tuleb igapäevaselt ette juhtumeid, kus erinevatel betoonpindadel tuleb kasutada erinevaid puhastus ja töövahendeid. See sõltub nii betooni pealispinnast, kui ka mustuse erinevast iseloomust. Millist masinat ja keemiat täpselt kasutada saab selgeks juba paari ruutmeetri puhastamisega. Seetõttu piisab tavaliselt proovitöö jaoks juba umbes viiest kuni kümmnest ruutmeetrist et saaks hinnata töö tulemust. Kusjuures tuginedes meie praktikale oleme vahel isegi üllatunud kui erinevad on tulemused erinevaid aineid ja töövõtteid kasutades.\n\n<a href=\"https://www.postimees.ee/7514433/hoolduskoristus-kontoris-millal-on-seda-vaja\">Rääkides koristusteenuse proovitööst</a> siis suuremate tööde puhul peaks selle tegelikult teostama juba enne hinnapakkumise saatmist. Nii saab ka pakkuja teada kas ja millise hinnaga ta suudab antud teenust pakkuda.\n<h3>Koristusteenuse kindlustus</h3>\nKoristusteenuse proovitöö kõrval on väga oluline ka <a href=\"/sps-grupp/\">ettevõtte kindlustuse olemasolu</a>. Selle jaoks on teenuseid pakkuvad ettevõtted tavaliselt sõlminud tsiviilvastutuskindlustuse. See kindlustus hüvitab kolmandate isikute põhjendatud nõudeid kindlustatud ettevõtte vastu. Lihtsamalt öeldes kui nt. puhastusettevõtte sõidab aknapesu käigus tõstukiga Teie maja seinale augu sisse, siis kahju hüvitab kindlustus. Suuremate tööde puhul tasub uurida ka ettevõttelt kui suur on nendel see kindlustus. Ehk siis kui suure kahju kindlsustus kinni maksab. Piltlikult öeldes kui maja kokku kukub siis ei ole palju kasu sellest et kindlustus maksab välja akende maksumuse.",
     "featuredImage": "/blog-media/2022/12/SPS_Grupp_koristusteenused_proovitoo.jpg",
     "featuredImageSource": "wordpress",
@@ -147,7 +147,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 3819,
-    "title": "8 küsimust, mida enne koristuslepingu sõlmimist küsida",
+    "title": "8 küsimust enne koristuslepingu sõlmimist",
     "slug": "kaheksa-kusimust-enne-koristuslepingu-solmimist",
     "date": "2022-10-05 10:43:08",
     "excerpt": "Koristusfirma valimine ei ole ainult hinna küsimus. Enne lepingu sõlmimist küsi need kaheksa küsimust - need aitavad sul eristada professionaali juhuslikust pakkujast ja vältida hilisemaid probleeme.",
@@ -171,7 +171,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2583,
-    "title": "Koristaja palkamise kulu vs koristusteenus: kas tasub koristajat palgata?",
+    "title": "Koristaja palkamine vs koristusteenus",
     "slug": "koristaja-palkamise-kulu-vs-koristusteenus",
     "date": "2022-05-20 13:19:45",
     "excerpt": "Koristaja palkamine toob kaasa palga, maksud, puhkuse, haiguspäevad ja varustuse - koristusteenuse sisseostmisel on üks kindel kuutasu. Võrdleme mõlema variandi tegelikke kulusid ja aitame sul otsustada, kumb on sinu ettevõttele kasulikum.",
@@ -183,7 +183,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2412,
-    "title": "Kuidas valida survepesurit: kodukasutaja ja väikeettevõtte ostujuhend",
+    "title": "Kuidas valida survepesur? Ostujuhend",
     "slug": "kuidas-valida-survepesurit-ostujuhend",
     "date": "2021-08-31 12:23:29",
     "excerpt": "Survepesuri valikul loevad võimsus, veesurve, veevool ja toiteliik. Olgu tarvis pesta terrassi, sõidukit või fassaadi - siit juhendist leiad, millist masinat vajad ja millal on mõtekam teenus tellida.",
@@ -195,7 +195,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2408,
-    "title": "Ehitusjärgse koristuse 5 levinumat viga ja kuidas neid vältida",
+    "title": "Ehitusjärgse koristuse 5 levinumat viga",
     "slug": "ehitusjargse-koristuse-5-levinumat-viga",
     "date": "2021-08-31 12:20:38",
     "excerpt": "Iga ehitusprojekt lõpeb koristusega, kuid paljud teevad samu vigu: alustavad liiga hilja, alahindavad ehitustolmu või valivad vale teenusepakkuja. Siin on viis levinumat viga - ja kuidas need ära hoida.",
@@ -207,7 +207,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2392,
-    "title": "Kontori koristusteenuse kontrollnimekiri: 10 asja, mida igalt teenusepakkujalt küsida",
+    "title": "Kontori koristuse kontrollnimekiri – 10 punkti",
     "slug": "kontori-koristusteenuse-kontrollnimekiri",
     "date": "2021-07-29 15:44:03",
     "excerpt": "Enne koristusteenuse lepingu sõlmimist tasub üle kontrollida, mida pakkumine täpselt sisaldab. See kontrollnimekiri aitab sul võrrelda erinevaid teenusepakkujaid ja valida enda kontorile parim.",
@@ -231,7 +231,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2383,
-    "title": "Kuidas pikendada kontorivaipade eluiga 2x: igapäevane hooldus, mida iga kontor saab ise teha",
+    "title": "Kuidas pikendada kontorivaipade eluiga 2x?",
     "slug": "kuidas-pikendada-kontorivaipade-eluiga-2x",
     "date": "2021-07-29 15:40:45",
     "excerpt": "Kontorivaibad kulutavad iga päev sadu samme, toolirattaid ja kohviplekke. Õige igapäevase hooldusega saad nende eluiga kahekordistada - ilma et peaksid kohe keemilist puhastust tellima.",
@@ -255,7 +255,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2319,
-    "title": "Kuidas kaitsta puitpõrandaid talvel: niiskus, sool, liiv ja kriimud",
+    "title": "Kuidas kaitsta puitpõrandaid talvel?",
     "slug": "kuidas-kaitsta-puitporandaid-talvel",
     "date": "2021-06-14 14:34:27",
     "excerpt": "Eesti talv on puitpõrandatele karm: niiskuse kõikumine, tänavasool ja liiv tekitavad kriime ja kahjustusi. Siin on praktilised nõuanded, kuidas oma põrandat külmal aastaajal kaitsta.",
@@ -267,7 +267,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2292,
-    "title": "Kas puhas kontor vähendab haiguspäevi? 3 teadusuuringut, mida iga juht peaks teadma",
+    "title": "Kas puhas kontor vähendab haiguspäevi?",
     "slug": "kas-puhas-kontor-vahendab-haiguspaevi-teadusuuringud",
     "date": "2021-04-27 11:55:13",
     "excerpt": "Kontori puhtuse ja töötajate tervise vahel on tugev seos, kinnitavad mitmed teadusuuringud. Vähem haiguspäevi tähendab suuremat tootlikkust ja madalamaid kulusid. Vaatame, mida teadus ütleb.",
@@ -279,7 +279,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2285,
-    "title": "Pese aknad ise vs professionaalne teenus: millal tasub ise teha ja millal kutsuda spetsialist?",
+    "title": "Aknapesu ise või professionaali abiga?",
     "slug": "pese-aknad-ise-vs-professionaalne-teenus",
     "date": "2021-04-27 11:46:39",
     "excerpt": "Akende pesu tundub lihtne, aga esimese korruse aknad ja kõrghoone klaasfassaad on kaks täiesti erinevat ülesannet. Võrdleme, millal saad ise hakkama ja millal on targem usaldada töö professionaalile.",
@@ -291,7 +291,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 2131,
-    "title": "Kuidas gripilaine ajal kontorit tervena hoida: 7 reeglit kontorijuhile",
+    "title": "Kuidas hoida kontor gripiajal terve – 7 reeglit",
     "slug": "gripilaine-ajal-kontor-tervena-hoida-7-reeglit",
     "date": "2020-11-24 13:15:40",
     "excerpt": "Gripilaine ajal võib üks haige töötaja nakatada terve kontori mõne päevaga. Need seitse reeglit aitavad sul hoida meeskonna tervena ja haiguspäevad kontrolli all.",
@@ -327,7 +327,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     "id": 1640,
-    "title": "Miks puhastusteenuste hinnad tõusevad? Miinimumpalga ja tööjõukulu mõju",
+    "title": "Miks puhastusteenuse hind tõuseb?",
     "slug": "miks-puhastusteenuste-hinnad-tousevad",
     "date": "2017-10-16 08:28:21",
     "excerpt": "Puhastusteenuste hinnad on viimastel aastatel tõusnud ja jätkavad tõusu. Peamine põhjus on tööjõukulu - miinimumpalga tõus, maksukoormus ja töötajate nappus. Selgitame, mis mõjutab hindu ja kuidas sellest aru saada.",

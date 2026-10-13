@@ -113,7 +113,7 @@ export const getPostBySlugWithEdits = cache(async (slug: string): Promise<BlogPo
   if (!base) return undefined
   const edits = await getAdminEdits()
   const edit = edits.posts[String(base.id)]
-  if (!edit) return { ...base, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(base.contentHtml)) }
+  if (!edit) return { ...base, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(base.contentHtml)), excerpt: cleanExcerpt(base.excerpt, base.title) }
   return {
     ...base,
     title: edit.title ?? base.title,
@@ -148,7 +148,15 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 }
 
 export function getRelatedPosts(post: BlogPost, count = 3): BlogPost[] {
-  return blogPosts
-    .filter((p) => p.id !== post.id)
-    .slice(0, count)
+  // Circular neighbourhood: post N links to the next `count` posts in the
+  // list, so every post also receives links from the previous ones.
+  // (The old "first N posts of the whole list" left nearly every post with
+  // a single dofollow inlink - from the blog index only.)
+  const idx = blogPosts.findIndex((p) => p.id === post.id)
+  if (idx === -1) return []
+  const related: BlogPost[] = []
+  for (let i = 1; i <= count; i++) {
+    related.push(blogPosts[(idx + i) % blogPosts.length])
+  }
+  return related
 }
