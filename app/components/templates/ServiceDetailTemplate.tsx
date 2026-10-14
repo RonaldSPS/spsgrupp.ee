@@ -43,6 +43,10 @@ export type OutdoorServicePageData = {
   ariaLabel: string;
   heroImage: string;
   image: string;
+  /** Optional video rendered in the `image` slot instead of the static image (autoplay-on-scroll, muted, hover play/pause). */
+  imageVideo?: string;
+  /** Poster for `imageVideo` (same 6:7 crop). Falls back to `image` when unset. */
+  imageVideoPoster?: string;
   imageAlt: string;
   title: string;
   titleAccent: string;

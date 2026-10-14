@@ -5,7 +5,7 @@ const enParent = { etPath: "/koristusteenus/valikoristus", label: "Outdoor clean
 const ruParent = { etPath: "/koristusteenus/valikoristus", label: "Уборка и обслуживание территорий" };
 
 export const et: OutdoorServicePageData = {
-  ariaLabel: "Lumekoristus", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageAlt: "SPS Grupp lumekoristus ärikinnisvaral",
+  ariaLabel: "Lumekoristus", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageVideo: "/lumelykkamine-video.mp4", imageVideoPoster: "/lumelykkamine-video-poster.jpg", imageAlt: "SPS Grupp lumekoristus ärikinnisvaral",
   title: "Lumekoristus", titleAccent: "Tallinnas ja Harjumaal",
   intro: "Professionaalne lumekoristus, libedusetõrje ja talvine hooldus ärikinnistutele. Parklate, kõnniteede ja sissepääsude puhastus. Hooajaline leping.",
   cta: "Küsi lumekoristuse pakkumist", breadcrumb: "Lumekoristus", parentBreadcrumb: etParent,
@@ -64,7 +64,7 @@ export const et: OutdoorServicePageData = {
 
 
 export const en: OutdoorServicePageData = {
-  ariaLabel: "Snow removal", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageAlt: "SPS Grupp snow removal for commercial property",
+  ariaLabel: "Snow removal", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageVideo: "/lumelykkamine-video.mp4", imageVideoPoster: "/lumelykkamine-video-poster.jpg", imageAlt: "SPS Grupp snow removal for commercial property",
   title: "Snow removal", titleAccent: "in Tallinn and Harjumaa",
   intro: "Professional snow clearing, gritting and winter maintenance for commercial properties. Car park, pavement and entrance clearance. Seasonal contract.",
   cta: "Request a snow removal quote", breadcrumb: "Snow removal", parentBreadcrumb: enParent,
@@ -123,7 +123,7 @@ export const en: OutdoorServicePageData = {
 
 
 export const ru: OutdoorServicePageData = {
-  ariaLabel: "Уборка снега", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageAlt: "SPS Grupp уборка снега на коммерческой недвижимости",
+  ariaLabel: "Уборка снега", heroImage: "/lumelykkamine-1.jpg", image: "/Lumelykkamine2.png", imageVideo: "/lumelykkamine-video.mp4", imageVideoPoster: "/lumelykkamine-video-poster.jpg", imageAlt: "SPS Grupp уборка снега на коммерческой недвижимости",
   title: "Уборка снега", titleAccent: "в Таллинне и Харьюмаа",
   intro: "Профессиональная уборка снега, посыпка и зимнее обслуживание коммерческих объектов. Очистка парковок, тротуаров и входов. Сезонный договор.",
   cta: "Запросить предложение по уборке снега", breadcrumb: "Уборка снега", parentBreadcrumb: ruParent,

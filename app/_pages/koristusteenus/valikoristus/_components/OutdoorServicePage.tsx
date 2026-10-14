@@ -15,6 +15,7 @@ import TwoToneHeading from "../../../../components/TwoToneHeading";
 import ScrollAnimation from "../../../../components/ScrollAnimation";
 import FAQ from "../../../../components/FAQ";
 import ServiceInfoBlock from "../../../../components/ServiceInfoBlock";
+import ContentVideo from "../../../../components/ContentVideo";
 import { localizePath, type Locale } from "@/lib/slug-map";
 import { type ReactNode } from "react";
 import type { OutdoorServicePageData } from "@/app/components/templates/ServiceDetailTemplate";
@@ -82,6 +83,8 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
   const parentLabel = data.parentBreadcrumb?.label ?? ""
   const parentPath = data.parentBreadcrumb?.etPath ?? ""
   const breadcrumbAria = { et: "Jäljerida", en: "Breadcrumb", ru: "Навигационная цепочка" }[locale] ?? "Breadcrumb"
+  const videoPlayLabel = { et: "Esita video", en: "Play video", ru: "Воспроизвести видео" }[locale] ?? "Esita video"
+  const videoPauseLabel = { et: "Peata video", en: "Pause video", ru: "Приостановить видео" }[locale] ?? "Peata video"
 
   return (
     <>
@@ -240,7 +243,18 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
                   ))}
                 </div>
                 <div className="relative rounded-2xl overflow-hidden">
-                  <Image src={data.image} alt={data.imageAlt} width={600} height={700} className="w-full h-auto object-cover" style={{ color: "#2d3748" }} />
+                  {data.imageVideo ? (
+                    <ContentVideo
+                      src={data.imageVideo}
+                      poster={data.imageVideoPoster ?? data.image}
+                      ariaLabel={data.imageAlt}
+                      playLabel={videoPlayLabel}
+                      pauseLabel={videoPauseLabel}
+                      objectPosition="30% center"
+                    />
+                  ) : (
+                    <Image src={data.image} alt={data.imageAlt} width={600} height={700} className="w-full h-auto object-cover" style={{ color: "#2d3748" }} />
+                  )}
                 </div>
               </div>
             </div>
