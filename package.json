@@ -14,7 +14,7 @@
     "seo:check:prod": "tsx scripts/seo-check.ts --base-url=https://spsgrupp.ee",
     "test:url-utils": "tsx --test lib/__tests__/url-utils.test.ts",
     "test:json-ld": "tsx --test lib/__tests__/json-ld-generator.test.ts",
-    "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts lib/__tests__/spam-detector.test.ts lib/__tests__/reporting-number-audit.test.ts lib/__tests__/reporting-ads-conversions.test.ts lib/__tests__/reporting-forms-filter.test.ts lib/__tests__/reporting-forms-window.test.ts lib/__tests__/reporting-changes.test.ts && tsx scripts/i18n-validate.ts",
+    "test": "tsx --test lib/__tests__/url-utils.test.ts lib/__tests__/json-ld-generator.test.ts lib/__tests__/spam-detector.test.ts lib/__tests__/reporting-number-audit.test.ts lib/__tests__/reporting-ads-conversions.test.ts lib/__tests__/reporting-forms-filter.test.ts lib/__tests__/reporting-forms-window.test.ts lib/__tests__/reporting-changes.test.ts lib/__tests__/reporting-geogrid.test.ts && tsx scripts/i18n-validate.ts",
     "i18n:parity": "tsx scripts/i18n-parity-check.ts",
     "i18n:validate": "tsx scripts/i18n-validate.ts",
     "db:restore": "tsx scripts/restore-supabase.ts",
@@ -24,6 +24,7 @@
     "setup:ads-auth": "tsx scripts/ads-oauth-setup.ts",
     "setup:gbp-auth": "tsx scripts/gbp-oauth-setup.ts",
     "report:gbp": "tsx scripts/gbp-read.ts",
+    "report:geogrid": "tsx scripts/geogrid-report.ts",
     "report:offline-conversions": "tsx scripts/ads-offline-conversions.ts",
     "report:offline-conversions-upload": "tsx scripts/ads-offline-conversions-upload.ts"
   },
@@ -33,6 +34,7 @@
     "@vercel/blob": "^2.5.0",
     "drizzle-orm": "^0.45.2",
     "google-auth-library": "^11.0.2",
+    "leaflet": "^1.9.4",
     "next": "^16.3.0",
     "next-intl": "^4.13.2",
     "nodemailer": "^9.0.3",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/leaflet": "^1.9.22",
     "@types/node": "^20",
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^19",

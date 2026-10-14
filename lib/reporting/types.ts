@@ -247,6 +247,47 @@ export interface SiteChanges {
   summary?: string
 }
 
+/**
+ * Geo-grid: kohaliku Maps-nähtavuse mõõtmine linnaosade kaupa (geogrid.ts).
+ * rank 1–20 = SPS Grupi kirje positsioon Places Text Search tulemustes
+ * (~1,5 km asukohabiasiga); null = ei esine esimese 20 seas.
+ * Valikuline — vanadel snapshotidel puudub (render guards nagu changes'il).
+ */
+export interface GeoGridPoint {
+  key: string
+  label: string
+  lat: number
+  lng: number
+}
+
+export interface GeoGridMeasuredPoint extends GeoGridPoint {
+  rank: number | null
+}
+
+export interface GeoGridSummary {
+  /** Mitu punktist leidis meie kirje top-20 seas. */
+  found: number
+  top3: number
+  top10: number
+  /** Keskmine koht üle kõigi punktide; leidmata = 21 (LocalFalconi 20+ konventsioon). */
+  avgRank: number
+}
+
+export interface GeoGridKeywordRun {
+  keyword: string
+  measuredAt: string
+  points: GeoGridMeasuredPoint[]
+  summary: GeoGridSummary
+  /** Deltad eelmise nädala raporti vastu (kui see geogrid'i sisaldas) — e-kiri/admin ei pea eelmist raportit laadima. Negatiivne deltaAvgRank = parem. */
+  deltaAvgRank?: number
+  deltaTop10?: number
+  deltaTop3?: number
+}
+
+export interface GeoGridData {
+  keywords: GeoGridKeywordRun[]
+}
+
 export interface ReportSnapshot {
   generatedAt: string
   period: { start: string; end: string; prevStart: string; prevEnd: string }
@@ -256,6 +297,8 @@ export interface ReportSnapshot {
   forms: FormsData | null
   /** Lehel tehtud muudatused alates eelmisest raportist — valikuline (vanades raportites/git-history puududes puudub). */
   changes?: SiteChanges
+  /** Geo-grid märksõnade Maps-nähtavusest — valikuline (puudub vanadel raportitel / kui Places API pole seadistatud). */
+  geogrid?: GeoGridData
   /** Per-source failure notes (a failing API must not kill the whole report). */
   errors: string[]
 }

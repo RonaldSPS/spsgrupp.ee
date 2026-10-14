@@ -204,7 +204,8 @@ function buildCspHeader(): string {
     "default-src 'self'",
     `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://tagassistant.google.com https://tagmanager.google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://challenges.cloudflare.com`,
     `style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com`,
-    "img-src 'self' blob: data: https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net https://ad.doubleclick.net https://google.com https://*.google.com https://www.google.ee https://www.google.fi https://www.google.lv https://www.google.lt https://www.googleadservices.com https://pagead2.googlesyndication.com https://ssl.gstatic.com https://www.gstatic.com",
+    // OSM tiles: admin raporti geo-grid kaart (Leaflet, ainult /spsadmn/raportid).
+    "img-src 'self' blob: data: https://*.tile.openstreetmap.org https://*.googletagmanager.com https://*.google-analytics.com https://*.g.doubleclick.net https://ad.doubleclick.net https://google.com https://*.google.com https://www.google.ee https://www.google.fi https://www.google.lv https://www.google.lt https://www.googleadservices.com https://pagead2.googlesyndication.com https://ssl.gstatic.com https://www.gstatic.com",
     "font-src 'self' https://fonts.gstatic.com",
     "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://ad.doubleclick.net https://google.com https://*.google.com https://www.google.ee https://www.google.fi https://www.google.lv https://www.google.lt https://www.googleadservices.com https://pagead2.googlesyndication.com https://challenges.cloudflare.com",
     // Turnstile renders its (invisible) widget inside an iframe on this host.

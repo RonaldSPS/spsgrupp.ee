@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { AdsConversionBreakdown, AdsData, FormsData, FormsPeriod, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
 
 export interface AdsConvSplit {
   form: number
@@ -295,6 +295,59 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
   return { html, text }
 }
 
+/**
+ * „Kaardi nähtavus (geo-grid)“ — kohalik Maps-positsioon 27 fikseeritud
+ * mõõtepunktis (geogrid.ts). Deltad on eelmise nädala raporti vastu ja
+ * arvutatud juba genereerimisel. Keskmise koha puhul on MADALAM parem
+ * (leidmata punkt = 21). Puudub, kui Places API pole seadistatud või
+ * raport on vanast formaadist.
+ */
+function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } {
+  const fmtRank = (n: number) => n.toFixed(1).replace(".", ",")
+  const deltaAvg = (d?: number) => {
+    if (d === undefined) return ""
+    const good = d < 0
+    const color = d === 0 ? "#5a6474" : good ? "#166534" : "#b91c1c"
+    const sign = d > 0 ? "+" : ""
+    return `<span style="font-size:12px;color:${color}"> (${sign}${fmtRank(d)} vs eelm.)</span>`
+  }
+  const deltaCount = (d?: number) => {
+    if (d === undefined) return ""
+    const good = d > 0
+    const color = d === 0 ? "#5a6474" : good ? "#166534" : "#b91c1c"
+    const sign = d > 0 ? "+" : ""
+    return `<span style="font-size:12px;color:${color}"> (${sign}${Math.round(d)} vs eelm.)</span>`
+  }
+  const rows = geogrid.keywords
+    .map((k) => {
+      const cells = [
+        `<td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;color:#17345a;font-weight:bold">${escapeHtml(k.keyword)}</td>`,
+        `<td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${fmtRank(k.summary.avgRank)}${deltaAvg(k.deltaAvgRank)}</td>`,
+        `<td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${k.summary.top3}${deltaCount(k.deltaTop3)}</td>`,
+        `<td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${k.summary.top10}${deltaCount(k.deltaTop10)}</td>`,
+        `<td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;text-align:right;color:#5a6474">${k.summary.found}/${k.points.length}</td>`,
+      ]
+      return `<tr>${cells.join("")}</tr>`
+    })
+    .join("\n")
+  const head = ["Märksõna", "Keskm. koht", "Top-3", "Top-10", "Leitud"]
+    .map((h, i) => `<th style="padding:6px 10px;font-size:12px;color:#5a6474;text-align:${i === 0 ? "left" : "right"};font-weight:bold">${h}</th>`)
+    .join("")
+  const html =
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Kaardi nähtavus (geo-grid)</h2>` +
+    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Kohalik positsioon ${geogrid.keywords[0]?.points.length ?? 27} Tallinna/Harjumaa mõõtepunktis (Google Places API, ~1,5 km bias). Keskmine: leidmata punkt loetakse kohaks 21 — madalam on parem. Interaktiivne kaart ja vaba märksõna mõõtmine on admini täisraportis.</p>` +
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden"><tr>${head}</tr>${rows}</table>`
+  const text = [
+    "KAARDI NÄHTAVUS (geo-grid, positsioon 27 mõõtepunktis; leidmata = 21)",
+    ...geogrid.keywords.map((k) => {
+      const d = k.deltaAvgRank !== undefined ? ` (${k.deltaAvgRank > 0 ? "+" : ""}${k.deltaAvgRank.toFixed(1)} vs eelm.)` : ""
+      return `- ${k.keyword}: keskm. koht ${k.summary.avgRank.toFixed(1)}${d} · top-3 ${k.summary.top3} · top-10 ${k.summary.top10} · leitud ${k.summary.found}/${k.points.length}`
+    }),
+    "",
+  ]
+  return { html, text }
+}
+
 export function buildReportEmail(report: StoredReport, adminUrl: string): { subject: string; html: string; text: string } {
   const s = report.snapshot
   const subject = `SPS nädalaraport ${s.period.start} – ${s.period.end}`
@@ -352,6 +405,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
+  const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
     : ""
@@ -366,6 +420,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   ${errorsNote}
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
   ${leads.html}
+  ${geo.html}
   ${narrativeHtml}
   ${changes.html}
   <h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Leiud ja järgmised sammud</h2>
@@ -384,6 +439,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
     "",
   ]
   textLines.push(...leads.text)
+  textLines.push(...geo.text)
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")
   }

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import type { Insight, StoredReport } from "@/lib/reporting/types"
 import { markdownToHtml, splitAdsConversions, maintenanceCostLine, changesFallbackLines } from "@/lib/reporting/email-html"
+import GeoGridSection from "./GeoGridSection"
 
 interface ReportSummary {
   id: number
@@ -368,6 +369,9 @@ export default function ReportDetailPage() {
           </table>
         </div>
       )}
+
+      {/* Geo-grid: kaardi nähtavus (Maps-positsioon mõõtepunktide kaupa) */}
+      <GeoGridSection geogrid={s.geogrid} />
 
       {/* Top queries */}
       {s.gsc && s.gsc.topQueries.length > 0 && (

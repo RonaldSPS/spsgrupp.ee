@@ -11,7 +11,8 @@ import { buildInsights } from "./insights"
 import { generateNarrative } from "./llm"
 import { collectSiteChanges } from "./changes"
 import { listWeeklyReports, saveWeeklyReport } from "./store"
-import type { Insight, StoredReport } from "./types"
+import { GEOGRID_DEFAULT_KEYWORDS, measureGeoGrid } from "./geogrid"
+import type { GeoGridKeywordRun, Insight, StoredReport } from "./types"
 
 const SEVERITY_ORDER: Record<Insight["severity"], number> = { negative: 0, warning: 1, opportunity: 2, positive: 3 }
 
@@ -34,6 +35,23 @@ export async function generateWeeklyReport(): Promise<StoredReport> {
   const changesSince = prevWeekReport?.snapshot.generatedAt ?? `${snapshot.period.start}T00:00:00.000Z`
   const changes = await collectSiteChanges(changesSince, snapshot.generatedAt)
   if (changes) snapshot.changes = changes
+
+  /* Geo-grid: kohalik Maps-nähtavus linnaosade kaupa (Places API (New) Text
+   * Search, 27 fikseeritud punkti). Deltad eelmise NÄDALA raporti vastu.
+   * Eeldab „Places API (New)" lubamist GCP projektis — ebaõnnestumine
+   * (API lubamata/billing puudub) ei seiska raportit, sektsioon jääb välja. */
+  try {
+    const prevGeo = prevWeekReport?.snapshot.geogrid
+    const keywords: GeoGridKeywordRun[] = []
+    for (const kw of GEOGRID_DEFAULT_KEYWORDS) {
+      const prevRun = prevGeo?.keywords.find((k) => k.keyword === kw)
+      keywords.push(await measureGeoGrid(kw, prevRun ?? null))
+    }
+    snapshot.geogrid = { keywords }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    snapshot.errors.push(`Geo-grid: ${message.slice(0, 300)}`)
+  }
 
   const insights = buildInsights(snapshot)
   const prevGsc = latest?.snapshot.gsc
