@@ -112,7 +112,7 @@ export function KontaktPageView({ locale }: { locale: Locale }) {
       icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d9e6b" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>,
     },
     {
-      href: "https://www.google.com/maps/place/Tetris+B%C3%BCroohoone,+Mustam%C3%A4e+tee+46,+10621+Tallinn/@59.4162971,24.6890432,17z/data=!3m1!4b1!4m6!3m5!1s0x469294f5fec8e2fd:0xc2b28e6f780f9897!8m2!3d59.4162944!4d24.6916181!16s%2Fg%2F1q6jyqwpb?entry=tts&g_ep=EgoyMDI1MDIyMy4xIPu8ASoASAFQAw%3D%3D",
+      href: "https://maps.app.goo.gl/NoQDGHbySPvmarVa7",
       bigText: "Mustamäe tee 46, 10621 Tallinn",
       smallText: t.chipLabels[3],
       iconClass: "chip-icon-blue",

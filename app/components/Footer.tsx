@@ -88,7 +88,7 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
 
             <div className="mt-4 space-y-1">
               <a
-                href={"https://www.google.com/maps/place/Tetris+B%C3%BCroohoone,+Mustam%C3%A4e+tee+46,+10621+Tallinn/@59.4162971,24.6890432,17z/data=!3m1!4b1!4m6!3m5!1s0x469294f5fec8e2fd:0xc2b28e6f780f9897!8m2!3d59.4162944!4d24.6916181!16s%2Fg%2F1q6jyqwpb?entry=tts&g_ep=EgoyMDI1MDIyMy4xIPu8ASoASAFQAw%3D%3D"}
+                href={"https://maps.app.goo.gl/NoQDGHbySPvmarVa7"}
                 className="text-white/65 text-[15px] no-underline hover:text-[#85cbe9] block"
                 rel="nofollow"
               >
