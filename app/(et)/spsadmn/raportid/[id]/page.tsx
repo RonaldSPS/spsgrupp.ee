@@ -32,6 +32,14 @@ const AREA_ORDER: Insight["area"][] = ["seo", "ads", "ga4", "forms", "strategy"]
 
 const r1 = (n: number) => Math.round(n * 10) / 10
 const fmtPos = (p: number | null | undefined) => (p === null || p === undefined ? "–" : r1(p).toFixed(1).replace(".", ","))
+/** GSC absoluutsest maandumislehe URL-ist loetav tee (dekodeeritud). */
+const shortPath = (url: string) => {
+  try {
+    return decodeURIComponent(new URL(url).pathname)
+  } catch {
+    return url
+  }
+}
 const fmtMoney = (n: number) => `${n.toFixed(2).replace(".", ",")} €`
 const fmtPct = (n: number | null) => (n === null ? "–" : `${Math.round(n * 100)} %`)
 const fmtConv = (n: number) => n.toFixed(1).replace(".", ",")
@@ -57,9 +65,11 @@ function posArrow(cur: number | null, prev: number | null): { symbol: string; cl
 
 function Delta({ cur, prev, invert = false, suffix = "%" }: { cur: number; prev: number; invert?: boolean; suffix?: string }) {
   if (prev === 0) return <span className="text-[#5a6474]">eelmine: 0</span>
-  const pct = Math.round(((cur - prev) / prev) * 100)
-  const good = invert ? pct < 0 : pct > 0
-  const cls = pct === 0 ? "text-[#5a6474]" : good ? "text-green-600" : "text-red-600"
+  // invert=true (nt positsioon, kus väiksem on parem): kuvame muutuse PARANEMISENA —
+  // positiivne % = roheline ▲ (tulemus paranes), negatiivne % = punane ▼ (halvenes).
+  const raw = ((cur - prev) / prev) * 100
+  const pct = Math.round(invert ? -raw : raw)
+  const cls = pct === 0 ? "text-[#5a6474]" : pct > 0 ? "text-green-600" : "text-red-600"
   const arrow = pct === 0 ? "■" : pct > 0 ? "▲" : "▼"
   return <span className={cls}>{arrow} {pct > 0 ? "+" : ""}{pct} {suffix} vs eelmine nädal</span>
 }
@@ -338,8 +348,8 @@ export default function ReportDetailPage() {
       {families.length > 0 && (
         <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
           <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Märksõnade peatabel</h2>
-          <p className="text-[13px] text-[#5a6474] mb-3">▲ tõus ≥2 kohta · ■ stabiilne · ▼ langus · positsioon = näitamistega kaalutud keskmine · &lt;10 näitamist = müra</p>
-          <table className="w-full text-[14px] min-w-[560px]">
+          <p className="text-[13px] text-[#5a6474] mb-3">▲ tõus ≥2 kohta · ■ stabiilne · ▼ langus · positsioon = näitamistega kaalutud keskmine · &lt;10 näitamist = müra · Maandumisleht: ✓ = õige leht, ⚠ = vale leht (õige näidatud)</p>
+          <table className="w-full text-[14px] min-w-[720px]">
             <thead>
               <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
                 <th className="py-2 pr-3 font-medium">Märksõnapere</th>
@@ -347,7 +357,8 @@ export default function ReportDetailPage() {
                 <th className="py-2 pr-3 font-medium text-right">Eelmine</th>
                 <th className="py-2 pr-3 font-medium text-center">Muutus</th>
                 <th className="py-2 pr-3 font-medium text-right">Näitamised</th>
-                <th className="py-2 font-medium text-right">Klikid</th>
+                <th className="py-2 pr-3 font-medium text-right">Klikid</th>
+                <th className="py-2 font-medium">Maandumisleht</th>
               </tr>
             </thead>
             <tbody>
@@ -361,7 +372,18 @@ export default function ReportDetailPage() {
                     <td className="py-2 pr-3 text-right text-[#5a6474]">{fmtPos(f.previous.position)}</td>
                     <td className={`py-2 pr-3 text-center ${arrow.classes}`}>{arrow.symbol}</td>
                     <td className="py-2 pr-3 text-right">{f.current.impressions}</td>
-                    <td className="py-2 text-right">{f.current.clicks}</td>
+                    <td className="py-2 pr-3 text-right">{f.current.clicks}</td>
+                    <td className="py-2 text-[13px]">
+                      {f.carrier ? (
+                        <span className={f.carrierMatchesTarget === true ? "text-green-700" : f.carrierMatchesTarget === false ? "text-amber-700" : "text-[#5a6474]"} title={f.carrier.page}>
+                          {shortPath(f.carrier.page)}
+                          {f.carrierMatchesTarget === true && " ✓"}
+                          {f.carrierMatchesTarget === false && f.targetPage ? ` ⚠ → peaks: ${f.targetPage}` : ""}
+                        </span>
+                      ) : (
+                        <span className="text-[#9aa5b1]">–</span>
+                      )}
+                    </td>
                   </tr>
                 )
               })}
@@ -471,6 +493,59 @@ export default function ReportDetailPage() {
             {s.ads.totals.cost > 0 ? ` Otsingupäringute andmed katavad ${Math.round(((s.ads.brand.cost + s.ads.nonBrand.cost) / s.ads.totals.cost) * 100)} % kogukulust — ülejäänud osa jaotab Google privaatsuskünnise tõttu („Muud otsingupäringud"), see EI OLE brändi- ega konkurentide kulu.` : ""}
             „Kaotatud (koht)“ = konkurentsikaotus (ad rank), „kaotatud (eelarve)“ = eelarve piirang.
           </p>
+        </div>
+      )}
+
+      {/* P26 paralleeltest vs praegune seadistus (AI-juhitud test, praegust setup'i EI mõjuta) */}
+      {s.ads?.available && s.ads.p26 && (
+        <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
+          <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Paralleelne test (P26) vs praegune seadistus</h2>
+          <p className="text-[13px] text-[#5a6474] mb-3">
+            AI-juhitud test (fookus: hoolduskoristus B2B) töötab eraldi eelarve ja märksõnadega — praegust seadistust see ei mõjuta.
+            Päringute (DB) jaotumine kahe seadistuse vahel selgub gclid-seoste kaudu; Ads&apos;i „konv“ on consent-mode&apos;i tõttu alampiir.
+          </p>
+          {(s.ads.p26.totals.impressions === 0 && s.ads.p26.totals.cost === 0) && (
+            <p className="text-[13px] text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3">
+              P26 kampaaniad on loodud <strong>peatatuna</strong> — käivituvad kliendi kinnituse järel; kulu ja liiklus on ootuspäraselt 0.
+            </p>
+          )}
+          <table className="w-full text-[14px] min-w-[560px]">
+            <thead>
+              <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
+                <th className="py-2 pr-3 font-medium">Seadistus</th>
+                <th className="py-2 pr-3 font-medium text-right">Kulu</th>
+                <th className="py-2 pr-3 font-medium text-right">Klikid</th>
+                <th className="py-2 pr-3 font-medium text-right">CPC</th>
+                <th className="py-2 pr-3 font-medium text-right">Konv (Ads)</th>
+                <th className="py-2 font-medium text-right">Näitamised</th>
+              </tr>
+            </thead>
+            <tbody>
+              {s.ads.baseline && (
+                <tr className="border-b border-[#f4f6f9]">
+                  <td className="py-2 pr-3 text-[#17345a]">Praegune seadistus</td>
+                  <td className="py-2 pr-3 text-right">{fmtMoney(s.ads.baseline.totals.cost)}</td>
+                  <td className="py-2 pr-3 text-right">{s.ads.baseline.totals.clicks}</td>
+                  <td className="py-2 pr-3 text-right">{s.ads.baseline.totals.clicks > 0 ? fmtMoney(s.ads.baseline.totals.cost / s.ads.baseline.totals.clicks) : "–"}</td>
+                  <td className="py-2 pr-3 text-right">{s.ads.baseline.totals.conversions.toFixed(1).replace(".", ",")}</td>
+                  <td className="py-2 text-right">{s.ads.baseline.totals.impressions}</td>
+                </tr>
+              )}
+              <tr className="border-b border-[#f4f6f9] last:border-0">
+                <td className="py-2 pr-3 font-medium text-[#17345a]">P26 test</td>
+                <td className="py-2 pr-3 text-right">{fmtMoney(s.ads.p26.totals.cost)}</td>
+                <td className="py-2 pr-3 text-right">{s.ads.p26.totals.clicks}</td>
+                <td className="py-2 pr-3 text-right">{s.ads.p26.totals.clicks > 0 ? fmtMoney(s.ads.p26.totals.cost / s.ads.p26.totals.clicks) : "–"}</td>
+                <td className="py-2 pr-3 text-right">{s.ads.p26.totals.conversions.toFixed(1).replace(".", ",")}</td>
+                <td className="py-2 text-right">{s.ads.p26.totals.impressions}</td>
+              </tr>
+            </tbody>
+          </table>
+          <ul className="mt-3 pl-5 list-disc text-[13px] text-[#4a5568]">
+            {s.ads.p26.campaigns.map((c) => (
+              <li key={c.name}>{c.name} — {c.status.toLowerCase()}, {fmtMoney(c.cost)}, {c.clicks} klikki</li>
+            ))}
+          </ul>
         </div>
       )}
 

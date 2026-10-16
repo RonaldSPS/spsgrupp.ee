@@ -20,6 +20,7 @@ import type {
   ReportSnapshot,
 } from "./types"
 import { TARGET_REGION } from "./strategy"
+import { pageMatchesTarget } from "./keyword-families"
 
 /** Pre-launch organic baseline (20.07–16.08.2026): 9,0 GSC klikki päevas. */
 const PRE_LAUNCH_CLICKS_PER_DAY = 9.0
@@ -100,10 +101,12 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
       area: "seo",
       severity: "negative",
       title: `„${f.label}" langes ${fmtPos(f.previous.position)} → ${fmtPos(f.current.position)}`,
-      detail: `${f.current.impressions} näitamist sel nädalal (eelmine: ${f.previous.impressions}).${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}`,
-      action: f.carrier
-        ? `${carrierLine(f)}Tugevda selle lehe sisu ja siselinke. Kontrolli ka GSC-st, kas maandumisleht püsib sama — kui Google vahetab maandumislehte, suuna siselinkidega õigele lehele.`
-        : "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab maandumislehte? Kui maandumisleht on sama, tugevda lehe sisu ja siselinke; kui maandumisleht vahetub, suuna siselinkidega õigele lehele.",
+      detail: `${f.current.impressions} näitamist sel nädalal (eelmine: ${f.previous.impressions}).${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}${f.carrierMatchesTarget === false ? ` (VALE leht — õige: ${f.targetPage})` : f.carrierMatchesTarget === true ? " (õige leht)" : ""}`,
+      action: f.carrierMatchesTarget === false && f.targetPage
+        ? `${carrierLine(f)}Langus võib olla seotud vale maandumislehega. Suuna siselingid märksõna-ankruga lehele ${f.targetPage} ja tugevda just seda lehte (title/H1, sisu, FAQ).`
+        : f.carrier
+          ? `${carrierLine(f)}Tugevda selle lehe sisu ja siselinke. Kontrolli ka GSC-st, kas maandumisleht püsib sama — kui Google vahetab maandumislehte, suuna siselinkidega õigele lehele.`
+          : "Kontrolli, milline leht päringuid kannab (GSC → Lehed) — kas Google vahetab maandumislehte? Kui maandumisleht on sama, tugevda lehe sisu ja siselinke; kui maandumisleht vahetub, suuna siselinkidega õigele lehele.",
     })
   }
   for (const f of striking.slice(0, 4)) {
@@ -116,15 +119,44 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
     })
   }
 
-  /* --- carrier swap: Google changed which page serves a family --- */
+  /* --- carrier swap: Google changed which page serves a family ---
+   * Hinnang sõltub sihtlehest (kliendi direktiiv 16.10.2026): liikumine
+   * ÕIGE lehe suunas on positiivne, sihtlehest EEMALE on kriitilisem. */
   const swapped = families.filter((f) => f.carrier && f.prevCarrier && f.carrier.page !== f.prevCarrier.page)
   for (const f of swapped.slice(0, 3)) {
+    const wasOnTarget = Boolean(f.targetPage && f.prevCarrier && pageMatchesTarget(f.prevCarrier.page, f.targetPage))
+    const nowOnTarget = f.carrierMatchesTarget === true
+    const severity = nowOnTarget ? "positive" : wasOnTarget ? "negative" : "warning"
+    const targetNote = f.targetPage
+      ? nowOnTarget
+        ? ` Uus leht ON õige maandumisleht (${f.targetPage}).`
+        : ` Õige maandumisleht oleks ${f.targetPage}${wasOnTarget ? " — eelmine leht oli õige, suund on HALB" : ""}.`
+      : ""
+    out.push({
+      area: "seo",
+      severity,
+      title: nowOnTarget
+        ? `„${f.label}" maandumisleht liikus õigele lehele`
+        : `„${f.label}" maandumisleht vahetus${f.targetPage && !nowOnTarget ? " (vale leht)" : ""}`,
+      detail: `Google näitab päringuid nüüd lehel ${f.carrier!.page} (eelmine nädal: ${f.prevCarrier!.page}).${targetNote}`,
+      action: nowOnTarget
+        ? "Kinnita suund: lisa sihtlehele 1–2 siselist linki märksõna-ankruga ja hoia lehe sisu värske, et Google valikut ei muudaks."
+        : `Suuna siselingid märksõna-ankruga lehele ${f.targetPage ?? "õigele (konversioonivõimelisele) lehele"} (avaleht, hub, blogi, seotud teenuselehed) ja tugevda sihtlehe sisu (title/H1, täpne fraas FAQs, hinnainfo); kui vahetus on ajutine Google'i testimine, hoia mõlemad lehed sisult tugevad, aga ankrud õigel maandumislehel.`,
+    })
+  }
+
+  /* --- wrong carrier: püsivalt vale maandumisleht (ilma vahetuseta) ---
+   * Kliendi põhikontroll: märksõna peab suunama ÕIGELE lehele. */
+  const swappedIds = new Set(swapped.slice(0, 3).map((f) => f.id))
+  const wrongCarrier = families.filter((f) =>
+    !noisy(f) && !swappedIds.has(f.id) && f.carrier && f.targetPage && f.carrierMatchesTarget === false)
+  for (const f of wrongCarrier.slice(0, 4)) {
     out.push({
       area: "seo",
       severity: "warning",
-      title: `„${f.label}" maandumisleht vahetus`,
-      detail: `Google näitab päringuid nüüd lehel ${f.carrier!.page} (eelmine nädal: ${f.prevCarrier!.page}).`,
-      action: "Suuna siselingid tahtlikult õigele (konversioonivõimelisele) lehele ja tugevda just seda; kui vahetus on ajutine Google'i testimine, hoia mõlemad lehed sisult tugevad, aga ankrud õigel maandumislehel.",
+      title: `„${f.label}" maandub valele lehele`,
+      detail: `Google näitab „${f.label}" päringuid lehel ${f.carrier!.page}, kuigi õige (konversioonivõimeline) maandumisleht oleks ${f.targetPage} (${f.current.impressions} näitamist/nädal).`,
+      action: `Tugevda sihtlehte ${f.targetPage}: (1) lisa siselinke täpse märksõna-ankruga (avaleht, hub, blogi, seotud teenuselehed) just sihtlehele; (2) kontrolli, et sihtlehe title/H1 ja sisu vastavad päringule paremini kui praegune maanduja; (3) väldi sama fraasi tugevat kasutust valel lehel.`,
     })
   }
   for (const f of lowCtr.slice(0, 3)) {

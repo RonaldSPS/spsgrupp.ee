@@ -42,6 +42,8 @@ interface CleaningHubText {
   problemP3Link2: string;
   problemP3Mid2: string;
   problemP3Link3: string;
+  problemP3Mid3: string;
+  problemP3Link4: string;
   problemP3Post: string;
   servicesTag: string;
   servicesHeading: string;
@@ -87,7 +89,9 @@ const etText: CleaningHubText = {
   problemP3Link2: "koristusfirma",
   problemP3Mid2: ", keda usaldab üle 200 Eesti ettevõtte, ja meie põhiteenus on lepinguline ",
   problemP3Link3: "hoolduskoristus",
-  problemP3Post: ".",
+  problemP3Mid3: " ehk regulaarne ",
+  problemP3Link4: "äripindade koristus",
+  problemP3Post: " 1–7 korda nädalas.",
   servicesTag: "Teenuse sisu",
   servicesHeading: "Millistele äripindadele SPS Grupp koristusteenust pakub?",
   services: [
@@ -177,6 +181,8 @@ function localizedText(locale: Exclude<Locale, "et">): CleaningHubText {
     problemP3Link2: str(problem.paragraph3Link2) || etText.problemP3Link2,
     problemP3Mid2: str(problem.paragraph3Mid2),
     problemP3Link3: str(problem.paragraph3Link3),
+    problemP3Mid3: str(problem.paragraph3Mid3),
+    problemP3Link4: str(problem.paragraph3Link4),
     problemP3Post: str(problem.paragraph3Post) || etText.problemP3Post,
     servicesTag: str(services.tag) || etText.servicesTag,
     servicesHeading: str(services.heading) || etText.servicesHeading,
@@ -368,6 +374,12 @@ export function KoristusteenusPageView({ locale }: { locale: Locale }) {
                 <>
                   {t.problemP3Mid2}
                   <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link3}</Link>
+                </>
+              ) : null}
+              {t.problemP3Link4 ? (
+                <>
+                  {t.problemP3Mid3}
+                  <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link4}</Link>
                 </>
               ) : null}
               {t.problemP3Post}

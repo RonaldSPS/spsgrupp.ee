@@ -133,8 +133,11 @@ function scoreCard(label: string, value: string, sub: string): string {
 function deltaSub(cur: number, prev: number, invertGood = false): string {
   if (prev === 0 && cur === 0) return "eelmine nädal: –"
   if (prev === 0) return "eelmine nädal: 0"
-  const pct = Math.round(((cur - prev) / prev) * 100)
-  const good = invertGood ? pct < 0 : pct > 0
+  // invertGood=true (nt positsioon, kus väiksem on parem): kuvame muutuse PARANEMISENA —
+  // positiivne % = roheline ▲ (paranes), negatiivne % = punane ▼ (halvenes).
+  const raw = ((cur - prev) / prev) * 100
+  const pct = Math.round(invertGood ? -raw : raw)
+  const good = pct > 0
   const arrow = pct === 0 ? "■" : pct > 0 ? "▲" : "▼"
   const color = pct === 0 ? "#5a6474" : good ? "#166534" : "#b91c1c"
   return `<span style="color:${color}">${arrow} ${pct > 0 ? "+" : ""}${pct} %</span> eelmise nädalaga`
@@ -348,6 +351,55 @@ function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } 
   return { html, text }
 }
 
+/**
+ * „Paralleelne test (P26) vs praegune seadistus" — AI-juhitud testkampaaniate
+ * eraldi statistika ja aus võrdlus olemasoleva seadistusega (plaan 14.10.2026:
+ * test ei muuda praegust setup'i — eraldi eelarve, märksõnad, kampaaniad).
+ * Kuvatakse ainult siis, kui snapshot'is on p26-andmed (test loodud).
+ */
+function p26Section(ads: AdsData): { html: string; text: string[] } {
+  const p26 = ads.p26!
+  const base = ads.baseline
+  const active = p26.totals.impressions > 0 || p26.totals.cost > 0
+  const cpc = (t: { cost: number; clicks: number }) => (t.clicks > 0 ? fmtEur(t.cost / t.clicks) : "–")
+  const head = ["Seadistus", "Kulu", "Klikid", "CPC", "Konv (Ads)", "Näitamised"]
+    .map((h, i) => `<th style="padding:6px 8px;font-size:12px;color:#5a6474;text-align:${i === 0 ? "left" : "right"};font-weight:bold">${h}</th>`)
+    .join("")
+  const row = (label: string, t: { cost: number; clicks: number; impressions: number; conversions: number }, bold: boolean) =>
+    `<tr>` +
+    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#17345a;${bold ? "font-weight:bold" : ""}">${escapeHtml(label)}</td>` +
+    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${fmtEur(t.cost)}</td>` +
+    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${t.clicks}</td>` +
+    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${cpc(t)}</td>` +
+    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${fmtConv(t.conversions)}</td>` +
+    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${t.impressions}</td>` +
+    `</tr>`
+  const campaignList = p26.campaigns
+    .map((c) => `<li style="margin:2px 0;font-size:13px;color:#4a5568">${escapeHtml(c.name)} — ${escapeHtml(c.status.toLowerCase())}, ${fmtEur(c.cost)}, ${c.clicks} klikki</li>`)
+    .join("")
+  const statusNote = active
+    ? ""
+    : `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px;margin:8px 0">P26 kampaaniad on loodud <strong>peatatuna</strong> — käivituvad kliendi kinnituse järel; kulu ja liiklus on seega ootuspäraselt 0.</p>`
+  const html =
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Paralleelne test (P26) vs praegune seadistus</h2>` +
+    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">AI-juhitud test (fookus: hoolduskoristus B2B) töötab eraldi eelarve ja märksõnadega — praegust seadistust see <strong>ei mõjuta</strong>. Hinnatakse samade mõõdupuudega; päringute (DB) jaotumine kahe seadistuse vahel selgub gclid-seoste kaudu, Ads'i „konv" on consent-mode'i tõttu alampiir.</p>` +
+    statusNote +
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden"><tr>${head}</tr>` +
+    (base ? row("Praegune seadistus", base.totals, false) : "") +
+    row("P26 test", p26.totals, true) +
+    `</table>` +
+    `<ul style="margin:8px 0 0;padding-left:18px">${campaignList}</ul>`
+  const text = [
+    "PARALLEELNE TEST (P26) VS PRAEGUNE SEADISTUS (test ei mõjuta praegust setup'i)",
+    ...(active ? [] : ["P26 kampaaniad on loodud PEATATUNA — käivituvad kliendi kinnituse järel (kulu ja liiklus 0)."]),
+    ...(base ? [`- Praegune seadistus: kulu ${fmtEur(base.totals.cost)} · ${base.totals.clicks} klikki · CPC ${cpc(base.totals)} · konv (Ads) ${fmtConv(base.totals.conversions)} · ${base.totals.impressions} näitamist`] : []),
+    `- P26 test: kulu ${fmtEur(p26.totals.cost)} · ${p26.totals.clicks} klikki · CPC ${cpc(p26.totals)} · konv (Ads) ${fmtConv(p26.totals.conversions)} · ${p26.totals.impressions} näitamist`,
+    ...p26.campaigns.map((c) => `  · ${c.name} — ${c.status.toLowerCase()}, ${fmtEur(c.cost)}, ${c.clicks} klikki`),
+    "",
+  ]
+  return { html, text }
+}
+
 export function buildReportEmail(report: StoredReport, adminUrl: string): { subject: string; html: string; text: string } {
   const s = report.snapshot
   const subject = `SPS nädalaraport ${s.period.start} – ${s.period.end}`
@@ -404,6 +456,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
+  const p26 = s.ads?.available && s.ads.p26 ? p26Section(s.ads) : { html: "", text: [] as string[] }
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
   const errorsNote = s.errors.length
@@ -420,6 +473,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   ${errorsNote}
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
   ${leads.html}
+  ${p26.html}
   ${geo.html}
   ${narrativeHtml}
   ${changes.html}
@@ -439,6 +493,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
     "",
   ]
   textLines.push(...leads.text)
+  textLines.push(...p26.text)
   textLines.push(...geo.text)
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")

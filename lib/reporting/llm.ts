@@ -63,6 +63,10 @@ interface Digest {
       clicks: number
       /** Maandumisleht (dominant landing page), when query×page data is available. */
       carrier?: string
+      /** Soovitud (kanooniline) maandumisleht — märksõna peab suunama ÕIGELE lehele. */
+      targetPage?: string | null
+      /** Kas carrier == targetPage (null = carrier/target puudub). */
+      carrierMatchesTarget?: boolean | null
     }[]
     newQueries: { query: string; impressions: number; position: number; page?: string }[]
     topQueries: { query: string; clicks: number; impressions: number; position: number }[]
@@ -100,6 +104,10 @@ interface Digest {
      *  brand spend and must not be reported as such. */
     searchTermsCoveragePct: number | null
     topTerms: { term: string; cost: number; clicks: number; conversions: number }[]
+    /** P26 paralleeltest (AI-juhitud, praegust seadistust EI mõjuta) — eraldi statistika. */
+    p26?: { cost: number; clicks: number; impressions: number; conversions: number; campaigns: string[] } | null
+    /** Praegune seadistus ilma P26-ta — aus võrdlus testiga. */
+    baseline?: { cost: number; clicks: number; impressions: number; conversions: number } | null
   }
   forms?: {
     contact: number
@@ -150,6 +158,8 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
           impressions: f.current.impressions,
           clicks: f.current.clicks,
           carrier: f.carrier?.page,
+          targetPage: f.targetPage ?? null,
+          carrierMatchesTarget: f.carrierMatchesTarget ?? null,
         })),
       newQueries: g.newQueries.slice(0, 12).map((q) => ({ query: q.query, impressions: q.impressions, position: r1(q.position), page: q.page })),
       topQueries: g.topQueries.slice(0, 15).map((q) => ({ query: q.query, clicks: q.clicks, impressions: q.impressions, position: r1(q.position) })),
@@ -205,6 +215,23 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       nonBrandCost: r1(a.nonBrand.cost),
       searchTermsCoveragePct: a.totals.cost > 0 ? r1(((a.brand.cost + a.nonBrand.cost) / a.totals.cost) * 100) : null,
       topTerms: a.topTerms.slice(0, 15).map((t) => ({ term: t.term, cost: r1(t.cost), clicks: t.clicks, conversions: r1(t.conversions) })),
+      p26: a.p26
+        ? {
+            cost: r1(a.p26.totals.cost),
+            clicks: a.p26.totals.clicks,
+            impressions: a.p26.totals.impressions,
+            conversions: r1(a.p26.totals.conversions),
+            campaigns: a.p26.campaigns.map((c) => c.name),
+          }
+        : null,
+      baseline: a.baseline
+        ? {
+            cost: r1(a.baseline.totals.cost),
+            clicks: a.baseline.totals.clicks,
+            impressions: a.baseline.totals.impressions,
+            conversions: r1(a.baseline.totals.conversions),
+          }
+        : null,
     }
   }
 

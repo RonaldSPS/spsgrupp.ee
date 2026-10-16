@@ -22,6 +22,8 @@
     "report:ads": "tsx scripts/ads-report.ts",
     "report:weekly": "tsx scripts/weekly-report.ts",
     "setup:ads-auth": "tsx scripts/ads-oauth-setup.ts",
+    "setup:ads-p26": "tsx scripts/ads-p26-setup.ts",
+    "setup:ads-p26-assets": "tsx scripts/ads-p26-assets.ts",
     "setup:gbp-auth": "tsx scripts/gbp-oauth-setup.ts",
     "report:gbp": "tsx scripts/gbp-read.ts",
     "report:geogrid": "tsx scripts/geogrid-report.ts",

@@ -9,7 +9,11 @@
  */
 
 import { getGoogleAccessToken, type ReportPeriod } from "./google-auth"
-import type { AdsCampaign, AdsConversionBreakdown, AdsData, AdsKeyword, AdsTerm } from "./types"
+import { ADS_P26_PREFIX } from "./strategy"
+import type { AdsCampaign, AdsConversionBreakdown, AdsData, AdsKeyword, AdsSplit, AdsTerm } from "./types"
+
+/** P26 paralleeltesti kampaania tuvastus nime prefiksist (strategy.ts). */
+export const isP26Campaign = (name: string): boolean => name.startsWith(ADS_P26_PREFIX)
 
 const SCOPES = ["https://www.googleapis.com/auth/adwords"]
 /** Bump when Google sunsets this version (a 404 HTML error means: bump). */
@@ -91,7 +95,12 @@ export async function pullAds(period: ReportPeriod): Promise<AdsData> {
      ORDER BY metrics.cost_micros DESC`,
   )
   const campaigns: AdsCampaign[] = campaignRows
-    .filter((r) => num(field(r, "metrics", "cost_micros")) > 0 || num(field(r, "metrics", "impressions")) > 0)
+    /* P26 testi kampaaniad kaasatakse ka null-metrikatega — peatatud olekus
+     * kampaania peab raportis nähtaval olema (seis: loodud, ei käivitu veel). */
+    .filter((r) =>
+      num(field(r, "metrics", "cost_micros")) > 0 ||
+      num(field(r, "metrics", "impressions")) > 0 ||
+      String(field(r, "campaign", "name") ?? "").startsWith(ADS_P26_PREFIX))
     .map((r) => {
       const m = r.metrics ?? {}
       return {
@@ -216,5 +225,31 @@ export async function pullAds(period: ReportPeriod): Promise<AdsData> {
     conversions: campaigns.reduce((s, c) => s + c.allConversions, 0),
   }
 
-  return { available: true, campaigns, brand, nonBrand, topTerms, keywords, totals, conversionBreakdown }
+  /* --- P26 paralleeltest vs praegune seadistus (kampaania-nime prefiks) ---
+   * P26 kampaaniad on loodud PEATATUNA ja käivituvad kliendi kinnitusega —
+   * kuni liiklust pole, on totals nullid ja raport näitab testi seisu. */
+  const sumTotals = (list: AdsCampaign[]) => ({
+    cost: list.reduce((s, c) => s + c.cost, 0),
+    clicks: list.reduce((s, c) => s + c.clicks, 0),
+    impressions: list.reduce((s, c) => s + c.impressions, 0),
+    conversions: list.reduce((s, c) => s + c.allConversions, 0),
+  })
+  const p26Campaigns = campaigns.filter((c) => isP26Campaign(c.name))
+  let p26: AdsSplit | undefined
+  let baseline: AdsSplit | undefined
+  if (p26Campaigns.length > 0) {
+    p26 = {
+      campaigns: p26Campaigns,
+      totals: sumTotals(p26Campaigns),
+      topTerms: topTerms.filter((t) => isP26Campaign(t.campaign)).slice(0, 15),
+    }
+    const baselineCampaigns = campaigns.filter((c) => !isP26Campaign(c.name))
+    baseline = {
+      campaigns: baselineCampaigns,
+      totals: sumTotals(baselineCampaigns),
+      topTerms: topTerms.filter((t) => !isP26Campaign(t.campaign)).slice(0, 15),
+    }
+  }
+
+  return { available: true, campaigns, brand, nonBrand, topTerms, keywords, totals, conversionBreakdown, p26, baseline }
 }

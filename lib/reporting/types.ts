@@ -90,6 +90,12 @@ export interface KeywordFamilyStat {
   carrier?: { page: string; impressions: number } | null
   /** Previous period's dominant page — for carrier-swap detection. */
   prevCarrier?: { page: string; impressions: number } | null
+  /** Soovitud (kanooniline) maandumisleht selle pere jaoks — kliendi direktiiv:
+   * märksõna peab suunama ÕIGELE lehele (nt „hoolduskoristus" → hoolduskoristuse
+   * leht, mitte kontori-koristus või blogi). null = sihtmärki pole määratud. */
+  targetPage?: string | null
+  /** Kas dominantne maandumisleht VASTAB sihtmärgile. null = carrier puudub/sihtmärki pole. */
+  carrierMatchesTarget?: boolean | null
 }
 
 export interface GscData {
@@ -154,6 +160,13 @@ export interface AdsConversionBreakdown {
   conversions: number
 }
 
+/** Kampaaniate alamhulk koondandmetega (nt P26 test või praegune seadistus). */
+export interface AdsSplit {
+  campaigns: AdsCampaign[]
+  totals: { cost: number; clicks: number; impressions: number; conversions: number }
+  topTerms: AdsTerm[]
+}
+
 export interface AdsData {
   available: boolean
   campaigns: AdsCampaign[]
@@ -164,6 +177,15 @@ export interface AdsData {
   totals: { cost: number; clicks: number; impressions: number; conversions: number }
   /** Valikuline — vanades salvestatud raportites puudub. */
   conversionBreakdown?: AdsConversionBreakdown[]
+  /**
+   * P26 paralleeltest (AI-juhitud, eraldi eelarve — praegust seadistust EI
+   * mõjutata; plaan: raportid/google-ads-analuus-ja-paralleelne-test-2026-10-14.md).
+   * Kampaaniad tunneb prefiksist ADS_P26_PREFIX (strategy.ts).
+   * Puudub, kui kontol pole (veel) ühtegi P26 kampaaniat liiklusena nähtaval.
+   */
+  p26?: AdsSplit
+  /** Praegune (olemasolev) seadistus = kõik mitte-P26 kampaaniad — võrdlus P26-ga. Seatud ainult siis, kui p26 on olemas. */
+  baseline?: AdsSplit
 }
 
 export interface FormsPeriod {

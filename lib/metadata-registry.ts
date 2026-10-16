@@ -8,8 +8,8 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Koristusfirma äriklientidele: kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001.',
   },
   '/koristusteenus/kontori-koristus': {
-    title: 'Kontori koristus Tallinnas - alates 1,20 €/m² | SPS Grupp',
-    description: 'Regulaarne kontorikoristus büroodele alates 800 m² Tallinnas ja Harjumaal. 50+ kontori usaldab SPS Gruppi. Tasuta audit, ISO 9001.',
+    title: 'Kontori koristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp',
+    description: 'Regulaarne kontorikoristus büroodele alates 800 m² Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
   },
   '/koristusteenus/hoolduskoristus': {
     title: 'Hoolduskoristus Tallinnas - äripindade regulaarne koristus | SPS Grupp',
@@ -69,7 +69,7 @@ export const pageMetadata: Record<string, { title: string; description: string }
   },
   '/puhastusteenused': {
     title: 'Puhastusteenused Tallinnas - alates 1 €/m² | SPS Grupp',
-    description: 'Puhastusteenused äriklientidele alates 1 €/m²: põrandate süvapesu, suurpuhastus ja ehitusjärgne koristus Tallinnas ja Harjumaal. Tasuta pakkumine!',
+    description: 'Suurpuhastus, põrandate süvapesu ja ehitusjärgne koristus äriklientidele Tallinnas ja Harjumaal. Tasuta hindamine - pakkumine 1 tööpäevaga!',
   },
   '/puhastusteenused/ehitusjargne-koristus': {
     title: 'Ehitusjärgne koristus Tallinnas - tasuta hindamine | SPS Grupp',

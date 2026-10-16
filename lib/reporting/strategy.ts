@@ -45,6 +45,15 @@ export const NEGATIVE_KEYWORDS_MAINTENANCE =
   "Negatiivseid nimekirju hooldatakse iganädalaselt (broad match toob uusi soovimatuid termineid pidevalt sisse)."
 
 /**
+ * P26 paralleeltest (plaan: raportid/google-ads-analuus-ja-paralleelne-test-2026-10-14.md):
+ * AI-juhitud kampaaniad PRAEGUST seadistust muutmata — eraldi eelarve,
+ * eraldi märksõnad, kõik loodud PEATATUNA ja käivituvad alles kliendi
+ * kinnitusega. Kampaaniaid tunneb nime prefiksist; nädalaraport kuvab
+ * testi tulemused eraldi ja võrdleb praeguse seadistusega.
+ */
+export const ADS_P26_PREFIX = "P26 ·"
+
+/**
  * Konkurentide brändinimedega päringud (sol, kleenest, luuclean,
  * smartclean, rentokil jt): põhikampaaniates NEGATIIVSED. Tavapraktika
  * oleks eraldi eelarvega konkurendi-kampaania, aga SPS-i varasem

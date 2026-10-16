@@ -380,6 +380,44 @@ request, they are not price inquiries):
 Note: conversion values come from the admin-entered Tasu column in paringud;
 rows without a fee upload as count-only conversions.
 
+## 6c. P26 paralleeltest (AI-juhitud testkampaaniad, praegust setup'i muutmata)
+
+Plaan ja elluviimise logi: `raportid/google-ads-analuus-ja-paralleelne-test-2026-10-14.md`
+(§6 = tehniline logi koos kampaania-ID-dega).
+
+- **Loodud 16.10.2026, kõik PEATATUNA** — käivitamine = ENABLED lülitus Ads UI-s
+  kliendi kinnitusel. Skript: `npm run setup:ads-p26` (`scripts/ads-p26-setup.ts`),
+  `--dry-run` trükib kõik operatsioonid saatmata, `--repair` täiendab puuduvad
+  osad idempotentselt (turvaline kordusks — ei dubleeri).
+- **Struktuur:** `P26 · Otsing · Hoolduskoristus B2B` (€8/päev; hoolduskoristuse
+  tuum + kontorikoristus), `P26 · Otsing · Ehitusjärgne + Suurpuhastus B2B`
+  (€6/päev), `P26 · Otsing · DSA-kaevur` (€3/päev; DSA teenuselehtedel uute
+  päringuvormide avastamiseks). Kokku €17/päev lagi. Käsitsi CPC; geo/keel/
+  ajakava/negatiivsed (115 kampaania kohta) kloonitud põhikampaanialt; silt
+  `paralleel_2026`.
+- **Eraldatus praegusest setup'ist:** eraldi eelarved, eraldi märksõnad,
+  eraldus-negatiivsed (generaalsed põhiterminid EXACT — et testi omad
+  phrase-märksõnad endid ei blokeeriks; DSA-l PHRASE). Ühtegi praegust
+  kampaaniat, eelarvet, märksõna ega konversioonitoimingut EI MUUDETUD;
+  uusi konversioonitoiminguid ei loodud — kampaania-taseme goal'id:
+  SUBMIT_LEAD_FORM primaarne (biddable), CONTACT sekundaarne (mitte-biddable).
+- **Raportis:** `lib/reporting/ads.ts` jaotab `ads.p26` + `ads.baseline`
+  (nimeprefiks `ADS_P26_PREFIX` = `P26 ·` strategy.ts-s; peatatud kampaaniad
+  kaasatakse null-metrikatega). E-kiri ja `/spsadmn/raportid/[id]` kuvavad
+  „Paralleelne test (P26) vs praegune seadistus" tabeli; LLM digest kannab
+  samad numbrid. Testi hinnatakse päringute DB kaudu (gclid), mitte Ads'i
+  konversiooniveeru järgi — consent-mode alampiir mõjutab mõlemat võrdselt.
+- **Loomise gotcha'd (õpitud 16.10.2026):** Ads'i loomise-hetke poliitikaskan
+  (PROHIBITED disapproval) on osaliselt juhuslik ja ärritub suurest
+  operatsioonide hulgast — sama reklaamikomplekt võib eba- ja õnnestuda
+  minutite vahega; lahendus on `--repair` kordus, mitte teksti muutmine
+  (kuid „vastutuskindlustus" ja „ISO sertifitseeritud firma" sõnumid lükati
+  püsivalt tagasi — need testi tekstidesse ei kuulu). Label'il pole v25-s
+  `description` välja; conversion-goal ressursid seadistatakse
+  `update`+`updateMask`-iga (mitte `create`-ga) ja ilma `partialFailure`-ta;
+  `campaignConversionGoals` kategooriad peavad konto goal'ides olemas
+  (PHONE_CALL_LEAD on CALL_FROM_ADS päritolu, WEBSITE varianti pole).
+
 ## 7. Consent & privacy notes
 
 - Minimal-restriction policy (owner decision 03.09.2026): only the signals

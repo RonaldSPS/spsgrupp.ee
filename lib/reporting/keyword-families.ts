@@ -15,6 +15,61 @@ interface KeywordFamilyDef {
   id: string
   label: string
   pattern: RegExp
+  /** Soovitud (kanooniline) maandumisleht — kliendi direktiiv: märksõna peab
+   * suunama ÕIGELE lehele, mitte naaberlehele või blogile. */
+  target?: string
+}
+
+/**
+ * Pere → õige maandumisleht (ET tee; RU/EN perekondadel lokaliseeritud tee).
+ * Allikas: kliendi direktiiv 16.10.2026 („hoolduskoristus" peab maanduma
+ * hoolduskoristuse lehele, „koristusteenused" hub'i — mitte kontori-koristus).
+ */
+const FAMILY_TARGET_PAGES: Record<string, string> = {
+  koristusfirma: "/",
+  "koristusfirma-tallinnas": "/",
+  "kontori-koristus": "/koristusteenus/kontori-koristus",
+  kontorikoristus: "/koristusteenus/kontori-koristus",
+  "buroode-koristus": "/koristusteenus/kontori-koristus",
+  hoolduskoristus: "/koristusteenus/hoolduskoristus",
+  puhastusteenused: "/puhastusteenused",
+  "puhastusteenused-tallinnas": "/puhastusteenused",
+  koristusteenused: "/koristusteenus",
+  "koristusteenused-tallinnas": "/koristusteenus",
+  puhastusfirma: "/puhastusteenused",
+  "aripindade-koristus": "/koristusteenus/hoolduskoristus",
+  "akende-pesu": "/koristusteenus/valikoristus/akende-pesu",
+  "akende-pesu-tallinnas": "/koristusteenus/valikoristus/akende-pesu",
+  suurpuhastus: "/puhastusteenused/suurpuhastus",
+  "porandate-suvapesu": "/puhastusteenused/porandate-hooldus",
+  fassaadipesu: "/koristusteenus/valikoristus/fassaadipesu",
+  eripuhastustood: "/puhastusteenused",
+  toostuskoristus: "/koristusteenus/tootmishoonete-koristus",
+  "ehitusprahi-aravedu": "/ehitusprahi-aravedu",
+  "ru-kliining": "/ru/услуги-по-уборке-в-таллинне",
+  "en-cleaning": "/en/cleaning-services-in-tallinn",
+}
+
+/** Normaliseeri lehe URL võrdluseks: pathname, dekodeeritud, ilma lõpu-kaldkriipsuta, lowercase. */
+function normalizePagePathname(pageUrl: string): string {
+  let path = pageUrl
+  try {
+    path = new URL(pageUrl).pathname
+  } catch {
+    /* already a path */
+  }
+  try {
+    path = decodeURIComponent(path)
+  } catch {
+    /* keep as-is */
+  }
+  path = path.toLowerCase().replace(/\/+$/, "")
+  return path === "" ? "/" : path
+}
+
+/** Kas GSC maandumisleht (absoluutne URL) vastab pere sihtlehele (tee). */
+export function pageMatchesTarget(pageUrl: string, target: string): boolean {
+  return normalizePagePathname(pageUrl) === normalizePagePathname(target)
 }
 
 export const KEYWORD_FAMILIES: KeywordFamilyDef[] = [
@@ -76,14 +131,20 @@ export function computeFamilyStats(
   queryPageCurrent: GscQueryPage[] = [],
   queryPagePrevious: GscQueryPage[] = [],
 ): KeywordFamilyStat[] {
-  return KEYWORD_FAMILIES.map((fam) => ({
-    id: fam.id,
-    label: fam.label,
-    current: aggregate(current.filter((q) => fam.pattern.test(q.query))),
-    previous: aggregate(previous.filter((q) => fam.pattern.test(q.query))),
-    carrier: dominantPage(queryPageCurrent.filter((r) => fam.pattern.test(r.query))),
-    prevCarrier: dominantPage(queryPagePrevious.filter((r) => fam.pattern.test(r.query))),
-  }))
+  return KEYWORD_FAMILIES.map((fam) => {
+    const target = fam.target ?? FAMILY_TARGET_PAGES[fam.id] ?? null
+    const carrier = dominantPage(queryPageCurrent.filter((r) => fam.pattern.test(r.query)))
+    return {
+      id: fam.id,
+      label: fam.label,
+      current: aggregate(current.filter((q) => fam.pattern.test(q.query))),
+      previous: aggregate(previous.filter((q) => fam.pattern.test(q.query))),
+      carrier,
+      prevCarrier: dominantPage(queryPagePrevious.filter((r) => fam.pattern.test(r.query))),
+      targetPage: target,
+      carrierMatchesTarget: carrier && target ? pageMatchesTarget(carrier.page, target) : null,
+    }
+  })
 }
 
 /** Brand queries (excluded from "new keyword" discovery - not interesting). */

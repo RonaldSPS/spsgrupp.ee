@@ -63,6 +63,7 @@ export const et: OutdoorServicePageData = {
     { q: "Kuidas saab hoolduskoristusega alustada?", a: "Võtke ühendust - teeme tasuta objekti ülevaatuse, koostame koristusplaani ja hinnapakkumise. Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist." },
     { q: "Milline on hoolduskoristuse miinimummaht?", a: "Teeme hoolduskoristuse lepinguid alates 800 m² suurustele äripindadele - sellest mahust saame tagada kindla meeskonna, objektijuhi ja kvaliteedikontrolli. Väiksematel pindadel soovitame meie ühekordseid puhastusteenuseid." },
     { q: "Kui paindlikud on hoolduskoristuse lepingu tingimused?", a: "Leping tehakse kokkulepitud tähtajaks ja mahus. Tööde mahtu ja sagedust saab kokkuleppel kohandada, kui teie vajadused muutuvad - näiteks hooaja või kasutuskoormuse järgi. Täpsed tingimused lepime kirja enne koostöö algust." },
+    { q: "Mis vahe on hoolduskoristusel ja äripindade koristusel?", a: "Tegemist on sisuliselt sama teenusega: äripindade koristus tähendab kontorite, kaubandus- ja tootmispindade korras hoidmist ja hoolduskoristus on selle lepinguline, regulaarne vorm. Kindel meeskond käib objektil kokkulepitud graafikus 1–7 korda nädalas ning tööde maht ja kvaliteedikriteeriumid on kirjas lepingus. Ühekordsetest puhastustöödest (nt suurpuhastus) eristab hoolduskoristust pidev korduvus ja kvaliteedikontroll." },
   ],
 }
 
@@ -126,6 +127,7 @@ export const en: OutdoorServicePageData = {
     { q: "How do we get started with regular cleaning?", a: "Contact us - we will do a free site assessment, prepare a cleaning plan and a quote. The start date is agreed after assessing the scope and team availability." },
     { q: "What is the minimum scope for regular cleaning?", a: "We take on regular cleaning contracts for business premises of 800 m² and above - from this size up we can guarantee a dedicated team, a site manager and quality control. For smaller premises we recommend our one-off specialist cleaning services." },
     { q: "How flexible are the contract terms for regular cleaning?", a: "The contract is concluded for an agreed term and scope. The scope and frequency can be adjusted by agreement as your needs change - for example with the season or usage load. We fix the exact terms in writing before the cooperation starts." },
+    { q: "What is the difference between regular cleaning and cleaning of business premises?", a: "They are essentially the same service: cleaning of business premises means keeping offices, retail and production spaces clean, and regular cleaning is the contracted, recurring form of it. A dedicated team visits your site on an agreed schedule 1–7 times a week, with the scope and quality criteria fixed in the contract. Unlike one-off jobs (such as deep cleaning), regular cleaning is defined by continuous recurrence and quality control." },
   ],
 }
 
@@ -189,6 +191,7 @@ export const ru: OutdoorServicePageData = {
     { q: "Как начать пользоваться регулярной уборкой?", a: "Свяжитесь с нами - мы проведём бесплатную оценку объекта, составим план уборки и предложение цены. Дата начала работ согласовывается после оценки объёма и доступности команды." },
     { q: "Каков минимальный объём для регулярной уборки?", a: "Мы заключаем договоры на регулярную уборку для коммерческих помещений от 800 м² - начиная с этого объёма гарантируем постоянную команду, менеджера объекта и контроль качества. Для помещений меньшей площади рекомендуем разовые клининговые услуги." },
     { q: "Насколько гибкие условия договора на регулярную уборку?", a: "Договор заключается на согласованный срок и объём. Объём и частоту работ можно по согласованию корректировать при изменении ваших потребностей - например, в зависимости от сезона или загрузки объекта. Точные условия фиксируем письменно до начала сотрудничества." },
+    { q: "Чем отличается регулярная уборка от уборки коммерческих помещений?", a: "По сути это одна и та же услуга: уборка коммерческих помещений - это поддержание чистоты в офисах, торговых и производственных площадях, а регулярная уборка - её договорная, постоянная форма. Закреплённая команда работает на объекте по согласованному графику 1–7 раз в неделю, объём работ и критерии качества зафиксированы в договоре. В отличие от разовых работ (например, генеральной уборки), регулярная уборка отличается постоянной повторяемостью и контролем качества." },
   ],
 }
 
