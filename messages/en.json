@@ -57,7 +57,7 @@
     "heading1": "Cleaning Company for businesses",
     "heading2": "in Tallinn and Harjumaa",
     "description": "SPS Grupp maintains office, retail and industrial premises in Tallinn and Harjumaa, with a combined managed area of more than 1,000,000 m².",
-    "cta": "Request a quote",
+    "cta": "Request a regular cleaning quote",
     "floating1Big": "Over 20 years",
     "floating1Small": "of experience",
     "floating2Big": "ISO 9001 & 14001",
@@ -192,7 +192,7 @@
       },
       {
         "q": "Do you provide office cleaning and regular cleaning for business premises?",
-        "a": "Yes. Regular office cleaning suits offices and commercial premises from 800 m² in Tallinn and Harjumaa, from €1.20/m² per month. We clean outside business hours - early morning or after the workday - and the schedule is agreed around your operations."
+        "a": "Yes. Regular office cleaning suits offices and commercial premises from 600 m² in Tallinn and Harjumaa, from €1.20/m² per month. We clean outside business hours - early morning or after the workday - and the schedule is agreed around your operations."
       },
       {
         "q": "Do you also maintain stairwells, corridors and the building surroundings?",
@@ -402,7 +402,7 @@
       "tag": "Pricing",
       "heading": "How is the cleaning service price determined?",
       "description": "The cleaning price depends on floor area, cleaning frequency, workload and the characteristics of the property.",
-      "note": "We serve commercial properties from <strong>800 m²</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
+      "note": "We serve commercial properties from <strong>600 m²</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
     },
     "footerCta": {
       "title": "Order a free cleaning service assessment",
@@ -535,9 +535,9 @@
       "q4": "Do you provide cleaning supplies and equipment?",
       "a4": "Yes, we bring all professional cleaning products and equipment. We use certified, low-environmental-impact products wherever possible, compliant with ISO 14001.",
       "q5": "How much does office cleaning cost per month?",
-      "a5": "The price depends on the area, cleaning frequency and scope of work. As a guide, regular cleaning for an office of 800 m² starts from €960 per month (from €1.20/m² per month). We confirm the exact price after a free site assessment.",
+      "a5": "The price depends on the area, cleaning frequency and scope of work. As a guide, regular cleaning for an office of 600 m² starts from €720 per month (from €1.20/m² per month). We confirm the exact price after a free site assessment.",
       "q6": "What is the minimum size for office cleaning?",
-      "a6": "We take on office cleaning contracts for premises of 800 m² and above - from that size up we can guarantee a dedicated team, a site manager and regular quality control. For smaller offices we recommend our one-off specialist cleaning services."
+      "a6": "We take on office cleaning contracts for premises of 600 m² and above - from that size up we can guarantee a dedicated team, a site manager and regular quality control. For smaller offices we recommend our one-off specialist cleaning services."
     }
   },
   "kaubanduspindadeKoristus": {

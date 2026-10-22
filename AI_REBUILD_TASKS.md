@@ -772,7 +772,7 @@ Vältida olukorda, kus eesti sisu on JSX-is, teine eesti koopia JSON-is ning EN/
 - [ ] Märgi ettevõtte vanuse vastuolu otsust vajavaks.
 - [ ] Märgi 2006/2007 vastuolu otsust vajavaks.
 - [ ] Märgi teeninduspiirkonna vastuolu otsust vajavaks.
-- [ ] Märgi 800 m² ulatus otsust vajavaks.
+- [x] Märgi 800 m² ulatus otsust vajavaks. OTSUS 21.10.2026: lepingu miinimum on 600 m² (uuendatud kogu saidil: ET/EN/RU lehed, metaandmed, blogipostitused).
 - [ ] Kontrolli “grafiti/graffiti” ühtset eestikeelset kuju.
 - [ ] Kontrolli kõiki CTA-sid.
 - [ ] Kontrolli kõiki KKK vastuseid.

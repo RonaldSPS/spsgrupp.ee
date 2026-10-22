@@ -66,7 +66,7 @@ interface OfficeCleaningText {
 
 const etText: OfficeCleaningText = {
   serviceName: "Kontori koristus Tallinnas",
-  serviceDescription: "Regulaarne kontorikoristus vähemalt 800 m² büroodele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001.",
+  serviceDescription: "Regulaarne kontorikoristus vähemalt 600 m² büroodele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Paindlik graafik, koolitatud personal, ISO 9001 ja ISO 14001.",
   ariaLabel: "Kontori koristus",
   heroChips: [
     { value: "50+", label: "kontorit" },
@@ -75,7 +75,7 @@ const etText: OfficeCleaningText = {
   ],
   h1Line1: "Kontori koristus",
   h1Line2: "Tallinnas ja Harjumaal",
-  heroDescription: 'Regulaarne kontorikoristus vähemalt 800 m² büroodele Tallinnas ja Harjumaal, alates <strong class="text-white font-medium">1,20 €/m² kuus</strong>. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll.',
+  heroDescription: 'Regulaarne kontorikoristus vähemalt 600 m² büroodele Tallinnas ja Harjumaal, alates <strong class="text-white font-medium">1,20 €/m² kuus</strong>. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll.',
   ctaButton: "Küsi kontori koristuse pakkumist",
   breadcrumbHome: "Avaleht",
   breadcrumbService: "Koristusteenus",
@@ -143,8 +143,8 @@ const etText: OfficeCleaningText = {
     { q: "Mida kontori koristus sisaldab?", a: "Tolmuimejaga puhastus, pindade pühkimine, prügi väljaviimine, sanitaarruumide puhastus, köögi ja puhkeala koristus. Lisateenustena pakume akende pesu, vaipade süvapuhastust ja desinfitseerimist." },
     { q: "Kas kasutate keskkonnasõbralikke puhastusvahendeid?", a: "Eelistame sertifitseeritud ja väiksema keskkonnamõjuga puhastusvahendeid kõikjal, kus puhastatav pind ja ohutusnõuded seda võimaldavad. Eritööde puhul valitakse vahendid konkreetse ülesande järgi." },
     { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Pärast tasuta objekti ülevaatust saadame hinnapakkumise ühe tööpäeva jooksul. Koristustööd algavad tavaliselt 1–2 nädala jooksul pärast lepingu sõlmimist - täpne aeg sõltub objekti mahust ja meeskonna saadavusest." },
-    { q: "Kui palju maksab kontori koristus kuus?", a: "Hind sõltub pindalast, koristuse sagedusest ja tööde mahust. Orienteeruvalt on alates 800 m² suuruse kontori regulaarse koristuse kuuhind alates 960 € (1,20 €/m² kuus). Täpse hinna kinnitame tasuta objekti ülevaatuse järel." },
-    { q: "Milline on kontorikoristuse miinimummaht?", a: "Kontorikoristuse lepinguid teeme alates 800 m² suurustele büroodele - sellest mahust saame tagada kindla meeskonna, objektijuhi ja regulaarse kvaliteedikontrolli. Väiksematel pindadel soovitame vaadata meie ühekordseid puhastusteenuseid." },
+    { q: "Kui palju maksab kontori koristus kuus?", a: "Hind sõltub pindalast, koristuse sagedusest ja tööde mahust. Orienteeruvalt on alates 600 m² suuruse kontori regulaarse koristuse kuuhind alates 720 € (1,20 €/m² kuus). Täpse hinna kinnitame tasuta objekti ülevaatuse järel." },
+    { q: "Milline on kontorikoristuse miinimummaht?", a: "Kontorikoristuse lepinguid teeme alates 600 m² suurustele büroodele - sellest mahust saame tagada kindla meeskonna, objektijuhi ja regulaarse kvaliteedikontrolli. Väiksematel pindadel soovitame vaadata meie ühekordseid puhastusteenuseid." },
   ],
 };
 

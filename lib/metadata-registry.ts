@@ -9,7 +9,7 @@ export const pageMetadata: Record<string, { title: string; description: string }
   },
   '/koristusteenus/kontori-koristus': {
     title: 'Kontori koristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp',
-    description: 'Regulaarne kontorikoristus büroodele alates 800 m² Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
+    description: 'Regulaarne kontorikoristus büroodele alates 600 m² Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
   },
   '/koristusteenus/hoolduskoristus': {
     title: 'Hoolduskoristus Tallinnas - äripindade regulaarne koristus | SPS Grupp',
@@ -179,7 +179,7 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/kontori-koristus': {
       title: 'Office Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
-      description: 'Regular office cleaning for offices from 800 m² in Tallinn and Harjumaa. 50+ offices trust SPS Grupp. Free audit, ISO 9001.',
+      description: 'Regular office cleaning for offices from 600 m² in Tallinn and Harjumaa. 50+ offices trust SPS Grupp. Free audit, ISO 9001.',
     },
     '/koristusteenus/hoolduskoristus': {
       title: 'Regular Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
@@ -191,15 +191,15 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/kaubanduspindade-koristus': {
       title: 'Retail Space Cleaning in Tallinn and Harjumaa | SPS Grupp',
-      description: 'Regular retail space cleaning from €1.20/m² per month for properties from 800 m² in Tallinn and Harjumaa.',
+      description: 'Regular retail space cleaning from €1.20/m² per month for properties from 600 m² in Tallinn and Harjumaa.',
     },
     '/koristusteenus/tootmishoonete-koristus': {
       title: 'Industrial Building Cleaning in Harjumaa | SPS Grupp',
-      description: 'Regular industrial cleaning from €1.20/m² per month for production facilities and warehouses from 800 m².',
+      description: 'Regular industrial cleaning from €1.20/m² per month for production facilities and warehouses from 600 m².',
     },
     '/koolide-koristamine': {
       title: 'School and Kindergarten Cleaning in Tallinn | SPS Grupp',
-      description: 'Regular cleaning for schools and kindergartens from €1.20/m² per month. We serve properties from 800 m².',
+      description: 'Regular cleaning for schools and kindergartens from €1.20/m² per month. We serve properties from 600 m².',
     },
     '/puhastusteenused': {
       title: 'Specialist Cleaning Services in Tallinn | SPS Grupp',
@@ -335,7 +335,7 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/kontori-koristus': {
       title: 'Уборка офисов в Таллинне - от 1,20 €/м² | SPS Grupp',
-      description: 'Регулярная уборка офисов от 800 м² в Таллинне и Харьюмаа. Более 50 офисов доверяют SPS Grupp. Бесплатный аудит, ISO 9001.',
+      description: 'Регулярная уборка офисов от 600 м² в Таллинне и Харьюмаа. Более 50 офисов доверяют SPS Grupp. Бесплатный аудит, ISO 9001.',
     },
     '/koristusteenus/hoolduskoristus': {
       title: 'Регулярная уборка в Таллине - от 1,20 €/м² | SPS Grupp',
@@ -347,15 +347,15 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus/kaubanduspindade-koristus': {
       title: 'Уборка торговых помещений в Таллинне | SPS Grupp',
-      description: 'Регулярная уборка торговых помещений от 1,20 €/м² в месяц. Минимальная площадь объекта - 800 м². Надёжный персонал и стабильное качество в Таллинне и Харьюмаа.',
+      description: 'Регулярная уборка торговых помещений от 1,20 €/м² в месяц. Минимальная площадь объекта - 600 м². Надёжный персонал и стабильное качество в Таллинне и Харьюмаа.',
     },
     '/koristusteenus/tootmishoonete-koristus': {
       title: 'Уборка промышленных зданий в Харьюмаа | SPS Grupp',
-      description: 'Регулярная уборка производственных помещений и складов от 1,20 €/м² в месяц, начиная с 800 м². Опыт со сложными промышленными объектами. Бесплатная оценка.',
+      description: 'Регулярная уборка производственных помещений и складов от 1,20 €/м² в месяц, начиная с 600 м². Опыт со сложными промышленными объектами. Бесплатная оценка.',
     },
     '/koolide-koristamine': {
       title: 'Уборка школ и детских садов в Таллинне | SPS Grupp',
-      description: 'Регулярная уборка школ и детских садов от 1,20 €/м² в месяц. Обслуживаем объекты площадью от 800 м².',
+      description: 'Регулярная уборка школ и детских садов от 1,20 €/м² в месяц. Обслуживаем объекты площадью от 600 м².',
     },
     '/puhastusteenused': {
       title: 'Клининговые услуги в Таллинне для бизнеса | SPS Grupp',

@@ -5,6 +5,7 @@
  */
 
 import type { AdsConversionBreakdown, AdsData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
+import { getGbpWeekTasks, loadGbpCalendar, type GbpCalendar, type GbpWeekTasks } from "./gbp-calendar"
 
 export interface AdsConvSplit {
   form: number
@@ -352,6 +353,54 @@ function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } 
 }
 
 /**
+ * „Sisu ja GBP — järgmise nädala tegevused" — avaldamiskalendri meeldetuletus
+ * (data/gbp-calendar.json; kliendi palve 21.10.2026). Raport saabub reedel,
+ * GBP-postitus avaldatakse E–K, seega kuvatakse JÄRGMISE nädala ülesanded
+ * koos valmis postitustekstiga, et need saaks kohe tööle võtta.
+ */
+function gbpCalendarSection(tasks: GbpWeekTasks, calendar: GbpCalendar): { html: string; text: string[] } {
+  const { week, weekStart, weekEnd, rotated } = tasks
+  const rotatedNote = rotated
+    ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px;margin:8px 0">Kalender on ringis (12 nädalat on täis) — uuenda <code>data/gbp-calendar.json</code> värskete teemadega.</p>`
+    : ""
+  const postBox =
+    `<div style="background:#f4f9ff;border:1px solid #dbeafe;border-radius:10px;padding:12px 14px;margin:8px 0">` +
+    `<div style="font-size:13px;color:#5a6474;margin-bottom:4px">GBP postitus (avalda E–K, „Lisateave"-nupuga link):</div>` +
+    `<div style="font-size:14px;color:#17345a;white-space:pre-line">${escapeHtml(week.post.text)}</div>` +
+    `<div style="font-size:13px;color:#1d4ed8;margin-top:6px">Link: <a href="${escapeHtml(week.post.ctaUrl)}" style="color:#1d4ed8">${escapeHtml(week.post.ctaUrl)}</a></div>` +
+    `<div style="font-size:13px;color:#5a6474;margin-top:4px">Foto postitusele: ${escapeHtml(week.post.photoIdea)}</div>` +
+    `</div>`
+  const photoRow = week.photoTask
+    ? `<li style="margin:4px 0;font-size:14px;color:#17345a"><strong>Fotod GBP-sse:</strong> ${escapeHtml(week.photoTask)}</li>`
+    : ""
+  const blogRow = week.blogTopic
+    ? `<li style="margin:4px 0;font-size:14px;color:#17345a"><strong>Blogi (sync):</strong> ${escapeHtml(week.blogTopic)}</li>`
+    : ""
+  const standing = calendar.standingTasks
+    .map((t) => `<li style="margin:3px 0;font-size:13px;color:#4a5568">${escapeHtml(t)}</li>`)
+    .join("")
+  const html =
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Sisu ja GBP — järgmise nädala plaan (${weekStart} – ${weekEnd})</h2>` +
+    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Teema: <strong>${escapeHtml(week.theme)}</strong>${week.done ? ` · Märkus: ${escapeHtml(week.done)}` : ""}</p>` +
+    rotatedNote +
+    postBox +
+    `<ul style="margin:6px 0 0;padding-left:18px">${photoRow}${blogRow}</ul>` +
+    `<div style="font-size:13px;color:#5a6474;margin-top:10px"><strong>Püsitoimetused:</strong></div>` +
+    `<ul style="margin:4px 0 0;padding-left:18px">${standing}</ul>`
+  const text = [
+    `SISU JA GBP — JÄRGMISE NÄDALA PLAAN (${weekStart} – ${weekEnd}): ${week.theme}`,
+    ...(rotated ? ["(kalender ringis — uuenda data/gbp-calendar.json)"] : []),
+    `GBP postitus: ${week.post.text}`,
+    `Link: ${week.post.ctaUrl} · Foto: ${week.post.photoIdea}`,
+    ...(week.photoTask ? [`Fotod GBP-sse: ${week.photoTask}`] : []),
+    ...(week.blogTopic ? [`Blogi (sync): ${week.blogTopic}`] : []),
+    `Püsitoimetused: ${calendar.standingTasks.join(" · ")}`,
+    "",
+  ]
+  return { html, text }
+}
+
+/**
  * „Paralleelne test (P26) vs praegune seadistus" — AI-juhitud testkampaaniate
  * eraldi statistika ja aus võrdlus olemasoleva seadistusega (plaan 14.10.2026:
  * test ei muuda praegust setup'i — eraldi eelarve, märksõnad, kampaaniad).
@@ -400,7 +449,7 @@ function p26Section(ads: AdsData): { html: string; text: string[] } {
   return { html, text }
 }
 
-export function buildReportEmail(report: StoredReport, adminUrl: string): { subject: string; html: string; text: string } {
+export async function buildReportEmail(report: StoredReport, adminUrl: string): Promise<{ subject: string; html: string; text: string }> {
   const s = report.snapshot
   const subject = `SPS nädalaraport ${s.period.start} – ${s.period.end}`
 
@@ -459,6 +508,8 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   const p26 = s.ads?.available && s.ads.p26 ? p26Section(s.ads) : { html: "", text: [] as string[] }
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
+  const gbpCalendar = await loadGbpCalendar()
+  const gbp = gbpCalendar ? gbpCalendarSection(getGbpWeekTasks(new Date(s.generatedAt), gbpCalendar), gbpCalendar) : { html: "", text: [] as string[] }
   const errorsNote = s.errors.length
     ? `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px">Osaliselt puuduvad andmed: ${escapeHtml(s.errors.join(" · "))}</p>`
     : ""
@@ -477,6 +528,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
   ${geo.html}
   ${narrativeHtml}
   ${changes.html}
+  ${gbp.html}
   <h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Leiud ja järgmised sammud</h2>
   ${insightSections.join("\n")}
   <p style="margin-top:24px;font-size:14px;color:#5a6474">
@@ -499,6 +551,7 @@ export function buildReportEmail(report: StoredReport, adminUrl: string): { subj
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")
   }
   textLines.push(...changes.text)
+  textLines.push(...gbp.text)
   textLines.push("LEIUD JA JÄRGMISED SAMMUD")
   for (const [area, items] of insightsByArea) {
     textLines.push("", `— ${AREA_LABELS[area]} —`)

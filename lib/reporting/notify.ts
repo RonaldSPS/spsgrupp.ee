@@ -15,7 +15,7 @@ export async function sendReportEmail(
 ): Promise<{ success: boolean; error?: string; recipients: string }> {
   const recipients = await getReportRecipients()
   const adminUrl = `https://spsgrupp.ee/spsadmn/raportid/${report.id}/`
-  const mail = buildReportEmail(report, adminUrl)
+  const mail = await buildReportEmail(report, adminUrl)
   const sent = await sendEmail({ to: recipients, subject: mail.subject, text: mail.text, html: mail.html })
   await markReportEmailSent(report.id, sent.success ? undefined : sent.error ?? "send failed")
   return { success: sent.success, error: sent.error, recipients }

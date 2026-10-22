@@ -18,7 +18,7 @@ const textByLocale: Record<Locale, ReviewsPageText> = {
     viewService: "Vaata teenust",
     videoTag: "Video",
     videoHeading: "Kliendilugu: Tehnikakõrgkool",
-    videoDescription: "Vaata, kuidas aitasime ligi 2800 õppijaga kõrgkoolil luua tervislikuma õpikeskkonna.",
+    videoDescription: "Vaata, kuidas aitasime ligi 2800 õppijaga kõrgkoolil luua tervislikuma õppekeskkonna.",
     footerTitle: "Liitu rahulolevate klientidega!",
     footerDescription: "Esmane konsultatsioon ja vajaduste kaardistamine. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
     cardCta: "Soovid sama tulemust? Küsi pakkumist",

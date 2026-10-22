@@ -1,0 +1,153 @@
+{
+  "updatedAt": "2026-10-21",
+  "startMonday": "2026-10-26",
+  "rhythm": {
+    "gbpPost": "1x nädalas (avalda E–K, nädala teema)",
+    "photos": "2x kuus (vastavad nädalad on märgitud)",
+    "reviewCheck": "iga nädal",
+    "blogSync": "blogipostitus E → GBP postitus K viitab samale teemale/lehele"
+  },
+  "reviewLink": "https://g.page/r/CX0Zvtg-NPjSEBM/review",
+  "standingTasks": [
+    "Kontrolli GBP uued arvustused ja vasta 24–48 h jooksul (eriti negatiivsetele — praegu on 3 vastamata)",
+    "2x kuus jaga arvustuste linki kahele rahulolevale kliendile: https://g.page/r/CX0Zvtg-NPjSEBM/review",
+    "1x kuus vaata GBP Performance (kõned, teejuhised, veebiklikid) ja märka trend üles",
+    "1x kuus küsi Maps-is AI-lt (Ask Maps) paar küsimust ettevõtte kohta (hind, miinimum, objektitüübid) ja kontrolli vastuste õigsust — valed vastused viitavad profiili/lehe parandatavale kohale. Märkus: klassikaline Q&A on Google'il eemaldatud (API lõpetatud 11/2025), küsimused vastab nüüd AI profiili ja lehe andmetest"
+  ],
+  "weeks": [
+    {
+      "weekStart": "2026-10-26",
+      "theme": "Kontori hoolduskoristus + hind (põhipakkumine)",
+      "blogTopic": "Kui palju maksab kontori koristus 2026. aastal? (m² hinnad, miinimummaht, kalkulaator)",
+      "post": {
+        "text": "Kui palju maksab kontori hoolduskoristus? SPS Grupil on hind alates 1,20 €/m² kuus – lepingud alates 600 m². Hinnas on tööplaan, kindel meeskond, objektijuht ja jooksev kvaliteedikontroll. Üle 200 ettevõtte usaldab meie 300+ töötajat. Küsi tasuta objekti ülevaatust – vastame ühe tööpäeva jooksul.",
+        "ctaUrl": "https://spsgrupp.ee/koristusteenus/kontori-koristus/",
+        "photoIdea": "kontorikoristus (tolmupühkimine või tolmuimeja kontoris)"
+      },
+      "photoTask": null,
+      "done": "GBP esimene postitus avaldatud juba 21.10 (hoolduskoristuse teema) — selle nädala postitus avalda E 26.10"
+    },
+    {
+      "weekStart": "2026-11-02",
+      "theme": "Lumekoristus — leping enne talve (hooajaline)",
+      "blogTopic": "Lumekoristuse leping: mida enne talve kokku leppida (reageerimisaeg, libedusetõrje, vastutus)",
+      "post": {
+        "text": "Talv tuleb – lumekoristuse leping tasub sõlmida enne esimest lund. SPS Grupp hoiab parklad, kõnniteed ja sissepääsud korras kogu hooaja: ilmajälgimine, ennetav libedusetõrje ja kokkulepitud reageerimisaeg ka nädalavahetustel. Hooajaline leping alates 150 €/kuu. Küsi pakkumist juba nüüd, et objekt oleks kaetud enne hooaega.",
+        "ctaUrl": "https://spsgrupp.ee/koristusteenus/valikoristus/lumekoristus/",
+        "photoIdea": "lumesahk/traktor parklas (kui lund veel pole: tehnika valmisolek)"
+      },
+      "photoTask": "2 fotot: kontori hoolduskoristus enne/järele (kategooria: At work). Failinimed nt kontori-hoolduskoristus-tallinn-sps-1.jpg"
+    },
+    {
+      "weekStart": "2026-11-09",
+      "theme": "Mastaap ja töökindlus (miks SPS)",
+      "blogTopic": "Kuidas valida koristusfirma ettevõttele: 7 kontroll-küsimust (ISO, vahetuspersonal, objektijuht, kindlustus)",
+      "post": {
+        "text": "2006. aastast, 300+ töötajat, üle 1 000 000 m² hooldatavat pinda ja 200+ äriklienti — SPS Grupp on üks Eesti suuremaid B2B koristuspartnereid. ISO 9001 ja ISO 14001 sertifikaadid, läbipaistvad hinnad ja igale objektile nimetatud objektijuht. Vaata, kuidas me töötame.",
+        "ctaUrl": "https://spsgrupp.ee/sps-grupp/",
+        "photoIdea": "meeskond vormiriietuses või brändiga auto"
+      },
+      "photoTask": null
+    },
+    {
+      "weekStart": "2026-11-16",
+      "theme": "Suurpuhastus enne aastavahetust",
+      "blogTopic": "Suurpuhastus äripindadel: mida see sisaldab ja kuidas hinnad kujunevad (1–1,5 €/m²)",
+      "post": {
+        "text": "Aasta lõpeb — hea aeg kontori suurpuhastuseks. Kontorite suurpuhastus alates 1,5 €/m²: põrandate masinpesu, aknad, sanitaarruumid ja detailid, mida igapäevane koristus ei kata. Lepi aeg kokku juba novembris — detsembri kalender täitub kiiresti.",
+        "ctaUrl": "https://spsgrupp.ee/puhastusteenused/suurpuhastus/",
+        "photoIdea": "põrandate masinpesu töös"
+      },
+      "photoTask": "2 fotot: meeskond SPS vormis (Team) + põrandate süvapuhastus masinaga (At work)"
+    },
+    {
+      "weekStart": "2026-11-23",
+      "theme": "Põrandate hooldus (eluiga pikendab)",
+      "blogTopic": "PVC-põranda eluiga: hooldus vs vahetus — kui palju säästab regulaarne hooldus",
+      "post": {
+        "text": "Kulunud põrand ei vaja vahetust — vaja on õiget hooldust. Süvapuhastus alates 0,9 €/m² ning vahatamine ja kaitsekihid pikendavad põranda eluiga aastate kaupa. PVC, parkett, kivi, betoon — iga materjal saab oma meetodi. Küsi tasuta ülevaatus.",
+        "ctaUrl": "https://spsgrupp.ee/puhastusteenused/porandate-hooldus/",
+        "photoIdea": "kruiisiterminali/põranda masinpesu foto"
+      },
+      "photoTask": null
+    },
+    {
+      "weekStart": "2026-11-30",
+      "theme": "Lumekoristus töös (foto-postitus)",
+      "blogTopic": "(kui lumi maas) Lumekoristus pilte ja praktikat: kuidas hoiame objektid ligipääsetavad",
+      "post": {
+        "text": "Esimene lumi on maas — meie tehnika töötab klientide parklates ja sissepääsudel varahommikul. Lumekoristus ja libedusetõrje hooajalepinguga: ilmajälgimine ja reageerimine ka nädalavahetustel ja pühadel. Sinu objekt võiks olla järgmine.",
+        "ctaUrl": "https://spsgrupp.ee/koristusteenus/valikoristus/lumekoristus/",
+        "photoIdea": "OTSEVÄRSKE lumetöö foto samalt nädalalt"
+      },
+      "photoTask": "2 fotot: lumetõrje tehnika töös kliendiobjektil (At work) — päris hooajaline sisu toimib parimalt"
+    },
+    {
+      "weekStart": "2026-12-07",
+      "theme": "Kaubanduspinnad jõuluhooajal",
+      "blogTopic": "Jõuluhooaja koristus kaubanduses: kuidas jalaliiklust maksimaalse koormusega hallata",
+      "post": {
+        "text": "Jõuluhooaeg tähendab kaubanduses maksimaalset jalaliiklust. SPS Grupp hooldab kauplusi ja kaubanduskeskusi ka avatuks oleku ajal: põrandate masinpesu, sanitaarruumid, eskalaatorid ja sissepääsualad. Regulaarne hooldus alates 1,20 €/m² kuus.",
+        "ctaUrl": "https://spsgrupp.ee/koristusteenus/kaubanduspindade-koristus/",
+        "photoIdea": "masinpesu kaubanduspinnal"
+      },
+      "photoTask": null
+    },
+    {
+      "weekStart": "2026-12-14",
+      "theme": "Töökindlus pühade ajal",
+      "blogTopic": "(valikuline) Koristus pühade ajal: kuidas graafikud töötavad",
+      "post": {
+        "text": "Aasta viimased nädalad: meie hooldusgraafikud jooksevad pühadegi ajal kokkulepitud kujul, sest koristus ei võta puhkust. Kui praegune partner jätab jõulunädalal hätta, räägi meiega — suudame astuda vahele ka lühikese etteteatamisega.",
+        "ctaUrl": "https://spsgrupp.ee/kontakt/",
+        "photoIdea": "valge/puhas sisevaade või meeskond"
+      },
+      "photoTask": "1–2 fotot: detsembrikuu objekt (enne/järele) või meeskonna jõulutervitus (Team)"
+    },
+    {
+      "weekStart": "2026-12-21",
+      "theme": "Aastatänud (kerge postitus)",
+      "blogTopic": null,
+      "post": {
+        "text": "SPS Grupp tänab kõiki kliente ja koostööpartnereid möödunud aasta eest! Hooldusobjektid on pühade ajal meie meeskonna valve all. Head jõule ja uut aastat — kohtume 2027. aastal.",
+        "ctaUrl": "https://spsgrupp.ee/sps-grupp/",
+        "photoIdea": "meeskonna jõulutervitus / kaunistatud kontor"
+      },
+      "photoTask": null
+    },
+    {
+      "weekStart": "2026-12-28",
+      "theme": "Uue aasta eelarve ja lepingud",
+      "blogTopic": "Koristuslepingu eelarve planeerimine 2027: mida arvesse võtta",
+      "post": {
+        "text": "Uus aasta, kava sama: puhas ja toimiv kinnisvara iga tööpäev. Kui 2027. aasta eelarvesse tuleb vaadata koristuslepingut, saada meile objekti andmed — teeme tasuta ülevaatuse ja pakkumise jaanuaris. Hoolduskoristus alates 1,20 €/m² kuus.",
+        "ctaUrl": "https://spsgrupp.ee/koristusteenus/hoolduskoristus/",
+        "photoIdea": "puhas kontori sisevaade"
+      },
+      "photoTask": null
+    },
+    {
+      "weekStart": "2027-01-04",
+      "theme": "Koristuspartneri vahetus (switch-sõnum)",
+      "blogTopic": "Koristuspartneri vahetus: kuidas üleminek sujub nädalaga (samm-sammult)",
+      "post": {
+        "text": "Koristuspartneri vahetus pole keeruline, kui see on süsteemselt korraldatud: objekti ülevaatus, tööplaan, meeskonna väljaõpe ja käivitus nädalaga. SPS Grupp on viinud üle kümned objektid — protsess on harjutatud. Küsi, kuidas üleminek toimub.",
+        "ctaUrl": "https://spsgrupp.ee/koristusteenus/hoolduskoristus/",
+        "photoIdea": "objektijuhi ülevaatus / tööplaan koosolekul"
+      },
+      "photoTask": "2 fotot: põrandate masinpesu kaubanduspinnal + eskalaatori süvapuhastus (At work)"
+    },
+    {
+      "weekStart": "2027-01-11",
+      "theme": "Eskalaatorite süvapuhastus (eriteenus)",
+      "blogTopic": "Eskalaatori süvapuhastus: miks astmevahed ja käsipuud vajavad eritehnikat",
+      "post": {
+        "text": "Eskalaatori astmevahede mustus ei kao igapäevase koristusega. Spetsiaalse astmepesumasinaga süvapuhastus alates 250 € eskalaatori kohta — töö teeme öösel, hommikuks on eskalaator puhas ja valmis. Kaubanduskeskused, terminalid, büroohooned.",
+        "ctaUrl": "https://spsgrupp.ee/puhastusteenused/eskalaatorite-suvapuhastus/",
+        "photoIdea": "eskalaatori astmete puhastus lähedalt"
+      },
+      "photoTask": null
+    }
+  ],
+  "rotationNote": "Kui kalender otsa saab (pärast 11.01.2027), keerleb raporti meeldetuletus samu nädalaid ringiga — uuenda faili kvartaalselt."
+}

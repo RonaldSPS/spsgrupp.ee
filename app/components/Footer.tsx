@@ -40,7 +40,6 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
       { label: m("industrialCleaning"), href: "/koristusteenus/tootmishoonete-koristus/" },
     ]},
     { items: [
-      { label: m("windowCleaning"), href: "/koristusteenus/valikoristus/akende-pesu/" },
       { label: m("carpetCleaning"), href: "/puhastusteenused/vaipade-puhastus/" },
       { label: m("deepCleaning"), href: "/puhastusteenused/suurpuhastus/" },
       { label: m("floorMaintenance"), href: "/puhastusteenused/porandate-hooldus/" },
@@ -49,8 +48,6 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
       { label: m("fireDamageCleaning"), href: "/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/" },
       { label: m("escalatorDeepCleaning"), href: "/puhastusteenused/eskalaatorite-suvapuhastus/" },
       { label: m("pavingCleaning"), href: "/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/" },
-      { label: m("graffitiRemoval"), href: "/koristusteenus/valikoristus/grafiti-eemaldamine/" },
-      { label: m("facadeCleaning"), href: "/koristusteenus/valikoristus/fassaadipesu/" },
     ]},
     { items: [
       { label: m("outdoorCleaning"), href: "/koristusteenus/valikoristus/" },

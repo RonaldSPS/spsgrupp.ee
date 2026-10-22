@@ -125,7 +125,7 @@ export default function Trust({ animDelay }: { animDelay?: number }) {
               {t("regularText")}
             </p>
             <p className="text-[15px] text-[#2d7a4f] font-medium mb-4">{t("regularNote")}</p>
-            <Link href={localizePath("/koristusteenus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
+            <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
               {t("more")} <span aria-hidden="true">→</span>
             </Link>
           </div>

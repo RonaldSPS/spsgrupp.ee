@@ -772,7 +772,7 @@ Avoid a situation in which Estonian content exists in JSX, a second Estonian cop
 - [ ] Flag the contradiction concerning the age of the company for a decision.
 - [ ] Flag the 2006/2007 contradiction for a decision.
 - [ ] Flag the service-area contradiction for a decision.
-- [ ] Flag the meaning of the 800 m² limit for a decision.
+- [x] Flag the meaning of the 800 m² limit for a decision. DECIDED 21.10.2026: contract minimum is 600 m² (updated site-wide: ET/EN/RU pages, metadata, blog posts).
 - [ ] Verify consistent Estonian use of “grafiti/graffiti”.
 - [ ] Review every CTA.
 - [ ] Review every FAQ answer.

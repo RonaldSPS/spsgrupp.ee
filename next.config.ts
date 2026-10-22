@@ -44,12 +44,13 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   serverExternalPackages: ["sharp"],
-  /* data/git-history.json (weekly-report „Lehekülje arendus" section) is read
-   * dynamically via fs, so the tracer cannot detect it — include it in the
+  /* data/git-history.json (weekly-report „Lehekülje arendus" section) and
+   * data/gbp-calendar.json (weekly-report „Sisu ja GBP" section) are read
+   * dynamically via fs, so the tracer cannot detect them — include them in the
    * two serverless functions that generate reports (cron + admin POST). */
   outputFileTracingIncludes: {
-    "/api/cron/weekly-report*": ["./data/git-history.json"],
-    "/api/spsadmn/reports*": ["./data/git-history.json"],
+    "/api/cron/weekly-report*": ["./data/git-history.json", "./data/gbp-calendar.json"],
+    "/api/spsadmn/reports*": ["./data/git-history.json", "./data/gbp-calendar.json"],
   },
   turbopack: {
     root: process.cwd(),

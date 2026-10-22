@@ -31,7 +31,7 @@
     "janitorService": "Kojamehe teenus",
     "snowRemoval": "Lumekoristus",
     "cleaningServices2": "Puhastusteenused",
-    "specialCleaning": "Puhastusteenused",
+    "specialCleaning": "Eripuhastus",
     "windowCleaning": "Akende pesu",
     "carpetCleaning": "Vaipade puhastus",
     "floorMaintenance": "Põrandate hooldus",
@@ -57,7 +57,7 @@
     "heading1": "Koristusfirma ärikliendile",
     "heading2": "Tallinnas ja Harjumaal",
     "description": "Koristusfirma SPS Grupp hooldab kontori-, kaubandus- ja tootmispindu Tallinnas ja Harjumaal kokku üle 1 000 000 m².",
-    "cta": "Küsi pakkumist",
+    "cta": "Küsi hoolduskoristuse pakkumist",
     "floating1Big": "Alates 2006",
     "floating1Small": "kogemust",
     "floating2Big": "ISO 9001 & 14001",
@@ -192,7 +192,7 @@
       },
       {
         "q": "Kas pakute kontorikoristust ja büroode regulaarset koristust?",
-        "a": "Jah. Regulaarne kontorikoristus sobib alates 800 m² büroodele ja äripindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Koristame töövälisel ajal - varahommikul või pärast tööpäeva - ning graafiku lepime kokku teie töökorralduse järgi."
+        "a": "Jah. Regulaarne kontorikoristus sobib alates 600 m² büroodele ja äripindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Koristame töövälisel ajal - varahommikul või pärast tööpäeva - ning graafiku lepime kokku teie töökorralduse järgi."
       },
       {
         "q": "Kas hooldate ka trepikodasid, koridore ja hoone ümbrust?",

@@ -46,7 +46,7 @@ export default function Logos({ animDelay }: { animDelay?: number }) {
         {[...logos, ...logos, ...logos].map((logo, i) => (
           <div
             key={i}
-            className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-40 transition-all hover:opacity-80 min-w-[203px] sm:min-w-[270px]"
+            className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-60 transition-all hover:opacity-90 min-w-[203px] sm:min-w-[270px]"
           >
             <span className="relative block h-[85px] w-[152px]">
               <Image
