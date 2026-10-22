@@ -10,9 +10,23 @@ interface BlogEdit {
   contentHtml?: string
   featuredImage?: string
   excerpt?: string
+  date?: string | null
   active?: boolean
   updatedAt: string
 }
+
+function parsePostDate(d: string): number {
+  return new Date(d.replace(" ", "T")).getTime()
+}
+
+function formatPostDate(d: string): string {
+  const t = parsePostDate(d)
+  if (Number.isNaN(t)) return d
+  return new Date(t).toLocaleDateString("et-EE", { day: "numeric", month: "long", year: "numeric" })
+}
+
+// Captured once at module load (admin page) - render must stay pure.
+const PAGE_LOADED_AT = Date.now()
 
 export default function AdminBlogList() {
   const [edits, setEdits] = useState<Record<string, BlogEdit>>({})
@@ -30,8 +44,10 @@ export default function AdminBlogList() {
 
   useEffect(() => { fetchData() }, [])
 
+  const effectiveDate = (post: BlogPost) => edits[String(post.id)]?.date || post.date
+
   const allPosts = [...blogPosts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => parsePostDate(effectiveDate(b)) - parsePostDate(effectiveDate(a))
   )
 
   const filteredPosts = useMemo(() => {
@@ -81,8 +97,10 @@ export default function AdminBlogList() {
           <div className="divide-y divide-[rgba(23,52,90,0.06)]">
             {filteredPosts.map((post: BlogPost) => {
               const edit = edits[String(post.id)]
-              const isEdited = !!edit?.title
+              const isEdited = !!(edit?.title || edit?.date)
               const isActive = edit ? edit.active !== false : true
+              const dateStr = effectiveDate(post)
+              const isScheduled = isActive && parsePostDate(dateStr) > PAGE_LOADED_AT
               return (
                 <div key={post.id} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 transition-colors ${isActive ? "hover:bg-[#f8fafc]" : "bg-[#f0f2f5] hover:bg-[#e8eaed]"}`}>
                   <div className="flex-1 min-w-0">
@@ -91,15 +109,15 @@ export default function AdminBlogList() {
                         href={`/spsadmn/blog/${post.id}`}
                         className="text-[16px] font-medium text-[#17345a] hover:text-[#3abeff] transition-colors truncate"
                       >
-                        {isEdited ? (edit.title || post.title) : post.title}
+                        {isEdited ? (edit?.title || post.title) : post.title}
                       </Link>
                       <button
                         onClick={() => toggleActive(post.id, isActive)}
                         className={`shrink-0 text-[15px] px-2 py-0.5 rounded-full font-medium transition-colors ${
-                          isActive ? "bg-[#2d9e6b]/10 text-[#2d9e6b]" : "bg-gray-100 text-[#5a6474]"
+                          !isActive ? "bg-gray-100 text-[#5a6474]" : isScheduled ? "bg-[#b45309]/10 text-[#b45309]" : "bg-[#2d9e6b]/10 text-[#2d9e6b]"
                         }`}
                       >
-                        {isActive ? "Aktiivne" : "Peidetud"}
+                        {!isActive ? "Peidetud" : isScheduled ? "Ajastatud" : "Avaldatud"}
                       </button>
                       {isEdited && (
                         <span className="shrink-0 bg-[#3abeff]/10 text-[#3abeff] text-[15px] px-2 py-0.5 rounded-full font-medium">
@@ -108,7 +126,10 @@ export default function AdminBlogList() {
                       )}
                     </div>
                     <p className="text-[15px] text-[#5a6474] truncate">
-                      /blog/{isEdited ? (edit.slug || post.slug) : post.slug}
+                      /blog/{isEdited ? (edit?.slug || post.slug) : post.slug}
+                    </p>
+                    <p className="text-[15px] text-[#5a6474] mt-0.5">
+                      {isScheduled ? "Avaldatakse: " : "Avaldatud: "}{formatPostDate(dateStr)}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">

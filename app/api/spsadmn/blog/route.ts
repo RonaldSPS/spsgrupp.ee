@@ -18,6 +18,7 @@ interface AdminEditsJson {
     contentHtml?: string | null
     featuredImage?: string | null
     excerpt?: string | null
+    date?: string | null
     active?: boolean
     updatedAt?: string
   }>
@@ -26,6 +27,16 @@ interface AdminEditsJson {
 function sanitizeTextField(value: string | undefined): string {
   if (!value) return ""
   return value.slice(0, 50000).replace(/[<>]/g, (c) => c === "<" ? "&lt;" : "&gt;")
+}
+
+// Accepts "YYYY-MM-DD HH:MM[:SS]" or datetime-local "YYYY-MM-DDTHH:MM" and
+// normalizes to the "YYYY-MM-DD HH:MM:SS" format used by posts.generated.ts.
+function normalizeDateField(value: string | undefined): string | null {
+  if (!value) return null
+  const v = value.trim()
+  const m = v.match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?$/)
+  if (!m) return null
+  return `${m[1]} ${m[2]}:${m[3]}:${m[4] ?? "00"}`
 }
 
 export async function GET(request: Request) {
@@ -55,6 +66,7 @@ export async function GET(request: Request) {
           contentHtml: row.contentHtml,
           featuredImage: row.featuredImage,
           excerpt: row.excerpt,
+          date: row.date,
           active: row.active,
           updatedAt: row.updatedAt?.toISOString?.() ?? row.updatedAt,
         }
@@ -95,16 +107,27 @@ export async function PUT(request: Request) {
         else safeFields.featuredImage = img
       }
       if (fields.excerpt !== undefined) safeFields.excerpt = sanitizeTextField(fields.excerpt)
+      if (fields.date !== undefined) {
+        if (fields.date === "") {
+          safeFields.date = null // cleared -> fall back to the base post date
+        } else {
+          const normalized = normalizeDateField(fields.date)
+          if (!normalized) return noStoreResponse(JSON.stringify({ error: "Vigane kuupäeva formaat (ootatult YYYY-MM-DD HH:MM)" }), 400)
+          safeFields.date = normalized
+        }
+      }
       if (fields.active !== undefined) safeFields.active = fields.active ? "true" : "false"
 
       if (!process.env.DATABASE_URL) {
         const data = await readAdminEditsJson()
+        const existing = data.posts[String(postId)] || {}
         const post = {
-          title: safeFields.title,
-          slug: safeFields.slug,
-          contentHtml: safeFields.contentHtml,
-          featuredImage: safeFields.featuredImage,
-          excerpt: safeFields.excerpt,
+          title: safeFields.title ?? existing.title,
+          slug: safeFields.slug ?? existing.slug,
+          contentHtml: safeFields.contentHtml ?? existing.contentHtml,
+          featuredImage: safeFields.featuredImage ?? existing.featuredImage,
+          excerpt: safeFields.excerpt ?? existing.excerpt,
+          date: "date" in safeFields ? safeFields.date : existing.date,
           active: safeFields.active === "false" ? false : true,
           updatedAt: new Date().toISOString(),
         }
@@ -123,6 +146,7 @@ export async function PUT(request: Request) {
           contentHtml: safeFields.contentHtml,
           featuredImage: safeFields.featuredImage,
           excerpt: safeFields.excerpt,
+          date: safeFields.date ?? null,
           active: safeFields.active === "false" ? false : (safeFields.active === "true" ? true : undefined),
           updatedAt: new Date(),
         })
@@ -134,6 +158,7 @@ export async function PUT(request: Request) {
             contentHtml: safeFields.contentHtml,
             featuredImage: safeFields.featuredImage,
             excerpt: safeFields.excerpt,
+            date: safeFields.date,
             active: safeFields.active === "false" ? false : (safeFields.active === "true" ? true : undefined),
             updatedAt: new Date(),
           },
@@ -150,6 +175,7 @@ export async function PUT(request: Request) {
           contentHtml: post.contentHtml,
           featuredImage: post.featuredImage,
           excerpt: post.excerpt,
+          date: post.date,
           updatedAt: post.updatedAt?.toISOString?.() ?? post.updatedAt,
         } : null,
       }, {

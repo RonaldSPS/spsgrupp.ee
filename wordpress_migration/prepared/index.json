@@ -6,7 +6,7 @@
     "shared": 21,
     "newerOnly": 16,
     "olderOnly": 3,
-    "prepared": 40
+    "prepared": 55
   },
   "featuredImages": {
     "wordpress": 34,
@@ -14,7 +14,7 @@
     "missing": []
   },
   "content": {
-    "ready": 30,
+    "ready": 43,
     "excludedImageOnly": [
       1603,
       1617,
@@ -32,7 +32,7 @@
     "missingMedia": []
   },
   "languages": {
-    "et": 36,
+    "et": 51,
     "ru": [
       6498,
       6364,
@@ -255,6 +255,127 @@
     }
   ],
   "posts": [
+    {
+      "id": 9015,
+      "title": "Eskalaatorite süvapuhastus: miks astmevahed ja käsipuud vajavad eritehnikat",
+      "slug": "eskalaatorite-suvapuhastus-miks-astmevahed-ja-kasipuud-vajavad-eritehnikat",
+      "date": "2027-01-11 05:00:00",
+      "language": "et",
+      "featuredImage": "/eskalaatorite-suvapuhastus-2.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9014,
+      "title": "Koristuspartneri vahetus: kuidas üleminek sujub nädalaga",
+      "slug": "koristuspartneri-vahetus-kuidas-uleminek-sujub",
+      "date": "2027-01-04 05:00:00",
+      "language": "et",
+      "featuredImage": "/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9013,
+      "title": "Koristuslepingu eelarve planeerimine 2027: mida arvesse võtta",
+      "slug": "koristuslepingu-eelarve-planeerimine-2027",
+      "date": "2026-12-28 05:00:00",
+      "language": "et",
+      "featuredImage": "/kontoridjaaripinnad.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9012,
+      "title": "Koristus pühade ajal: kuidas hooldusgraafikud töötavad aasta viimastel nädalatel",
+      "slug": "koristus-puhade-ajal-kuidas-graafikud-tootavad",
+      "date": "2026-12-14 05:00:00",
+      "language": "et",
+      "featuredImage": "/happycleaner.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9011,
+      "title": "Jõuluhooaja koristus kaubanduses: kuidas maksimaalset jalaliiklust hallata",
+      "slug": "jouluhooaja-koristus-kaubanduses-jalaliikluse-haldamine",
+      "date": "2026-12-07 05:00:00",
+      "language": "et",
+      "featuredImage": "/kaubanduspindade-koristus.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9010,
+      "title": "Lumekoristus praktikas: kuidas hoiame objektid ligipääsetavad kogu talve",
+      "slug": "lumekoristus-praktikas-kuidas-hoiame-objektid-ligipaasetavad",
+      "date": "2026-11-30 05:00:00",
+      "language": "et",
+      "featuredImage": "/lumelykkamine-1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9009,
+      "title": "PVC-põranda eluiga: hooldus või vahetus - kumb tuleb soodsam?",
+      "slug": "pvc-poranda-eluiga-hooldus-voi-vahetus",
+      "date": "2026-11-23 05:00:00",
+      "language": "et",
+      "featuredImage": "/porandate-hooldus-2.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9008,
+      "title": "Suurpuhastus äripindadel: mida see sisaldab ja kuidas hind kujuneb",
+      "slug": "suurpuhastus-aripindadel-mida-sisaldab-ja-kuidas-hind-kujuneb",
+      "date": "2026-11-16 05:00:00",
+      "language": "et",
+      "featuredImage": "/puhastusteenused2.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9007,
+      "title": "Kuidas valida koristusfirma ettevõttele: 7 kontroll-küsimust",
+      "slug": "kuidas-valida-koristusfirma-ettevottele-7-kontroll-kusimust",
+      "date": "2026-11-09 05:00:00",
+      "language": "et",
+      "featuredImage": "/SPSGrupp4.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9006,
+      "title": "Lumekoristuse leping: mida enne talve kokku leppida",
+      "slug": "lumekoristuse-leping-mida-enne-talve-kokku-leppida",
+      "date": "2026-11-02 05:00:00",
+      "language": "et",
+      "featuredImage": "/lumekoristus1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
+      "id": 9005,
+      "title": "Kui palju maksab kontori koristus 2026. aastal?",
+      "slug": "kui-palju-maksab-kontori-koristus-2026",
+      "date": "2026-10-26 05:00:00",
+      "language": "et",
+      "featuredImage": "/kontorikoristus2.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
     {
       "id": 9003,
       "title": "Mis on hoolduskoristus ja mida see ettevõttele tähendab?",

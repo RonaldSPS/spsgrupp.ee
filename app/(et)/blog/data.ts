@@ -9,6 +9,14 @@ export type { BlogPost }
 export const blogPosts = _blogPosts
 const DB_READ_TIMEOUT_MS = 2500
 
+// Posts with a future date are scheduled, not published: they stay out of the
+// archive, sitemap, related links and direct URLs until the date passes.
+// With ISR (revalidate = 60) they go live automatically - no redeploy needed.
+function isPublished(dateStr: string): boolean {
+  const time = new Date(dateStr.replace(" ", "T")).getTime()
+  return !Number.isNaN(time) && time <= Date.now()
+}
+
 function withReadTimeout<T>(promise: Promise<T>): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     const timeoutId = setTimeout(
@@ -68,6 +76,7 @@ interface AdminEdits {
     contentHtml?: string
     featuredImage?: string
     excerpt?: string
+    date?: string
     active?: boolean
     updatedAt: string
   }>
@@ -87,6 +96,7 @@ const getAdminEdits = cache(async (): Promise<AdminEdits> => {
           contentHtml: row.contentHtml ?? undefined,
           featuredImage: row.featuredImage ?? undefined,
           excerpt: row.excerpt ?? undefined,
+          date: row.date ?? undefined,
           active: row.active,
           updatedAt: row.updatedAt?.toISOString?.() ?? String(row.updatedAt ?? ""),
         }
@@ -113,11 +123,14 @@ export const getPostBySlugWithEdits = cache(async (slug: string): Promise<BlogPo
   if (!base) return undefined
   const edits = await getAdminEdits()
   const edit = edits.posts[String(base.id)]
+  const date = edit?.date || base.date
+  if (!isPublished(date)) return undefined
   if (!edit) return { ...base, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(base.contentHtml)), excerpt: cleanExcerpt(base.excerpt, base.title) }
   return {
     ...base,
     title: edit.title ?? base.title,
     slug: edit.slug ?? base.slug,
+    date,
     contentHtml: sanitizeHtmlSafe(normalizeImportedContent(edit.contentHtml ?? base.contentHtml)),
     featuredImage: edit.featuredImage ?? base.featuredImage,
     excerpt: cleanExcerpt(edit.excerpt ?? base.excerpt, edit.title ?? base.title),
@@ -129,21 +142,24 @@ export const getBlogPostsWithEdits = cache(async (): Promise<BlogPost[]> => {
   return blogPosts.flatMap((post) => {
     const edit = edits.posts[String(post.id)]
     if (edit && edit.active === false) return []
+    const date = edit?.date || post.date
+    if (!isPublished(date)) return []
     if (!edit) return [{ ...post, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(post.contentHtml)), excerpt: cleanExcerpt(post.excerpt, post.title) }]
     return [{
       ...post,
       title: edit.title ?? post.title,
       slug: edit.slug ?? post.slug,
+      date,
       contentHtml: sanitizeHtmlSafe(normalizeImportedContent(edit.contentHtml ?? post.contentHtml)),
       featuredImage: edit.featuredImage ?? post.featuredImage,
       excerpt: cleanExcerpt(edit.excerpt ?? post.excerpt, edit.title ?? post.title),
     }]
-  })
+  }).sort((a, b) => new Date(b.date.replace(" ", "T")).getTime() - new Date(a.date.replace(" ", "T")).getTime())
 })
 
 export function getPostBySlug(slug: string): BlogPost | undefined {
   const post = blogPosts.find((p) => p.slug === slug)
-  if (!post) return undefined
+  if (!post || !isPublished(post.date)) return undefined
   return { ...post, contentHtml: sanitizeHtmlSafe(normalizeImportedContent(post.contentHtml)) }
 }
 
@@ -152,11 +168,15 @@ export function getRelatedPosts(post: BlogPost, count = 3): BlogPost[] {
   // list, so every post also receives links from the previous ones.
   // (The old "first N posts of the whole list" left nearly every post with
   // a single dofollow inlink - from the blog index only.)
-  const idx = blogPosts.findIndex((p) => p.id === post.id)
+  // Scheduled (future-dated) posts are excluded until their date passes.
+  const published = blogPosts.filter((p) => isPublished(p.date))
+  const idx = published.findIndex((p) => p.id === post.id)
   if (idx === -1) return []
   const related: BlogPost[] = []
-  for (let i = 1; i <= count; i++) {
-    related.push(blogPosts[(idx + i) % blogPosts.length])
+  for (let i = 1; i <= count && published.length > 1; i++) {
+    const candidate = published[(idx + i) % published.length]
+    if (candidate.id === post.id) break
+    related.push(candidate)
   }
   return related
 }

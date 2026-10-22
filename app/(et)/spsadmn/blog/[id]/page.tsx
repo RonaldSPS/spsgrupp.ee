@@ -20,6 +20,13 @@ function linkPrompt(callback: (url: string) => void) {
   }
 }
 
+// "2026-10-26 05:00:00" -> "2026-10-26T05:00" for <input type="datetime-local">
+function toDatetimeLocal(d: string | null | undefined): string {
+  if (!d) return ""
+  const m = d.match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}:\d{2})/)
+  return m ? `${m[1]}T${m[2]}` : ""
+}
+
 export default function AdminBlogEdit() {
   const params = useParams()
   const router = useRouter()
@@ -34,12 +41,13 @@ export default function AdminBlogEdit() {
   const foundPost = blogPosts.find((p: BlogPost) => String(p.id) === id) ?? null
 
   const [formData, setFormData] = useState(() => {
-    if (!foundPost) return { title: "", slug: "", featuredImage: "", excerpt: "" }
+    if (!foundPost) return { title: "", slug: "", featuredImage: "", excerpt: "", date: "" }
     return {
       title: foundPost.title,
       slug: foundPost.slug,
       featuredImage: foundPost.featuredImage,
       excerpt: foundPost.excerpt,
+      date: toDatetimeLocal(foundPost.date),
     }
   })
   const loadingInit = foundPost !== null
@@ -58,6 +66,7 @@ export default function AdminBlogEdit() {
           slug: edits?.slug ?? foundPost.slug,
           featuredImage: edits?.featuredImage ?? foundPost.featuredImage,
           excerpt: edits?.excerpt ?? foundPost.excerpt,
+          date: toDatetimeLocal(edits?.date || foundPost.date),
         })
         setPendingContent(content)
       })
@@ -67,6 +76,7 @@ export default function AdminBlogEdit() {
           slug: foundPost.slug,
           featuredImage: foundPost.featuredImage,
           excerpt: foundPost.excerpt,
+          date: toDatetimeLocal(foundPost.date),
         })
         setPendingContent(foundPost.contentHtml)
       })
@@ -290,6 +300,19 @@ export default function AdminBlogEdit() {
               className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff] font-mono"
             />
             <p className="text-[15px] text-[#5a6474] mt-1">URL: /blog/{formData.slug}</p>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5">
+            <label className="block text-[15px] font-medium text-[#17345a] mb-1">Avaldamise kuupäev</label>
+            <input
+              type="datetime-local"
+              value={formData.date}
+              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              className="w-full border border-[rgba(23,52,90,0.15)] rounded-xl px-4 py-2.5 text-[15px] focus:outline-none focus:border-[#3abeff]"
+            />
+            <p className="text-[15px] text-[#5a6474] mt-1">
+              Tulevane kuupäev peidab artikli kuni avaldamiseni (staatus &bdquo;Ajastatud&ldquo;). Tühjenda, et kasutada algset kuupäeva.
+            </p>
           </div>
 
           <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-5">

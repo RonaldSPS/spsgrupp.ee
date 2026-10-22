@@ -7,6 +7,7 @@ export const blogEdits = pgTable("blog_edits", {
   contentHtml: text("content_html"),
   featuredImage: text("featured_image"),
   excerpt: text("excerpt"),
+  date: text("date"),
   active: boolean("active").notNull().default(true),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
