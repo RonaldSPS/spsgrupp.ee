@@ -1,0 +1,6174 @@
+{
+ "generatedAt": "2026-10-23T11:17:46.560Z",
+ "commits": [
+  {
+   "hash": "bf37945",
+   "date": "2026-10-22T18:02:38+03:00",
+   "subject": "feat(blog): 11 ajastatud artiklit GBP-kalendri teemadel (E 26.10.2026–11.01.2027) + kuupäevapõhine avaldamine + adminis kuupäeva muutmine",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/blog/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0013_blog_edits_date.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-9003.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-9004.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9005.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9006.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9007.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9008.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9009.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9010.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9011.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9012.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9013.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9014.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9015.json"
+    }
+   ],
+   "newPosts": [
+    "Kui palju maksab kontori koristus 2026. aastal?",
+    "Lumekoristuse leping: mida enne talve kokku leppida",
+    "Kuidas valida ettevõttele koristuspartner: 7 kontroll-küsimust",
+    "Mida sisaldab suurpuhastus äripindadel ja kuidas selle hind kujuneb?",
+    "PVC-põranda eluiga: kas hooldus või vahetus?",
+    "Kuidas hoiame objektid ligipääsetavad kogu talve: lumekoristus praktikas",
+    "Jõuluhooaja koristus kaubanduses: kuidas maksimaalset jalaliiklust hallata",
+    "Koristus pühade ajal: kuidas graafikud töötavad aasta viimastel nädalatel",
+    "Koristuslepingu eelarve planeerimine 2027: mida arvesse võtta",
+    "Koristuspartneri vahetus: kuidas üleminek sujub nädalaga",
+    "Miks eskalaatorite astmevahed ja käsipuud vajavad süvapuhastuseks eritehnikat?"
+   ]
+  },
+  {
+   "hash": "5141ef8",
+   "date": "2026-10-22T18:02:13+03:00",
+   "subject": "feat(turundus): tegevusplaan-2027 rakendused 21.10 — GBP avaldamiskalender nädalaraportis + hooldus:p26 + lepingu miinimum 600 m2 + arvustuste rollid",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "AI_REBUILD_TASKS.md"
+    },
+    {
+     "s": "M",
+     "p": "AI_REBUILD_TASKS_EN.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TestimonialCards.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-testimonials.json"
+    },
+    {
+     "s": "A",
+     "p": "data/gbp-calendar.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/kontakt.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/gbp-calendar.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/notify.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-p26-hooldus.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/build-plan-2027-pdf.mjs"
+    },
+    {
+     "s": "A",
+     "p": "scripts/fix-600m2.mjs"
+    },
+    {
+     "s": "A",
+     "p": "scripts/test-gbp-calendar.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "f5bca9c",
+   "date": "2026-10-16T17:36:11+03:00",
+   "subject": "feat(ads+reporting): P26 AI-juhitud Ads paralleeltest KÄIVITATUD (ENABLED 16.10) + märksõna-sihtlehe jälgimine + positsiooni-delta parandus",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/muruniitmine.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/ads.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/keyword-families.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/strategy.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-p26-assets.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-p26-setup.ts"
+    }
+   ]
+  },
+  {
+   "hash": "cccccee",
+   "date": "2026-10-14T12:00:43+03:00",
+   "subject": "feat(lumekoristus): sisu-video teenuselehe pildislotis — uus ContentVideo komponent (autoplay muted IntersectionObserveriga, hover/focus play-pause, lokaliseeritud aria-sildid ET/EN/RU, kasutaja pause valikut respekteeritakse), OutdoorServicePageData.imageVideo/imageVideoPoster valikulised valjad (fallback staatiline pilt), lumekoristuse lehel ET/EN/RU lumelykkamine-video.mp4 + poster; ehitusjargne-koristus-1/2.jpg optimeeritud (580->305 KB, 262->173 KB)",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/ContentVideo.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/templates/ServiceDetailTemplate.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/lumekoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "public/ehitusjargne-koristus-1.jpg"
+    },
+    {
+     "s": "M",
+     "p": "public/ehitusjargne-koristus-2.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/lumelykkamine-video-poster.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/lumelykkamine-video.mp4"
+    }
+   ]
+  },
+  {
+   "hash": "3bb04e5",
+   "date": "2026-10-14T11:57:42+03:00",
+   "subject": "feat(reporting): geo-grid kohaliku Maps-nähtavuse mõõtmiseks (konkurendi Kaardil.ee heatmap-pakkumise vastu 14.10.2026) — Places API (New) Text Search 27 fikseeritud Tallinna/Harjumaa linnaosa-punktis (~1,5 km bias, RELEVANCE, rank 1-20/null=21); iganädalane mõõtmine GEOGRID_DEFAULT_KEYWORDS-il snapshot.geogrid'na + deltad eelmise nädala suhtes (generate.ts, ebaõnnestumine ei seiska raportit); e-kirja 'Kaardi nähtavus' sektsioon (email-html geogridSection); admini raporti detailvaates interaktiivne Leaflet heatmap (GeoGridSection, OSM tiles — CSP img-src +https://*.tile.openstreetmap.org) koos märksõna dropdown + vabasõnalise kohe-mõõtmisega (POST /api/spsadmn/geogrid, ei salvestata); CLI npm run report:geogrid (argv[2]=vaba märksõna); auth GOOGLE_MAPS_API_KEY või teenuskonto OAuth (scope maps-platform.places — eeldab 'Places API (New)' lubamist GCP-s + billingut, käsitsi konsooli samm); esimene mõõtmine 14.10: koristusfirma avg 8,9 / top-10 19/27 / leitud 27/27, hoolduskoristus 0/27 (GBP teenuste/kategooriate töö tulevikus); leaflet+@types/leaflet deps; 8 uut testi (127/127), tsc+eslint puhtad, kustutatud-.next puhas build OK; AGENTS.md uuendatud",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/spsadmn/raportid/[id]/GeoGridSection.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/geogrid/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-geogrid.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/generate.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/geogrid.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package-lock.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/geogrid-report.ts"
+    }
+   ]
+  },
+  {
+   "hash": "20eef0a",
+   "date": "2026-10-14T11:57:31+03:00",
+   "subject": "fix(footer): aadressi kaardilink SPS Grupi GBP profiilile (oli Tetris Bürohoone hoonekaart) — jalus + kontaktilehe kiip; konkurendi (Kaardil.ee) pakkumise ainus reaalne veebilehe-poolne leid 14.10.2026",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    }
+   ]
+  },
+  {
+   "hash": "650809e",
+   "date": "2026-10-13T20:39:39+03:00",
+   "subject": "fix(seo): Sitebulb-audiit 13.10 — schema.org valideerimine, titlid ja meta-kirjelduste pikkused, blogi siselingid",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/ehitusprahi-aravedu/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/lehtedekoristamine/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/suurpuhastus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-1640.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2131.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2285.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2292.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2319.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2383.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2392.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2408.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2412.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2583.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-3819.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4216.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4687.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-5001.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-5197.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-6582.json"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "811702c",
+   "date": "2026-10-09T11:01:13+03:00",
+   "subject": "feat(blog): siselingid teenustelehtedele koristusteenuse artiklisse",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2387.json"
+    }
+   ]
+  },
+  {
+   "hash": "c1d6522",
+   "date": "2026-10-09T11:01:06+03:00",
+   "subject": "feat(seo): CTR-titlid avalehel ja puhastusteenustel, puhastusfirma fraas hubi",
+   "files": [
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    }
+   ]
+  },
+  {
+   "hash": "dfe6bea",
+   "date": "2026-10-09T11:01:01+03:00",
+   "subject": "feat(reporting): päringute aken kuni genereerimiseni + maandumisleht/käeulatus terminid",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-forms-window.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/gsc.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/keyword-families.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/snapshot.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    }
+   ]
+  },
+  {
+   "hash": "4cf85d4",
+   "date": "2026-10-08T18:34:12+03:00",
+   "subject": "feat(reporting): nädalaraporti „Lehekülje arendus\" sektsioon — automaatne git-põhine kokkuvõte lehel tehtud muudatustest (kliendi palve 08.10.2026: „raport näitaks, mis täiendusi tehti, kas avaldati blogisid ja mis muutus lehtede sisus — inimkeeles, mitte git-logina\")",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-changes.test.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/changes.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/generate.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/generate-git-history.mjs"
+    }
+   ]
+  },
+  {
+   "hash": "c1727e2",
+   "date": "2026-10-08T17:35:03+03:00",
+   "subject": "fix(seo): avalehe H1/H2 geo-fookus, arvustuste crawlability, schema geo-parandus, GBP tööriistad",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Services.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SpsInNumbers.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TestimonialSlider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TwoToneHeading.tsx"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "scripts/gbp-oauth-setup.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/gbp-read.ts"
+    }
+   ]
+  },
+  {
+   "hash": "b4bc32e",
+   "date": "2026-10-05T16:40:28+03:00",
+   "subject": "feat(blog): kaks oktoobri blogiartiklit (Q4 2026 sisuplaan nr 1-2) — hoolduskoristuse sissejuhatus + koristusteenuse hinnaülevaade ettevõttele; post-9003 (mis-on-hoolduskoristus...) toetab /koristusteenus/hoolduskoristus/ lehte (sihtmärksõna hoolduskoristus, 110/kuu), post-9004 (kui-palju-maksab-koristusteenus...) sihib koristusteenus+hinnakiri päringuid (90+390/kuu); hinnad ja faktid teenuselehtede definitsioonidest (1,20 €/m² kuus, 800 m² miinimum, suurpuhastus 1,50/1 €/m², aknad 1/0,90/2 €/m², ehitusjärgne 250/450/800 €, desinfitseerimine 1,50 €/m²); desinfitseerimise link parandatud tegelikuks legacy-slugiks /puhastusteenused/koroonaviiruse-jargne-puhastus/; molema artikli CTA viitab hinnapäringu vormile /kontakt/#pakkumine; kliendi tagasiside järgi viidud lausesisse (0 loetelu, 0 sidekriipsu, 0 koolonit, pealkiri/väljavõte/lead eri nurgast); pildid olemasolevatest SPS-fotodest (regulaarnekoristusteenus.jpg, kontorikoristus1/2.jpg, Koristusteenus2.jpg); generator 28 postitust, diff 24+/0- puhtalt additiivne, tsc puhas",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9003.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9004.json"
+    }
+   ],
+   "newPosts": [
+    "Mis on hoolduskoristus ja mida see ettevõttele tähendab?",
+    "Kui palju maksab koristusteenus ettevõttele?"
+   ]
+  },
+  {
+   "hash": "0ec37bc",
+   "date": "2026-10-05T14:34:59+03:00",
+   "subject": "fix(seo): 29 vana kliendireferentsi lehe 404 parandmine — DataforSEO backlink-audit 05.10: /abakhan, /maxima, /rimi, /taltech jt olid vanal WP-lehel kliendi-portfoolio lehed (uuel lehel samad kliendid avalehe logosribas /#kliendid); 301 -> / sailitab linkivaartuse (varasem 92bb377 jattis ~55 kliendilehte teadlikult 404-ks, sest GSC Lingid-eksport 30.09 linke ei naitanud — DataforSEO naitab neid siiski); live-probe 05.10: molema kliendi nimekirja koik muud URL-id (8 valisviidet + 20 legacyt) juba suunatud 308>200; verifitseeritud lokaalselt: 57/57 URL-i uhe 308-hopiga 200-ni, 25/25 redirect-regressiooni OK, tsc+eslint puhtad",
+   "files": [
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "ba27c85",
+   "date": "2026-10-05T13:16:08+03:00",
+   "subject": "fix(seo): ahrefs-auudit 05.10 — plaatimistood katkine pilt + Plaatinistood-typo, tipp-ja-tapp artikli katkine link + struktureerimine, meta-kirjelduste parandused",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/remonditeenused-tallinnas/plaatimistood/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/localized-page-registry.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/plaatimistood.ts"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-1621.json"
+    }
+   ]
+  },
+  {
+   "hash": "1a26fc1",
+   "date": "2026-10-02T12:43:27+03:00",
+   "subject": "feat(reporting): toootsingud paringute arvestusest valja + uhekordsete klassifikatsiooni karmistus — kliendi palve 02.10.2026 ('toootsinguid ei tohi hinnaparingute hulka arvestada, votame need valja ja teeme teisti' + 'uhekordseid toid ei tohi hoolduskoristuse paringutena kasitleda'; naide: 24.09 kaks 'Housekeeping' kontakti tootukassa.ee viitelt ja 25.09 Siili 13 tanavakivide pesu margistati 'toenooliselt regulaarne'): isJobSeeker() forms.ts-s (AINULT kontaktivorm — career-read on seaduslikud avaldused): tooportaalide viited (tootukassa.ee, cv.ee, cvkeskus.ee, indeed, monster, goworkabit), pelk ametinimetus sonumis (Housekeeping/Koristaja/Ubortshtsa — \\p{L}, sest \\w ei kata kirillitsat), selged toootsingu-fraasid; toootsingud valjas kontaktidest/leads/topPages ja kajastuvad FormsPeriod.jobSeekers all insightsis ('Arvestusest on valja jaetud X testparing ja Y toootsing' — uus excludedNote, partitiiv-kord), e-kirja Nadala paringud sektsiooni jaluses, admini detailvaates ja LLM digestis+promptis (labipaistvalt mainitud, mitte paringuteks loetud); ONEOFF_SIGNAL karmistatud (+tanavakiv/asfal/sammal/samblik/survepesu/korgsurve/fassaad/konnitee/muruniit/hekilõik) — uhekordne valipindade pesu ei lange enam sona 'korteriuhistu' tottu 'likely' hulka, korduvussignaal voidab endiselt ('fassaadiklaaside pesu kord kvartalis' = yes); gclid offline-konversioonide import (offline-conversions.ts) skipib toootsingud samuti; classifyMaintenance eksporditud testideks; 11 uut testi (kokku 103/103), live-DB verifikatsioon 24.-30.09: kontaktid 5->3, hooldus 2->1 (STFF yes, Siili no), toootsingud 2 eraldi; AGENTS/ANALYTICS uuendatud",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-forms-filter.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/offline-conversions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    }
+   ]
+  },
+  {
+   "hash": "b936535",
+   "date": "2026-10-01T15:58:09+03:00",
+   "subject": "feat(reporting): Ads-konversioonide jaotus toiminguti (vorm vs tel/e-post klikk) + hoolduskoristuse paringute maksumus nadaraportis — kliendi palve 01.10.2026 ('raportis eristada tegelikud hinnaparingud telefoni ja eposti klikkidest ning tuua eraldi valja hoolduskoristuse paringud ja nende maksumus'): conversionBreakdown GAQL-tommis (segments.conversion_action_name+_category, ainult primaarsed toimingud; degradation graceful), splitAdsConversions()+maintenanceCostLine() email-html.ts-is — skoorikaart 'konv (Ads): vorm X · tel/e-post Y · N paringut (DB)' (vanadel snapshotidel lump-total) + maksumuse rida Nadala paringud sektsioonis ja admini leads-blokis; admini detailvaates uus 'Ads konversioonid toiminguti' tabel; CPL-insight kannab sama jaotust; LLM digest + prompt (conversionsForm/Contact/Other, maintenanceViaAds, adsCostPerMaintenanceLead — maksumus Kokkuvottes eraldi); isTestSubmission tunneb ka 'paringu proov' mustrit (kliendi oma test 25.09 jai labi); 8 uut testi (kokku 92/92), live-verifitseeritud tegeliku Ads API vastu (23.-29.09: vorm 1 · tel/e-post 1 · 1 paring DB); AGENTS/ANALYTICS uuendatud",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-ads-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/ads.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    }
+   ]
+  },
+  {
+   "hash": "43c4c4a",
+   "date": "2026-09-30T12:41:41+03:00",
+   "subject": "fix(seo): geenius.delfi.ee (DR 82) artiklis hotlinkitud WP-pildi 404 parandmine — koristajavahetus5_800.jpg on kadunud (pre-2022 varundus, Waybackis pole), 301 -> /puhastusteenused/ sailitab linkivaartuse; ahrefs-backlinks-dump (43 unikaalset siht-URLi): 42/43 korras live'is, see oli ainus katkine; 2017 PDF-id jaavad 404-ks (44 MB bloat vs ~3 naitamist/kuu, pole backlink-e)",
+   "files": [
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "92bb377",
+   "date": "2026-09-30T12:11:30+03:00",
+   "subject": "fix(seo): +2 legacy suunamist — /ariklientidele -> /koristusteenus/, /kontor -> /koristusteenus/kontori-koristus/ (Wayback-probe 67 jaanist: need kaks olid teenuse-, mitte kliendi-referentslehed; ulejaanud 65 = 55 kliendi-referentsi + skanneri-junk, jaavad 404)",
+   "files": [
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "e92eaff",
+   "date": "2026-09-30T12:05:31+03:00",
+   "subject": "fix(seo): vanade saidipolvkondade umbersuunamised (Wayback CDX audit) + ahrefs-verifikatsioon — GSC searchAnalytics nahtub ainult otsingus NAITATUD URL-e, backlink-only URLe mitte (kliendi tahelepanek ehitusuudised.ee sisuturundus-lingist); Wayback 649 unikaalset aadressi probe'itud live'i vastu, 430 andis 404; lisatud ~140 tapset umbersuunamist: 3 vana teenusestruktuuri polvkonda (/teenused/, /eripuhastustood/, /puhastusteenused/eripuhastustood+/hoolduskoristus/), root-taseme teenuseslugid (/hoolduskoristus, /koristusfirma, /ehitusjargne-koristus jne), WP junki wildcardid (/blog/tag|category|author|page|2011-2013, /2017|2020|2021), RU taandarendused proxys, EN alamlehed; parandatud 2 varem 404-sse viinud ahelat (/valikoristus/muru-hooldus, /koristusteenused/kontori-koristus-koristusteenused-...); verifitseeritud 25/25 esindus-URLil lokaalsel dev-ehitusel (sh curly-quotes ja kirillitsa erijuhud); ahrefs Site Audit verifikatsioon: public/*.html (otse) + route-handler laiendita vormile + proxy-erand /ahrefs_ (muidu laekuks /et-rewrite alla); kliendi-referentslehed (~55) jaavad teadlikult 404-ks (linke pole, GSC Lingid-eksport 30.09: koik lingitud sihtlehed elavad)",
+   "files": [
+    {
+     "s": "A",
+     "p": "app/ahrefs_2ae9e0a6a62f9cacfe92ed8b96833c48bf760c6383c595c719c17a0f4a2c7d1b/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "A",
+     "p": "public/ahrefs_2ae9e0a6a62f9cacfe92ed8b96833c48bf760c6383c595c719c17a0f4a2c7d1b.html"
+    }
+   ]
+  },
+  {
+   "hash": "7847004",
+   "date": "2026-09-25T17:09:04+03:00",
+   "subject": "feat(ads): offline-konversioonide igapaevane automaatika — Data Manager API events:ingest (UploadClickConversions on uutele integratsioonidele keelatud, 25.09 veast lahtiudud); igapaevane Vercel cron 05:00 UTC /api/cron/offline-conversions/ (CRON_SECRET) laeb keriva 14p akna gclid-paringud Tasu-vaartusega; idempotentsus transactionId=form-<id>; konversiooni-toiming 'Vormipäring (gclid offline import)' laheneb nime jargi voi luuakse sekundaarse UPLOAD_CLICKS-na (primaarseks keeramine jaab teadlikuks Ads-UI sammuks); vead ja osalised vead lahevad e-kirjaga raporti saajatele (Resend); kohalik jooks npm run report:offline-conversions-upload (--dry-run); esimene reaalne import valideeritud (3/3 konversiooni); eeldused dokumenteeritud: datamanager.googleapis.com lubatud projektis, uue toimingu propagatsioon DM-i ~35min-6h (NOT_FOUND enne seda pole viga)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/api/cron/offline-conversions/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/offline-conversions.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-offline-conversions-upload.ts"
+    },
+    {
+     "s": "M",
+     "p": "vercel.json"
+    }
+   ]
+  },
+  {
+   "hash": "5687a26",
+   "date": "2026-09-25T17:08:53+03:00",
+   "subject": "feat(reporting): testparingud nadaraporti arvestusest valja (kliendi korduv palve 25.09 — 'jätke testpäringud arvestusest välja'): isTestSubmission filter (outline-nimi voi 'test...'-algusega sonum) forms.ts aggregatsioonis + leads/topPages; FormsPeriod.tests vali + insightsi note 'Arvestusest on valja jaetud X testparing'; GSC revisjoni automaatne markimine generate.ts-s — kui eelmise raporti salvestatud klikid samale perioodile erinevad praeguse tombbe eelmise-perioodi arvust, laheb raportisse warning-insight (kliendi kusimus 7,4 vs 10,1 / +6%: GSC taisendas 52→67 klikki, vordlus oli oige)",
+   "files": [
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/generate.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    }
+   ]
+  },
+  {
+   "hash": "8922dde",
+   "date": "2026-09-25T15:52:32+03:00",
+   "subject": "feat(gbp): OAuth seadistuse skript (npm run setup:gbp-auth) — ads-oauth-setup.ts muster GBP-le: scope business.manage, registreeritud redirect URI localhost:3000/oauth/google/callback, loopback consent + token exchange; uhenduse test accounts.list kaudu (praegu 429: projekti kvoot 0 QPM = GBP API taotlus veel heaks kiitmata); refresh token laheb .env.local GOOGLE_GBP_REFRESH_TOKEN",
+   "files": [
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/gbp-oauth-setup.ts"
+    }
+   ]
+  },
+  {
+   "hash": "c416c9b",
+   "date": "2026-09-25T15:52:21+03:00",
+   "subject": "feat(seo): nadalaraporti tegevuskava — /sps-grupp pealkirja eristamine koristusfirma-kannibaliseerumise vastu (ET/EN/RU title+meta, koduleht jaab märksona kandjaks); avalehele 3 KKK (kontorikoristus 800 m2/1,20 EUR, trepikojad+kojamees, piirkond Tallinn+Harjumaa) + siselingid kontori koristus/hoolduskoristus (Services para5); puhastusteenused hub laiendatud ET/EN/RU (teenuste mahud, hinnategurid, protsessi detailid, +4 KKK/keel, EN parit 300+/1M m2, title/meta 'alates 1 EUR/m2'); suurpuhastus: blogi 2 linki teenuselehele (post-9002 + generated sinkroonis), hoolduskoristus relatedLinks +2, +2 KKK; lehtede koristus fraas title/meta/intro/H2 +2 KKK; EN elektritood 'Electrician in Tallinn' +1 KKK",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/lehtedekoristamine/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Services.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/elektritood.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/lehtedekoristamine.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/suurpuhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-9002.json"
+    }
+   ]
+  },
+  {
+   "hash": "2f316c9",
+   "date": "2026-09-25T15:52:07+03:00",
+   "subject": "feat(reporting): kandjalehe (query x page) automaatika nadalaraportisse — GSC snapshot tombab query x page read molemale nadalale, peredel kandjaleht (dominant page by impressions) + kandja-vahetuse tuvastus; insights nimetab kandjalehte fallers/striking/risers/new-queries tekstides ja uus reegel 'kandjaleht vahetus' (warning); LLM digest kandjatega (number-audit puutumata); ANALYTICS.md 5b uuendatud",
+   "files": [
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/gsc.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/keyword-families.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    }
+   ]
+  },
+  {
+   "hash": "27d4a04",
+   "date": "2026-09-18T15:35:54+03:00",
+   "subject": "fix(ads): offline-conversions export typsetused postgres.js Row generics-ks (Vercel build TS2345)",
+   "files": [
+    {
+     "s": "M",
+     "p": "scripts/ads-offline-conversions.ts"
+    }
+   ]
+  },
+  {
+   "hash": "436184a",
+   "date": "2026-09-18T15:33:19+03:00",
+   "subject": "feat(content): kruiisiterminali parised pildid (16 WebP, mitu suurust) — stock-fotode asendus hoolduskoristus/kaubanduspindade/porandate-hooldus lehtedel + avalehe Industries; hero+og pildid registry-s; resize-skript",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/porandate-hooldus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/porandate-hooldus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/registry.ts"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-atrium-wide-1600x920.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-atrium-wide-800x460.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-duster-portrait-1200x1400.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-duster-portrait-600x700.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-dusting-1200x1400.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-dusting-600x700.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-scrubber-close-1200x1400.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-scrubber-close-600x700.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-scrubber-corridor-1280x720.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-scrubber-corridor-1920x1080.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-scrubber-corridor-640x360.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-swingo-atrium-1280x720.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-swingo-atrium-1920x1080.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-swingo-atrium-640x360.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-tables-wide-1280x720.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-tables-wide-640x360.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/images/kruiisiterminal/terminal-worker-thumbsup-400x400.webp"
+    },
+    {
+     "s": "A",
+     "p": "scripts/resize-kruiisiterminal.mjs"
+    }
+   ]
+  },
+  {
+   "hash": "18fab86",
+   "date": "2026-09-18T15:33:18+03:00",
+   "subject": "feat(ads): gclid-pohine offline-konversioonide eksport (npm run report:offline-conversions) — Ads naebi uue veebi ajastul vaid ~1/6 paringutest (consent-mode ad_storage ava), andmebaasi gclid-veerg kajastab 100%; CSV Google'i 'Import from clicks' jaoks, Tasu-veerg laheb konversiooni vaartuseks; CSV-d gitignore/vercelignore-s (lead-data)",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": ".vercelignore"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-offline-conversions.ts"
+    }
+   ]
+  },
+  {
+   "hash": "75c736f",
+   "date": "2026-09-18T15:33:18+03:00",
+   "subject": "feat(reporting): nadala paringute klassifikatsioon pohieesmargi jargi (hoolduskoristus yes/likely/no — laabipaistvad regex-signaalid) + oma 'Nadala paringud' sektsioon e-kirjas ja adminis; GA4 tracking-health loeb ainult toopaevi; Ads-vs-DB lepitusrida (consent-mode ad_storage gap); RLS form_submissions+weekly_reports tabelitel (0012, live DB-s kontrollitud — juba sees); live-vormide testiskriptid; ANALYTICS/AGENTS uuendatud",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0012_enable_rls_new_tables.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/check-recent-submissions.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/test-career-form-live.cjs"
+    },
+    {
+     "s": "A",
+     "p": "scripts/test-contact-form-live.cjs"
+    }
+   ]
+  },
+  {
+   "hash": "74cd373",
+   "date": "2026-09-18T15:33:17+03:00",
+   "subject": "feat(content): hoolduskoristuse fookus — kontori/hoolduse lehtedele 2+2 KKK (hind kuus, miinimum 800 m2, lepingu paindlikkus), 'Vaata ka' siselinkide rida (malli valikuline relatedLinks — teised 27 detaillehte bait-samad), koristusteenus hubi kolmas siselink (hoolduskoristus), kontori lehele kliendilogod enne vormi; ET/EN/RU",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/templates/ServiceDetailTemplate.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "7972f9a",
+   "date": "2026-09-14T13:35:26+03:00",
+   "subject": "feat(forms): nõusoleku-märkeruudu sõnastus lihtsustatud et/en/ru (kuidas päringuni jõudsin / allikas salvestatakse / jagatakse Google platvormidega)",
+   "files": [
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "80b6c26",
+   "date": "2026-09-14T13:23:06+03:00",
+   "subject": "feat(forms): päringu allika jälgimine + vabatahtlik küpsistenõusolek vormis — sessionStorage landing-capture (gclid/UTM/referrer, nõusolekust sõltumatu: allikas säilib ka bännerist keeldunul), klassifitseeritud source kood (google_ads/utm/organic/referral/direct; tühi=Teadmata, ei oletata SEO-ks) form_submissions.source veergu (migratsioon 0011), Allikas veerg paringud-adminis + CSV-s + teavituskirja lokaliseeritud Allikas-rida (describeSource); ContactForm vabatahtlik analüütika/reklaamiküpsiste ruut (storeConsent/applyConsent, peegeldab salvestatud olekut, tühjendamine võtab nõusoleku tagasi); getGclid fallback URL→sessionStorage→_gcl_aw; hidden väljade taastäitmine peale edukat saatmist (kordussaated säilitavad allika)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/AttributionCapture.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/attribution.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/gclid.ts"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0011_submission_source.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "de232cf",
+   "date": "2026-09-14T11:44:01+03:00",
+   "subject": "feat(forms): teavituskirjas toore gclidi asemel lokaliseeritud kanalisilt (copy.adSource — Allikas: Google Ads reklaam / en / ru); kliki-ID jääb endiselt DB-sse, paringud-adminisse ja CSV-eksporti; ANALYTICS.md + AGENTS.md sünkroonitud",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    }
+   ]
+  },
+  {
+   "hash": "cfc3da6",
+   "date": "2026-09-11T14:53:05+03:00",
+   "subject": "feat(reporting): püsiv turunduse põhieesmärk ühe tõeallikana (lib/reporting/strategy.ts) — kliendi direktiiv 11.09.2026: B2B hoolduskoristuse lepingud (püsimaksed, mida suurem objekt seda parem), ühekordsed tööd teisejärgulised; sihtpiirkond AINULT Tallinn+Harjumaa; välistatud B2C kodu/korter, surmajärgne, vihmaveerennid, tööotsing, piirkonnavälised + konkurendi-brändid põhikampaanias (eraldi kampaania ajalooliselt nõrk — ei prioriseerita). STRATEGY_CONTEXT LLM-i süsteemprompti (llm.ts), TARGET_REGION insights-reeglitesse (eemaldab Tartu/B2C Meta-soovitused), AGENTS.md püsiv punkt; Tasu/Kasum veergude CPL-matemaatika märgitud tulevikuks",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/strategy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "aa8d3b0",
+   "date": "2026-09-11T14:50:56+03:00",
+   "subject": "feat(content): 2 blogipostitust — ehitusprahi äravedu (mahud/hinnad/töökorraldus → /ehitusprahi-aravedu) ja suurpuhastus (millal/mida → /puhastusteenused/suurpuhastus) löögikaugus-perekondade tugevdamiseks; siselingid + CTA-d teenuselehtedele, hinnainfo kooskõlas lehtedega (segajäätmed 160 €/tonn) + blogi generaatori parandus: outFile tee app/blog → app/(et)/blog, prepared JSON-id sünkroonitud cc7e2b9 käsitsi-parandustega (regen puhtalt additiivne), stubid 4690/4709 excluded-stub, AGENTS.md blogi töövoog",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "scripts/generate-blog-posts.mjs"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-1621.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-1624.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-1636.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-1640.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2131.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2285.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2292.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2319.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2326.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2383.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2387.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2392.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2408.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2412.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-2583.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-3698.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-3819.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4027.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4216.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4687.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4747.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-5001.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-5197.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-6582.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9001.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9002.json"
+    }
+   ],
+   "newPosts": [
+    "Ehitusprahi äravedu Tallinnas – mahud ja hinnad",
+    "Suurpuhastus: millal tellida ja mida see sisaldab?"
+   ]
+  },
+  {
+   "hash": "6750c24",
+   "date": "2026-09-11T14:15:39+03:00",
+   "subject": "feat(content): SEO nädalaplaan 11.09 — kandjalehtede tugevdamine: /puhastusteenused hinnavihje hero-s + 2 FAQ (mahud/hinnad), avalehe koristusfirma-FAQ + teenuste selingid, /koristusteenus hub lingid (puhastusteenused, koristusfirma→/), RU elektritood + чистка ковров FAQ/hinnasissejuhatus, kliendilogod + arvustuste slaider 28 detail-lehele enne vormi",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Services.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/elektritood.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/vaipade-puhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "5b16a74",
+   "date": "2026-09-11T12:04:45+03:00",
+   "subject": "chore(llm): pin deepseek-v4-flash — legacy deepseek-chat alias on deprecated (võib lakkuda töötamast → vaikne rules-only langus); kinnitatud reaalse API-põrkega",
+   "files": [
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "TRANSLATIONS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/ai-translation.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    }
+   ]
+  },
+  {
+   "hash": "587c002",
+   "date": "2026-09-11T12:04:36+03:00",
+   "subject": "feat(reports): raporti e-kirja uuesti saatmine detailvaates (POST /api/spsadmn/reports/[id]) + raporti kustutamine üldvaates (DELETE /api/spsadmn/reports {ids}) — DB + JSON fallback, admin-roll + same-origin + rate-limit",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/reports/[id]/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/reports/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/store.ts"
+    }
+   ]
+  },
+  {
+   "hash": "76ac8af",
+   "date": "2026-09-11T11:50:44+03:00",
+   "subject": "fix(reporting): search-term katvuse märge raporti Ads-tabelis (jaotamata kulu pole brändikulu) + LLM prompti tõlgendusreeglid (kulu pole konversioonitõend; soovitused ainult andmetes esinevatest päringutest)",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    }
+   ]
+  },
+  {
+   "hash": "23613d1",
+   "date": "2026-09-11T11:39:03+03:00",
+   "subject": "fix(reporting): brändiosakaal arvutati jaotamata search-term kulust (vale 55 %/85,2 € väide) — nüüd ainult seostatud kulu, ≥10 € ja ≥30 % lävend; LLM narratiivile numbrite audit (lib/reporting/number-audit.ts): leiutatud/arveldatud arv → rules-only; prompt karmistatud; 9 testi",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-number-audit.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/number-audit.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    }
+   ]
+  },
+  {
+   "hash": "a1a6f11",
+   "date": "2026-09-11T11:38:54+03:00",
+   "subject": "feat(content): SEO nädalaplaan 1.1-3 — /puhastusteenused H1/meta/menüüsildid kooskõlla päringuga (Puhastusteenused, RU Клининговые услуги), mahud+hinnad+FAQ laiendatud, suurpuhastus ja akende pesu värskendatud (siselingid, hinda-FAQ, kuupäev), RU elektritööd ja чистка ковров tugevdatud, llms.txt regenereeritud",
+   "files": [
+    {
+     "s": "M",
+     "p": "TRANSLATIONS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/akende-pesu.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/elektritood.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/suurpuhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/vaipade-puhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    }
+   ]
+  },
+  {
+   "hash": "095e9eb",
+   "date": "2026-09-10T14:47:53+03:00",
+   "subject": "docs: record .vercelignore root-anchoring gotcha (raportid incident 10.09.2026)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    }
+   ]
+  },
+  {
+   "hash": "d20cb0b",
+   "date": "2026-09-10T14:44:38+03:00",
+   "subject": "fix(deploy): anchor .vercelignore raportid to root (it shadowed the admin raportid route), exclude .secrets + admin-users.json from deployment source",
+   "files": [
+    {
+     "s": "M",
+     "p": ".vercelignore"
+    }
+   ]
+  },
+  {
+   "hash": "3be9d70",
+   "date": "2026-09-10T13:40:43+03:00",
+   "subject": "feat(reporting): weekly marketing report — GSC/GA4/Ads/forms snapshot, ET insights engine, LLM narrative, admin UI, Friday cron + e-mail",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/spsadmn/raportid/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/api/cron/weekly-report/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/reports/[id]/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/reports/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "data/weekly-reports.json"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0010_weekly_reports.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/email.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/ads.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/ga4.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/generate.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/google-auth.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/gsc.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/keyword-families.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/notify.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/snapshot.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/store.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package-lock.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/weekly-report.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "0a2730b",
+   "date": "2026-09-10T13:40:34+03:00",
+   "subject": "feat(analytics): service-account auth for report:ads (drops OAuth refresh-token need)",
+   "files": [
+    {
+     "s": "M",
+     "p": "scripts/ads-oauth-setup.ts"
+    },
+    {
+     "s": "M",
+     "p": "scripts/ads-report.ts"
+    }
+   ]
+  },
+  {
+   "hash": "a7e8ca4",
+   "date": "2026-09-08T12:03:30+03:00",
+   "subject": "chore: remove raportid/ from version control — reports, audits, backups are local working data, not needed for the site; add raportid/ and output/ to .gitignore",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "D",
+     "p": "raportid/SPS_Grupp_Google_Ads_audit_2026-07-02.docx"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/akende-pesu.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/desinfitseerimine.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/ehitusjargne-koristus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/ehitusprahi-aravedu.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/elektritood.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/eskalaatorite-suvapuhastus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/fassaadipesu.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/grafiti-eemaldamine.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/katuse-remont.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/kojameheteenus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/lammutustood.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/lehtedekoristamine.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/lumekoristus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/muruniitmine.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/plaatimistood.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/porandate-hooldus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/puhastusteenused.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/remonditeenused-tallinnas.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/sanitaarremont-ja-umberehitus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/siseviimistlustood.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/suitsu-ja-tulekahjustuste-puhastamine.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/tanavakivide-pesu-ja-hooldus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/torutood.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/vaipade-puhastus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/valikoristus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/definitions-backup/ventilatsioonide-ehitus-ja-hooldus.ts.txt"
+    },
+    {
+     "s": "D",
+     "p": "raportid/fix-plan-2026-08-06.md"
+    },
+    {
+     "s": "D",
+     "p": "raportid/gsc-pages-indekseerimine-audit-2026-09-01.md"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "6906dba",
+   "date": "2026-09-08T11:52:39+03:00",
+   "subject": "feat(analytics): direct Google Ads API report (report:ads) — impression share, conversion actions, search terms, keywords + one-time OAuth setup script (setup:ads-auth), ANALYTICS.md section 6",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-oauth-setup.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-report.ts"
+    }
+   ]
+  },
+  {
+   "hash": "dffdb24",
+   "date": "2026-09-07T17:03:21+03:00",
+   "subject": "perf: pause Industries carousel when off-screen or tab hidden",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    }
+   ]
+  },
+  {
+   "hash": "8020db0",
+   "date": "2026-09-07T16:46:00+03:00",
+   "subject": "revert: GTM deferral regressed live Lighthouse",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/analytics/DeferredGoogleTagManager.tsx"
+    }
+   ]
+  },
+  {
+   "hash": "f97c346",
+   "date": "2026-09-07T15:17:58+03:00",
+   "subject": "perf: improve mobile LCP and defer GTM execution",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/ReviewsPageContent.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/HeroBackgroundImage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/DeferredGoogleTagManager.tsx"
+    },
+    {
+     "s": "M",
+     "p": "public/9001-14001-ENG.webp"
+    },
+    {
+     "s": "A",
+     "p": "public/TarmoHero-poster.webp"
+    }
+   ]
+  },
+  {
+   "hash": "cc7e2b9",
+   "date": "2026-09-04T12:55:54+03:00",
+   "subject": "feat(content): akende pesu kaart eripuhastustöösse, kaardilingid teenuselehtedele, em-kriipsud eemaldatud, hinnaplokkide CTA",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/ehitusprahi-aravedu/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/_template/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/kojameheteenus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/suurpuhastus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/remonditeenused-tallinnas/elektritood/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/remonditeenused-tallinnas/sanitaarremont-ja-umberehitus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/remonditeenused-tallinnas/ventilatsioonide-ehitus-ja-hooldus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/db/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/seaded/admins/route.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "21e9e48",
+   "date": "2026-09-03T14:44:33+03:00",
+   "subject": "feat(content): uuendatud hinnad 7 teenuselehel + desinfitseerimise link eemaldatud menüüdest",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/akende-pesu.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/ehitusprahi-aravedu.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/fassaadipesu.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/grafiti-eemaldamine.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/porandate-hooldus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/suurpuhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/tanavakivide-pesu-ja-hooldus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/vaipade-puhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    }
+   ]
+  },
+  {
+   "hash": "697bcaf",
+   "date": "2026-09-03T14:41:44+03:00",
+   "subject": "feat(analytics): minimal consent gating (analytics granted by default, only Ads signals gated) + consent funnel events + banner UX overhaul",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/CookieConsentBanner.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/consent.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "f07e812",
+   "date": "2026-09-01T21:50:37+03:00",
+   "subject": "fix(seo): legacy URL overhaul from GSC pages audit — Cyrillic redirects moved to proxy.ts LEGACY_RU_REDIRECTS (next.config sources never match non-ASCII/percent-encoded paths), ~50 new ET/EN legacy redirects (blog root slugs, koristusteenused/*, valikoristus slug fixes, WP artifacts), trailing-slash canonical destinations (3-hop chains 105→10), getAnnouncementBySlug 2.5s read timeout (paused-DB hang), reusable GSC pull/probe/inspect scripts + audit report",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/announcements.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "A",
+     "p": "raportid/gsc-pages-indekseerimine-audit-2026-09-01.md"
+    },
+    {
+     "s": "A",
+     "p": "scripts/gsc-inspect-index.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/gsc-probe-status.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/gsc-pull-pages.ts"
+    }
+   ]
+  },
+  {
+   "hash": "f1c0c8b",
+   "date": "2026-08-30T16:14:18+03:00",
+   "subject": "fix(forms): require both Turnstile keys before enforcing (secret w/o public sitekey failed closed on every live submission)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/turnstile.ts"
+    }
+   ]
+  },
+  {
+   "hash": "312ec00",
+   "date": "2026-08-26T14:39:16+03:00",
+   "subject": "feat(seo): CTR titles/metas on 5 key pages (ET/EN/RU), new hoolduskoristus + suurpuhastus service pages, koristusteenus hub keyword coverage with anti-cannibalization links, kontori-koristus internal links, SEO/conversions analysis report + PDF",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/ehitusprahi-aravedu/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/_pages/puhastusteenused/suurpuhastus/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/_pages/puhastusteenused/suurpuhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/et-metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/localized-page-registry.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/page-registry.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/index.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/pages/definitions/suurpuhastus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    },
+    {
+     "s": "A",
+     "p": "raportid/seo-ja-konversioonide-analuus-2026-08-26.md"
+    },
+    {
+     "s": "A",
+     "p": "raportid/seo-ja-konversioonide-analuus-2026-08-26.pdf"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "6d83edf",
+   "date": "2026-08-26T12:23:11+03:00",
+   "subject": "fix(admin): always-visible päringud h-scrollbar — synced top scrollbar, capped table box with sticky header, forced classic scrollbars",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    }
+   ]
+  },
+  {
+   "hash": "4fb300c",
+   "date": "2026-08-26T12:07:06+03:00",
+   "subject": "feat(admin): päringud spam/form filter pills, expandable long cells, resizable persisted columns + h-scroll fix (min-w-0); kasutajad: rename, drop Nimi, invite e-mail, password eye + generator",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/seaded/admins/route.ts"
+    }
+   ]
+  },
+  {
+   "hash": "840431d",
+   "date": "2026-08-26T11:10:34+03:00",
+   "subject": "feat(forms): four-layer anti-spam — Turnstile, timing trap, gibberish detection, docs",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/spam-detector.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/spam.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/turnstile.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "a3d4c09",
+   "date": "2026-08-25T16:34:01+03:00",
+   "subject": "feat(analytics): hardcoded form_submission_success dataLayer push alongside form_submit (refactor-proof conversion signal)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/form-conversion.ts"
+    }
+   ]
+  },
+  {
+   "hash": "22bd58f",
+   "date": "2026-08-24T17:22:54+03:00",
+   "subject": "fix(analytics): complete Google Ads/GTM CSP host list per official guide (ad.doubleclick.net, frame-src, preview mode)",
+   "files": [
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "7f82aac",
+   "date": "2026-08-24T14:43:47+03:00",
+   "subject": "fix(analytics): whitelist Google tag hosts in CSP (gtm.js/collect blocked since launch) + docs",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "2d880fd",
+   "date": "2026-08-24T12:19:47+03:00",
+   "subject": "fix(seo): 404 bogus-locale dotted paths instead of rendering homepage (GSC sitemap-is-HTML errors)",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    }
+   ]
+  },
+  {
+   "hash": "d6d5926",
+   "date": "2026-08-19T13:54:24+03:00",
+   "subject": "fix(seo): add required itemReviewed to Review schema nodes (GSC review-snippets issue) + docs: ANALYTICS.md connection guide",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "A",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/json-ld-generator.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/json-ld-generator.ts"
+    }
+   ]
+  },
+  {
+   "hash": "bc31b9b",
+   "date": "2026-08-17T18:18:23+03:00",
+   "subject": "feat(forms): capture Google Ads gclid on contact submissions (hidden field, Leht cell, email, CSV export; migration 0009)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/gclid.ts"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0009_submission_gclid.sql"
+    },
+    {
+     "s": "M",
+     "p": "drizzle/meta/_journal.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    }
+   ]
+  },
+  {
+   "hash": "ad0dc5e",
+   "date": "2026-08-17T18:03:16+03:00",
+   "subject": "fix(analytics): exit report script via exitCode to avoid libuv teardown crash on win32",
+   "files": [
+    {
+     "s": "M",
+     "p": "scripts/analytics-report.ts"
+    }
+   ]
+  },
+  {
+   "hash": "491b6a5",
+   "date": "2026-08-17T17:34:22+03:00",
+   "subject": "feat(analytics): GTM + Consent Mode v2 + cookie banner + form conversion events + reporting script",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/CookieConsentBanner.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/consent.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "package-lock.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/analytics-report.ts"
+    }
+   ]
+  },
+  {
+   "hash": "9f994eb",
+   "date": "2026-08-17T17:34:11+03:00",
+   "subject": "feat(forms): record page_url on submissions + bulk delete in paringud",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0008_submission_page_url.sql"
+    },
+    {
+     "s": "M",
+     "p": "drizzle/meta/_journal.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    }
+   ]
+  },
+  {
+   "hash": "9afaf10",
+   "date": "2026-08-17T15:33:42+03:00",
+   "subject": "chore: ignore *.log files and drop duplicate .vercel gitignore entry",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    }
+   ]
+  },
+  {
+   "hash": "92637b0",
+   "date": "2026-08-17T15:10:34+03:00",
+   "subject": "feat(admin): Supabase keep-alive cron + DB restore from Seaded, seaded me-fetch hardening",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "HANDOVER.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/api/cron/keepalive/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/db/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/restore-supabase.ts"
+    },
+    {
+     "s": "A",
+     "p": "vercel.json"
+    }
+   ]
+  },
+  {
+   "hash": "b2d9847",
+   "date": "2026-08-17T14:23:54+03:00",
+   "subject": "feat(forms): Tasu/Kasum/Märkused + period totals, career recipient setting, auto-replies, spam flagging",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/submissions/[id]/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "drizzle/0005_form_submissions.sql"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0006_submission_financials.sql"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0007_submission_spam_flag.sql"
+    },
+    {
+     "s": "M",
+     "p": "drizzle/meta/_journal.json"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/spam-detector.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/autoreply-defaults.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/spam.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/seed-autoreply-settings.ts"
+    }
+   ]
+  },
+  {
+   "hash": "b1c2e9f",
+   "date": "2026-08-17T14:23:31+03:00",
+   "subject": "feat(admin): auth resilience with snapshot fallback + Resend e-mail migration",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": "README.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/login/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/me/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/seaded/admins/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/admin-users-snapshot.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/auth.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/index.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/email.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "d7a1e36",
+   "date": "2026-08-11T19:30:15+03:00",
+   "subject": "fix(copy): ET/EN/RU wording corrections across marketing pages",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TestimonialSlider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-testimonial-translations.json"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-testimonials.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/remonditeenused-tallinnas.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/sps-grupp.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "raportid/i18n-parity-report.md"
+    },
+    {
+     "s": "A",
+     "p": "raportid/sisuparandused-ja-loppkontroll-2026-08-11.md"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tarmo-tsitaat-supabase.sql"
+    }
+   ]
+  },
+  {
+   "hash": "a849bc2",
+   "date": "2026-08-10T09:59:49+03:00",
+   "subject": "fix(copy): Estonian language corrections — EVS 914:2020, eripuhastustööd terminology, grammar and consistency",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/ReviewsPageContent.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SpsInNumbers.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TwoToneHeading.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/kontakt.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/lumekoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/remonditeenused-tallinnas.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/sps-grupp.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "893a43b",
+   "date": "2026-08-06T20:25:56+03:00",
+   "subject": "docs: re-audit after prod deploy (probes 28/28, TTFB 0.11-0.23s all HIT, schema verified)",
+   "files": [
+    {
+     "s": "M",
+     "p": "raportid/live-audit-2026-08-06.md"
+    }
+   ]
+  },
+  {
+   "hash": "79d0d90",
+   "date": "2026-08-06T20:07:08+03:00",
+   "subject": "chore: next dev regenerated nextjs-agent-rules block",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    }
+   ]
+  },
+  {
+   "hash": "c7827ea",
+   "date": "2026-08-06T19:58:00+03:00",
+   "subject": "docs: implementation status for fix plan (all phases verified on preview)",
+   "files": [
+    {
+     "s": "M",
+     "p": "raportid/fix-plan-2026-08-06.md"
+    }
+   ]
+  },
+  {
+   "hash": "dc0a29a",
+   "date": "2026-08-06T19:56:46+03:00",
+   "subject": "fix(routing): keep locale shell renderable for unknown locale segments",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/layout.tsx"
+    }
+   ]
+  },
+  {
+   "hash": "d7173ec",
+   "date": "2026-08-06T19:43:32+03:00",
+   "subject": "chore(hardening): Upstash rate limiting, blog HTML sanitize, docs (Phase 6)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ARCHITECTURE.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/jobs/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/login/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/rate-limit.ts"
+    }
+   ]
+  },
+  {
+   "hash": "6b9ebb1",
+   "date": "2026-08-06T19:37:12+03:00",
+   "subject": "feat(aeo): llms.txt x3 locales with prices, AI-crawler policy, quotable facts block (Phase 5)",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/SpsInNumbers.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/robots.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/json-ld-generator.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/json-ld-generator.ts"
+    },
+    {
+     "s": "A",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "A",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    },
+    {
+     "s": "M",
+     "p": "raportid/i18n-parity-report.md"
+    },
+    {
+     "s": "A",
+     "p": "scripts/generate-llms-txt.ts"
+    }
+   ]
+  },
+  {
+   "hash": "fa807fe",
+   "date": "2026-08-06T19:10:44+03:00",
+   "subject": "feat(seo): schema pack — reviews, offers, jobs, org depth, lists, dedupe FAQ (Phase 4)",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/ReviewsPageContent.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/DynamicJobOffer.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/FaqJsonLd.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/JobsItemListJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeoJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/templates/ServiceDetailTemplate.tsx"
+    },
+    {
+     "s": "A",
+     "p": "data/admin-job-translations.json"
+    },
+    {
+     "s": "A",
+     "p": "data/admin-testimonial-translations.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/json-ld-generator.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/announcements.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/json-ld-generator.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-helper.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/translate-jobs.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/translate-testimonials.ts"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    },
+    {
+     "s": "M",
+     "p": "raportid/i18n-parity-report.md"
+    },
+    {
+     "s": "A",
+     "p": "scripts/sync-translation-fallbacks.ts"
+    }
+   ]
+  },
+  {
+   "hash": "b92bd06",
+   "date": "2026-08-06T18:34:49+03:00",
+   "subject": "perf(lcp): 147KB hero, CSS-animated calculator, drop framer-motion + Geist Mono preload",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hinnakalkulaator.tsx"
+    },
+    {
+     "s": "M",
+     "p": "package-lock.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "public/FrontHeroCar.jpg"
+    }
+   ]
+  },
+  {
+   "hash": "7e7d2a3",
+   "date": "2026-08-06T18:18:10+03:00",
+   "subject": "perf(routing): prerender whole site via app/[locale] + next/root-params (Phase 3B)",
+   "files": [
+    {
+     "s": "R",
+     "p": "app/(et)/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/blog/data.ts"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/blog/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/not-found.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/blog/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/blog/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/testimonials/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/testimonials/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/toole/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/(et)/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/[...slug]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/[locale]/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/[locale]/not-found.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/ehitusprahi-aravedu/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/kontakt/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/koristusteenus/_template/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "7ad4f0a",
+   "date": "2026-08-06T17:20:50+03:00",
+   "subject": "chore(security): remove exposed variant/image-tool pages, noindex preview hosts, hide X-Powered-By",
+   "files": [
+    {
+     "s": "D",
+     "p": "app/image-tool/layout.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/image-tool/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/robots.ts"
+    },
+    {
+     "s": "D",
+     "p": "app/variant-a/layout.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/variant-a/page.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/variant-b/layout.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/variant-b/page.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/variant-c/layout.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/variant-c/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "faf2ecc",
+   "date": "2026-08-06T17:13:08+03:00",
+   "subject": "fix(security): next 16.3.0, sharp 0.35.3, CSV injection escape, drop eval",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/image-resize/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "package-lock.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "raportid/i18n-parity-report.md"
+    }
+   ]
+  },
+  {
+   "hash": "8549ba3",
+   "date": "2026-08-06T14:47:00+03:00",
+   "subject": "Enlarge logo slider another 30%, restore logo scroll on mobile",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    }
+   ]
+  },
+  {
+   "hash": "564258d",
+   "date": "2026-08-06T14:39:56+03:00",
+   "subject": "Fix site content bugs + add form inquiry storage with admin Paringud view",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/submissions/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Services.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/sps-grupp/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0005_form_submissions.sql"
+    },
+    {
+     "s": "M",
+     "p": "drizzle/meta/_journal.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/form-submissions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/elektritood.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/kojameheteenus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/lehtedekoristamine.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/muruniitmine.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/sanitaarremont-ja-umberehitus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/sps-grupp.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/torutood.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "9ff2a87",
+   "date": "2026-08-06T12:30:52+03:00",
+   "subject": "Update handover: Tasks 0-9 complete, only production deploy remains",
+   "files": [
+    {
+     "s": "M",
+     "p": "HANDOVER.md"
+    }
+   ]
+  },
+  {
+   "hash": "1e3f348",
+   "date": "2026-08-06T12:29:56+03:00",
+   "subject": "Unify all public pages into one registry/definitions/template system (Tasks 0-9)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ARCHITECTURE.md"
+    },
+    {
+     "s": "M",
+     "p": "DESIGN.md"
+    },
+    {
+     "s": "A",
+     "p": "HANDOVER.md"
+    },
+    {
+     "s": "A",
+     "p": "MULTI_MODEL_MIGRATION_ORCHESTRATION.md"
+    },
+    {
+     "s": "A",
+     "p": "PAGE_ARCHITECTURE_MIGRATION_TASKS.md"
+    },
+    {
+     "s": "A",
+     "p": "PAGE_FIXING_TASKS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/components/CompanyStats.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/LocalizedContentPage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/PrivacyPolicyPage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeasonalServicesBlock.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/ServiceInfoBlock.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Tooprotsess.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/templates/ServiceDetailTemplate.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/en/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/akende-pesu/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "3f061dc",
+   "date": "2026-08-03T23:02:32+03:00",
+   "subject": "Improve technical SEO and navigation behavior",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/DynamicJobOffer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FaqJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/HeroBackgroundImage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hinnakalkulaator.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/LocalizedContentPage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/NonceProvider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeoJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Services.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/TestimonialSlider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/en/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/_template/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "37cd6c7",
+   "date": "2026-07-26T06:48:29+03:00",
+   "subject": "Fix multilingual content and website audit issues",
+   "files": [
+    {
+     "s": "A",
+     "p": "AI_REBUILD_TASKS.md"
+    },
+    {
+     "s": "A",
+     "p": "AI_REBUILD_TASKS_EN.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "D",
+     "p": "app/api/spsadmn/blog/translate/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/DynamicBlogArchive.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/DynamicBlogPost.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hinnakalkulaator.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/LocalizedContentPage.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/MaintenancePriceExamples.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Services.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/en/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/layout.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "1198a8f",
+   "date": "2026-07-22T11:49:51+03:00",
+   "subject": "fix: responsive header menu breakpoint to 1250px, hero floating chips positioning",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/image-resize/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/jobs/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/logout/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/me/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/seaded/admins/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/seaded/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/testimonials/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/akende-pesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/fassaadipesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/grafiti-eemaldamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/lumekoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/desinfitseerimine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/ehitusjargne-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/eskalaatorite-suvapuhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "1f9218f",
+   "date": "2026-07-20T16:17:37+03:00",
+   "subject": "feat: admin panel overhaul - responsive layout, multi-user auth, blog manage, settings, file upload",
+   "files": [
+    {
+     "s": "A",
+     "p": ".vercelignore"
+    },
+    {
+     "s": "A",
+     "p": "DEVSTEPS.md"
+    },
+    {
+     "s": "A",
+     "p": "LIVE_URL_I18N_SEO_TASKS.md"
+    },
+    {
+     "s": "M",
+     "p": "README.md"
+    },
+    {
+     "s": "A",
+     "p": "TRANSLATIONS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/[...slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/jobs/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/blog/translate/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/login/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/me/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/seaded/admins/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/seaded/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/testimonials/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/testimonials/translate/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/toole/translate/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/DynamicBlogArchive.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/DynamicBlogPost.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/DynamicJobOffer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/FaqJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FooterCTA.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "673c964",
+   "date": "2026-07-02T16:00:59+03:00",
+   "subject": "fix: remove nonce from script-src CSP to unblock Next.js inline scripts",
+   "files": [
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
+  {
+   "hash": "27f0696",
+   "date": "2026-07-02T14:56:42+03:00",
+   "subject": "fix: resolve TypeScript errors blocking Vercel build",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/images/presign/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/sitemap.ts"
+    }
+   ]
+  },
+  {
+   "hash": "8d8d44d",
+   "date": "2026-07-02T14:52:45+03:00",
+   "subject": "fix: hero overlay, 404 page, CSP nonces, job announcements DB+JSON fallback, admin login fixes",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/jobs/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/images/presign/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/images/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/NonceProvider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeoJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/not-found.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/sitemap.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/blog/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "data/editorial-dates.json"
+    },
+    {
+     "s": "A",
+     "p": "drizzle.config.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/announcements.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/auth.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/db/index.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/db/schema.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "510077b",
+   "date": "2026-07-01T14:38:57+03:00",
+   "subject": "Push all local changes: menu fix, testimonials, config, and content updates",
+   "files": [
+    {
+     "s": "A",
+     "p": "app/api/jobs/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeoJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TooleAnnouncements.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/privaatsus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/ehitusjargne-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/vaipade-puhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/sitemap.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/csrf.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    }
+   ]
+  },
+  {
+   "hash": "20b08a5",
+   "date": "2026-07-01T14:29:55+03:00",
+   "subject": "Fix testimonials scrolling: switch to CSS keyframe animation matching Logos system",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    }
+   ]
+  },
+  {
+   "hash": "391ce3b",
+   "date": "2026-07-01T10:55:29+03:00",
+   "subject": "Fix: CSP, hero layout, nav links, testimonials carousel, blog author removal",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TestimonialCards.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/sps-grupp/arvamused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "A",
+     "p": "start.cmd"
+    },
+    {
+     "s": "A",
+     "p": "start.ps1"
+    },
+    {
+     "s": "A",
+     "p": "stop.cmd"
+    },
+    {
+     "s": "A",
+     "p": "stop.ps1"
+    }
+   ]
+  },
+  {
+   "hash": "0ea3b3d",
+   "date": "2026-07-01T09:49:32+03:00",
+   "subject": "Fix hydration errors and hero layout regression",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeasonalServicesBlock.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    }
+   ]
+  },
+  {
+   "hash": "6b322c3",
+   "date": "2026-07-01T09:23:28+03:00",
+   "subject": "Release readiness: security hardening, SEO audit, content revision, a11y, performance",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": "README.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/image-resize/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/images/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/login/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/logout/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ImageBrowser.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TestimonialCards.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TooleAnnouncements.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/image-tool/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "45503e2",
+   "date": "2026-06-19T15:15:02+03:00",
+   "subject": "Remove diagnostic test marker",
+   "files": [
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    }
+   ]
+  },
+  {
+   "hash": "dd3d340",
+   "date": "2026-06-19T15:10:24+03:00",
+   "subject": "Fix blog slug digit, restore sharp config, add redirect, update admin data",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "7c59dd0",
+   "date": "2026-06-18T20:11:46+03:00",
+   "subject": "Fix Cloudflare build: use eval for sharp require to prevent static analysis",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/image-resize/route.ts"
+    }
+   ]
+  },
+  {
+   "hash": "73cd553",
+   "date": "2026-06-18T19:58:17+03:00",
+   "subject": "Fix Vercel build: rename blog slug 8-kusimust -> kaheksa-kusimust, add redirect",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "e377969",
+   "date": "2026-06-18T19:48:19+03:00",
+   "subject": "Fix Vercel build: rename blog slug starting with digit, add redirect",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "46dd74a",
+   "date": "2026-06-18T19:15:50+03:00",
+   "subject": "Admin toole improvements: fix cursor focus, remove contractType, add sort/filter, date format, save-to-top",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/images/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    }
+   ]
+  },
+  {
+   "hash": "d3fb09a",
+   "date": "2026-06-18T11:42:43+03:00",
+   "subject": "Uuendatud toopakkumise admin vorm: kalendrivalikud, asukoha rippmenyy, uued vaikimisi tekstid, eemaldatud lepingu kestus ja ettevotte info",
+   "files": [
+    {
+     "s": "M",
+     "p": "TuleToole/template.json"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    }
+   ]
+  },
+  {
+   "hash": "11a4a46",
+   "date": "2026-06-17T17:49:38+03:00",
+   "subject": "Fix scroll margin on #pakkumised, increase job card padding, change salary/button colors from green to light blue",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TooleAnnouncements.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    }
+   ]
+  },
+  {
+   "hash": "c633adf",
+   "date": "2026-06-17T17:40:54+03:00",
+   "subject": "Fix Lisa uus: navigate directly, edit page creates default form when entry not found",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    }
+   ]
+  },
+  {
+   "hash": "4b34665",
+   "date": "2026-06-17T17:32:10+03:00",
+   "subject": "Fix Lisa uus button: navigate to edit page after creating announcement",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    }
+   ]
+  },
+  {
+   "hash": "6a933f9",
+   "date": "2026-06-17T17:18:09+03:00",
+   "subject": "Hero bubbles fix, admin rename to spsadmn, image optimization API, arvamused hero bg, industries slider images, testimonials dedup, navbar dropdown cross-close fixes, arvamused cleanup",
+   "files": [
+    {
+     "s": "A",
+     "p": "\"TuleToole/Konteinerite t\\303\\274hjendaja  Pressimees.txt\""
+    },
+    {
+     "s": "A",
+     "p": "TuleToole/Puhastusteenindaja hotellis.txt"
+    },
+    {
+     "s": "A",
+     "p": "TuleToole/Puhastusteenindaja, koristaja.txt"
+    },
+    {
+     "s": "A",
+     "p": "\"TuleToole/Tehase puhastusteenindaja Lasnam\\303\\244el.txt\""
+    },
+    {
+     "s": "A",
+     "p": "\"TuleToole/Tootmisj\\303\\244\\303\\244kide pressija.txt\""
+    },
+    {
+     "s": "A",
+     "p": "TuleToole/template.json"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/blog/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/images/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/toole/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/ImageBrowser.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/TooleAnnouncements.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/sps-grupp/arvamused/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/blog/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/blog/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/toole/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/tule-meile-toole/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "data/admin-blog-edits.json"
+    },
+    {
+     "s": "A",
+     "p": "data/admin-toole-announcements.json"
+    },
+    {
+     "s": "A",
+     "p": "public/images/arvamused.jpg"
+    }
+   ]
+  },
+  {
+   "hash": "cdf7b85",
+   "date": "2026-06-17T16:23:02+03:00",
+   "subject": "Add Arvamused page, TestimonialCards, Tooprotsess, logo slider fix, distribute testimonials to all service pages",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/TestimonialCards.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Tooprotsess.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/akende-pesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/fassaadipesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/grafiti-eemaldamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/kojameheteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/lehtedekoristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/lumekoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/muruniitmine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/desinfitseerimine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/ehitusjargne-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/eskalaatorite-suvapuhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/porandate-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/vaipade-puhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/elektritood/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/katuse-remont/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "e375faa",
+   "date": "2026-06-12T15:30:49+03:00",
+   "subject": "Differentiate link vs non-link cards: pop-up for links, subtle bg transition for non-links",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/akende-pesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/fassaadipesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/grafiti-eemaldamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/lumekoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/desinfitseerimine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/ehitusjargne-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/eskalaatorite-suvapuhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/porandate-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/vaipade-puhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/elektritood/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/katuse-remont/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/kojameheteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/lammutustood/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/lehtedekoristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/muruniitmine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/remonditeenused-tallinnas/plaatimistood/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "f3b5e48",
+   "date": "2026-06-12T15:20:19+03:00",
+   "subject": "Blog: generated posts, viewer scripts, CSS, layout tweaks",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "A",
+     "p": ".wp-viewer-2022.err.log"
+    },
+    {
+     "s": "A",
+     "p": ".wp-viewer-2022.log"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TwoToneHeading.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/layout.tsx"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2016/08/hooldus2.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/2a3c95809bdee51880-75990953.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/eestiparimad3.png"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/ettevotlusnadal.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/ise.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/kinnisvara.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/kinnisvarahaldajad.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/kinnisvarahaldajad2016.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/konkurss.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/koristaja.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/offis.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/palk.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/personaliuudised.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/tiptap.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/10/top.jpg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2017/12/kontorWide22.svg"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2020/11/13481570t1h6e64.png"
+    },
+    {
+     "s": "A",
+     "p": "public/blog-media/2020/11/TOP.jpg"
+    }
+   ],
+   "filesTruncated": true,
+   "newPosts": [
+    "Edukad kinnisvarahaldajad ja -hooldajad aastal 2016",
+    "Edukad kinnisvara haldajad ja hooldajad aastal 2015",
+    "Tipp ja Täpp koristusäris - Eesti Ekspress",
+    "Keskmisest kõrgem palk",
+    "Ise koristada pole enam moes - Äripäev",
+    "Miks puhastusteenuse hind tõuseb?",
+    "Kinnisvarahaldajate TOP - Ehitusuudised",
+    "Kõige konkurentsivõimelisem mikroettevõte 2016",
+    "Hooldus- ja haldusfirmade TOP: võitlus palga- ja hinnasurvega - Äripäev",
+    "Kõige konkurentsivõimelisema mikroettevõte 2016 aasta nominent",
+    "Aasta ettevõte 2016 ettevõtted - Personaliuudised",
+    "Eesti Parimad Ettevõtted 2016 Gala",
+    "Kinnisvarahaldajate ja-hooldajate TOP:võitis puhastusfirma SPS Grupp",
+    "Kõige konkurentsivõimelisem mikroettevõte 2016",
+    "Kuidas hoida kontor gripiajal terve – 7 reeglit",
+    "Aknapesu ise või professionaali abiga?",
+    "Kas puhas kontor vähendab haiguspäevi?",
+    "Kuidas kaitsta puitpõrandaid talvel?",
+    "Miks teha kodus suurpuhastus?",
+    "Kuidas pikendada kontorivaipade eluiga 2x?",
+    "Koristusteenus tuleb appi",
+    "Kontori koristuse kontrollnimekiri – 10 punkti",
+    "Ehitusjärgse koristuse 5 levinumat viga",
+    "Kuidas valida survepesur? Ostujuhend",
+    "Koristaja palkamine vs koristusteenus",
+    "Miks segadus teeb meid ärevaks? Psühholoogi selgitus",
+    "8 küsimust enne koristuslepingu sõlmimist",
+    "Mida ütleb neuroteadus segaduse ja stressi seosest?",
+    "Koristusteenuse proovitöö ja vastutuskindlustus",
+    "Kuidas kontor vähendas koristuskulusid 30%",
+    "Kas tõstab",
+    "Äriklientidele",
+    "Kes on maailma suurimad koristusteenuste pakkujad?",
+    "Keskkonnasõbralik koristus – kuidas saavutada?",
+    "Kas prügi sorteerimine kontoris on võimalik",
+    "Повышает ли фирма по уборке цены?",
+    "Офис",
+    "Для бизнес-клиентов",
+    "Возможна ли сортировка мусора в офисе?",
+    "Keskkonnasõbralikud puhastusvahendid"
+   ]
+  },
+  {
+   "hash": "ad8f938",
+   "date": "2026-06-12T15:19:38+03:00",
+   "subject": "UI fixes: mobile menu collapse, card links, styling, hash anchor fix, breadcrumbs, schema, feature tags, scroll animations",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/FooterCTA.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ScrollAnimation.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/SeoJsonLd.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/ehitusprahi-aravedu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    },
+    {
+     "s": "M",
+     "p": "app/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/akende-pesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/fassaadipesu/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/grafiti-eemaldamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/lumekoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/desinfitseerimine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/ehitusjargne-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/eskalaatorite-suvapuhastus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/porandate-hooldus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/puhastusteenused/suitsu-ja-tulekahjustuste-puhastamine/page.tsx"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "fee860c",
+   "date": "2026-05-24T18:07:29+03:00",
+   "subject": "Remove opacity fade from scroll animations, fix missing thumbnail path",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/components/ScrollAnimation.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/globals.css"
+    }
+   ]
+  },
+  {
+   "hash": "d247e66",
+   "date": "2026-05-24T17:14:49+03:00",
+   "subject": "Clear blog content, add privacy page, extract blog text",
+   "files": [
+    {
+     "s": "A",
+     "p": ".codex-dev.err.log"
+    },
+    {
+     "s": "A",
+     "p": ".codex-dev.log"
+    },
+    {
+     "s": "A",
+     "p": ".gitignore"
+    },
+    {
+     "s": "A",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "A",
+     "p": "ARCHITECTURE.md"
+    },
+    {
+     "s": "A",
+     "p": "CLAUDE.md"
+    },
+    {
+     "s": "A",
+     "p": "DESIGN.md"
+    },
+    {
+     "s": "A",
+     "p": "LESSONS.md"
+    },
+    {
+     "s": "A",
+     "p": "README.md"
+    },
+    {
+     "s": "A",
+     "p": "ROADMAP.md"
+    },
+    {
+     "s": "A",
+     "p": "SESSIONS.md"
+    },
+    {
+     "s": "A",
+     "p": "SYSTEM_PROMPT.md"
+    },
+    {
+     "s": "A",
+     "p": "WORKFLOW.md"
+    },
+    {
+     "s": "A",
+     "p": "app/api/image-resize/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/blog/data.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/blog/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/FAQ.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/FooterCTA.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Hero.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Hinnakalkulaator.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Industries.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/ScrollAnimation.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/SeasonalServicesBlock.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/SeoJsonLd.tsx"
+    }
+   ],
+   "filesTruncated": true
+  }
+ ]
+}

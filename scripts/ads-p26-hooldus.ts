@@ -53,7 +53,7 @@ const NEGATIVE_PHRASES_ALL = [
   // Vaibapesu — 16.09 märksõnaanalüüs: B2C-dominant, ühekordne, ei toeta hoolduslepingut (klient 22.10)
   "vaibapesu", "vaipapesu", "vaipade pesu", "vaipade puhastus", "vaiba pesu", "vaiba puhastamine", "vaibapuhastus",
   // Diivan/mööbel/voodipesu — B2C tekstiilipesu
-  "diivani puhastus", "diivani puhastamine", "diivani pesu", "mööbli puhastus", "voodipesu", "laundromat", "pesumaja",
+  "diivani puhastus", "diivani puhastamine", "diivani pesu", "mööbli puhastus", "voodipesu", "laundromat", "pesumaja", "прачечная",
   // Keemiline puhastus (tekstiil) — teenust ei pakuta
   "keemiline puhastus",
   // Akende remont/vahetus — teenust ei pakuta (meil on akende PESU)
@@ -63,7 +63,9 @@ const NEGATIVE_PHRASES_ALL = [
   // Tooteotsingud (mitte teenus)
   "osonaator", "puhastuslapp", "koristusvahendid", "zep eesti", "puhastusimport",
   // Konkurendi-brändid (strateegia 11.09: ei prioriseerita)
-  "sol", "krausberg", "lavida clean", "anhel", "clean planet", "ecocare", "prof puhastus", "workland",
+  "sol", "krausberg", "lavida clean", "anhel", "clean planet", "ecocare", "prof puhastus", "workland", "kleenest", "becky",
+  // Muud vaadeldud eesmägivõõrad (23.10: kolimiskoristus = B2C ühekordne; liivaprits/toruabi = teenust ei pakuta)
+  "kolimiskoristus", "liivaprits", "toruabi",
   // Ehitusfirmad (remonditeenused on kolmanda prioritiseerimisega, DSA ei sihti neid lehti)
   "ehitusfirmad",
 ]

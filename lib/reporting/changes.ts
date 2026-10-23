@@ -46,6 +46,11 @@ export async function loadGitHistory(): Promise<GitHistory | null> {
     if (!parsed || !Array.isArray(parsed.commits)) return null
     return parsed as GitHistory
   } catch {
+    /* 23.10.2026: fail on nüüd committitud (enne gitignore'itud — Verceli build'is
+     * prebuild-i git-käsu ebaõnnestumise korral fail bundlist puudus ja sektsioon
+     * jäi raportitest märkamatult välja). Kui see logi ikka ilmub, on tegu
+     * bundlingu-probleemiga — kontrolli route'i .nft.json faili. */
+    console.warn("Lehekülje arendus: data/git-history.json pole loetav — sektsioon jääb raportist välja.")
     return null
   }
 }

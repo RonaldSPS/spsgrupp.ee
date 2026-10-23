@@ -12,7 +12,7 @@
 
 import { getFormSubmissions, type FormSubmission } from "../form-submissions"
 import { isoDate } from "./google-auth"
-import type { FormsData, FormsPeriod, LeadMaintenance, LeadRow, ReportPeriod } from "./types"
+import type { FormsData, FormsPeriod, LeadMaintenance, LeadRow, LeadServiceKind, ReportPeriod } from "./types"
 
 /** Selge korduvuse/lepingu signaal: "3x nädalas", "korra nädalas", "kord kuus", "regulaarne", "hooldus", "leping" jm. */
 const MAINTENANCE_SIGNAL =
@@ -32,6 +32,18 @@ const ONEOFF_SIGNAL =
 /** Äripinna signaal (B2B objekt) — "tõenäoliselt regulaarne" kui korduvust pole otseselt öeldud. */
 const PREMISES_SIGNAL =
   /kontor\w*|büroo\w*|äripind\w*|äriruum\w*|kaubandus\w*|kauplus\w*|laos?\b|lao\w*|tootmis\w*|tootmishoone\w*|restoran\w*|kohvik\w*|hoone\w*|trepi\w*|ühistu\w*|korteriühistu\w*|ruum\w*|põrand\w*|\bwc\b|tualet\w*|saal\w*/i
+
+/**
+ * Välikoristuse signaal (kliendi palve 23.10.2026 — välikoristus kajastatakse
+ * raportis siseruumide hoolduskoristusest ERALDI): kõnniteed, hoovid, parklad,
+ * muru, lehtede koristus, lumekoristus/libedusetõrje jm välialade tööd.
+ * Nt Kiwa Estonia 15.10 („kõnnitee, hoovi, sissepääsuvärava ja -ala
+ * välikoristus… muruala niitmine… lehtede koristamine") = outdoor.
+ * Kui välikoristuse signaal on olemas, võidab outdoor (siseruumide signaal
+ * nagu „treppide" võib kaasneda, ilma et teenus siseruumideks muutuks).
+ */
+const OUTDOOR_SIGNAL =
+  /välikorist\w*|välisala\w*|territoorium\w*|kõnnitee\w*|hoov\w*|värav\w*|haljastus\w*|muru\s*niit\w*|muruniit\w*|muruala\w*|umbroh\w*|lehtede\s*korist\w*|lehekorist\w*|parkla\w*|parkimisala\w*|libedusetõrj\w*|lumekorist\w*|lume\s*lükk\w*|lume\s*äravedu|tänava\w*[-\s]äär\w*|plakat\w*\s*(korj|eemald)/i
 
 /**
  * Testpäringud ei lähe raporti arvestusse (kliendi korduv palve 25.09.2026 —
@@ -86,12 +98,27 @@ export function classifyMaintenance(company: string, message: string): LeadMaint
   return "no"
 }
 
+/**
+ * Teenuse liik (siseruumid vs välikoristus) — kliendi palve 23.10.2026.
+ * Kutsutakse ainult kui maintenance !== "no". Välikoristus peab olema
+ * sõnaselge (OUTDOOR_SIGNAL); vastasel juhul kuulub päring äripindade
+ * siseruumide hulka (indoor), null jäetakse määramata juhuks kui kumbki
+ * signaal puudub (aggregaadis arvestatakse indoor'i hulka).
+ */
+export function classifyServiceKind(message: string): LeadServiceKind | null {
+  if (OUTDOOR_SIGNAL.test(message)) return "outdoor"
+  if (PREMISES_SIGNAL.test(message)) return "indoor"
+  return null
+}
+
 function toLead(row: FormSubmission): LeadRow {
+  const maintenance = classifyMaintenance(row.company, row.message)
   return {
     id: row.id,
     createdAt: row.createdAt,
     company: row.company.trim(),
-    maintenance: classifyMaintenance(row.company, row.message),
+    maintenance,
+    serviceKind: maintenance !== "no" ? classifyServiceKind(row.message) : null,
     viaAds: Boolean(row.gclid) || /[?&]gclid=/.test(row.pageUrl) || row.source === "google_ads",
     source: row.source,
     pageUrl: row.pageUrl,
@@ -114,7 +141,13 @@ function aggregate(rows: FormSubmission[], leads: LeadRow[] | null): FormsPeriod
     const profit = Number(row.profit)
     if (Number.isFinite(profit)) out.profitTotal += profit
   }
-  if (leads) out.maintenanceLeads = leads.filter((l) => l.maintenance !== "no").length
+  if (leads) {
+    out.maintenanceLeads = leads.filter((l) => l.maintenance !== "no").length
+    /* Teenuse liigi jaotus (kliendi palve 23.10.2026): välikoristus on
+     * sõnaselge signaal; ülejäänud hoolduspäringud = siseruumide äripinnad. */
+    out.maintenanceOutdoor = leads.filter((l) => l.maintenance !== "no" && l.serviceKind === "outdoor").length
+    out.maintenanceIndoor = out.maintenanceLeads - out.maintenanceOutdoor
+  }
   out.feeTotal = Math.round(out.feeTotal * 100) / 100
   out.profitTotal = Math.round(out.profitTotal * 100) / 100
   return out

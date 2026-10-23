@@ -364,18 +364,22 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
     })
   }
 
-  /* Põhieesmärk (strategy.ts): regulaarse hoolduskoristuse B2B-päringud eraldi. */
+  /* Põhieesmärk (strategy.ts): regulaarse hoolduskoristuse B2B-päringud eraldi.
+   * Kliendi palve 23.10.2026: siseruumide hoolduskoristus ja välikoristus eraldi. */
   const leads = forms.leads ?? []
   if (c.contact > 0) {
     const yes = leads.filter((l) => l.maintenance === "yes")
     const likely = leads.filter((l) => l.maintenance === "likely")
+    const outdoor = leads.filter((l) => l.maintenance !== "no" && l.serviceKind === "outdoor").length
+    const indoor = yes.length + likely.length - outdoor
+    const splitNote = yes.length + likely.length > 0 ? ` — neist siseruumides ${indoor}, välikoristust ${outdoor}` : ""
     const fmtLead = (l: (typeof leads)[number]) =>
-      `${l.company || "—"} (${l.maintenance === "yes" ? "regulaarne" : l.maintenance === "likely" ? "tõenäoline" : "ühekordne/muu"}${l.viaAds ? ", Ads" : ""})`
+      `${l.company || "—"} (${l.maintenance === "yes" ? "regulaarne" : l.maintenance === "likely" ? "tõenäoline" : "ühekordne/muu"}${l.maintenance !== "no" && l.serviceKind === "outdoor" ? ", välikoristus" : ""}${l.viaAds ? ", Ads" : ""})`
     const count = yes.length + likely.length
     out.push({
       area: "forms",
       severity: count > 0 ? "positive" : "warning",
-      title: `Regulaarse hoolduskoristuse päringuid: ${count} (${yes.length} selget${likely.length > 0 ? ` + ${likely.length} tõenäolist` : ""}) ${c.contact} kontaktist`,
+      title: `Regulaarse hoolduskoristuse päringuid: ${count} (${yes.length} selget${likely.length > 0 ? ` + ${likely.length} tõenäolist` : ""}${splitNote}) ${c.contact} kontaktist`,
       detail:
         leads.length > 0
           ? leads.slice(0, 6).map(fmtLead).join("; ") + "."

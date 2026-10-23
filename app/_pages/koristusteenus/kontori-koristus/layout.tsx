@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Kontori koristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp",
   description:
-    "Regulaarne kontorikoristus büroodele alates 600 m² Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.",
+    "Regulaarne kontorikoristus igas suuruses büroodele Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.",
   imagePath: "/kontorikoristus1.jpg",
 });
 

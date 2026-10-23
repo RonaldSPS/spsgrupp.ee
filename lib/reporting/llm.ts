@@ -15,7 +15,12 @@ import { auditNarrativeNumbers } from "./number-audit"
 import { STRATEGY_CONTEXT } from "./strategy"
 
 const TIMEOUT_MS = 90_000
-const MAX_TOKENS = 2500
+/* deepseek-v4-flash on reasoning-mudel ja tema „mõttekäik" loeb max_tokens'i
+ * SISSE. Verifitseeritud päris-digestiga 23.10.2026: 4000 JA 8000 →
+ * finish=length + tühi content (reasoning neelas kõik; seetõttu olid 10.2026
+ * raportid 2 nädalat narratiivita); 16000 → finish=stop ja päris tekst.
+ * Digesti suurus kõigub nädalati — 16000 jätab varu. */
+const MAX_TOKENS = 16000
 
 const SYSTEM_PROMPT = `Oled SPS Grupi (spsgrupp.ee) peamised turundusstrateeg ja SEO/Ads-analüütik. SPS Grupp on Tallinna koristus- ja hooldusteenuste ettevõte: kontorite koristus, hoolduskoristus, puhastusteenused, akende pesu, ehitusjärgne koristus, lammutustööd, remont.
 
@@ -24,7 +29,7 @@ ${STRATEGY_CONTEXT}
 - Uus veebileht läks live'i 17.08.2026 (enne: vana WordPress). Pre-launch baasjoon: 9,0 orgaanilist klikki/päevas.
 - Kaks kuldstandardit: „koristusfirma" ja „kontori koristus".
 - Päris päringud (vormide DB) on konversioonitõde, mitte GA4 key events. Eesmärk ≥15 kontaktpäringut/kuu.
-- forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk). Tööotsingud (forms.jobSeekers) ja testpäringud on kontaktide arvust VÄLJA jäetud — ära loe neid päringuteks; kui jobSeekers > 0, märgi see ühe lausega ära (läbipaistvus).
+- forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk) — koos teenuse liigi jaotusega: maintenanceIndoor = siseruumide äripinnad, maintenanceOutdoor = välikoristus (kliendi palve 23.10.2026: neid EI TOHI kokku liita, nt „hoolduspäringuid 2: siseruumides 1, välikoristus 1"). Tööotsingud (forms.jobSeekers) ja testpäringud on kontaktide arvust VÄLJA jäetud — ära loe neid päringuteks; kui jobSeekers > 0, märgi see ühe lausega ära (läbipaistvus).
 - Ads'i „conversions" on nõusolekurežiimi tõttu alampiir — kui forms.gclidLeads > 0, aga ads.conversions = 0, selgita seda nõusolekuga, mitte mõõtmistõrkena.
 - ads.conversionsForm / conversionsContact / conversionsOther jaotavad Ads'i konversioonid: päris vormipäringud vs telefoni/e-posti klikid (EI OLE hinnapäringud) vs muu; null = jaotust pole. Kliendi püsipalve: hinnapäringud tuleb telefoni/e-posti klikkidest ALATI eristada. forms.maintenanceViaAds = Adsist tulnud hoolduskoristuse päringud (yes+likely) ja forms.adsCostPerMaintenanceLead = nende maksumus €/päring (null, kui polnud) — kui pole null, too „Kokkuvõttes“ hoolduskoristuse päringute maksumus eraldi välja.
 - GSC positsioon = näitamistega kaalutud keskmine. <10 näitamist/nädal = statistiline müra, mitte trend.
@@ -119,11 +124,14 @@ interface Digest {
     gclidLeads: number
     maintenanceYes: number
     maintenanceLikely: number
+    /** Hoolduspäringute (yes+likely) jaotus: siseruumide äripinnad vs välikoristus (kliendi palve 23.10.2026 — kajastada eraldi). */
+    maintenanceIndoor: number
+    maintenanceOutdoor: number
     /** Hoolduskoristuse päringud (yes+likely), mis tulid Adsist. */
     maintenanceViaAds: number
     /** Ads-kulu ÷ maintenanceViaAds (null, kui Ads-hoolduspäringuid polnud). */
     adsCostPerMaintenanceLead: number | null
-    leads: { company: string; maintenance: string; viaAds: boolean; summary: string }[]
+    leads: { company: string; maintenance: string; serviceKind?: string | null; viaAds: boolean; summary: string }[]
     feeTotal: number
     profitTotal: number
   }
@@ -248,10 +256,12 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       gclidLeads: snapshot.forms.current.gclidLeads,
       maintenanceYes: leads.filter((l) => l.maintenance === "yes").length,
       maintenanceLikely: leads.filter((l) => l.maintenance === "likely").length,
+      maintenanceIndoor: leads.filter((l) => l.maintenance !== "no" && l.serviceKind !== "outdoor").length,
+      maintenanceOutdoor: leads.filter((l) => l.maintenance !== "no" && l.serviceKind === "outdoor").length,
       maintenanceViaAds,
       adsCostPerMaintenanceLead:
         adsCost !== null && maintenanceViaAds > 0 ? r1(adsCost / maintenanceViaAds) : null,
-      leads: leads.slice(0, 10).map((l) => ({ company: l.company, maintenance: l.maintenance, viaAds: l.viaAds, summary: l.summary })),
+      leads: leads.slice(0, 10).map((l) => ({ company: l.company, maintenance: l.maintenance, serviceKind: l.serviceKind ?? null, viaAds: l.viaAds, summary: l.summary })),
       feeTotal: snapshot.forms.current.feeTotal,
       profitTotal: snapshot.forms.current.profitTotal,
     }

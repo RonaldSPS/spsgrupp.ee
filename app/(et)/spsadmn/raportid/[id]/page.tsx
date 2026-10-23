@@ -619,7 +619,7 @@ export default function ReportDetailPage() {
             <div className="mt-5">
               <h3 className="text-[15px] font-bold text-[#17345a] mb-1">Nädala päringud (hoolduskoristuse klassifikatsioon)</h3>
               <p className="text-[13px] text-[#5a6474] mb-2">
-                Põhieesmärk eraldi välja toodud: „regulaarne hooldus“ = selge korduvus sõnumis, „tõenäoliselt regulaarne“ = ettevõtte äripinna koristus ilma ühekordse märgita.
+                Põhieesmärk eraldi välja toodud: „regulaarne hooldus“ = selge korduvus sõnumis, „tõenäoliselt regulaarne“ = ettevõtte äripinna koristus ilma ühekordse märgita. „· välikoristus“ = välialade hooldus (kõnniteed, hoovid, parklad, muru, lumi) — kajastub siseruumide hoolduskoristusest eraldi.
               </p>
               {s.forms.window && (
                 <p className="text-[13px] text-[#5a6474] mb-2">
@@ -651,6 +651,7 @@ export default function ReportDetailPage() {
                         <td className="py-2 pr-3">
                           <span className={`inline-block text-[12px] font-bold rounded-lg px-2 py-0.5 ${l.maintenance === "yes" ? "bg-green-100 text-green-700" : l.maintenance === "likely" ? "bg-blue-100 text-blue-700" : "bg-slate-100 text-[#5a6474]"}`}>
                             {l.maintenance === "yes" ? "Regulaarne hooldus" : l.maintenance === "likely" ? "Tõenäoliselt regulaarne" : "Ühekordne/muu"}
+                            {l.maintenance !== "no" && l.serviceKind === "outdoor" ? " · välikoristus" : ""}
                           </span>
                         </td>
                         <td className="py-2 pr-3 text-[#4a5568]">{l.viaAds ? "Google Ads" : l.source ? l.source : "–"}</td>

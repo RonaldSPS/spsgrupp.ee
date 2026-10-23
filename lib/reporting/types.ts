@@ -196,6 +196,13 @@ export interface FormsPeriod {
   gclidLeads: number
   /** Contact submissions wanting regular maintenance cleaning (yes + likely). */
   maintenanceLeads: number
+  /**
+   * Hoolduspäringute jaotus teenuse liigi järgi (kliendi palve 23.10.2026:
+   * kontorite/äripindade hoolduskoristus ja välikoristus ERALDI raportis).
+   * indoor + outdoor = maintenanceLeads. Valikuline — vanadel snapshotidel puudub.
+   */
+  maintenanceIndoor?: number
+  maintenanceOutdoor?: number
   feeTotal: number
   profitTotal: number
   /** Testpäringud, mis jäeti arvestusest välja (forms.ts isTestSubmission). */
@@ -212,11 +219,23 @@ export interface FormsPeriod {
  */
 export type LeadMaintenance = "yes" | "likely" | "no"
 
+/**
+ * Teenuse liik (kliendi palve 23.10.2026 — hoolduskoristus siseruumides
+ * eraldi välikoristusest):
+ *   indoor  = äripinna siseruumide hoolduskoristus (kontorid, kaubandus, tootmine)
+ *   outdoor = välikoristus (kõnniteed, hoovid, parklad, muru, lumekoristus jm)
+ * Määratakse ainult kui maintenance !== "no"; null = kumbki signaal puudub
+ * (arvestatakse indoor'i hulka — välikoristus peab olema sõnaselge).
+ */
+export type LeadServiceKind = "indoor" | "outdoor"
+
 export interface LeadRow {
   id: number
   createdAt: string
   company: string
   maintenance: LeadMaintenance
+  /** Teenuse liik (siseruumid vs välikoristus) — seatud kui maintenance !== "no". Puudub vanadel raportitel. */
+  serviceKind?: LeadServiceKind | null
   /** Ads-seos: gclid väli, gclid page_url-s või source = google_ads. */
   viaAds: boolean
   /** Kanal (source-kood, nt google_ads / organic:google / direct; "" = teadmata). */

@@ -247,7 +247,10 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
   if (leads.length === 0) return { html: "", text: [] }
   const yes = leads.filter((l) => l.maintenance === "yes").length
   const likely = leads.filter((l) => l.maintenance === "likely").length
-  const headline = `Nädala päringud: ${yes + likely > 0 ? `${yes + likely} soovis regulaarset hoolduskoristust (${yes} selget${likely > 0 ? ` + ${likely} tõenäolist` : ""})` : "hoolduskoristuse päringuid ei olnud"}`
+  /* Kliendi palve 23.10.2026: siseruumide hoolduskoristus ja välikoristus eraldi. */
+  const outdoor = leads.filter((l) => l.maintenance !== "no" && l.serviceKind === "outdoor").length
+  const indoor = yes + likely - outdoor
+  const headline = `Nädala päringud: ${yes + likely > 0 ? `${yes + likely} soovis regulaarset hooldust — siseruumides ${indoor}, välikoristust ${outdoor} (${yes} selget${likely > 0 ? ` + ${likely} tõenäolist` : ""})` : "hoolduskoristuse päringuid ei olnud"}`
   const costLine = maintenanceCostLine(leads, ads)
   const excluded = excludedLine(current)
   /* Kliendi palve 09.10.2026: päringud on arvestatud kuni raporti koostamiseni
@@ -258,12 +261,13 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
   const rows = leads
     .map((l) => {
       const m = MAINTENANCE_LABELS[l.maintenance]
+      const kindSuffix = l.maintenance !== "no" && l.serviceKind === "outdoor" ? " · välikoristus" : ""
       const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
       return (
         `<tr>` +
         `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#5a6474;white-space:nowrap">${escapeHtml(date)}</td>` +
         `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#17345a;font-weight:bold">${escapeHtml(l.company || "—")}</td>` +
-        `<td style="padding:6px 8px;border-top:1px solid #edf0f4"><span style="display:inline-block;background:${m.bg};color:${m.color};font-size:12px;font-weight:bold;border-radius:8px;padding:2px 8px">${m.label}</span></td>` +
+        `<td style="padding:6px 8px;border-top:1px solid #edf0f4"><span style="display:inline-block;background:${m.bg};color:${m.color};font-size:12px;font-weight:bold;border-radius:8px;padding:2px 8px">${m.label}${kindSuffix}</span></td>` +
         `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#4a5568">${escapeHtml(leadChannel(l))}</td>` +
         `<td style="padding:6px 8px;border-top:1px solid #edf0f4;font-size:13px;color:#5a6474">${escapeHtml(leadPath(l.pageUrl))}</td>` +
         `</tr>` +
@@ -292,7 +296,8 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
     ...(windowNote ? [windowNote] : []),
     ...leads.map((l) => {
       const date = l.createdAt.slice(0, 10).split("-").reverse().slice(0, 2).join(".")
-      return `- ${date} ${l.company || "—"} [${MAINTENANCE_LABELS[l.maintenance].label}; ${leadChannel(l)}; ${leadPath(l.pageUrl)}] ${l.summary}`
+      const kindSuffix = l.maintenance !== "no" && l.serviceKind === "outdoor" ? " · välikoristus" : ""
+      return `- ${date} ${l.company || "—"} [${MAINTENANCE_LABELS[l.maintenance].label}${kindSuffix}; ${leadChannel(l)}; ${leadPath(l.pageUrl)}] ${l.summary}`
     }),
     "",
   ]

@@ -1,6 +1,6 @@
 import test from "node:test"
 import assert from "node:assert/strict"
-import { classifyMaintenance, isJobSeeker } from "../reporting/forms"
+import { classifyMaintenance, classifyServiceKind, isJobSeeker } from "../reporting/forms"
 import type { FormSubmission } from "../form-submissions"
 
 function makeSubmission(over: Partial<FormSubmission>): FormSubmission {
@@ -99,4 +99,29 @@ test("classifyMaintenance: äripind ilma ühekordse märgita on endiselt likely"
 test("classifyMaintenance: fassaadipesu on ühekordne, fassaadi hooldus lepinguliselt on yes", () => {
   assert.equal(classifyMaintenance("KÜ Aia 5", "Soovime fassaadi survepesu pakkumist."), "no")
   assert.equal(classifyMaintenance("KÜ Aia 5", "Soovime fassaadiklaaside pesu regulaarselt, kord kvartalis."), "yes")
+})
+
+/* ---------- classifyServiceKind (kliendi palve 23.10.2026: siseruumide hoolduskoristus vs välikoristus eraldi) ---------- */
+
+test("classifyServiceKind: Kiwa-tüüpi välikoristuse päring -> outdoor", () => {
+  const kiwa =
+    "Soovime hinnapakkumist kõnnitee, hoovi, sissepääsuvärava ja -ala välikoristuse kohta. Siseruume ei ole vaja koristada. " +
+    "Oleme huvitatud välikoristusest suveperioodil 2x nädalas ja talve perioodil 3 kuni 5x nädalas. " +
+    "Lisaks muruala niitmine vastavalt vajadusele ning lehtede koristamine."
+  assert.equal(classifyServiceKind(kiwa), "outdoor")
+})
+
+test("classifyServiceKind: kontori regulaarne koristus -> indoor", () => {
+  assert.equal(
+    classifyServiceKind("Tere! Otsime kontorile Tallinna kesklinnas korralist koristust, umbes 180 m2, kaks korda nädalas."),
+    "indoor",
+  )
+})
+
+test("classifyServiceKind: lumekoristus/libedusetõrje on välikoristus", () => {
+  assert.equal(classifyServiceKind("Soovime parkla lumekoristust ja libedusetõrjet kogu talveks, lepinguliselt."), "outdoor")
+})
+
+test("classifyServiceKind: kumbki signaal puudub -> null (aggregaadis indoor)", () => {
+  assert.equal(classifyServiceKind("Palun hinnapakkumist."), null)
 })
