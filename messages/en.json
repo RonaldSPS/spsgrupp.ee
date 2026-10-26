@@ -339,7 +339,7 @@
       "chip3Sub": "employees",
       "h1Line1": "Regular cleaning services for business premises",
       "h1Line2": "in Tallinn and Harjumaa",
-      "description": "Regular maintenance for offices, retail spaces and industrial facilities. Flexible scheduling, trained staff and regular quality control. Indicative price from <strong>€1.20/m² per month</strong>.",
+      "description": "Regular maintenance for offices, retail spaces and industrial facilities. Flexible scheduling, trained staff and regular quality control. Indicative price from <strong>€1.20/m² per month</strong>. Free site assessment and a tailored quote.",
       "ctaButton": "Request a free cleaning service quote",
       "breadcrumbHome": "Home",
       "breadcrumbServices": "Services",
@@ -401,11 +401,11 @@
     "pricing": {
       "tag": "Pricing",
       "heading": "How is the cleaning service price determined?",
-      "description": "The cleaning price depends on floor area, cleaning frequency, workload and the characteristics of the property.",
+      "description": "The cleaning price depends on floor area, cleaning frequency, workload and the characteristics of the property. We serve both smaller and larger commercial properties - the exact price is always confirmed after a free site assessment.",
       "note": "We serve commercial properties of <strong>every size</strong>. All indicative prices use the same formula: floor area × €1.20/m² per month."
     },
     "footerCta": {
-      "title": "Order a free cleaning service assessment",
+      "title": "Free site assessment and quote",
       "description": "We generally contact you within one business day. The quote schedule depends on the work and whether a site visit is needed."
     }
   },

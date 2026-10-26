@@ -8,6 +8,7 @@ function makeSubmission(over: Partial<FormSubmission>): FormSubmission {
     id: 1, form: "contact", locale: "et", name: "", email: "", phone: "", company: "",
     message: "", region: "", workload: "", workTime: "", attachmentName: "",
     fee: "", profit: "", notes: "", isSpam: false, pageUrl: "", gclid: "", source: "",
+    channel: "form", serviceKind: "", salesStatus: "",
     createdAt: "2026-09-25T00:00:00.000Z",
     ...over,
   }
@@ -56,6 +57,26 @@ test("isJobSeeker: tavaline äripäring ei filtreeru", () => {
 test("isJobSeeker: cv.ee viide on tööotsing ka pikema sõnumiga", () => {
   assert.equal(
     isJobSeeker(makeSubmission({ message: "Sooviksin Teie ettevõttes tööd saada.", source: "referral:cv.ee" })),
+    true,
+  )
+})
+
+/* 26.10.2026: #67 Ridoy Ahmed — ametlik kaaskiri ("Application for the Position
+ * of…", "Hiring Manager") kontaktivormis jäi liigitamata ja läks hinnapäringuteks. */
+test("isJobSeeker: ametlik kaaskiri kontaktivormis on tööotsing", () => {
+  assert.equal(
+    isJobSeeker(makeSubmission({
+      message:
+        "RIDOY AHMED\nEmail: redoyahmed4050@gmail.com\nTo: Hiring Manager\nCompany Name: sps group\nSubject: Application for the Position of Cleaner\n\nI am writing to apply for the cleaner position...",
+      source: "direct",
+    })),
+    true,
+  )
+  assert.equal(
+    isJobSeeker(makeSubmission({
+      message: "I am interested in a Cleaner / Housekeeping position with your company. I have 2-3 years of experience.",
+      source: "",
+    })),
     true,
   )
 })

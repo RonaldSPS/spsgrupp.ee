@@ -133,4 +133,28 @@ describe("assessSubmission", () => {
     const result = assessSubmission({ ...cleanContact, message: "AS KAUBAMAJA" })
     assert.strictEqual(result.flagged, false)
   })
+
+  /* 26.10.2026 valepositiivide regressioon: kirillitsa päris-päringud said
+   * "message looks randomly generated", sest VOWELS tundis ainult ladina tähti
+   * (vokaalide osakaal = 0). #73 ja #58 jäeti spämmiks ega jõudnud postkasti. */
+  it("does not flag a genuine Russian ventilation inquiry (#73)", () => {
+    const result = assessSubmission({
+      ...cleanContact,
+      name: "Egor",
+      email: "egormetrik@gmail.com",
+      message:
+        "Здравствуйте! у меня приточная вентиляция в квартире, она начала очень сильно гудеть. я бы хотел заказать осмотр и ремонт, можно ли у вас это сделать? Я нахожусь в Таллинне, адрес Rehe tn 8/1-7",
+    })
+    assert.strictEqual(result.flagged, false)
+  })
+
+  it("does not flag a genuine Russian roof-diagnostics inquiry (#58)", () => {
+    const result = assessSubmission({
+      ...cleanContact,
+      name: "Ljudmila Nikitenko",
+      email: "vormsi6@mail.ee",
+      message: "Жилой дом 9 этажей 3 подъезда необходима диагностика крыши",
+    })
+    assert.strictEqual(result.flagged, false)
+  })
 })

@@ -5,7 +5,7 @@ export const metadata = generatePageMetadata({
   locale: "et",
   title: "Koristusteenused Tallinnas - kontorid, kaubandus, tootmine | SPS Grupp",
   description:
-    "Koristusfirma äriklientidele: kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001.",
+    "Kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Tasuta ülevaatus - vastus 1 tööpäevaga. 300+ töötajat.",
   imagePath: "/Koristusteenused-HERO.jpg",
 });
 

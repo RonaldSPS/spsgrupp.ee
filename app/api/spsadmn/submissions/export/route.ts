@@ -8,6 +8,26 @@ const FORM_LABELS: Record<string, string> = {
   career: "Tööavaldus",
 }
 
+/** Käsitsi lisatud kanalid (26.10.2026) — sama nimetus kui paringud-adminis. */
+const CHANNEL_LABELS: Record<string, string> = {
+  phone: "Telefon",
+  email: "E-post (otse)",
+}
+
+const SERVICE_KIND_LABELS: Record<string, string> = {
+  maintenance: "Hoolduskoristus",
+  oneoff: "Ühekordne",
+  other: "Muu",
+}
+
+const SALES_STATUS_LABELS: Record<string, string> = {
+  new: "Uus",
+  contacted: "Kontaktitud",
+  quoted: "Pakkumine",
+  won: "Võidetud",
+  lost: "Kadunud",
+}
+
 const LOCALE_LABELS: Record<string, string> = {
   et: "ET",
   en: "EN",
@@ -41,6 +61,8 @@ const CSV_HEADER = [
   "Keel",
   "Leht",
   "Allikas",
+  "Teenus",
+  "Staatus",
   "GCLID",
 ]
 
@@ -49,6 +71,8 @@ function sourceLabel(source: string): string {
   if (!source) return "Teadmata"
   if (source === "google_ads") return "Google Ads"
   if (source === "direct") return "Otsene (viitajata)"
+  if (source === "referral") return "Viide"
+  if (source === "utm") return "Kampaania"
   if (source.startsWith("organic:")) return `Otsing: ${source.slice("organic:".length)}`
   if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
   if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
@@ -72,7 +96,7 @@ function formatDateTime(iso: string): string {
 function toRow(s: FormSubmission): string[] {
   return [
     formatDateTime(s.createdAt),
-    FORM_LABELS[s.form] ?? s.form,
+    CHANNEL_LABELS[s.channel] ?? FORM_LABELS[s.form] ?? s.form,
     s.name,
     s.email,
     s.phone,
@@ -85,6 +109,8 @@ function toRow(s: FormSubmission): string[] {
     LOCALE_LABELS[s.locale] ?? s.locale,
     s.pageUrl,
     sourceLabel(s.source),
+    SERVICE_KIND_LABELS[s.serviceKind] ?? "",
+    SALES_STATUS_LABELS[s.salesStatus] ?? "",
     s.gclid,
   ]
 }

@@ -1,7 +1,6 @@
 import type { Locale } from "@/lib/slug-map"
 import {
   calculateMaintenancePrice,
-  MAINTENANCE_MIN_AREA,
   MAINTENANCE_PRICE_EXAMPLES,
 } from "@/lib/maintenance-pricing"
 
@@ -10,21 +9,21 @@ const copy = {
     area: "Pindala",
     from: "alates",
     period: "kuus",
-    note: `Teenindame äripindu alates ${MAINTENANCE_MIN_AREA} m². Näidishind on 1,20 €/m² kuus.`,
+    note: "Näidishind on 1,20 €/m² kuus. Teenindame nii väikeseid kui suuri äripindu — iga objekti täpne hind kinnitatakse tasuta objekti ülevaatusel.",
     locale: "et-EE",
   },
   en: {
     area: "Floor area",
     from: "from",
     period: "per month",
-    note: `We serve commercial properties from ${MAINTENANCE_MIN_AREA} m². The indicative price is €1.20/m² per month.`,
+    note: "The indicative price is €1.20/m² per month. We serve both smaller and larger commercial properties — the exact price is confirmed after a free site assessment.",
     locale: "en-GB",
   },
   ru: {
     area: "Площадь",
     from: "от",
     period: "в месяц",
-    note: `Мы обслуживаем коммерческие объекты площадью от ${MAINTENANCE_MIN_AREA} м². Ориентировочная цена - 1,20 €/м² в месяц.`,
+    note: "Ориентировочная цена — 1,20 €/м² в месяц. Обслуживаем как небольшие, так и крупные коммерческие площади — точная цена подтверждается после бесплатного осмотра объекта.",
     locale: "ru-RU",
   },
 } as const

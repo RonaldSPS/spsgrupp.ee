@@ -389,10 +389,14 @@ Plaan ja elluviimise logi: `raportid/google-ads-analuus-ja-paralleelne-test-2026
   kliendi kinnitusel. Skript: `npm run setup:ads-p26` (`scripts/ads-p26-setup.ts`),
   `--dry-run` trükib kõik operatsioonid saatmata, `--repair` täiendab puuduvad
   osad idempotentselt (turvaline kordusks — ei dubleeri).
-- **Struktuur:** `P26 · Otsing · Hoolduskoristus B2B` (€8/päev; hoolduskoristuse
-  tuum + kontorikoristus), `P26 · Otsing · Ehitusjärgne + Suurpuhastus B2B`
-  (€6/päev), `P26 · Otsing · DSA-kaevur` (€3/päev; DSA teenuselehtedel uute
-  päringuvormide avastamiseks). Kokku €17/päev lagi. Käsitsi CPC; geo/keel/
+- **Struktuur (23.10.2026 õhtu seisuga, skript `scripts/ads-p26-big-groups.ts`):**
+  `P26 · Otsing · Koristusteenus B2B` (€14/päev; grupid „Koristusteenus (üldine)"
+  + „Kontorikoristus" — suured GSC-mõõdetud otsingugrupid; „Hoolduskoristus (tuum)"
+  PAUSED, sest „hoolduskoristus" ei ole otsingusõna, GSC ~9 näitamist/kuu),
+  `P26 · Otsing · DSA-kaevur` (€3/päev; DSA teenuselehtedel uute
+  päringuvormide avastamiseks). `P26 · Otsing · Ehitusjärgne + Suurpuhastus B2B`
+  on PEATATUD (ehitusjärgne = kõige marginaalsem teenus, GSC ~6 näitamist/kuu).
+  Kokku €17/päev lagi. Käsitsi CPC; geo/keel/
   ajakava/negatiivsed (115 kampaania kohta) kloonitud põhikampaanialt; silt
   `paralleel_2026`.
 - **Eraldatus praegusest setup'ist:** eraldi eelarved, eraldi märksõnad,

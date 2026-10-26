@@ -22,6 +22,9 @@ interface Submission {
   pageUrl: string
   gclid: string
   source: string
+  channel: string
+  serviceKind: string
+  salesStatus: string
   createdAt: string
 }
 
@@ -34,6 +37,39 @@ interface FinancialDraft {
 const FORM_LABELS: Record<string, string> = {
   contact: "Kontaktivorm",
   career: "Tööavaldus",
+}
+
+/** Käsitsi lisatud päringu kanal (26.10.2026): telefonikõne või otse-e-kiri. */
+const CHANNEL_LABELS: Record<string, string> = {
+  phone: "Telefon",
+  email: "E-post (otse)",
+}
+
+/** Teenuse liik (müügitoru analüüsiks). */
+const SERVICE_KIND_LABELS: Record<string, string> = {
+  "": "–",
+  maintenance: "Hoolduskoristus",
+  oneoff: "Ühekordne",
+  other: "Muu",
+}
+
+/** Müügistaatus. */
+const SALES_STATUS_LABELS: Record<string, string> = {
+  "": "–",
+  new: "Uus",
+  contacted: "Kontaktitud",
+  quoted: "Pakkumine",
+  won: "Võidetud",
+  lost: "Kadunud",
+}
+
+const SALES_STATUS_CLASSES: Record<string, string> = {
+  "": "text-[#8a94a3]",
+  new: "text-[#17345a]",
+  contacted: "text-[#17345a]",
+  quoted: "text-[#8a5a00]",
+  won: "text-[#2d9e6b] font-bold",
+  lost: "text-[#8a94a3]",
 }
 
 const FORM_FILTER_OPTIONS = [
@@ -64,7 +100,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 140, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 140, 130, 130, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -77,6 +113,8 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "Keel" },
   { label: "Leht" },
   { label: "Allikas" },
+  { label: "Teenus" },
+  { label: "Staatus" },
   { label: "Tasu", headerClass: "text-right" },
   { label: "Kasum", headerClass: "text-right" },
   { label: "Märkused" },
@@ -119,6 +157,8 @@ function sourceLabel(source: string): string {
   if (!source) return "Teadmata"
   if (source === "google_ads") return "Google Ads"
   if (source === "direct") return "Otsene (viitajata)"
+  if (source === "referral") return "Viide"
+  if (source === "utm") return "Kampaania"
   if (source.startsWith("organic:")) return `Otsing: ${source.slice("organic:".length)}`
   if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
   if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
@@ -162,6 +202,129 @@ function ExpandableText({ text, limit, href }: { text: string; limit: number; hr
   )
 }
 
+/**
+ * Käsitsi lisatud telefoni-/otse-e-posti päring (26.10.2026 tegevuskava punkt 7).
+ * Veebivorm ei kata neid kanaleid — ilma nende ridadeta pole kanali tasuvus
+ * (võidetud lepingud ja nende väärtus) arvutatav.
+ */
+function ManualEntryForm({ onSaved, onCancel }: { onSaved: () => void; onCancel: () => void }) {
+  const [name, setName] = useState("")
+  const [company, setCompany] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [channel, setChannel] = useState("phone")
+  const [source, setSource] = useState("")
+  const [serviceKind, setServiceKind] = useState("")
+  const [message, setMessage] = useState("")
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState("")
+
+  const inputClass =
+    "w-full text-[15px] px-3 py-2 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] text-[#17345a] outline-none focus:border-[#5ab5da]"
+  const labelClass = "block text-[15px] font-medium text-[#17345a] mb-1"
+
+  const submit = async () => {
+    setError("")
+    if (!name.trim()) { setError("Nimi on kohustuslik."); return }
+    if (!phone.trim() && !email.trim()) { setError("Sisesta vähemalt telefon või e-post."); return }
+    setSaving(true)
+    try {
+      const res = await fetch("/api/spsadmn/submissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(), company: company.trim(), phone: phone.trim(), email: email.trim(),
+          channel, source, serviceKind, message: message.trim(),
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(typeof data.error === "string" ? data.error : `HTTP ${res.status}`)
+      onSaved()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Salvestamine ebaõnnestus.")
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  return (
+    <div className="bg-[#eef7fc] rounded-2xl border border-[rgba(23,52,90,0.12)] p-4 sm:p-5 mb-4">
+      <h2 className="text-[17px] font-bold text-[#17345a] mb-1">Lisa telefoni- või e-posti päring käsitsi</h2>
+      <p className="text-[15px] text-[#5a6474] mb-4">
+        Kui hinnapäring saabub telefonil või otse e-postiga, logi see siia — siis saab kanali tasuvust
+        (sh võidetud lepinguid) hiljem arvutada. E-kirju ei saadeta.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+        <div>
+          <label className={labelClass} htmlFor="me-name">Nimi *</label>
+          <input id="me-name" className={inputClass} value={name} onChange={(e) => setName(e.target.value)} />
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="me-company">Ettevõte</label>
+          <input id="me-company" className={inputClass} value={company} onChange={(e) => setCompany(e.target.value)} />
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="me-phone">Telefon</label>
+          <input id="me-phone" className={inputClass} value={phone} onChange={(e) => setPhone(e.target.value)} />
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="me-email">E-post</label>
+          <input id="me-email" type="email" className={inputClass} value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="me-channel">Kanal *</label>
+          <select id="me-channel" className={inputClass} value={channel} onChange={(e) => setChannel(e.target.value)}>
+            <option value="phone">Telefon</option>
+            <option value="email">E-post (otse)</option>
+          </select>
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="me-source">Allikas</label>
+          <select id="me-source" className={inputClass} value={source} onChange={(e) => setSource(e.target.value)}>
+            <option value="">Teadmata</option>
+            <option value="google_ads">Google Ads</option>
+            <option value="organic:google">Otsing: google</option>
+            <option value="organic:bing">Otsing: bing</option>
+            <option value="referral">Viide</option>
+            <option value="utm">Kampaania (utm)</option>
+            <option value="direct">Otsene (viitajata)</option>
+          </select>
+        </div>
+        <div>
+          <label className={labelClass} htmlFor="me-kind">Teenuse liik</label>
+          <select id="me-kind" className={inputClass} value={serviceKind} onChange={(e) => setServiceKind(e.target.value)}>
+            {Object.entries(SERVICE_KIND_LABELS).map(([value, label]) => (
+              <option key={value} value={value}>{label === "–" ? "Teadmata" : label}</option>
+            ))}
+          </select>
+        </div>
+        <div className="sm:col-span-2 lg:col-span-4">
+          <label className={labelClass} htmlFor="me-message">Sisu / märkus</label>
+          <textarea id="me-message" rows={2} className={`${inputClass} resize-y`} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="Mida küsiti (objekt, m², sagedus...)" />
+        </div>
+      </div>
+      {error && <p className="text-[15px] text-red-600 mb-3" role="alert">{error}</p>}
+      <div className="flex gap-3">
+        <button
+          type="button"
+          onClick={submit}
+          disabled={saving}
+          className="bg-[#2d9e6b] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#248a5c] transition-colors disabled:opacity-50"
+        >
+          {saving ? "Salvestan..." : "Salvesta päring"}
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          className="py-2.5 px-5 rounded-xl text-[15px] font-medium text-[#17345a] border border-[rgba(23,52,90,0.12)] hover:bg-white transition-colors"
+        >
+          Tühista
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export default function AdminSubmissionsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [drafts, setDrafts] = useState<Record<number, FinancialDraft>>({})
@@ -173,6 +336,8 @@ export default function AdminSubmissionsPage() {
   const [toDate, setToDate] = useState("")
   const [selected, setSelected] = useState<Set<number>>(new Set())
   const [deleting, setDeleting] = useState(false)
+  const [refreshKey, setRefreshKey] = useState(0)
+  const [showAdd, setShowAdd] = useState(false)
 
   // User-resizable column widths (persisted in localStorage)
   const [colWidths, setColWidths] = useState<number[]>(DEFAULT_COL_WIDTHS)
@@ -274,7 +439,35 @@ export default function AdminSubmissionsPage() {
       })
       .catch(() => setSubmissions([]))
       .finally(() => setLoading(false))
-  }, [queryString])
+  }, [queryString, refreshKey])
+
+  /** Teenuse liik / müügistaatus — kohene salvestus rippmenüüst. */
+  const saveSalesFields = async (id: number, fields: { serviceKind?: string; salesStatus?: string }) => {
+    const prev = submissions.find((r) => r.id === id)
+    setSubmissions((rows) => rows.map((r) => (r.id === id ? { ...r, ...fields } : r)))
+    setSaveStatus((p) => ({ ...p, [id]: "saving" }))
+    try {
+      const res = await fetch(`/api/spsadmn/submissions/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      })
+      if (!res.ok) throw new Error(`PATCH failed: ${res.status}`)
+      setSaveStatus((p) => ({ ...p, [id]: "saved" }))
+      setTimeout(() => {
+        setSaveStatus((p) => {
+          if (p[id] !== "saved") return p
+          const next = { ...p }
+          delete next[id]
+          return next
+        })
+      }, 2500)
+    } catch {
+      if (prev) setSubmissions((rows) => rows.map((r) => (r.id === id ? prev : r)))
+      setSaveStatus((p) => ({ ...p, [id]: "error" }))
+      alert("Salvestamine ebaõnnestus. Palun proovi uuesti.")
+    }
+  }
 
   const updateDraft = (id: number, field: keyof FinancialDraft, value: string) => {
     setDrafts((prev) => ({ ...prev, [id]: { ...prev[id], [field]: value } }))
@@ -383,6 +576,18 @@ export default function AdminSubmissionsPage() {
         <div className="flex items-center gap-3 shrink-0 w-fit">
           <button
             type="button"
+            onClick={() => setShowAdd((v) => !v)}
+            aria-expanded={showAdd}
+            className="bg-[#17345a] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#1e4a7a] transition-colors flex items-center gap-2"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Lisa telefoni/e-posti päring
+          </button>
+          <button
+            type="button"
             onClick={deleteSelected}
             disabled={selected.size === 0 || deleting}
             className="bg-[#dc2626] text-white py-2.5 px-5 rounded-xl text-[15px] font-medium hover:bg-[#b91c1c] transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#dc2626]"
@@ -406,6 +611,16 @@ export default function AdminSubmissionsPage() {
           </a>
         </div>
       </div>
+
+      {showAdd && (
+        <ManualEntryForm
+          onSaved={() => {
+            setShowAdd(false)
+            setRefreshKey((k) => k + 1)
+          }}
+          onCancel={() => setShowAdd(false)}
+        />
+      )}
 
       <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-4 sm:p-5 mb-4 flex flex-col sm:flex-row gap-3 sm:items-end">
         <div className="flex flex-col gap-1">
@@ -534,7 +749,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={11} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={13} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -561,9 +776,13 @@ export default function AdminSubmissionsPage() {
                     <td className="px-4 py-3 text-[#2d3748] whitespace-nowrap overflow-hidden">{formatDateTime(s.createdAt)}</td>
                     <td className="px-4 py-3">
                       <span className={`inline-block text-[15px] px-2 py-0.5 rounded-full font-medium whitespace-nowrap ${
-                        s.form === "career" ? "bg-[#ecfdf5] text-[#2d9e6b]" : "bg-[#eef7fc] text-[#17345a]"
+                        s.channel === "phone" || s.channel === "email"
+                          ? "bg-[#fff7ed] text-[#8a5a00]"
+                          : s.form === "career"
+                            ? "bg-[#ecfdf5] text-[#2d9e6b]"
+                            : "bg-[#eef7fc] text-[#17345a]"
                       }`}>
-                        {FORM_LABELS[s.form] ?? s.form}
+                        {CHANNEL_LABELS[s.channel] ?? FORM_LABELS[s.form] ?? s.form}
                       </span>
                       {s.isSpam && (
                         <span className="inline-block text-[15px] px-2 py-0.5 rounded-full font-medium whitespace-nowrap bg-[#fef2f2] text-red-600 ml-1">
@@ -609,6 +828,30 @@ export default function AdminSubmissionsPage() {
                     {isContact ? (
                       <>
                         <td className="px-4 py-3">
+                          <select
+                            aria-label="Teenuse liik"
+                            value={s.serviceKind}
+                            onChange={(e) => saveSalesFields(s.id, { serviceKind: e.target.value })}
+                            className="w-full text-[15px] px-2 py-1.5 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] text-[#17345a] outline-none focus:border-[#5ab5da] cursor-pointer"
+                          >
+                            {Object.entries(SERVICE_KIND_LABELS).map(([value, label]) => (
+                              <option key={value} value={value}>{label}</option>
+                            ))}
+                          </select>
+                        </td>
+                        <td className="px-4 py-3">
+                          <select
+                            aria-label="Müügistaatus"
+                            value={s.salesStatus}
+                            onChange={(e) => saveSalesFields(s.id, { salesStatus: e.target.value })}
+                            className={`w-full text-[15px] px-2 py-1.5 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] outline-none focus:border-[#5ab5da] cursor-pointer ${SALES_STATUS_CLASSES[s.salesStatus] ?? ""}`}
+                          >
+                            {Object.entries(SALES_STATUS_LABELS).map(([value, label]) => (
+                              <option key={value} value={value}>{label}</option>
+                            ))}
+                          </select>
+                        </td>
+                        <td className="px-4 py-3">
                           <input
                             type="text"
                             inputMode="decimal"
@@ -649,6 +892,8 @@ export default function AdminSubmissionsPage() {
                       </>
                     ) : (
                       <>
+                        <td className="px-4 py-3 text-[#5a6474]">–</td>
+                        <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474] text-right">–</td>
                         <td className="px-4 py-3 text-[#5a6474] text-right">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>

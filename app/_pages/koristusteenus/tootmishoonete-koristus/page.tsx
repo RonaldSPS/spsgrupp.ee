@@ -6,6 +6,7 @@ import Navbar from "../../../components/Navbar";
 import HeroBackgroundImage from "../../../components/HeroBackgroundImage";
 import Footer from "../../../components/Footer";
 import FAQ from "../../../components/FAQ";
+import RelatedServices from "../../../components/RelatedServices";
 import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import TwoToneHeading from "../../../components/TwoToneHeading";
@@ -559,6 +560,8 @@ export function TootmishooneteKoristusPageView({ locale }: { locale: Locale }) {
         <ScrollAnimation animation="fade-up">
         <ContactForm />
         </ScrollAnimation>
+
+        <RelatedServices locale={locale} current="tootmine" />
 
         {/* FAQ */}
         <ScrollAnimation animation="fade-up">

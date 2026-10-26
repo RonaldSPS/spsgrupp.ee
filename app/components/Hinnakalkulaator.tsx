@@ -81,7 +81,7 @@ export default function Hinnakalkulaator({ locale = "et" }: { locale?: Locale })
           className="w-full accent-[#85cbe9] cursor-pointer"
         />
         <div className="flex justify-between mt-3 font-mono text-[15px] text-[#5a6474]">
-          <span>800</span>
+          <span>{MAINTENANCE_MIN_AREA}</span>
           <span>5 000</span>
           <span>10 000</span>
         </div>

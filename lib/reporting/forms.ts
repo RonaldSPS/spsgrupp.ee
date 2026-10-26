@@ -79,7 +79,7 @@ const JOB_TITLE_MESSAGE =
   /^\s*(housekeeping|cleaner|cleaning\s*(lady|man|person)|koristaja\p{L}*|puhastaja\p{L}*|valvekoristaja\p{L}*|kojamees|hooldaja\p{L}*|уборщик\p{L}*|уборщиц\p{L}*)\s*[.!]?\s*$/iu
 /** Selge tööotsingu fraas sõnumis. */
 const JOB_INTENT_MESSAGE =
-  /tööd\s+otsi|otsin\s+tööd|tööotsing|tööle\s+asum|vabu?\s+töökoh\w*|looking\s+for\s+(a\s+)?(job|work)|seeking\s+(a\s+)?(job|work)|job\s+application|ищу\s+работу|нужна\s+работа/i
+  /tööd\s+otsi|otsin\s+tööd|tööotsing|tööle\s+asum|vabu?\s+töökoh\w*|looking\s+for\s+(a\s+)?(job|work)|seeking\s+(a\s+)?(job|work)|job\s+application|ищу\s+работу|нужна\s+работа|application\s+for\s+the\s+position|hiring\s+manager|writing\s+to\s+apply|interested\s+in\s+(a|an|the)\s+[\p{L}./\s-]{0,40}position|curriculum\s+vitae|tööavaldus\w*/iu
 
 export function isJobSeeker(row: FormSubmission): boolean {
   if (row.form !== "contact") return false
@@ -190,7 +190,12 @@ export async function pullForms(period: ReportPeriod, now?: Date): Promise<Forms
     getFormSubmissions({ from: win.prevStart, to: win.prevEnd }),
   ])
 
-  const counted = (r: FormSubmission) => !isTestSubmission(r) && !isJobSeeker(r)
+  /* 26.10.2026: käsitsi logitud telefoni/e-posti päringud (channel phone/email)
+   * EI ole veebivormi päringud — raporti arvud mõõdavad veebikanalit (Ads/GSC
+   * võrdlus), seega jäävad käsitsi-read siit välja. Nad on nähtavad paringud-
+   * adminis koos müügistaatusega; müügitoru tasuvusanalüüs tuleb eraldi. */
+  const isWebForm = (r: FormSubmission) => (r.channel ?? "form") === "form"
+  const counted = (r: FormSubmission) => isWebForm(r) && !isTestSubmission(r) && !isJobSeeker(r)
   const curRows = curRowsAll.filter(counted)
   const prevRows = prevRowsAll.filter(counted)
 

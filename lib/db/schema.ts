@@ -163,5 +163,11 @@ export const formSubmissions = pgTable("form_submissions", {
   pageUrl: text("page_url").notNull().default(""),
   gclid: text("gclid").notNull().default(""),
   source: text("source").notNull().default(""),
+  /** form = veebivorm (kontakt/karjäär); phone/email = admin käsitsi sisestatud päring. */
+  channel: text("channel").notNull().default("form"),
+  /** maintenance | oneoff | other | "" (teadmata). */
+  serviceKind: text("service_kind").notNull().default(""),
+  /** new | contacted | quoted | won | lost | "" (määramata). */
+  salesStatus: text("sales_status").notNull().default(""),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })

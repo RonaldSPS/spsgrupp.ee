@@ -1,6 +1,134 @@
 {
- "generatedAt": "2026-10-23T11:17:46.560Z",
+ "generatedAt": "2026-10-26T21:06:12.194Z",
  "commits": [
+  {
+   "hash": "8d0107f",
+   "date": "2026-10-23T15:12:56+03:00",
+   "subject": "feat(turundus): nadalaraporti 15.-21.10 leiud + kliendi kiri 23.10 — 600 m2 piirang eemaldatud, blogi kanibaliseerimise toke, Ads puhastus + P26 umberfokus, raporti valikoristuse split + narrative/git-history fix",
+   "files": [
+    {
+     "s": "M",
+     "p": ".gitignore"
+    },
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "AI_REBUILD_TASKS.md"
+    },
+    {
+     "s": "M",
+     "p": "AI_REBUILD_TASKS_EN.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/gbp-calendar.json"
+    },
+    {
+     "s": "A",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/blog-anti-cannibalization.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-forms-filter.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/kontakt.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/changes.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-baseline-cleanup.ts"
+    },
+    {
+     "s": "M",
+     "p": "scripts/ads-p26-hooldus.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-p26-refocus.ts"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-9003.json"
+    }
+   ],
+   "filesTruncated": true
+  },
   {
    "hash": "bf37945",
    "date": "2026-10-22T18:02:38+03:00",

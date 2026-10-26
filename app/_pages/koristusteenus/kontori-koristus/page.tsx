@@ -8,6 +8,7 @@ import Footer from "../../../components/Footer";
 import TestimonialSlider from "../../../components/TestimonialSlider";
 import Logos from "../../../components/Logos";
 import FAQ from "../../../components/FAQ";
+import RelatedServices from "../../../components/RelatedServices";
 import FooterCTA from "../../../components/FooterCTA";
 import ContactForm from "../../../components/ContactForm";
 import Tooprotsess from "../../../components/Tooprotsess";
@@ -620,6 +621,8 @@ export function KontoriKoristusPageView({ locale }: { locale: Locale }) {
         <ScrollAnimation animation="fade-up">
         <ContactForm />
         </ScrollAnimation>
+
+        <RelatedServices locale={locale} current="kontori" />
 
         {/* FAQ - KKK at the bottom */}
         <ScrollAnimation animation="fade-up">

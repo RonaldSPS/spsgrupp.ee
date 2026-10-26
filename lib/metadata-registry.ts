@@ -5,7 +5,7 @@ export const pageMetadata: Record<string, { title: string; description: string }
   },
   '/koristusteenus': {
     title: 'Koristusteenused Tallinnas - kontorid, kaubandus, tootmine | SPS Grupp',
-    description: 'Koristusfirma äriklientidele: kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001.',
+    description: 'Kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Tasuta ülevaatus - vastus 1 tööpäevaga. 300+ töötajat.',
   },
   '/koristusteenus/kontori-koristus': {
     title: 'Kontori koristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp',
@@ -20,12 +20,12 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Suurpuhastus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Põrandate masinpesu, katlakivi eemaldus, varjatud alad.',
   },
   '/koristusteenus/kaubanduspindade-koristus': {
-    title: 'Kaubanduspindade koristus - Kaupluste ja äripindade puhastus | SPS Grupp',
-    description: 'Kaubanduspindade koristus ja kaupluste puhastusteenus. Hoiame teie müügisaali alati esinduslikuna.',
+    title: 'Kaubanduspindade koristus Tallinnas - alates 1,20 €/m² | SPS Grupp',
+    description: 'Poodide ja kaubanduskeskuste regulaarne koristus Tallinnas ja Harjumaal - igas suuruses, alates 1,20 €/m² kuus. Tasuta ülevaatus, pakkumine 1 tööpäevaga.',
   },
   '/koristusteenus/tootmishoonete-koristus': {
-    title: 'Tootmishoonete koristus - Tööstuspindade puhastusteenus | SPS Grupp',
-    description: 'Tootmishoonete ja tööstuspindade professionaalne koristusteenus. ISO 9001 sertifitseeritud koristusfirma.',
+    title: 'Tootmishoonete koristus Tallinnas - alates 1,20 €/m² | SPS Grupp',
+    description: 'Tootmis- ja laopindade regulaarne koristus igas suuruses objektidele. Ohutusnõudeid arvestav meeskond, ISO 9001. Tasuta ülevaatus - pakkumine 1 tööpäevaga.',
   },
   '/koolide-koristamine': {
     title: 'Koolide koristamine - Haridusasutuste puhastusteenus | SPS Grupp',
@@ -175,7 +175,7 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus': {
       title: 'Cleaning Services in Tallinn - offices, retail, industrial | SPS Grupp',
-      description: 'A cleaning company for businesses: regular cleaning of offices, retail and production premises in Tallinn and Harjumaa. 300+ employees, ISO 9001/14001.',
+      description: 'Regular cleaning of offices, retail and production premises in Tallinn and Harjumaa, from €1.20/m² per month. Free site assessment, reply within 1 business day.',
     },
     '/koristusteenus/kontori-koristus': {
       title: 'Office Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
@@ -331,7 +331,7 @@ export const localizedPageMetadata: Partial<
     },
     '/koristusteenus': {
       title: 'Услуги уборки в Таллинне - офисы, торговля, производство | SPS Grupp',
-      description: 'Клининговая компания для бизнеса: регулярная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. 300+ сотрудников, ISO 9001/14001.',
+      description: 'Регулярная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа, от 1,20 €/м² в месяц. Бесплатный осмотр - ответ в течение 1 рабочего дня.',
     },
     '/koristusteenus/kontori-koristus': {
       title: 'Уборка офисов в Таллинне - от 1,20 €/м² | SPS Grupp',

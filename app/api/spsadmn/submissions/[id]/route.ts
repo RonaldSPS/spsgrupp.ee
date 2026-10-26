@@ -7,6 +7,10 @@ import { updateFormSubmission, type FormSubmissionFinancials } from "@/lib/form-
 const MAX_AMOUNT = 9_999_999_999.99
 const AMOUNT_RE = /^-?\d{1,10}(\.\d{1,2})?$/
 
+/** Müügitoru väljade lubatud väärtused (26.10.2026). */
+const SERVICE_KINDS = new Set(["", "maintenance", "oneoff", "other"])
+const SALES_STATUSES = new Set(["", "new", "contacted", "quoted", "won", "lost"])
+
 /** Returns normalized decimal string, "" for empty (clears the value), or null when invalid. */
 function parseAmount(value: unknown): string | null {
   if (value === "" || value === null) return ""
@@ -53,6 +57,18 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
           return noStoreResponse(JSON.stringify({ error: "Invalid notes" }), 400)
         }
         fields.notes = body.notes.slice(0, 5000)
+      }
+      if ("serviceKind" in body) {
+        if (typeof body.serviceKind !== "string" || !SERVICE_KINDS.has(body.serviceKind)) {
+          return noStoreResponse(JSON.stringify({ error: "Invalid serviceKind" }), 400)
+        }
+        fields.serviceKind = body.serviceKind
+      }
+      if ("salesStatus" in body) {
+        if (typeof body.salesStatus !== "string" || !SALES_STATUSES.has(body.salesStatus)) {
+          return noStoreResponse(JSON.stringify({ error: "Invalid salesStatus" }), 400)
+        }
+        fields.salesStatus = body.salesStatus
       }
       if (Object.keys(fields).length === 0) {
         return noStoreResponse(JSON.stringify({ error: "No fields to update" }), 400)

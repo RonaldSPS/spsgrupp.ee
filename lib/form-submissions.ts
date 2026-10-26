@@ -26,6 +26,12 @@ export interface FormSubmissionInput {
   gclid?: string
   /** Classified lead source code (google_ads / utm:.. / organic:.. / referral:.. / direct). "" when unknown. */
   source?: string
+  /** "form" (default) or "phone"/"email" for admin-entered inquiries (26.10.2026). */
+  channel?: "form" | "phone" | "email"
+  /** maintenance | oneoff | other | "" — teenuse liik (admin valib käsitsi ridadel). */
+  serviceKind?: string
+  /** new | contacted | quoted | won | lost | "" — müügistaatus. */
+  salesStatus?: string
 }
 
 export interface FormSubmission {
@@ -50,13 +56,19 @@ export interface FormSubmission {
   pageUrl: string
   gclid: string
   source: string
+  channel: string
+  serviceKind: string
+  salesStatus: string
   createdAt: string
 }
 
+/** Admin-editable fields: financials (Tasu/Kasum/Märkused) + müügitoru väljad. */
 export interface FormSubmissionFinancials {
   fee?: string | null
   profit?: string | null
   notes?: string
+  serviceKind?: string
+  salesStatus?: string
 }
 
 export interface FormSubmissionFilter {
@@ -89,7 +101,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
     const parsed = JSON.parse(raw)
     const rows = Array.isArray(parsed) ? parsed : parsed?.submissions
     if (!Array.isArray(rows)) return []
-    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid/source existed.
+    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid/source/channel existed.
     return rows.map((row) => ({
       ...row,
       fee: normalizeAmount(row.fee),
@@ -99,6 +111,9 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       pageUrl: typeof row.pageUrl === "string" ? row.pageUrl : "",
       gclid: typeof row.gclid === "string" ? row.gclid : "",
       source: typeof row.source === "string" ? row.source : "",
+      channel: typeof row.channel === "string" && row.channel ? row.channel : "form",
+      serviceKind: typeof row.serviceKind === "string" ? row.serviceKind : "",
+      salesStatus: typeof row.salesStatus === "string" ? row.salesStatus : "",
     }))
   } catch {
     return []
@@ -132,6 +147,9 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
     source: input.source ?? "",
+    channel: input.channel ?? "form",
+    serviceKind: input.serviceKind ?? "",
+    salesStatus: input.salesStatus ?? "",
   })
 }
 
@@ -158,6 +176,9 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
     source: input.source ?? "",
+    channel: input.channel ?? "form",
+    serviceKind: input.serviceKind ?? "",
+    salesStatus: input.salesStatus ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -235,6 +256,9 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     pageUrl: row.pageUrl ?? "",
     gclid: row.gclid ?? "",
     source: row.source ?? "",
+    channel: row.channel ?? "form",
+    serviceKind: row.serviceKind ?? "",
+    salesStatus: row.salesStatus ?? "",
     createdAt: row.createdAt.toISOString(),
   }))
 }
@@ -266,6 +290,8 @@ async function updateInDb(id: number, data: FormSubmissionFinancials): Promise<v
   if (data.fee !== undefined) set.fee = normalizeAmount(data.fee) || null
   if (data.profit !== undefined) set.profit = normalizeAmount(data.profit) || null
   if (data.notes !== undefined) set.notes = data.notes
+  if (data.serviceKind !== undefined) set.serviceKind = data.serviceKind
+  if (data.salesStatus !== undefined) set.salesStatus = data.salesStatus
   if (Object.keys(set).length === 0) return
   await db.update(formSubmissions).set(set).where(eq(formSubmissions.id, id))
 }
@@ -277,6 +303,8 @@ async function updateInJson(id: number, data: FormSubmissionFinancials): Promise
   if (data.fee !== undefined) row.fee = normalizeAmount(data.fee)
   if (data.profit !== undefined) row.profit = normalizeAmount(data.profit)
   if (data.notes !== undefined) row.notes = data.notes
+  if (data.serviceKind !== undefined) row.serviceKind = data.serviceKind
+  if (data.salesStatus !== undefined) row.salesStatus = data.salesStatus
   await writeJsonRows(rows)
   return true
 }

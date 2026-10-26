@@ -92,7 +92,7 @@ function countOccurrences(text: string, re: RegExp): number {
   return matches ? matches.length : 0
 }
 
-const VOWELS = new Set("aeiouõäöüyAEIOUÕÄÖÜY")
+const VOWELS = new Set("aeiouõäöüyAEIOUÕÄÖÜY" + "аеёиоуыэюяАЕЁИОУЫЭЮЯ")
 const CONSONANT_RUN_RE = /[bcdfghjklmnpqrstvwxz]{6,}/i
 /** Foreign legal suffixes that generated spam companies love ("Vajxcoy LLC"). */
 const COMPANY_SUFFIX_RE = /\b(?:llc|ltd|inc|llp|gmbh|corp|co)\.?$/i
