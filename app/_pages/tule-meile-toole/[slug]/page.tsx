@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { redirect } from "next/navigation"
 import type { Metadata } from "next"
 import Link from "next/link"
 import Navbar from "../../../components/Navbar"
@@ -35,7 +35,11 @@ export default async function TooleAnnouncementPage({ params }: Props) {
   const { slug } = await params
 
   const raw = await getAnnouncementBySlug(slug)
-  if (!raw) notFound()
+  // Deleted, deactivated or expired offers must not 404 (old links live on in
+  // Google, e-mails, job boards) - send them to the careers index instead.
+  // Deliberately a dynamic 307 computed from live data, NOT a static redirect:
+  // a re-activated posting under the same slug renders normally again.
+  if (!raw) redirect("/tule-meile-toole/")
 
   const a: Announcement = {
     ...raw,

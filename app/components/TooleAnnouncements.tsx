@@ -27,6 +27,9 @@ const labels = {
     from: "alates",
     details: "Vaata lähemalt",
     parent: "/tule-meile-toole",
+    emptyTitle: "Hetkel pole avatud tööpakkumisi",
+    emptyText: "Sobivat pakkumist praegu pole, aga oleme alati huvitatud tublistest inimestest. Saada meile avatud avaldus ja võtame sinuga ühendust, kui avaneb sobiv koht.",
+    emptyCta: "Saada avatud avaldus",
   },
   en: {
     tag: "Job offers",
@@ -36,6 +39,9 @@ const labels = {
     from: "from",
     details: "View details",
     parent: "/en/come-work-for-us",
+    emptyTitle: "No open positions right now",
+    emptyText: "There is no suitable opening at the moment, but we are always interested in good people. Send us an open application and we will get in touch when a position opens up.",
+    emptyCta: "Send an open application",
   },
   ru: {
     tag: "Вакансии",
@@ -45,6 +51,9 @@ const labels = {
     from: "от",
     details: "Подробнее",
     parent: "/ru/приходите-работать-к-нам",
+    emptyTitle: "Сейчас нет открытых вакансий",
+    emptyText: "Подходящей вакансии сейчас нет, но мы всегда рады хорошим людям. Отправьте нам открытую заявку, и мы свяжемся с вами, когда появится подходящая позиция.",
+    emptyCta: "Отправить открытую заявку",
   },
 } as const
 
@@ -82,7 +91,40 @@ export default function TooleAnnouncements({ locale = "et" }: { locale?: Locale 
     )
   }
 
-  if (announcements.length === 0) return null
+  // No live offers (all expired/deleted): keep the section visible with an
+  // open-application CTA instead of vanishing - expired-offer redirects land
+  // here and the #pakkumised anchor must keep working.
+  if (announcements.length === 0) {
+    return (
+      <section id="pakkumised" className="py-[100px] bg-white scroll-mt-[100px]">
+        <div className="max-w-[720px] mx-auto px-[5%] text-center">
+          <div className="section-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            {t.tag}
+          </div>
+          <h2 className="text-[clamp(26px,3.2vw,50px)] font-bold text-[#17345a] mb-4">
+            {t.emptyTitle}
+          </h2>
+          <p className="text-[16px] text-[#5a6474] mb-8">
+            {t.emptyText}
+          </p>
+          <a
+            href="#pakkumine"
+            className="btn-primary inline-flex items-center gap-2 text-[15px] py-2.5 px-5"
+            onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+          >
+            {t.emptyCta}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <polyline points="5 12 12 19 19 12" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section id="pakkumised" className="py-[100px] bg-white scroll-mt-[100px]">

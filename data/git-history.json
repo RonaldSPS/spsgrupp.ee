@@ -1,6 +1,134 @@
 {
- "generatedAt": "2026-10-30T13:01:36.043Z",
+ "generatedAt": "2026-10-30T13:29:39.743Z",
  "commits": [
+  {
+   "hash": "78d6185",
+   "date": "2026-10-30T15:03:38+02:00",
+   "subject": "feat(turundus): nädalaraporti 30.10 leiud rakendatud — raporti \"Lehekülje arendus\" kahekihiline fix (git-history VERCEL_GIT_* fallback Verceli buildi git-tõrkeks + changes.ts selectWindowCommits järelhaave commitHashes-jälgimisega — 26.10 mega-commit ja 3 kunagi-näitamata commiti jõuavad 6.11 raportisse), Ads-insight'id: PEATATUD kampaaniatele ei soovitata enam eelarvet tõsta + \"kulutavad raha\" hoiatus välistab strateegiliste märksõnaperekondade terminid (matchesKeywordFamily), /puhastusteenused/ relatedLinks riba ET/EN/RU (kanibaliseerimise vastu: Koristusteenused Tallinnas → hub), GBP Lumekoristus-postitus avaldatud brauseri-automaatikaga (uus scripts/gbp-post.ts: --check/--publish, iframe-põhine uuenduste paneel). Kaasa 27.10 jäänud commitimata admini kolimine app/(et)/spsadmn → app/spsadmn (GTM-vaba AdminShell layout) + scripts/gtm-audit.ts",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "ARCHITECTURE.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/AdminShell.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/blog/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/blog/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/layout.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/raportid/[id]/GeoGridSection.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/raportid/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/seaded/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/testimonials/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/testimonials/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/toole/[id]/page.tsx"
+    },
+    {
+     "s": "R",
+     "p": "app/spsadmn/toole/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "eslint.config.mjs"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-changes.test.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-insights-ads.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/changes.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/generate.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/gbp-post.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
   {
    "hash": "ca8da6e",
    "date": "2026-10-26T23:19:56+02:00",

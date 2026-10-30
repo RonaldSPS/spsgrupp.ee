@@ -50,6 +50,37 @@ export async function getAnnouncementsFromJson(): Promise<Announcement[]> {
   return (data.announcements || []) as Announcement[]
 }
 
+/**
+ * An offer is expired the day AFTER its application deadline (the deadline
+ * day itself is still valid). Missing/unparseable deadline = never expires.
+ * Date-only comparison, timezone-stable for ISO "YYYY-MM-DD" values.
+ */
+export function isAnnouncementExpired(
+  a: Pick<Announcement, "applicationDeadline">,
+  now: Date = new Date(),
+): boolean {
+  const raw = (a.applicationDeadline || "").trim()
+  if (!raw) return false
+  const m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(raw)
+  let year: number, month: number, day: number
+  if (m) {
+    year = Number(m[1]); month = Number(m[2]); day = Number(m[3])
+  } else {
+    const parsed = new Date(raw)
+    if (isNaN(parsed.getTime())) return false
+    year = parsed.getFullYear(); month = parsed.getMonth() + 1; day = parsed.getDate()
+  }
+  const todayYear = now.getFullYear(), todayMonth = now.getMonth() + 1, todayDay = now.getDate()
+  if (year !== todayYear) return year < todayYear
+  if (month !== todayMonth) return month < todayMonth
+  return day < todayDay
+}
+
+/** Publicly visible = active and not past the application deadline. */
+function isAnnouncementLive(a: Announcement): boolean {
+  return a.active === true && !isAnnouncementExpired(a)
+}
+
 export async function saveAnnouncementsToJson(announcements: Announcement[]): Promise<void> {
   const dir = path.dirname(JSON_PATH)
   await fs.mkdir(dir, { recursive: true })
@@ -110,10 +141,13 @@ export async function getAnnouncements(): Promise<Announcement[]> {
 
 export async function getActiveAnnouncements(): Promise<Announcement[]> {
   const all = await getAnnouncements()
-  return all.filter((a) => a.active === true)
+  return all.filter(isAnnouncementLive)
 }
 
 export async function getAnnouncementBySlug(slug: string): Promise<Announcement | undefined> {
+  // Returns undefined for unknown, deactivated AND expired slugs alike - the
+  // caller redirects to the careers index, so a deleted/expired offer never
+  // 404s and a re-activated offer (same slug) renders normally again.
   return withDbOrJson(
     async () => {
       // withReadTimeout: without it a paused/slow Supabase connection hangs the
@@ -124,16 +158,19 @@ export async function getAnnouncementBySlug(slug: string): Promise<Announcement 
           .where(eq(jobAnnouncements.slug, slug))
           .limit(1)
       )
-      if (rows.length > 0) return rows[0] as unknown as Announcement
+      if (rows.length > 0) {
+        const row = rows[0] as unknown as Announcement
+        return isAnnouncementLive(row) ? row : undefined
+      }
       if (await jsonFileExists()) {
         const all = await getAnnouncementsFromJson()
-        return all.find((a) => a.slug === slug && a.active) as Announcement | undefined
+        return all.find((a) => a.slug === slug && isAnnouncementLive(a)) as Announcement | undefined
       }
       return undefined
     },
     async () => {
       const all = await getAnnouncementsFromJson()
-      return all.find((a) => a.slug === slug && a.active) as Announcement | undefined
+      return all.find((a) => a.slug === slug && isAnnouncementLive(a)) as Announcement | undefined
     },
     undefined,
   )
@@ -147,7 +184,7 @@ export async function getTranslatedAnnouncementBySlug(
     const translation = await getJobTranslationBySlug(language, slug)
     if (!translation || translation.status === "stale") return undefined
     const all = await getAnnouncements()
-    const source = all.find((announcement) => announcement.id === translation.jobId && announcement.active)
+    const source = all.find((announcement) => announcement.id === translation.jobId && isAnnouncementLive(announcement))
     if (!source) return undefined
     return applyJobTranslation(source, translation)
   } catch {

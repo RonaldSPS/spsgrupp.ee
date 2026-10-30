@@ -4,6 +4,7 @@ import { execSync } from "child_process"
 import path from "path"
 import { getBlogPostsWithEdits } from "@/app/(et)/blog/data"
 import { getAllPaths } from "@/lib/page-registry"
+import { isAnnouncementExpired } from "@/lib/announcements"
 import { localizePath, localizedPaths, type Locale } from "@/lib/slug-map"
 import { canonicalUrl } from "@/lib/url-utils"
 
@@ -12,6 +13,7 @@ interface JobAnnouncement {
   slug: string
   active: boolean
   publishedDate: string
+  applicationDeadline: string
 }
 
 async function getActiveJobs(): Promise<JobAnnouncement[]> {
@@ -21,7 +23,9 @@ async function getActiveJobs(): Promise<JobAnnouncement[]> {
       "utf-8",
     )
     const data = JSON.parse(raw)
-    return (data.announcements || []).filter((a: JobAnnouncement) => a.active && a.slug)
+    return (data.announcements || []).filter(
+      (a: JobAnnouncement) => a.active && a.slug && !isAnnouncementExpired(a),
+    )
   } catch {
     return []
   }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { locale as rootLocale } from 'next/root-params'
-import { enToEt, localizedPaths, ruToEt, type Locale } from '@/lib/slug-map'
+import { enToEt, localizePath, localizedPaths, ruToEt, type Locale } from '@/lib/slug-map'
 import { getAllPaths, getPage } from '@/lib/page-registry'
 import { localizedPageRegistry } from '@/lib/localized-page-registry'
 import { localizedPageMetadata, pageMetadata } from '@/lib/metadata-registry'
@@ -127,6 +127,10 @@ async function getDynamicPage(loc: 'en' | 'ru', path: string) {
   if (jobSlug) {
     const announcement = await getTranslatedAnnouncementBySlug(loc, jobSlug)
     if (announcement) return <DynamicJobOffer announcement={announcement} locale={loc} />
+    // Deleted/expired offer - never 404, land on the localized careers index.
+    // encodeURI: the RU path is Cyrillic and a raw non-ASCII Location header
+    // crashes Node's HTTP layer ("Invalid character in header content").
+    redirect(encodeURI(localizePath('/tule-meile-toole', loc)))
   }
 
   return null
