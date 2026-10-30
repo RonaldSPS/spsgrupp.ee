@@ -60,6 +60,57 @@ export function filterCommits(commits: GitHistoryCommit[], since: string, until:
   return commits.filter((c) => c.date > since && c.date <= until)
 }
 
+/** Järelhaave ülempiir — vanemaid commit'e raportisse enam ei tõsteta. */
+const CATCHUP_MAX_AGE_MS = 21 * 24 * 60 * 60 * 1000
+/** Turvapiir, et üleminek/andmeauk ei ummistaks raportit vanade commitidega. */
+const CATCHUP_MAX_COMMITS = 5
+
+export interface CatchUpContext {
+  /**
+   * Kõik varasemates raportites juba näidatud commitide hash'id
+   * (snapshot.changes.commitHashes). Täpne tee staažikas olekus.
+   */
+  shownHashes?: Set<string>
+  /**
+   * Ülemineku-varuvariant, kui hash'e veel pole (raportid enne 30.10.2026
+   * parandust): eelmise NÄDALA raportis näidatud cleaned-subject'id
+   * (changes.groups[*].items). Commit, mille cleaned subject seal on, loetakse
+   * näidatuks; ülejäänud viimase ~10 päeva commitid tõstetakse järele.
+   * Ilma selleta kaoks 26.10.2026 mega-commit vahele (Verceli build'i git-tõrge
+   * + committitud git-history struktuuriline ühe-commiti mahajäämus).
+   */
+  shownItems?: string[]
+}
+
+/**
+ * Akna-commitid + järelhaave: deployed commit'id, mis jäid eelmise raporti
+ * aknast ja git-history kaetusest VAHELE (nt Verceli build'i git-tõrke korral
+ * committitud git-history.json ei sisalda viimast commitit). Tagab, et ükski
+ * live'le jõudnud commit ei kao raportitest märkamatult.
+ */
+export function selectWindowCommits(
+  commits: GitHistoryCommit[],
+  since: string,
+  until: string,
+  catchUp?: CatchUpContext,
+): GitHistoryCommit[] {
+  const inWindow = filterCommits(commits, since, until)
+  if (!catchUp) return inWindow
+  const shownHashes = catchUp.shownHashes ?? new Set<string>()
+  const shownItems = new Set(catchUp.shownItems ?? [])
+  const cutoff = new Date(new Date(until).getTime() - CATCHUP_MAX_AGE_MS).toISOString()
+  const inWindowHashes = new Set(inWindow.map((c) => c.hash))
+  const missed = commits.filter((c) => {
+    if (inWindowHashes.has(c.hash)) return false // aknas juba sees
+    if (c.date > since) return false // akna- või tuleviku-commit — siin ei käsitleta
+    if (c.date < cutoff) return false // liiga vana — ei ole selle nädala teema
+    if (shownHashes.has(c.hash)) return false // juba näidatud (täpne tee)
+    if (shownHashes.size === 0 && shownItems.has(cleanSubject(c.subject))) return false // üleminek: eelmises raportis näidatud
+    return true
+  })
+  return [...inWindow, ...missed.slice(0, CATCHUP_MAX_COMMITS)]
+}
+
 const BLOG_RE = /^(wordpress_migration\/prepared\/(posts|index)\/|app\/\(et\)\/blog\/)/
 const CONTENT_RE = /^(lib\/pages\/|messages\/|app\/_pages\/|app\/components\/|public\/|lib\/(page-registry|localized-page-registry|.*metadata-registry)\.)/
 const SEO_RE = /^(proxy\.ts|next\.config\.ts|app\/sitemap|app\/robots|.*llms)/
@@ -112,6 +163,7 @@ export function buildSiteChanges(commits: GitHistoryCommit[], since: string, unt
     commits: commits.length,
     newBlogPosts,
     groups: GROUP_ORDER.filter((key) => byKey.has(key)).map((key) => ({ key, count: byKey.get(key)!.count, items: byKey.get(key)!.items })),
+    commitHashes: commits.map((c) => c.hash),
   }
 }
 
@@ -159,10 +211,10 @@ export async function summarizeSiteChanges(changes: SiteChanges): Promise<string
  * kokkuvõte (kui saadaval). Null, kui git-history fail puudub (nt lokaalne
  * keskkond enne esimest prebuild'i) — siis sektsiooni raportisse ei lisata.
  */
-export async function collectSiteChanges(since: string, until: string): Promise<SiteChanges | null> {
+export async function collectSiteChanges(since: string, until: string, catchUp?: CatchUpContext): Promise<SiteChanges | null> {
   const history = await loadGitHistory()
   if (!history) return null
-  const commits = filterCommits(history.commits, since, until)
+  const commits = selectWindowCommits(history.commits, since, until, catchUp)
   const changes = buildSiteChanges(commits, since, until)
   const summary = await summarizeSiteChanges(changes)
   if (summary) changes.summary = summary

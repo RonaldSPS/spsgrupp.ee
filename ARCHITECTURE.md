@@ -8,8 +8,9 @@ The whole marketing site is **prerendered at build time** (SSG) and served from 
 
 - **`app/[locale]/`** — single tree for all locale-prefixed marketing pages. Root layout `app/[locale]/layout.tsx` reads the locale via **`next/root-params`** (stable in Next 16.3) — no `headers()` in the layout (that used to force the entire site into dynamic SSR).
 - **`app/[locale]/[[...slug]]/page.tsx`** — unified catch-all for ET+EN+RU: `generateStaticParams` for every registry path, `revalidate = 300` (ISR), `dynamicParams` stays on so admin-created job postings render on demand.
-- **ET lives at unprefixed URLs.** `proxy.ts` rewrites public ET requests to the internal `/et` prefix (`/kontakt` → `/et/kontakt`). `/blog` and `/spsadmn` are ET-direct in `app/(et)/`; `/api`, `/en`, `/ru` and dotted file paths are excluded. Server actions still read `X-SPS-Locale` (set by the proxy) — `next/root-params` is not available in actions.
-- **`app/(et)/`** — ET-only real routes: `blog/` (SSG, `revalidate = 60`), `spsadmn/`. Own root layout, identical shell, locale hardcoded `et`.
+- **ET lives at unprefixed URLs.** `proxy.ts` rewrites public ET requests to the internal `/et` prefix (`/kontakt` → `/et/kontakt`). `/blog` is ET-direct in `app/(et)/`, `/spsadmn` lives in `app/spsadmn/` (own GTM-free root layout); `/api`, `/en`, `/ru` and dotted file paths are excluded. Server actions still read `X-SPS-Locale` (set by the proxy) — `next/root-params` is not available in actions.
+- **`app/(et)/`** — ET-only real routes: `blog/` (SSG, `revalidate = 60`). Own root layout, identical shell, locale hardcoded `et`.
+- **`app/spsadmn/`** — admin (client-gated) with its OWN root layout (`layout.tsx` server shell + `AdminShell.tsx` client UI) that deliberately renders NO GTM/consent/attribution (analytics audit 27.10.2026: admin traffic must not reach production GA4). GTM is also disabled on Vercel preview builds (`VERCEL_ENV === "preview"` gate in root-shell).
 - **Page components** live in **`app/_pages/`** (private, non-routing) and are mapped to paths by `lib/page-registry.ts`; ET route metadata is imported from the moved layouts via `lib/et-metadata-registry.ts` (keeps `<head>` bytes identical to the old static routes).
 - **Shared root shell:** `app/_shell/root-shell.tsx` (html/body, fonts, I18nProvider, Organization JSON-LD, root metadata) used by both root layouts.
 - **`lib/slug-map.ts` `getCurrentEtPath`** strips the internal `/et` prefix so `usePathname`-based active states prerender correctly.
@@ -37,8 +38,8 @@ All 36 public pages render their exact Estonian design in every locale. There is
 │   │   ├── [[...slug]]/    # ET+EN+RU unified catch-all (SSG + ISR 300s)
 │   │   └── not-found.tsx
 │   ├── (et)/               # ET-direct routes (root layout, locale "et")
-│   │   ├── blog/           # Blog index + [slug] (SSG, revalidate 60)
-│   │   └── spsadmn/        # Admin (client-gated)
+│   │   └── blog/           # Blog index + [slug] (SSG, revalidate 60)
+│   ├── spsadmn/            # Admin (client-gated, OWN root layout — no GTM)
 │   ├── _pages/             # Marketing page components (private, non-routing)
 │   ├── _shell/root-shell.tsx  # Shared html/body shell + root metadata
 │   ├── components/         # Shared components (Navbar, Footer, SeoJsonLd, templates/)

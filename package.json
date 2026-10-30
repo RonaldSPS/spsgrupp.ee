@@ -29,7 +29,8 @@
     "report:gbp": "tsx scripts/gbp-read.ts",
     "report:geogrid": "tsx scripts/geogrid-report.ts",
     "report:offline-conversions": "tsx scripts/ads-offline-conversions.ts",
-    "report:offline-conversions-upload": "tsx scripts/ads-offline-conversions-upload.ts"
+    "report:offline-conversions-upload": "tsx scripts/ads-offline-conversions-upload.ts",
+    "audit:gtm": "tsx scripts/gtm-audit.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

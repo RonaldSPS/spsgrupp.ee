@@ -1,6 +1,134 @@
 {
- "generatedAt": "2026-10-26T21:06:12.194Z",
+ "generatedAt": "2026-10-30T13:01:36.043Z",
  "commits": [
+  {
+   "hash": "ca8da6e",
+   "date": "2026-10-26T23:19:56+02:00",
+   "subject": "feat(turundus): kliendi 26.10 audit + tegevuskava rakendatud — Ads: 800 m² eemaldatud 3 põhikampaania RSA-st + P26 sitelinkist, DSA-kaevur peatatud ja rangete lehetingimustega, P26 geo PRESENCE, konversioonide korrastus (ainus primaarne = form_submit_2026 uus veeb; offline-import + tel/e-post + GA4-duplikaadid sekundaarseteks; CONTACT mitte-biddable), 9 jäkk-phrase-negatiivset, Vahetus-2027 sõnumikatse P26 grupina. Leht: hinnaplokk+kalkulaator ilma miinimumita (MIN_AREA 100), hub pakkumine + meta tugevdatud ET/EN/RU, RelatedServices siselingid tuumiklehtedel. Liigitused: spämmiskoorija kirillitsa valepositiivide fix (#58/#73 korrigeeritud) + tööotsija kaaskirja-mustrid, regressioonitestid. Paringud-admin: müügitoru (migratsioon 0014, Teenus/Staatus veerud, telefoni/e-posti käsitsi-lisamine, CSV uued veerud, nädalaraport loeb ainult channel=form). Kaasa 23.10 jäänud commitimata ANALYTICS.md + ads-p26-big-groups.ts",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/tootmishoonete-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/[id]/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Hinnakalkulaator.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/MaintenancePriceExamples.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/RelatedServices.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0014_submission_sales_fields.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-ads-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-forms-filter.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/spam-detector.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/maintenance-pricing.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/spam.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-fixes-2026-10-26.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
   {
    "hash": "8d0107f",
    "date": "2026-10-23T15:12:56+03:00",

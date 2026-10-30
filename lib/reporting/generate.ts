@@ -22,18 +22,29 @@ export async function generateWeeklyReport(): Promise<StoredReport> {
   /* GSC täiendab värskeimaid päevi järelkorras — kui eelmise raporti salvestatud
    * arv samale perioodile erineb selle nädala "eelmine periood" tõmmisest,
    * märgi see raportis ära (kliendi küsimus 25.09.2026: 7,4 vs 10,1 / +6 %). */
-  const recent = await listWeeklyReports(2).catch(() => [] as StoredReport[])
+  const recent = await listWeeklyReports(4).catch(() => [] as StoredReport[])
   const latest = recent[0]
 
   /* „Lehekülje arendus" (git-põhine muudatuste kokkuvõte, kliendi palve
    * 08.10.2026): aken = eelmise NÄDALA raporti genereerimisest tänaseni.
    * Sama nädala raportit vahele jättes ei kaha aken „Genereeri kohe"
-   * uuesti käivitamisel nulli (raport upsert'itakse sama nädala peale). */
-  const prevWeekReport = recent.find(
-    (r) => !(r.weekStart === snapshot.period.start && r.weekEnd === snapshot.period.end),
-  )
+   * uuesti käivitamisel nulli (raport upsert'itakse sama nädala peale).
+   * 30.10.2026 järelhaave: varasemate ERINEVATE nädalate raportites näidatud
+   * commit-hash'id (või üleminekul cleaned-subject'id) antakse kaasa, et
+   * ükski live'le jõudnud commit ei kaugu — 26.10 mega-commit jäi 30.10
+   * raportist välja Verceli build'i git-tõrke ja committitud git-history
+   * struktuurse ühe-commiti mahajäämuse tõttu. Sama nädala raportid
+   * shownHashes't EI sisalda — muidu ei oleks „Genereeri kohe" idempotentne
+   * (järelhaavetud commitid kaduksid uuesti genereerimisel). */
+  const isCurrentWeek = (r: StoredReport) =>
+    r.weekStart === snapshot.period.start && r.weekEnd === snapshot.period.end
+  const prevWeekReport = recent.find((r) => !isCurrentWeek(r))
   const changesSince = prevWeekReport?.snapshot.generatedAt ?? `${snapshot.period.start}T00:00:00.000Z`
-  const changes = await collectSiteChanges(changesSince, snapshot.generatedAt)
+  const shownHashes = new Set(
+    recent.filter((r) => !isCurrentWeek(r)).flatMap((r) => r.snapshot.changes?.commitHashes ?? []),
+  )
+  const shownItems = (prevWeekReport?.snapshot.changes?.groups ?? []).flatMap((g) => g.items)
+  const changes = await collectSiteChanges(changesSince, snapshot.generatedAt, { shownHashes, shownItems })
   if (changes) snapshot.changes = changes
 
   /* Geo-grid: kohalik Maps-nähtavus linnaosade kaupa (Places API (New) Text

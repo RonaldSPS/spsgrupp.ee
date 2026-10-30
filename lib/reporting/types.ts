@@ -284,6 +284,12 @@ export interface SiteChanges {
   /** Avaldatud blogipostituste pealkirjad (uued prepared/posts JSON-id). */
   newBlogPosts: string[]
   groups: SiteChangeGroup[]
+  /**
+   * Kõigi selles raportis näidatud commitide hash'id — järgmine raport
+   * kasutab neid „mitte kunagi näidatud" järelhaavade tuvastuseks
+   * (changes.ts catch-up). Valikuline, sest vanadel snapshotidel puudub.
+   */
+  commitHashes?: string[]
   /** LLM-i kliendikeelne kokkuvõte; puudub, kui LLM seadistamata või ebaõnnestus. */
   summary?: string
 }

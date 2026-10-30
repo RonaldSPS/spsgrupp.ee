@@ -5,6 +5,7 @@ import {
   classifyCommit,
   cleanSubject,
   filterCommits,
+  selectWindowCommits,
   summarizeSiteChanges,
 } from "../reporting/changes"
 import type { GitHistoryCommit } from "../reporting/changes"
@@ -84,7 +85,72 @@ test("cleanSubject: prefixita subject jääb alles, kapitaliseerituna", () => {
   assert.equal(cleanSubject("uuendatud hinnainfo"), "Uuendatud hinnainfo")
 })
 
-/* ---------- buildSiteChanges ---------- */
+/* ---------- selectWindowCommits: järelhaave (30.10.2026) ---------- */
+
+test("selectWindowCommits: ilma catchUp-kontekstita = filterCommits", () => {
+  const commits = [
+    makeCommit({ hash: "a", date: "2026-10-03T06:00:00+03:00" }),
+    makeCommit({ hash: "b", date: "2026-10-05T12:00:00+03:00" }),
+  ]
+  const out = selectWindowCommits(commits, "2026-10-03T06:00:00+03:00", "2026-10-10T06:00:00+03:00")
+  assert.deepEqual(out.map((c) => c.hash), ["b"])
+})
+
+test("selectWindowCommits: aknast ja varasematest raportitest vahele jäänud commit tõstetakse järele", () => {
+  // Stsenaarium 30.10.2026 raportist: mega-commit ca8da6e (26.10) jäi aknasse,
+  // aga git-history fail seda ei sisaldanud -> raport näitas vaid 8d0107f.
+  // Järgmise raporti aken on (30.10, 6.11] — ca8da6e peab järelhaavena kaasa tulema.
+  const commits = [
+    makeCommit({ hash: "new1", date: "2026-11-04T10:00:00+02:00", subject: "feat(content): uus sisutöö" }),
+    makeCommit({ hash: "ca8da6e", date: "2026-10-26T23:19:56+02:00", subject: "feat(turundus): kliendi 26.10 audit — pikk selgitus" }),
+    makeCommit({ hash: "8d0107f", date: "2026-10-23T15:12:56+03:00", subject: "feat(turundus): nadalaraporti leiud — pikk selgitus" }),
+  ]
+  const out = selectWindowCommits(
+    commits,
+    "2026-10-30T06:00:00.000Z",
+    "2026-11-06T06:00:00.000Z",
+    { shownHashes: new Set(["8d0107f"]) }, // eelmine raport näitas seda
+  )
+  assert.deepEqual(out.map((c) => c.hash), ["new1", "ca8da6e"])
+})
+
+test("selectWindowCommits: üleminek ilma hash'ideta — dedupe cleaned-subject'i kaudu", () => {
+  const commits = [
+    makeCommit({ hash: "new1", date: "2026-11-04T10:00:00+02:00", subject: "feat(content): uus sisutöö" }),
+    makeCommit({ hash: "ca8da6e", date: "2026-10-26T23:19:56+02:00", subject: "feat(turundus): kliendi 26.10 audit — pikk selgitus" }),
+    makeCommit({ hash: "8d0107f", date: "2026-10-23T15:12:56+03:00", subject: "feat(turundus): nadalaraporti 15.-21.10 leiud + kliendi kiri 23.10 — pikk selgitus" }),
+  ]
+  const out = selectWindowCommits(
+    commits,
+    "2026-10-30T06:00:00.000Z",
+    "2026-11-06T06:00:00.000Z",
+    { shownHashes: new Set(), shownItems: ["Nadalaraporti 15.-21.10 leiud + kliendi kiri 23.10"] },
+  )
+  assert.deepEqual(out.map((c) => c.hash), ["new1", "ca8da6e"])
+})
+
+test("selectWindowCommits: väga vanad commitid (>21p) ja liiga varased ei tõuseta", () => {
+  const commits = [
+    makeCommit({ hash: "new1", date: "2026-11-04T10:00:00+02:00" }),
+    makeCommit({ hash: "old", date: "2026-10-01T10:00:00+03:00" }), // > 21p enne until
+  ]
+  const out = selectWindowCommits(
+    commits,
+    "2026-10-30T06:00:00.000Z",
+    "2026-11-06T06:00:00.000Z",
+    { shownHashes: new Set() },
+  )
+  assert.deepEqual(out.map((c) => c.hash), ["new1"])
+})
+
+test("buildSiteChanges: salvestab commitide hash'id", () => {
+  const out = buildSiteChanges(
+    [makeCommit({ hash: "abc1234" }), makeCommit({ hash: "def5678" })],
+    "2026-10-01T00:00:00+03:00",
+    "2026-10-08T00:00:00+03:00",
+  )
+  assert.deepEqual(out.commitHashes, ["abc1234", "def5678"])
+})
 
 test("buildSiteChanges: grupid, count'id ja uute postituste dedupe", () => {
   const commits = [

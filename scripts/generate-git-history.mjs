@@ -14,8 +14,12 @@
  * the Estonian title is resolved from the JSON on disk, so the report can
  * name the published articles.
  *
- * Never fails the build: any error is logged and the previous JSON (if any)
- * is left untouched.
+ * Never fails the build. If `git log` fails (observed in Vercel build
+ * containers), the committed git-history.json is kept AND the deployed
+ * commit is synthesized from VERCEL_GIT_COMMIT_SHA/MESSAGE env vars —
+ * otherwise the report always misses the newest commit, because the
+ * committed file structurally cannot contain the commit it is part of
+ * (this exact gap hid the whole 26.10.2026 deploy from the 30.10 report).
  */
 
 import { execFileSync } from "node:child_process"
@@ -82,7 +86,52 @@ function main() {
 try {
   main()
 } catch (error) {
-  // Never break the build — the weekly report section simply stays hidden
-  // and the previous JSON (when present) remains in place.
+  // Never break the build. On Vercel `git log` can fail in the build container
+  // (observed 23.10.2026 — and silently again 26.–30.10.2026, when the weekly
+  // report's "Lehekülje arendus" section missed the entire 26.10 deploy commit).
+  // The committed git-history.json is the fallback, but it can never contain
+  // the commit it is committed in (one-commit lag). Close the gap: synthesize
+  // the deployed commit from Vercel's build env vars and merge it on top of
+  // the committed file. Date = build time (Vercel builds right after the push).
   console.error("git-history generation failed (non-fatal):", error instanceof Error ? error.message : error)
+  try {
+    synthesizeDeployedCommit()
+  } catch (fallbackError) {
+    console.error("git-history VERCEL_GIT_* fallback failed (non-fatal):", fallbackError instanceof Error ? fallbackError.message : fallbackError)
+  }
+}
+
+/**
+ * Vercel build fallback: prepend the deployed commit (from VERCEL_GIT_* env)
+ * to the committed git-history.json so the weekly report never misses the
+ * deploy's own commit. No file list is available without git — the commit is
+ * classified by the report's subject heuristics (classifyCommit falls back to
+ * "technical" without files; still far better than silently dropping it).
+ */
+function synthesizeDeployedCommit() {
+  const sha = process.env.VERCEL_GIT_COMMIT_SHA
+  const message = process.env.VERCEL_GIT_COMMIT_MESSAGE
+  if (!sha || !message) return // not a Vercel build — keep previous behaviour
+  const short = sha.slice(0, 7)
+  const subject = message.split("\n")[0].trim()
+  if (!subject) return
+
+  let existing = { generatedAt: "", commits: [] }
+  try {
+    existing = JSON.parse(fs.readFileSync(OUT_FILE, "utf-8"))
+    if (!Array.isArray(existing?.commits)) existing.commits = []
+  } catch {
+    /* no previous file — start from just this commit */
+  }
+  if (existing.commits.some((c) => c.hash === short || c.hash === sha)) {
+    console.log(`git-history: deployed commit ${short} already present, no fallback needed`)
+    return
+  }
+  const synthetic = { hash: short, date: new Date().toISOString(), subject, files: [], synthetic: true }
+  fs.writeFileSync(
+    OUT_FILE,
+    JSON.stringify({ generatedAt: new Date().toISOString(), commits: [synthetic, ...existing.commits] }, null, 1),
+    "utf-8",
+  )
+  console.log(`git-history: git unavailable — prepended deployed commit ${short} from VERCEL_GIT_* (${existing.commits.length} commits kept)`)
 }

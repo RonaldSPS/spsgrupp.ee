@@ -20,7 +20,7 @@ import type {
   ReportSnapshot,
 } from "./types"
 import { TARGET_REGION } from "./strategy"
-import { pageMatchesTarget } from "./keyword-families"
+import { KEYWORD_FAMILIES, pageMatchesTarget } from "./keyword-families"
 
 /** Pre-launch organic baseline (20.07–16.08.2026): 9,0 GSC klikki päevas. */
 const PRE_LAUNCH_CLICKS_PER_DAY = 9.0
@@ -258,6 +258,10 @@ function adsInsights(ads: AdsData, out: Insight[]): void {
   }
 
   for (const c of ads.campaigns) {
+    /* Peatatud kampaaniaid (nt P26 katsed, mis on kliendi otsusel PAUSED)
+     * ei lipitata eelarve-/rank-hoiatustega — soovitus „tõsta eelarvet"
+     * oleks eksitav, sest kampaania on teadlikult maha lülitatud. */
+    if (c.status !== "ENABLED") continue
     if ((c.budgetLostIS ?? 0) >= 0.2) {
       out.push({
         area: "ads",
@@ -294,14 +298,20 @@ function adsInsights(ads: AdsData, out: Insight[]): void {
     })
   }
 
-  const wasted = ads.topTerms.filter((x) => !isBrand(x.term) && x.cost >= 10 && x.conversions === 0).slice(0, 5)
+  /* 30.10.2026 kinnitus: strateegilistesse märksõnaperekondadesse kuuluvaid
+   * termineid (nt „koristusteenus tallinnas") EI lipitata raiskajateks ka
+   * konversioonideta nädalal — need on teadlikud sihtmärksõnad, mille kohta
+   * käivad QS-/maandumislehe hoiatused. Lipitame ainult mittesiht-terminid. */
+  const wasted = ads.topTerms
+    .filter((x) => !isBrand(x.term) && !matchesKeywordFamily(x.term) && x.cost >= 10 && x.conversions === 0)
+    .slice(0, 5)
   if (wasted.length > 0) {
     const list = wasted.map((x) => `„${x.term}" (${x.cost.toFixed(2).replace(".", ",")} €)`).join(", ")
     out.push({
       area: "ads",
       severity: "warning",
       title: `${wasted.length} mitte-brändi päringut kulutavad raha ilma konversioonideta`,
-      detail: list,
+      detail: `${list}. (Strateegiliste perekondade tuumikterminid on arvestusest väljas — neid hinnatakse QS- ja maandumislehe-insight'idega.)`,
       action: "Kui päringud ei sobi teenusevalikusse, lisa negatiivseteks märksõnadeks; kui sobivad, aga ei konverteeri, vaata maandumislehe pakkumist.",
     })
   }
@@ -332,6 +342,11 @@ function adsInsights(ads: AdsData, out: Insight[]): void {
 
 function isBrand(term: string): boolean {
   return /\bsps\b|sps[\s-]?(grupp|group)/i.test(term)
+}
+
+/** Kas otsingutermin kuulub mõnda jälgitavasse märksõnaperekonda (teadlik sihtmärksõna). */
+function matchesKeywordFamily(term: string): boolean {
+  return KEYWORD_FAMILIES.some((f) => f.pattern.test(term))
 }
 
 /** Märkus arvestusest välja jäetud ridade kohta (testpäringud + tööotsingud). */

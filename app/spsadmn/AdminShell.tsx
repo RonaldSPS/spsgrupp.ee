@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const router = useRouter()
   const [authenticated, setAuthenticated] = useState(false)
@@ -194,10 +194,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     </>
   )
 
-  // min-w-0 is required: body is a flex container (root-shell), and without it
-  // this flex item won't shrink below the päringud table's intrinsic width -
-  // the page would grow and body overflow-x:hidden would clip the table instead
-  // of letting the table's own overflow-x-auto scrollbar appear.
+  // min-w-0 is required: body is a flex container (admin root layout), and
+  // without it this flex item won't shrink below the päringud table's
+  // intrinsic width - the page would grow and body overflow-x:hidden would
+  // clip the table instead of letting the table's own overflow-x-auto
+  // scrollbar appear.
   return (
     <div className="min-h-screen min-w-0 bg-[#eceef1]">
       {/* Desktop sidebar */}

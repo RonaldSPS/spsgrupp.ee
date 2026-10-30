@@ -19,6 +19,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local-only scratch + secrets: browser profiles under .secrets contain
+    // thousands of extension JS files (linting them OOMs) and tmp/ holds
+    // untracked one-off analysis scripts.
+    ".secrets/**",
+    "tmp/**",
   ]),
 ]);
 

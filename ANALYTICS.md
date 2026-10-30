@@ -20,7 +20,11 @@ container. The site only loads the container and pushes events to the
 
 ## 2. How the site loads tracking (code map)
 
-- `app/_shell/root-shell.tsx` — reads `NEXT_PUBLIC_GTM_ID`; when set:
+- `app/_shell/root-shell.tsx` — reads `NEXT_PUBLIC_GTM_ID`; GTM is skipped on
+  Vercel preview builds (`VERCEL_ENV === "preview"`, audit 27.10.2026) and the
+  admin no longer uses this shell at all (`app/spsadmn/` has its own GTM-free
+  root layout since 27.10.2026 — admin traffic must not reach production
+  GA4). When enabled it renders:
   - renders the Consent Mode v2 defaults inline script (`CONSENT_DEFAULT_SNIPPET`)
     *before* GTM — only the Ads signals (`ad_storage`/`ad_user_data`/
     `ad_personalization`) are denied until consent; `analytics_storage` and
@@ -147,7 +151,9 @@ Already done in this repo — see §2. In a fresh project:
 
 ### 4.4 Vercel
 Project → Settings → Environment Variables → add
-`NEXT_PUBLIC_GTM_ID=GTM-KP5VZH9Q` (Production + Preview) → redeploy.
+`NEXT_PUBLIC_GTM_ID=GTM-KP5VZH9Q` (**Production only** — preview deployments
+must NOT get it; root-shell additionally blocks GTM whenever
+`VERCEL_ENV === "preview"`, belt-and-braces) → redeploy.
 The reporting env vars are **local-only** — the service-account key must
 never leave the machine.
 
@@ -174,6 +180,55 @@ Enhanced Conversions. When creating a *new* container, replicate at least:
   reading `user_data.email` from the dataLayer via
   "DLV - Kliendi Email Variable" (must read `user_data.email`, NOT the old
   `customerEmail`). Both form events carry `user_data.email`.
+  **The tag's conversionId must be the bare integer `944834915`** — the awud
+  vendor template rejects anything else, and 27.10.2026 the field held
+  `AW-944834915{{Click ID}}` (click variable glued to the constant = the
+  audit's "siht-ID sisaldab kliki muutujat" finding). Fixed by
+  `npm run audit:gtm -- --fix`.
+
+### 4.6 GTM container audit script (27.10.2026)
+
+`npm run audit:gtm` (`scripts/gtm-audit.ts`) audits the live container
+against the four container-side audit findings and can remediate it:
+
+- **P1** conversion/destination ID fields must be constants (strips stray
+  variable references from `awud`/`awct` conversionId; the awud template
+  wants the bare integer, no `AW-` prefix).
+- **P2** every tag firing on `form_submit`/`form_submission_success` must
+  carry a career blocking trigger (`form_id=career` on the same event).
+  Handles regex/contains event matching and the API's `_event`/`{{_event}}`
+  duality; career conditions live in Trigger.`filter` (customEventFilter holds
+  ONLY the event-name match — "must have exactly one custom-event filter").
+- **P3** every measurement tag (`googtag`/`gaawe`/`awud`/`awct`) must carry
+  the hostname exception "Blocking — mitte spsgrupp.ee host" (Page Hostname
+  matchRegex `^(www\.)?spsgrupp\.ee$` + `negate` boolean — the v2 Condition
+  enum has NO negative operators; negation is the separate parameter).
+  Silences localhost/preview/mirror traffic for GA4 + Ads at the tag level.
+- **P4** form-event wiring map + GA4 key-event inventory (Admin API):
+  exactly one tag must produce the Ads-imported lead key event
+  `form_submit_2026`; raw `form_submit`/`form_submission_success` must not be
+  GA4 key events; `purchase` key-event marking is flagged as WP-era junk
+  (unmark manually: GA4 Admin → Key events).
+
+Flags: `--dump` (full tag/trigger/variable listing), `--fix` (apply,
+UNPUBLISHED unless…), `--publish` (create+publish a container version —
+idempotent recovery: with nothing left to fix it publishes the pending
+workspace), `--dry-run`. Auth: the `sps-analytics-reader` service account must
+be a GTM container user (Admin → User Management): Read for audit, **Edit for
+--fix, Publish for --publish**. The fix flow leaves unpublished changes in the
+Default Workspace for review when `--publish` is absent.
+
+State after the 27.10.2026 run: EC conversionId fixed to `944834915`,
+`tööotsija Trigger — form_submit` created and attached to "päring Tag - Form
+submit" + the EC data tag, hostname exception attached to all 15 measurement
+tags — all published in **container version 21 (live)**. Gotchas learned:
+create_version/publish need the SEPARATE token scopes
+`tagmanager.edit.containerversions` + `tagmanager.publish` (an edit-scope
+token 403s regardless of container rights), and the workspace `/status`
+endpoint once reported "0 changes" while the live version differed from the
+workspace (after a UI-side publish action) — the script therefore probes the
+live version for the hostname trigger before deciding there is nothing to
+publish.
 - Removed 2026-08-24 (WordPress leftovers): "User email hash Tag" (jQuery
   `submit_success` listener — threw `jQuery is not defined` on every page),
   "chtml listner Tag" (CF7 `wpcf7mailsent` listener), test AjaxComplete

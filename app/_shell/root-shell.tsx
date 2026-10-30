@@ -11,7 +11,15 @@ import CookieConsentBanner from "@/app/components/analytics/CookieConsentBanner"
 import AttributionCapture from "@/app/components/analytics/AttributionCapture"
 import { CONSENT_DEFAULT_SNIPPET } from "@/app/components/analytics/consent"
 
-const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+// GTM must not load on Vercel preview deployments (analytics audit 27.10.2026:
+// preview traffic was polluting production GA4). VERCEL_ENV is a Vercel system
+// env ("production" | "preview") available at build and runtime; it is unset
+// locally, where GTM stays available for testing (localhost is filtered
+// GTM-side instead — see scripts/gtm-audit.ts hostname exception).
+const gtmId =
+  process.env.NEXT_PUBLIC_GTM_ID && process.env.VERCEL_ENV !== "preview"
+    ? process.env.NEXT_PUBLIC_GTM_ID
+    : undefined
 
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
