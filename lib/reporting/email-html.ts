@@ -406,6 +406,45 @@ function gbpCalendarSection(tasks: GbpWeekTasks, calendar: GbpCalendar): { html:
 }
 
 /**
+ * „ChatGPT Ads — pikslitest" — ajutine jälgimispiksel (kliendi palvel alates
+ * 01.11.2026). Konversioon = kontaktvormi päring; sündmus läheb brauserist
+ * (piksel) ja serverist (Conversions API, kui OPENAI_CONVERSIONS_API_KEY on
+ * seatud). Klikid/näitamised/kulu on nähtavad ainult ChatGPT Ads'i
+ * armatuurlaual — meie raport näitab, mitu konversioonisündmust saadeti,
+ * ja küsib kliendilt, kas test jätkub. Eemaldatakse koos piksliga.
+ */
+function chatGptAdsSection(forms: FormsData | null | undefined): { html: string; text: string[] } {
+  const current = forms?.current.contact
+  const previous = forms?.previous.contact
+  const capiActive = Boolean(process.env.OPENAI_CONVERSIONS_API_KEY)
+  const countsLine =
+    current !== undefined
+      ? `Kontaktvormi päringuid sel perioodil: ${current}${previous !== undefined ? ` (eelmine periood: ${previous})` : ""} — iga päris päring saadab pikslile ühe konversioonisündmuse.`
+      : "Päringute andmed sel perioodil puuduvad."
+  const capiLine = capiActive
+    ? "Serveripoolne saatmine (Conversions API): aktiivne."
+    : "Serveripoolne saatmine (Conversions API): ootab API võtit (OPENAI_CONVERSIONS_API_KEY) — seni toimub mõõtmine ainult brauseri piksliga."
+  const questionBox = `<p style="font-size:14px;color:#92400e;background:#fef3c7;border-radius:8px;padding:10px 12px;margin:10px 0"><strong>Kas jätkame ChatGPT Ads testi?</strong> Kui armatuurlaua tulemused rahuldavad, jätame piksli — vastasel juhul eemaldame selle ja serveriühenduse.</p>`
+  const html =
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">ChatGPT Ads — pikslitest (ajutine)</h2>` +
+    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Jälgimispiksel on lehel alates 01.11.2026; konversiooniks loetakse kontaktvormi päringut (sündmus „registration_completed"). Klikkide, näitamiste ja kulu tulemusi näeb ChatGPT Ads'i armatuurlaualt — siinne raport neid automaatselt ei tõmba.</p>` +
+    `<ul style="margin:6px 0 0;padding-left:18px">` +
+    `<li style="margin:4px 0;font-size:14px;color:#17345a">${escapeHtml(countsLine)}</li>` +
+    `<li style="margin:4px 0;font-size:14px;color:#17345a">${escapeHtml(capiLine)}</li>` +
+    `</ul>` +
+    questionBox
+  const text = [
+    "CHATGPT ADS — PIKSLITEST (ajutine, alates 01.11.2026; konversioon = kontaktvormi päring)",
+    `- ${countsLine}`,
+    `- ${capiLine}`,
+    "- Klikid, näitamised ja kulu: ChatGPT Ads'i armatuurlaud (raport neid ei tõmba).",
+    "KAS JÄTKAME ChatGPT Ads testi? Kui tulemused rahuldavad, jätame piksli — vastasel juhul eemaldame.",
+    "",
+  ]
+  return { html, text }
+}
+
+/**
  * „Paralleelne test (P26) vs praegune seadistus" — AI-juhitud testkampaaniate
  * eraldi statistika ja aus võrdlus olemasoleva seadistusega (plaan 14.10.2026:
  * test ei muuda praegust setup'i — eraldi eelarve, märksõnad, kampaaniad).
@@ -511,6 +550,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
   const p26 = s.ads?.available && s.ads.p26 ? p26Section(s.ads) : { html: "", text: [] as string[] }
+  const chatGptAds = chatGptAdsSection(s.forms)
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
   const gbpCalendar = await loadGbpCalendar()
@@ -530,6 +570,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
   ${leads.html}
   ${p26.html}
+  ${chatGptAds.html}
   ${geo.html}
   ${narrativeHtml}
   ${changes.html}
@@ -551,6 +592,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   ]
   textLines.push(...leads.text)
   textLines.push(...p26.text)
+  textLines.push(...chatGptAds.text)
   textLines.push(...geo.text)
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")

@@ -1,6 +1,53 @@
 {
- "generatedAt": "2026-10-30T13:29:39.743Z",
+ "generatedAt": "2026-11-01T17:14:30.046Z",
  "commits": [
+  {
+   "hash": "caeeafe",
+   "date": "2026-10-30T15:40:00+02:00",
+   "subject": "feat(toopakkumised): kustutatud/deaktiveeritud/aegunud pakkumine ei anna enam 404 vaid 307 -> /tule-meile-toole/ (kliendi soov 30.10) — isAnnouncementExpired/isAnnouncementLive uhtne filter lib/announcements.ts (aegunud = tahtaja JARJNE paev, tahtaja paev ise kehtib; kasutusel getAnnouncementBySlug/getTranslatedAnnouncementBySlug/getActiveAnnouncements -> /api/jobs + JobsItemListJsonLd + sitemap); ET [slug] leht redirect() mitte notFound(), EN/RU catch-all suunab lokaliseeritud koondlehele (encodeURI — toore kirillitsa Location-paisas kukkus Node 500 'Invalid character in header content'); 307 mitte 308 et sama slugi taasaktiveerimine toimiks (AGENTS.md gotcha staatiliste redirectide kohta sailib); koondleht naistab nulli pakkumise korral tuhjaseisundit + 'Saada avatud avaldus' CTA (#pakkumine) senise kaduva sektsiooni asemel (ET/EN/RU); KAASAHOOLDUS: data/admin-toole-announcements.json sunkitud live-DB-ga (oli rskondlikult vananenud — pausitatud Supabase'i varundada kasutades said live-pakkumised 404, tana nahtud 404'd olidki see, mitte aegumine); 8 uut expiry-testi (182/182), tsc+eslint puhtad, puhas build OK, prod-reziimis verifitseeritud: 3 live-pakkumist 200, tundmatu/aegunud/deaktiveeritud 307, EN/RU 307",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TooleAnnouncements.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/sitemap.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/admin-toole-announcements.json"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/announcements-expiry.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/announcements.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    }
+   ]
+  },
   {
    "hash": "78d6185",
    "date": "2026-10-30T15:03:38+02:00",

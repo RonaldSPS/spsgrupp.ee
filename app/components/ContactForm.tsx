@@ -10,9 +10,10 @@ import ScrollAnimation from "./ScrollAnimation"
 import { submitContactForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 import { getGclid } from "./analytics/gclid"
+import { getOppref } from "./analytics/oppref"
 import { getAttributionSource } from "./analytics/attribution"
 import { applyConsent, getStoredConsent, storeConsent, type ConsentChoice } from "./analytics/consent"
-import { pushFormSubmissionSuccess } from "./analytics/form-conversion"
+import { pushFormSubmissionSuccess, trackOpenAiConversion } from "./analytics/form-conversion"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -52,6 +53,10 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   // Google Ads click id (gclid), same hidden-input pattern. Filled from the
   // landing URL, the sessionStorage landing-capture or the `_gcl_aw` cookie.
   const gclidRef = useRef<HTMLInputElement>(null)
+  // ChatGPT Ads click reference (oppref), same hidden-input pattern. Filled
+  // from the landing URL or the pixel's `__oppref` cookie; sent with the
+  // server-side Conversions API event so it can be attributed to the ad click.
+  const opprefRef = useRef<HTMLInputElement>(null)
   // Classified lead source (google_ads / utm:.. / organic:.. / referral:.. /
   // direct / ""), same hidden-input pattern. Consent-independent.
   const sourceRef = useRef<HTMLInputElement>(null)
@@ -76,6 +81,9 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
     if (gclidRef.current) {
       gclidRef.current.value = getGclid()
     }
+    if (opprefRef.current) {
+      opprefRef.current.value = getOppref()
+    }
     if (sourceRef.current) {
       sourceRef.current.value = getAttributionSource()
     }
@@ -99,6 +107,10 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
         // (form_submission_success) must fire even if the sendGTMEvent
         // wrapper below ever breaks in a refactor/upgrade.
         pushFormSubmissionSuccess({ form_id: "contact", page_path: etPath, locale, email })
+        // Ajutine ChatGPT Ads pikslitest: konversioon = kontaktvormi päring.
+        // Jagatud eventId (server genereerib, saadab ka Conversions API-ga)
+        // hoiab ära brauseri+serveri topeltloendamise.
+        trackOpenAiConversion(state.openAiEventId)
         sendGTMEvent({
           event: "form_submit",
           form_id: "contact",
@@ -144,6 +156,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
             </div>
             <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
             <input type="hidden" name="gclid" ref={gclidRef} defaultValue="" />
+            <input type="hidden" name="oppref" ref={opprefRef} defaultValue="" />
             <input type="hidden" name="source" ref={sourceRef} defaultValue="" />
             <input type="hidden" name="form_started_at" ref={startedAtRef} defaultValue="" />
             {turnstileSiteKey && (

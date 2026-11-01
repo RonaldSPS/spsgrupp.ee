@@ -9,6 +9,7 @@ import { renderLdJson } from "@/lib/json-ld-generator"
 import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils"
 import CookieConsentBanner from "@/app/components/analytics/CookieConsentBanner"
 import AttributionCapture from "@/app/components/analytics/AttributionCapture"
+import OpenAiPixel from "@/app/components/analytics/OpenAiPixel"
 import { CONSENT_DEFAULT_SNIPPET } from "@/app/components/analytics/consent"
 
 // GTM must not load on Vercel preview deployments (analytics audit 27.10.2026:
@@ -20,6 +21,10 @@ const gtmId =
   process.env.NEXT_PUBLIC_GTM_ID && process.env.VERCEL_ENV !== "preview"
     ? process.env.NEXT_PUBLIC_GTM_ID
     : undefined
+
+// Ajutine ChatGPT Ads jälgimispiksel (test alates 01.11.2026) — sama reegel
+// kui GTM-il: preview-deploy'de liiklus ei tohi reklaamiandmeid segada.
+const showOpenAiPixel = process.env.VERCEL_ENV !== "preview"
 
 const ubuntu = Ubuntu({
   variable: "--font-ubuntu",
@@ -169,6 +174,7 @@ export function RootShell({
           />
           {children}
           <AttributionCapture />
+          {showOpenAiPixel ? <OpenAiPixel /> : null}
           {gtmId ? <CookieConsentBanner /> : null}
         </I18nProvider>
         {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
