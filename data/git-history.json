@@ -1,6 +1,92 @@
 {
- "generatedAt": "2026-11-01T17:14:30.046Z",
+ "generatedAt": "2026-11-01T17:35:11.169Z",
  "commits": [
+  {
+   "hash": "6453dec",
+   "date": "2026-11-01T19:17:17+02:00",
+   "subject": "fix(raport): geo-grid vs Top-päringute segadus lahendatud (kliendi küsimus 01.11.2026: 'puhastusteenused' Maps avg 20,4 vs GSC pos 6,7 'ei lähe kokku') — kumbki number pole vale: kaardisektsioon mõõdab Google Maps'i/äriprofiili nähtavust 27 asukohapõhises punktis (leidmata=21), Top päringud/peatabel GSC orgaanilist veebiotsingu positsiooni — taotluslikult ERINEVAD mõõdikud, mis ei pea kattuma (geo-grid ongi loodud Maps'i mõõtmiseks Kaardil.ee heatmap-pakkumise vastu; orgaanilist SERP-i tänavatasandil pole võimalik ega otstarbekas kaardistada, sest Google lokaliseerib orgaanika linna-, mitte tänavatasemel). Parandus = sõnaselge eraldus kõikjal: admini kaardisektsiooni pealkiri 'Kaardi nähtavus (Google Maps)' + selgitus et EI OLE võrreldav allpool oleva Top-päringute tabeliga + kaart 'Keskmine koht (Maps)'; Top-päringute pealkiri '— Google'i orgaaniline otsing (näitamiste järgi)' + selgitav lause; peatabeli positsiooni-selgitus täpsustatud '(mitte Maps)'; e-kirja geogrid-sektsiooni pealkiri/selgitus/tekstiversioon samamoodi täpsustatud. Kehtib kõikide märksõnade kohta. tsc puhas, eslint 0 viga, 34 raporti testi läbivad, puhas build OK. AGENTS.md: Maps≠orgaaniline gotcha, et tekste tulevikus 'ühtlustada' ei proovitaks.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/raportid/[id]/GeoGridSection.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    }
+   ]
+  },
+  {
+   "hash": "f7ebc3e",
+   "date": "2026-11-01T19:16:33+02:00",
+   "subject": "feat(chatgpt-ads): ajutine pikslitest (kliendi palvel alates 01.11.2026) — konversioon = kontaktvormi päring (mitte career). OpenAiPixel komponent (oaiq SDK bzrcdn.openai.com-st, debug:true testperioodil tahtlik) renderdub root-shellis, mitte /spsadmn/ ega Vercel preview'des; brauseri-sündmus trackOpenAiConversion(eventId) ContactForm'i päris-õnnestumisel (form-conversion.ts); serveripoolne Conversions API lib/openai-ads-server.ts after()-ga lib/actions.ts kontaktvormi õnnestumise teel (no-op kuni OPENAI_CONVERSIONS_API_KEY on env'is; ei viska kunagi viga — sama muster nagu Turnstile'il). Dedup: jagatud eventId form-<uuid> — server genereerib (newOpenAiEventId), tagastab FormState'is, piksel saab event_id-na ja CAPI id-na, ilma selleta loendaks OpenAI brauseri+serveri sündmuse kahekordselt. oppref klikiviide: landing-URL-i ?oppref= või piksli __oppref küpsis (oppref.ts, 30p first-party) -> hidden vormiväli -> CAPI sündmus (sanitizeOppref base64url-tähestik, originaali EI muudeta) — ilma ei omistata serveri-sündmust reklaamklõpsule. Pikslid + payload builder lib/openai-ads.ts. CSP proxy.ts-is: bzrcdn.openai.com script-src + bzr/bzrcdn.openai.com connect-src/img-src (eemaldada koos piksliga). Võtme gotcha: CAPI võti peab olema Ads Manager -> Conversions kaardi Conversions API võti (scope ads.third_party_events.write) — tavaline sk-svcacct teenuskonto võti annab 401 (testitud 01.11). Nädalaraporti e-kirjas sektsioon 'ChatGPT Ads — pikslitest' (chatGptAdsSection email-html.ts): kontaktpäringute arv perioodil + CAPI olek + küsimus kliendile, kas test jätkub. 5 uut testi (openai-ads.test.ts), npm test 180/180 + i18n OK, tsc puhas, eslint 0 viga, puhas build OK. AGENTS.md uuendatud.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/OpenAiPixel.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/form-conversion.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/oppref.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/openai-ads.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/openai-ads-server.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/openai-ads.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
   {
    "hash": "caeeafe",
    "date": "2026-10-30T15:40:00+02:00",
