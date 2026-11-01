@@ -305,11 +305,13 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
 }
 
 /**
- * „Kaardi nähtavus (geo-grid)“ — kohalik Maps-positsioon 27 fikseeritud
- * mõõtepunktis (geogrid.ts). Deltad on eelmise nädala raporti vastu ja
- * arvutatud juba genereerimisel. Keskmise koha puhul on MADALAM parem
- * (leidmata punkt = 21). Puudub, kui Places API pole seadistatud või
- * raport on vanast formaadist.
+ * „Kaardi nähtavus (Google Maps, geo-grid)“ — kohalik Maps-positsioon 27
+ * fikseeritud mõõtepunktis (geogrid.ts). Deltad on eelmise nädala raporti
+ * vastu ja arvutatud juba genereerimisel. Keskmise koha puhul on MADALAM
+ * parem (leidmata punkt = 21). Puudub, kui Places API pole seadistatud või
+ * raport on vanast formaadist. Mõõdab teadlikult Maps'i/äriprofiili
+ * nähtavust — GSC orgaanilise otsingu positsioonidega (Top päringud)
+ * EI pea kattuma; sektsioon ütleb selle ka lugejale sõnaselgelt.
  */
 function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } {
   const fmtRank = (n: number) => n.toFixed(1).replace(".", ",")
@@ -343,11 +345,11 @@ function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } 
     .map((h, i) => `<th style="padding:6px 10px;font-size:12px;color:#5a6474;text-align:${i === 0 ? "left" : "right"};font-weight:bold">${h}</th>`)
     .join("")
   const html =
-    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Kaardi nähtavus (geo-grid)</h2>` +
-    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Kohalik positsioon ${geogrid.keywords[0]?.points.length ?? 27} Tallinna/Harjumaa mõõtepunktis (Google Places API, ~1,5 km bias). Keskmine: leidmata punkt loetakse kohaks 21 — madalam on parem. Interaktiivne kaart ja vaba märksõna mõõtmine on admini täisraportis.</p>` +
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Kaardi nähtavus (Google Maps, geo-grid)</h2>` +
+    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Kohalik positsioon ${geogrid.keywords[0]?.points.length ?? 27} Tallinna/Harjumaa mõõtepunktis (Google Places API, ~1,5 km bias). Keskmine: leidmata punkt loetakse kohaks 21 — madalam on parem. Mõõdab Google Maps'i (äriprofiili) nähtavust, mitte orgaanilist veebiotsingut — Search Console'i positsioonid on teine mõõdik ja need ei pea kattuma. Interaktiivne kaart ja vaba märksõna mõõtmine on admini täisraportis.</p>` +
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden"><tr>${head}</tr>${rows}</table>`
   const text = [
-    "KAARDI NÄHTAVUS (geo-grid, positsioon 27 mõõtepunktis; leidmata = 21)",
+    "KAARDI NÄHTAVUS (Google Maps, geo-grid: positsioon 27 mõõtepunktis; leidmata = 21; ei ole võrreldav orgaanilise otsinguga)",
     ...geogrid.keywords.map((k) => {
       const d = k.deltaAvgRank !== undefined ? ` (${k.deltaAvgRank > 0 ? "+" : ""}${k.deltaAvgRank.toFixed(1)} vs eelm.)` : ""
       return `- ${k.keyword}: keskm. koht ${k.summary.avgRank.toFixed(1)}${d} · top-3 ${k.summary.top3} · top-10 ${k.summary.top10} · leitud ${k.summary.found}/${k.points.length}`

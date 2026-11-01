@@ -113,10 +113,11 @@ export default function GeoGridSection({ geogrid }: { geogrid?: GeoGridData }) {
     <div className="bg-white rounded-2xl p-6 mb-6">
       {/* Pinide numbri sildid Leaflet tooltipi kaudu (inline, admin-only leht) */}
       <style>{`.geo-pin-label{background:transparent!important;border:none!important;box-shadow:none!important;color:#fff;font-weight:700;font-size:12px;text-shadow:0 0 2px rgba(0,0,0,.35)}.geo-pin-label:before{display:none!important}`}</style>
-      <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Kaardi nähtavus (geo-grid)</h2>
+      <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Kaardi nähtavus (Google Maps)</h2>
       <p className="text-[13px] text-[#5a6474] mb-3">
         Kohalik Maps-positsioon {run ? run.points.length : 27} fikseeritud Tallinna/Harjumaa mõõtepunktis (Google Places API, ~1,5 km bias).
         Leidmata punkt = pole esimese 20 seas. Üksikpunkti koht võib Maps rakendusest paar positsiooni erineda — trend on mõõdik, mitte üksikpin.
+        Mõõdab Google Maps&apos;i (äriprofiili) nähtavust, MITTE orgaanilist veebiotsingut — allpool oleva „Top päringud“ tabeli positsioonid (Search Console) on teine mõõdik ja need kaks numbrit EI OLE omavahel võrreldavad.
       </p>
 
       <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -168,7 +169,7 @@ export default function GeoGridSection({ geogrid }: { geogrid?: GeoGridData }) {
           <LeafletMap run={run} />
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-4">
             <div className="bg-[#f8fafc] border border-[#e5eaf0] rounded-xl p-4">
-              <div className="text-[13px] text-[#5a6474]">Keskmine koht</div>
+              <div className="text-[13px] text-[#5a6474]">Keskmine koht (Maps)</div>
               <div className="text-[22px] font-bold text-[#17345a] my-0.5">{fmtRank(run.summary.avgRank)}</div>
               <DeltaNote value={run.deltaAvgRank} invert />
             </div>

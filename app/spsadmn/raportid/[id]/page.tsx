@@ -348,7 +348,7 @@ export default function ReportDetailPage() {
       {families.length > 0 && (
         <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
           <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Märksõnade peatabel</h2>
-          <p className="text-[13px] text-[#5a6474] mb-3">▲ tõus ≥2 kohta · ■ stabiilne · ▼ langus · positsioon = näitamistega kaalutud keskmine · &lt;10 näitamist = müra · Maandumisleht: ✓ = õige leht, ⚠ = vale leht (õige näidatud)</p>
+          <p className="text-[13px] text-[#5a6474] mb-3">▲ tõus ≥2 kohta · ■ stabiilne · ▼ langus · positsioon = GSC orgaanilise otsingu näitamistega kaalutud keskmine (mitte Maps) · &lt;10 näitamist = müra · Maandumisleht: ✓ = õige leht, ⚠ = vale leht (õige näidatud)</p>
           <table className="w-full text-[14px] min-w-[720px]">
             <thead>
               <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
@@ -398,7 +398,11 @@ export default function ReportDetailPage() {
       {/* Top queries */}
       {s.gsc && s.gsc.topQueries.length > 0 && (
         <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
-          <h2 className="text-[18px] font-bold text-[#17345a] mb-3">Top päringud (näitamiste järgi)</h2>
+          <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Top päringud — Google&apos;i orgaaniline otsing (näitamiste järgi)</h2>
+          <p className="text-[13px] text-[#5a6474] mb-3">
+            Search Console&apos;i andmed orgaanilisest veebiotsingust (pos = näitamistega kaalutud keskmine kogu perioodi kohta).
+            See on teine mõõdik kui ülal oleval kaardil: Maps&apos;i positsiooni määrab äriprofiil ja otsija asukoht, orgaanilise positsiooni veebileht — need numbrid ei pea kattuma.
+          </p>
           <table className="w-full text-[14px] min-w-[620px]">
             <thead>
               <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
