@@ -169,5 +169,7 @@ export const formSubmissions = pgTable("form_submissions", {
   serviceKind: text("service_kind").notNull().default(""),
   /** new | contacted | quoted | won | lost | "" (määramata). */
   salesStatus: text("sales_status").notNull().default(""),
+  /** hot | warm | cold | "" (määramata) — admini hinnang päringu kvaliteedile (04.11.2026). */
+  leadQuality: text("lead_quality").notNull().default(""),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })

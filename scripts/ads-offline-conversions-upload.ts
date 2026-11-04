@@ -3,7 +3,7 @@
  * the daily Vercel Cron at app/api/cron/offline-conversions).
  *
  * Usage:
- *   npm run report:offline-conversions-upload              # upload last 14 days
+ *   npm run report:offline-conversions-upload              # upload last 60 days
  *   npm run report:offline-conversions-upload -- --dry-run # print plan, no upload
  *   npx tsx scripts/ads-offline-conversions-upload.ts --since=2026-09-01
  *   npx tsx scripts/ads-offline-conversions-upload.ts --days=30
@@ -26,11 +26,12 @@ const sinceFlag = process.argv.find((a) => a.startsWith("--since="))
 const daysFlag = process.argv.find((a) => a.startsWith("--days="))
 const dryRun = process.argv.includes("--dry-run")
 
+// No flag -> undefined -> lib DEFAULT_WINDOW_DAYS applies (single source of truth).
 const sinceDays = sinceFlag
   ? Math.max(1, Math.round((Date.now() - new Date(`${sinceFlag.slice(8)}T00:00:00Z`).getTime()) / 86_400_000))
   : daysFlag
-    ? Math.max(1, parseInt(daysFlag.slice(7), 10) || 14)
-    : 14
+    ? Math.max(1, parseInt(daysFlag.slice(7), 10) || 60)
+    : undefined
 
 async function main() {
   const { uploadOfflineConversions } = await import("../lib/reporting/offline-conversions")

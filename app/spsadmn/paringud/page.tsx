@@ -25,6 +25,7 @@ interface Submission {
   channel: string
   serviceKind: string
   salesStatus: string
+  leadQuality: string
   createdAt: string
 }
 
@@ -72,6 +73,21 @@ const SALES_STATUS_CLASSES: Record<string, string> = {
   lost: "text-[#8a94a3]",
 }
 
+/** Päringu kvaliteet — admini hinnang (04.11.2026). */
+const LEAD_QUALITY_LABELS: Record<string, string> = {
+  "": "–",
+  hot: "Kuum",
+  warm: "Soe",
+  cold: "Külm",
+}
+
+const LEAD_QUALITY_CLASSES: Record<string, string> = {
+  "": "text-[#8a94a3]",
+  hot: "text-[#dc2626] font-bold",
+  warm: "text-[#8a5a00]",
+  cold: "text-[#5a6474]",
+}
+
 const FORM_FILTER_OPTIONS = [
   { value: "", label: "Kõik" },
   { value: "contact", label: "Kontaktivorm" },
@@ -100,7 +116,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 140, 130, 130, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 140, 130, 130, 110, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -115,6 +131,7 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "Allikas" },
   { label: "Teenus" },
   { label: "Staatus" },
+  { label: "Kvaliteet" },
   { label: "Tasu", headerClass: "text-right" },
   { label: "Kasum", headerClass: "text-right" },
   { label: "Märkused" },
@@ -441,8 +458,8 @@ export default function AdminSubmissionsPage() {
       .finally(() => setLoading(false))
   }, [queryString, refreshKey])
 
-  /** Teenuse liik / müügistaatus — kohene salvestus rippmenüüst. */
-  const saveSalesFields = async (id: number, fields: { serviceKind?: string; salesStatus?: string }) => {
+  /** Teenuse liik / müügistaatus / kvaliteet — kohene salvestus rippmenüüst. */
+  const saveSalesFields = async (id: number, fields: { serviceKind?: string; salesStatus?: string; leadQuality?: string }) => {
     const prev = submissions.find((r) => r.id === id)
     setSubmissions((rows) => rows.map((r) => (r.id === id ? { ...r, ...fields } : r)))
     setSaveStatus((p) => ({ ...p, [id]: "saving" }))
@@ -749,7 +766,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={13} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={14} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -852,6 +869,18 @@ export default function AdminSubmissionsPage() {
                           </select>
                         </td>
                         <td className="px-4 py-3">
+                          <select
+                            aria-label="Päringu kvaliteet"
+                            value={s.leadQuality}
+                            onChange={(e) => saveSalesFields(s.id, { leadQuality: e.target.value })}
+                            className={`w-full text-[15px] px-2 py-1.5 rounded-lg bg-white border border-[rgba(23,52,90,0.12)] outline-none focus:border-[#5ab5da] cursor-pointer ${LEAD_QUALITY_CLASSES[s.leadQuality] ?? ""}`}
+                          >
+                            {Object.entries(LEAD_QUALITY_LABELS).map(([value, label]) => (
+                              <option key={value} value={value}>{label}</option>
+                            ))}
+                          </select>
+                        </td>
+                        <td className="px-4 py-3">
                           <input
                             type="text"
                             inputMode="decimal"
@@ -892,6 +921,7 @@ export default function AdminSubmissionsPage() {
                       </>
                     ) : (
                       <>
+                        <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474] text-right">–</td>

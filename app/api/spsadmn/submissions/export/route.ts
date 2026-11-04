@@ -28,6 +28,13 @@ const SALES_STATUS_LABELS: Record<string, string> = {
   lost: "Kadunud",
 }
 
+/** Päringu kvaliteet (04.11.2026) — sama nimetus kui paringud-adminis. */
+const LEAD_QUALITY_LABELS: Record<string, string> = {
+  hot: "Kuum",
+  warm: "Soe",
+  cold: "Külm",
+}
+
 const LOCALE_LABELS: Record<string, string> = {
   et: "ET",
   en: "EN",
@@ -63,6 +70,7 @@ const CSV_HEADER = [
   "Allikas",
   "Teenus",
   "Staatus",
+  "Kvaliteet",
   "GCLID",
 ]
 
@@ -111,6 +119,7 @@ function toRow(s: FormSubmission): string[] {
     sourceLabel(s.source),
     SERVICE_KIND_LABELS[s.serviceKind] ?? "",
     SALES_STATUS_LABELS[s.salesStatus] ?? "",
+    LEAD_QUALITY_LABELS[s.leadQuality] ?? "",
     s.gclid,
   ]
 }

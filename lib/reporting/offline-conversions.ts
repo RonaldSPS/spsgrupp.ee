@@ -36,8 +36,15 @@ const ADS_API_VERSION = "v25"
 const ADWORDS_SCOPE = "https://www.googleapis.com/auth/adwords"
 const DATAMANAGER_SCOPE = "https://www.googleapis.com/auth/datamanager"
 const DEFAULT_ACTION_NAME = "Vormipäring (gclid offline import)"
-/** Trailing re-upload window — transactionId keeps daily uploads idempotent. */
-const DEFAULT_WINDOW_DAYS = 14
+/**
+ * Trailing re-upload window — transactionId keeps daily uploads idempotent.
+ * 60 days (not 14): DM API treats a re-ingested transactionId as a conversion
+ * ADJUSTMENT and overwrites conversionValue/currency, so a Tasu value the admin
+ * enters weeks after the inquiry still reaches Ads (verified against the DM API
+ * conversion-adjustments docs 04.11.2026; gclid uploads must stay within 90
+ * days of the click). Retractions are NOT supported by the DM API.
+ */
+const DEFAULT_WINDOW_DAYS = 60
 
 export interface OfflineUploadSummary {
   candidates: number

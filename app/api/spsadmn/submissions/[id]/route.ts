@@ -10,6 +10,8 @@ const AMOUNT_RE = /^-?\d{1,10}(\.\d{1,2})?$/
 /** Müügitoru väljade lubatud väärtused (26.10.2026). */
 const SERVICE_KINDS = new Set(["", "maintenance", "oneoff", "other"])
 const SALES_STATUSES = new Set(["", "new", "contacted", "quoted", "won", "lost"])
+/** Päringu kvaliteedi lubatud väärtused (04.11.2026): "" = määramata. */
+const LEAD_QUALITIES = new Set(["", "hot", "warm", "cold"])
 
 /** Returns normalized decimal string, "" for empty (clears the value), or null when invalid. */
 function parseAmount(value: unknown): string | null {
@@ -69,6 +71,12 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
           return noStoreResponse(JSON.stringify({ error: "Invalid salesStatus" }), 400)
         }
         fields.salesStatus = body.salesStatus
+      }
+      if ("leadQuality" in body) {
+        if (typeof body.leadQuality !== "string" || !LEAD_QUALITIES.has(body.leadQuality)) {
+          return noStoreResponse(JSON.stringify({ error: "Invalid leadQuality" }), 400)
+        }
+        fields.leadQuality = body.leadQuality
       }
       if (Object.keys(fields).length === 0) {
         return noStoreResponse(JSON.stringify({ error: "No fields to update" }), 400)

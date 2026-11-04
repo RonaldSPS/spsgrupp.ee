@@ -440,6 +440,16 @@ rows without a fee upload as count-only conversions.
 Plaan ja elluviimise logi: `raportid/google-ads-analuus-ja-paralleelne-test-2026-10-14.md`
 (§6 = tehniline logi koos kampaania-ID-dega).
 
+> **SEIS 01.11.2026: KÕIK 3 P26 kampaaniat on PEATATUD** (kliendi otsus pärast
+> SEO/Ads-spetsialisti põhikampaania-auditi vastust; skript
+> `scripts/ads-p26-pause-2026-11-01.ts`). Põhjus: 13 kattuvat märksõna+vastetüübi
+> kombot põhikampaaniaga + spetsialisti ≥14p max-click stabiliseerimisaken
+> (testi „stabiilse baasi" eeldus puudub) + P26 tõestamata tulemus
+> (viim 14p ~€64, 32 klikki, 0 konv). Struktuur/sildid/ajalugu säilivad —
+> taaskäivitus on üks ENABLED-lülitus; ülevaatus koos spetsialistiga ~17.11.2026.
+> Allpool kirjeldatud „aktiivne test" kehtib ajaloole; `hooldus:p26` ja raporti
+> P26-vs-baseline tabel on uinunud (null-metrikad) kuni taasaktiveerimiseni.
+
 - **Loodud 16.10.2026, kõik PEATATUNA** — käivitamine = ENABLED lülitus Ads UI-s
   kliendi kinnitusel. Skript: `npm run setup:ads-p26` (`scripts/ads-p26-setup.ts`),
   `--dry-run` trükib kõik operatsioonid saatmata, `--repair` täiendab puuduvad

@@ -32,6 +32,8 @@ export interface FormSubmissionInput {
   serviceKind?: string
   /** new | contacted | quoted | won | lost | "" — müügistaatus. */
   salesStatus?: string
+  /** hot | warm | cold | "" — päringu kvaliteet (admini hinnang, 04.11.2026). */
+  leadQuality?: string
 }
 
 export interface FormSubmission {
@@ -59,6 +61,7 @@ export interface FormSubmission {
   channel: string
   serviceKind: string
   salesStatus: string
+  leadQuality: string
   createdAt: string
 }
 
@@ -69,6 +72,7 @@ export interface FormSubmissionFinancials {
   notes?: string
   serviceKind?: string
   salesStatus?: string
+  leadQuality?: string
 }
 
 export interface FormSubmissionFilter {
@@ -101,7 +105,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
     const parsed = JSON.parse(raw)
     const rows = Array.isArray(parsed) ? parsed : parsed?.submissions
     if (!Array.isArray(rows)) return []
-    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid/source/channel existed.
+    // Tolerate rows written before fee/profit/notes/isSpam/pageUrl/gclid/source/channel/leadQuality existed.
     return rows.map((row) => ({
       ...row,
       fee: normalizeAmount(row.fee),
@@ -114,6 +118,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       channel: typeof row.channel === "string" && row.channel ? row.channel : "form",
       serviceKind: typeof row.serviceKind === "string" ? row.serviceKind : "",
       salesStatus: typeof row.salesStatus === "string" ? row.salesStatus : "",
+      leadQuality: typeof row.leadQuality === "string" ? row.leadQuality : "",
     }))
   } catch {
     return []
@@ -150,6 +155,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     channel: input.channel ?? "form",
     serviceKind: input.serviceKind ?? "",
     salesStatus: input.salesStatus ?? "",
+    leadQuality: input.leadQuality ?? "",
   })
 }
 
@@ -179,6 +185,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     channel: input.channel ?? "form",
     serviceKind: input.serviceKind ?? "",
     salesStatus: input.salesStatus ?? "",
+    leadQuality: input.leadQuality ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -259,6 +266,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     channel: row.channel ?? "form",
     serviceKind: row.serviceKind ?? "",
     salesStatus: row.salesStatus ?? "",
+    leadQuality: row.leadQuality ?? "",
     createdAt: row.createdAt.toISOString(),
   }))
 }
@@ -292,6 +300,7 @@ async function updateInDb(id: number, data: FormSubmissionFinancials): Promise<v
   if (data.notes !== undefined) set.notes = data.notes
   if (data.serviceKind !== undefined) set.serviceKind = data.serviceKind
   if (data.salesStatus !== undefined) set.salesStatus = data.salesStatus
+  if (data.leadQuality !== undefined) set.leadQuality = data.leadQuality
   if (Object.keys(set).length === 0) return
   await db.update(formSubmissions).set(set).where(eq(formSubmissions.id, id))
 }
@@ -305,6 +314,7 @@ async function updateInJson(id: number, data: FormSubmissionFinancials): Promise
   if (data.notes !== undefined) row.notes = data.notes
   if (data.serviceKind !== undefined) row.serviceKind = data.serviceKind
   if (data.salesStatus !== undefined) row.salesStatus = data.salesStatus
+  if (data.leadQuality !== undefined) row.leadQuality = data.leadQuality
   await writeJsonRows(rows)
   return true
 }

@@ -50,6 +50,10 @@ export const NEGATIVE_KEYWORDS_MAINTENANCE =
  * eraldi märksõnad, kõik loodud PEATATUNA ja käivituvad alles kliendi
  * kinnitusega. Kampaaniaid tunneb nime prefiksist; nädalaraport kuvab
  * testi tulemused eraldi ja võrdleb praeguse seadistusega.
+ * SEIS 01.11.2026: KÕIK 3 P26 kampaaniat PEATATUD kliendi otsusel
+ * (scripts/ads-p26-pause-2026-11-01.ts; SEO/Ads-spetsialisti stabiliseerimis-
+ * akna ajaks, 13 kattuvat märksõna põhikampaaniaga, tõestamata tulemus).
+ * Ülevaatus ~17.11.2026; raporti p26-tabel näitab null-metrikaid.
  */
 export const ADS_P26_PREFIX = "P26 ·"
 
