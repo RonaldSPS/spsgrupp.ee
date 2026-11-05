@@ -53,6 +53,14 @@ export default function RelatedServices({
             {p.label[locale]}
           </Link>
         ))}
+        {locale === "et" && (
+          <Link
+            href="/kliendilood/"
+            className="inline-block rounded-full border border-[#17345a]/15 bg-white px-4 py-2 text-[15px] font-medium text-[#17345a] no-underline transition-colors hover:bg-[#17345a] hover:text-white"
+          >
+            Kliendilood
+          </Link>
+        )}
       </div>
     </section>
   )

@@ -305,13 +305,15 @@ export async function proxy(request: NextRequest) {
   }
 
   // ET pages live at unprefixed URLs but render from the app/[locale] tree.
-  // Rewrite them to the internal /et prefix (blog stays ET-direct in
-  // app/(et), admin lives in app/spsadmn with its own GTM-free root layout,
-  // /en and /ru keep their prefixes, files are untouched). Server
-  // action POSTs to page URLs take the same path so they resolve correctly.
+  // Rewrite them to the internal /et prefix (blog and kliendilood stay
+  // ET-direct in app/(et), admin lives in app/spsadmn with its own GTM-free
+  // root layout, /en and /ru keep their prefixes, files are untouched).
+  // Server action POSTs to page URLs take the same path so they resolve
+  // correctly.
   const isPublicEtPath =
     !normalizedPathname.startsWith("/api/") &&
     !normalizedPathname.startsWith("/blog") &&
+    !normalizedPathname.startsWith("/kliendilood") &&
     // Ahrefs verification route must serve as-is, not rewrite to /et
     !normalizedPathname.startsWith("/ahrefs_") &&
     normalizedPathname !== "/en" &&

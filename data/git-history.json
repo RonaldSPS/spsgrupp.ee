@@ -1,6 +1,84 @@
 {
- "generatedAt": "2026-11-01T17:35:11.169Z",
+ "generatedAt": "2026-11-05T18:18:19.758Z",
  "commits": [
+  {
+   "hash": "69a248d",
+   "date": "2026-11-04T16:38:46+02:00",
+   "subject": "feat(paringud): päringu kvaliteet + Ads'i offline-konversioonide 60p väärtuse-restatement aken (kliendi tellimus 04.11.2026)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/[id]/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0015_submission_lead_quality.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-ads-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-forms-filter.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/offline-conversions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/strategy.ts"
+    },
+    {
+     "s": "M",
+     "p": "scripts/ads-offline-conversions-upload.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-p26-pause-2026-11-01.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-verify-2026-11-01.ts"
+    }
+   ]
+  },
+  {
+   "hash": "de9328f",
+   "date": "2026-11-01T19:35:19+02:00",
+   "subject": "chore(raport): git-history uuendatud — 01.11 deploy-commitid (chatgpt-ads pikslitest + geo-grid/Top-päringute eraldus) kaasatud, et 6.11 nädalaraporti 'Lehekülje arendus' sektsioon neid näeks (CLI deploydel pole VERCEL_GIT_* sünteesi, committitud fail on ainus allikas)",
+   "files": [
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    }
+   ]
+  },
   {
    "hash": "6453dec",
    "date": "2026-11-01T19:17:17+02:00",

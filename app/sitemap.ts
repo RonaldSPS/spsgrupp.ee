@@ -3,6 +3,7 @@ import { promises as fs } from "fs"
 import { execSync } from "child_process"
 import path from "path"
 import { getBlogPostsWithEdits } from "@/app/(et)/blog/data"
+import { getCaseStudiesWithEdits } from "@/app/(et)/kliendilood/data"
 import { getAllPaths } from "@/lib/page-registry"
 import { isAnnouncementExpired } from "@/lib/announcements"
 import { localizePath, localizedPaths, type Locale } from "@/lib/slug-map"
@@ -78,7 +79,7 @@ async function getEditorialDate(urlPath: string, ...filePaths: string[]): Promis
 function priorityForPath(urlPath: string): number {
   if (urlPath === "/") return 1
   if (urlPath === "/kontakt" || urlPath === "/koristusteenus" || urlPath === "/sps-grupp") return 0.9
-  if (urlPath.startsWith("/blog/") || urlPath.startsWith("/tule-meile-toole/")) return 0.7
+  if (urlPath.startsWith("/blog/") || urlPath.startsWith("/kliendilood/") || urlPath.startsWith("/tule-meile-toole/")) return 0.7
   if (urlPath === "/andmekaitsetingimused") return 0.5
   return 0.8
 }
@@ -118,7 +119,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   for (const etPath of getAllPaths()) {
     const lastModified = await getEditorialDate(etPath)
-    if (etPath === "/blog") {
+    if (etPath === "/blog" || etPath === "/kliendilood") {
+      // ET-only sections (no EN/RU alternates).
       await addEntry(etPath, lastModified)
       continue
     }
@@ -144,6 +146,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     await addEntry(
       `/blog/${post.slug}`,
       isNaN(postDate.getTime()) ? new Date() : postDate,
+    )
+  }
+
+  const caseStudies = await getCaseStudiesWithEdits()
+  for (const story of caseStudies) {
+    const storyDate = new Date(story.datePublished)
+    await addEntry(
+      `/kliendilood/${story.slug}`,
+      isNaN(storyDate.getTime()) ? new Date() : storyDate,
     )
   }
 

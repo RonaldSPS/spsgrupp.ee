@@ -5,6 +5,7 @@ import Logos from "../../components/Logos";
 import Services from "../../components/Services";
 import Testimonials from "../../components/Testimonials";
 import Industries from "../../components/Industries";
+import CaseStudiesSection from "../../components/CaseStudiesSection";
 import Trust from "../../components/Trust";
 import FAQ from "../../components/FAQ";
 import ContactForm from "../../components/ContactForm";
@@ -77,6 +78,9 @@ export default function Home() {
         <section data-section="testimonials">
           <Testimonials animDelay={300} />
         </section>
+        {/* ET-only (rootLocale gate) - deliberately no data-section: the i18n
+            parity check compares data-section counts across locales. */}
+        <CaseStudiesSection />
         <section data-section="industries">
           <Industries animDelay={400} />
         </section>

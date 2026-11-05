@@ -45,6 +45,7 @@ const registry: Record<string, PageEntry> = {
   '/koristusteenus/valikoristus/muruniitmine': { load: () => import('@/app/_pages/koristusteenus/valikoristus/muruniitmine/page').then((m) => m.default) },
   '/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus': { load: () => import('@/app/_pages/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus/page').then((m) => m.default) },
   '/blog': { load: () => import('@/app/(et)/blog/page').then((m) => m.default) },
+  '/kliendilood': { load: () => import('@/app/(et)/kliendilood/page').then((m) => m.default) },
 }
 
 export async function getPage(etPath: string): Promise<ComponentType<Record<string, unknown>> | undefined> {

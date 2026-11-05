@@ -12,6 +12,31 @@ export const blogEdits = pgTable("blog_edits", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
 
+/**
+ * Admin-edits overlay for case studies (base content lives in
+ * app/(et)/kliendilood/stories.ts - same pattern as blog_edits).
+ * id = story id (string, e.g. "estravel-kontor"). facts/faq are stored as the
+ * admin-edited text formats (see lib/case-study-format.ts).
+ */
+export const caseStudyEdits = pgTable("case_study_edits", {
+  id: text("id").primaryKey(),
+  title: text("title"),
+  slug: text("slug"),
+  excerpt: text("excerpt"),
+  heroImage: text("hero_image"),
+  metaTitle: text("meta_title"),
+  metaDescription: text("meta_description"),
+  tldrHtml: text("tldr_html"),
+  bodyHtml: text("body_html"),
+  quoteText: text("quote_text"),
+  quoteAuthor: text("quote_author"),
+  quoteRole: text("quote_role"),
+  factsText: text("facts_text"),
+  faqText: text("faq_text"),
+  active: boolean("active").notNull().default(true),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+})
+
 export const blogTranslations = pgTable("blog_translations", {
   id: serial("id").primaryKey(),
   blogId: integer("blog_id").notNull(),

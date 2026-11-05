@@ -44,6 +44,7 @@ export default function Navbar() {
       { href: "/sps-grupp/arvamused/", label: t('nav.opinions') },
     ]},
     ...(locale === 'et' ? [{ href: "/blog/", label: t('nav.blog') }] : []),
+    ...(locale === 'et' ? [{ href: "/kliendilood/", label: t('nav.caseStudies') }] : []),
     { href: "/kontakt/", label: t('nav.contact') },
   ]
 

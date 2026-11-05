@@ -29,9 +29,10 @@ interface Props {
 export async function generateStaticParams() {
   const current = (await rootLocale()) as Locale
   if (current === 'et') {
-    // '/blog' is a real route under app/(et)/blog and never reaches this tree.
+    // '/blog' and '/kliendilood' are real routes under app/(et)/... and never
+    // reach this tree.
     return getAllPaths()
-      .filter((etPath) => etPath !== '/blog')
+      .filter((etPath) => etPath !== '/blog' && etPath !== '/kliendilood')
       .map((etPath) => ({ slug: etPath === '/' ? undefined : etPath.slice(1).split('/') }))
   }
   return localizedPages.map((page) => ({

@@ -72,6 +72,7 @@ export const publicPages: PublicPageEntry[] = [
   { etPath: '/koristusteenus/valikoristus/muruniitmine', en: '/outdoor-cleaning-and-grounds-care/lawn-mowing', ru: '/уборка-и-обслуживание-территорий/стрижка-газонов', parent: '/koristusteenus/valikoristus', heroImage: '/muruniitmine-1.webp', localized: true },
   { etPath: '/koristusteenus/valikoristus/tanavakivide-pesu-ja-hooldus', en: '/outdoor-cleaning-and-grounds-care/paving-stone-cleaning', ru: '/уборка-и-обслуживание-территорий/мойка-тротуарной-плитки', parent: '/koristusteenus/valikoristus', heroImage: '/tanavakividepesu-1.jpg', localized: true },
   { etPath: '/blog', en: null, ru: null, localized: false },
+  { etPath: '/kliendilood', en: null, ru: null, localized: false },
 ]
 
 export const publicPageByEtPath: Record<string, PublicPageEntry> = Object.fromEntries(

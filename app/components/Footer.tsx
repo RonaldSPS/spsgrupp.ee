@@ -115,17 +115,18 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
             </div>
 
             <ul className="flex flex-col gap-1 list-none mt-4 mb-6">
-              {(["comeToWork", "spsGrupp", "blog", "contact"] as const).filter((key) => key !== "blog" || locale === "et").map((key) => {
+              {(["comeToWork", "spsGrupp", "blog", "caseStudies", "contact"] as const).filter((key) => (key !== "blog" && key !== "caseStudies") || locale === "et").map((key) => {
                 const hrefMap: Record<string, string> = {
                   comeToWork: "/tule-meile-toole",
                   spsGrupp: "/sps-grupp",
                   blog: "/blog",
+                  caseStudies: "/kliendilood",
                   contact: "/kontakt",
                 }
                 return (
                   <li key={key}>
                     <Link href={localeHref(hrefMap[key])} className="text-white/65 text-[15px] no-underline hover:text-[#85cbe9]">
-                      {n(key === "comeToWork" ? "comeToWork" : key === "spsGrupp" ? "spsGrupp" : key === "blog" ? "blog" : "contact")}
+                      {n(key === "comeToWork" ? "comeToWork" : key === "spsGrupp" ? "spsGrupp" : key === "blog" ? "blog" : key === "caseStudies" ? "caseStudies" : "contact")}
                     </Link>
                   </li>
                 )
