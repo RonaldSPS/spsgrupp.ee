@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
 import Logos from "../../components/Logos";
+import ServiceColumns from "../../components/ServiceColumns";
 import Services from "../../components/Services";
 import Testimonials from "../../components/Testimonials";
 import Industries from "../../components/Industries";
@@ -72,8 +73,8 @@ export default function Home() {
         <section data-section="logos">
           <Logos animDelay={100} />
         </section>
-        <section data-section="trust">
-          <Trust animDelay={200} />
+        <section data-section="service-columns">
+          <ServiceColumns animDelay={200} />
         </section>
         <section data-section="testimonials">
           <Testimonials animDelay={300} />
@@ -81,21 +82,24 @@ export default function Home() {
         {/* ET-only (rootLocale gate) - deliberately no data-section: the i18n
             parity check compares data-section counts across locales. */}
         <CaseStudiesSection />
+        <section data-section="trust">
+          <Trust animDelay={400} />
+        </section>
         <section data-section="industries">
-          <Industries animDelay={400} />
+          <Industries animDelay={500} />
         </section>
         <section data-section="services">
-          <Services animDelay={500} />
+          <Services animDelay={600} />
         </section>
         <SpsInNumbers />
         <section data-section="contact-form">
-          <ContactForm animDelay={600} />
+          <ContactForm animDelay={700} />
         </section>
         <section data-section="faq">
-          <FAQ animDelay={700} />
+          <FAQ animDelay={800} />
         </section>
       </main>
-      <Footer animDelay={800} />
+      <Footer animDelay={900} />
     </>
   );
 }

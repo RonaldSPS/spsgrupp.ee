@@ -1,6 +1,137 @@
 {
- "generatedAt": "2026-11-06T13:43:43.999Z",
+ "generatedAt": "2026-11-06T16:12:00.617Z",
  "commits": [
+  {
+   "hash": "546b95e",
+   "date": "2026-11-06T16:01:00+02:00",
+   "subject": "feat(turundus): 06.11 nädalaraporti tagasiside rakendatud — ChatGPT Ads pikslitest lõpetatud ja eemaldatud (OpenAiPixel/oppref/openai-ads(+server)/test kustutatud, CSP bzr.openai.com+bzrcdn.openai.com eemaldatud proxy.ts-st, oppref/CAPI loogika actions.ts-st ja ContactForm'ist, raporti sektsioon email-html.ts-st; Vercel env OPENAI_CONVERSIONS_API_KEY kustutada käsitsi). P26 test lõpetatud kliendi otsusel — võrdlustabel eemaldatud e-kirjast ja admini detailist, LLM-digesti p26/baseline väljad ja ads.ts split eemaldatud, peatatud P26-kampaaniad ei ilmu enam raporti kampaaniate tabelisse (snapshot'i p26/baseline säilivad vanadel raportitel). Hoolduskoristuse Ads-maksumus nüüd indoor-only (kliendi palve: korteriühistu hoovi välikoristus pole 'meile sobiv' päring) — maintenanceCostLine + CPL-insight + LLM-digest kannavad eraldust, välikoristus tuuakse tekstis eraldi välja. Ads: 8 uut phrase-negatiivset (peokaunistused, rendiise, auto puhastusvahendid, fairy puhastuslapid, becky, krausberg, kodukoristusteenus + kodu koristusteenus) kõigile 3 aktiivsele otsingukampaaniale (scripts/ads-negatives-2026-11-06.ts, idempotentne, ENABLED SEARCH kampaaniad dünaamiliselt; kodukoristusteenus teadlik B2C-välistus — konverteeris, aga pole põhieesmärk). SEO: hoolduskoristus kannibaliseerimise vastu — post-9003 lõppu selge CTA + link teenuselehele (prepared+generated peegeldatud, regen puhas), teenuselehe ET title hinna-ankruga (layout+registry syncis) + FAQ täpne hinnapäring ET/EN/RU (FAQPage 9); kontori-koristus laiendatud (hinnanäited 200/500/1000 m², +2 FAQ koos en/ru tõlgetega q7/a7/q8/a8, faq-loop 0..8); /puhastusteenused ET title CTR-rünnak (2026 + tõendid). Blogi: uus 9016 'Kuidas planeerida kontori koristuse sagedust ja eelarvet?' (avaldatud 06.11; anti-kanibaliseerimise reeglid täidetud — Kuidas-muster, teenuselehe link intro 500 märgi sees, lõpu-CTA /koristusteenus/kontori-koristus/). 3 uut CPL testi, npm test 178/178 + i18n OK, tsc puhas, eslint 0 viga, puhas build OK + renderduse verifikatsioon HTML-ist. AGENTS.md uuendatud.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/puhastusteenused/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "D",
+     "p": "app/components/analytics/OpenAiPixel.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/form-conversion.ts"
+    },
+    {
+     "s": "D",
+     "p": "app/components/analytics/oppref.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "D",
+     "p": "lib/__tests__/openai-ads.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-ads-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "D",
+     "p": "lib/openai-ads-server.ts"
+    },
+    {
+     "s": "D",
+     "p": "lib/openai-ads.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/ads.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/strategy.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ads-negatives-2026-11-06.ts"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    }
+   ],
+   "filesTruncated": true,
+   "newPosts": [
+    "Kuidas planeerida kontori koristuse sagedust ja eelarvet?"
+   ]
+  },
   {
    "hash": "315186e",
    "date": "2026-11-05T20:38:16+02:00",

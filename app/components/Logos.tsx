@@ -4,37 +4,39 @@ import Image from "next/image"
 import { useTranslations } from "next-intl"
 import ScrollAnimation from "./ScrollAnimation"
 
-const logos = [
-  "21kool.png",
-  "abakhan.png",
-  "bestair.png",
-  "city-motors.png",
-  "decora.png",
-  "draudimas.png",
-  "eften.png",
-  "elering.png",
-  "ericsson.png",
-  "infoauto.png",
-  "leibur.png",
-  "maxima.png",
-  "mustikas.png",
-  "mustikas2.png",
-  "myfitness.png",
-  "Nordichotels.png",
-  "norma.png",
-  "prike.png",
-  "proekspert.png",
-  "puumarket.png",
-  "ra.png",
-  "rimi.png",
-  "sokos.png",
-  "storz.png",
-  "talleks.png",
-  "taltech.png",
-  "teledyne.png",
-  "uponor.png",
-  "veho.png",
-  "zoo.png"
+// w = logo box width in px (default 152). Wide wordmarks get a wider box so
+// they render at a comparable visual height to the more compact logos.
+const logos: { file: string; w?: number }[] = [
+  { file: "21kool.png" },
+  { file: "abakhan.png" },
+  { file: "bestair.png" },
+  { file: "city-motors.png", w: 150 },
+  { file: "decora.png" },
+  { file: "draudimas.png" },
+  { file: "eften.png" },
+  { file: "elering.png" },
+  { file: "ericsson.png" },
+  { file: "infoauto.png" },
+  { file: "leibur.png" },
+  { file: "maxima.png" },
+  { file: "mustikas.png", w: 100 },
+  { file: "mustikas2.png", w: 155 },
+  { file: "myfitness.png", w: 150 },
+  { file: "Nordichotels.png", w: 160 },
+  { file: "norma.png", w: 155 },
+  { file: "prike.png" },
+  { file: "proekspert.png", w: 210 },
+  { file: "puumarket.png" },
+  { file: "ra.png" },
+  { file: "rimi.png" },
+  { file: "sokos.png", w: 220 },
+  { file: "storz.png" },
+  { file: "talleks.png" },
+  { file: "taltech.png" },
+  { file: "teledyne.png" },
+  { file: "uponor.png" },
+  { file: "veho.png" },
+  { file: "zoo.png" }
 ]
 
 export default function Logos({ animDelay }: { animDelay?: number }) {
@@ -48,12 +50,15 @@ export default function Logos({ animDelay }: { animDelay?: number }) {
             key={i}
             className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-60 transition-all hover:opacity-90 min-w-[203px] sm:min-w-[270px]"
           >
-            <span className="relative block h-[85px] w-[152px]">
+            <span
+              className="relative block h-[85px]"
+              style={{ width: logo.w ?? 152 }}
+            >
               <Image
-                src={`/logod/${logo}`}
+                src={`/logod/${logo.file}`}
                 alt=""
                 fill
-                sizes="152px"
+                sizes={`${logo.w ?? 152}px`}
                 className="object-contain"
               />
             </span>
