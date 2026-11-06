@@ -256,6 +256,17 @@
   ],
   "posts": [
     {
+      "id": 9016,
+      "title": "Kuidas planeerida kontori koristuse sagedust ja eelarvet?",
+      "slug": "kontori-koristuse-sagedus-ja-eelarve-planeerimine",
+      "date": "2026-11-06 12:00:00",
+      "language": "et",
+      "featuredImage": "/kontorikoristus1.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
       "id": 9015,
       "title": "Miks eskalaatorite astmevahed ja käsipuud vajavad süvapuhastuseks eritehnikat?",
       "slug": "miks-eskalaatorite-astmevahed-ja-kasipuud-vajavad-eritehnikat",

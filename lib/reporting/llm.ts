@@ -31,7 +31,7 @@ ${STRATEGY_CONTEXT}
 - Päris päringud (vormide DB) on konversioonitõde, mitte GA4 key events. Eesmärk ≥15 kontaktpäringut/kuu.
 - forms.leads: nädala kontaktpäringute klassifikatsioon regulaarse hoolduskoristuse suhtes (yes = selge korduvus/sagedus sõnumis, likely = ettevõtte äripinna koristus ilma ühekordse märgita, no = ühekordne/muu). Too „Kokkuvõttes“ ALATI eraldi välja, mitu päringutest soovisid regulaarset hoolduskoristust (see on kliendi põhieesmärk) — koos teenuse liigi jaotusega: maintenanceIndoor = siseruumide äripinnad, maintenanceOutdoor = välikoristus (kliendi palve 23.10.2026: neid EI TOHI kokku liita, nt „hoolduspäringuid 2: siseruumides 1, välikoristus 1"). Tööotsingud (forms.jobSeekers) ja testpäringud on kontaktide arvust VÄLJA jäetud — ära loe neid päringuteks; kui jobSeekers > 0, märgi see ühe lausega ära (läbipaistvus).
 - Ads'i „conversions" on nõusolekurežiimi tõttu alampiir — kui forms.gclidLeads > 0, aga ads.conversions = 0, selgita seda nõusolekuga, mitte mõõtmistõrkena.
-- ads.conversionsForm / conversionsContact / conversionsOther jaotavad Ads'i konversioonid: päris vormipäringud vs telefoni/e-posti klikid (EI OLE hinnapäringud) vs muu; null = jaotust pole. Kliendi püsipalve: hinnapäringud tuleb telefoni/e-posti klikkidest ALATI eristada. forms.maintenanceViaAds = Adsist tulnud hoolduskoristuse päringud (yes+likely) ja forms.adsCostPerMaintenanceLead = nende maksumus €/päring (null, kui polnud) — kui pole null, too „Kokkuvõttes“ hoolduskoristuse päringute maksumus eraldi välja.
+- ads.conversionsForm / conversionsContact / conversionsOther jaotavad Ads'i konversioonid: päris vormipäringud vs telefoni/e-posti klikid (EI OLE hinnapäringud) vs muu; null = jaotust pole. Kliendi püsipalve: hinnapäringud tuleb telefoni/e-posti klikkidest ALATI eristada. forms.maintenanceViaAds = Adsist tulnud siseruumide (äripindade) hoolduskoristuse päringud (yes+likely, välikoristus EI lähe arvesse — kliendi palve 06.11.2026: nt korteriühistu hoovi välikoristus ei ole „meile sobiv" hoolduskoristuse päring) ja forms.adsCostPerMaintenanceLead = nende maksumus €/päring (null, kui polnud) — kui pole null, too „Kokkuvõttes“ hoolduskoristuse päringute maksumus eraldi välja.
 - GSC positsioon = näitamistega kaalutud keskmine. <10 näitamist/nädal = statistiline müra, mitte trend.
 - Äsja lisatud lehed: /koristusteenus/hoolduskoristus/ ja /puhastusteenused/suurpuhastus/.
 - Märksõnaperekonnad kattuvad teadlikult; ±2 positsiooni = stabiilne.
@@ -109,10 +109,6 @@ interface Digest {
      *  brand spend and must not be reported as such. */
     searchTermsCoveragePct: number | null
     topTerms: { term: string; cost: number; clicks: number; conversions: number }[]
-    /** P26 paralleeltest (AI-juhitud, praegust seadistust EI mõjuta) — eraldi statistika. */
-    p26?: { cost: number; clicks: number; impressions: number; conversions: number; campaigns: string[] } | null
-    /** Praegune seadistus ilma P26-ta — aus võrdlus testiga. */
-    baseline?: { cost: number; clicks: number; impressions: number; conversions: number } | null
   }
   forms?: {
     contact: number
@@ -127,7 +123,7 @@ interface Digest {
     /** Hoolduspäringute (yes+likely) jaotus: siseruumide äripinnad vs välikoristus (kliendi palve 23.10.2026 — kajastada eraldi). */
     maintenanceIndoor: number
     maintenanceOutdoor: number
-    /** Hoolduskoristuse päringud (yes+likely), mis tulid Adsist. */
+    /** Adsist tulnud SISERUUMIDE (äripindade) hoolduskoristuse päringud (yes+likely, välikoristus välja arvatud — kliendi palve 06.11.2026). */
     maintenanceViaAds: number
     /** Ads-kulu ÷ maintenanceViaAds (null, kui Ads-hoolduspäringuid polnud). */
     adsCostPerMaintenanceLead: number | null
@@ -223,29 +219,15 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       nonBrandCost: r1(a.nonBrand.cost),
       searchTermsCoveragePct: a.totals.cost > 0 ? r1(((a.brand.cost + a.nonBrand.cost) / a.totals.cost) * 100) : null,
       topTerms: a.topTerms.slice(0, 15).map((t) => ({ term: t.term, cost: r1(t.cost), clicks: t.clicks, conversions: r1(t.conversions) })),
-      p26: a.p26
-        ? {
-            cost: r1(a.p26.totals.cost),
-            clicks: a.p26.totals.clicks,
-            impressions: a.p26.totals.impressions,
-            conversions: r1(a.p26.totals.conversions),
-            campaigns: a.p26.campaigns.map((c) => c.name),
-          }
-        : null,
-      baseline: a.baseline
-        ? {
-            cost: r1(a.baseline.totals.cost),
-            clicks: a.baseline.totals.clicks,
-            impressions: a.baseline.totals.impressions,
-            conversions: r1(a.baseline.totals.conversions),
-          }
-        : null,
     }
   }
 
   if (snapshot.forms) {
     const leads = snapshot.forms.leads ?? []
-    const maintenanceViaAds = leads.filter((l) => l.maintenance !== "no" && l.viaAds).length
+    /* Kliendi palve 06.11.2026: välikoristuse päringud (korteriühistu hoov,
+     * kõnniteed jm) EI OLE „meile sobivad" hoolduskoristuse päringud — Ads'i
+     * maksumus arvutatakse ainult siseruumide äripindade päringutelt. */
+    const maintenanceViaAds = leads.filter((l) => l.maintenance !== "no" && l.serviceKind !== "outdoor" && l.viaAds).length
     const adsCost = snapshot.ads?.available ? snapshot.ads.totals.cost : null
     d.forms = {
       contact: snapshot.forms.current.contact,

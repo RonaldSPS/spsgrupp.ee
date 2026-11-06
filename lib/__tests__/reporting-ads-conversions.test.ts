@@ -29,12 +29,13 @@ function makeAds(breakdown: AdsConversionBreakdown[] | undefined, cost = 174.29)
   }
 }
 
-function makeLead(maintenance: LeadRow["maintenance"], viaAds: boolean): LeadRow {
+function makeLead(maintenance: LeadRow["maintenance"], viaAds: boolean, serviceKind?: LeadRow["serviceKind"]): LeadRow {
   return {
     id: 1,
     createdAt: "2026-09-30T10:00:00.000Z",
     company: "Test OÜ",
     maintenance,
+    serviceKind,
     viaAds,
     source: viaAds ? "google_ads" : "organic:google",
     pageUrl: "https://spsgrupp.ee/",
@@ -75,16 +76,40 @@ test("maintenanceCostLine: Ads-hoolduspäringu maksumus = kulu ÷ päringud", ()
   )
   assert.ok(line)
   assert.match(line!, /174,29 €\/päring/)
-  assert.match(line!, /1 Adsist tulnud hoolduspäringut/)
+  assert.match(line!, /1 Adsist tulnud äripindade \(siseruumide\) hoolduspäringut/)
   assert.match(line!, /üle kanalite kokku 2\)\./)
 })
 
 test("maintenanceCostLine: Ads-hoolduspäringuid pole -> maksumust ei jaga", () => {
   const line = maintenanceCostLine([makeLead("yes", false)], makeAds([], 150))
   assert.ok(line)
-  assert.match(line!, /Adsist hoolduskoristuse päringuid sel perioodil ei tulnud/)
+  assert.match(line!, /Adsist äripindade \(siseruumide\) hoolduskoristuse päringuid sel perioodil ei tulnud/)
   assert.match(line!, /150,00 €/)
-  assert.match(line!, /üle kanalite oli hoolduspäringuid 1\./)
+  assert.match(line!, /üle kanalite oli siseruumide hoolduspäringuid 1\./)
+})
+
+/* Kliendi palve 06.11.2026: välikoristuse päringud (korteriühistu hoov jm)
+ * EI lähe hoolduskoristuse maksumuse arvestusse — tuuakse eraldi välja. */
+test("maintenanceCostLine: välikoristuse Ads-päring ei lähe CPL-i ja kajastub eraldi", () => {
+  const line = maintenanceCostLine(
+    [makeLead("yes", true, "outdoor")],
+    makeAds([], 188.24),
+  )
+  assert.ok(line)
+  assert.match(line!, /ei tulnud \(Ads-kulu 188,24 €\)/)
+  assert.match(line!, /1 välikoristuse päring — see kajastub eraldi/)
+  assert.ok(!line!.includes("/päring —"))
+})
+
+test("maintenanceCostLine: välikoristus segane hulgas ei moonuta indoor-maksumust", () => {
+  const line = maintenanceCostLine(
+    [makeLead("yes", true), makeLead("yes", true, "outdoor"), makeLead("likely", false)],
+    makeAds([], 300),
+  )
+  assert.ok(line)
+  assert.match(line!, /300,00 €\/päring/) // kulu ÷ 1 indoor Ads-päring (mitte 2)
+  assert.match(line!, /üle kanalite kokku 2\)/) // indoor kokku (outdoor ei loe)
+  assert.match(line!, /1 välikoristuse päring(ut)? — see kajastub eraldi/)
 })
 
 test("maintenanceCostLine: Ads andmed puuduvad või kulu 0 -> null", () => {

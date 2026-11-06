@@ -116,7 +116,7 @@ const etText: OfficeCleaningText = {
   ],
   pricingTag: "Hind",
   pricingHeading: "Millest sõltub kontori koristuse hind?",
-  pricingDescription: "Kontori koristuse hind kujuneb nelja teguri põhjal: pindala, koristuse sagedus, töötajate arv ja eritööde vajadus.",
+  pricingDescription: "Kontori koristuse hind kujuneb nelja teguri põhjal: pindala, koristuse sagedus, töötajate arv ja eritööde vajadus. Orienteeruv hind on alates 1,20 €/m² kuus - näiteks 200 m² kontor algab umbes 240 € kuus, 500 m² umbes 600 € ja 1000 m² umbes 1200 € kuus. Mida suurem pind ja sagedasem koristus, seda soodsam on m² hind.",
   pricingNote: "<strong>TASUTA AUDIT enne lepingu algust</strong><br />Kaardistame teie kontori eripärad ja vajadused<br /><br /><b>Personaalne kliendihaldur</b> on teie kontaktisik, kes tunneb teie ettevõtet ning teostab regulaarseid kontrollkäike.",
   testimonialsTag: "Klientide tagasiside",
   testimonialsHeading: "Mida ütlevad meie kontorikliendid",
@@ -146,6 +146,8 @@ const etText: OfficeCleaningText = {
     { q: "Kui kiiresti saab kontorikoristusega alustada?", a: "Pärast tasuta objekti ülevaatust saadame hinnapakkumise ühe tööpäeva jooksul. Koristustööd algavad tavaliselt 1–2 nädala jooksul pärast lepingu sõlmimist - täpne aeg sõltub objekti mahust ja meeskonna saadavusest." },
     { q: "Kui palju maksab kontori koristus kuus?", a: "Hind sõltub pindalast, koristuse sagedusest ja tööde mahust ning algab 1,20 €/m² kuus. Näitena orienteeruvalt: 600 m² suuruse kontori regulaarne koristus algab umbes 720 € kuus ja väiksemad kontorid vastavalt soodsamalt. Täpse hinna kinnitame tasuta objekti ülevaatuse järel." },
     { q: "Milline on kontorikoristuse miinimummaht?", a: "Üldist miinimummahtu me ei sea - teeme lepinguid nii väiksemate kui suuremate büroodega, sest ka väiksem objekt võib olla molemale poolele tasuv. Iga objekti puhul hindame tasuta ülevaatusel pindala, sageduse ja tööde mahu ning teeme selle põhjal personaalse pakkumise." },
+    { q: "Kuidas kontori koristuse eelarvet planeerida?", a: "Lähtuge pindalast ja koristuse sagedusest - hind algab 1,20 €/m² kuus. Orienteeruvalt on 200 m² kontor umbes 240 € kuus, 500 m² umbes 600 € ja 1000 m² umbes 1200 € kuus; mida suurem pind ja tihedam graafik, seda soodsam on m² hind. Perioodilised tööd nagu akende pesu või põrandate süvapesu tasub planeerida eraldi, näiteks kord kvartalis või kaks korda aastas. Täpse summa kinnitame tasuta objekti ülevaatusel." },
+    { q: "Kas hinnas sisalduvad puhastusvahendid ja tarvikud?", a: "Jah. Lepingulise kontori koristuse hinnas on töö, puhastusvahendid ja seadmed ning kokkulepitud ulatuses ka hügieenitarvikute (tualettpaber, vedelseep, käterätid) täiendamine. Kui soovite tarvikud ise soetada, kohandame hinda vastavalt." },
   ],
 };
 
@@ -245,7 +247,7 @@ function localizedText(locale: Exclude<Locale, "et">): OfficeCleaningText {
     ] as [string, string]),
     footerTitle: str(footerCta.title) || etText.footerTitle,
     footerDescription: str(footerCta.description) || etText.footerDescription,
-    faq: [0, 1, 2, 3, 4, 5, 6].map((index) => ({
+    faq: [0, 1, 2, 3, 4, 5, 6, 7, 8].map((index) => ({
       q: str(faq[`q${index}`]) || etText.faq[index].q,
       a: str(faq[`a${index}`]) || etText.faq[index].a,
     })),

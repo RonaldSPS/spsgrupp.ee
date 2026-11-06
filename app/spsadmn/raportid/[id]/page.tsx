@@ -500,59 +500,6 @@ export default function ReportDetailPage() {
         </div>
       )}
 
-      {/* P26 paralleeltest vs praegune seadistus (AI-juhitud test, praegust setup'i EI mõjuta) */}
-      {s.ads?.available && s.ads.p26 && (
-        <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
-          <h2 className="text-[18px] font-bold text-[#17345a] mb-1">Paralleelne test (P26) vs praegune seadistus</h2>
-          <p className="text-[13px] text-[#5a6474] mb-3">
-            AI-juhitud test (fookus: hoolduskoristus B2B) töötab eraldi eelarve ja märksõnadega — praegust seadistust see ei mõjuta.
-            Päringute (DB) jaotumine kahe seadistuse vahel selgub gclid-seoste kaudu; Ads&apos;i „konv“ on consent-mode&apos;i tõttu alampiir.
-          </p>
-          {(s.ads.p26.totals.impressions === 0 && s.ads.p26.totals.cost === 0) && (
-            <p className="text-[13px] text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mb-3">
-              P26 kampaaniad on loodud <strong>peatatuna</strong> — käivituvad kliendi kinnituse järel; kulu ja liiklus on ootuspäraselt 0.
-            </p>
-          )}
-          <table className="w-full text-[14px] min-w-[560px]">
-            <thead>
-              <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
-                <th className="py-2 pr-3 font-medium">Seadistus</th>
-                <th className="py-2 pr-3 font-medium text-right">Kulu</th>
-                <th className="py-2 pr-3 font-medium text-right">Klikid</th>
-                <th className="py-2 pr-3 font-medium text-right">CPC</th>
-                <th className="py-2 pr-3 font-medium text-right">Konv (Ads)</th>
-                <th className="py-2 font-medium text-right">Näitamised</th>
-              </tr>
-            </thead>
-            <tbody>
-              {s.ads.baseline && (
-                <tr className="border-b border-[#f4f6f9]">
-                  <td className="py-2 pr-3 text-[#17345a]">Praegune seadistus</td>
-                  <td className="py-2 pr-3 text-right">{fmtMoney(s.ads.baseline.totals.cost)}</td>
-                  <td className="py-2 pr-3 text-right">{s.ads.baseline.totals.clicks}</td>
-                  <td className="py-2 pr-3 text-right">{s.ads.baseline.totals.clicks > 0 ? fmtMoney(s.ads.baseline.totals.cost / s.ads.baseline.totals.clicks) : "–"}</td>
-                  <td className="py-2 pr-3 text-right">{s.ads.baseline.totals.conversions.toFixed(1).replace(".", ",")}</td>
-                  <td className="py-2 text-right">{s.ads.baseline.totals.impressions}</td>
-                </tr>
-              )}
-              <tr className="border-b border-[#f4f6f9] last:border-0">
-                <td className="py-2 pr-3 font-medium text-[#17345a]">P26 test</td>
-                <td className="py-2 pr-3 text-right">{fmtMoney(s.ads.p26.totals.cost)}</td>
-                <td className="py-2 pr-3 text-right">{s.ads.p26.totals.clicks}</td>
-                <td className="py-2 pr-3 text-right">{s.ads.p26.totals.clicks > 0 ? fmtMoney(s.ads.p26.totals.cost / s.ads.p26.totals.clicks) : "–"}</td>
-                <td className="py-2 pr-3 text-right">{s.ads.p26.totals.conversions.toFixed(1).replace(".", ",")}</td>
-                <td className="py-2 text-right">{s.ads.p26.totals.impressions}</td>
-              </tr>
-            </tbody>
-          </table>
-          <ul className="mt-3 pl-5 list-disc text-[13px] text-[#4a5568]">
-            {s.ads.p26.campaigns.map((c) => (
-              <li key={c.name}>{c.name} — {c.status.toLowerCase()}, {fmtMoney(c.cost)}, {c.clicks} klikki</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
       {/* Ads conversions by action — hinnapäringud vs telefon/e-post klikid (kliendi palve 01.10.2026) */}
       {s.ads?.available && s.ads.conversionBreakdown !== undefined && (
         <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">

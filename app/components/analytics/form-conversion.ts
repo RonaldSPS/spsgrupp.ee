@@ -35,24 +35,3 @@ export function pushFormSubmissionSuccess(payload: {
     user_data: { email: payload.email },
   })
 }
-
-/**
- * Ajutine ChatGPT Ads konversioonisündmus (pikslitest alates 01.11.2026).
- * Kutsutakse AINULT kontaktvormi päris-õnnestumisel (spam fake-success'id
- * välistatud, career-vormi ei loeta konversiooniks — kliendi definitsioon).
- * No-op, kui piksel pole (veel) laadinud — SDK laekumisel jääb saatmata,
- * serveripoolne Conversions API katab sama sündmuse.
- *
- * eventId on serveri genereeritud jagatud dedup-id: sama id saadetakse ka
- * Conversions API kaudu, nii et OpenAI loeb brauseri+serveri paari üheks
- * konversiooniks (esimene saabunud võidab, duplikaat ignoreeritakse).
- */
-export function trackOpenAiConversion(eventId?: string) {
-  if (typeof window === "undefined") return
-  if (typeof window.oaiq !== "function") return
-  if (eventId) {
-    window.oaiq("measure", "registration_completed", { type: "customer_action" }, { event_id: eventId })
-  } else {
-    window.oaiq("measure", "registration_completed", { type: "customer_action" })
-  }
-}

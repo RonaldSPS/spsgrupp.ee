@@ -419,8 +419,11 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
 
   if (c.gclidLeads > 0 && ads?.available && ads.totals.cost > 0) {
     const cpl = ads.totals.cost / c.gclidLeads
-    const maintAds = leads.filter((l) => l.maintenance !== "no" && l.viaAds).length
-    const maintNote = ` Adsiga seotud (gclid/allikas) hoolduskoristuse-suunalisi: ${maintAds}${maintAds > 0 ? ` — maksumus ${(ads.totals.cost / maintAds).toFixed(2).replace(".", ",")} €/päring` : ""}.`
+    /* Kliendi palve 06.11.2026: Ads'i maksumus ainult SISERUUMIDE (äripindade)
+     * hoolduspäringutelt — välikoristuse päringud tuuakse eraldi välja. */
+    const maintAds = leads.filter((l) => l.maintenance !== "no" && l.serviceKind !== "outdoor" && l.viaAds).length
+    const outdoorAds = leads.filter((l) => l.maintenance !== "no" && l.serviceKind === "outdoor" && l.viaAds).length
+    const maintNote = ` Adsiga seotud (gclid/allikas) äripindade hoolduskoristuse-suunalisi: ${maintAds}${maintAds > 0 ? ` — maksumus ${(ads.totals.cost / maintAds).toFixed(2).replace(".", ",")} €/päring` : ""}${outdoorAds > 0 ? `; lisaks ${outdoorAds} välikoristuse päring (eraldi, ei lähe maksumuse arvestusse)` : ""}.`
     out.push({
       area: "forms",
       severity: cpl > 80 ? "warning" : "positive",

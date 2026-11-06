@@ -1,12 +1,9 @@
 "use server"
 
-import { after } from "next/server"
 import { headers } from "next/headers"
 import { checkRateLimit } from "@/lib/rate-limit"
 import { sendEmail, type EmailAttachment } from "@/lib/email"
 import { saveFormSubmission, hasRecentSubmission } from "@/lib/form-submissions"
-import { newOpenAiEventId, sendOpenAiConversion } from "@/lib/openai-ads-server"
-import { sanitizeOppref } from "@/lib/openai-ads"
 import { assessSubmission } from "@/lib/spam"
 import { isTurnstileEnabled, verifyTurnstileToken } from "@/lib/turnstile"
 import { AUTOREPLY_DEFAULTS } from "@/lib/autoreply-defaults"
@@ -240,12 +237,6 @@ interface FormState {
    * GTM `form_submit` conversion event for these.
    */
   isSpam?: boolean
-  /**
-   * Ajutine ChatGPT Ads test: jagatud dedup-id — ContactForm annab selle
-   * pikslile (event_id) ja sama id läheb Conversions API-le, nii et OpenAI
-   * ei loenda brauseri- ja serveri-sündmust kahekordselt.
-   */
-  openAiEventId?: string
 }
 
 type ActionLocale = "et" | "en" | "ru"
@@ -534,8 +525,6 @@ export async function submitContactForm(
   const pageUrl = sanitizePageUrl(formData.get("page_url"))
   const gclid = sanitizeGclid(formData.get("gclid"))
   const source = sanitizeSource(formData.get("source"))
-  // ChatGPT Ads klikiviide (oppref) — omistab serveri-sündmuse reklaamklõpsule.
-  const oppref = sanitizeOppref(formData.get("oppref"))
 
   const errors: string[] = []
 
@@ -651,18 +640,7 @@ export async function submitContactForm(
     }
   }
 
-  // Ajutine ChatGPT Ads test: serveripoolne konversioonisündmus (Conversions
-  // API) iga päris kontaktvormi päringu kohta. Sama eventId läheb kliendile
-  // piksli jaoks tagasi — OpenAI dedupleerib brauseri/serveri paari selle
-  // alusel. after() — ei blokeeri vormi vastust; no-op kuni
-  // OPENAI_CONVERSIONS_API_KEY on seadistatud.
-  const openAiEventId = newOpenAiEventId()
-  after(async () => {
-    const capi = await sendOpenAiConversion({ pageUrl, eventId: openAiEventId, oppref })
-    if (!capi.sent) console.warn("ChatGPT Ads conversion event not sent:", capi.error)
-  })
-
-  return { success: true, openAiEventId }
+  return { success: true }
 }
 
 export async function submitCareerForm(

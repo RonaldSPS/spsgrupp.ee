@@ -12,8 +12,8 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Regulaarne kontorikoristus igas suuruses büroodele Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
   },
   '/koristusteenus/hoolduskoristus': {
-    title: 'Hoolduskoristus Tallinnas - äripindade regulaarne koristus | SPS Grupp',
-    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Kindel personal, ISO 9001.',
+    title: 'Hoolduskoristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp',
+    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Tasuta objekti ülevaatus, pakkumine 1 tööpäevaga. ISO 9001.',
   },
   '/puhastusteenused/suurpuhastus': {
     title: 'Suurpuhastus Tallinnas - süvapuhastus äripindadele | SPS Grupp',
@@ -68,8 +68,8 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Professionaalne tänavakivide pesu, liivaprits ja hooldus. Taastame pinnakatte esialgse välimuse.',
   },
   '/puhastusteenused': {
-    title: 'Puhastusteenused Tallinnas - alates 1 €/m² | SPS Grupp',
-    description: 'Suurpuhastus, põrandate süvapesu ja ehitusjärgne koristus äriklientidele Tallinnas ja Harjumaal. Tasuta hindamine - pakkumine 1 tööpäevaga!',
+    title: 'Puhastusteenused Tallinnas 2026 - alates 1 €/m² | SPS Grupp',
+    description: 'Suurpuhastus, põrandate süvapesu ja ehitusjärgne koristus äriklientidele Tallinnas ja Harjumaal. Tasuta hindamine - pakkumine 1 tööpäevaga! 300+ töötajat, ISO 9001.',
   },
   '/puhastusteenused/ehitusjargne-koristus': {
     title: 'Ehitusjärgne koristus Tallinnas - tasuta hindamine | SPS Grupp',

@@ -48,12 +48,12 @@ export const NEGATIVE_KEYWORDS_MAINTENANCE =
  * P26 paralleeltest (plaan: raportid/google-ads-analuus-ja-paralleelne-test-2026-10-14.md):
  * AI-juhitud kampaaniad PRAEGUST seadistust muutmata — eraldi eelarve,
  * eraldi märksõnad, kõik loodud PEATATUNA ja käivituvad alles kliendi
- * kinnitusega. Kampaaniaid tunneb nime prefiksist; nädalaraport kuvab
- * testi tulemused eraldi ja võrdleb praeguse seadistusega.
- * SEIS 01.11.2026: KÕIK 3 P26 kampaaniat PEATATUD kliendi otsusel
- * (scripts/ads-p26-pause-2026-11-01.ts; SEO/Ads-spetsialisti stabiliseerimis-
- * akna ajaks, 13 kattuvat märksõna põhikampaaniaga, tõestamata tulemus).
- * Ülevaatus ~17.11.2026; raporti p26-tabel näitab null-metrikaid.
+ * kinnitusega. Kampaaniaid tunneb nime prefiksist.
+ * SEIS 06.11.2026: test on LÕPETATUD kliendi otsusel (kampaaniad PEATUD
+ * 01.11.2026, scripts/ads-p26-pause-2026-11-01.ts) — nädalaraport EI eralda
+ * P26-t enam (võrdlustabel ja LLM-digesti väljad eemaldatud; snapshot'i
+ * p26/baseline väljad jäävad vanade raportite jaoks alles). Prefiks jääb
+ * kehtima, kui kampaaniad kunagi taasaktiveeritakse.
  */
 export const ADS_P26_PREFIX = "P26 ·"
 

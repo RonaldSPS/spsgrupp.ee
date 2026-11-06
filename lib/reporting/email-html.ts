@@ -36,15 +36,27 @@ const fmtConv = (n: number) => n.toFixed(1).replace(".", ",")
 /**
  * Hoolduskoristuse päringute maksumus Adsist (kliendi palve 01.10.2026 —
  * tuua raportis eraldi välja). null, kui Ads'i andmed puuduvad või kulu on 0.
+ *
+ * Kliendi palve 06.11.2026: VÄLIKORISTUSE päringud (nt korteriühistu hoov,
+ * kõnniteed, parklad) EI OLE „meile sobivad" äripindade hoolduskoristuse
+ * päringud — need tuuakse eraldi välja ja Ads'i kulu ei jagata nende peale.
+ * Maksumus arvutatakse seega ainult siseruumide (indoor) hoolduspäringutelt.
  */
 export function maintenanceCostLine(leads: LeadRow[], ads: AdsData | null | undefined): string | null {
   if (!ads?.available || ads.totals.cost <= 0) return null
-  const maintTotal = leads.filter((l) => l.maintenance !== "no").length
-  const maintAds = leads.filter((l) => l.maintenance !== "no" && l.viaAds).length
+  /* serviceKind puudub vanadel raportitel — määramata loetakse indoor'iks
+   * (välikoristus peab olema sõnaselge, vt forms.ts classifyServiceKind). */
+  const isIndoorMaint = (l: LeadRow) => l.maintenance !== "no" && l.serviceKind !== "outdoor"
+  const maintTotal = leads.filter(isIndoorMaint).length
+  const maintAds = leads.filter((l) => isIndoorMaint(l) && l.viaAds).length
+  const outdoorAds = leads.filter((l) => l.maintenance !== "no" && l.serviceKind === "outdoor" && l.viaAds).length
+  const outdoorNote = outdoorAds > 0
+    ? ` Lisaks tuli Adsist ${outdoorAds} välikoristuse päring${outdoorAds === 1 ? "" : "ut"} — see kajastub eraldi ega lähe äripindade hoolduskoristuse maksumuse arvestusse.`
+    : ""
   if (maintAds > 0) {
-    return `Hoolduskoristuse päringute maksumus Adsist: ${fmtEur(ads.totals.cost / maintAds)}/päring — perioodi Ads-kulu ${fmtEur(ads.totals.cost)} ÷ ${maintAds} Adsist tulnud hoolduspäringut (üle kanalite kokku ${maintTotal}).`
+    return `Hoolduskoristuse päringute maksumus Adsist: ${fmtEur(ads.totals.cost / maintAds)}/päring — perioodi Ads-kulu ${fmtEur(ads.totals.cost)} ÷ ${maintAds} Adsist tulnud äripindade (siseruumide) hoolduspäringut (üle kanalite kokku ${maintTotal}).${outdoorNote}`
   }
-  return `Adsist hoolduskoristuse päringuid sel perioodil ei tulnud (Ads-kulu ${fmtEur(ads.totals.cost)})${maintTotal > 0 ? ` — üle kanalite oli hoolduspäringuid ${maintTotal}` : ""}.`
+  return `Adsist äripindade (siseruumide) hoolduskoristuse päringuid sel perioodil ei tulnud (Ads-kulu ${fmtEur(ads.totals.cost)})${maintTotal > 0 ? ` — üle kanalite oli siseruumide hoolduspäringuid ${maintTotal}` : ""}.${outdoorNote}`
 }
 
 const SEV_META: Record<Insight["severity"], { label: string; color: string; bg: string }> = {
@@ -407,94 +419,6 @@ function gbpCalendarSection(tasks: GbpWeekTasks, calendar: GbpCalendar): { html:
   return { html, text }
 }
 
-/**
- * „ChatGPT Ads — pikslitest" — ajutine jälgimispiksel (kliendi palvel alates
- * 01.11.2026). Konversioon = kontaktvormi päring; sündmus läheb brauserist
- * (piksel) ja serverist (Conversions API, kui OPENAI_CONVERSIONS_API_KEY on
- * seatud). Klikid/näitamised/kulu on nähtavad ainult ChatGPT Ads'i
- * armatuurlaual — meie raport näitab, mitu konversioonisündmust saadeti,
- * ja küsib kliendilt, kas test jätkub. Eemaldatakse koos piksliga.
- */
-function chatGptAdsSection(forms: FormsData | null | undefined): { html: string; text: string[] } {
-  const current = forms?.current.contact
-  const previous = forms?.previous.contact
-  const capiActive = Boolean(process.env.OPENAI_CONVERSIONS_API_KEY)
-  const countsLine =
-    current !== undefined
-      ? `Kontaktvormi päringuid sel perioodil: ${current}${previous !== undefined ? ` (eelmine periood: ${previous})` : ""} — iga päris päring saadab pikslile ühe konversioonisündmuse.`
-      : "Päringute andmed sel perioodil puuduvad."
-  const capiLine = capiActive
-    ? "Serveripoolne saatmine (Conversions API): aktiivne."
-    : "Serveripoolne saatmine (Conversions API): ootab API võtit (OPENAI_CONVERSIONS_API_KEY) — seni toimub mõõtmine ainult brauseri piksliga."
-  const questionBox = `<p style="font-size:14px;color:#92400e;background:#fef3c7;border-radius:8px;padding:10px 12px;margin:10px 0"><strong>Kas jätkame ChatGPT Ads testi?</strong> Kui armatuurlaua tulemused rahuldavad, jätame piksli — vastasel juhul eemaldame selle ja serveriühenduse.</p>`
-  const html =
-    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">ChatGPT Ads — pikslitest (ajutine)</h2>` +
-    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Jälgimispiksel on lehel alates 01.11.2026; konversiooniks loetakse kontaktvormi päringut (sündmus „registration_completed"). Klikkide, näitamiste ja kulu tulemusi näeb ChatGPT Ads'i armatuurlaualt — siinne raport neid automaatselt ei tõmba.</p>` +
-    `<ul style="margin:6px 0 0;padding-left:18px">` +
-    `<li style="margin:4px 0;font-size:14px;color:#17345a">${escapeHtml(countsLine)}</li>` +
-    `<li style="margin:4px 0;font-size:14px;color:#17345a">${escapeHtml(capiLine)}</li>` +
-    `</ul>` +
-    questionBox
-  const text = [
-    "CHATGPT ADS — PIKSLITEST (ajutine, alates 01.11.2026; konversioon = kontaktvormi päring)",
-    `- ${countsLine}`,
-    `- ${capiLine}`,
-    "- Klikid, näitamised ja kulu: ChatGPT Ads'i armatuurlaud (raport neid ei tõmba).",
-    "KAS JÄTKAME ChatGPT Ads testi? Kui tulemused rahuldavad, jätame piksli — vastasel juhul eemaldame.",
-    "",
-  ]
-  return { html, text }
-}
-
-/**
- * „Paralleelne test (P26) vs praegune seadistus" — AI-juhitud testkampaaniate
- * eraldi statistika ja aus võrdlus olemasoleva seadistusega (plaan 14.10.2026:
- * test ei muuda praegust setup'i — eraldi eelarve, märksõnad, kampaaniad).
- * Kuvatakse ainult siis, kui snapshot'is on p26-andmed (test loodud).
- */
-function p26Section(ads: AdsData): { html: string; text: string[] } {
-  const p26 = ads.p26!
-  const base = ads.baseline
-  const active = p26.totals.impressions > 0 || p26.totals.cost > 0
-  const cpc = (t: { cost: number; clicks: number }) => (t.clicks > 0 ? fmtEur(t.cost / t.clicks) : "–")
-  const head = ["Seadistus", "Kulu", "Klikid", "CPC", "Konv (Ads)", "Näitamised"]
-    .map((h, i) => `<th style="padding:6px 8px;font-size:12px;color:#5a6474;text-align:${i === 0 ? "left" : "right"};font-weight:bold">${h}</th>`)
-    .join("")
-  const row = (label: string, t: { cost: number; clicks: number; impressions: number; conversions: number }, bold: boolean) =>
-    `<tr>` +
-    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;color:#17345a;${bold ? "font-weight:bold" : ""}">${escapeHtml(label)}</td>` +
-    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${fmtEur(t.cost)}</td>` +
-    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${t.clicks}</td>` +
-    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${cpc(t)}</td>` +
-    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${fmtConv(t.conversions)}</td>` +
-    `<td style="padding:7px 8px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${t.impressions}</td>` +
-    `</tr>`
-  const campaignList = p26.campaigns
-    .map((c) => `<li style="margin:2px 0;font-size:13px;color:#4a5568">${escapeHtml(c.name)} — ${escapeHtml(c.status.toLowerCase())}, ${fmtEur(c.cost)}, ${c.clicks} klikki</li>`)
-    .join("")
-  const statusNote = active
-    ? ""
-    : `<p style="font-size:13px;color:#92400e;background:#fef3c7;border-radius:8px;padding:8px 12px;margin:8px 0">P26 kampaaniad on loodud <strong>peatatuna</strong> — käivituvad kliendi kinnituse järel; kulu ja liiklus on seega ootuspäraselt 0.</p>`
-  const html =
-    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">Paralleelne test (P26) vs praegune seadistus</h2>` +
-    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">AI-juhitud test (fookus: hoolduskoristus B2B) töötab eraldi eelarve ja märksõnadega — praegust seadistust see <strong>ei mõjuta</strong>. Hinnatakse samade mõõdupuudega; päringute (DB) jaotumine kahe seadistuse vahel selgub gclid-seoste kaudu, Ads'i „konv" on consent-mode'i tõttu alampiir.</p>` +
-    statusNote +
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden"><tr>${head}</tr>` +
-    (base ? row("Praegune seadistus", base.totals, false) : "") +
-    row("P26 test", p26.totals, true) +
-    `</table>` +
-    `<ul style="margin:8px 0 0;padding-left:18px">${campaignList}</ul>`
-  const text = [
-    "PARALLEELNE TEST (P26) VS PRAEGUNE SEADISTUS (test ei mõjuta praegust setup'i)",
-    ...(active ? [] : ["P26 kampaaniad on loodud PEATATUNA — käivituvad kliendi kinnituse järel (kulu ja liiklus 0)."]),
-    ...(base ? [`- Praegune seadistus: kulu ${fmtEur(base.totals.cost)} · ${base.totals.clicks} klikki · CPC ${cpc(base.totals)} · konv (Ads) ${fmtConv(base.totals.conversions)} · ${base.totals.impressions} näitamist`] : []),
-    `- P26 test: kulu ${fmtEur(p26.totals.cost)} · ${p26.totals.clicks} klikki · CPC ${cpc(p26.totals)} · konv (Ads) ${fmtConv(p26.totals.conversions)} · ${p26.totals.impressions} näitamist`,
-    ...p26.campaigns.map((c) => `  · ${c.name} — ${c.status.toLowerCase()}, ${fmtEur(c.cost)}, ${c.clicks} klikki`),
-    "",
-  ]
-  return { html, text }
-}
-
 export async function buildReportEmail(report: StoredReport, adminUrl: string): Promise<{ subject: string; html: string; text: string }> {
   const s = report.snapshot
   const subject = `SPS nädalaraport ${s.period.start} – ${s.period.end}`
@@ -551,8 +475,6 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
-  const p26 = s.ads?.available && s.ads.p26 ? p26Section(s.ads) : { html: "", text: [] as string[] }
-  const chatGptAds = chatGptAdsSection(s.forms)
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
   const gbpCalendar = await loadGbpCalendar()
@@ -571,8 +493,6 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   ${errorsNote}
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
   ${leads.html}
-  ${p26.html}
-  ${chatGptAds.html}
   ${geo.html}
   ${narrativeHtml}
   ${changes.html}
@@ -593,8 +513,6 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
     "",
   ]
   textLines.push(...leads.text)
-  textLines.push(...p26.text)
-  textLines.push(...chatGptAds.text)
   textLines.push(...geo.text)
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")

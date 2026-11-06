@@ -1,6 +1,129 @@
 {
- "generatedAt": "2026-11-05T18:18:19.758Z",
+ "generatedAt": "2026-11-06T13:43:43.999Z",
  "commits": [
+  {
+   "hash": "315186e",
+   "date": "2026-11-05T20:38:16+02:00",
+   "subject": "feat(kliendilood): /kliendilood sektsioon — hub + 3 kliendilugu (Estravel/Fazer/LogistikaPluss) + admin + avalehe slider (kliendi tellimus 05.11.2026)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/kliendilood/CaseStudyGrid.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/kliendilood/[slug]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/kliendilood/data.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/kliendilood/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/(et)/kliendilood/stories.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/[[...slug]]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/kliendilood/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/components/CaseStudiesSection.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/CaseStudiesSlider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/RelatedServices.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/sitemap.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/AdminShell.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/kliendilood/[id]/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/kliendilood/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "data/admin-case-study-edits.json"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0016_case_study_edits.sql"
+    },
+    {
+     "s": "A",
+     "p": "lib/case-study-format.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/page-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
   {
    "hash": "69a248d",
    "date": "2026-11-04T16:38:46+02:00",
