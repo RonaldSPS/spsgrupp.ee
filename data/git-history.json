@@ -1,6 +1,45 @@
 {
- "generatedAt": "2026-11-09T08:52:40.002Z",
+ "generatedAt": "2026-11-09T09:24:12.105Z",
  "commits": [
+  {
+   "hash": "ece34be",
+   "date": "2026-11-09T11:01:45+02:00",
+   "subject": "fix(admin): pildiuleslaadimine live'is -- Vercel Blob store spsgrupp-images loodud + lingitud (kliendiloo heroImage vahetus kukkus 500 'Failed to upload image': Verceli serverless-FS on read-only ja BLOB_READ_WRITE_TOKEN polnud seadistatud, mkdir EROFS). Store store_bIIbsyz3uSZgsdzA (fra1, public) loodud REST API kaudu, BLOB_READ_WRITE_TOKEN prod+preview env'is ja .env.local-is. Seotud muudatused: next.config.ts images.remotePatterns **.public.blob.vercel-storage.com (next/image heroImage jaoks), proxy.ts CSP img-src+connect-src sama host (admini eelvaade + otse-uleslaadimine), lib/url-utils.ts absoluteUrl() laseb absoluutsed http(s) URL-id labi (varem viskas -- oleks JSON-LD/OG pildi puhul lehe murretnud, test uuendatud), ImageBrowser suunab >4MB failid otse Blob'i presign-endpointi kaudu (@vercel/blob/client upload(), serveri 4,5MB payload-piirangust mooda; blobEnabled lipp GET-vastuses), images-API 4,5MB piirang kehtib nuud ainult Blob-reziimis (lokalis 10MB). Verifitseeritud: E2E prod-buildi vastu login->upload reaalsesse Blob'i->/_next/image 200->delete OK, presign token OK + svg tagasilukatud, tsc puhas, eslint 0 viga, npm test 179/179 + i18n OK, puhas build OK. AGENTS.md uuendatud. NB! Joustub alles redeploy'ga (vercel --prod).",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/images/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ImageBrowser.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/url-utils.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/url-utils.ts"
+    },
+    {
+     "s": "M",
+     "p": "next.config.ts"
+    },
+    {
+     "s": "M",
+     "p": "proxy.ts"
+    }
+   ]
+  },
   {
    "hash": "4e2249b",
    "date": "2026-11-06T18:20:00+02:00",

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server"
+import { revalidatePath } from "next/cache"
 import { eq } from "drizzle-orm"
 import { promises as fs } from "fs"
 import path from "path"
@@ -50,6 +51,25 @@ const TEXT_FIELDS = [
   "factsText",
   "faqText",
 ] as const
+
+/**
+ * Loo muudatus (pilt, pealkiri, peidetud olek vms) peab kajastuma KOHE kõigil
+ * lehtedel — muidu jääb avalehe slider (catch-all, revalidate=300) kuni 5 min
+ * ja hub/detail (60 s) vanaks. revalidatePath märgib lehed järgmiseks visiidiks
+ * uuesti genereeritavaks. Oluline: proxy rewrite'i tõttu on avalehe
+ * cache-võti sisemine "/et" (revalidatePath nõuab rewrite'i SIHTTEED,
+ * mitte avalikku "/"). Revalideerimise viga ei tohi salvestust nurjata.
+ */
+function revalidateCaseStudyPages(): void {
+  try {
+    revalidatePath("/et")
+    revalidatePath("/kliendilood")
+    revalidatePath("/kliendilood/[slug]", "page")
+    revalidatePath("/sitemap.xml")
+  } catch (error) {
+    console.error("Kliendilood revalidate error:", error)
+  }
+}
 
 function sanitizeTextField(value: string | undefined): string {
   if (!value) return ""
@@ -144,6 +164,7 @@ export async function PUT(request: Request) {
         }
         data.stories[id] = story
         await writeAdminEditsJson(data)
+        revalidateCaseStudyPages()
         return NextResponse.json({ success: true, story }, {
           headers: { "Cache-Control": "no-store, max-age=0" },
         })
@@ -196,6 +217,7 @@ export async function PUT(request: Request) {
         })
 
       const saved = await db.select().from(caseStudyEdits).where(eq(caseStudyEdits.id, id)).limit(1)
+      revalidateCaseStudyPages()
       return NextResponse.json({ success: true, story: saved[0] ?? null }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
@@ -224,6 +246,7 @@ export async function DELETE(request: Request) {
           data.stories[id] = { active: false, updatedAt: new Date().toISOString() }
           await writeAdminEditsJson(data)
         }
+        revalidateCaseStudyPages()
         return NextResponse.json({ success: true }, {
           headers: { "Cache-Control": "no-store, max-age=0" },
         })
@@ -237,6 +260,7 @@ export async function DELETE(request: Request) {
           set: { active: false, updatedAt: new Date() },
         })
 
+      revalidateCaseStudyPages()
       return NextResponse.json({ success: true }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
