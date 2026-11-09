@@ -1,6 +1,25 @@
 {
- "generatedAt": "2026-11-09T09:24:12.105Z",
+ "generatedAt": "2026-11-09T10:06:56.449Z",
  "commits": [
+  {
+   "hash": "45f553d",
+   "date": "2026-11-09T11:34:03+02:00",
+   "subject": "fix(kliendilood): admin-muudatused kajastuvad kohe koikil pindadel -- on-demand revalidatsioon PUT/DELETE'i peale (revalidateCaseStudyPages: /et avalehe slider, /kliendilood hub, /kliendilood/[slug] pattern, /sitemap.xml). Varem uuenesid lehed ainult ajalise ISR-iga: hub/detail 60s, avaleht kuni 5 min (catch-all revalidate=300) -- kliendiloo pildi/oleku muutmine noudis ootamist ja naitas eri lehtedel erinevat sisu. Gotcha: revalidatePath vajab proxy-rewrite'i SIHTTEED (/et), mitte avalikku teed (Next 16 docs: rewrites -> destination path). Revalideerimise viga on try/catch'itud ega nurja salvestust. Verifitseeritud prod-buildi vastu lokaalse JSON-fallbackiga (live-DB puutumata): uus heroImage nahtav avalehel+hubil 1. paringul, detaillehel 2. paringul (stale-while-revalidate); eslint+tsc puhtad. AGENTS.md uuendatud. Joustub koos pildiuleslaadimise Blob-fix'iga (ece34be) jargmisel deploy'l.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/kliendilood/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    }
+   ]
+  },
   {
    "hash": "ece34be",
    "date": "2026-11-09T11:01:45+02:00",

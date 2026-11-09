@@ -24,6 +24,8 @@ export const caseStudyEdits = pgTable("case_study_edits", {
   slug: text("slug"),
   excerpt: text("excerpt"),
   heroImage: text("hero_image"),
+  /** Hero-pildi joondus object-cover raames: "top" | "center" | "bottom" (NULL = center). */
+  heroPosition: text("hero_position"),
   metaTitle: text("meta_title"),
   metaDescription: text("meta_description"),
   tldrHtml: text("tldr_html"),

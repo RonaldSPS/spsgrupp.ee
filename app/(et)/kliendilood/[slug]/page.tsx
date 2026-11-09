@@ -10,6 +10,7 @@ import { caseStudies, getCaseStudiesWithEdits, getCaseStudyBySlug } from "../dat
 import { generatePageMetadata } from "@/lib/metadata-helper"
 import { generateBreadcrumbSchema, renderLdJson } from "@/lib/json-ld-generator"
 import { absoluteUrl, canonicalUrl } from "@/lib/url-utils"
+import { heroObjectPosition } from "@/lib/case-study-format"
 
 export const revalidate = 60
 // Slugid tulevad baasandmetest (stories.ts) - uus lugu läheb live'ile build'iga,
@@ -99,7 +100,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </nav>
 
           <div className="relative h-[300px] md:h-[420px] rounded-[16px] overflow-hidden bg-[#eef7fc] mb-8">
-            <Image src={story.heroImage} alt={story.heroImageAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 1200px" preload />
+            <Image src={story.heroImage} alt={story.heroImageAlt} fill className="object-cover" style={story.heroImagePosition ? { objectPosition: heroObjectPosition(story.heroImagePosition) } : undefined} sizes="(max-width: 768px) 100vw, 1200px" preload />
             <span className="absolute top-4 left-4 bg-[#17345a]/90 text-white text-[15px] font-medium px-3 py-1 rounded-full">
               {story.objectType}
             </span>
@@ -218,7 +219,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 {others.map((s) => (
                   <Link key={s.slug} href={"/kliendilood/" + s.slug} className="group block rounded-[16px] overflow-hidden border border-[rgba(23,52,90,0.08)] bg-white shadow-sm hover:shadow-md transition-all">
                     <div className="relative h-[180px] bg-[#eef7fc]">
-                      <Image src={s.heroImage} alt={s.heroImageAlt} fill className="object-cover" sizes="50vw" />
+                      <Image src={s.heroImage} alt={s.heroImageAlt} fill className="object-cover" style={s.heroImagePosition ? { objectPosition: heroObjectPosition(s.heroImagePosition) } : undefined} sizes="50vw" />
                     </div>
                     <div className="p-5">
                       <div className="text-[15px] text-[#5a6474] mb-1">{s.clientName} · {s.keyStat}</div>

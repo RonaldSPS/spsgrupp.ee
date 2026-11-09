@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { heroObjectPosition } from "@/lib/case-study-format"
 
 export interface CaseStudyCardData {
   slug: string
@@ -15,6 +16,7 @@ export interface CaseStudyCardData {
   keyStat: string
   heroImage: string
   heroImageAlt: string
+  heroImagePosition?: string
   datePublished: string
 }
 
@@ -73,7 +75,7 @@ export default function CaseStudyGrid({ stories }: { stories: CaseStudyCardData[
             className="group block rounded-[16px] overflow-hidden border border-[rgba(23,52,90,0.08)] bg-white shadow-sm hover:shadow-md transition-all"
           >
             <div className="relative h-[200px] bg-[#eef7fc]">
-              <Image src={s.heroImage} alt={s.heroImageAlt} fill className="object-cover" sizes="33vw" />
+              <Image src={s.heroImage} alt={s.heroImageAlt} fill className="object-cover" style={s.heroImagePosition ? { objectPosition: heroObjectPosition(s.heroImagePosition) } : undefined} sizes="33vw" />
               <span className="absolute top-3 left-3 bg-[#17345a]/90 text-white text-[15px] font-medium px-3 py-1 rounded-full">
                 {s.objectType}
               </span>

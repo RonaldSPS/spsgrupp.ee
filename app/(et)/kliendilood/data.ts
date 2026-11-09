@@ -2,7 +2,7 @@ import { cache } from "react"
 import { promises as fs } from "fs"
 import path from "path"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
-import { textToFacts, textToFaq } from "@/lib/case-study-format"
+import { textToFacts, textToFaq, isHeroImagePosition } from "@/lib/case-study-format"
 import { caseStudies as _caseStudies, type CaseStudy } from "./stories"
 
 export type { CaseStudy }
@@ -15,6 +15,8 @@ export interface CaseStudyEdit {
   slug?: string
   excerpt?: string
   heroImage?: string
+  /** Hero-pildi joondus: "top" | "center" | "bottom" (puudub = center). */
+  heroPosition?: string
   metaTitle?: string
   metaDescription?: string
   tldrHtml?: string
@@ -65,6 +67,7 @@ const getAdminEdits = cache(async (): Promise<AdminEdits> => {
           slug: row.slug ?? undefined,
           excerpt: row.excerpt ?? undefined,
           heroImage: row.heroImage ?? undefined,
+          heroPosition: row.heroPosition ?? undefined,
           metaTitle: row.metaTitle ?? undefined,
           metaDescription: row.metaDescription ?? undefined,
           tldrHtml: row.tldrHtml ?? undefined,
@@ -102,6 +105,7 @@ function applyEdit(base: CaseStudy, edit: CaseStudyEdit): CaseStudy {
     slug: edit.slug ?? base.slug,
     excerpt: edit.excerpt ?? base.excerpt,
     heroImage: edit.heroImage ?? base.heroImage,
+    heroImagePosition: isHeroImagePosition(edit.heroPosition) ? edit.heroPosition : base.heroImagePosition,
     metaTitle: edit.metaTitle ?? base.metaTitle,
     metaDescription: edit.metaDescription ?? base.metaDescription,
     tldrHtml: sanitizeHtmlSafe(edit.tldrHtml ?? base.tldrHtml),

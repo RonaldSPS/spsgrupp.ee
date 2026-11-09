@@ -3,6 +3,7 @@
 import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { heroObjectPosition } from "@/lib/case-study-format"
 
 export interface CaseStudySlide {
   slug: string
@@ -14,6 +15,7 @@ export interface CaseStudySlide {
   keyStat: string
   heroImage: string
   heroImageAlt: string
+  heroImagePosition?: string
 }
 
 /**
@@ -83,7 +85,7 @@ export default function CaseStudiesSlider({ stories }: { stories: CaseStudySlide
               className="group snap-start shrink-0 w-[86%] sm:w-[47%] lg:w-[31.5%] rounded-[16px] overflow-hidden border border-[rgba(23,52,90,0.08)] bg-white shadow-sm hover:shadow-md transition-all no-underline"
             >
               <div className="relative h-[190px] bg-[#eef7fc]">
-                <Image src={s.heroImage} alt={s.heroImageAlt} fill className="object-cover" sizes="(max-width: 640px) 86vw, (max-width: 1024px) 47vw, 400px" />
+                <Image src={s.heroImage} alt={s.heroImageAlt} fill className="object-cover" style={s.heroImagePosition ? { objectPosition: heroObjectPosition(s.heroImagePosition) } : undefined} sizes="(max-width: 640px) 86vw, (max-width: 1024px) 47vw, 400px" />
                 <span className="absolute top-3 left-3 bg-[#17345a]/90 text-white text-[15px] font-medium px-3 py-1 rounded-full">
                   {s.objectType}
                 </span>
@@ -109,6 +111,19 @@ export default function CaseStudiesSlider({ stories }: { stories: CaseStudySlide
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="mt-12 w-full md:w-3/4 mx-auto">
+          <div className="rounded-3xl overflow-hidden shadow-lg">
+            <video
+              src="/SPS-TarmoSildberg.mp4"
+              controls
+              preload="none"
+              poster="/TarmoHero-poster.webp"
+              className="w-full h-auto"
+              style={{ borderRadius: "24px" }}
+            />
+          </div>
         </div>
       </div>
     </section>

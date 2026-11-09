@@ -21,6 +21,22 @@ export interface CaseStudyFaq {
   a: string
 }
 
+/** Hero-pildi joondus (top/center/bottom) — admin saab loo kohta valida. */
+export type HeroImagePosition = "top" | "center" | "bottom"
+
+export const HERO_IMAGE_POSITIONS: HeroImagePosition[] = ["top", "center", "bottom"]
+
+export function isHeroImagePosition(value: unknown): value is HeroImagePosition {
+  return value === "top" || value === "center" || value === "bottom"
+}
+
+/** CSS object-position väärtus; tundmatu/puuduv = "center" (praegune käitumine). */
+export function heroObjectPosition(position?: string | null): string {
+  if (position === "top") return "center top"
+  if (position === "bottom") return "center bottom"
+  return "center"
+}
+
 export function factsToText(facts: CaseStudyFact[]): string {
   return facts.map((f) => `${f.label} = ${f.value}`).join("\n")
 }

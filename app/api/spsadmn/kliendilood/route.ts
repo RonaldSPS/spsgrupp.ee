@@ -9,6 +9,7 @@ import { validateAdminRequest, unauthorizedResponse, noStoreResponse } from "@/l
 import { withRateLimit } from "@/lib/rate-limit"
 import { verifySameOrigin } from "@/lib/csrf"
 import { sanitizeHtml } from "@/lib/sanitize"
+import { isHeroImagePosition } from "@/lib/case-study-format"
 
 /**
  * Kliendilugude admin-muudatused (overlay). Baas-sisu: app/(et)/kliendilood/stories.ts.
@@ -23,6 +24,7 @@ interface CaseStudyEditRow {
   slug?: string | null
   excerpt?: string | null
   heroImage?: string | null
+  heroPosition?: string | null
   metaTitle?: string | null
   metaDescription?: string | null
   tldrHtml?: string | null
@@ -99,6 +101,7 @@ export async function GET(request: Request) {
           slug: row.slug,
           excerpt: row.excerpt,
           heroImage: row.heroImage,
+          heroPosition: row.heroPosition,
           metaTitle: row.metaTitle,
           metaDescription: row.metaDescription,
           tldrHtml: row.tldrHtml,
@@ -147,6 +150,10 @@ export async function PUT(request: Request) {
         if (img && !img.startsWith("/") && !img.startsWith("https://")) safeFields.heroImage = ""
         else safeFields.heroImage = img
       }
+      if (fields.heroPosition !== undefined) {
+        const pos = String(fields.heroPosition || "").trim()
+        safeFields.heroPosition = isHeroImagePosition(pos) ? pos : ""
+      }
       if (fields.tldrHtml !== undefined) safeFields.tldrHtml = sanitizeHtml((fields.tldrHtml as string) || "")
       if (fields.bodyHtml !== undefined) safeFields.bodyHtml = sanitizeHtml((fields.bodyHtml as string) || "")
       if (fields.active !== undefined) safeFields.active = fields.active ? "true" : "false"
@@ -179,6 +186,7 @@ export async function PUT(request: Request) {
         slug: (safeFields.slug as string) ?? null,
         excerpt: (safeFields.excerpt as string) ?? null,
         heroImage: (safeFields.heroImage as string) ?? null,
+        heroPosition: (safeFields.heroPosition as string) ?? null,
         metaTitle: (safeFields.metaTitle as string) ?? null,
         metaDescription: (safeFields.metaDescription as string) ?? null,
         tldrHtml: (safeFields.tldrHtml as string) ?? null,
@@ -202,6 +210,7 @@ export async function PUT(request: Request) {
             slug: (safeFields.slug as string) ?? null,
             excerpt: (safeFields.excerpt as string) ?? null,
             heroImage: (safeFields.heroImage as string) ?? null,
+            heroPosition: (safeFields.heroPosition as string) ?? null,
             metaTitle: (safeFields.metaTitle as string) ?? null,
             metaDescription: (safeFields.metaDescription as string) ?? null,
             tldrHtml: (safeFields.tldrHtml as string) ?? null,

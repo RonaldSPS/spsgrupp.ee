@@ -31,6 +31,7 @@ export default function AdminKliendiluguEdit() {
     metaTitle: "",
     metaDescription: "",
     heroImage: "",
+    heroPosition: "center",
     quoteText: "",
     quoteAuthor: "",
     quoteRole: "",
@@ -54,6 +55,7 @@ export default function AdminKliendiluguEdit() {
       metaTitle: base.metaTitle,
       metaDescription: base.metaDescription,
       heroImage: base.heroImage,
+      heroPosition: base.heroImagePosition ?? "center",
       quoteText: base.quoteText,
       quoteAuthor: base.quoteAuthor,
       quoteRole: base.quoteRole,
@@ -78,6 +80,7 @@ export default function AdminKliendiluguEdit() {
           metaTitle: edit.metaTitle ?? base.metaTitle,
           metaDescription: edit.metaDescription ?? base.metaDescription,
           heroImage: edit.heroImage ?? base.heroImage,
+          heroPosition: edit.heroPosition ?? base.heroImagePosition ?? "center",
           quoteText: edit.quoteText ?? base.quoteText,
           quoteAuthor: edit.quoteAuthor ?? base.quoteAuthor,
           quoteRole: edit.quoteRole ?? base.quoteRole,
@@ -198,6 +201,17 @@ export default function AdminKliendiluguEdit() {
               </button>
             </div>
             <p className={hintCls}>Objekti/hoone foto. Sirvija kaudu saab üles laadida uusi pilte.</p>
+            <div className="flex items-center gap-2 mt-1">
+              <label htmlFor="heroPosition" className="text-[15px] text-[#5a6474] whitespace-nowrap">
+                Pildi joondus:
+              </label>
+              <select id="heroPosition" value={form.heroPosition} onChange={set("heroPosition")} className={inputCls}>
+                <option value="center">Keskel (vaikimisi)</option>
+                <option value="top">Üleval</option>
+                <option value="bottom">All</option>
+              </select>
+            </div>
+            <p className={hintCls}>Kui hero-raam lõikab pildi olulise osa välja, vali kumba serva hoida.</p>
           </div>
         </div>
 

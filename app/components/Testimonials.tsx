@@ -106,19 +106,6 @@ export default function Testimonials({ animDelay }: { animDelay?: number }) {
             </svg>
           </Link>
         </div>
-
-        <div className="mt-16 w-full md:w-3/4 mx-auto">
-          <div className="rounded-3xl overflow-hidden shadow-lg">
-            <video
-              src="/SPS-TarmoSildberg.mp4"
-              controls
-              preload="none"
-              poster="/TarmoHero-poster.webp"
-              className="w-full h-auto"
-              style={{ borderRadius: "24px" }}
-            />
-          </div>
-        </div>
       </div>
   )
 

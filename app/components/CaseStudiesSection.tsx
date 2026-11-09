@@ -26,6 +26,7 @@ export default async function CaseStudiesSection() {
         keyStat: s.keyStat,
         heroImage: s.heroImage,
         heroImageAlt: s.heroImageAlt,
+        heroImagePosition: s.heroImagePosition,
       }))}
     />
   )

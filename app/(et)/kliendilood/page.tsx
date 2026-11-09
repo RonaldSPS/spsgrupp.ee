@@ -56,6 +56,7 @@ export default async function CaseStudiesPage() {
               keyStat: s.keyStat,
               heroImage: s.heroImage,
               heroImageAlt: s.heroImageAlt,
+              heroImagePosition: s.heroImagePosition,
               datePublished: s.datePublished,
             }))}
           />

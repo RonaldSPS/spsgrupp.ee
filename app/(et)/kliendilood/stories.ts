@@ -1,4 +1,4 @@
-import type { CaseStudyFact, CaseStudyFaq } from "@/lib/case-study-format"
+import type { CaseStudyFact, CaseStudyFaq, HeroImagePosition } from "@/lib/case-study-format"
 
 /**
  * Kliendilugude baas-sisu (üks tõeallikas, commit'itud).
@@ -39,6 +39,8 @@ export interface CaseStudy {
   /** Hero-pilt (image spot) - objekti/hoone foto; admin saab vahetada. */
   heroImage: string
   heroImageAlt: string
+  /** Hero-pildi vertikaalne joondus object-cover raames (vaikimisi "center"); admin saab muuta. */
+  heroImagePosition?: HeroImagePosition
   /** "YYYY-MM-DD" - kuvamise ja sorteermise jaoks (ajastust pole). */
   datePublished: string
   /** TL;DR intro (HTML, võib sisaldada linke) - peab sisaldama teenuselehe linki. */
