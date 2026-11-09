@@ -44,6 +44,13 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   serverExternalPackages: ["sharp"],
+  // Admin uploads go to Vercel Blob (app/api/spsadmn/images) and land in
+  // next/image (e.g. kliendilood heroImage) — the store host must be allowed.
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "**.public.blob.vercel-storage.com" },
+    ],
+  },
   /* data/git-history.json (weekly-report „Lehekülje arendus" section) and
    * data/gbp-calendar.json (weekly-report „Sisu ja GBP" section) are read
    * dynamically via fs, so the tracer cannot detect them — include them in the

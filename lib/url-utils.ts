@@ -33,10 +33,10 @@ function canonicalUrl(path: string): string {
 }
 
 function absoluteUrl(path: string): string {
+  // External asset URLs (e.g. Vercel Blob uploads used as heroImage) pass through
+  // unchanged — they are already absolute and must not be prefixed with BASE_URL.
   if (path.startsWith("https://") || path.startsWith("http://")) {
-    throw new Error(
-      `absoluteUrl expects a path, not a full URL: ${path}`,
-    )
+    return path
   }
   if (path.includes("://")) {
     throw new Error(

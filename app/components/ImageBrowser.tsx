@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
+import { upload as blobClientUpload } from "@vercel/blob/client"
 
 interface ImageInfo {
   url: string
@@ -16,6 +17,10 @@ interface ImageBrowserProps {
   onSelect: (url: string) => void
 }
 
+// Vercel serverless functions cap request payloads at 4.5 MB — with Blob enabled,
+// larger files upload client-direct through the presign endpoint instead.
+const DIRECT_UPLOAD_THRESHOLD = 4 * 1024 * 1024
+
 export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserProps) {
   const [images, setImages] = useState<ImageInfo[]>([])
   const [loading, setLoading] = useState(true)
@@ -23,6 +28,7 @@ export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserPr
   const [uploading, setUploading] = useState(false)
   const [error, setError] = useState("")
   const [preview, setPreview] = useState<string | null>(null)
+  const [blobEnabled, setBlobEnabled] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const loadImages = useCallback(async () => {
@@ -31,6 +37,7 @@ export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserPr
       const r = await fetch("/api/spsadmn/images")
       const data = await r.json()
       setImages(data.images || [])
+      setBlobEnabled(!!data.blobEnabled)
     } finally {
       setLoading(false)
     }
@@ -54,17 +61,33 @@ export default function ImageBrowser({ open, onClose, onSelect }: ImageBrowserPr
     if (!file) return
     setUploading(true)
     setError("")
-    const formData = new FormData()
-    formData.append("file", file)
     try {
-      const res = await fetch("/api/spsadmn/images", { method: "POST", body: formData })
-      const data = await res.json()
-      if (data.success && data.url) {
-        setImages((prev) => [{ url: data.url, name: data.name, dir: "uploads", size: data.size, modified: new Date().toISOString() }, ...prev])
-        onSelect(data.url)
-        onClose()
+      let result: { url: string; name: string; dir: string; size: number } | null = null
+
+      if (blobEnabled && file.size > DIRECT_UPLOAD_THRESHOLD) {
+        // Suur fail: otse Vercel Blob'i (serveri 4,5 MB piirangust mööda).
+        // Märkus: serveripoolne webp/resize-optimeerimine jääb siin vahele.
+        const blob = await blobClientUpload(file.name, file, {
+          access: "public",
+          handleUploadUrl: "/api/spsadmn/images/presign",
+        })
+        result = { url: blob.url, name: blob.pathname.split("/").pop() ?? file.name, dir: "blob", size: file.size }
       } else {
-        setError(data.error || "Upload failed")
+        const formData = new FormData()
+        formData.append("file", file)
+        const res = await fetch("/api/spsadmn/images", { method: "POST", body: formData })
+        const data = await res.json()
+        if (data.success && data.url) {
+          result = { url: data.url, name: data.name, dir: "uploads", size: data.size }
+        } else {
+          setError(data.error || "Upload failed")
+        }
+      }
+
+      if (result) {
+        setImages((prev) => [{ ...result, modified: new Date().toISOString() }, ...prev])
+        onSelect(result.url)
+        onClose()
       }
     } catch {
       setError("Upload failed")

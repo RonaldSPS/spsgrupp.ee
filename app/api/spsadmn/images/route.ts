@@ -98,7 +98,7 @@ export async function GET(request: Request) {
       const allImages = [...blobImages, ...localImages]
       allImages.sort((a, b) => new Date(b.modified).getTime() - new Date(a.modified).getTime())
 
-      return NextResponse.json({ images: allImages }, {
+      return NextResponse.json({ images: allImages, blobEnabled: !!process.env.BLOB_READ_WRITE_TOKEN }, {
         headers: { "Cache-Control": "no-store, max-age=0" },
       })
     } catch (error) {
@@ -122,12 +122,21 @@ export async function POST(request: Request) {
       const contentLength = request.headers.get("content-length")
       const requestSize = contentLength ? parseInt(contentLength, 10) : 0
 
-      if (isNaN(requestSize) || requestSize > FUNCTION_PAYLOAD_LIMIT) {
+      // The 4.5 MB cap is Vercel's serverless payload limit — with Blob enabled the
+      // client routes larger files through the presign endpoint instead. Local dev
+      // (no BLOB_READ_WRITE_TOKEN) writes to public/uploads and has no such cap.
+      const blobEnabled = !!process.env.BLOB_READ_WRITE_TOKEN
+      const payloadLimit = blobEnabled ? FUNCTION_PAYLOAD_LIMIT : MAX_FILE_SIZE
+      if (isNaN(requestSize) || requestSize > payloadLimit) {
         return noStoreResponse(
-          JSON.stringify({
-            error: "File exceeds the 4.5 MB server limit. Use the presign endpoint for larger files.",
-            presignEndpoint: "/api/spsadmn/images/presign",
-          }),
+          JSON.stringify(
+            blobEnabled
+              ? {
+                  error: "File exceeds the 4.5 MB server limit. Use the presign endpoint for larger files.",
+                  presignEndpoint: "/api/spsadmn/images/presign",
+                }
+              : { error: "File too large, max 10MB" }
+          ),
           413
         )
       }

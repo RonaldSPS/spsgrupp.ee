@@ -1,6 +1,65 @@
 {
- "generatedAt": "2026-11-06T16:12:00.617Z",
+ "generatedAt": "2026-11-09T08:52:40.002Z",
  "commits": [
+  {
+   "hash": "4e2249b",
+   "date": "2026-11-06T18:20:00+02:00",
+   "subject": "feat(avaleht): teenuste veerud kohe peale logosid + investeering-plokk enne valdkondi + logode kontrasti/suuruse parandus (kliendi soov 06.11.2026) -- uus ServiceColumns (3/5+2/5: Regulaarne koristusteenus suure kaardina 38px pealkirjaga, Puhastusteenused ja Välikoristus pisipilt+pealkiri kõrvuti kahes reas; rohelised märkused -> paleti helesinine #5ab5da) jagatud Trust.tsx-st valja; Trust (investeering/ISO) liikus enne Industries'it; sektsioonide jarjekord hero->logos->service-columns->testimonials->trust->industries->... identne ET/EN/RU (i18n:parity 36/36 OK). Logod: 8 laia sonamarki (city-motors, mustikas x2, myfitness, Nordichotels, norma, proekspert, sokos) trimmitud 250x250 louendi tujast aartest valja (sisu renderdus vaid 10-24px korge) + heledamad tumendatud moodetuna vordelehe maxima/rimi/taltech/ericsson vastu (norma 203->135, proekspert 206->132, city-motors 166->131, mustikas/mustikas2/Nordichotels ->132-134 avgLum; myfitness 136 ja sokos 126 olid piisavalt tumedad) + logo-pohised kastilaiused Logos.tsx-s (100-220px). npm test 178/178 + i18n-validate OK, tsc puhas, eslint 0 viga, puhas build OK, renderdus verifitseeritud ekraanipiltidega toolaud+mobiil",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/ServiceColumns.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Trust.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/Nordichotels.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/city-motors.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/mustikas.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/mustikas2.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/myfitness.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/norma.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/proekspert.png"
+    },
+    {
+     "s": "M",
+     "p": "public/logod/sokos.png"
+    }
+   ]
+  },
   {
    "hash": "546b95e",
    "date": "2026-11-06T16:01:00+02:00",

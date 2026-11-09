@@ -141,7 +141,18 @@ describe("absoluteUrl", () => {
     )
   })
 
-  it("throws on full URL input", () => {
-    assert.throws(() => absoluteUrl("https://example.com/img.png"))
+  it("passes through absolute http(s) URLs (e.g. Vercel Blob uploads)", () => {
+    assert.strictEqual(
+      absoluteUrl("https://store123.public.blob.vercel-storage.com/uploads/img.webp"),
+      "https://store123.public.blob.vercel-storage.com/uploads/img.webp",
+    )
+    assert.strictEqual(
+      absoluteUrl("http://example.com/img.png"),
+      "http://example.com/img.png",
+    )
+  })
+
+  it("throws on non-http(s) scheme URLs", () => {
+    assert.throws(() => absoluteUrl("ftp://example.com/img.png"))
   })
 })
