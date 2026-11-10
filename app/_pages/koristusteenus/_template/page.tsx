@@ -40,8 +40,6 @@ import Hinnakalkulaator from "../../../components/Hinnakalkulaator";
  *   {HIND_KIRJELDUS}            - sissejuhatav tekst hinna sektsioonis
  *   {HIND_KAARDID}              - massiiv {size, area, price, period, highlight?} objektidega (3 kaarti)
  *   {HIND_ALGHINNAD}            - alghindade tekst (nt "Regulaarse hoolduskoristuse hind algab 1,2 €/m²...")
- *   {FOOTER_CTA_TITLE}          - FooterCTA pealkiri
- *   {FOOTER_CTA_DESCRIPTION}    - FooterCTA kirjeldus
  *   {BREADCRUMB_TEENUS}         - leivapuru viimane tase (nt "Kontori koristus")
  *   {SOTSIAALNE_TÕESTUS_SECTION_TAG} - section-tag silt (nt "Klientide tagasiside")
  *   {SOTSIAALNE_TÕESTUS_PEALKIRI}    - TwoToneHeading (nt "Tallinna ja Harjumaa objektid")
@@ -187,10 +185,6 @@ export default function TeenuseLeht() {
     { size: "{HIND_KAART3_SIZE}", area: "{HIND_KAART3_AREA}", price: "{HIND_KAART3_PRICE}", period: "{HIND_KAART3_PERIOD}" },
   ];
   const hindAlghinnad = "{HIND_ALGHINNAD}";
-
-  /* ---------- FOOTER CTA ---------- */
-  const footerCtaTitle = "{FOOTER_CTA_TITLE}";
-  const footerCtaDescription = "{FOOTER_CTA_DESCRIPTION}";
 
   /* ---------- LEIVAPURU ---------- */
   const breadcrumbTeenus = "{BREADCRUMB_TEENUS}";
@@ -521,7 +515,7 @@ export default function TeenuseLeht() {
 
         {/* Lõpu CTA */}
         <ScrollAnimation animation="fade-up">
-          <FooterCTA title={footerCtaTitle} description={footerCtaDescription} />
+          <FooterCTA />
         </ScrollAnimation>
 
         {/* Contact Form */}

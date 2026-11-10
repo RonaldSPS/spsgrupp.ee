@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import ContactForm from "./ContactForm"
 import ScrollAnimation from "./ScrollAnimation"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import type { Announcement } from "@/lib/types"
@@ -176,6 +177,8 @@ export default async function DynamicJobOffer({ announcement, locale }: { announ
           </div>
         </div>
       </main>
+      {/* Contact form (anchor #pakkumine) must exist on every page - the navbar "Request a quote" button scrolls here. */}
+      <ContactForm />
       <ScrollAnimation animation="fade-up" delay={800}>
         <Footer />
       </ScrollAnimation>

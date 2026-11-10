@@ -1,7 +1,7 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
-import { usePathname } from "next/navigation"
+import { useState, useEffect, useRef, useCallback, type MouseEvent as ReactMouseEvent } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
@@ -10,6 +10,7 @@ import { localizePath, getCurrentEtPath, type Locale } from "@/lib/slug-map"
 export default function Navbar() {
   const t = useTranslations()
   const pathname = usePathname()
+  const router = useRouter()
   const locale: Locale = pathname === '/en' || pathname.startsWith('/en/')
     ? 'en'
     : pathname === '/ru' || pathname.startsWith('/ru/')
@@ -25,6 +26,18 @@ export default function Navbar() {
   }
 
   const currentEtPath = getCurrentEtPath(pathname, locale)
+
+  // "Küsi pakkumist" kerib lehel oleva kontaktivormini (#pakkumine). Kui lehel
+  // vormi pole (nt 404-leht), navigeerib kontaktlehele, kus vorm alati on.
+  function handleQuoteClick(e: ReactMouseEvent<HTMLAnchorElement>) {
+    e.preventDefault()
+    const el = document.getElementById('pakkumine')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      router.push(`${localizePath('/kontakt', locale)}#pakkumine`)
+    }
+  }
 
   function localeHref(href: string): string {
     if (href.startsWith("#") || href.startsWith("tel:") || href.startsWith("mailto:") || /^https?:\/\//.test(href)) {
@@ -315,7 +328,7 @@ export default function Navbar() {
             ))}
           </li>
           <li role="none">
-            <a href="#pakkumine" className="bg-[#17345a] text-white no-underline py-2.5 px-5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#1e4a7a] hover:-translate-y-0.5 min-h-[44px] flex items-center" style={{ boxShadow: "0 2px 12px rgba(23,52,90,0.07)" }} onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }) }}>
+            <a href="#pakkumine" className="bg-[#17345a] text-white no-underline py-2.5 px-5 rounded-lg text-[15px] font-medium transition-all hover:bg-[#1e4a7a] hover:-translate-y-0.5 min-h-[44px] flex items-center" style={{ boxShadow: "0 2px 12px rgba(23,52,90,0.07)" }} onClick={handleQuoteClick}>
               {t('nav.requestQuote')}
             </a>
           </li>
@@ -485,7 +498,7 @@ export default function Navbar() {
                 </button>
               ))}
             </div>
-            <a href="#pakkumine" className="block w-full text-center bg-[#17345a] text-white py-3.5 px-5 rounded-lg font-medium mb-4 min-h-[48px] flex items-center justify-center text-[15px]" onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); closeMobile() }}>
+            <a href="#pakkumine" className="block w-full text-center bg-[#17345a] text-white py-3.5 px-5 rounded-lg font-medium mb-4 min-h-[48px] flex items-center justify-center text-[15px]" onClick={(e) => { handleQuoteClick(e); closeMobile() }}>
               {t('nav.requestQuote')}
             </a>
             <a href="tel:6623328" className="block text-center text-[#2f353f] py-3 min-h-[44px] flex items-center justify-center text-[15px]">

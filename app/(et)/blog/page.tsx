@@ -3,6 +3,7 @@ import Image from "next/image"
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import FooterCTA from "../../components/FooterCTA"
+import ContactForm from "../../components/ContactForm"
 import type { Metadata } from "next"
 import { getBlogPostsWithEdits } from "./data"
 import { generatePageMetadata } from "@/lib/metadata-helper"
@@ -69,10 +70,9 @@ export default async function BlogArchive() {
           </div>
         </div>
       </main>
-      <FooterCTA
-        title="SPS Grupp pakub parima lahenduse teie koristusvajadustele"
-        description="Võtke meiega ühendust. Vastame päringule üldjuhul ühe tööpäeva jooksul."
-      />
+      <FooterCTA />
+      {/* Kontaktivorm (ankur #pakkumine) peab olema igal lehel - menüü "Küsi pakkumist" kerib siia. */}
+      <ContactForm />
       <Footer />
     </>
   )

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import Navbar from "../../../components/Navbar"
 import Footer from "../../../components/Footer"
 import FooterCTA from "../../../components/FooterCTA"
+import ContactForm from "../../../components/ContactForm"
 import type { Metadata } from "next"
 import { getPostBySlugWithEdits, getRelatedPosts } from "../data"
 import { blogPosts } from "../posts.generated"
@@ -160,6 +161,8 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </main>
       <FooterCTA />
+      {/* Kontaktivorm (ankur #pakkumine) peab olema igal lehel - menüü "Küsi pakkumist" kerib siia. */}
+      <ContactForm />
       <Footer />
     </>
   )

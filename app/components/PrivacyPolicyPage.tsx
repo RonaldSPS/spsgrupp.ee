@@ -5,6 +5,7 @@ import ruMessages from '@/messages/ru.json'
 import type { Locale } from '@/lib/slug-map'
 import Navbar from './Navbar'
 import FooterCTA from './FooterCTA'
+import ContactForm from './ContactForm'
 import Footer from './Footer'
 
 type PolicyBlock =
@@ -78,6 +79,8 @@ export default function PrivacyPolicyPage({ locale }: { locale: Locale }) {
         </article>
       </main>
       <FooterCTA />
+      {/* Kontaktivorm (ankur #pakkumine) peab olema igal lehel - menüü "Küsi pakkumist" kerib siia. */}
+      <ContactForm />
       <Footer />
     </>
   )

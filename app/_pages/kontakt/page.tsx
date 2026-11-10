@@ -458,10 +458,7 @@ export function KontaktPageView({ locale }: { locale: Locale }) {
 
         {/* Final CTA */}
         <ScrollAnimation animation="fade-up">
-          <FooterCTA
-            title={t.footerTitle}
-            description={t.footerDescription}
-          />
+          <FooterCTA />
         </ScrollAnimation>
       </main>
       <ScrollAnimation animation="fade-up" delay={800}>

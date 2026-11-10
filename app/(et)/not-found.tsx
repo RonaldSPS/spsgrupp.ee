@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useTranslations } from "next-intl"
 import Navbar from "@/app/components/Navbar"
 import Footer from "@/app/components/Footer"
+import ContactForm from "@/app/components/ContactForm"
 
 export default function NotFound() {
   const t = useTranslations("notFound")
@@ -36,6 +37,8 @@ export default function NotFound() {
           </div>
         </div>
       </main>
+      {/* Kontaktivorm (ankur #pakkumine) peab olema igal lehel - menüü "Küsi pakkumist" kerib siia. */}
+      <ContactForm />
       <Footer />
     </>
   )

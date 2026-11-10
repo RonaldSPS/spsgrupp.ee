@@ -303,7 +303,7 @@ export default function OutdoorServicePage({ data, locale, tooprotsess }: { data
 
         <ScrollAnimation animation="fade-up">
           <section data-section="footer-cta">
-            <FooterCTA title={data.footerTitle} description={data.footerDescription} />
+            <FooterCTA />
           </section>
         </ScrollAnimation>
         <ScrollAnimation animation="fade-up">

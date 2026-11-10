@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar"
 import Footer from "../../components/Footer"
 import FooterCTA from "../../components/FooterCTA"
+import ContactForm from "../../components/ContactForm"
 import type { Metadata } from "next"
 import { getCaseStudiesWithEdits } from "./data"
 import CaseStudyGrid from "./CaseStudyGrid"
@@ -62,10 +63,9 @@ export default async function CaseStudiesPage() {
           />
         </div>
       </main>
-      <FooterCTA
-        title="Kas teie objekt vajab sama süsteemset korrashoidu?"
-        description="Võtke meiega ühendust - teeme tasuta objekti ülevaatuse ja pakkumise ühe tööpäevaga."
-      />
+      <FooterCTA />
+      {/* Kontaktivorm (ankur #pakkumine) peab olema igal lehel - menüü "Küsi pakkumist" kerib siia. */}
+      <ContactForm />
       <Footer />
     </>
   )

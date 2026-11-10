@@ -197,7 +197,7 @@ export default function ReviewsPageContent({ locale, categories, text }: Props) 
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">
-          <FooterCTA title={text.footerTitle} description={text.footerDescription} />
+          <FooterCTA />
         </ScrollAnimation>
 
         <ScrollAnimation animation="fade-up">

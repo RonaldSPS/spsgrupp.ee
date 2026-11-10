@@ -1,6 +1,77 @@
 {
- "generatedAt": "2026-11-09T10:06:56.449Z",
+ "generatedAt": "2026-11-10T16:57:37.667Z",
  "commits": [
+  {
+   "hash": "48527c4",
+   "date": "2026-11-09T12:08:54+02:00",
+   "subject": "feat(kliendilood): hero-pildi joondus (ueleval/keskel/all) adminis + avalehe muudatused teisest sessioonist. Kliendilood: uus case_study_edits.hero_position veerg (drizzle/0017, RAKENDATUD live-le), admin rippmenuu 'Pildi joondus' hero-pildi korval, valideerimine isHeroImagePosition()'ega (tundmatu vaartus -> NULL -> center), helper heroObjectPosition() lib/case-study-format.ts-s; object-position rakendub 4 renderduspunktis (detail-hero, detail 'loe ka' kaardid, hub-grid, avalehe slider) AINULT kui seatud -- baas- ja seatamata-output jaab baitidentseks. Samuti lahendab see 'Estravel pilt ei kuvanud' juhtumi: pilt renderdus korrektselt (blob 200, optimizer 200, markup kohal), vahe oli object-cover keskloikes; joondus on nuud admini valitav ja muudatus kajastub kohe (45f553d on-demand revalidatsioon). Avaleht (paralleelsessioon): Industries sektsioon liikus enne Trust'i (animDelay 400/500 swap), Tarmo video plokk eemaldatud Testimonials sektsioonist. Verifitseeritud: helperi yksustestid 12/12, npm test 179/179 + i18n-validate OK, tsc puhas, eslint 0 viga, puhas build OK. AGENTS.md uuendatud. Joustub jargmisel deploy'l (vercel --prod).",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/CaseStudyGrid.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/data.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/stories.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/kliendilood/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CaseStudiesSection.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CaseStudiesSlider.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/kliendilood/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0017_case_study_hero_position.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/case-study-format.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    }
+   ]
+  },
   {
    "hash": "45f553d",
    "date": "2026-11-09T11:34:03+02:00",

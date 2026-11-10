@@ -238,10 +238,7 @@ export default async function CaseStudyPage({ params }: Props) {
           page_url salvestub kui /kliendilood/<slug>, nii et paringud-adminis on
           näha, millise loo pealt päring tuli. */}
       <ContactForm />
-      <FooterCTA
-        title="SPS Grupp pakub parima lahenduse teie koristusvajadustele"
-        description="Võtke meiega ühendust. Vastame päringule üldjuhul ühe tööpäeva jooksul."
-      />
+      <FooterCTA />
       <Footer />
     </>
   )

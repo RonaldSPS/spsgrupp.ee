@@ -1,29 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { localizePath, type Locale } from "@/lib/slug-map";
 
-export default function FooterCTA({ title, description }: { title?: string; description?: string }) {
+// Slim button strip rendered directly above the contact form on every page.
+// Heading/description were removed (the form right below carries the message) -
+// keep this block text-free and compact.
+export default function FooterCTA() {
   const t = useTranslations("footerCta")
+  const locale = useLocale() as Locale
+  const router = useRouter()
 
   return (
-    <section className="footer-cta-section py-[100px] bg-[#17345a] relative overflow-hidden text-center">
+    <section className="footer-cta-section py-[40px] bg-[#17345a] relative overflow-hidden text-center">
       {/* Background glow */}
       <div className="absolute -top-[150px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-[radial-gradient(circle,rgba(133,203,233,0.1)_0%,transparent_60%)] pointer-events-none" />
-      
+
       <div className="relative z-10 max-w-[1280px] mx-auto px-[5%]">
-        <h2 className="text-[clamp(28px,3.5vw,46px)] font-bold text-white -tracking-[0.5px] mb-3.5">
-          {title || t("title")}
-        </h2>
-        <p className="text-[17px] text-white/70 max-w-[560px] mx-auto mb-9 leading-[1.7] font-light">
-          {description || t("description")}
-        </p>
-        
         <div className="flex gap-3.5 justify-center flex-wrap">
           <a
             href="#pakkumine"
             className="btn-primary bg-[#85cbe9] text-[#17345a] hover:bg-[#5ab5da]"
-            onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }}
+            onClick={(e) => { e.preventDefault(); const el = document.getElementById('pakkumine'); if (el) el.scrollIntoView({ behavior: 'smooth' }); else router.push(`${localizePath('/kontakt', locale)}#pakkumine`); }}
           >
             {t("cta")}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

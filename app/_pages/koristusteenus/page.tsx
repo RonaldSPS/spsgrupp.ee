@@ -535,10 +535,7 @@ export function KoristusteenusPageView({ locale }: { locale: Locale }) {
 
         {/* Lõpu CTA */}
         <ScrollAnimation animation="fade-up">
-        <FooterCTA
-          title={t.footerTitle}
-          description={t.footerDescription}
-        />
+        <FooterCTA />
         </ScrollAnimation>
 
         {/* Contact Form */}

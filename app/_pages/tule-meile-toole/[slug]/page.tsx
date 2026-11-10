@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Navbar from "../../../components/Navbar"
 import Footer from "../../../components/Footer"
+import ContactForm from "../../../components/ContactForm"
 import ScrollAnimation from "../../../components/ScrollAnimation"
 import { sanitizeHtmlSafe } from "@/lib/sanitize-server"
 import { getAnnouncementBySlug } from "@/lib/announcements"
@@ -212,6 +213,8 @@ export default async function TooleAnnouncementPage({ params }: Props) {
           </div>
         </div>
       </main>
+      {/* Kontaktivorm (ankur #pakkumine) peab olema igal lehel - menüü "Küsi pakkumist" kerib siia. */}
+      <ContactForm />
       <ScrollAnimation animation="fade-up" delay={800}>
         <Footer />
       </ScrollAnimation>

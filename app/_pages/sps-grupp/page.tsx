@@ -320,10 +320,7 @@ export function SpsGruppPageView({ locale }: { locale: Locale }) {
 
         {/* CTA - Request Quote */}
         <ScrollAnimation animation="fade-up">
-          <FooterCTA
-            title={t.ctaTitle}
-            description={t.ctaDescription}
-          />
+          <FooterCTA />
         </ScrollAnimation>
 
         {/* Contact Form */}
