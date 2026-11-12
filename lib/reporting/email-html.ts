@@ -432,6 +432,15 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   if (s.ga4) {
     cards.push(scoreCard("Sessioonid (GA4)", String(Math.round(s.ga4.current.sessions)), deltaSub(s.ga4.current.sessions, s.ga4.previous.sessions)))
   }
+  // AI-otsingute suunamised (chatgpt.com, perplexity.ai jm) — render guard,
+  // sest vanadel salvestatud raportitel aiReferrals puudub.
+  if (s.ga4?.aiReferrals) {
+    const ai = s.ga4.aiReferrals
+    const srcNote = ai.sources.length > 0
+      ? ` · ${ai.sources.slice(0, 3).map((x) => `${x.source} ${x.sessions}`).join(" · ")}`
+      : ""
+    cards.push(scoreCard("Sessioonid AI-otsingutest", String(ai.current), deltaSub(ai.current, ai.previous) + srcNote))
+  }
   if (s.ads?.available) {
     const gclidLeads = s.forms?.current.gclidLeads ?? 0
     const convNote = gclidLeads > 0 ? ` · ${gclidLeads} päringut (DB)` : ""

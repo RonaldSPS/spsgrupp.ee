@@ -83,6 +83,8 @@ interface Digest {
     keyEvents: number
     trackingOk: boolean
     channels: { channel: string; sessions: number }[]
+    /** AI-otsingutest (chatgpt.com, perplexity.ai jm) tulnud sessioonid — puudub vanadel snapshotidel. */
+    aiReferrals?: { current: number; previous: number }
   }
   ads?: {
     cost: number
@@ -187,6 +189,9 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
       keyEvents: g.current.keyEvents,
       trackingOk: avgDaily >= 20,
       channels: g.channels.slice(0, 8).map((c) => ({ channel: c.channel, sessions: c.sessions })),
+      ...(g.aiReferrals
+        ? { aiReferrals: { current: g.aiReferrals.current, previous: g.aiReferrals.previous } }
+        : {}),
     }
   }
 

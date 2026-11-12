@@ -6,7 +6,7 @@
  */
 
 import { getGoogleAccessToken, postJson, type ReportPeriod } from "./google-auth"
-import type { Ga4Channel, Ga4Daily, Ga4Data, Ga4Page, MetricSet } from "./types"
+import type { Ga4AiReferrals, Ga4Channel, Ga4Daily, Ga4Data, Ga4Page, MetricSet } from "./types"
 
 const SCOPES = ["https://www.googleapis.com/auth/analytics.readonly"]
 
@@ -15,6 +15,7 @@ interface Ga4Row {
   metricValues?: { value: string }[]
 }
 interface Ga4Report {
+  dimensionHeaders?: { name: string }[]
   rows?: Ga4Row[]
   totals?: { metricValues?: { value: string }[] }[]
 }
@@ -88,11 +89,59 @@ export async function pullGa4(period: ReportPeriod): Promise<Ga4Data> {
     sessions: num(r.metricValues?.[0]?.value),
   }))
 
+  // AI-otsingute suunamised (chatgpt.com, perplexity.ai, copilot, gemini, claude
+  // jm) — AI-leitavuse seire trendinäitaja. sessionSource regex-põhine filter;
+  // mõlemad perioodid korraga, et delta oleks õiglane. dateRange on mitme
+  // perioodi korral varjatud dimensioon — teda EI tohi dimensions-sse panna
+  // (API 400), tema asukoht dimensionValues-is lahendatakse päistest.
+  const aiReport = await run({
+    dateRanges: [current, previous],
+    dimensions: [{ name: "sessionSource" }],
+    metrics: [{ name: "sessions" }],
+    dimensionFilter: {
+      filter: {
+        fieldName: "sessionSource",
+        stringFilter: {
+          matchType: "PARTIAL_REGEXP",
+          value: "chatgpt|chat\\.openai|openai|perplexity|copilot\\.microsoft|gemini\\.google|claude\\.ai|you\\.com|phind|mistral|deepseek|meta\\.ai",
+          caseSensitive: false,
+        },
+      },
+    },
+    limit: 50,
+  })
+  const aiDimNames = (aiReport.dimensionHeaders ?? []).map((h) => h.name)
+  const aiSourceIdx = aiDimNames.indexOf("sessionSource")
+  const aiRangeIdx = aiDimNames.indexOf("dateRange")
+  const aiSources = new Map<string, number>()
+  let aiCurrent = 0
+  let aiPrevious = 0
+  for (const r of aiReport.rows ?? []) {
+    const source = aiSourceIdx >= 0 ? (r.dimensionValues?.[aiSourceIdx]?.value ?? "?") : "?"
+    const rangeName = aiRangeIdx >= 0 ? r.dimensionValues?.[aiRangeIdx]?.value : undefined
+    const sessions = num(r.metricValues?.[0]?.value)
+    if (rangeName === "previous") {
+      aiPrevious += sessions
+    } else {
+      // "current" voi puuduv dateRange (ihe periood) = jooksev periood
+      aiCurrent += sessions
+      aiSources.set(source, (aiSources.get(source) ?? 0) + sessions)
+    }
+  }
+  const aiReferrals: Ga4AiReferrals = {
+    current: aiCurrent,
+    previous: aiPrevious,
+    sources: [...aiSources.entries()]
+      .map(([source, sessions]) => ({ source, sessions }))
+      .sort((a, b) => b.sessions - a.sessions),
+  }
+
   return {
     current: toMetricSet(curRow ?? overview.totals?.[0]?.metricValues),
     previous: toMetricSet(prevRow),
     channels,
     topPages,
     daily,
+    aiReferrals,
   }
 }

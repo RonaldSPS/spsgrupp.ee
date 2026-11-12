@@ -29,6 +29,7 @@
     "setup:linkedin-auth": "tsx scripts/linkedin-oauth-setup.ts",
     "setup:linkedin-leadgen": "tsx scripts/linkedin-leadgen-setup.ts",
     "report:gbp": "tsx scripts/gbp-read.ts",
+    "report:ai-visibility": "tsx scripts/ai-visibility-check.ts",
     "report:geogrid": "tsx scripts/geogrid-report.ts",
     "report:offline-conversions": "tsx scripts/ads-offline-conversions.ts",
     "report:offline-conversions-upload": "tsx scripts/ads-offline-conversions-upload.ts",

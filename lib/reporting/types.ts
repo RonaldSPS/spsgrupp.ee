@@ -36,12 +36,22 @@ export interface Ga4Daily {
   sessions: number
 }
 
+/** AI-otsingutest tulnud suunamised (chatgpt.com, perplexity.ai jm) — lisatud
+ *  12.11.2026 AI-leitavuse seire tarbeks. Valikuline — vanadel snapshotidel puudub. */
+export interface Ga4AiReferrals {
+  current: number
+  previous: number
+  /** Millistest AI-domeenidest sessioonid tulid (jooksev periood). */
+  sources: { source: string; sessions: number }[]
+}
+
 export interface Ga4Data {
   current: MetricSet
   previous: MetricSet
   channels: Ga4Channel[]
   topPages: Ga4Page[]
   daily: Ga4Daily[]
+  aiReferrals?: Ga4AiReferrals
 }
 
 export interface GscTotals {

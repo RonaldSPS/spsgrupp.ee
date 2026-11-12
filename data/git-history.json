@@ -1,6 +1,97 @@
 {
- "generatedAt": "2026-11-12T09:55:30.126Z",
+ "generatedAt": "2026-11-12T10:19:25.655Z",
  "commits": [
+  {
+   "hash": "b438c9a",
+   "date": "2026-11-12T12:03:33+02:00",
+   "subject": "feat(aeo): AI-leitavuse parandused -- kliendinimed masinloetavad, rikastatud org-skeem, llms.txt blogi+kliendilugudega, robots AI-nimekiri (TWN pakkumise ulevaate jarel, 12.11.2026). (1) Logoriba: Logos.tsx koik 30 logo said paris alt-tekstid (brandid tuvastatud piltide sisust: ra.png=Rahva Raamat, zoo.png=Tallinna Loomaaed, draudimas.png=Lietuvos Draudimas jne); marqee 3 koopiast on semantiline ainult esimene (ul/li + altd), kloonid aria-hidden -- iga nimi tapselt 1x HTML-is; + sr-only trust.clientsList lause (messages x3). Varem oli kogu plokk alt='' + aria-hidden -- Maxima/Rimi/Elering/Ericsson/TalTech jt olid AI ja crawlerite jaoks olematud. (2) Arvustused: uus lib/testimonial-companies.ts (logo-fail -> firma, 26 tk tuvastatud piltidest; paul.png=Estravel kinnitub ka kliendiloo kaudu); TestimonialCards logo alt kannab nuud firmat, Review JSON-LD author sai worksFor Organization (avalehe Testimonials + arvamuste leht; kehtib ka kontori/tootmise/kaubanduse/koolide lehtede kaartidele). (3) Org-skeem root-shell'is: +description, priceRange, numberOfEmployees 300+, award ISO 9001/14001, knowsAbout, sameAs + LinkedIn (kontrollitud URL); kontaktilehe LocalBusiness kasutab nuud sama @id-d (#organization) -- noodid uhlinevad uheks entiteediks (varem duplikaat), url viidab avalehele. (4) llms.txt: generaatorisse 'Tuntumad kliendid' rida + Kliendilood ja Blogi sektsioonid (ainult avaldatud/aktiivsed, admini JSON edit-overlay'd rakendatud nagu sitemap'il); jalusesse keelesoltumatu llms.txt link; regenereerimine automatiseeritud predev/prebuild'i. (5) robots.ts AI-nimekiri 6->13 (ChatGPT-User, Claude-SearchBot, Perplexity-User, Applebot-Extended, Meta-ExternalAgent, Amazonbot, CCBot lisandunud). Verifitseeritud: eslint 0 viga, tsc puhas, npm test 179/179 + i18n-validate OK, puhas build OK, live-probe prod-serverist (altd 1x, org-valjad, worksFor, @id merge kohal), i18n:parity 36/36 OK. AGENTS.md (+AI-leitavuse plokk) ja ARCHITECTURE.md uuendatud.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "ARCHITECTURE.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/ReviewsPageContent.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Logos.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/TestimonialCards.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Testimonials.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/robots.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/json-ld-generator.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/testimonial-companies.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    },
+    {
+     "s": "M",
+     "p": "scripts/generate-llms-txt.ts"
+    }
+   ]
+  },
   {
    "hash": "bb2584b",
    "date": "2026-11-10T18:59:13+02:00",
