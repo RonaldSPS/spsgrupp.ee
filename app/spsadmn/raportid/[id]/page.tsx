@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useParams } from "next/navigation"
 import type { Insight, StoredReport } from "@/lib/reporting/types"
 import { markdownToHtml, splitAdsConversions, maintenanceCostLine, changesFallbackLines } from "@/lib/reporting/email-html"
+import { AI_PROMPT_BY_ID, classifyAiSourceDomain } from "@/lib/reporting/ai-visibility"
 import GeoGridSection from "./GeoGridSection"
 
 interface ReportSummary {
@@ -400,22 +401,21 @@ export default function ReportDetailPage() {
         <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
           <h2 className="text-[18px] font-bold text-[#17345a] mb-1">AI-nähtavus — kas AI-otsingud SPS-i soovitavad?</h2>
           <p className="text-[13px] text-[#5a6474] mb-3">
-            Iga nädal esitatakse 12 fikseeritud päringut (ET/EN/RU) AI-otsingutele; „mainitud“ = mitmel päringul SPS Gruppi soovitati.
-            See on kolmas, eraldi mõõdik: Geo-grid mõõdab Maps&apos;i, top-päringud orgaanilist otsingut — see siin AI-vestluste vastuseid.
+            Iga nädal esitatakse 12 fikseeritud päringut (ET/EN/RU) AI-otsingutele. See on kolmas, eraldi mõõdik:
+            Geo-grid mõõdab Maps&apos;i, top-päringud orgaanilist otsingut — see siin AI-vestluste vastuseid.
           </p>
           <table className="w-full text-[15px] mb-4">
             <thead>
               <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
                 <th className="py-2 pr-3 font-medium">Teenus</th>
-                <th className="py-2 pr-3 font-medium text-right">SPS mainitud</th>
-                <th className="py-2 font-medium">Päringu kaupa</th>
+                <th className="py-2 font-medium text-right">SPS mainitud</th>
               </tr>
             </thead>
             <tbody>
               {s.aiVisibility.providers.map((p) => (
-                <tr key={p.provider} className="border-b border-[#f4f6f9] last:border-0 align-top">
+                <tr key={p.provider} className="border-b border-[#f4f6f9] last:border-0">
                   <td className="py-2 pr-3 font-medium text-[#17345a]">{p.provider}</td>
-                  <td className="py-2 pr-3 text-right">
+                  <td className="py-2 text-right">
                     {p.mentioned}/{p.asked}
                     {p.deltaMentioned !== undefined && (
                       <span className={`text-[13px] ${p.deltaMentioned > 0 ? "text-green-700" : p.deltaMentioned < 0 ? "text-red-700" : "text-[#9aa5b1]"}`}>
@@ -424,30 +424,70 @@ export default function ReportDetailPage() {
                     )}
                     {p.failed > 0 && <span className="text-[13px] text-amber-700"> · {p.failed} ebaõnnestus</span>}
                   </td>
-                  <td className="py-2 text-[13px] text-[#5a6474]">
-                    {p.prompts.map((pr) => (
-                      <span key={pr.id} title={pr.id} className="mr-1">
-                        {pr.sps === null ? "·" : pr.sps ? "✅" : "—"}
-                      </span>
-                    ))}
-                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+
+          <h3 className="text-[15px] font-bold text-[#17345a] mb-2">Milliste päringute peale SPS-i mainiti?</h3>
+          <div className="space-y-2 mb-4">
+            {s.aiVisibility.providers.flatMap((p) =>
+              p.prompts.map((pr) => (
+                <div key={`${p.provider}-${pr.id}`} className="border-b border-[#f4f6f9] last:border-0 pb-2">
+                  <div className="text-[14px] text-[#17345a]">
+                    <span className="text-[#9aa5b1] uppercase text-[12px]">{pr.locale}</span>{" "}
+                    {AI_PROMPT_BY_ID[pr.id]?.text ?? pr.id}
+                    {s.aiVisibility!.providers.length > 1 && <span className="text-[#9aa5b1] text-[12px]"> ({p.provider})</span>}
+                  </div>
+                  <div className="text-[13px] mt-0.5">
+                    {pr.sps === null ? (
+                      <span className="text-amber-700">päring ebaõnnestus</span>
+                    ) : pr.sps ? (
+                      <span className="text-green-700 font-medium">✓ SPS-i mainitud</span>
+                    ) : (
+                      <span className="text-[#9aa5b1]">SPS-i ei mainitud</span>
+                    )}
+                    {pr.competitors.length > 0 && (
+                      <span className="text-[#9aa5b1]"> · konkurente samas vastuses: {pr.competitors.join(", ")}</span>
+                    )}
+                  </div>
+                  {pr.snippet && (
+                    <div className="text-[13px] text-[#4a5568] italic mt-0.5">„{pr.snippet}“</div>
+                  )}
+                </div>
+              )),
+            )}
+          </div>
+
           {s.aiVisibility.topCompetitors.length > 0 && (
-            <p className="text-[14px] text-[#4a5568] mb-1">
-              <strong>Konkurente mainiti:</strong>{" "}
+            <p className="text-[14px] text-[#4a5568] mb-3">
+              <strong>Konkurente mainiti vastustes:</strong>{" "}
               {s.aiVisibility.topCompetitors.slice(0, 8).map(([n, c]) => `${n} (${c})`).join(", ")}
             </p>
           )}
-          {s.aiVisibility.topDomains.length > 0 && (
-            <p className="text-[14px] text-[#4a5568]">
-              <strong>AI tsiteerib allikaid:</strong>{" "}
-              {s.aiVisibility.topDomains.slice(0, 10).map(([d, c]) => `${d} (${c})`).join(", ")}{" "}
-              — nendes kohtades tasub SPS-i nähtavust kasvatada.
-            </p>
-          )}
+
+          <h3 className="text-[15px] font-bold text-[#17345a] mb-2">Milliseid allikaid AI vastustes tsiteerib?</h3>
+          {(() => {
+            const buckets: Record<string, [string, number][]> = { own: [], platform: [], thirdparty: [], competitor: [], unknown: [] }
+            for (const [domain, count] of s.aiVisibility!.topDomains) buckets[classifyAiSourceDomain(domain)].push([domain, count])
+            const row = (label: string, note: string, list: [string, number][], classes: string) =>
+              list.length > 0 ? (
+                <div className="mb-2">
+                  <span className={`text-[14px] font-medium ${classes}`}>{label}:</span>{" "}
+                  <span className="text-[14px] text-[#4a5568]">{list.slice(0, 8).map(([d, c]) => `${d} (${c})`).join(", ")}</span>
+                  <div className="text-[13px] text-[#5a6474]">{note}</div>
+                </div>
+              ) : null
+            return (
+              <>
+                {row("Meie leht", "AI loeb spsgrupp.ee juba — sisu on masinloetav. Hoia hinnad/KKK/teenuste kirjeldused värskena.", buckets.own, "text-green-700")}
+                {row("Platvormid, mida ise haldame", "Halda aktiivselt: Google Business Profile (arvustused + postitused), LinkedIn, Wikidata kirje (kavand olemas).", buckets.platform, "text-blue-700")}
+                {row("Kolmandad kohad — siin SAAB nähtavust kasvatada", "Tegevus: vii SPS-i kirjed ajakohaseks ja hangu mainimisi/arvustusi/artikleid just nendes kohtades.", buckets.thirdparty, "text-green-700")}
+                {row("Konkurentide endi lehed", "Neid mõjutada ei saa — AI lihtsalt loeb nende lehti. Vastukaal: kata meie lehel samad teemad (hinnad, KKK, teenuste detailid) vähemalt sama põhjalikult.", buckets.competitor, "text-amber-800")}
+                {row("Muud / tundmatud", "Kontrolli käsitsi: kataloog/portaal → lisa kirje; konkurent → sama vastukaal kui eelmises punktis.", buckets.unknown, "text-[#5a6474]")}
+              </>
+            )
+          })()}
         </div>
       )}
 

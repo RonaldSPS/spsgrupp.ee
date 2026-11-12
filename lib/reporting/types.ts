@@ -357,6 +357,8 @@ export interface AiVisibilityPromptRow {
   sps: boolean | null
   competitors: string[]
   domains: string[]
+  /** Lühike kontekstinipp SPS-mainimise ümbert („mis kontekstis"). Puudub vanadel snapshotidel ja kui SPS-i ei mainitud. */
+  snippet?: string
 }
 
 export interface AiVisibilityProviderSummary {

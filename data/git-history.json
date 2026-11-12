@@ -1,6 +1,57 @@
 {
- "generatedAt": "2026-11-12T11:08:08.524Z",
+ "generatedAt": "2026-11-12T11:47:34.015Z",
  "commits": [
+  {
+   "hash": "194b7d6",
+   "date": "2026-11-12T13:09:16+02:00",
+   "subject": "feat(aeo): AI-seire integreeritud nadalaraporti (kliendi soov 12.11.2026 -- 'This should be in the report'). Tuum refaktoreeritud scripts/ai-visibility-check.ts-st -> lib/reporting/ai-visibility.ts (12 fikseeritud paringut ET/EN/RU, Perplexity/OpenAI/Gemini providerid, SPS+28 konkurendi tuvastus, tsiteeritud domeenid; PUHAS serverless-kood, failikirjutust pole). snapshot.ts: 5. paralleelne toomme (attempt-isoleeritud, null kui voti puudub) -> snapshot.aiVisibility (uued tuubid types.ts-is, valikuline + render guards vanadele raportitele). generate.ts: deltaMentioned eelmise NADALA raporti suhtes (geo-gridi muster). E-kiri: uus 'AI-nahtavus' sektsioon (provider-kaupa mainitud/asked + delta + konkurendid + tsiteeritud domeenid 'kuhu off-page tood suunata'), ka text-variants. LLM-digestis aiVisibility (number-audit-safe). Admini detail: kompaktne plokk GeoGridi jarel (teenuste tabel + paringu-kaupa markerid + konkurendid + domeenid + mooodikute eristuse selgitus). CLI-skript on nuud ohuke wrapper (env-load + konsool + raportid/ai-visibility/ runs+LOG.md failid; --selftest sailis, 4 juhtu OK). cron route'i env-dok uuendatud (OPENAI_API_KEY valikuline). OPENAI_API_KEY lisatud Verceli env'i (klient, 12.11.2026) -- reede cron kaivitab kontrolli automaatselt. E2E verifitseeritud: npm run report:weekly -> raport id 15 sisaldab aiVisibility-d (openai 5/12 mainitud, top konkurendid SOL 6/ISS 5, tsiteeritud domeenide hulgas spsgrupp.ee 2x), buildReportEmail html+text sisaldavad sektsiooni. tsc puhas, eslint 0 viga, npm test 179/179 + i18n OK, puhas build OK. AGENTS.md uuendatud.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/cron/weekly-report/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "lib/reporting/ai-visibility.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/generate.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/snapshot.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "scripts/ai-visibility-check.ts"
+    }
+   ]
+  },
   {
    "hash": "b726246",
    "date": "2026-11-12T12:20:45+02:00",

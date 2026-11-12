@@ -95,6 +95,78 @@ export function hostnameOf(url: string): string {
   }
 }
 
+/** Päringu tekst id järgi (snapshot hoiab ainult id'd — tekst on siin fikseeritud). */
+export const AI_PROMPT_BY_ID: Record<string, AiSeirePrompt> = Object.fromEntries(
+  AI_VISIBILITY_PROMPTS.map((p) => [p.id, p]),
+)
+
+/** Lühike kontekstinipp SPS-mainimise ümbert (e-kiri/admin: „mis kontekstis
+ *  SPS välja tuleb"). Võtab mainimist sisaldava lause; vanadel snapshotidel puudub. */
+export function spsMentionSnippet(answer: string, maxLen = 220): string | undefined {
+  const normalized = answer
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1") // markdown-lingid -> tekst
+    .replace(/\*\*/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+  if (!normalized) return undefined
+  const hit = normalized.split(/(?<=[.!?])\s+/).find((s) => SPS_RE.test(s))
+  if (hit) return hit.length <= maxLen ? hit : hit.slice(0, maxLen - 1).replace(/\s+\S*$/, "") + "…"
+  const m = SPS_RE.exec(normalized)
+  if (!m) return undefined
+  const from = Math.max(0, m.index - 60)
+  return (from > 0 ? "…" : "") + normalized.slice(from, from + maxLen).replace(/\s+\S*$/, "") + "…"
+}
+
+/* ---------- Tsiteeritud domeenide klassifikatsioon (konstruktiivne tegevusplaan) ---------- */
+
+export type AiSourceClass = "own" | "platform" | "thirdparty" | "competitor" | "unknown"
+
+/** Meie oma. */
+const OWN_DOMAINS = new Set(["spsgrupp.ee"])
+
+/** Platvormid, kus SPS ise saab sisu hallata (GBP, sotsiaal, Wikipedia/Wikidata). */
+const PLATFORM_DOMAINS = new Set([
+  "google.com", "facebook.com", "linkedin.com", "instagram.com",
+  "wikipedia.org", "wikidata.org", "youtube.com", "tiktok.com",
+])
+
+/** Kolmandad osapooled, kus SPS-i kajastust SAAB kasvatada (kataloogid, register, meedia, arvustused). */
+const THIRD_PARTY_DOMAINS = new Set([
+  "ariregister.rik.ee", "inforegister.ee", "firmad.ee", "ettevotteraamat.ee",
+  "delfi.ee", "aripaev.ee", "geenius.ee", "err.ee", "postimees.ee", "ohtuleht.ee",
+  "tootukassa.ee", "cv.ee", "cvkeskus.ee", "indeed.ee", "bioneer.ee", "taust.ee",
+])
+
+/** Konkurentide endi lehed — otse mõjutada EI SAA (tuvastatud Ads'i
+ *  negatiivsete nimekirjadest + AI-seire tsitaatidest, nt 12.11.2026 jooks).
+ *  SRP Grupp (srpgrupp.ee) on eraldi firma, ära aja kunagi SPS-iga segi. */
+const COMPETITOR_DOMAINS = new Set([
+  "sol.ee", "iss.ee", "issworld.com", "cleanplanet.ee", "forus.ee", "multiclean.ee",
+  "euroclean.ee", "happyclean.ee", "goclean.ee", "cleansmart.ee", "masterclean.ee",
+  "kleenest.ee", "lavidaclean.ee", "puhastusmeistrid.ee", "cleanpoint.ee", "cleanstep.ee",
+  "globalcleaning.ee", "easyclean.ee", "cleancontrol.ee", "cleaningcenter.ee",
+  "anhel.ee", "ecocare.ee", "profpuhastus.ee", "ecolab.com", "ecolab.ee",
+  "diversey.com", "wetrok.com", "puhastustiim.ee", "smilecleaning.ee", "castellest.ee",
+  "luxpuhastus.ee", "kitclean.ee", "eliitserv.ee", "coralclean.ee", "ihp.ee",
+  "srpgrupp.ee", "puhastusteenused.com", "tondipuhastus.ee", "liisupuhastus.ee",
+  "kronauer.ee",
+])
+
+export function classifyAiSourceDomain(domain: string): AiSourceClass {
+  const d = domain.toLowerCase()
+  if (OWN_DOMAINS.has(d) || d.endsWith(".spsgrupp.ee")) return "own"
+  if (
+    PLATFORM_DOMAINS.has(d) ||
+    d.endsWith(".google.com") ||
+    d.endsWith(".wikipedia.org") ||
+    d.endsWith(".linkedin.com") ||
+    d.endsWith(".facebook.com")
+  ) return "platform"
+  if (THIRD_PARTY_DOMAINS.has(d)) return "thirdparty"
+  if (COMPETITOR_DOMAINS.has(d)) return "competitor"
+  return "unknown"
+}
+
 /* ---------- Teenusepakkujad ---------- */
 
 export interface AiProviderAnswer {
@@ -309,6 +381,9 @@ export function summarizeAiRun(run: AiVisibilityRun): AiVisibilityData {
         sps: r.ok ? (r.spsMentioned ?? false) : null,
         competitors: r.competitors ?? [],
         domains: r.citationDomains ?? [],
+        ...(r.ok && r.spsMentioned
+          ? { snippet: spsMentionSnippet(r.answer ?? "") }
+          : {}),
       })),
     }
   })

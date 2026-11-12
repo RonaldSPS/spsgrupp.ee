@@ -5,6 +5,7 @@
  */
 
 import type { AdsConversionBreakdown, AdsData, AiVisibilityData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
+import { AI_PROMPT_BY_ID, classifyAiSourceDomain, type AiSourceClass } from "./ai-visibility"
 import { getGbpWeekTasks, loadGbpCalendar, type GbpCalendar, type GbpWeekTasks } from "./gbp-calendar"
 
 export interface AdsConvSplit {
@@ -324,10 +325,13 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
  * raport on vanast formaadist. Mõõdab teadlikult Maps'i/äriprofiili
  * nähtavust — GSC orgaanilise otsingu positsioonidega (Top päringud)
  * EI pea kattuma; sektsioon ütleb selle ka lugejale sõnaselgelt.
+ * (Docstring jääb loogiliselt geogridSection'i kohale — vt allpool.)
  */
 /** AI-nähtavuse sektsioon: kas AI-otsingud (12 fikseeritud päringut) SPS-i
- *  soovitavad + konkurendi-mainimised + tsiteeritud domeenid (kuhu off-page
- *  tööd suunata). Andmed: snapshot.aiVisibility (valikuline — render guard). */
+ *  soovitavad — päringu-kaupa (tekst + kontekstinipp), konkurendi-mainimised
+ *  ja tsiteeritud domeenid TEGEVUSKLASSIDES (oma leht / hallatavad platvormid /
+ *  kolmandad kohad, kus saab kasvatada / konkurentide lehed, mida ei saa).
+ *  Andmed: snapshot.aiVisibility (valikuline — render guard). */
 function aiVisibilitySection(ai: AiVisibilityData): { html: string; text: string[] } {
   const delta = (d?: number) => {
     if (d === undefined) return ""
@@ -345,8 +349,54 @@ function aiVisibilitySection(ai: AiVisibilityData): { html: string; text: string
       )
     })
     .join("")
+
+  /* Päringu kaupa — tekst + staatus + kontekstinipp (vastab küsimusele
+   * „milliste otsingute peale SPS-i mainitakse ja mis kontekstis"). */
+  const promptRows = ai.providers
+    .flatMap((p) =>
+      p.prompts.map((pr) => {
+        const meta = AI_PROMPT_BY_ID[pr.id]
+        const status =
+          pr.sps === null
+            ? `<span style="color:#b45309;font-size:13px">viga</span>`
+            : pr.sps
+              ? `<span style="color:#166534;font-weight:bold;font-size:13px">✓ mainitud</span>`
+              : `<span style="color:#9aa5b1;font-size:13px">ei mainitud</span>`
+        const snippet = pr.snippet
+          ? `<div style="font-size:13px;color:#4a5568;font-style:italic;margin-top:2px">„${escapeHtml(pr.snippet)}“</div>`
+          : ""
+        const comp = pr.competitors.length > 0
+          ? `<div style="font-size:12px;color:#9aa5b1;margin-top:2px">Konkurente samas vastuses: ${escapeHtml(pr.competitors.join(", "))}</div>`
+          : ""
+        return (
+          `<tr><td style="padding:8px 10px;border-top:1px solid #edf0f4">` +
+          `<div style="font-size:13px;color:#17345a"><span style="color:#9aa5b1;text-transform:uppercase">${escapeHtml(pr.locale)}</span> ${escapeHtml(meta?.text ?? pr.id)}${ai.providers.length > 1 ? ` <span style="color:#9aa5b1">(${escapeHtml(p.provider)})</span>` : ""}</div>` +
+          `<div style="margin-top:2px">${status}</div>${snippet}${comp}</td></tr>`
+        )
+      }),
+    )
+    .join("")
+
+  /* Tsiteeritud domeenid tegevusklassidesse — „nendes kohtades kasvatada"
+   * on vale nõuanne, kui koht on konkurendi oma leht. */
+  const buckets: Record<AiSourceClass, [string, number][]> = { own: [], platform: [], thirdparty: [], competitor: [], unknown: [] }
+  for (const [domain, count] of ai.topDomains) buckets[classifyAiSourceDomain(domain)].push([domain, count])
+  const fmtBucket = (list: [string, number][]) => list.slice(0, 8).map(([d, c]) => `${escapeHtml(d)} (${c})`).join(", ")
+  const bucketLine = (label: string, note: string, list: [string, number][], color: string) =>
+    list.length > 0
+      ? `<li style="margin:4px 0;font-size:13px;color:#4a5568"><strong style="color:${color}">${label}:</strong> ${fmtBucket(list)}<br><span style="color:#5a6474">${note}</span></li>`
+      : ""
+  const sourcesHtml =
+    `<div style="margin-top:14px"><strong style="font-size:14px;color:#17345a">Milliseid allikaid AI vastustes tsiteerib?</strong>` +
+    `<ul style="margin:6px 0 0;padding-left:18px">` +
+    bucketLine("Meie leht", "AI loeb spsgrupp.ee juba — sisu on masinloetav. Hoia hinnad/KKK/teenuste kirjeldused värskena.", buckets.own, "#166534") +
+    bucketLine("Platvormid, mida ise haldame", "Halda aktiivselt: Google Business Profile (arvustused + postitused), LinkedIn, Wikidata kirje (kavand olemas).", buckets.platform, "#1d4ed8") +
+    bucketLine("Kolmandad kohad — siin SAAB nähtavust kasvatada", "Tegevus: vii SPS-i kirjed ajakohaseks ja hangu mainimisi/arvustusi/artikleid just nendes kohtades.", buckets.thirdparty, "#166534") +
+    bucketLine("Konkurentide endi lehed", "Neid mõjutada ei saa — AI lihtsalt loeb nende lehti. Vastukaal: kata meie lehel samad teemad (hinnad, KKK, teenuste detailid) vähemalt sama põhjalikult.", buckets.competitor, "#92400e") +
+    bucketLine("Muud / tundmatud", "Kontrolli käsitsi: kataloog/portaal → lisa kirje; konkurent → sama vastukaal kui eelmises punktis.", buckets.unknown, "#5a6474") +
+    `</ul></div>`
+
   const topComp = ai.topCompetitors.slice(0, 8).map(([n, c]) => `${escapeHtml(n)} (${c})`).join(", ")
-  const topDom = ai.topDomains.slice(0, 10).map(([d, c]) => `${escapeHtml(d)} (${c})`).join(", ")
   const html =
     `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">AI-nähtavus — kas AI-otsingud SPS-i soovitavad?</h2>` +
     `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Iga nädal esitatakse ${ai.providers.reduce((s, p) => s + p.asked + p.failed, 0)} fikseeritud päringut (ET/EN/RU) AI-otsingutele. „Mainitud" = mitmel päringul SPS Gruppi soovitati.</p>` +
@@ -354,13 +404,27 @@ function aiVisibilitySection(ai: AiVisibilityData): { html: string; text: string
     `<tr><td style="padding:7px 10px;font-size:12px;color:#5a6474">Teenus</td><td style="padding:7px 10px;font-size:12px;color:#5a6474;text-align:right">SPS mainitud</td></tr>` +
     providerRows +
     `</table>` +
-    (topComp ? `<p style="font-size:13px;color:#4a5568;margin:8px 0 0"><strong>Konkurente mainiti:</strong> ${topComp}</p>` : "") +
-    (topDom ? `<p style="font-size:13px;color:#4a5568;margin:4px 0 0"><strong>AI tsiteerib allikaid:</strong> ${topDom} — nendes kohtades tasub SPS-i nähtavust kasvatada.</p>` : "")
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden;margin-top:10px">${promptRows}</table>` +
+    (topComp ? `<p style="font-size:13px;color:#4a5568;margin:8px 0 0"><strong>Konkurente mainiti vastustes:</strong> ${topComp}</p>` : "") +
+    sourcesHtml
+
   const text: string[] = [
     "AI-NÄHTAVUS (kas AI-otsingud SPS-i soovitavad):",
     ...ai.providers.map((p) => `- ${p.provider}: SPS mainitud ${p.mentioned}/${p.asked} päringus${p.deltaMentioned !== undefined ? ` (${p.deltaMentioned > 0 ? "+" : ""}${p.deltaMentioned} vs eelm.)` : ""}`),
+    "- Päringu kaupa:",
+    ...ai.providers.flatMap((p) =>
+      p.prompts.map((pr) => {
+        const meta = AI_PROMPT_BY_ID[pr.id]
+        return `  ${pr.sps === null ? "[viga]" : pr.sps ? "[SPS ✓]" : "[—]"} [${pr.locale}] ${meta?.text ?? pr.id}${pr.snippet ? ` — „${pr.snippet}“` : ""}`
+      }),
+    ),
     ...(topComp ? [`- Konkurente mainiti: ${ai.topCompetitors.slice(0, 8).map(([n, c]) => `${n} (${c})`).join(", ")}`] : []),
-    ...(topDom ? [`- AI tsiteerib: ${ai.topDomains.slice(0, 10).map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
+    "- Tsiteeritud allikad klasside kaupa:",
+    ...(buckets.own.length ? [`  Meie leht: ${buckets.own.map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
+    ...(buckets.platform.length ? [`  Platvormid (halda ise): ${buckets.platform.map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
+    ...(buckets.thirdparty.length ? [`  Kolmandad kohad (SIIN saab kasvatada): ${buckets.thirdparty.map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
+    ...(buckets.competitor.length ? [`  Konkurentide lehed (ei saa mõjutada): ${buckets.competitor.map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
+    ...(buckets.unknown.length ? [`  Tundmatud (kontrolli): ${buckets.unknown.map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
     "",
   ]
   return { html, text }

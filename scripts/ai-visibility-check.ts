@@ -39,9 +39,11 @@ import {
   AI_VISIBILITY_PROMPTS,
   activeAiProviders,
   checkAiVisibility,
+  classifyAiSourceDomain,
   detectCompetitors,
   detectSps,
   hostnameOf,
+  spsMentionSnippet,
   summarizeAiRun,
 } from "../lib/reporting/ai-visibility"
 
@@ -136,7 +138,31 @@ function selfTest(): void {
     failed++
     console.error("SELFTEST hostname FAIL")
   }
-  if (failed === 0) console.log(`SELFTEST OK (${cases.length} analüüsi juhtu + hostname normaliseerimine)`)
+  // kontekstinipp: leiab SPS-mainimise lause
+  const snip = spsMentionSnippet("Esmalt SOL. Teiseks tasub kaaluda SPS Gruppi, kes teenindab kontoreid Tallinnas. Kolmandaks ISS.")
+  if (!snip || !/SPS/.test(snip) || snip.includes("Esmalt SOL")) {
+    failed++
+    console.error(`SELFTEST snippet FAIL: ${JSON.stringify(snip)}`)
+  }
+  // domeeni klassifikatsioon: oma/platvorm/kolmas/konkurent/tundmatu
+  const cls: [string, string][] = [
+    ["spsgrupp.ee", "own"],
+    ["google.com", "platform"],
+    ["ariregister.rik.ee", "thirdparty"],
+    ["smilecleaning.ee", "competitor"],
+    ["ihp.ee", "competitor"],
+    ["puhastusteenused.com", "competitor"],
+    ["srpgrupp.ee", "competitor"],
+    ["mingi-tundmatu.ee", "unknown"],
+  ]
+  for (const [domain, expected] of cls) {
+    const got = classifyAiSourceDomain(domain)
+    if (got !== expected) {
+      failed++
+      console.error(`SELFTEST classify FAIL: ${domain} -> ${got} (ootus ${expected})`)
+    }
+  }
+  if (failed === 0) console.log(`SELFTEST OK (${cases.length} analüüsi juhtu + hostname + snippet + ${cls.length} domeeni klassifikatsiooni)`)
   else process.exit(1)
 }
 
