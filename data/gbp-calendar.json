@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-21",
+  "updatedAt": "2026-11-12",
   "startMonday": "2026-10-26",
   "rhythm": {
     "gbpPost": "1x nädalas (avalda E–K, nädala teema)",
@@ -43,11 +43,12 @@
       "theme": "Mastaap ja töökindlus (miks SPS)",
       "blogTopic": "Kuidas valida ettevõttele koristuspartner: 7 kontroll-küsimust (ISO, vahetuspersonal, objektijuht, kindlustus)",
       "post": {
-        "text": "2006. aastast, 300+ töötajat, üle 1 000 000 m² hooldatavat pinda ja 200+ äriklienti — SPS Grupp on üks Eesti suuremaid B2B koristuspartnereid. ISO 9001 ja ISO 14001 sertifikaadid, läbipaistvad hinnad ja igale objektile nimetatud objektijuht. Vaata, kuidas me töötame.",
-        "ctaUrl": "https://spsgrupp.ee/sps-grupp/",
+        "text": "Kes on Eesti suurimad koristusfirmad? Võrdlesime avalikke andmeid: turu kannavad Stell Eesti (42,1 mln €) ja SOL Baltics (39,7 mln €), neile järgneb killustunud väli, kus SPS Grupp on üks tugevamaid Tallinnas ja Harjumaal (300+ töötajat, 1 000 000+ m² hoolduses, ISO 9001/14001). Aga suurus on vaid üks mõõde - loe blogist, mille järgi koristuspartnerit tegelikult võrrelda tasub.",
+        "ctaUrl": "https://spsgrupp.ee/blog/millised-on-eesti-suurimad-koristusfirmad/",
         "photoIdea": "meeskond vormiriietuses või brändiga auto"
       },
-      "photoTask": null
+      "photoTask": null,
+      "done": "avaldatud 12.11.2026 (gbp-post.ts) — postitus viitab uuele võrdlusartiklile /blog/millised-on-eesti-suurimad-koristusfirmad/"
     },
     {
       "weekStart": "2026-11-16",
