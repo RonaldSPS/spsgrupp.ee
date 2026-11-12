@@ -256,6 +256,17 @@
   ],
   "posts": [
     {
+      "id": 9017,
+      "title": "Millised on Eesti suurimad koristusfirmad ja kuidas koristuspartnerit võrrelda?",
+      "slug": "millised-on-eesti-suurimad-koristusfirmad",
+      "date": "2026-11-12 05:00:00",
+      "language": "et",
+      "featuredImage": "/blog-media/2017/10/top.jpg",
+      "featuredImageSource": "wordpress",
+      "contentStatus": "article",
+      "migrationStatus": "ready"
+    },
+    {
       "id": 9016,
       "title": "Kuidas planeerida kontori koristuse sagedust ja eelarvet?",
       "slug": "kontori-koristuse-sagedus-ja-eelarve-planeerimine",

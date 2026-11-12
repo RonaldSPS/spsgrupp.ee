@@ -1,6 +1,29 @@
 {
- "generatedAt": "2026-11-12T12:27:28.779Z",
+ "generatedAt": "2026-11-12T12:38:29.305Z",
  "commits": [
+  {
+   "hash": "98077a5",
+   "date": "2026-11-12T14:28:25+02:00",
+   "subject": "feat(aeo): Wikidata kirje Q142123264 org-skeemi sameAs-sse (kirje avaldatud 12.11.2026 kavandi WIKIDATA-KAVAND.md jargi -- koik vaited kohal: P31 business, P17 Eesti, P159 Tallinn, P571 2006, P856 spsgrupp.ee, P6518 ariregistri kood koos viitega, P3608 KMKR, P1128 300 tootajat, P6375 aadress, P2013 Facebook, P4264 LinkedIn, P452/P1454). sameAs lisatud molemasse LocalBusiness noodi (root-shell ORGANIZATION_SCHEMA + kontaktileht, sama @id). Wikidata on LLM-ide ja Google'i knowledge graph'i tuamik-entiteediallikas -- ootus: tugevdab SPS-i entiteedi tuvastust AI-vastustes. tsc puhas, puhas build OK. AGENTS.md uuendatud (kirje avaldatud).",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    }
+   ]
+  },
   {
    "hash": "55f9a15",
    "date": "2026-11-12T13:49:00+02:00",
