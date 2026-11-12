@@ -64,6 +64,15 @@ export async function generateWeeklyReport(): Promise<StoredReport> {
     snapshot.errors.push(`Geo-grid: ${message.slice(0, 300)}`)
   }
 
+  /* AI-nähtavus: deltad eelmise NÄDALA raporti vastu (sama muster nagu
+   * geo-gridil) — e-kiri/admin ei pea eelmist raportit laadima. */
+  if (snapshot.aiVisibility && prevWeekReport?.snapshot.aiVisibility) {
+    for (const p of snapshot.aiVisibility.providers) {
+      const prev = prevWeekReport.snapshot.aiVisibility.providers.find((x) => x.provider === p.provider)
+      if (prev) p.deltaMentioned = p.mentioned - prev.mentioned
+    }
+  }
+
   const insights = buildInsights(snapshot)
   const prevGsc = latest?.snapshot.gsc
   if (

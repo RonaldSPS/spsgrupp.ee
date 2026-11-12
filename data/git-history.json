@@ -1,6 +1,45 @@
 {
- "generatedAt": "2026-11-12T10:19:25.655Z",
+ "generatedAt": "2026-11-12T11:08:08.524Z",
  "commits": [
+  {
+   "hash": "b726246",
+   "date": "2026-11-12T12:20:45+02:00",
+   "subject": "feat(aeo): AI-seire skript + AI-suunamiste moondamine nadalaraporti (12.11.2026). (1) scripts/ai-visibility-check.ts (npm run report:ai-visibility): 12 fikseeritud paringut (7 ET / 3 EN / 2 RU -- hoolduskoristus, kontor, kaubandus, tootmine, hind, suurimad, partneri vahetus) kaivad ule Perplexity sonar / OpenAI gpt-4o+web_search / Gemini 2.5 flash+google_search API-de, kumbki neist, mille voti .env.local-is on (PERPLEXITY_API_KEY soodsaim + tagastab tsiteeritud domeenid kohe). Tuvastab SPS-mainimise (\\bsps\\b|spsgrupp), 28 konkurendi mainimised (nimekiri kooskolas Ads'i negatiivsete skriptidega; SOL/ISS sonapiiriga et 'sol'/'iss' sonad valepositiive ei annaks) ja koondab TSITEERITUD DOMEENID -- naitab, kuhu off-page tood suunata. Valjund: raportid/ai-visibility/runs/<ts>.json (toorandmed) + LOG.md (jooksuv trend, kuu-vordlused); --selftest kaivitab analusaatorid fikstuuri-vastustel ilma API-ta (4 juhtu + hostname OK). (2) Nadalaraport: GA4 'Sessioonid AI-otsingutest' kaart e-kirjas -- ga4.ts uus sessionSource PARTIAL_REGEXP paring (chatgpt|openai|perplexity|copilot|gemini|claude|you.com|phind|mistral|deepseek|meta.ai) molemale perioodile, snapshot.ga4.aiReferrals (valikuline, render guard vanadele raportitele) + LLM-digestis ga4.aiReferrals (number-audit-safe). Gotcha: GA4 API-s EI TOHI dateRange'i dimensions-sse panna (400 INVALID_ARGUMENT) -- see on mitme perioodi korral varjatud dimensioon, asukoht lahendatakse dimensionHeaders-ist. LIVE-VERIFITSEERIMINE tegeliku GA4 API vastu: jooksev 7p = 10 sessiooni chatgpt.com-ist (eelmine 21) -- AI-suunamisi juba toimub ja on moodetavad. (3) Wikidata kirje kavand raportid/ai-visibility/WIKIDATA-KAVAND.md (gitignore'itud nagu teised raportid): P6518=11394806 (Eesti ariregistri kood -- property ID kontrollitud Eleringi Q5359452 vastu), P3608=EE101460268, P31/P17/P159/P571/P856/P1128/P2013/P4264 jms; avaldamine kasitsi (vajab Wikidata kontot), Q-number siis org-skeemi sameAs-sse. Kontrollid: tsc puhas, eslint 0 viga, npm test 179/179 + i18n-validate OK, puhas build OK. AGENTS.md uuendatud (AI-leitavuse plokk + uus kask).",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/ga4.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/llm.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "A",
+     "p": "scripts/ai-visibility-check.ts"
+    }
+   ]
+  },
   {
    "hash": "b438c9a",
    "date": "2026-11-12T12:03:33+02:00",

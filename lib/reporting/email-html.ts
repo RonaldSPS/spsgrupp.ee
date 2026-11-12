@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { AdsConversionBreakdown, AdsData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, AiVisibilityData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
 import { getGbpWeekTasks, loadGbpCalendar, type GbpCalendar, type GbpWeekTasks } from "./gbp-calendar"
 
 export interface AdsConvSplit {
@@ -325,8 +325,48 @@ function leadsSection(leads: LeadRow[], ads: AdsData | null, current?: FormsPeri
  * nähtavust — GSC orgaanilise otsingu positsioonidega (Top päringud)
  * EI pea kattuma; sektsioon ütleb selle ka lugejale sõnaselgelt.
  */
-function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } {
-  const fmtRank = (n: number) => n.toFixed(1).replace(".", ",")
+/** AI-nähtavuse sektsioon: kas AI-otsingud (12 fikseeritud päringut) SPS-i
+ *  soovitavad + konkurendi-mainimised + tsiteeritud domeenid (kuhu off-page
+ *  tööd suunata). Andmed: snapshot.aiVisibility (valikuline — render guard). */
+function aiVisibilitySection(ai: AiVisibilityData): { html: string; text: string[] } {
+  const delta = (d?: number) => {
+    if (d === undefined) return ""
+    const good = d > 0
+    const color = d === 0 ? "#5a6474" : good ? "#166534" : "#b91c1c"
+    const sign = d > 0 ? "+" : ""
+    return `<span style="font-size:12px;color:${color}"> (${sign}${d} vs eelm.)</span>`
+  }
+  const providerRows = ai.providers
+    .map((p) => {
+      const failNote = p.failed > 0 ? ` · ${p.failed} päringut ebaõnnestus` : ""
+      return (
+        `<tr><td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;color:#17345a;font-weight:bold">${escapeHtml(p.provider)}</td>` +
+        `<td style="padding:7px 10px;border-top:1px solid #edf0f4;font-size:14px;text-align:right">${p.mentioned}/${p.asked}${delta(p.deltaMentioned)}${failNote}</td></tr>`
+      )
+    })
+    .join("")
+  const topComp = ai.topCompetitors.slice(0, 8).map(([n, c]) => `${escapeHtml(n)} (${c})`).join(", ")
+  const topDom = ai.topDomains.slice(0, 10).map(([d, c]) => `${escapeHtml(d)} (${c})`).join(", ")
+  const html =
+    `<h2 style="font-size:18px;color:#17345a;margin:24px 0 4px">AI-nähtavus — kas AI-otsingud SPS-i soovitavad?</h2>` +
+    `<p style="font-size:13px;color:#5a6474;margin:0 0 8px">Iga nädal esitatakse ${ai.providers.reduce((s, p) => s + p.asked + p.failed, 0)} fikseeritud päringut (ET/EN/RU) AI-otsingutele. „Mainitud" = mitmel päringul SPS Gruppi soovitati.</p>` +
+    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5eaf0;border-radius:12px;overflow:hidden">` +
+    `<tr><td style="padding:7px 10px;font-size:12px;color:#5a6474">Teenus</td><td style="padding:7px 10px;font-size:12px;color:#5a6474;text-align:right">SPS mainitud</td></tr>` +
+    providerRows +
+    `</table>` +
+    (topComp ? `<p style="font-size:13px;color:#4a5568;margin:8px 0 0"><strong>Konkurente mainiti:</strong> ${topComp}</p>` : "") +
+    (topDom ? `<p style="font-size:13px;color:#4a5568;margin:4px 0 0"><strong>AI tsiteerib allikaid:</strong> ${topDom} — nendes kohtades tasub SPS-i nähtavust kasvatada.</p>` : "")
+  const text: string[] = [
+    "AI-NÄHTAVUS (kas AI-otsingud SPS-i soovitavad):",
+    ...ai.providers.map((p) => `- ${p.provider}: SPS mainitud ${p.mentioned}/${p.asked} päringus${p.deltaMentioned !== undefined ? ` (${p.deltaMentioned > 0 ? "+" : ""}${p.deltaMentioned} vs eelm.)` : ""}`),
+    ...(topComp ? [`- Konkurente mainiti: ${ai.topCompetitors.slice(0, 8).map(([n, c]) => `${n} (${c})`).join(", ")}`] : []),
+    ...(topDom ? [`- AI tsiteerib: ${ai.topDomains.slice(0, 10).map(([d, c]) => `${d} (${c})`).join(", ")}`] : []),
+    "",
+  ]
+  return { html, text }
+}
+
+function geogridSection(geogrid: GeoGridData): { html: string; text: string[] } {  const fmtRank = (n: number) => n.toFixed(1).replace(".", ",")
   const deltaAvg = (d?: number) => {
     if (d === undefined) return ""
     const good = d < 0
@@ -486,6 +526,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
+  const ai = s.aiVisibility && s.aiVisibility.providers.length > 0 ? aiVisibilitySection(s.aiVisibility) : { html: "", text: [] as string[] }
   const gbpCalendar = await loadGbpCalendar()
   const gbp = gbpCalendar ? gbpCalendarSection(getGbpWeekTasks(new Date(s.generatedAt), gbpCalendar), gbpCalendar) : { html: "", text: [] as string[] }
   const errorsNote = s.errors.length
@@ -503,6 +544,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
   ${leads.html}
   ${geo.html}
+  ${ai.html}
   ${narrativeHtml}
   ${changes.html}
   ${gbp.html}
@@ -523,6 +565,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   ]
   textLines.push(...leads.text)
   textLines.push(...geo.text)
+  textLines.push(...ai.text)
   if (report.narrative) {
     textLines.push(report.narrative.replace(/\*\*/g, "").replace(/^#{2,4}\s*/gm, ""), "")
   }

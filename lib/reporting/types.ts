@@ -345,6 +345,43 @@ export interface GeoGridData {
   keywords: GeoGridKeywordRun[]
 }
 
+/* ------------------------------------------------------------------ */
+/* AI-nähtavus (ai-visibility.ts — kas AI-otsingud SPS-i soovitavad)    */
+/* ------------------------------------------------------------------ */
+
+/** Üks päringu tulemus snapshot'is (täisvastust EI hoita — see on CLI logis). */
+export interface AiVisibilityPromptRow {
+  id: string
+  locale: string
+  /** null = päring ebaõnnestus (API viga/timeout). */
+  sps: boolean | null
+  competitors: string[]
+  domains: string[]
+}
+
+export interface AiVisibilityProviderSummary {
+  provider: string
+  asked: number
+  mentioned: number
+  failed: number
+  /** Muutus eelmise NÄDALA raporti sama teenuse mentioned-arvu suhtes (kui oli). */
+  deltaMentioned?: number
+  prompts: AiVisibilityPromptRow[]
+}
+
+/**
+ * AI-seire koond (12 fikseeritud päringut × seadistatud teenused).
+ * Valikuline — puudub vanadel raportitel ja kui ühtegi AI API võtit pole.
+ */
+export interface AiVisibilityData {
+  generatedAt: string
+  providers: AiVisibilityProviderSummary[]
+  /** Konkurendi mainimiste koond üle teenuste (sagedusjärjekorras). */
+  topCompetitors: [string, number][]
+  /** Tsiteeritud domeenide koond üle teenuste (kuhu off-page tööd suunata). */
+  topDomains: [string, number][]
+}
+
 export interface ReportSnapshot {
   generatedAt: string
   period: { start: string; end: string; prevStart: string; prevEnd: string }
@@ -356,6 +393,8 @@ export interface ReportSnapshot {
   changes?: SiteChanges
   /** Geo-grid märksõnade Maps-nähtavusest — valikuline (puudub vanadel raportitel / kui Places API pole seadistatud). */
   geogrid?: GeoGridData
+  /** AI-nähtavuse seire (ChatGPT/Perplexity/Gemini soovitused) — valikuline (puudub vanadel raportitel / kui AI API võtit pole). */
+  aiVisibility?: AiVisibilityData
   /** Per-source failure notes (a failing API must not kill the whole report). */
   errors: string[]
 }

@@ -12,7 +12,9 @@ import { sendReportEmail } from "@/lib/reporting/notify"
  *
  * Requires env: GCP_SERVICE_ACCOUNT_JSON (or local key file), GA4_PROPERTY_ID,
  * GSC_SITE_URL, GOOGLE_ADS_DEVELOPER_TOKEN, GOOGLE_ADS_CUSTOMER_ID — plus
- * ANTHROPIC_API_KEY for the LLM narrative (optional, degrades gracefully).
+ * ANTHROPIC_API_KEY for the LLM narrative (optional, degrades gracefully) and
+ * OPENAI_API_KEY (optional) for the AI-visibility section (PERPLEXITY_API_KEY /
+ * GEMINI_API_KEY work too; without any, the section is skipped).
  */
 
 // GA4 + GSC + Ads + DB pulls + the LLM narrative can take 1–3 minutes.

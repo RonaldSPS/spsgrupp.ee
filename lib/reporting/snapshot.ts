@@ -9,6 +9,7 @@ import { pullGa4 } from "./ga4"
 import { pullGsc } from "./gsc"
 import { pullAds } from "./ads"
 import { pullForms } from "./forms"
+import { checkAiVisibility, summarizeAiRun } from "./ai-visibility"
 import { weeklyPeriod } from "./google-auth"
 import type { ReportSnapshot } from "./types"
 
@@ -28,11 +29,13 @@ export async function collectSnapshot(now: Date = new Date()): Promise<ReportSna
 
   // GA4+GSC share the token host but are independent pulls; run sequentially
   // enough to stay friendly with API quotas, but sources stay isolated.
-  const [gsc, ga4, ads, forms] = await Promise.all([
+  // AI-nähtavus: tagastab null (ilma veata), kui ühtegi AI API võtit pole.
+  const [gsc, ga4, ads, forms, aiRun] = await Promise.all([
     attempt(errors, "GSC", () => pullGsc(period)),
     attempt(errors, "GA4", () => pullGa4(period)),
     attempt(errors, "Ads", () => pullAds(period)),
     attempt(errors, "Päringud", () => pullForms(period, now)),
+    attempt(errors, "AI-nähtavus", () => checkAiVisibility()),
   ])
 
   return {
@@ -42,6 +45,7 @@ export async function collectSnapshot(now: Date = new Date()): Promise<ReportSna
     gsc,
     ads,
     forms,
+    ...(aiRun ? { aiVisibility: summarizeAiRun(aiRun) } : {}),
     errors,
   }
 }

@@ -86,6 +86,8 @@ interface Digest {
     /** AI-otsingutest (chatgpt.com, perplexity.ai jm) tulnud sessioonid — puudub vanadel snapshotidel. */
     aiReferrals?: { current: number; previous: number }
   }
+  /** AI-seire: SPS mainimiste arv 12 fikseeritud päringu peal, teenuse kaupa. */
+  aiVisibility?: { provider: string; mentioned: number; asked: number }[]
   ads?: {
     cost: number
     clicks: number
@@ -193,6 +195,14 @@ function buildDigest(snapshot: ReportSnapshot, insights: Insight[]): Digest {
         ? { aiReferrals: { current: g.aiReferrals.current, previous: g.aiReferrals.previous } }
         : {}),
     }
+  }
+
+  if (snapshot.aiVisibility) {
+    d.aiVisibility = snapshot.aiVisibility.providers.map((p) => ({
+      provider: p.provider,
+      mentioned: p.mentioned,
+      asked: p.asked,
+    }))
   }
 
   if (snapshot.ads) {

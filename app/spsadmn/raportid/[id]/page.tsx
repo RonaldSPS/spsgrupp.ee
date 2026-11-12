@@ -395,6 +395,62 @@ export default function ReportDetailPage() {
       {/* Geo-grid: kaardi nähtavus (Maps-positsioon mõõtepunktide kaupa) */}
       <GeoGridSection geogrid={s.geogrid} />
 
+      {/* AI-nähtavus: kas AI-otsingud SPS-i soovitavad (12 fikseeritud päringut, ai-visibility.ts) */}
+      {s.aiVisibility && s.aiVisibility.providers.length > 0 && (
+        <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
+          <h2 className="text-[18px] font-bold text-[#17345a] mb-1">AI-nähtavus — kas AI-otsingud SPS-i soovitavad?</h2>
+          <p className="text-[13px] text-[#5a6474] mb-3">
+            Iga nädal esitatakse 12 fikseeritud päringut (ET/EN/RU) AI-otsingutele; „mainitud“ = mitmel päringul SPS Gruppi soovitati.
+            See on kolmas, eraldi mõõdik: Geo-grid mõõdab Maps&apos;i, top-päringud orgaanilist otsingut — see siin AI-vestluste vastuseid.
+          </p>
+          <table className="w-full text-[15px] mb-4">
+            <thead>
+              <tr className="text-left text-[#5a6474] border-b border-[#edf0f4]">
+                <th className="py-2 pr-3 font-medium">Teenus</th>
+                <th className="py-2 pr-3 font-medium text-right">SPS mainitud</th>
+                <th className="py-2 font-medium">Päringu kaupa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {s.aiVisibility.providers.map((p) => (
+                <tr key={p.provider} className="border-b border-[#f4f6f9] last:border-0 align-top">
+                  <td className="py-2 pr-3 font-medium text-[#17345a]">{p.provider}</td>
+                  <td className="py-2 pr-3 text-right">
+                    {p.mentioned}/{p.asked}
+                    {p.deltaMentioned !== undefined && (
+                      <span className={`text-[13px] ${p.deltaMentioned > 0 ? "text-green-700" : p.deltaMentioned < 0 ? "text-red-700" : "text-[#9aa5b1]"}`}>
+                        {" "}({p.deltaMentioned > 0 ? "+" : ""}{p.deltaMentioned})
+                      </span>
+                    )}
+                    {p.failed > 0 && <span className="text-[13px] text-amber-700"> · {p.failed} ebaõnnestus</span>}
+                  </td>
+                  <td className="py-2 text-[13px] text-[#5a6474]">
+                    {p.prompts.map((pr) => (
+                      <span key={pr.id} title={pr.id} className="mr-1">
+                        {pr.sps === null ? "·" : pr.sps ? "✅" : "—"}
+                      </span>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {s.aiVisibility.topCompetitors.length > 0 && (
+            <p className="text-[14px] text-[#4a5568] mb-1">
+              <strong>Konkurente mainiti:</strong>{" "}
+              {s.aiVisibility.topCompetitors.slice(0, 8).map(([n, c]) => `${n} (${c})`).join(", ")}
+            </p>
+          )}
+          {s.aiVisibility.topDomains.length > 0 && (
+            <p className="text-[14px] text-[#4a5568]">
+              <strong>AI tsiteerib allikaid:</strong>{" "}
+              {s.aiVisibility.topDomains.slice(0, 10).map(([d, c]) => `${d} (${c})`).join(", ")}{" "}
+              — nendes kohtades tasub SPS-i nähtavust kasvatada.
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Top queries */}
       {s.gsc && s.gsc.topQueries.length > 0 && (
         <div className="bg-white rounded-2xl p-6 mb-6 overflow-x-auto">
