@@ -58,11 +58,14 @@ export function KontaktPageView({ locale }: { locale: Locale }) {
 
   const jsonLd = {
     "@context": "https://schema.org",
+    // Same @id as the site-wide root-shell node: the two LocalBusiness nodes
+    // merge into ONE organization entity instead of being read as duplicates.
+    "@id": `${canonicalUrl("/")}#organization`,
     "@type": "LocalBusiness",
     name: "SPS Grupp OÜ",
     description:
       "Professionaalne koristus- ja remonditeenuste partner Tallinnas ja Harjumaal",
-    url: canonicalUrl("/kontakt"),
+    url: canonicalUrl("/"),
     telephone: "+372 662 3328",
     email: "info@spsgrupp.ee",
     address: {
@@ -79,7 +82,10 @@ export function KontaktPageView({ locale }: { locale: Locale }) {
       closes: "17:00",
     },
     areaServed: ["Tallinn", "Harjumaa"],
-    sameAs: ["https://www.facebook.com/Puhastusteenused"],
+    sameAs: [
+      "https://www.facebook.com/Puhastusteenused",
+      "https://www.linkedin.com/company/sps-grupp-o%C3%BC",
+    ],
     geo: {
       "@type": "GeoCoordinates",
       latitude: 59.4161835,

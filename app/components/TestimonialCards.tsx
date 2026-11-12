@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { testimonialCompany } from "@/lib/testimonial-companies";
 
 export interface TestimonialData {
   quote: string;
@@ -38,13 +39,15 @@ export default function TestimonialCards({ testimonials, cols, ctaLabel }: Props
             &quot;{t.shortQuote}&quot;
           </p>
 
-          {/* Logo row - prominently above author */}
+          {/* Logo row - prominently above author. The image is the client's
+              company logo, so the alt names the company (machine-readable
+              trust signal), not the person's first name. */}
           {t.logo ? (
             <div className="flex justify-center mb-3">
               <div className="h-16 w-[200px] relative flex items-center justify-center">
                 <Image
                   src={t.logo}
-                  alt={t.author}
+                  alt={testimonialCompany(t.logo) ?? t.author}
                   fill
                   sizes="200px"
                   className="object-contain"

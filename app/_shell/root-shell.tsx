@@ -43,8 +43,23 @@ const ORGANIZATION_SCHEMA = {
   "@id": `${canonicalUrl("/")}#organization`,
   "@type": "LocalBusiness",
   name: "SPS Grupp OÜ",
+  description:
+    "SPS Grupp OÜ (asutatud 2006) on professionaalne koristus- ja remonditeenuste ettevõte: 300+ töötajat, 200+ klienti, üle 1 000 000 m² hoolduses. Teenindame ärikliente Tallinnas ja Harjumaal. ISO 9001 ja ISO 14001 sertifitseeritud.",
   url: canonicalUrl("/"),
   logo: absoluteUrl("/SPS_LOGO.svg"),
+  priceRange: "€€",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: 300,
+  },
+  award: ["ISO 9001", "ISO 14001"],
+  knowsAbout: [
+    "Hoolduskoristus",
+    "Kontorikoristus",
+    "Puhastusteenused",
+    "Välikoristus",
+    "Remonditeenused",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "Mustamäe tee 46",
@@ -67,7 +82,10 @@ const ORGANIZATION_SCHEMA = {
   },
   taxID: "EE101460268",
   foundingDate: "2006",
-  sameAs: ["https://www.facebook.com/Puhastusteenused"],
+  sameAs: [
+    "https://www.facebook.com/Puhastusteenused",
+    "https://www.linkedin.com/company/sps-grupp-o%C3%BC",
+  ],
   geo: {
     "@type": "GeoCoordinates",
     latitude: 59.4161835,

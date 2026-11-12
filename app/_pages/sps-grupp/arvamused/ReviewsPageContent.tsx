@@ -12,6 +12,7 @@ import TestimonialCards from "../../../components/TestimonialCards"
 import HeroBackgroundImage from "../../../components/HeroBackgroundImage"
 import { localizePath, type Locale } from "@/lib/slug-map"
 import { generateReviewsPageSchema, renderLdJson } from "@/lib/json-ld-generator"
+import { testimonialCompany } from "@/lib/testimonial-companies"
 import type { TestimonialCategoryGroup } from "@/lib/testimonials"
 
 interface ReviewsPageText {
@@ -62,6 +63,7 @@ export default function ReviewsPageContent({ locale, categories, text }: Props) 
         author: t.author,
         text: t.shortQuote || t.quote,
         ratingValue: 5,
+        company: testimonialCompany(t.logo),
       })),
     ),
   )

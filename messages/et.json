@@ -86,6 +86,7 @@
   },
   "trust": {
     "clientsAria": "Meie kliendid",
+    "clientsList": "Meie klientide seas on: Tallinna XXI Kool, Abakhan, Bestair, City Motors, Decora, Lietuvos Draudimas, Eften Capital, Elering, Ericsson, Info-Auto, Leibur, Maxima, Mustikas, MyFitness, Nordic Hotels & Resorts, Norma, Prike, Proekspert, Puumarket, Rahva Raamat, Rimi, Sokos Hotels, Karl Storz, Eesti Talleks, TalTech, Teledyne, Uponor, Veho ja Tallinna Loomaaed.",
     "sectionTag": "SPS Grupp",
     "heading": "Õige koristusfirma on investeering, mitte kulu",
     "description": "Hästi korraldatud koristusteenus toimib märkamatult: tööplaan on selge, kvaliteeti kontrollitakse regulaarselt ja puudused lahendatakse operatiivselt.",

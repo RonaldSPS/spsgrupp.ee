@@ -8,6 +8,7 @@ import ScrollAnimation from "./ScrollAnimation"
 import TestimonialCards, { type TestimonialData } from "./TestimonialCards"
 import { localizePath, type Locale } from "@/lib/slug-map"
 import { generateReviewsPageSchema, renderLdJson } from "@/lib/json-ld-generator"
+import { testimonialCompany } from "@/lib/testimonial-companies"
 
 export const testimonialPools: Record<Locale, TestimonialData[]> = {
   et: [
@@ -67,7 +68,7 @@ export default function Testimonials({ animDelay }: { animDelay?: number }) {
 
   // Review schema mirrors the visible cards; TestimonialCards renders 5 stars each.
   const reviewsSchema = generateReviewsPageSchema(
-    items.map((item) => ({ author: item.author, text: item.shortQuote || item.quote, ratingValue: 5 })),
+    items.map((item) => ({ author: item.author, text: item.shortQuote || item.quote, ratingValue: 5, company: testimonialCompany(item.logo) })),
   )
 
   const content = (

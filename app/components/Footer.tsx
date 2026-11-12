@@ -180,6 +180,9 @@ export default function Footer({ animDelay }: { animDelay?: number }) {
           <span>© {currentYear} SPS Grupp. {t("disclaimer")}</span>
           <div className="flex gap-5">
             <Link href={localeHref("/andmekaitsetingimused")} className="text-white/70 no-underline hover:text-[#85cbe9]">{t("privacy")}</Link>
+            {/* llms.txt discovery link (AEO) - brand-neutral filename, no
+                translation needed; also linked from robots.txt AI policy. */}
+            <a href="/llms.txt" className="text-white/70 no-underline hover:text-[#85cbe9]">llms.txt</a>
           </div>
         </div>
       </div>

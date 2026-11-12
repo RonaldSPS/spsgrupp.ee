@@ -2,15 +2,21 @@
  * Generates public/llms.txt (ET), public/llms-en.txt, public/llms-ru.txt from
  * lib/pages/registry.ts + lib/pages/definitions/ (service one-liners and
  * starting prices) - single source of truth, so the files cannot drift.
- * Run: npx tsx scripts/generate-llms-txt.ts
+ * Also includes published blog posts and active case studies (with the admin
+ * JSON edit overlays applied) and a notable-clients line, so AI crawlers get
+ * the full trust picture.
+ * Run: npx tsx scripts/generate-llms-txt.ts - runs automatically via
+ * predev/prebuild together with generate-git-history.mjs.
  */
-import { promises as fs } from "node:fs"
+import { promises as fs, readFileSync } from "node:fs"
 import path from "node:path"
 import { publicPages } from "../lib/pages/registry"
 import { serviceDetailByEtPath } from "../lib/pages/definitions"
 import { parsePriceCard } from "../lib/json-ld-generator"
 import { canonicalUrl } from "../lib/url-utils"
 import { localizePath, type Locale } from "../lib/slug-map"
+import { blogPosts } from "../app/(et)/blog/posts.generated"
+import { caseStudies } from "../app/(et)/kliendilood/stories"
 
 type Facts = {
   title: string
@@ -21,6 +27,7 @@ type Facts = {
   staff: string
   clients: string
   area: string
+  notableClients: string
   certsHeading: string
   servicesHeading: string
   intro: string
@@ -30,6 +37,8 @@ type Facts = {
   email: string
   contactForm: string
   careers: string
+  caseStudiesHeading: string
+  blogHeading: string
   languagesHeading: string
   languages: string[]
   sectionNames: Record<string, string>
@@ -45,6 +54,8 @@ const FACTS: Record<Locale, Facts> = {
     staff: "300+ töötajat",
     clients: "200+ klienti",
     area: "üle 1 000 000 m² hoolduses",
+    notableClients:
+      "Tallinna Lennujaam, Eesti Raudtee, Elering, Maxima, Rimi, Coop, Fazer, Estravel, Ericsson, Norma, Leibur, TalTech, Bigbank, PZU, Tallinna Linnavaraamet, Riigi Infosüsteemi Amet, Sokos Hotels, MyFitness, Rahva Raamat, Tallinna Loomaaed jt.",
     certsHeading: "Sertifikaadid",
     servicesHeading: "Teenused",
     intro:
@@ -55,6 +66,8 @@ const FACTS: Record<Locale, Facts> = {
     email: "info@spsgrupp.ee",
     contactForm: canonicalUrl("/kontakt"),
     careers: canonicalUrl("/tule-meile-toole"),
+    caseStudiesHeading: "Kliendilood",
+    blogHeading: "Blogi",
     languagesHeading: "Keeled",
     languages: ["Eesti", "Vene", "Inglise"],
     sectionNames: {
@@ -74,6 +87,8 @@ const FACTS: Record<Locale, Facts> = {
     staff: "300+ employees",
     clients: "200+ clients",
     area: "over 1,000,000 m² maintained",
+    notableClients:
+      "Tallinn Airport, Eesti Raudtee (Estonian Railways), Elering, Maxima, Rimi, Coop, Fazer, Estravel, Ericsson, Norma, Leibur, TalTech, Bigbank, PZU, Tallinn City Property Department, Estonian Information System Authority (RIA), Sokos Hotels, MyFitness, Rahva Raamat, Tallinn Zoo, among others",
     certsHeading: "Certifications",
     servicesHeading: "Services",
     intro:
@@ -84,6 +99,8 @@ const FACTS: Record<Locale, Facts> = {
     email: "info@spsgrupp.ee",
     contactForm: canonicalUrl(localizePath("/kontakt", "en")),
     careers: canonicalUrl(localizePath("/tule-meile-toole", "en")),
+    caseStudiesHeading: "Client case studies (in Estonian)",
+    blogHeading: "Blog (in Estonian)",
     languagesHeading: "Languages",
     languages: ["Estonian", "Russian", "English"],
     sectionNames: {
@@ -103,6 +120,8 @@ const FACTS: Record<Locale, Facts> = {
     staff: "300+ сотрудников",
     clients: "200+ клиентов",
     area: "более 1 000 000 м² на обслуживании",
+    notableClients:
+      "Таллинский аэропорт, Eesti Raudtee (Эстонская железная дорога), Elering, Maxima, Rimi, Coop, Fazer, Estravel, Ericsson, Norma, Leibur, TalTech, Bigbank, PZU, Tallinna Linnavaraamet, Riigi Infosüsteemi Amet (RIA), Sokos Hotels, MyFitness, Rahva Raamat, Таллинский зоопарк и др.",
     certsHeading: "Сертификаты",
     servicesHeading: "Услуги",
     intro:
@@ -113,6 +132,8 @@ const FACTS: Record<Locale, Facts> = {
     email: "info@spsgrupp.ee",
     contactForm: canonicalUrl(localizePath("/kontakt", "ru")),
     careers: canonicalUrl(localizePath("/tule-meile-toole", "ru")),
+    caseStudiesHeading: "Клиентские кейсы (на эстонском языке)",
+    blogHeading: "Блог (на эстонском языке)",
     languagesHeading: "Языки",
     languages: ["Эстонский", "Русский", "Английский"],
     sectionNames: {
@@ -154,6 +175,60 @@ function priceLabel(etPath: string, locale: Locale): string | null {
   return `${PRICE_PREFIX[locale]} ${min} ${unit}`
 }
 
+/* ------------------------------------------------------------------ */
+/* Blog + case studies (ET-only content, linked from every locale)     */
+/* ------------------------------------------------------------------ */
+
+// Same rule as app/(et)/blog/data.ts isPublished - replicated here so this
+// build-time script stays free of React/Next/DB imports. Admin edit overlays
+// are read from the committed JSON fallbacks (same files the site uses when
+// the DB is paused), so hidden posts/stories stay out of llms.txt too.
+function isPublished(dateStr: string): boolean {
+  const time = new Date(dateStr.replace(" ", "T")).getTime()
+  return !Number.isNaN(time) && time <= Date.now()
+}
+
+function readJson<T>(file: string, fallback: T): T {
+  try {
+    return JSON.parse(readFileSync(path.join(process.cwd(), file), "utf8")) as T
+  } catch {
+    return fallback
+  }
+}
+
+type BlogEdits = {
+  posts: Record<string, { active?: boolean; slug?: string; title?: string; date?: string }>
+}
+type CaseStudyEdits = {
+  stories: Record<string, { active?: boolean; slug?: string; title?: string }>
+}
+
+function publishedBlogLines(): string[] {
+  const edits = readJson<BlogEdits>(path.join("data", "admin-blog-edits.json"), { posts: {} })
+  return blogPosts
+    .flatMap((post) => {
+      const edit = edits.posts[String(post.id)]
+      if (edit?.active === false) return []
+      const date = edit?.date || post.date
+      if (!isPublished(date)) return []
+      const title = edit?.title ?? post.title
+      const slug = edit?.slug ?? post.slug
+      return [{ date, line: `- ${title} - ${canonicalUrl(`/blog/${slug}`)}` }]
+    })
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .map((p) => p.line)
+}
+
+function activeCaseStudyLines(): string[] {
+  const edits = readJson<CaseStudyEdits>(path.join("data", "admin-case-study-edits.json"), { stories: {} })
+  return caseStudies
+    .filter((story) => (edits.stories[story.id]?.active ?? story.active) !== false)
+    .map((story) => {
+      const edit = edits.stories[story.id]
+      return `- ${edit?.title ?? story.title} - ${canonicalUrl(`/kliendilood/${edit?.slug ?? story.slug}`)}`
+    })
+}
+
 function buildFile(locale: Locale): string {
   const f = FACTS[locale]
   const lines: string[] = [
@@ -166,6 +241,7 @@ function buildFile(locale: Locale): string {
     `**Registrikood / Registry code:** ${f.registryCode}`,
     `**${f.companyHeading === "Компания" ? "Адрес" : "Address"}:** ${f.address}`,
     `**${f.companyHeading === "Firma" ? "Meeskond" : f.companyHeading === "Company" ? "Team" : "Команда"}:** ${f.staff}, ${f.clients}, ${f.area}`,
+    `**${f.companyHeading === "Firma" ? "Tuntumad kliendid" : f.companyHeading === "Company" ? "Notable clients" : "Известные клиенты"}:** ${f.notableClients}`,
     "",
     `## ${f.servicesHeading}`,
     "",
@@ -194,6 +270,20 @@ function buildFile(locale: Locale): string {
       const pricePart = price ? ` - **${price}**` : ""
       lines.push(`- ${seo.serviceName} - ${seo.serviceDescription}${pricePart} - ${url}`)
     }
+    lines.push("")
+  }
+
+  const caseStudyLines = activeCaseStudyLines()
+  if (caseStudyLines.length > 0) {
+    lines.push(`## ${f.caseStudiesHeading}`)
+    for (const line of caseStudyLines) lines.push(line)
+    lines.push("")
+  }
+
+  const blogLines = publishedBlogLines()
+  if (blogLines.length > 0) {
+    lines.push(`## ${f.blogHeading}`)
+    for (const line of blogLines) lines.push(line)
     lines.push("")
   }
 

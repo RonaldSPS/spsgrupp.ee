@@ -6,65 +6,87 @@ import ScrollAnimation from "./ScrollAnimation"
 
 // w = logo box width in px (default 152). Wide wordmarks get a wider box so
 // they render at a comparable visual height to the more compact logos.
-const logos: { file: string; w?: number }[] = [
-  { file: "21kool.png" },
-  { file: "abakhan.png" },
-  { file: "bestair.png" },
-  { file: "city-motors.png", w: 150 },
-  { file: "decora.png" },
-  { file: "draudimas.png" },
-  { file: "eften.png" },
-  { file: "elering.png" },
-  { file: "ericsson.png" },
-  { file: "infoauto.png" },
-  { file: "leibur.png" },
-  { file: "maxima.png" },
-  { file: "mustikas.png", w: 100 },
-  { file: "mustikas2.png", w: 155 },
-  { file: "myfitness.png", w: 150 },
-  { file: "Nordichotels.png", w: 160 },
-  { file: "norma.png", w: 155 },
-  { file: "prike.png" },
-  { file: "proekspert.png", w: 210 },
-  { file: "puumarket.png" },
-  { file: "ra.png" },
-  { file: "rimi.png" },
-  { file: "sokos.png", w: 220 },
-  { file: "storz.png" },
-  { file: "talleks.png" },
-  { file: "taltech.png" },
-  { file: "teledyne.png" },
-  { file: "uponor.png" },
-  { file: "veho.png" },
-  { file: "zoo.png" }
+// name = the brand as shown in the logo (verified against the image files);
+// it feeds the alt text so crawlers/AI can actually read the client list.
+const logos: { file: string; name: string; w?: number }[] = [
+  { file: "21kool.png", name: "Tallinna XXI Kool" },
+  { file: "abakhan.png", name: "Abakhan" },
+  { file: "bestair.png", name: "Bestair" },
+  { file: "city-motors.png", name: "City Motors", w: 150 },
+  { file: "decora.png", name: "Decora" },
+  { file: "draudimas.png", name: "Lietuvos Draudimas" },
+  { file: "eften.png", name: "Eften Capital" },
+  { file: "elering.png", name: "Elering" },
+  { file: "ericsson.png", name: "Ericsson" },
+  { file: "infoauto.png", name: "Info-Auto" },
+  { file: "leibur.png", name: "Leibur" },
+  { file: "maxima.png", name: "Maxima" },
+  { file: "mustikas.png", name: "Mustikas", w: 100 },
+  { file: "mustikas2.png", name: "Mustikas", w: 155 },
+  { file: "myfitness.png", name: "MyFitness", w: 150 },
+  { file: "Nordichotels.png", name: "Nordic Hotels & Resorts", w: 160 },
+  { file: "norma.png", name: "Norma", w: 155 },
+  { file: "prike.png", name: "Prike" },
+  { file: "proekspert.png", name: "Proekspert", w: 210 },
+  { file: "puumarket.png", name: "Puumarket" },
+  { file: "ra.png", name: "Rahva Raamat" },
+  { file: "rimi.png", name: "Rimi" },
+  { file: "sokos.png", name: "Sokos Hotels", w: 220 },
+  { file: "storz.png", name: "Karl Storz" },
+  { file: "talleks.png", name: "Eesti Talleks" },
+  { file: "taltech.png", name: "TalTech" },
+  { file: "teledyne.png", name: "Teledyne" },
+  { file: "uponor.png", name: "Uponor" },
+  { file: "veho.png", name: "Veho" },
+  { file: "zoo.png", name: "Tallinna Loomaaed" }
 ]
+
+function LogoList({ decorative }: { decorative?: boolean }) {
+  return (
+    <ul
+      className="flex items-center gap-0 list-none m-0 p-0"
+      aria-hidden={decorative ? "true" : undefined}
+    >
+      {logos.map((logo, i) => (
+        <li
+          key={decorative ? `d-${i}` : logo.file}
+          className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-60 transition-all hover:opacity-90 min-w-[203px] sm:min-w-[270px]"
+        >
+          <span
+            className="relative block h-[85px]"
+            style={{ width: logo.w ?? 152 }}
+          >
+            <Image
+              src={`/logod/${logo.file}`}
+              alt={decorative ? "" : logo.name}
+              fill
+              sizes={`${logo.w ?? 152}px`}
+              className="object-contain"
+            />
+          </span>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 export default function Logos({ animDelay }: { animDelay?: number }) {
   const t = useTranslations("trust")
 
   const content = (
-    <div className="overflow-hidden w-full" aria-hidden="true">
+    <div className="overflow-hidden w-full">
+      {/* The marquee needs 3 copies for the seamless loop. Only the first is
+          semantic (real alt texts) - the clones are aria-hidden so assistive
+          tech and crawlers meet each client name exactly once. */}
       <div className="logo-scroll-track flex items-center gap-0 w-max">
-        {[...logos, ...logos, ...logos].map((logo, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-center py-2.5 px-5 sm:px-10 opacity-60 transition-all hover:opacity-90 min-w-[203px] sm:min-w-[270px]"
-          >
-            <span
-              className="relative block h-[85px]"
-              style={{ width: logo.w ?? 152 }}
-            >
-              <Image
-                src={`/logod/${logo.file}`}
-                alt=""
-                fill
-                sizes={`${logo.w ?? 152}px`}
-                className="object-contain"
-              />
-            </span>
-          </div>
-        ))}
+        <LogoList />
+        <LogoList decorative />
+        <LogoList decorative />
       </div>
+      {/* Machine-readable client list (AEO): the logos above are images, so
+          the names also exist once as text. Visually hidden, not cloaking -
+          it names exactly what the logos show. */}
+      <p className="sr-only">{t("clientsList")}</p>
     </div>
   )
 

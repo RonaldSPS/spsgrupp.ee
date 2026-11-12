@@ -1,6 +1,101 @@
 {
- "generatedAt": "2026-11-10T16:57:37.667Z",
+ "generatedAt": "2026-11-12T09:55:30.126Z",
  "commits": [
+  {
+   "hash": "bb2584b",
+   "date": "2026-11-10T18:59:13+02:00",
+   "subject": "fix(cta): kontaktivorm igal lehel + FooterCTA slim nupuriba (kliendi markus 10.11.2026) -- 'Küsi pakkumist' menüünupp ei teinud midagi lehtedel, kus #pakkumine ankurt polnud (Blogi index+postitus, Kliendilood hub, tööpakkumise detail, privaatsus, 404). ContactForm lisatud: app/(et)/blog/page + [slug], kliendilood hub (detail oli juba), _pages/tule-meile-toole/[slug] + DynamicJobOffer (EN/RU tööpakkumised), PrivacyPolicyPage (ET/EN/RU), molemad not-found lehed. Navbar (desktop+mobiil) ja FooterCTA CTA said fallback'i: kui #pakkumine lehel puudub, router.push localizeeritud /kontakt/#pakkumine-le (katab 404 + tulevased lehed). FooterCTA tekstid valja topelt-CTA vastu (nüüd on plokk alati vormi kohal): pealkiri+kirjeldus eemaldatud, title/description propsid kustutatud koos 13 kasutuskoha ja _template'i FOOTER_CTA placeholderitega, py-[100px]->py-[40px] -- alles ainult 3 nuppu (Küsi tasuta pakkumist / 662 3328 / info@). footerTitle/footerDescription andmed ja messages *.footerCta sektsioonid jaivad alles (i18n-validate nouab). Verifitseeritud: tsc puhas, eslint 0 viga, npm test 179/179 + i18n-validate OK, i18n:parity 36/36 OK, puhas build OK; brauseri-klopsutest 404/blog/kliendilood kerib vormini; 12 URL-i probe: tapselt 1 #pakkumine ankur igal lehel (ET/EN/RU).",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/kliendilood/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/not-found.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/[locale]/not-found.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/kontakt/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/_template/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kaubanduspindade-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/koolide-koristamine/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/tootmishoonete-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/valikoristus/_components/OutdoorServicePage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/arvamused/ReviewsPageContent.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/sps-grupp/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/tule-meile-toole/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/DynamicJobOffer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/FooterCTA.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Navbar.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/PrivacyPolicyPage.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    }
+   ]
+  },
   {
    "hash": "48527c4",
    "date": "2026-11-09T12:08:54+02:00",

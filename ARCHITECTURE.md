@@ -167,7 +167,7 @@ Why: Supabase pooler stalls under parallel build workers / after auto-pause; pag
 
 ### Registry-generated surface files
 Use when: content that must not drift from the registry (llms.txt, sitemap, hreflang, robots).
-Skeleton: `scripts/generate-llms-txt.ts` reads `lib/pages/registry.ts` + definitions and rewrites `public/llms*.txt`.
+Skeleton: `scripts/generate-llms-txt.ts` reads `lib/pages/registry.ts` + definitions + published blog posts (`posts.generated.ts`) + active case studies (`stories.ts`, admin JSON overlays applied) and rewrites `public/llms*.txt` (×3 locales); runs automatically via `predev`/`prebuild`.
 Why: hand-written copies drift; the generator is the single source of truth.
 
 <!-- Example:

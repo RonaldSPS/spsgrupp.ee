@@ -66,12 +66,23 @@ export interface ReviewInput {
   text: string
   /** Star rating shown next to the review in the UI (TestimonialCards renders 5). */
   ratingValue: number
+  /** Client company shown as the logo on the same card (lib/testimonial-companies). */
+  company?: string
 }
 
-export function generateReviewSchema({ author, text, ratingValue }: ReviewInput): object {
+export function generateReviewSchema({ author, text, ratingValue, company }: ReviewInput): object {
   return {
     "@type": "Review",
-    author: { "@type": "Person", name: author },
+    author: {
+      "@type": "Person",
+      name: author,
+      // The card displays the company logo next to the quote, so the
+      // affiliation mirrors visible content and makes the review
+      // verifiable for AI/search engines.
+      ...(company
+        ? { worksFor: { "@type": "Organization", name: company } }
+        : {}),
+    },
     reviewBody: text,
     reviewRating: {
       "@type": "Rating",
