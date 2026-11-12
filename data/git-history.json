@@ -1,6 +1,41 @@
 {
- "generatedAt": "2026-11-12T11:47:34.015Z",
+ "generatedAt": "2026-11-12T12:27:28.779Z",
  "commits": [
+  {
+   "hash": "55f9a15",
+   "date": "2026-11-12T13:49:00+02:00",
+   "subject": "feat(aeo): AI-nahtavuse sektsioon loetavaks -- paringu-kaupa tekst+staatus+kontekstinipp, domeenid tegevusklassidesse (kliendi tagasiside 12.11.2026: 'segane analuus -- milliste otsingute peale SPS-i mainitakse? Rohelised punktid ebaselged. Nimekirjas on enamus konkurendid -- nendel lehtedel kasvatada ei saa, ettepanekud peaksid olema konstruktiivne tegevusplaan'). (1) snapshot'i paringu-rida sai snippet?: string -- spsMentionSnippet() votab mainimist sisaldava lause (markdown-lingid -> tekst, ** eemaldatud, max 220 marki); vanadel snapshotidel puudub, render guard. (2) Roheliste punktide rida adminis ASENDATUD paringu-kaupa nimekirjaga: keelesilt + paringu TEKST (AI_PROMPT_BY_ID -- snapshot hoiab ainult id'd, seega toimib ka vana raporti 15 peal tagasiulatuvalt) + 'SPS-i mainitud / ei mainitud / viga' + kontekstinipp + samas vastuses mainitud konkurendid. (3) Tsiteeritud domeenid jaotatud classifyAiSourceDomain()-ga klassidesse: own (spsgrupp.ee) / platform (google, facebook, linkedin, wikipedia/wikidata -- 'halda ise': GBP arvustused, LinkedIn, Wikidata kavand) / thirdparty ('SIIN saab kasvatada': kataloogid, register, meedia) / competitor ('mojutada ei saa -- vastukaal: kata samad teemad meie lehel sama pohjalikult') / unknown ('kontrolli kasitsi'). Konkurentide domeenide nimekiri sisaldab AI-seire tsitaatidest tuvastatud (smilecleaning/castellest/luxpuhastus/kitclean/eliitserv/srpgrupp[=ERA-ettevote, mitte SPS]/puhastustiim) + kaks veebist kontrollitud (puhastusteenused.com=Kronauer Puhastusteenused, ihp.ee=InHouse Partners -- molemad konkurendid). Vale n0uanne 'konkurentide lehtedel kasvatada' eemaldatud nii e-kirjast kui administ. (4) Selftest laiendatud: snippet-lause-ekstraktsioon + 8 domeeni klassifikatsiooni. E2E: raport id 15 regenereeritud -- snapshot'is snipetid kohal (nt en-commercial: 'Here are some reputable companies... SPS Grupp'), buildReportEmail renderdab paringu-read + klassid; vanal (snippet'ita) snapshot'il samuti korrektne (ainult kolmandate-kohtade rida jaab ara kui tuhi). tsc puhas, eslint 0 viga, npm test + i18n OK, selftest OK, puhas build OK. AGENTS.md uuendatud.",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/ai-visibility.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "M",
+     "p": "scripts/ai-visibility-check.ts"
+    }
+   ]
+  },
   {
    "hash": "194b7d6",
    "date": "2026-11-12T13:09:16+02:00",

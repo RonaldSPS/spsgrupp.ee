@@ -85,6 +85,7 @@ export function KontaktPageView({ locale }: { locale: Locale }) {
     sameAs: [
       "https://www.facebook.com/Puhastusteenused",
       "https://www.linkedin.com/company/sps-grupp-o%C3%BC",
+      "https://www.wikidata.org/wiki/Q142123264",
     ],
     geo: {
       "@type": "GeoCoordinates",
