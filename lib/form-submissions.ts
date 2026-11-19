@@ -34,6 +34,8 @@ export interface FormSubmissionInput {
   salesStatus?: string
   /** hot | warm | cold | "" — päringu kvaliteet (admini hinnang, 04.11.2026). */
   leadQuality?: string
+  /** Koristatava pinna suurus m² (valikuline, 19.11.2026). */
+  areaSize?: string
 }
 
 export interface FormSubmission {
@@ -62,6 +64,8 @@ export interface FormSubmission {
   serviceKind: string
   salesStatus: string
   leadQuality: string
+  /** Koristatava pinna suurus m² (tühi kui pole sisestatud). */
+  areaSize: string
   createdAt: string
 }
 
@@ -119,6 +123,7 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       serviceKind: typeof row.serviceKind === "string" ? row.serviceKind : "",
       salesStatus: typeof row.salesStatus === "string" ? row.salesStatus : "",
       leadQuality: typeof row.leadQuality === "string" ? row.leadQuality : "",
+      areaSize: typeof row.areaSize === "string" ? row.areaSize : "",
     }))
   } catch {
     return []
@@ -156,6 +161,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     serviceKind: input.serviceKind ?? "",
     salesStatus: input.salesStatus ?? "",
     leadQuality: input.leadQuality ?? "",
+    areaSize: input.areaSize ?? "",
   })
 }
 
@@ -186,6 +192,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     serviceKind: input.serviceKind ?? "",
     salesStatus: input.salesStatus ?? "",
     leadQuality: input.leadQuality ?? "",
+    areaSize: input.areaSize ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -267,6 +274,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     serviceKind: row.serviceKind ?? "",
     salesStatus: row.salesStatus ?? "",
     leadQuality: row.leadQuality ?? "",
+    areaSize: row.areaSize ?? "",
     createdAt: row.createdAt.toISOString(),
   }))
 }

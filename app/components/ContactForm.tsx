@@ -211,6 +211,20 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
+              <label htmlFor="form-area-size" className="text-[15px] font-medium text-[#17345a]">{t("areaSizeLabel")}</label>
+              <input
+                id="form-area-size"
+                name="area_size"
+                type="text"
+                inputMode="decimal"
+                maxLength={12}
+                defaultValue={state.fields?.areaSize ?? ""}
+                className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"
+                placeholder={t("areaSizePlaceholder")}
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.25 mb-3.5">
               <label htmlFor="form-message" className="text-[15px] font-medium text-[#17345a]">{t("messageLabel")}</label>
               <textarea
                 id="form-message"

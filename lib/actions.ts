@@ -121,6 +121,26 @@ function sanitizeSource(value: string | FormDataEntryValue | null): string {
   return value.toLowerCase().replace(/[^a-z0-9:._\/-]/g, "").slice(0, 120)
 }
 
+/**
+ * Cleanable area from the contact form (m²). Attacker-controlled, so
+ * only digits, comma and full stop are kept. Empty is allowed (optional field).
+ * Returns the sanitized value with comma normalized to dot, capped at 12 chars.
+ */
+function sanitizeAreaSize(value: string | FormDataEntryValue | null): string {
+  if (typeof value !== "string") return ""
+  return value.trim().replace(/[^0-9,.]/g, "").replace(/,/g, ".").slice(0, 12)
+}
+
+/** Validate the optional area size: must be a positive number when filled. */
+function validateAreaSize(value: string, copy: ActionCopy): string | null {
+  if (!value) return null
+  // Reject ambiguous input with multiple decimal separators (e.g. "1,200.50").
+  if (value.split(".").length > 2) return copy.invalidAreaSize
+  const n = Number(value)
+  if (!Number.isFinite(n) || n <= 0) return copy.invalidAreaSize
+  return null
+}
+
 /** Human-readable, localized label for a stored source code (e-mails/admin). */
 function describeSource(source: string, copy: ActionCopy): string {
   const labels = copy.sourceLabels
@@ -249,6 +269,7 @@ interface ActionCopy {
   tooManyRequests: string
   invalidEmail: string
   invalidPhone: string
+  invalidAreaSize: string
   fileInvalidFormat: string
   fileEmpty: string
   fileTooLarge: string
@@ -289,6 +310,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
       phone: "Telefon",
       company: "Ettevõte",
       message: "Teade",
+      areaSize: "Koristatava pinna suurus (m²)",
       region: "Piirkond",
       workload: "Töökoormus",
       workTime: "Tööaeg",
@@ -299,6 +321,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     tooManyRequests: "Liiga palju päringuid. Palun proovi hiljem uuesti.",
     invalidEmail: "Palun sisesta kehtiv e-posti aadress.",
     invalidPhone: "Palun sisesta kehtiv telefoninumber.",
+    invalidAreaSize: "Palun sisesta kehtiv pindala (positiivne number, näiteks 1200).",
     fileInvalidFormat: "Failiformaat ei ole lubatud. Lubatud on JPG, PNG ja PDF.",
     fileEmpty: "Fail on tühi.",
     fileTooLarge: "Fail on liiga suur. Maksimaalne suurus on 10 MB.",
@@ -339,6 +362,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
       phone: "Phone",
       company: "Company",
       message: "Message",
+      areaSize: "Cleanable area (m²)",
       region: "Region",
       workload: "Workload",
       workTime: "Working hours",
@@ -349,6 +373,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     tooManyRequests: "Too many requests. Please try again later.",
     invalidEmail: "Please enter a valid e-mail address.",
     invalidPhone: "Please enter a valid phone number.",
+    invalidAreaSize: "Please enter a valid area (positive number, e.g. 1200).",
     fileInvalidFormat: "This file format is not allowed. JPG, PNG and PDF files are accepted.",
     fileEmpty: "The file is empty.",
     fileTooLarge: "The file is too large. The maximum size is 10 MB.",
@@ -389,6 +414,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
       phone: "Телефон",
       company: "Компания",
       message: "Сообщение",
+      areaSize: "Площадь убираемых помещений (м²)",
       region: "Регион",
       workload: "Занятость",
       workTime: "Рабочее время",
@@ -399,6 +425,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     tooManyRequests: "Слишком много запросов. Пожалуйста, попробуйте позже.",
     invalidEmail: "Пожалуйста, введите корректный e-mail адрес.",
     invalidPhone: "Пожалуйста, введите корректный номер телефона.",
+    invalidAreaSize: "Пожалуйста, введите корректную площадь (положительное число, например 1200).",
     fileInvalidFormat: "Этот формат файла не поддерживается. Допустимы JPG, PNG и PDF.",
     fileEmpty: "Файл пуст.",
     fileTooLarge: "Файл слишком большой. Максимальный размер - 10 МБ.",
@@ -520,6 +547,7 @@ export async function submitContactForm(
   const phone = escapeText(formData.get("phone"))
   const company = escapeText(formData.get("company"))
   const message = escapeText(formData.get("message"))
+  const areaSize = sanitizeAreaSize(formData.get("area_size"))
   const consent = formData.get("privacy_consent")
   const attachmentFile = formData.get("attachment")
   const pageUrl = sanitizePageUrl(formData.get("page_url"))
@@ -540,6 +568,9 @@ export async function submitContactForm(
   const messageErr = validateRequired(message, 10, 5000, copy.labels.message, copy)
   if (messageErr) errors.push(messageErr)
 
+  const areaSizeErr = validateAreaSize(areaSize, copy)
+  if (areaSizeErr) errors.push(areaSizeErr)
+
   if (!consent) errors.push(copy.consentRequired)
 
   let validatedAttachment: EmailAttachment | undefined
@@ -553,7 +584,7 @@ export async function submitContactForm(
   }
 
   if (errors.length > 0) {
-    return { error: errors.join(" "), fields: { name, email, phone, company, message } }
+    return { error: errors.join(" "), fields: { name, email, phone, company, message, areaSize } }
   }
 
   const submissionData = `${name}|${email}|${phone}|${company}|${message}`
@@ -576,6 +607,7 @@ export async function submitContactForm(
       phone,
       company,
       message,
+      areaSize,
       attachmentName: validatedAttachment?.filename ?? "",
       isSpam: true,
       pageUrl,
@@ -597,6 +629,7 @@ export async function submitContactForm(
     phone,
     company,
     message,
+    areaSize,
     attachmentName: validatedAttachment?.filename ?? "",
     pageUrl,
     gclid,
@@ -609,6 +642,7 @@ export async function submitContactForm(
     `${copy.labels.email}: ${email}`,
     `${copy.labels.phone}: ${phone}`,
     `${copy.labels.company}: ${company || "-"}`,
+    `${copy.labels.areaSize}: ${areaSize || "-"}`,
     `${copy.sourceHeading}: ${describeSource(source, copy)}`,
     ``,
     `${copy.messageHeading}:`,

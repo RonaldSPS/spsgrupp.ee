@@ -198,5 +198,7 @@ export const formSubmissions = pgTable("form_submissions", {
   salesStatus: text("sales_status").notNull().default(""),
   /** hot | warm | cold | "" (määramata) — admini hinnang päringu kvaliteedile (04.11.2026). */
   leadQuality: text("lead_quality").notNull().default(""),
+  /** Koristatava pinna suurus ruutmeetrites (valikuline vormiväli, 19.11.2026). */
+  areaSize: text("area_size").notNull().default(""),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })

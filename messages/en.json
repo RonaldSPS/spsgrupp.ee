@@ -218,8 +218,10 @@
     "phonePlaceholder": "+372 5xxx xxx",
     "companyLabel": "Company",
     "companyPlaceholder": "Company Ltd",
+    "areaSizeLabel": "Cleanable area (m²)",
+    "areaSizePlaceholder": "e.g. 1200",
     "messageLabel": "Additional Information",
-    "messagePlaceholder": "Area in square metres, special requests...",
+    "messagePlaceholder": "Please describe the requested activities and any special requests",
     "attachmentLabel": "Attachment (optional)",
     "attachmentHint": "Allowed: JPG, PNG, PDF up to 10 MB",
     "privacyConsent": "I have read the privacy policy and consent to the processing of my data. *",
@@ -413,8 +415,8 @@
   },
   "kontoriKoristus": {
     "seo": {
-      "serviceName": "Office Cleaning in Tallinn",
-      "serviceDescription": "Regular office cleaning in Tallinn from €1.20/m² per month. Flexible schedule, trained staff, ISO 9001 and ISO 14001.",
+      "serviceName": "Office Cleaning Services in Tallinn",
+      "serviceDescription": "Commercial office cleaning services in Tallinn and Harjumaa from €1.20/m² per month. Contract-based maintenance cleaning for businesses of every size. Free assessment, ISO 9001.",
       "breadcrumbHome": "Home",
       "breadcrumbService": "Cleaning Services",
       "breadcrumbCurrent": "Office Cleaning"
@@ -543,7 +545,11 @@
       "q7": "How should we budget for office cleaning?",
       "a7": "Start from the floor area and cleaning frequency - prices start from €1.20/m² per month. As a guide, a 200 m² office is about €240 per month, 500 m² about €600 and 1,000 m² about €1,200 per month; the larger the area and the more frequent the schedule, the lower the m² price. Periodic work such as window cleaning or deep floor cleaning is best budgeted separately, for example quarterly or twice a year. We confirm the exact figure at a free site assessment.",
       "q8": "Are cleaning products and supplies included in the price?",
-      "a8": "Yes. A regular office cleaning contract includes the work, cleaning products and equipment, plus restocking of hygiene supplies (toilet paper, liquid soap, hand towels) to the agreed extent. If you prefer to purchase supplies yourself, we adjust the price accordingly."
+      "a8": "Yes. A regular office cleaning contract includes the work, cleaning products and equipment, plus restocking of hygiene supplies (toilet paper, liquid soap, hand towels) to the agreed extent. If you prefer to purchase supplies yourself, we adjust the price accordingly.",
+      "q9": "Do you offer maintenance cleaning contracts for offices?",
+      "a9": "Yes. Our office cleaning services are provided as contract-based maintenance cleaning with a fixed monthly fee, a dedicated team and regular quality control. We agree the scope, frequency and quality criteria in writing before the contract starts.",
+      "q10": "What is included in an office maintenance cleaning contract?",
+      "a10": "A maintenance cleaning contract includes daily or periodic cleaning of floors, work surfaces, sanitary facilities, kitchens and break rooms, waste handling and restocking of hygiene supplies. It also covers a dedicated cleaning team, a site manager, quality inspections and replacement staff during holidays or illness."
     }
   },
   "kaubanduspindadeKoristus": {

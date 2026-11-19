@@ -26,6 +26,7 @@ interface Submission {
   serviceKind: string
   salesStatus: string
   leadQuality: string
+  areaSize: string
   createdAt: string
 }
 
@@ -116,7 +117,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 300, 70, 220, 140, 130, 130, 110, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 140, 130, 130, 110, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -125,6 +126,7 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "E-post" },
   { label: "Telefon", headerClass: "whitespace-nowrap" },
   { label: "Ettevõte / piirkond" },
+  { label: "Pinna suurus (m²)" },
   { label: "Sõnum" },
   { label: "Keel" },
   { label: "Leht" },
@@ -766,7 +768,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={14} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={15} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -819,6 +821,9 @@ export default function AdminSubmissionsPage() {
                             .join(" · ")}
                         </span>
                       )}
+                    </td>
+                    <td className="px-4 py-3 text-[#2d3748] break-words whitespace-nowrap">
+                      {s.areaSize ? `${s.areaSize} m²` : "–"}
                     </td>
                     <td className="px-4 py-3 text-[#2d3748] break-words">
                       {s.message ? <ExpandableText text={s.message} limit={200} /> : "–"}
@@ -921,6 +926,7 @@ export default function AdminSubmissionsPage() {
                       </>
                     ) : (
                       <>
+                        <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
