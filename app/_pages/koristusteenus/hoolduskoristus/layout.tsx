@@ -3,9 +3,9 @@ import { generatePageMetadata } from "@/lib/metadata-helper";
 export const metadata = generatePageMetadata({
   path: "/koristusteenus/hoolduskoristus",
   locale: "et",
-  title: "Hoolduskoristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp",
+  title: "Hoolduskoristus Tallinnas 2026 — lepinguline koristus, tasuta hindamine 24h | SPS Grupp",
   description:
-    "Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Tasuta objekti ülevaatus, pakkumine 1 tööpäevaga. ISO 9001.",
+    "Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Kindel meeskond, objektijuht, ISO 9001. Tasuta hindamine 24 tunni jooksul.",
   imagePath: "/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp",
 });
 

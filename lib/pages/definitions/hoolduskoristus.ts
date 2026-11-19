@@ -7,7 +7,7 @@ const ruParent = { etPath: "/koristusteenus", label: "Услуги уборки"
 export const et: OutdoorServicePageData = {
   ariaLabel: "Hoolduskoristus", heroImage: "/images/kruiisiterminal/terminal-tables-wide-1920x1080.webp", image: "/images/kruiisiterminal/terminal-duster-portrait-1200x1400.webp", imageAlt: "SPS Grupp hoolduskoristus äripindadel",
   title: "Hoolduskoristus", titleAccent: "äripindadele Tallinnas ja Harjumaal",
-  intro: "Lepingueline regulaarne koristus kontoritele, kaubandus- ja tootmispindadele - 1–7 korda nädalas, kokkulepitud mahus ja graafikus. Kindel personal, objektijuht ja regulaarne kvaliteedikontroll.",
+  intro: "Hoolduskoristus on lepinguline regulaarne koristus kontoritele, kaubandus- ja tootmispindadele - 1–7 korda nädalas, kokkulepitud mahus ja graafikus. Kindel personal, objektijuht ja regulaarne kvaliteedikontroll.",
   cta: "Küsi hoolduskoristuse pakkumist", breadcrumb: "Hoolduskoristus", parentBreadcrumb: etParent,
   chips: [{ value: "1–7×", label: "nädalas", tone: "blue" }, { value: "ISO 9001", label: "sertifitseeritud", tone: "green" }, { value: "300+", label: "töötajat", tone: "navy" }],
   problemTitle: "Kas teie praegune hoolduskoristus vastab ettevõtte ootustele?",
@@ -23,9 +23,10 @@ export const et: OutdoorServicePageData = {
     { bold: "Valvekoristus", desc: "Soovi korral puhastusteenindaja objektil kogu tööpäeva vältel." },
   ],
   relatedLinks: [
-    { label: "Kontori koristus", href: "/koristusteenus/kontori-koristus" },
+    { label: "Kontori koristus Tallinnas", href: "/koristusteenus/kontori-koristus" },
     { label: "Kaubanduspindade koristus", href: "/koristusteenus/kaubanduspindade-koristus" },
     { label: "Tootmishoonete koristus", href: "/koristusteenus/tootmishoonete-koristus" },
+    { label: "Koristusteenused Tallinnas — vaata kõiki", href: "/koristusteenus" },
     { label: "Suurpuhastus", href: "/puhastusteenused/suurpuhastus" },
     { label: "Mis on hoolduskoristus? Loe blogist", href: "/blog/mis-on-hoolduskoristus-ja-mida-see-ettevottele-tahendab" },
   ],
@@ -154,6 +155,7 @@ export const ru: OutdoorServicePageData = {
     { bold: "Дневной дежурный уборщик", desc: "По желанию - сотрудник на объекте в течение всего рабочего дня." },
   ],
   relatedLinks: [
+    { label: "Услуги уборки в Таллинне — все услуги", href: "/koristusteenus" },
     { label: "Уборка офисов", href: "/koristusteenus/kontori-koristus" },
     { label: "Уборка торговых помещений", href: "/koristusteenus/kaubanduspindade-koristus" },
     { label: "Уборка производственных зданий", href: "/koristusteenus/tootmishoonete-koristus" },

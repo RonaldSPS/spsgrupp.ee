@@ -4,16 +4,16 @@ export const pageMetadata: Record<string, { title: string; description: string }
     description: 'Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses. Tasuta ülevaatus - vastus 1 tööpäevaga!',
   },
   '/koristusteenus': {
-    title: 'Koristusteenused Tallinnas - kontorid, kaubandus, tootmine | SPS Grupp',
-    description: 'Kontorite, kaubandus- ja tootmispindade regulaarne koristus Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Tasuta ülevaatus - vastus 1 tööpäevaga. 300+ töötajat.',
+    title: 'Koristusteenused Tallinnas 2026 - kontorid, kaubandus, tootmine | SPS Grupp',
+    description: 'Koristusteenused kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Tasuta ülevaatus - vastus 1 tööpäevaga. 300+ töötajat, ISO 9001.',
   },
   '/koristusteenus/kontori-koristus': {
-    title: 'Kontori koristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp',
-    description: 'Regulaarne kontorikoristus igas suuruses büroodele Tallinnas ja Harjumaal. Tasuta ülevaatus, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
+    title: 'Kontori koristus Tallinnas 2026 — tasuta hindamine 24h | SPS Grupp',
+    description: 'Regulaarne kontorikoristus igas suuruses büroodele Tallinnas ja Harjumaal. Säästa aega ja kulusid — tasuta hindamine 24 tunni jooksul, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
   },
   '/koristusteenus/hoolduskoristus': {
-    title: 'Hoolduskoristus Tallinnas - alates 1,20 €/m² kuus | SPS Grupp',
-    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Tasuta objekti ülevaatus, pakkumine 1 tööpäevaga. ISO 9001.',
+    title: 'Hoolduskoristus Tallinnas 2026 — lepinguline koristus, tasuta hindamine 24h | SPS Grupp',
+    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Kindel meeskond, objektijuht, ISO 9001. Tasuta hindamine 24 tunni jooksul.',
   },
   '/puhastusteenused/suurpuhastus': {
     title: 'Suurpuhastus Tallinnas - süvapuhastus äripindadele | SPS Grupp',
@@ -178,8 +178,8 @@ export const localizedPageMetadata: Partial<
       description: 'Regular cleaning of offices, retail and production premises in Tallinn and Harjumaa, from €1.20/m² per month. Free site assessment, reply within 1 business day.',
     },
     '/koristusteenus/kontori-koristus': {
-      title: 'Office Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
-      description: 'Regular office cleaning for offices of every size in Tallinn and Harjumaa. 50+ offices trust SPS Grupp. Free audit, ISO 9001.',
+      title: 'Office Cleaning Services in Tallinn 2026 — Free Quote 24h | SPS Grupp',
+      description: 'Commercial office cleaning services in Tallinn and Harjumaa for businesses of every size. Contract-based maintenance cleaning from €1.20/m². Free assessment and quote within 24 hours.',
     },
     '/koristusteenus/hoolduskoristus': {
       title: 'Regular Cleaning in Tallinn - from €1.20/m² | SPS Grupp',
@@ -338,8 +338,8 @@ export const localizedPageMetadata: Partial<
       description: 'Регулярная уборка офисов любой площади в Таллинне и Харьюмаа. Более 50 офисов доверяют SPS Grupp. Бесплатный аудит, ISO 9001.',
     },
     '/koristusteenus/hoolduskoristus': {
-      title: 'Регулярная уборка в Таллине - от 1,20 €/м² | SPS Grupp',
-      description: 'Регулярная договорная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа, от 1,20 €/м² в месяц. Бесплатная оценка.',
+      title: 'Регулярная уборка в Таллине 2026 — договорное обслуживание, бесплатная оценка 24ч | SPS Grupp',
+      description: 'Регулярная договорная уборка офисов, торговых и производственных помещений в Таллинне и Харьюмаа. Постоянная команда, менеджер объекта, ISO 9001. Бесплатная оценка в течение 24 часов.',
     },
     '/puhastusteenused/suurpuhastus': {
       title: 'Генеральная уборка в Таллинне для бизнеса | SPS Grupp',

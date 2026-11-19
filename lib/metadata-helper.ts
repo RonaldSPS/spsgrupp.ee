@@ -9,7 +9,7 @@ const LOCALE_MAP: Record<string, string> = {
   ru: "ru_RU",
 }
 
-function makeAlternates(etPath: string, locale: Locale) {
+function makeAlternates(etPath: string, locale: Locale, canonicalOverride?: string) {
   const languages: Record<string, string> = {
     et: canonicalUrl(etPath),
     "x-default": canonicalUrl(etPath),
@@ -21,9 +21,9 @@ function makeAlternates(etPath: string, locale: Locale) {
   }
 
   return {
-    canonical: canonicalUrl(
-      locale === "et" ? etPath : localizePath(etPath, locale),
-    ),
+    canonical: canonicalOverride
+      ? canonicalUrl(canonicalOverride)
+      : canonicalUrl(locale === "et" ? etPath : localizePath(etPath, locale)),
     languages,
   }
 }
@@ -83,6 +83,7 @@ type GeneratePageMetadataParams = {
   imagePath?: string
   type?: "website" | "article"
   publishedTime?: string
+  canonical?: string
 }
 
 const OG_LOCALE_ALTERNATES: Record<Locale, string[]> = {
@@ -99,6 +100,7 @@ export function generatePageMetadata({
   imagePath,
   type = "website",
   publishedTime,
+  canonical,
 }: GeneratePageMetadataParams): Metadata {
   const url =
     locale === "et"
@@ -109,7 +111,7 @@ export function generatePageMetadata({
     title,
     description,
     metadataBase: new URL(BASE_URL),
-    alternates: makeAlternates(path, locale),
+    alternates: makeAlternates(path, locale, canonical),
     openGraph: makeOpenGraph(
       title,
       description,

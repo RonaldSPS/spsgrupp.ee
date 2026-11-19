@@ -121,6 +121,7 @@ const etText: CleaningHubText = {
   footerTitle: "Tasuta objekti ülevaatus ja hinnapakkumine",
   footerDescription: "Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust. Pakkumise tähtaeg sõltub töö iseloomust ja objekti ülevaatuse vajadusest.",
   faq: [
+    { q: "Mis on koristusteenused Tallinnas ja kellele need sobivad?", a: "Koristusteenused Tallinnas ja Harjumaal on regulaarne äripindade korrashoid - kontorid, kaubanduskeskused, tootmishooned, koolid ja muud äripinnad. Sobivad ettevõtetele, kes soovivad lepingulist, kindla meeskonnaga ja objektijuhi regulaarse kvaliteedikontrolliga lahendust. Hind alates 1,20 €/m² kuus." },
     { q: "Kui sageli peaks äripindu koristama?", a: "Enamikule kontoritele soovitame 3–5 korda nädalas. Kaubanduspinnad vajavad päevakoristust, tootmishooned sõltuvad tootmisprotsessist. Avalikud alad ja sanitaarruumid vajavad igapäevast hooldust. Täpne graafik koostatakse tasuta konsultatsiooni käigus." },
     { q: "Kui kiiresti saab regulaarse koristusteenusega alustada?", a: "Tööde algusaeg lepitakse kokku pärast mahu ja meeskonna saadavuse hindamist." },
     { q: "Kas koristusteenus toimub tööajal või väljaspool seda?", a: "Enamik ettevõtteid eelistab koristust töövälisel ajal. Tavaliselt toimub koristus varahommikul enne kella 8.00 või õhtuti pärast kella 18.00. Kohandame graafiku teie tööajaga, et koristus ei segaks igapäevatööd." },

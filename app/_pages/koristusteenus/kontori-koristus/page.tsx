@@ -148,6 +148,8 @@ const etText: OfficeCleaningText = {
     { q: "Milline on kontorikoristuse miinimummaht?", a: "Üldist miinimummahtu me ei sea - teeme lepinguid nii väiksemate kui suuremate büroodega, sest ka väiksem objekt võib olla molemale poolele tasuv. Iga objekti puhul hindame tasuta ülevaatusel pindala, sageduse ja tööde mahu ning teeme selle põhjal personaalse pakkumise." },
     { q: "Kuidas kontori koristuse eelarvet planeerida?", a: "Lähtuge pindalast ja koristuse sagedusest - hind algab 1,20 €/m² kuus. Orienteeruvalt on 200 m² kontor umbes 240 € kuus, 500 m² umbes 600 € ja 1000 m² umbes 1200 € kuus; mida suurem pind ja tihedam graafik, seda soodsam on m² hind. Perioodilised tööd nagu akende pesu või põrandate süvapesu tasub planeerida eraldi, näiteks kord kvartalis või kaks korda aastas. Täpse summa kinnitame tasuta objekti ülevaatusel." },
     { q: "Kas hinnas sisalduvad puhastusvahendid ja tarvikud?", a: "Jah. Lepingulise kontori koristuse hinnas on töö, puhastusvahendid ja seadmed ning kokkulepitud ulatuses ka hügieenitarvikute (tualettpaber, vedelseep, käterätid) täiendamine. Kui soovite tarvikud ise soetada, kohandame hinda vastavalt." },
+    { q: "Kas pakute ka hoolduskoristuse lepingut?", a: "Jah. Kontori koristust pakume eelkõige lepingulise hoolduskoristusena, millel on kindel kuutasu, püsiv meeskond ja regulaarne kvaliteedikontroll. Tööde sisu, sageduse ja kvaliteedikriteeriumid fikseerime kirjalikult enne lepingu algust." },
+    { q: "Mida sisaldab kontori hoolduskoristuse leping?", a: "Hoolduskoristuse leping sisaldab põrandate, pindade ja sanitaarruumide igapäevast või perioodilist koristust, köögi- ja puhkeruumide hooldust, prügikäitlust ja hügieenitarvikute täiendamist. Samuti kuuluvad hinna sisse kindel meeskond, objektijuht, kvaliteedikontroll ja asendusteenindaja puhkuste või haiguste ajal." },
   ],
 };
 
@@ -247,7 +249,7 @@ function localizedText(locale: Exclude<Locale, "et">): OfficeCleaningText {
     ] as [string, string]),
     footerTitle: str(footerCta.title) || etText.footerTitle,
     footerDescription: str(footerCta.description) || etText.footerDescription,
-    faq: [0, 1, 2, 3, 4, 5, 6, 7, 8].map((index) => ({
+    faq: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => ({
       q: str(faq[`q${index}`]) || etText.faq[index].q,
       a: str(faq[`a${index}`]) || etText.faq[index].a,
     })),
