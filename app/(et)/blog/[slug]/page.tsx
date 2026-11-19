@@ -24,6 +24,69 @@ export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))
 }
 
+/**
+ * Blogi artiklid ei tohi konkureerida teenuselehtedega.
+ * Iga postitus canonical-ib kas konkreetsele teenuselehele või blogi indeksile,
+ * et otsingujõud koondaks teenuselehtedele.
+ */
+const BLOG_CANONICAL_MAP: Record<string, string> = {
+  // Hoolduskoristus
+  "mis-on-hoolduskoristus-ja-mida-see-ettevottele-tahendab": "/koristusteenus/hoolduskoristus/",
+  "koristuspartneri-vahetus-kuidas-uleminek-sujub": "/koristusteenus/hoolduskoristus/",
+  "koristuslepingu-eelarve-planeerimine-2027": "/koristusteenus/hoolduskoristus/",
+  "kaheksa-kusimust-enne-koristuslepingu-solmimist": "/koristusteenus/hoolduskoristus/",
+  // Kontori koristus
+  "kui-palju-maksab-kontori-koristus-2026": "/koristusteenus/kontori-koristus/",
+  "kontori-koristuse-sagedus-ja-eelarve-planeerimine": "/koristusteenus/kontori-koristus/",
+  "kuidas-tallinna-kontor-vahendas-koristuskulusid": "/koristusteenus/kontori-koristus/",
+  "kontori-koristusteenuse-kontrollnimekiri": "/koristusteenus/kontori-koristus/",
+  "kas-prugi-sorteerimine-kontoris-on-voimalik": "/koristusteenus/kontori-koristus/",
+  "kas-puhas-kontor-vahendab-haiguspaevi-teadusuuringud": "/koristusteenus/kontori-koristus/",
+  "gripilaine-ajal-kontor-tervena-hoida-7-reeglit": "/koristusteenus/kontori-koristus/",
+  // Suurpuhastus
+  "mida-sisaldab-suurpuhastus-aripindadel-ja-kuidas-hind-kujuneb": "/puhastusteenused/suurpuhastus/",
+  "suurpuhastus-millal-tellida-ja-mida-see-sisaldab": "/puhastusteenused/suurpuhastus/",
+  "miks-teha-kodus-suurpuhastus": "/puhastusteenused/suurpuhastus/",
+  // Lumekoristus
+  "kuidas-hoiame-objektid-ligipaasetavad-kogu-talve": "/koristusteenus/valikoristus/lumekoristus/",
+  "lumekoristuse-leping-mida-enne-talve-kokku-leppida": "/koristusteenus/valikoristus/lumekoristus/",
+  // Kaubandus
+  "jouluhooaja-koristus-kaubanduses-jalaliikluse-haldamine": "/koristusteenus/kaubanduspindade-koristus/",
+  // Põrandad / vaibad
+  "pvc-poranda-eluiga-hooldus-voi-vahetus": "/puhastusteenused/porandate-hooldus/",
+  "kuidas-pikendada-kontorivaipade-eluiga-2x": "/puhastusteenused/vaipade-puhastus/",
+  "kuidas-kaitsta-puitporandaid-talvel": "/puhastusteenused/porandate-hooldus/",
+  // Aknad / fassaad
+  "pese-aknad-ise-vs-professionaalne-teenus": "/koristusteenus/valikoristus/akende-pesu/",
+  "kuidas-valida-survepesurit-ostujuhend": "/koristusteenus/valikoristus/fassaadipesu/",
+  // Ehitusjärgne / ehituspraht
+  "ehitusjargse-koristuse-5-levinumat-viga": "/puhastusteenused/ehitusjargne-koristus/",
+  "ehitusprahi-jaatmete-aravedu-tallinnas-mahud-hinnad-tookorraldus": "/ehitusprahi-aravedu/",
+  // Eskalaatorid
+  "miks-eskalaatorite-astmevahed-ja-kasipuud-vajavad-eritehnikat": "/puhastusteenused/eskalaatorite-suvapuhastus/",
+  // Töö / karjäär
+  // Töö / karjäär
+  "meie-tootaja-palk-olgu-korgem-tegevusala-keskmisest": "/tule-meile-toole/",
+  // Üldine koristusteenus (kui konkreetset lehte pole)
+  "kuidas-valida-koristusfirma-tallinnas-enne-hoolduslepingut": "/koristusteenus/",
+  "kui-palju-maksab-koristusteenus-hinnad-ja-hinna-kujunemine": "/koristusteenus/",
+  "kuidas-valida-ettevottele-koristuspartner-7-kontroll-kusimust": "/koristusteenus/",
+  "millised-on-eesti-suurimad-koristusfirmad": "/koristusteenus/",
+  "mis-on-koristusteenuse-proovitoo-ja-vastutuskindlustus": "/koristusteenus/",
+  "koristaja-palkamise-kulu-vs-koristusteenus": "/koristusteenus/",
+  "koristamine-on-tuutu-appi-tulevad-koristusteenused": "/koristusteenus/",
+  "keskkonnasobralikud-puhastusvahendid": "/koristusteenus/",
+  "kuidas-saavutada-keskkonnasobralikud-puhastusteenused": "/koristusteenus/",
+  "miks-puhastusteenuste-hinnad-tousevad": "/koristusteenus/",
+  "ise-koristada-pole-enam-moes-aripaev": "/koristusteenus/",
+  "koristus-puhade-ajal-kuidas-graafikud-tootavad": "/koristusteenus/",
+  // Blogi / off-topic -> blogi indeks
+  "segadus-ja-stress-neuroteadus": "/blog",
+  "miks-segadus-teeb-arevaks-psuhholoogia": "/blog",
+  "kes-on-maailma-kuulsamad-koristajad": "/blog",
+  "tipp-ja-tapp-koristusaris-eesti-ekspress-delfi": "/blog",
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlugWithEdits(slug)
@@ -36,6 +99,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     imagePath: post.featuredImage,
     type: "article",
     publishedTime: post.date,
+    canonical: BLOG_CANONICAL_MAP[slug] ?? "/blog",
   })
 }
 

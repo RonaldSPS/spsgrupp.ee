@@ -1,6 +1,102 @@
 {
- "generatedAt": "2026-11-12T12:38:29.305Z",
+ "generatedAt": "2026-11-19T15:23:57.262Z",
  "commits": [
+  {
+   "hash": "bc3352f",
+   "date": "2026-11-19T17:21:22+02:00",
+   "subject": "feat: lisa kontaktivormile koristatava pinna suurus (m²)",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0018_submission_area_size.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-ads-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-forms-filter.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "ae81719",
+   "date": "2026-11-12T15:48:01+02:00",
+   "subject": "feat(gbp): nadala 09.11 GBP-postitus suunatud uuele vordlusartiklile (post 9017) -- teema 'Mastaap ja tookindlus' passib vorreldava sisu jaoks paremini; tekst koondab Stell Eesti / SOL Baltics / SPS Grupp numbred + CTA blogipostitusele. Avaldatud 12.11.2026 scripts/gbp-post.ts --publish --week=2026-11-09 kaudu (verifitseeritud tmp/gbp-06-published.png; kopeerimise-dialoogis teisi profiile EI valitud); done-marge kalendris. Nadala 16.11 suurpuhastuse kirje on muutmata (blogi sync 9008 jaab kehtima).",
+   "files": [
+    {
+     "s": "M",
+     "p": "data/gbp-calendar.json"
+    }
+   ]
+  },
+  {
+   "hash": "2ba6179",
+   "date": "2026-11-12T14:40:13+02:00",
+   "subject": "feat(blog): post 9017 'Millised on Eesti suurimad koristusfirmad ja kuidas koristuspartnerit vorrelda?' -- AEO/GEO vordev sisu AI-seire leidude peale (12.11.2026). AI-seire naitas: et-suurimad tuupi paringute peale soovitavad AI-d SOL/ISS, SPS-i mitte; 'suurimad/parimad' paringute allikad on vordevad listicle'id, mistottu teeme oma faktipohise versioni. FAKTIKONTROLL avalikest allikatest (e-ariregister/raportid.ee/infomasin 2025 majandusaasta aruanded + MTA kvartalid): Stell Eesti AS (endine ISS Eesti -- ISS konsern muus Eesti iksuse, tanane nimi) 42,1 mln EUR/1400+ tootajat; SOL Baltics (Soome SOL) 39,7 mln EUR/~1200 tootajat; SPS Grupp meie numbrid (300+/200+/1M+ m2, ISO 9001/14001, Tallinn+Harjumaa, B2B) ilma ulepaigutamata (ei pretendeeri suurimaks, vaid piirkondlikult tihedaimaks ja prognoositavamaks). Helis: neutraalne, numbrite eesmark = moodukava; sisalingid post-9007 '7 kontroll-kusimust' + /koristusteenus/hoolduskoristus/ + /kontakt/#pakkumine. Anti-kanibaliseerimise reeglid taidetud: 'Millised...'-muster (pealkiri ei alata tuumikmarksonaga) + teenuselehe link intro esimese 500 margi sees -- npm test'i valvsed 181/181 rohelised (post 9017 molemad testid OK). Avaldatud kohe (date 2026-11-12 05:00 on minevikus -- isPublished true, ISR kaivitub ilma redeploy-ta jooksvalt, build kaasas). Regen puhtalt additiivne (git-diff: 0 kustutatud rida). tsc puhas, eslint 0 viga, puhas build OK, SSG HTML verifitseeritud (pealkiri, numbrid, skeem BlogPosting, CTA-lingid kohal).",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9017.json"
+    }
+   ],
+   "newPosts": [
+    "Millised on Eesti suurimad koristusfirmad ja kuidas koristuspartnerit võrrelda?"
+   ]
+  },
   {
    "hash": "98077a5",
    "date": "2026-11-12T14:28:25+02:00",
