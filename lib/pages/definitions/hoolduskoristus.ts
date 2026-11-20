@@ -26,7 +26,7 @@ export const et: OutdoorServicePageData = {
     { label: "Kontori koristus Tallinnas", href: "/koristusteenus/kontori-koristus" },
     { label: "Kaubanduspindade koristus", href: "/koristusteenus/kaubanduspindade-koristus" },
     { label: "Tootmishoonete koristus", href: "/koristusteenus/tootmishoonete-koristus" },
-    { label: "Koristusteenused Tallinnas — vaata kõiki", href: "/koristusteenus" },
+    { label: "Koristusteenused Tallinnas", href: "/koristusteenus" },
     { label: "Suurpuhastus", href: "/puhastusteenused/suurpuhastus" },
     { label: "Mis on hoolduskoristus? Loe blogist", href: "/blog/mis-on-hoolduskoristus-ja-mida-see-ettevottele-tahendab" },
   ],

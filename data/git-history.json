@@ -1,6 +1,102 @@
 {
- "generatedAt": "2026-11-19T15:23:57.262Z",
+ "generatedAt": "2026-11-20T10:29:54.733Z",
  "commits": [
+  {
+   "hash": "1ed991e",
+   "date": "2026-11-19T17:32:08+02:00",
+   "subject": "feat: uuenda llms.txt failid ja lisa blogipostitus 9018",
+   "files": [
+    {
+     "s": "M",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    },
+    {
+     "s": "A",
+     "p": "wordpress_migration/prepared/posts/post-9018.json"
+    }
+   ],
+   "newPosts": [
+    "Kuidas valida koristusfirma Tallinnas enne hoolduslepingut?"
+   ]
+  },
+  {
+   "hash": "059ae36",
+   "date": "2026-11-19T17:29:41+02:00",
+   "subject": "feat: uuenda teenuselehtede metainfot ja KKK-sid",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-helper.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/puhastusteenused.ts"
+    }
+   ]
+  },
+  {
+   "hash": "0a34bab",
+   "date": "2026-11-19T17:27:41+02:00",
+   "subject": "feat: blogi uuendused ja ettevalmistused",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/(et)/blog/[slug]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/(et)/blog/posts.generated.ts"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/index.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-4687.json"
+    },
+    {
+     "s": "M",
+     "p": "wordpress_migration/prepared/posts/post-9003.json"
+    }
+   ]
+  },
   {
    "hash": "bc3352f",
    "date": "2026-11-19T17:21:22+02:00",

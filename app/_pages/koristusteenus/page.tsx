@@ -44,6 +44,8 @@ interface CleaningHubText {
   problemP3Link3: string;
   problemP3Mid3: string;
   problemP3Link4: string;
+  problemP3Mid4: string;
+  problemP3Link5: string;
   problemP3Post: string;
   servicesTag: string;
   servicesHeading: string;
@@ -72,7 +74,7 @@ const etText: CleaningHubText = {
   ],
   h1Line1: "Koristusteenused äripindadele",
   h1Line2: "Tallinnas ja Harjumaal",
-  heroDescription: 'Kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll. Hind alates <strong class="text-white font-medium">1,20 €/m² kuus</strong>. Tasuta objekti ülevaatus ja personaalne hinnapakkumine.',
+  heroDescription: 'Koristusteenused Tallinnas ja Harjumaal äripindadele — kontorite, kaubanduspindade ja tootmishoonete igapäevane hooldus. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll. Hind alates <strong class="text-white font-medium">1,20 €/m² kuus</strong>. Tasuta objekti ülevaatus ja personaalne hinnapakkumine.',
   ctaButton: "Küsi tasuta koristusteenuse pakkumist",
   breadcrumbHome: "Avaleht",
   breadcrumbServices: "Koristusteenused",
@@ -91,7 +93,9 @@ const etText: CleaningHubText = {
   problemP3Link3: "hoolduskoristus",
   problemP3Mid3: " ehk regulaarne ",
   problemP3Link4: "äripindade koristus",
-  problemP3Post: " 1–7 korda nädalas.",
+  problemP3Mid4: " 1–7 korda nädalas. Vaata kõiki meie ",
+  problemP3Link5: "koristusteenuseid",
+  problemP3Post: " äripindadele Tallinnas ja Harjumaal.",
   servicesTag: "Teenuse sisu",
   servicesHeading: "Millistele äripindadele SPS Grupp koristusteenust pakub?",
   services: [
@@ -184,6 +188,8 @@ function localizedText(locale: Exclude<Locale, "et">): CleaningHubText {
     problemP3Link3: str(problem.paragraph3Link3),
     problemP3Mid3: str(problem.paragraph3Mid3),
     problemP3Link4: str(problem.paragraph3Link4),
+    problemP3Mid4: str(problem.paragraph3Mid4) || etText.problemP3Mid4,
+    problemP3Link5: str(problem.paragraph3Link5) || etText.problemP3Link5,
     problemP3Post: str(problem.paragraph3Post) || etText.problemP3Post,
     servicesTag: str(services.tag) || etText.servicesTag,
     servicesHeading: str(services.heading) || etText.servicesHeading,
@@ -381,6 +387,12 @@ export function KoristusteenusPageView({ locale }: { locale: Locale }) {
                 <>
                   {t.problemP3Mid3}
                   <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link4}</Link>
+                </>
+              ) : null}
+              {t.problemP3Link5 ? (
+                <>
+                  {t.problemP3Mid4}
+                  <Link href={localizePath("/koristusteenus", locale)} className="text-[#17345a] font-medium underline hover:text-[#3abeff]">{t.problemP3Link5}</Link>
                 </>
               ) : null}
               {t.problemP3Post}

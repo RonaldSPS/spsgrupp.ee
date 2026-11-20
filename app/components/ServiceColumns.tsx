@@ -34,7 +34,7 @@ export default function ServiceColumns({ animDelay }: { animDelay?: number }) {
             </p>
             <p className="text-[15px] text-[#5ab5da] font-medium mb-4">{t("regularNote")}</p>
             <Link href={localizePath("/koristusteenus/hoolduskoristus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-              {t("more")} <span aria-hidden="true">→</span>
+              {t("regularTitle")} <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -58,7 +58,7 @@ export default function ServiceColumns({ animDelay }: { animDelay?: number }) {
               </p>
               <p className="text-[15px] text-[#5ab5da] font-medium mb-4">{t("specialNote")}</p>
               <Link href={localizePath("/puhastusteenused", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-                {t("more")} <span aria-hidden="true">→</span>
+                {t("specialTitle")} <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="service-column-card flex-1">
@@ -80,7 +80,7 @@ export default function ServiceColumns({ animDelay }: { animDelay?: number }) {
               </p>
               <p className="text-[15px] text-[#5ab5da] font-medium mb-4">{t("outdoorNote")}</p>
               <Link href={localizePath("/koristusteenus/valikoristus", locale)} className="inline-flex items-center gap-1.5 text-[#0078b5] text-[15px] font-medium no-underline">
-                {t("more")} <span aria-hidden="true">→</span>
+                {t("outdoorTitle")} <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>

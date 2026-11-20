@@ -88,12 +88,15 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
     f.current.impressions > 0 && f.current.clicks / f.current.impressions < 0.015)
 
   for (const f of risers.slice(0, 5)) {
+    const wrongTarget = f.carrierMatchesTarget === false && f.targetPage
     out.push({
       area: "seo",
       severity: "positive",
       title: `„${f.label}" tõusis ${fmtPos(f.previous.position)} → ${fmtPos(f.current.position)}`,
-      detail: `${f.current.impressions} näitamist, ${f.current.clicks} klikki sel nädalal.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}`,
-      action: `${carrierLine(f)}Kinnita tõus: värskenda maandumislehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga.`,
+      detail: `${f.current.impressions} näitamist, ${f.current.clicks} klikki sel nädalal.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}${wrongTarget ? ` (vale leht — õige: ${f.targetPage})` : ""}`,
+      action: wrongTarget
+        ? `${carrierLine(f)}Tõus toimub vales lehes. Suuna siselingid märksõna-ankruga lehele ${f.targetPage} ja tugevda seal sisu (värske kuupäev, FAQ), et Google kinnitaks õige maandumislehe.`
+        : `${carrierLine(f)}Kinnita tõus: värskenda maandumislehte (värske kuupäev sisus, täiendav lõik/FAQ) ja lisa 1–2 siselist linki märksõna-ankruga.`,
     })
   }
   for (const f of fallers.slice(0, 5)) {
@@ -110,12 +113,15 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
     })
   }
   for (const f of striking.slice(0, 4)) {
+    const wrongTarget = f.carrierMatchesTarget === false && f.targetPage
     out.push({
       area: "seo",
       severity: "opportunity",
       title: `Käeulatuses: „${f.label}" pos ${fmtPos(f.current.position)} (${f.current.impressions} näitamist/nädal)`,
-      detail: `Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}`,
-      action: `${carrierLine(f)}Täienda maandumislehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt.`,
+      detail: `Positsioon 4–15 korral piisab esimesele lehele tõusmiseks sageli sisu- ja lingitööst.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}${wrongTarget ? ` (vale leht — õige: ${f.targetPage})` : ""}`,
+      action: wrongTarget
+        ? `${carrierLine(f)}Käeulatuses, aga maandub valele lehele. Tugevda sihtlehte ${f.targetPage}: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke täpse märksõna-ankruga (avaleht, hub, blogi, seotud teenuselehed). Vähenda vale maanduja konkureerivat kasutust.`
+        : `${carrierLine(f)}Täienda maandumislehte: laienda sisu (mahud, hinnad, protsess, FAQ), optimeeri title/meta ja lisa siselinke hub-lehelt.`,
     })
   }
 
@@ -161,12 +167,15 @@ function gscInsights(gsc: GscData, out: Insight[]): void {
   }
   for (const f of lowCtr.slice(0, 3)) {
     const ctr = (f.current.clicks / f.current.impressions) * 100
+    const wrongTarget = f.carrierMatchesTarget === false && f.targetPage
     out.push({
       area: "seo",
       severity: "opportunity",
       title: `Madal CTR hea positsiooni juures: „${f.label}" (${ctr.toFixed(1).replace(".", ",")} %, pos ${fmtPos(f.current.position)})`,
-      detail: `${f.current.impressions} näitamist, aga vaid ${f.current.clicks} klikki — esilehel olemine ei too klikke.`,
-      action: "Kirjuta title + meta description ümber: number/aasta, konkreetne kasu (nt „tasuta hindamine 24h“), piirkond. CTR-rünnaku meetod on varem tõestanud (kogu saidi CTR 2,4 % → 2,9 %).",
+      detail: `${f.current.impressions} näitamist, aga vaid ${f.current.clicks} klikki — esilehel olemine ei too klikke.${f.carrier ? ` Maandumisleht: ${f.carrier.page}` : ""}${wrongTarget ? ` (vale leht — õige: ${f.targetPage})` : ""}`,
+      action: wrongTarget
+        ? `${carrierLine(f)}Enne CTR-rünnakut lahenda maandumisleht: optimeeri ${f.targetPage} title/meta (number/aasta, konkreetne kasu, piirkond) ja suuna siselingid sinna, et Google näitaks õiget lehte.`
+        : `${carrierLine(f)}Kirjuta title + meta description ümber: number/aasta, konkreetne kasu (nt „tasuta hindamine 24h“), piirkond. CTR-rünnaku meetod on varem tõestanud (kogu saidi CTR 2,4 % → 2,9 %).`,
     })
   }
 
@@ -458,19 +467,37 @@ function formsInsights(forms: FormsData, ads: AdsData | null, out: Insight[]): v
 function strategyInsights(snapshot: ReportSnapshot, out: Insight[]): void {
   const { gsc, ads, forms } = snapshot
 
-  /* Content gap: families with impressions but no owned page above pos 20. */
+  /* Content gap: families with impressions but no strong owned page above pos 20.
+   * Kui leht on olemas ja maandub õigele lehele, soovita tugevdada seda; kui
+   * maandub valele, suuna õigele; kui sihtmärki pole, kaalu uut lehte/blogi. */
   if (gsc) {
     const gaps = gsc.families.filter((f) =>
       f.current.impressions >= 25 &&
       (f.current.position === null || f.current.position > 20))
     if (gaps.length > 0) {
-      const list = gaps.map((f) => `„${f.label}" (${f.current.impressions} näitamist, pos ${fmtPos(f.current.position)})`).join(", ")
+      const wrongTarget = gaps.filter((f) => f.targetPage && f.carrierMatchesTarget === false)
+      const needsStrength = gaps.filter((f) => !(f.targetPage && f.carrierMatchesTarget === false))
+      const parts: string[] = []
+      if (wrongTarget.length > 0) {
+        parts.push(
+          `Maandub valele lehele: ${wrongTarget.map((f) => `„${f.label}" → ${f.targetPage}`).join("; ")}. Suuna siselingid märksõna-ankruga sihtlehele ja tugevda seal sisu.`
+        )
+      }
+      if (needsStrength.length > 0) {
+        parts.push(
+          `Nõrk positsioon: ${needsStrength.map((f) => `„${f.label}" (${f.current.impressions} näitamist, pos ${fmtPos(f.current.position)})`).join(", ")}.`
+        )
+      }
       out.push({
         area: "strategy",
         severity: "opportunity",
         title: `Sisuauk: ${gaps.length} perekond on nähtav, aga positsioon >20`,
-        detail: list,
-        action: "Loo eraldi teenuseleht või kirjuta blogipostitus, mis vastab päringu kavatsusele; lingi hub-lehelt ja menüüst. Blogi sobib infootsingutele („kuidas“, „hind“), teenuseleht ostsooviga päringutele.",
+        detail: parts.join(" "),
+        action: wrongTarget.length > 0 && needsStrength.length === 0
+          ? "Suuna siselingid täpse märksõna-ankruga õigele lehele ja tugevda sihtlehe sisu/title/meta. Kui leht on juba tugev, aga positsioon ei liigu, kaalu uut blogipostitust infootsingute jaoks."
+          : wrongTarget.length > 0
+            ? "Suuna vale maanduja asemel siselingid õigele lehele; tugevda nii õiget sihtlehte kui ka nõrka olemasolevat lehte (sisu, title/meta, FAQ). Uus leht/blogi ainult siis, kui praegune leht ei kata päringu kavatsust."
+            : "Loo eraldi teenuseleht või kirjuta blogipostitus, mis vastab päringu kavatsusele; lingi hub-lehelt ja menüüst. Blogi sobib infootsingutele („kuidas“, „hind“), teenuseleht ostsooviga päringutele.",
       })
     }
   }

@@ -76,7 +76,7 @@ const etText: OfficeCleaningText = {
   ],
   h1Line1: "Kontori koristus",
   h1Line2: "Tallinnas ja Harjumaal",
-  heroDescription: 'Regulaarne kontorikoristus igas suuruses büroodele Tallinnas ja Harjumaal, alates <strong class="text-white font-medium">1,20 €/m² kuus</strong>. Paindlik graafik, koolitatud personal ja regulaarne kvaliteedikontroll.',
+  heroDescription: 'Kontori koristus Tallinnas ja Harjumaal igas suuruses büroodele. Hind alates <strong class="text-white font-medium">1,20 €/m² kuus</strong> — tasuta hindamine 24 tunni jooksul, pakkumine 1 tööpäevaga.',
   ctaButton: "Küsi kontori koristuse pakkumist",
   breadcrumbHome: "Avaleht",
   breadcrumbService: "Koristusteenus",

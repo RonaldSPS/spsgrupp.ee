@@ -16,12 +16,12 @@ import { renderLdJson } from "@/lib/json-ld-generator";
 import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils";
 
 export const metadata: Metadata = {
-  title: "Koristusfirma Tallinnas | SPS Grupp",
-  description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!",
+  title: "Koristusfirma Tallinnas — vastus 1 tööpäevaga | SPS Grupp",
+  description: "Koristusfirma Tallinnas ja Harjumaal — koristus- ja puhastusteenused äripindadele. 300+ töötajat, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!",
   metadataBase: new URL(BASE_URL),
   openGraph: {
-    title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses.",
+    title: "Koristusfirma Tallinnas — vastus 1 tööpäevaga | SPS Grupp",
+    description: "Koristusfirma Tallinnas ja Harjumaal — koristus- ja puhastusteenused äripindadele. 300+ töötajat, üle 1 000 000 m² hoolduses.",
     url: canonicalUrl("/"),
     type: "website",
     locale: "et_EE",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Koristusfirma Tallinnas | SPS Grupp",
-    description: "Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses.",
+    title: "Koristusfirma Tallinnas — vastus 1 tööpäevaga | SPS Grupp",
+    description: "Koristusfirma Tallinnas ja Harjumaal — koristus- ja puhastusteenused äripindadele. 300+ töötajat, üle 1 000 000 m² hoolduses.",
     images: [absoluteUrl("/FrontHeroCar.jpg")],
   },
   alternates: {

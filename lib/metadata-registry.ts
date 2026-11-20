@@ -1,19 +1,19 @@
 export const pageMetadata: Record<string, { title: string; description: string }> = {
   '/': {
-    title: 'Koristusfirma Tallinnas - vastus 1 tööpäevaga | SPS Grupp',
-    description: 'Koristus- ja puhastusteenused äripindadele Tallinnas ja Harjumaal. 300+ töötajat, üle 1 000 000 m² hoolduses. Tasuta ülevaatus - vastus 1 tööpäevaga!',
+    title: 'Koristusfirma Tallinnas — vastus 1 tööpäevaga | SPS Grupp',
+    description: 'Koristusfirma Tallinnas ja Harjumaal — koristus- ja puhastusteenused äripindadele. 300+ töötajat, ISO 9001/14001. Tasuta ülevaatus - vastus 1 tööpäevaga!',
   },
   '/koristusteenus': {
-    title: 'Koristusteenused Tallinnas 2026 - kontorid, kaubandus, tootmine | SPS Grupp',
+    title: 'Koristusteenused Tallinnas 2026 — alates 1,20 €/m² kuus | SPS Grupp',
     description: 'Koristusteenused kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal, alates 1,20 €/m² kuus. Tasuta ülevaatus - vastus 1 tööpäevaga. 300+ töötajat, ISO 9001.',
   },
   '/koristusteenus/kontori-koristus': {
-    title: 'Kontori koristus Tallinnas 2026 — tasuta hindamine 24h | SPS Grupp',
-    description: 'Regulaarne kontorikoristus igas suuruses büroodele Tallinnas ja Harjumaal. Säästa aega ja kulusid — tasuta hindamine 24 tunni jooksul, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
+    title: 'Kontori koristus Tallinnas 2026 — alates 1,20 €/m², tasuta hindamine 24h | SPS Grupp',
+    description: 'Kontori koristus Tallinnas ja Harjumaal — regulaarne koristus igas suuruses büroodele. Hind alates 1,20 €/m² kuus. Tasuta hindamine 24 tunni jooksul, pakkumine 1 tööpäevaga. 50+ kontorit, ISO 9001.',
   },
   '/koristusteenus/hoolduskoristus': {
-    title: 'Hoolduskoristus Tallinnas 2026 — lepinguline koristus, tasuta hindamine 24h | SPS Grupp',
-    description: 'Lepingueline hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Kindel meeskond, objektijuht, ISO 9001. Tasuta hindamine 24 tunni jooksul.',
+    title: 'Hoolduskoristus Tallinnas 2026 — alates 1,20 €/m², tasuta hindamine 24h | SPS Grupp',
+    description: 'Hoolduskoristus kontoritele, kaubandus- ja tootmispindadele Tallinnas ja Harjumaal. Lepinguline koristus alates 1,20 €/m² kuus. Kindel meeskond, objektijuht, ISO 9001. Tasuta hindamine 24 tunni jooksul.',
   },
   '/puhastusteenused/suurpuhastus': {
     title: 'Suurpuhastus Tallinnas - süvapuhastus äripindadele | SPS Grupp',
