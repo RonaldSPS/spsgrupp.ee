@@ -11,16 +11,25 @@ const MANUAL_CHANNELS = new Set(["phone", "email"])
 const MANUAL_SOURCES = new Set(["", "google_ads", "direct", "organic:google", "organic:bing", "referral", "utm"])
 const MANUAL_SERVICE_KINDS = new Set(["", "maintenance", "oneoff", "other"])
 
+/** Lubatud teenuse liigid filtris. */
+const FILTER_SERVICE_KINDS = new Set(["", "maintenance", "oneoff", "other"])
+/** Lubatud allika kategooriad filtris (24.11.2026). */
+const FILTER_SOURCE_CATEGORIES = new Set(["google_ads", "seo", "direct", "other"])
+
 export function parseSubmissionFilter(searchParams: URLSearchParams): FormSubmissionFilter {
   const form = searchParams.get("form")
   const from = searchParams.get("from")
   const to = searchParams.get("to")
   const spam = searchParams.get("spam")
+  const serviceKind = searchParams.get("serviceKind")
+  const source = searchParams.get("source")
   return {
     form: form === "contact" || form === "career" ? form : undefined,
     from: from && DATE_RE.test(from) ? from : undefined,
     to: to && DATE_RE.test(to) ? to : undefined,
+    serviceKind: serviceKind && FILTER_SERVICE_KINDS.has(serviceKind) ? serviceKind : undefined,
     spamOnly: spam === "1" ? true : undefined,
+    sourceCategory: FILTER_SOURCE_CATEGORIES.has(source ?? "") ? (source as FormSubmissionFilter["sourceCategory"]) : undefined,
   }
 }
 

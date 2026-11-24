@@ -15,6 +15,7 @@ interface Submission {
   workload: string
   workTime: string
   attachmentName: string
+  attachmentUrl: string
   fee: string
   profit: string
   notes: string
@@ -27,6 +28,7 @@ interface Submission {
   salesStatus: string
   leadQuality: string
   areaSize: string
+  wonAt: string
   createdAt: string
 }
 
@@ -51,7 +53,7 @@ const CHANNEL_LABELS: Record<string, string> = {
 const SERVICE_KIND_LABELS: Record<string, string> = {
   "": "–",
   maintenance: "Hoolduskoristus",
-  oneoff: "Ühekordne",
+  oneoff: "Eritööd",
   other: "Muu",
 }
 
@@ -89,10 +91,19 @@ const LEAD_QUALITY_CLASSES: Record<string, string> = {
   cold: "text-[#5a6474]",
 }
 
-const FORM_FILTER_OPTIONS = [
+const SOURCE_FILTER_OPTIONS = [
   { value: "", label: "Kõik" },
-  { value: "contact", label: "Kontaktivorm" },
-  { value: "career", label: "Tööavaldus" },
+  { value: "google_ads", label: "Google Ads" },
+  { value: "seo", label: "SEO" },
+  { value: "direct", label: "Otse" },
+  { value: "other", label: "Muu" },
+]
+
+const SERVICE_KIND_FILTER_OPTIONS = [
+  { value: "", label: "Kõik teenused" },
+  { value: "maintenance", label: "Hoolduskoristus" },
+  { value: "oneoff", label: "Eritööd" },
+  { value: "other", label: "Muu" },
 ]
 
 const WORKLOAD_LABELS: Record<string, string> = {
@@ -117,7 +128,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 140, 130, 130, 110, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 140, 130, 130, 130, 110, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -133,6 +144,7 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "Allikas" },
   { label: "Teenus" },
   { label: "Staatus" },
+  { label: "Võidetud", headerClass: "whitespace-nowrap" },
   { label: "Kvaliteet" },
   { label: "Tasu", headerClass: "text-right" },
   { label: "Kasum", headerClass: "text-right" },
@@ -349,8 +361,8 @@ export default function AdminSubmissionsPage() {
   const [drafts, setDrafts] = useState<Record<number, FinancialDraft>>({})
   const [saveStatus, setSaveStatus] = useState<Record<number, "saving" | "saved" | "error">>({})
   const [loading, setLoading] = useState(true)
-  const [formFilter, setFormFilter] = useState("")
-  const [spamOnly, setSpamOnly] = useState(false)
+  const [sourceFilter, setSourceFilter] = useState("")
+  const [serviceKindFilter, setServiceKindFilter] = useState("")
   const [fromDate, setFromDate] = useState("")
   const [toDate, setToDate] = useState("")
   const [selected, setSelected] = useState<Set<number>>(new Set())
@@ -438,13 +450,13 @@ export default function AdminSubmissionsPage() {
 
   const queryString = useCallback(() => {
     const params = new URLSearchParams()
-    if (formFilter) params.set("form", formFilter)
-    if (spamOnly) params.set("spam", "1")
+    if (sourceFilter) params.set("source", sourceFilter)
+    if (serviceKindFilter) params.set("serviceKind", serviceKindFilter)
     if (fromDate) params.set("from", fromDate)
     if (toDate) params.set("to", toDate)
     const qs = params.toString()
     return qs ? `?${qs}` : ""
-  }, [formFilter, spamOnly, fromDate, toDate])
+  }, [sourceFilter, serviceKindFilter, fromDate, toDate])
 
   useEffect(() => {
     fetch(`/api/spsadmn/submissions${queryString()}`)
@@ -472,6 +484,43 @@ export default function AdminSubmissionsPage() {
         body: JSON.stringify(fields),
       })
       if (!res.ok) throw new Error(`PATCH failed: ${res.status}`)
+      setSaveStatus((p) => ({ ...p, [id]: "saved" }))
+      setTimeout(() => {
+        setSaveStatus((p) => {
+          if (p[id] !== "saved") return p
+          const next = { ...p }
+          delete next[id]
+          return next
+        })
+      }, 2500)
+    } catch {
+      if (prev) setSubmissions((rows) => rows.map((r) => (r.id === id ? prev : r)))
+      setSaveStatus((p) => ({ ...p, [id]: "error" }))
+      alert("Salvestamine ebaõnnestus. Palun proovi uuesti.")
+    }
+  }
+
+  /** Võidetud leping — eraldi märge staatuserivi kõrval (24.11.2026). */
+  const saveWon = async (id: number, checked: boolean) => {
+    const prev = submissions.find((r) => r.id === id)
+    const nextWonAt = checked ? (prev?.wonAt || new Date().toISOString()) : ""
+    setSubmissions((rows) => rows.map((r) => (r.id === id ? { ...r, salesStatus: checked ? "won" : "", wonAt: nextWonAt } : r)))
+    setSaveStatus((p) => ({ ...p, [id]: "saving" }))
+    try {
+      const res = await fetch(`/api/spsadmn/submissions/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ won: checked }),
+      })
+      if (!res.ok) throw new Error(`PATCH failed: ${res.status}`)
+      const data = await res.json()
+      if (data && typeof data === "object") {
+        setSubmissions((rows) => rows.map((r) => (r.id === id ? {
+          ...r,
+          salesStatus: data.salesStatus ?? r.salesStatus,
+          wonAt: data.wonAt ?? "",
+        } : r)))
+      }
       setSaveStatus((p) => ({ ...p, [id]: "saved" }))
       setTimeout(() => {
         setSaveStatus((p) => {
@@ -643,16 +692,16 @@ export default function AdminSubmissionsPage() {
 
       <div className="bg-white rounded-2xl border border-[rgba(23,52,90,0.08)] p-4 sm:p-5 mb-4 flex flex-col sm:flex-row gap-3 sm:items-end">
         <div className="flex flex-col gap-1">
-          <span className="text-[15px] font-medium text-[#17345a]">Vorm</span>
-          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Vormi filter">
-            {FORM_FILTER_OPTIONS.map((o) => (
+          <span className="text-[15px] font-medium text-[#17345a]">Allikas</span>
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Allika filter">
+            {SOURCE_FILTER_OPTIONS.map((o) => (
               <button
                 key={o.value || "all"}
                 type="button"
-                onClick={() => setFormFilter(o.value)}
-                aria-pressed={formFilter === o.value}
+                onClick={() => setSourceFilter(o.value)}
+                aria-pressed={sourceFilter === o.value}
                 className={`text-[15px] px-3 py-2 rounded-lg font-medium cursor-pointer transition-colors border outline-none ${
-                  formFilter === o.value
+                  sourceFilter === o.value
                     ? "bg-[#17345a] text-white border-[#17345a]"
                     : "bg-white text-[#17345a] border-[rgba(23,52,90,0.12)] hover:bg-[#f8fafc]"
                 }`}
@@ -660,18 +709,26 @@ export default function AdminSubmissionsPage() {
                 {o.label}
               </button>
             ))}
-            <button
-              type="button"
-              onClick={() => setSpamOnly((v) => !v)}
-              aria-pressed={spamOnly}
-              className={`text-[15px] px-3 py-2 rounded-lg font-medium cursor-pointer transition-colors border outline-none ${
-                spamOnly
-                  ? "bg-red-600 text-white border-red-600"
-                  : "bg-white text-red-600 border-[rgba(220,38,38,0.3)] hover:bg-[#fef2f2]"
-              }`}
-            >
-              Spämm
-            </button>
+          </div>
+        </div>
+        <div className="flex flex-col gap-1">
+          <span className="text-[15px] font-medium text-[#17345a]">Teenus</span>
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label="Teenuse filter">
+            {SERVICE_KIND_FILTER_OPTIONS.map((o) => (
+              <button
+                key={o.value || "all"}
+                type="button"
+                onClick={() => setServiceKindFilter(o.value)}
+                aria-pressed={serviceKindFilter === o.value}
+                className={`text-[15px] px-3 py-2 rounded-lg font-medium cursor-pointer transition-colors border outline-none ${
+                  serviceKindFilter === o.value
+                    ? "bg-[#17345a] text-white border-[#17345a]"
+                    : "bg-white text-[#17345a] border-[rgba(23,52,90,0.12)] hover:bg-[#f8fafc]"
+                }`}
+              >
+                {o.label}
+              </button>
+            ))}
           </div>
         </div>
         <div className="flex flex-col gap-1">
@@ -768,7 +825,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={15} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={16} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -828,7 +885,38 @@ export default function AdminSubmissionsPage() {
                     <td className="px-4 py-3 text-[#2d3748] break-words">
                       {s.message ? <ExpandableText text={s.message} limit={200} /> : "–"}
                       {s.attachmentName && (
-                        <span className="block text-[#5a6474] mt-1">Manus: {s.attachmentName}</span>
+                        <div className="mt-2">
+                          {s.attachmentUrl ? (
+                            <a
+                              href={s.attachmentUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title={s.attachmentName}
+                              className="inline-flex items-center gap-2 text-[#17345a] underline hover:text-[#3abeff]"
+                            >
+                              {s.attachmentUrl.match(/\.(jpg|jpeg|png|webp|gif)$/i) ? (
+                                <>
+                                  <img
+                                    src={s.attachmentUrl}
+                                    alt={s.attachmentName}
+                                    className="w-10 h-10 object-cover rounded border border-[rgba(23,52,90,0.12)]"
+                                  />
+                                  <span className="break-all">{s.attachmentName}</span>
+                                </>
+                              ) : (
+                                <>
+                                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                                    <polyline points="14 2 14 8 20 8" />
+                                  </svg>
+                                  <span className="break-all">{s.attachmentName}</span>
+                                </>
+                              )}
+                            </a>
+                          ) : (
+                            <span className="text-[#5a6474]">Manus: {s.attachmentName}</span>
+                          )}
+                        </div>
                       )}
                     </td>
                     <td className="px-4 py-3 text-[#5a6474] uppercase">{s.locale}</td>
@@ -872,6 +960,22 @@ export default function AdminSubmissionsPage() {
                               <option key={value} value={value}>{label}</option>
                             ))}
                           </select>
+                        </td>
+                        <td className="px-4 py-3 text-[#2d3748] whitespace-nowrap">
+                          <label className="inline-flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              aria-label={`Märgi päring ${s.id} võidetuks`}
+                              checked={s.salesStatus === "won"}
+                              onChange={(e) => saveWon(s.id, e.target.checked)}
+                              className="w-5 h-5 accent-[#2d9e6b] cursor-pointer"
+                            />
+                            {s.wonAt && (
+                              <span className="text-[#5a6474]" title={formatDateTime(s.wonAt)}>
+                                {formatDateTime(s.wonAt).split(" ")[0]}
+                              </span>
+                            )}
+                          </label>
                         </td>
                         <td className="px-4 py-3">
                           <select
@@ -926,6 +1030,7 @@ export default function AdminSubmissionsPage() {
                       </>
                     ) : (
                       <>
+                        <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>

@@ -4,9 +4,11 @@ import { headers } from "next/headers"
 import { checkRateLimit } from "@/lib/rate-limit"
 import { sendEmail, type EmailAttachment } from "@/lib/email"
 import { saveFormSubmission, hasRecentSubmission } from "@/lib/form-submissions"
+import { classifyServiceKindForFilter } from "@/lib/reporting/forms"
 import { assessSubmission } from "@/lib/spam"
 import { isTurnstileEnabled, verifyTurnstileToken } from "@/lib/turnstile"
 import { AUTOREPLY_DEFAULTS } from "@/lib/autoreply-defaults"
+import { put } from "@vercel/blob"
 
 const DUPE_WINDOW_MS = 8000
 const recentHashes = new Map<string, number>()
@@ -131,9 +133,9 @@ function sanitizeAreaSize(value: string | FormDataEntryValue | null): string {
   return value.trim().replace(/[^0-9,.]/g, "").replace(/,/g, ".").slice(0, 12)
 }
 
-/** Validate the optional area size: must be a positive number when filled. */
+/** Validate the required area size: must be a positive number. */
 function validateAreaSize(value: string, copy: ActionCopy): string | null {
-  if (!value) return null
+  if (!value) return copy.areaSizeRequired
   // Reject ambiguous input with multiple decimal separators (e.g. "1,200.50").
   if (value.split(".").length > 2) return copy.invalidAreaSize
   const n = Number(value)
@@ -247,6 +249,49 @@ async function validateFile(file: File, copy: ActionCopy): Promise<{ valid: bool
   }
 }
 
+const ATTACHMENT_EXT: Record<string, string> = {
+  "image/jpeg": ".jpg",
+  "image/png": ".png",
+  "application/pdf": ".pdf",
+}
+
+/**
+ * Persist a validated attachment so the admin can open it from the paringud UI.
+ * Production uses Vercel Blob; local dev falls back to public/uploads/attachments.
+ * Returns the public URL or null when storage fails (the e-mail attachment still
+ * goes out, so a storage hiccup never blocks the form).
+ */
+async function storeAttachment(attachment: EmailAttachment): Promise<string | null> {
+  const ext = ATTACHMENT_EXT[attachment.contentType] ?? ".bin"
+  const timestamp = Date.now()
+  const baseName = attachment.filename.replace(/\.[^/.]+$/, "")
+  const safeBase = baseName.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 100) || "attachment"
+
+  try {
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const pathname = `attachments/${timestamp}_${safeBase}${ext}`
+      const blob = await put(pathname, attachment.content, {
+        access: "public",
+        contentType: attachment.contentType,
+      })
+      return blob.url
+    }
+
+    // Local dev fallback: write to public/uploads/attachments/ so the same
+    // relative URL works with next/image and direct links.
+    const { promises: fs } = await import("fs")
+    const path = await import("path")
+    const dir = path.join(process.cwd(), "public", "uploads", "attachments")
+    await fs.mkdir(dir, { recursive: true })
+    const fileName = `${timestamp}_${safeBase}${ext}`
+    await fs.writeFile(path.join(dir, fileName), attachment.content)
+    return `/uploads/attachments/${fileName}`
+  } catch (error) {
+    console.error("Failed to store attachment:", error)
+    return null
+  }
+}
+
 interface FormState {
   success?: boolean
   error?: string
@@ -270,6 +315,7 @@ interface ActionCopy {
   invalidEmail: string
   invalidPhone: string
   invalidAreaSize: string
+  areaSizeRequired: string
   fileInvalidFormat: string
   fileEmpty: string
   fileTooLarge: string
@@ -322,6 +368,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     invalidEmail: "Palun sisesta kehtiv e-posti aadress.",
     invalidPhone: "Palun sisesta kehtiv telefoninumber.",
     invalidAreaSize: "Palun sisesta kehtiv pindala (positiivne number, näiteks 1200).",
+    areaSizeRequired: "Palun täitke kõik kohustuslikud väljad.",
     fileInvalidFormat: "Failiformaat ei ole lubatud. Lubatud on JPG, PNG ja PDF.",
     fileEmpty: "Fail on tühi.",
     fileTooLarge: "Fail on liiga suur. Maksimaalne suurus on 10 MB.",
@@ -374,6 +421,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     invalidEmail: "Please enter a valid e-mail address.",
     invalidPhone: "Please enter a valid phone number.",
     invalidAreaSize: "Please enter a valid area (positive number, e.g. 1200).",
+    areaSizeRequired: "Please fill in all required fields.",
     fileInvalidFormat: "This file format is not allowed. JPG, PNG and PDF files are accepted.",
     fileEmpty: "The file is empty.",
     fileTooLarge: "The file is too large. The maximum size is 10 MB.",
@@ -426,6 +474,7 @@ const actionCopies: Record<ActionLocale, ActionCopy> = {
     invalidEmail: "Пожалуйста, введите корректный e-mail адрес.",
     invalidPhone: "Пожалуйста, введите корректный номер телефона.",
     invalidAreaSize: "Пожалуйста, введите корректную площадь (положительное число, например 1200).",
+    areaSizeRequired: "Пожалуйста, заполните все обязательные поля.",
     fileInvalidFormat: "Этот формат файла не поддерживается. Допустимы JPG, PNG и PDF.",
     fileEmpty: "Файл пуст.",
     fileTooLarge: "Файл слишком большой. Максимальный размер - 10 МБ.",
@@ -574,12 +623,14 @@ export async function submitContactForm(
   if (!consent) errors.push(copy.consentRequired)
 
   let validatedAttachment: EmailAttachment | undefined
+  let attachmentUrl: string | null = null
   if (attachmentFile instanceof File && attachmentFile.size > 0) {
     const validation = await validateFile(attachmentFile, copy)
     if (!validation.valid) {
       errors.push(validation.error!)
     } else {
       validatedAttachment = validation.attachment
+      attachmentUrl = await storeAttachment(validatedAttachment!)
     }
   }
 
@@ -609,10 +660,12 @@ export async function submitContactForm(
       message,
       areaSize,
       attachmentName: validatedAttachment?.filename ?? "",
+      attachmentUrl: attachmentUrl ?? "",
       isSpam: true,
       pageUrl,
       gclid,
       source,
+      serviceKind: classifyServiceKindForFilter({ form: "contact", message, company, source }),
     })
     return { success: true, isSpam: true }
   }
@@ -631,9 +684,11 @@ export async function submitContactForm(
     message,
     areaSize,
     attachmentName: validatedAttachment?.filename ?? "",
+    attachmentUrl: attachmentUrl ?? "",
     pageUrl,
     gclid,
     source,
+    serviceKind: classifyServiceKindForFilter({ form: "contact", message, company, source }),
   })
 
   const subject = `${copy.contactSubject}: ${name}${company ? " / " + company : ""}`

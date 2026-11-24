@@ -19,6 +19,7 @@ export interface FormSubmissionInput {
   workload?: string
   workTime?: string
   attachmentName?: string
+  attachmentUrl?: string
   isSpam?: boolean
   /** URL of the page the form was submitted from. "" when unknown (older rows). */
   pageUrl?: string
@@ -36,6 +37,8 @@ export interface FormSubmissionInput {
   leadQuality?: string
   /** Koristatava pinna suurus m² (valikuline, 19.11.2026). */
   areaSize?: string
+  /** Kuupäev, milleks müügistaatus muudeti "won"-ks (võidetud lepingu konversioon). */
+  wonAt?: string | null
 }
 
 export interface FormSubmission {
@@ -51,6 +54,8 @@ export interface FormSubmission {
   workload: string
   workTime: string
   attachmentName: string
+  /** Public URL of the uploaded attachment (Vercel Blob or local /uploads/...). Empty when no attachment. */
+  attachmentUrl: string
   /** Decimal string (e.g. "123.45"), "" when not set. Admin-entered. */
   fee: string
   /** Decimal string (e.g. "123.45"), "" when not set. Admin-entered. */
@@ -66,6 +71,8 @@ export interface FormSubmission {
   leadQuality: string
   /** Koristatava pinna suurus m² (tühi kui pole sisestatud). */
   areaSize: string
+  /** ISO kuupäev, milleks müügistaatus muudeti "won"-ks. Tühi kui pole võidetud. */
+  wonAt: string
   createdAt: string
 }
 
@@ -77,14 +84,20 @@ export interface FormSubmissionFinancials {
   serviceKind?: string
   salesStatus?: string
   leadQuality?: string
+  wonAt?: string | null
+  areaSize?: string
 }
 
 export interface FormSubmissionFilter {
   form?: "contact" | "career"
   from?: string
   to?: string
+  /** Filter by service kind (maintenance | oneoff | other). */
+  serviceKind?: string
   /** When true, only spam-flagged rows are returned. */
   spamOnly?: boolean
+  /** Filter by classified source category (google_ads | seo | direct | other). */
+  sourceCategory?: "google_ads" | "seo" | "direct" | "other"
 }
 
 const MAX_ROWS = 2000
@@ -124,6 +137,8 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       salesStatus: typeof row.salesStatus === "string" ? row.salesStatus : "",
       leadQuality: typeof row.leadQuality === "string" ? row.leadQuality : "",
       areaSize: typeof row.areaSize === "string" ? row.areaSize : "",
+      wonAt: typeof row.wonAt === "string" ? row.wonAt : "",
+      attachmentUrl: typeof row.attachmentUrl === "string" ? row.attachmentUrl : "",
     }))
   } catch {
     return []
@@ -153,6 +168,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     workload: input.workload ?? "",
     workTime: input.workTime ?? "",
     attachmentName: input.attachmentName ?? "",
+    attachmentUrl: input.attachmentUrl ?? "",
     isSpam: input.isSpam ?? false,
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
@@ -162,6 +178,7 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     salesStatus: input.salesStatus ?? "",
     leadQuality: input.leadQuality ?? "",
     areaSize: input.areaSize ?? "",
+    wonAt: input.wonAt ? new Date(input.wonAt) : null,
   })
 }
 
@@ -181,6 +198,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     workload: input.workload ?? "",
     workTime: input.workTime ?? "",
     attachmentName: input.attachmentName ?? "",
+    attachmentUrl: input.attachmentUrl ?? "",
     fee: "",
     profit: "",
     notes: "",
@@ -193,6 +211,7 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     salesStatus: input.salesStatus ?? "",
     leadQuality: input.leadQuality ?? "",
     areaSize: input.areaSize ?? "",
+    wonAt: input.wonAt ?? "",
     createdAt: new Date().toISOString(),
   })
   await writeJsonRows(rows)
@@ -222,9 +241,21 @@ function toDate(to: string): Date {
   return new Date(`${to}T23:59:59.999`)
 }
 
+function sourceCategory(row: FormSubmission): "google_ads" | "seo" | "direct" | "other" {
+  if (row.source === "google_ads") return "google_ads"
+  if (row.source.startsWith("organic:")) return "seo"
+  if (row.source === "direct") return "direct"
+  return "other"
+}
+
 function matchesFilter(row: FormSubmission, filter: FormSubmissionFilter): boolean {
   if (filter.form && row.form !== filter.form) return false
+  if (filter.serviceKind && row.serviceKind !== filter.serviceKind) return false
+  // Spam rows are hidden by default in the admin UI and CSV export. The old
+  // explicit spam-only filter has been removed (client request 24.11.2026).
+  if (!filter.spamOnly && row.isSpam) return false
   if (filter.spamOnly && !row.isSpam) return false
+  if (filter.sourceCategory && sourceCategory(row) !== filter.sourceCategory) return false
   const time = new Date(row.createdAt).getTime()
   if (Number.isNaN(time)) return false
   if (filter.from && time < fromDate(filter.from).getTime()) return false
@@ -239,6 +270,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
 
   const conditions = []
   if (filter.form) conditions.push(eq(formSubmissions.form, filter.form))
+  if (filter.serviceKind) conditions.push(eq(formSubmissions.serviceKind, filter.serviceKind))
   if (filter.spamOnly) conditions.push(eq(formSubmissions.isSpam, true))
   if (filter.from) conditions.push(gte(formSubmissions.createdAt, fromDate(filter.from)))
   if (filter.to) conditions.push(lte(formSubmissions.createdAt, toDate(filter.to)))
@@ -250,7 +282,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     .orderBy(desc(formSubmissions.createdAt))
     .limit(MAX_ROWS)
 
-  return rows.map((row) => ({
+  const mapped = rows.map((row) => ({
     id: row.id,
     form: row.form,
     locale: row.locale,
@@ -263,6 +295,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     workload: row.workload,
     workTime: row.workTime,
     attachmentName: row.attachmentName,
+    attachmentUrl: row.attachmentUrl ?? "",
     fee: normalizeAmount(row.fee),
     profit: normalizeAmount(row.profit),
     notes: row.notes ?? "",
@@ -275,8 +308,10 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     salesStatus: row.salesStatus ?? "",
     leadQuality: row.leadQuality ?? "",
     areaSize: row.areaSize ?? "",
+    wonAt: row.wonAt ? row.wonAt.toISOString() : "",
     createdAt: row.createdAt.toISOString(),
   }))
+  return mapped.filter((row) => matchesFilter(row, filter))
 }
 
 async function readFromJson(filter: FormSubmissionFilter): Promise<FormSubmission[]> {
@@ -302,13 +337,15 @@ async function updateInDb(id: number, data: FormSubmissionFinancials): Promise<v
   const { db } = await import("@/lib/db")
   const { formSubmissions } = await import("@/lib/db/schema")
   const { eq } = await import("drizzle-orm")
-  const set: Record<string, string | null> = {}
+  const set: Record<string, string | null | Date> = {}
   if (data.fee !== undefined) set.fee = normalizeAmount(data.fee) || null
   if (data.profit !== undefined) set.profit = normalizeAmount(data.profit) || null
   if (data.notes !== undefined) set.notes = data.notes
   if (data.serviceKind !== undefined) set.serviceKind = data.serviceKind
   if (data.salesStatus !== undefined) set.salesStatus = data.salesStatus
   if (data.leadQuality !== undefined) set.leadQuality = data.leadQuality
+  if (data.wonAt !== undefined) set.wonAt = data.wonAt ? new Date(data.wonAt) : null
+  if (data.areaSize !== undefined) set.areaSize = data.areaSize
   if (Object.keys(set).length === 0) return
   await db.update(formSubmissions).set(set).where(eq(formSubmissions.id, id))
 }
@@ -323,6 +360,8 @@ async function updateInJson(id: number, data: FormSubmissionFinancials): Promise
   if (data.serviceKind !== undefined) row.serviceKind = data.serviceKind
   if (data.salesStatus !== undefined) row.salesStatus = data.salesStatus
   if (data.leadQuality !== undefined) row.leadQuality = data.leadQuality
+  if (data.wonAt !== undefined) row.wonAt = data.wonAt ?? ""
+  if (data.areaSize !== undefined) row.areaSize = data.areaSize
   await writeJsonRows(rows)
   return true
 }

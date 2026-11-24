@@ -183,6 +183,8 @@ export const formSubmissions = pgTable("form_submissions", {
   workload: text("workload").notNull().default(""),
   workTime: text("work_time").notNull().default(""),
   attachmentName: text("attachment_name").notNull().default(""),
+  /** Public URL of the uploaded attachment (Vercel Blob or local /uploads/...). Empty when no attachment. */
+  attachmentUrl: text("attachment_url").notNull().default(""),
   fee: numeric("fee", { precision: 12, scale: 2 }),
   profit: numeric("profit", { precision: 12, scale: 2 }),
   notes: text("notes").notNull().default(""),
@@ -200,5 +202,7 @@ export const formSubmissions = pgTable("form_submissions", {
   leadQuality: text("lead_quality").notNull().default(""),
   /** Koristatava pinna suurus ruutmeetrites (valikuline vormiväli, 19.11.2026). */
   areaSize: text("area_size").notNull().default(""),
+  /** Kuupäev, milleks müügistaatus muudeti "won"-ks (võidetud lepingu konversioon). */
+  wonAt: timestamp("won_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })
