@@ -111,6 +111,25 @@ export function classifyServiceKind(message: string): LeadServiceKind | null {
   return null
 }
 
+/**
+ * AI/rule-based service-kind classification for admin filters.
+ * Used to auto-tag submissions on save and to backfill old rows so the
+ * "Hoolduskoristus / Eritööd / Muu" filters actually match message content.
+ * Career applications and job-seeking contact submissions are always "other".
+ */
+export function classifyServiceKindForFilter(
+  row: Pick<FormSubmission, "form" | "message" | "company" | "source">,
+): "maintenance" | "oneoff" | "other" {
+  if (row.form === "career" || isJobSeeker(row as FormSubmission)) return "other"
+  const message = row.message || ""
+  const company = row.company || ""
+  if (MAINTENANCE_SIGNAL.test(message)) return "maintenance"
+  if (ONEOFF_SIGNAL.test(message) || OUTDOOR_SIGNAL.test(message)) return "oneoff"
+  if (company.trim() && PREMISES_SIGNAL.test(message)) return "maintenance"
+  if (PREMISES_SIGNAL.test(message)) return "maintenance"
+  return "other"
+}
+
 function toLead(row: FormSubmission): LeadRow {
   const maintenance = classifyMaintenance(row.company, row.message)
   return {
