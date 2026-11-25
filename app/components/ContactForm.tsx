@@ -95,11 +95,13 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
       // Fire the GTM conversion event for real submissions only (the server
       // flags honeypot/spam fake-successes with isSpam). The email was
       // captured in handleSubmit before the input was reset by React.
-      if (!state.isSpam) {
+      if (!state.isSpam && getStoredConsent() === "granted") {
         const email = submittedEmailRef.current
         // Hardcoded raw dataLayer push FIRST - the stable conversion signal
         // (form_submission_success) must fire even if the sendGTMEvent
         // wrapper below ever breaks in a refactor/upgrade.
+        // Pushed only when the visitor has granted consent, because all Google
+        // measurement is now opt-in (25.11.2026).
         pushFormSubmissionSuccess({ form_id: "contact", page_path: etPath, locale, email })
         sendGTMEvent({
           event: "form_submit",

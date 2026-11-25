@@ -15,8 +15,10 @@
  * Conversions and `form_id` so career submissions can stay excluded from
  * lead conversions.
  *
- * Consent-safe: the push itself only queues data; Consent Mode v2 governs
- * whether any tag actually fires.
+ * The caller is expected to check consent before invoking this helper (see
+ * ContactForm/CareerForm). With Consent Mode v2 in basic/opt-in mode
+ * (25.11.2026), no measurement data is sent to Google before the visitor
+ * grants consent.
  */
 export function pushFormSubmissionSuccess(payload: {
   form_id: "contact" | "career"

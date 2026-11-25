@@ -9,6 +9,7 @@ import { renderLdJson } from "@/lib/json-ld-generator"
 import { absoluteUrl, BASE_URL, canonicalUrl } from "@/lib/url-utils"
 import CookieConsentBanner from "@/app/components/analytics/CookieConsentBanner"
 import AttributionCapture from "@/app/components/analytics/AttributionCapture"
+import PageViewTracker from "@/app/components/analytics/PageViewTracker"
 import { CONSENT_DEFAULT_SNIPPET } from "@/app/components/analytics/consent"
 
 // GTM must not load on Vercel preview deployments (analytics audit 27.10.2026:
@@ -188,6 +189,7 @@ export function RootShell({
           />
           {children}
           <AttributionCapture />
+          <PageViewTracker />
           {gtmId ? <CookieConsentBanner /> : null}
         </I18nProvider>
         {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}

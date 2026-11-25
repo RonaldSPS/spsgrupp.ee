@@ -1,4 +1,4 @@
-import { pgTable, integer, text, boolean, timestamp, real, serial, numeric, uniqueIndex, jsonb, date } from "drizzle-orm/pg-core"
+import { pgTable, integer, text, boolean, timestamp, real, serial, numeric, uniqueIndex, index, jsonb, date } from "drizzle-orm/pg-core"
 
 export const blogEdits = pgTable("blog_edits", {
   id: integer("id").primaryKey(),
@@ -156,6 +156,39 @@ export const adminUsers = pgTable("admin_users", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 })
 
+export const offlineConversionUploads = pgTable("offline_conversion_uploads", {
+  id: serial("id").primaryKey(),
+  runAt: timestamp("run_at", { withTimezone: true }).notNull().defaultNow(),
+  candidates: integer("candidates").notNull().default(0),
+  uploaded: integer("uploaded").notNull().default(0),
+  skippedNoValue: integer("skipped_no_value").notNull().default(0),
+  actionResourceName: text("action_resource_name").notNull().default(""),
+  actionCreated: boolean("action_created").notNull().default(false),
+  wonCandidates: integer("won_candidates").notNull().default(0),
+  wonUploaded: integer("won_uploaded").notNull().default(0),
+  wonSkippedNoValue: integer("won_skipped_no_value").notNull().default(0),
+  wonActionResourceName: text("won_action_resource_name").notNull().default(""),
+  wonActionCreated: boolean("won_action_created").notNull().default(false),
+  dryRun: boolean("dry_run").notNull().default(false),
+  requestId: text("request_id").notNull().default(""),
+  errors: jsonb("errors").notNull().default([]),
+  formResults: jsonb("form_results"),
+  wonResults: jsonb("won_results"),
+})
+
+export const offlineConversionEvents = pgTable("offline_conversion_events", {
+  id: serial("id").primaryKey(),
+  submissionId: integer("submission_id").notNull(),
+  eventType: text("event_type").notNull(),
+  runId: integer("run_id").references(() => offlineConversionUploads.id, { onDelete: "cascade" }),
+  status: text("status").notNull(),
+  errorMessage: text("error_message").notNull().default(""),
+  uploadedAt: timestamp("uploaded_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => ({
+  submissionIdx: index("offline_conv_events_submission_idx").on(table.submissionId),
+  runIdx: index("offline_conv_events_run_idx").on(table.runId),
+}))
+
 export const weeklyReports = pgTable("weekly_reports", {
   id: serial("id").primaryKey(),
   weekStart: date("week_start").notNull(),
@@ -168,6 +201,41 @@ export const weeklyReports = pgTable("weekly_reports", {
   emailError: text("email_error").notNull().default(""),
 }, (table) => ({
   weekUnique: uniqueIndex("weekly_reports_week_idx").on(table.weekStart, table.weekEnd),
+}))
+
+/**
+ * Privacy-friendly cookieless page-view analytics (25.11.2026).
+ * No cookies, no persistent user identifiers, no IP storage.
+ * daily_visitor_hash is computed as sha256(IP + userAgent + date + salt)
+ * and is used only to count daily unique visitors, pages/session, bounce
+ * rate and session duration. IP and userAgent are not stored.
+ */
+export const pageViews = pgTable("page_views", {
+  id: serial("id").primaryKey(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  path: text("path").notNull(),
+  locale: text("locale").notNull().default(""),
+  referrerHost: text("referrer_host").notNull().default(""),
+  utmSource: text("utm_source").notNull().default(""),
+  utmMedium: text("utm_medium").notNull().default(""),
+  utmCampaign: text("utm_campaign").notNull().default(""),
+  utmTerm: text("utm_term").notNull().default(""),
+  utmContent: text("utm_content").notNull().default(""),
+  country: text("country").notNull().default(""),
+  region: text("region").notNull().default(""),
+  city: text("city").notNull().default(""),
+  deviceType: text("device_type").notNull().default(""),
+  browser: text("browser").notNull().default(""),
+  os: text("os").notNull().default(""),
+  screenWidth: integer("screen_width"),
+  screenHeight: integer("screen_height"),
+  language: text("language").notNull().default(""),
+  dailyVisitorHash: text("daily_visitor_hash").notNull().default(""),
+}, (table) => ({
+  createdAtIdx: index("page_views_created_at_idx").on(table.createdAt),
+  pathIdx: index("page_views_path_idx").on(table.path),
+  dailyHashIdx: index("page_views_daily_hash_idx").on(table.dailyVisitorHash),
+  referrerIdx: index("page_views_referrer_idx").on(table.referrerHost),
 }))
 
 export const formSubmissions = pgTable("form_submissions", {

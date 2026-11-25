@@ -1,6 +1,189 @@
 {
- "generatedAt": "2026-11-20T10:29:54.733Z",
+ "generatedAt": "2026-11-25T19:32:35.301Z",
  "commits": [
+  {
+   "hash": "ee533c2",
+   "date": "2026-11-25T20:44:37+02:00",
+   "subject": "fix: remove black placeholder favicon so public SPS logo is served",
+   "files": [
+    {
+     "s": "D",
+     "p": "app/favicon.ico"
+    }
+   ]
+  },
+  {
+   "hash": "246161d",
+   "date": "2026-11-25T18:06:14+02:00",
+   "subject": "feat(consent+offline-conversions): GDPR-sõbralikum vormi/bänneri tekst, küpsiste seadete avamise fix, won-lepingute DM API saatmine ja detailne logimine",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/cron/offline-conversions/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/offline-conversions/status/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/export/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/Footer.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/CookieConsentBanner.tsx"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/offline-conversions.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "scripts/ads-offline-conversions-upload.ts"
+    }
+   ]
+  },
+  {
+   "hash": "a8d897b",
+   "date": "2026-11-24T16:15:36+02:00",
+   "subject": "fix(paringud): lisa puuduv classifyServiceKindForFilter export",
+   "files": [
+    {
+     "s": "M",
+     "p": "lib/reporting/forms.ts"
+    }
+   ]
+  },
+  {
+   "hash": "9b1a563",
+   "date": "2026-11-24T15:30:57+02:00",
+   "subject": "feat(paringud): allikas filter, manuse pisipilt, võidetud checkbox + migratsioonid 0019/0020",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/[id]/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/submissions/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0019_submission_won_at.sql"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0020_submission_attachment_url.sql"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-ads-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/__tests__/reporting-forms-filter.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/actions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/form-submissions.ts"
+    }
+   ]
+  },
+  {
+   "hash": "8919ffd",
+   "date": "2026-11-20T12:31:08+02:00",
+   "subject": "fix: SEO-insightid suunatud targetPage'ile ja teenuselehtede tugevdus",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/_pages/home/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/hoolduskoristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/kontori-koristus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/layout.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/_pages/koristusteenus/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ServiceColumns.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-insights-seo.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/metadata-registry.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/pages/definitions/hoolduskoristus.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/insights.ts"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    }
+   ]
+  },
   {
    "hash": "1ed991e",
    "date": "2026-11-19T17:32:08+02:00",

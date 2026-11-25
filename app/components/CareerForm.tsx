@@ -10,6 +10,7 @@ import { submitCareerForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 import { pushFormSubmissionSuccess } from "./analytics/form-conversion"
 import { getAttributionSource } from "./analytics/attribution"
+import { getStoredConsent } from "./analytics/consent"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
 
@@ -57,11 +58,13 @@ export default function CareerForm() {
       // Fire the GTM conversion event for real submissions only (the server
       // flags honeypot/spam fake-successes with isSpam). The email was
       // captured in handleSubmit before the input was reset by React.
-      if (!state.isSpam) {
+      if (!state.isSpam && getStoredConsent() === "granted") {
         const email = submittedEmailRef.current
         // Hardcoded raw dataLayer push FIRST - the stable conversion signal
         // (form_submission_success) must fire even if the sendGTMEvent
         // wrapper below ever breaks in a refactor/upgrade.
+        // Pushed only when the visitor has granted consent, because all Google
+        // measurement is now opt-in (25.11.2026).
         pushFormSubmissionSuccess({ form_id: "career", page_path: etPath, locale, email })
         sendGTMEvent({
           event: "form_submit",

@@ -2,16 +2,13 @@
  * Google Consent Mode v2 state, shared by the consent-default inline script
  * (rendered by RootShell before GTM loads) and the CookieConsentBanner.
  *
- * Minimal-restriction policy (owner decision 03.09.2026): only the signals
- * Google's EU User Consent Policy actually requires consent for are gated -
- * `ad_storage`, `ad_user_data` and `ad_personalization` stay DENIED until
- * the visitor accepts (granting those by default would breach Google's
- * terms for EEA traffic). Everything else, incl. `analytics_storage`, is
- * GRANTED by default so audience measurement stays intact and the banner
- * effectively controls ads consent only. This is "advanced" consent mode:
- * tags load immediately and send cookieless pings while ads consent is
- * denied, so Ads conversion modeling keeps working - the most data Google
- * allows without consent.
+ * Strict opt-in policy (25.11.2026): all measurement signals
+ * (`analytics_storage`, `ad_storage`, `ad_user_data`) stay DENIED until the
+ * visitor explicitly accepts. `ad_personalization` stays DENIED permanently
+ * because we do not run personalized/retargeting ads. This is "basic"
+ * Consent Mode v2 behavior: no analytics cookies, no ad cookies and no
+ * conversion data is sent to Google before consent. Our own cookieless
+ * page-view analytics runs independently and does not require consent.
  *
  * The banner flips state via gtag('consent', 'update', ...) which queues
  * onto dataLayer even when gtm.js has not finished loading yet.
@@ -21,7 +18,9 @@ export const CONSENT_STORAGE_KEY = "sps_consent"
 
 export type ConsentChoice = "granted" | "denied"
 
-/** Consent defaults pushed before GTM loads. Only Ads signals are gated. */
+/** Consent defaults pushed before GTM loads. All measurement is denied until
+ *  the visitor explicitly accepts. This is "basic" Consent Mode v2 behavior:
+ *  no analytics cookies and no ad cookies are set before consent. */
 export const CONSENT_DEFAULT_SNIPPET = `
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -29,7 +28,7 @@ gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
   ad_personalization: 'denied',
-  analytics_storage: 'granted',
+  analytics_storage: 'denied',
   functionality_storage: 'granted',
   personalization_storage: 'granted',
   security_storage: 'granted',
@@ -76,9 +75,9 @@ export function applyConsent(choice: ConsentChoice) {
   w.gtag("consent", "update", {
     ad_storage: ads,
     ad_user_data: ads,
-    ad_personalization: ads,
-    // Analytics stays granted either way - the choice gates ads consent only.
-    analytics_storage: "granted",
+    // We measure conversions, but never enable personalized/retargeting ads.
+    ad_personalization: "denied",
+    analytics_storage: ads,
     functionality_storage: "granted",
     personalization_storage: "granted",
   })

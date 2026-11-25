@@ -226,7 +226,7 @@
     "attachmentHint": "Allowed: JPG, PNG, PDF up to 10 MB",
     "privacyConsent": "I have read the privacy policy and consent to the processing of my data. *",
     "privacyLink": "privacy policy",
-    "adsConsent": "I agree to share information about how I reached the SPS Grupp inquiry. The source of how I reached the page is recorded. Information submitted in the form is shared with Google platforms.",
+    "adsConsent": "I agree that my email address and inquiry details may be sent to Google Ads when I submit this form for conversion measurement. Personalized ads will not be shown.",
     "submitButton": "Send Inquiry",
     "submitting": "Sending...",
     "successMessage": "Thank you! Your inquiry has been sent. We will generally contact you within one business day.",
@@ -310,10 +310,10 @@
     "text": "Skip to content"
   },
   "cookieConsent": {
-    "message": "We use cookies to understand where our visitors come from and to send information to Google platforms when an inquiry is submitted. Cookies are associated only with the SPSgrupp.ee website. You can change your choice at any time by selecting \"Cookie settings\" in the footer. See also",
+    "message": "No consent is required for normal use of this site. If you allow, we use Google Analytics for detailed analysis and send form submission data to Google Ads. We do not show personalized ads. General visit statistics are also measured without consent using privacy-friendly analytics that does not use cookies. You can change your choice at any time via \"Cookie settings\" in the footer. See also",
     "privacyLink": "Privacy Policy",
     "manage": "Manage choices",
-    "acceptAll": "Accept",
+    "acceptAll": "Allow",
     "decline": "Decline"
   },
   "koristusteenus": {
@@ -1045,7 +1045,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "content": "The SPS Grupp OÜ website uses cookies. Cookie information is used to collect statistics on the number of users, as well as to obtain information about the geographical location of our users, in order to adapt the content and service of the website."
+            "content": "The SPS Grupp OÜ website does not require cookies or consent for normal operation. General visit statistics are collected on the basis of legitimate interest using privacy-friendly analytics that does not use cookies. No cookies or persistent user identifiers are stored when collecting these statistics. IP addresses are used only momentarily to generate an anonymous daily hash and to determine country/city, after which they are discarded. Detailed analytics (Google Analytics) and advertising measurement (Google Ads) are used only with the visitor's explicit consent. With consent, Google Analytics provides more detailed visit analysis and form submission data is sent to Google Ads for conversion measurement. We do not use personalized or targeted advertising. Consent can be withdrawn at any time via the 'Cookie settings' link in the footer."
           }
         ]
       },

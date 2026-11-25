@@ -226,7 +226,7 @@
     "attachmentHint": "Lubatud: JPG, PNG, PDF kuni 10 MB",
     "privacyConsent": "Olen tutvunud andmekaitsetingimustega ja nõustun oma andmete töötlemisega päringule vastamise eesmärgil. *",
     "privacyLink": "andmekaitsetingimustega",
-    "adsConsent": "Olen nõus jagama infot, kuidas SPS Grupi päringuni jõudsin. Salvestatakse lehele jõudmise allikas. Vormis esitatud infot jagatakse Google platvormidega.",
+    "adsConsent": "Olen nõus, et vormi saatmisel edastatakse minu e-posti aadress ja päringuandmed Google Adsile konversiooni mõõtmiseks. Isikupärastatud reklaame me ei kasuta.",
     "submitButton": "Saada päring",
     "submitting": "Saadan...",
     "successMessage": "Täname! Teie päring on saadetud. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
@@ -310,11 +310,11 @@
     "text": "Otse sisu juurde"
   },
   "cookieConsent": {
-    "message": "Kasutame küpsiseid, et mõista, kust meie külastajad pärit on, ning saata päringu korral info Google platvormidele. Küpsised on seotud ainult SPSgrupp.ee lehega. Saad oma valikut igal ajal muuta valides jaluses \"Küpsiste seaded\". Vaata ka",
+    "message": "Selle lehe tavatoimimiseks nõusolekut ei ole vaja. Kui lubad, kasutame Google Analyticsit detailsema analüüsi jaoks ja edastame vormi saatmisel päringuinfo Google Adsile. Isikupärastatud reklaame me ei näita. Üldist külastatavust mõõdame ka ilma nõusolekuta privaatsussõbralikul viisil ilma küpsiseid kasutamata. Saad valikut igal ajal muuta jaluses \"Küpsiste seaded\". Vaata ka",
     "privacyLink": "Privaatsustingimused",
     "manage": "Halda valikuid",
-    "acceptAll": "Nõustun",
-    "decline": "Keeldun"
+    "acceptAll": "Luba",
+    "decline": "Keeldu"
   },
   "valikoristus": {
     "seo": {
@@ -545,7 +545,7 @@
         "blocks": [
           {
             "type": "paragraph",
-            "content": "SPS Grupp OÜ koduleht kasutab küpsiseid. Küpsiste informatsiooniga kogutakse statistika saamiseks kasutajate arvu kohta, samuti teabe saamiseks meie kasutajate geograafilise asukoha kohta, et kodulehe sisu ja teenust kohandada."
+            "content": "SPS Grupp OÜ kodulehe tavatoimimiseks küpsiseid ega nõusolekut ei ole vaja. Üldist külastusstatistikat kogutakse õigustatud huvi alusel privaatsussõbralikul viisil ilma küpsiseid kasutamata. Statistika kogumisel ei kasutata küpsiseid ega salvestata püsivaid kasutajatunnuseid. IP-aadressi kasutatakse ainult hetkeks anonüümse päevase räsi ja riigi/linna määramiseks, pärast mida see kustutatakse. Detailsemat analüütikat (Google Analytics) ja reklaamimõõtmist (Google Ads) kasutatakse ainult külastaja selgesõnalisel nõusolekul. Nõusoleku andmisel võimaldatakse Google Analyticsi abil detailsemat külastusanalüüsi ja vormi saatmisel edastatakse päringuinfo Google Adsile konversioonide mõõtmiseks. Me ei kasuta isikupärastatud ega sihitud reklaame. Nõusolekut on võimalik igal ajal tagasi võtta jaluses asuva 'Küpsiste seaded' lingi kaudu."
           }
         ]
       },
