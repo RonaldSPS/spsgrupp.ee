@@ -42,6 +42,8 @@ export async function GET(request: Request) {
 
       const fromDate = new Date(`${from}T00:00:00Z`)
       const toDate = new Date(`${to}T23:59:59Z`)
+      const fromIso = fromDate.toISOString()
+      const toIso = toDate.toISOString()
 
       const where = and(
         gte(pageViews.createdAt, fromDate),
@@ -57,11 +59,11 @@ export async function GET(request: Request) {
             MIN(created_at) AS first_seen,
             MAX(created_at) AS last_seen
           FROM page_views
-          WHERE created_at >= ${fromDate} AND created_at <= ${toDate}
+          WHERE created_at >= ${fromIso} AND created_at <= ${toIso}
           GROUP BY daily_visitor_hash
         )
         SELECT
-          (SELECT COUNT(*) FROM page_views WHERE created_at >= ${fromDate} AND created_at <= ${toDate}) AS page_views,
+          (SELECT COUNT(*) FROM page_views WHERE created_at >= ${fromIso} AND created_at <= ${toIso}) AS page_views,
           COUNT(*) AS unique_visitors,
           COALESCE(AVG(pages), 0) AS pages_per_visitor,
           COALESCE(AVG(CASE WHEN pages = 1 THEN 1.0 ELSE 0.0 END), 0) AS bounce_rate,
@@ -165,7 +167,7 @@ export async function GET(request: Request) {
           COUNT(*) AS views,
           COUNT(DISTINCT daily_visitor_hash) AS visitors
         FROM page_views
-        WHERE created_at >= ${fromDate} AND created_at <= ${toDate}
+        WHERE created_at >= ${fromIso} AND created_at <= ${toIso}
         GROUP BY DATE(created_at)
         ORDER BY date ASC
       `)
