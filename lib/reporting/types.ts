@@ -384,6 +384,27 @@ export interface AiVisibilityData {
   topDomains: [string, number][]
 }
 
+export interface OfflineConversionUploadStatus {
+  /** Timestamp of the last upload run that reached Google (UTC ISO). */
+  lastRunAt: string | null
+  /** Form-inquiry events Google reported OK in the last run. */
+  formSuccess: number
+  /** Form-inquiry events Google reported errors for in the last run. */
+  formErrors: number
+  /** Won-contract events Google reported OK in the last run. */
+  wonSuccess: number
+  /** Won-contract events Google reported errors for in the last run. */
+  wonErrors: number
+  /** Whether the last run had any Google-side processing errors. */
+  hasErrors: boolean
+  /** Google Data Manager request ID from the last run. */
+  requestId: string | null
+  /** Human-readable overall status. */
+  status: "ok" | "partial" | "failed" | "missing"
+  /** Estonian explanation for the report UI. */
+  note: string
+}
+
 export interface ReportSnapshot {
   generatedAt: string
   period: { start: string; end: string; prevStart: string; prevEnd: string }
@@ -397,6 +418,8 @@ export interface ReportSnapshot {
   geogrid?: GeoGridData
   /** AI-nähtavuse seire (ChatGPT/Perplexity/Gemini soovitused) — valikuline (puudub vanadel raportitel / kui AI API võtit pole). */
   aiVisibility?: AiVisibilityData
+  /** Offline-konversioonide üleslaadimise staatus Google'i poolel (puudub vanadel raportitel). */
+  offlineConversions?: OfflineConversionUploadStatus
   /** Per-source failure notes (a failing API must not kill the whole report). */
   errors: string[]
 }

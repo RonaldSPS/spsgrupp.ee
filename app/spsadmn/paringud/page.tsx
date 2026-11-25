@@ -38,6 +38,23 @@ interface FinancialDraft {
   notes: string
 }
 
+interface OfflineEvent {
+  submissionId: number
+  eventType: "form" | "won"
+  status: "success" | "error"
+  errorMessage: string
+  uploadedAt: string
+}
+
+interface SubmissionOfflineStatus {
+  form?: OfflineEvent | null
+  won?: OfflineEvent | null
+  lastUploadedAt: string | null
+  lastRequestId: string | null
+  eligible: boolean
+  reason?: string
+}
+
 const FORM_LABELS: Record<string, string> = {
   contact: "Kontaktivorm",
   career: "Tööavaldus",
@@ -75,6 +92,7 @@ const SALES_STATUS_CLASSES: Record<string, string> = {
   won: "text-[#2d9e6b] font-bold",
   lost: "text-[#8a94a3]",
 }
+
 
 /** Päringu kvaliteet — admini hinnang (04.11.2026). */
 const LEAD_QUALITY_LABELS: Record<string, string> = {
@@ -128,7 +146,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 140, 130, 130, 130, 110, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 120, 140, 130, 130, 130, 110, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -142,6 +160,7 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "Keel" },
   { label: "Leht" },
   { label: "Allikas" },
+  { label: "Google" },
   { label: "Teenus" },
   { label: "Staatus" },
   { label: "Võidetud", headerClass: "whitespace-nowrap" },
@@ -194,6 +213,58 @@ function sourceLabel(source: string): string {
   if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
   if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
   return "Teadmata"
+}
+
+function GoogleStatusBadge({ status, loading }: { status?: SubmissionOfflineStatus | null; loading: boolean }) {
+  if (loading) return <span className="text-[#5a6474]">Laadin…</span>
+  if (!status) return <span className="text-[#8a94a3]">–</span>
+
+  const formOk = status.form?.status === "success"
+  const wonOk = status.won?.status === "success"
+  const formErr = status.form?.status === "error"
+  const wonErr = status.won?.status === "error"
+  const hasError = formErr || wonErr
+  const hasSuccess = formOk || wonOk
+
+  let label = "–"
+  let title = ""
+  let cls = "text-[#8a94a3]"
+
+  if (hasError) {
+    if (formErr && wonErr) {
+      label = "✕ Vorm + võit"
+      title = `Viga vormil: ${status.form?.errorMessage ?? ""}; võidu viga: ${status.won?.errorMessage ?? ""}`.trim()
+    } else if (formErr) {
+      label = wonOk ? "✕ Vorm / ✓ Võit" : "✕ Vorm"
+      title = status.form?.errorMessage ?? ""
+    } else {
+      label = formOk ? "✓ Vorm / ✕ Võit" : "✕ Võit"
+      title = status.won?.errorMessage ?? ""
+    }
+    cls = "text-red-600 font-medium"
+  } else if (hasSuccess) {
+    if (formOk && wonOk) {
+      label = "✓ Vorm + võit"
+      title = "Mõlemad sündmused saadetud Google'ile"
+    } else if (formOk) {
+      label = "✓ Vorm"
+      title = "Vormipäring saadetud Google'ile"
+    } else {
+      label = "✓ Võit"
+      title = "Võidetud leping saadetud Google'ile"
+    }
+    cls = "text-[#2d9e6b] font-medium"
+  }
+
+  if (status.lastRequestId && !title.includes("Request ID")) {
+    title = title ? `${title} (request ID: ${status.lastRequestId})` : `Request ID: ${status.lastRequestId}`
+  }
+
+  return (
+    <span className={`inline-flex items-center gap-1 whitespace-nowrap ${cls}`} title={title}>
+      {label}
+    </span>
+  )
 }
 
 /**
@@ -369,6 +440,8 @@ export default function AdminSubmissionsPage() {
   const [deleting, setDeleting] = useState(false)
   const [refreshKey, setRefreshKey] = useState(0)
   const [showAdd, setShowAdd] = useState(false)
+  const [offlineStatuses, setOfflineStatuses] = useState<Record<number, SubmissionOfflineStatus>>({})
+  const [offlineStatusLoading, setOfflineStatusLoading] = useState(false)
 
   // User-resizable column widths (persisted in localStorage)
   const [colWidths, setColWidths] = useState<number[]>(DEFAULT_COL_WIDTHS)
@@ -471,6 +544,30 @@ export default function AdminSubmissionsPage() {
       .catch(() => setSubmissions([]))
       .finally(() => setLoading(false))
   }, [queryString, refreshKey])
+
+  // Fetch per-submission Google offline-conversion status for visible contact forms.
+  useEffect(() => {
+    const contactIds = submissions.filter((s) => s.form === "contact" && s.gclid).map((s) => s.id)
+    if (contactIds.length === 0) {
+      setOfflineStatuses({})
+      return
+    }
+    setOfflineStatusLoading(true)
+    fetch("/api/spsadmn/submissions/offline-status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ submissionIds: contactIds }),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setOfflineStatuses(data.statuses ?? {})
+      })
+      .catch((err) => {
+        console.error("Failed to load offline statuses:", err)
+        setOfflineStatuses({})
+      })
+      .finally(() => setOfflineStatusLoading(false))
+  }, [submissions])
 
   /** Teenuse liik / müügistaatus / kvaliteet — kohene salvestus rippmenüüst. */
   const saveSalesFields = async (id: number, fields: { serviceKind?: string; salesStatus?: string; leadQuality?: string }) => {
@@ -825,7 +922,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={16} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={17} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -935,6 +1032,13 @@ export default function AdminSubmissionsPage() {
                         {sourceLabel(s.source)}
                       </span>
                     </td>
+                    <td className="px-4 py-3">
+                      {isContact && s.gclid ? (
+                        <GoogleStatusBadge status={offlineStatuses[s.id]} loading={offlineStatusLoading} />
+                      ) : (
+                        <span className="text-[#8a94a3]">–</span>
+                      )}
+                    </td>
                     {isContact ? (
                       <>
                         <td className="px-4 py-3">
@@ -1030,6 +1134,7 @@ export default function AdminSubmissionsPage() {
                       </>
                     ) : (
                       <>
+                        <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>

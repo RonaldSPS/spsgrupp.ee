@@ -34,6 +34,7 @@
 import { getFormSubmissions, type FormSubmission } from "../form-submissions"
 import { isJobSeeker, isTestSubmission } from "./forms"
 import { getGoogleAccessToken } from "./google-auth"
+import type { OfflineConversionUploadStatus } from "./types"
 
 /** Bump when Google sunsets this version (a 404/INVALID_VERSION error means: bump). */
 const ADS_API_VERSION = "v25"
@@ -358,5 +359,371 @@ export async function uploadOfflineConversions(options?: {
 
   summary.uploaded = summary.formResults!.success
   summary.wonUploaded = summary.wonResults!.success
+
+  // Persist the result so the weekly report can show Google-side processing
+  // status (not just our HTTP 200). Fire-and-forget: storage errors are logged
+  // but never fail the upload itself.
+  if (!dryRun) {
+    saveOfflineUploadResult(summary, formCandidates, wonCandidates).catch((err) => {
+      console.error("Failed to persist offline-conversion upload result:", err)
+    })
+  }
+
   return summary
+}
+
+const UPLOADS_JSON_FILE = "data/offline-conversion-uploads.json"
+const MAX_UPLOAD_HISTORY = 120
+
+async function uploadsJsonPath(): Promise<string> {
+  const path = await import("path")
+  return path.join(process.cwd(), UPLOADS_JSON_FILE)
+}
+
+export interface PersistedOfflineEvent {
+  submissionId: number
+  eventType: "form" | "won"
+  status: "success" | "error"
+  errorMessage: string
+  uploadedAt: string
+}
+
+export interface PersistedOfflineUpload {
+  id?: number
+  runAt: string
+  candidates: number
+  uploaded: number
+  skippedNoValue: number
+  actionResourceName: string
+  actionCreated: boolean
+  wonCandidates: number
+  wonUploaded: number
+  wonSkippedNoValue: number
+  wonActionResourceName: string
+  wonActionCreated: boolean
+  dryRun: boolean
+  requestId: string
+  errors: string[]
+  formResults?: { success: number; errors: number; details: string[] }
+  wonResults?: { success: number; errors: number; details: string[] }
+  events?: PersistedOfflineEvent[]
+}
+
+function buildEventDetails(
+  candidates: FormSubmission[],
+  results: { success: number; errors: number; details: string[] } | undefined,
+  eventType: "form" | "won",
+): PersistedOfflineEvent[] {
+  if (!results) return []
+  const errorMap = new Map<number, string>()
+  for (const detail of results.details) {
+    // detail format: "form-123: error message" or "won-123: error message"
+    const match = detail.match(/^(?:form|won)-(\d+):\s*(.*)$/)
+    if (match) {
+      errorMap.set(Number(match[1]), match[2].trim())
+    }
+  }
+  return candidates.map((c) => ({
+    submissionId: c.id,
+    eventType,
+    status: errorMap.has(c.id) ? "error" : "success",
+    errorMessage: errorMap.get(c.id) ?? "",
+    uploadedAt: new Date().toISOString(),
+  }))
+}
+
+/** Store one upload run + per-submission event log. Non-fatal: failures are logged, never thrown. */
+async function saveOfflineUploadResult(
+  summary: OfflineUploadSummary,
+  formCandidates: FormSubmission[],
+  wonCandidates: FormSubmission[],
+): Promise<void> {
+  const events: PersistedOfflineEvent[] = [
+    ...buildEventDetails(formCandidates, summary.formResults, "form"),
+    ...buildEventDetails(wonCandidates, summary.wonResults, "won"),
+  ]
+
+  const record: PersistedOfflineUpload = {
+    runAt: new Date().toISOString(),
+    candidates: summary.candidates,
+    uploaded: summary.uploaded,
+    skippedNoValue: summary.skippedNoValue,
+    actionResourceName: summary.actionResourceName ?? "",
+    actionCreated: summary.actionCreated,
+    wonCandidates: summary.wonCandidates,
+    wonUploaded: summary.wonUploaded,
+    wonSkippedNoValue: summary.wonSkippedNoValue,
+    wonActionResourceName: summary.wonActionResourceName ?? "",
+    wonActionCreated: summary.wonActionCreated,
+    dryRun: summary.dryRun,
+    requestId: summary.requestId ?? "",
+    errors: summary.errors,
+    formResults: summary.formResults,
+    wonResults: summary.wonResults,
+    events,
+  }
+
+  if (process.env.DATABASE_URL) {
+    try {
+      const { db } = await import("@/lib/db")
+      const { offlineConversionUploads, offlineConversionEvents } = await import("@/lib/db/schema")
+      const rows = await db
+        .insert(offlineConversionUploads)
+        .values({
+          runAt: new Date(),
+          candidates: record.candidates,
+          uploaded: record.uploaded,
+          skippedNoValue: record.skippedNoValue,
+          actionResourceName: record.actionResourceName,
+          actionCreated: record.actionCreated,
+          wonCandidates: record.wonCandidates,
+          wonUploaded: record.wonUploaded,
+          wonSkippedNoValue: record.wonSkippedNoValue,
+          wonActionResourceName: record.wonActionResourceName,
+          wonActionCreated: record.wonActionCreated,
+          dryRun: record.dryRun,
+          requestId: record.requestId,
+          errors: record.errors,
+          formResults: record.formResults,
+          wonResults: record.wonResults,
+        })
+        .returning({ id: offlineConversionUploads.id })
+      const runId = rows[0]?.id
+      if (runId && events.length > 0) {
+        await db.insert(offlineConversionEvents).values(
+          events.map((e) => ({
+            submissionId: e.submissionId,
+            eventType: e.eventType,
+            runId,
+            status: e.status,
+            errorMessage: e.errorMessage,
+            uploadedAt: new Date(e.uploadedAt),
+          })),
+        )
+      }
+      return
+    } catch (err) {
+      console.error("DB offline-conversion upload save failed, falling back to JSON:", err)
+    }
+  }
+
+  try {
+    const { promises: fs } = await import("fs")
+    const path = await import("path")
+    const file = await uploadsJsonPath()
+    let rows: PersistedOfflineUpload[] = []
+    try {
+      const raw = await fs.readFile(file, "utf-8")
+      const parsed = JSON.parse(raw)
+      rows = Array.isArray(parsed) ? parsed : parsed?.uploads ?? []
+    } catch {
+      rows = []
+    }
+    rows.unshift(record)
+    await fs.mkdir(path.dirname(file), { recursive: true })
+    await fs.writeFile(file, JSON.stringify({ uploads: rows.slice(0, MAX_UPLOAD_HISTORY) }, null, 2), "utf-8")
+  } catch (err) {
+    console.error("JSON offline-conversion upload save failed:", err)
+  }
+}
+
+/**
+ * Build a report-friendly status from the most recent successful upload run.
+ * This is the source of truth for the "inquiries sent to Google" indicator.
+ */
+export async function getLatestOfflineUploadStatus(): Promise<OfflineConversionUploadStatus> {
+  let record: PersistedOfflineUpload | null = null
+
+  if (process.env.DATABASE_URL) {
+    try {
+      const { db } = await import("@/lib/db")
+      const { offlineConversionUploads } = await import("@/lib/db/schema")
+      const { desc } = await import("drizzle-orm")
+      const rows = await db
+        .select()
+        .from(offlineConversionUploads)
+        .orderBy(desc(offlineConversionUploads.runAt))
+        .limit(1)
+      const row = rows[0]
+      if (row) {
+        record = {
+          id: row.id,
+          runAt: row.runAt.toISOString(),
+          candidates: row.candidates,
+          uploaded: row.uploaded,
+          skippedNoValue: row.skippedNoValue,
+          actionResourceName: row.actionResourceName,
+          actionCreated: row.actionCreated,
+          wonCandidates: row.wonCandidates,
+          wonUploaded: row.wonUploaded,
+          wonSkippedNoValue: row.wonSkippedNoValue,
+          wonActionResourceName: row.wonActionResourceName,
+          wonActionCreated: row.wonActionCreated,
+          dryRun: row.dryRun,
+          requestId: row.requestId,
+          errors: Array.isArray(row.errors) ? (row.errors as string[]) : [],
+          formResults: row.formResults as PersistedOfflineUpload["formResults"],
+          wonResults: row.wonResults as PersistedOfflineUpload["wonResults"],
+        }
+      }
+    } catch (err) {
+      console.error("DB offline-conversion upload read failed, falling back to JSON:", err)
+    }
+  }
+
+  if (!record) {
+    try {
+      const { promises: fs } = await import("fs")
+      const file = await uploadsJsonPath()
+      const raw = await fs.readFile(file, "utf-8")
+      const parsed = JSON.parse(raw)
+      const rows = Array.isArray(parsed) ? parsed : parsed?.uploads ?? []
+      record = rows[0] ?? null
+    } catch {
+      record = null
+    }
+  }
+
+  if (!record) {
+    return {
+      lastRunAt: null,
+      formSuccess: 0,
+      formErrors: 0,
+      wonSuccess: 0,
+      wonErrors: 0,
+      hasErrors: false,
+      requestId: null,
+      status: "missing",
+      note: "Offline-konversioonide üleslaadimise logi puudub — kontrolli, kas igapäevane cron töötab.",
+    }
+  }
+
+  const formSuccess = record.formResults?.success ?? record.uploaded
+  const formErrors = record.formResults?.errors ?? 0
+  const wonSuccess = record.wonResults?.success ?? record.wonUploaded
+  const wonErrors = record.wonResults?.errors ?? 0
+  const hasErrors = formErrors > 0 || wonErrors > 0 || record.errors.length > 0
+
+  return buildOfflineUploadStatus(record, { formSuccess, formErrors, wonSuccess, wonErrors, hasErrors })
+}
+
+export function buildOfflineUploadStatus(
+  record: PersistedOfflineUpload,
+  computed: { formSuccess: number; formErrors: number; wonSuccess: number; wonErrors: number; hasErrors: boolean },
+): OfflineConversionUploadStatus {
+  const { formSuccess, formErrors, wonSuccess, wonErrors, hasErrors } = computed
+  const totalSuccess = formSuccess + wonSuccess
+  const totalErrors = formErrors + wonErrors
+
+  const runDate = new Date(record.runAt).toLocaleString("et-EE", {
+    timeZone: "Europe/Tallinn",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+
+  let status: OfflineConversionUploadStatus["status"] = "ok"
+  let note = `Viimane üleslaadimine: ${runDate}. Google töötleis ${totalSuccess} sündmust edukalt${record.requestId ? ` (request ID: ${record.requestId})` : ""}.`
+  if (totalErrors > 0) {
+    status = totalSuccess > 0 ? "partial" : "failed"
+    note = `Viimane üleslaadimine: ${runDate}. Google tagastas ${totalErrors} töötlemisviga (kokku ${totalSuccess + totalErrors} sündmust).`
+  }
+
+  return {
+    lastRunAt: record.runAt,
+    formSuccess,
+    formErrors,
+    wonSuccess,
+    wonErrors,
+    hasErrors,
+    requestId: record.requestId || null,
+    status,
+    note,
+  }
+}
+
+export interface SubmissionOfflineStatus {
+  form?: PersistedOfflineEvent | null
+  won?: PersistedOfflineEvent | null
+  lastUploadedAt: string | null
+  lastRequestId: string | null
+  eligible: boolean
+  reason?: string
+}
+
+/**
+ * Return the latest upload event status for a single form submission.
+ * Used by the admin inquiries table to show whether Google actually received
+ * this gclid-carrying contact form as an offline conversion event.
+ */
+export async function getSubmissionOfflineStatus(submissionId: number): Promise<SubmissionOfflineStatus> {
+  if (process.env.DATABASE_URL) {
+    try {
+      const { db } = await import("@/lib/db")
+      const { offlineConversionEvents, offlineConversionUploads } = await import("@/lib/db/schema")
+      const { desc, eq } = await import("drizzle-orm")
+      const rows = await db
+        .select({
+          event: offlineConversionEvents,
+          upload: offlineConversionUploads,
+        })
+        .from(offlineConversionEvents)
+        .leftJoin(offlineConversionUploads, eq(offlineConversionEvents.runId, offlineConversionUploads.id))
+        .where(eq(offlineConversionEvents.submissionId, submissionId))
+        .orderBy(desc(offlineConversionEvents.uploadedAt))
+        .limit(2)
+
+      let form: PersistedOfflineEvent | null = null
+      let won: PersistedOfflineEvent | null = null
+      let lastUploadedAt: string | null = null
+      let lastRequestId: string | null = null
+      for (const r of rows) {
+        const e: PersistedOfflineEvent = {
+          submissionId: r.event.submissionId,
+          eventType: r.event.eventType as "form" | "won",
+          status: r.event.status as "success" | "error",
+          errorMessage: r.event.errorMessage,
+          uploadedAt: r.event.uploadedAt.toISOString(),
+        }
+        if (e.eventType === "form" && !form) form = e
+        if (e.eventType === "won" && !won) won = e
+        if (!lastUploadedAt) lastUploadedAt = e.uploadedAt
+        if (!lastRequestId && r.upload?.requestId) lastRequestId = r.upload.requestId
+      }
+      return { form, won, lastUploadedAt, lastRequestId, eligible: true }
+    } catch (err) {
+      console.error("DB submission offline status read failed, falling back to JSON:", err)
+    }
+  }
+
+  // JSON fallback.
+  try {
+    const { promises: fs } = await import("fs")
+    const file = await uploadsJsonPath()
+    const raw = await fs.readFile(file, "utf-8")
+    const parsed = JSON.parse(raw)
+    const uploads: PersistedOfflineUpload[] = Array.isArray(parsed) ? parsed : parsed?.uploads ?? []
+
+    let form: PersistedOfflineEvent | null = null
+    let won: PersistedOfflineEvent | null = null
+    let lastUploadedAt: string | null = null
+    let lastRequestId: string | null = null
+
+    for (const upload of uploads) {
+      for (const e of upload.events ?? []) {
+        if (e.submissionId !== submissionId) continue
+        if (e.eventType === "form" && !form) form = e
+        if (e.eventType === "won" && !won) won = e
+        if (!lastUploadedAt) lastUploadedAt = e.uploadedAt
+        if (!lastRequestId && upload.requestId) lastRequestId = upload.requestId
+        if (form && won && lastUploadedAt && lastRequestId) break
+      }
+      if (form && won && lastUploadedAt && lastRequestId) break
+    }
+    return { form, won, lastUploadedAt, lastRequestId, eligible: true }
+  } catch {
+    return { form: null, won: null, lastUploadedAt: null, lastRequestId: null, eligible: true }
+  }
 }

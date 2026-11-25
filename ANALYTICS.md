@@ -428,6 +428,15 @@ request, they are not price inquiries):
    only after propagation (observed ~35 min; Google documents 4–6 h) — an
    immediate first upload fails with `destination_references NOT_FOUND`,
    just retry later.
+   Upload results are persisted to `offline_conversion_uploads` (DB) or
+   `data/offline-conversion-uploads.json` (fallback) and surfaced in the
+   weekly report as the "Google'i konversioonid" indicator, showing whether
+   Google actually processed the events (not just HTTP 200).
+   Per-event results are also stored in `offline_conversion_events`
+   (migration `drizzle/0022_offline_conversion_events.sql`) so the admin
+   inquiries table (`/spsadmn/paringud/`) can show, row-by-row, whether each
+   gclid-carrying contact form was successfully received by Google
+   (`✓ Vorm`, `✓ Võit`, `✓ Vorm + võit`, `✕ ...` or `–` when not eligible).
 2. **Manual fallback:** `npm run report:offline-conversions` writes
    `data/offline-conversions-<date>.csv` (gitignored) for Ads → Data manager
    upload.

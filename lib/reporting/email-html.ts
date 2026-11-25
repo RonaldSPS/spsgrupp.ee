@@ -4,7 +4,7 @@
  * (when present), grouped insights, link to the full admin report.
  */
 
-import type { AdsConversionBreakdown, AdsData, AiVisibilityData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, SiteChanges, StoredReport } from "./types"
+import type { AdsConversionBreakdown, AdsData, AiVisibilityData, FormsData, FormsPeriod, GeoGridData, Insight, LeadRow, OfflineConversionUploadStatus, SiteChanges, StoredReport } from "./types"
 import { AI_PROMPT_BY_ID, classifyAiSourceDomain, type AiSourceClass } from "./ai-visibility"
 import { getGbpWeekTasks, loadGbpCalendar, type GbpCalendar, type GbpWeekTasks } from "./gbp-calendar"
 
@@ -253,6 +253,23 @@ function changesSection(changes: SiteChanges): { html: string; text: string[] } 
       `</ul>`,
     text: [heading.toUpperCase(), ...lines.map((l) => `- ${l}`), ""],
   }
+}
+
+function offlineConversionsSection(oc: OfflineConversionUploadStatus | undefined): { html: string; text: string[] } {
+  if (!oc) return { html: "", text: [] }
+  const color = oc.status === "ok" ? "#166534" : oc.status === "partial" ? "#92400e" : "#b91c1c"
+  const bg = oc.status === "ok" ? "#dcfce7" : oc.status === "partial" ? "#fef3c7" : "#fee2e2"
+  const label = oc.status === "ok" ? "✓ Saadetud" : oc.status === "partial" ? "⚠ Osaliselt saadetud" : oc.status === "failed" ? "✕ Saatmine ebaõnnestus" : "? Staatus teadmata"
+  const detail = oc.status === "missing"
+    ? "Offline-konversioonide üleslaadimise logi puudub. Kontrolli, kas igapäevane cron /api/cron/offline-conversions/ töötab ja kas GOOGLE_ADS_DEVELOPER_TOKEN / GOOGLE_ADS_CUSTOMER_ID on seatud."
+    : `${oc.note} Vormipäringud: ${oc.formSuccess} OK${oc.formErrors > 0 ? ` / ${oc.formErrors} viga` : ""}; võidetud lepingud: ${oc.wonSuccess} OK${oc.wonErrors > 0 ? ` / ${oc.wonErrors} viga` : ""}.`
+  const html =
+    `<div style="background:${bg};border:1px solid ${color}33;border-radius:12px;padding:12px 14px;margin:16px 0">` +
+    `<div style="font-size:15px;font-weight:bold;color:${color};font-family:Arial,sans-serif">${escapeHtml(label)}</div>` +
+    `<p style="margin:4px 0 0;font-size:14px;color:#2d3748;line-height:1.5">${escapeHtml(detail)}</p>` +
+    `</div>`
+  const text = [`GOOGLE'I OFFLINE-KONVERSIOONID: ${label}`, detail, ""]
+  return { html, text }
 }
 
 /** Nädala päringute tabel koos hoolduskoristuse klassifikatsiooniga (kliendi põhieesmärk eraldi välja toodud). */
@@ -557,6 +574,14 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   if (s.forms) {
     cards.push(scoreCard("Kontaktpäringud", String(s.forms.current.contact), deltaSub(s.forms.current.contact, s.forms.previous.contact)))
   }
+  if (s.offlineConversions) {
+    const oc = s.offlineConversions
+    const ocValue = oc.status === "missing" ? "–" : `${oc.formSuccess + oc.wonSuccess} ${oc.hasErrors ? `(${oc.formErrors + oc.wonErrors} viga)` : "OK"}`
+    const ocSub = oc.lastRunAt
+      ? `viimane: ${new Date(oc.lastRunAt).toLocaleString("et-EE", { timeZone: "Europe/Tallinn", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).replace(",", "")}${oc.requestId ? ` · req ${oc.requestId.slice(-8)}` : ""}`
+      : "ei ole teada"
+    cards.push(scoreCard("Google'i konversioonid", ocValue, ocSub))
+  }
 
   const insightsByArea = new Map<Insight["area"], Insight[]>()
   for (const ins of report.insights) {
@@ -587,6 +612,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   }
 
   const narrativeHtml = report.narrative ? markdownToHtml(report.narrative) : ""
+  const offline = offlineConversionsSection(s.offlineConversions)
   const leads = leadsSection(s.forms?.leads ?? [], s.ads, s.forms?.current, s.forms?.window)
   const changes = s.changes ? changesSection(s.changes) : { html: "", text: [] }
   const geo = s.geogrid && s.geogrid.keywords.length > 0 ? geogridSection(s.geogrid) : { html: "", text: [] as string[] }
@@ -606,6 +632,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
   </div>
   ${errorsNote}
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>${cards.join("")}</tr></table>
+  ${offline.html}
   ${leads.html}
   ${geo.html}
   ${ai.html}
@@ -627,6 +654,7 @@ export async function buildReportEmail(report: StoredReport, adminUrl: string): 
     `SPS Grupp — nädalaraport ${s.period.start} – ${s.period.end}`,
     "",
   ]
+  textLines.push(...offline.text)
   textLines.push(...leads.text)
   textLines.push(...geo.text)
   textLines.push(...ai.text)

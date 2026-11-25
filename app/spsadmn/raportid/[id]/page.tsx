@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import type { Insight, StoredReport } from "@/lib/reporting/types"
+import type { Insight, OfflineConversionUploadStatus, StoredReport } from "@/lib/reporting/types"
 import { markdownToHtml, splitAdsConversions, maintenanceCostLine, changesFallbackLines } from "@/lib/reporting/email-html"
 import { AI_PROMPT_BY_ID, classifyAiSourceDomain } from "@/lib/reporting/ai-visibility"
 import GeoGridSection from "./GeoGridSection"
@@ -116,6 +116,49 @@ export default function ReportDetailPage() {
   const [error, setError] = useState("")
   const [sending, setSending] = useState(false)
   const [emailMessage, setEmailMessage] = useState("")
+  const [offlineRun, setOfflineRun] = useState<{ loading: boolean; error: string; result: (OfflineConversionUploadStatus & { dryRun?: boolean }) | null }>({
+    loading: false,
+    error: "",
+    result: null,
+  })
+
+  const runOfflineConversions = async (dryRun: boolean) => {
+    setOfflineRun({ loading: true, error: "", result: null })
+    try {
+      const res = await fetch("/api/spsadmn/offline-conversions/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ dryRun }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setOfflineRun({ loading: false, error: data.error || "Üleslaadimine ebaõnnestus", result: null })
+        return
+      }
+      const status: OfflineConversionUploadStatus & { dryRun?: boolean } = {
+        lastRunAt: new Date().toISOString(),
+        formSuccess: data.formResults?.success ?? data.uploaded ?? 0,
+        formErrors: data.formResults?.errors ?? 0,
+        wonSuccess: data.wonResults?.success ?? data.wonUploaded ?? 0,
+        wonErrors: data.wonResults?.errors ?? 0,
+        hasErrors: (data.formResults?.errors ?? 0) > 0 || (data.wonResults?.errors ?? 0) > 0 || (data.errors?.length ?? 0) > 0,
+        requestId: data.requestId || null,
+        status: (data.formResults?.errors ?? 0) > 0 || (data.wonResults?.errors ?? 0) > 0
+          ? ((data.formResults?.success ?? 0) + (data.wonResults?.success ?? 0) > 0 ? "partial" : "failed")
+          : "ok",
+        note: dryRun
+          ? `Dry-run: leiti ${data.candidates} vormipäringut ja ${data.wonCandidates} võidetud lepingut. Andmeid EI saadetud Google'ile.`
+          : `Üleslaadimine õnnestus. Google töötleis ${(data.formResults?.success ?? data.uploaded ?? 0) + (data.wonResults?.success ?? data.wonUploaded ?? 0)} sündmust.`,
+        dryRun,
+      }
+      setOfflineRun({ loading: false, error: "", result: status })
+      // Refresh the report so the persisted status appears in the snapshot.
+      const fresh = await fetch(`/api/spsadmn/reports/${id}`).then((r) => r.json()).catch(() => null)
+      if (fresh?.report) setReport(fresh.report)
+    } catch {
+      setOfflineRun({ loading: false, error: "Võrgu- või serveriviga", result: null })
+    }
+  }
 
   const resendEmail = async () => {
     setSending(true)
@@ -272,6 +315,19 @@ export default function ReportDetailPage() {
               <span className="text-[#5a6474]">spämm: {s.forms.current.spam} · gclid-päringuid: {s.forms.current.gclidLeads}</span>
             </Card>
           </>
+        )}
+        {s.offlineConversions && (
+          <Card
+            label="Google&apos;i konversioonid"
+            value={s.offlineConversions.status === "missing" ? "–" : String(s.offlineConversions.formSuccess + s.offlineConversions.wonSuccess)}
+          >
+            <span className={s.offlineConversions.status === "ok" ? "text-green-700" : s.offlineConversions.status === "partial" ? "text-amber-700" : "text-red-700"}>
+              {s.offlineConversions.status === "ok" ? "✓ Saadetud" : s.offlineConversions.status === "partial" ? "⚠ Osaliselt" : s.offlineConversions.status === "failed" ? "✕ Tõrge" : "? Puudub"}
+              {s.offlineConversions.lastRunAt && (
+                <> · viimane: {new Date(s.offlineConversions.lastRunAt).toLocaleString("et-EE", { timeZone: "Europe/Tallinn", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).replace(",", "")}</>
+              )}
+            </span>
+          </Card>
         )}
       </div>
 
@@ -633,6 +689,76 @@ export default function ReportDetailPage() {
       {s.forms && (
         <div className="bg-white rounded-2xl p-6 mb-6">
           <h2 className="text-[18px] font-bold text-[#17345a] mb-3">Päringud (andmebaas = tõde)</h2>
+
+          {/* Offline conversions status — always visible so admin sees what is/is not sent to Google */}
+          <div className="rounded-xl border border-[#dbeafe] bg-[#f4f9ff] p-4 mb-4">
+            <div className="flex items-start justify-between flex-wrap gap-3">
+              <div>
+                <h3 className="text-[15px] font-bold text-[#17345a] mb-1">
+                  Google&apos;i offline-konversioonid
+                  {s.offlineConversions && (
+                    <span className={`ml-2 inline-block text-[12px] font-bold rounded-lg px-2 py-0.5 ${s.offlineConversions.status === "ok" ? "bg-green-100 text-green-700" : s.offlineConversions.status === "partial" ? "bg-amber-100 text-amber-800" : s.offlineConversions.status === "failed" ? "bg-red-100 text-red-700" : "bg-slate-100 text-[#5a6474]"}`}>
+                      {s.offlineConversions.status === "ok" ? "✓ Saadetud" : s.offlineConversions.status === "partial" ? "⚠ Osaliselt" : s.offlineConversions.status === "failed" ? "✕ Tõrge" : "? Puudub"}
+                    </span>
+                  )}
+                </h3>
+                {s.offlineConversions ? (
+                  <>
+                    <p className="text-[14px] text-[#4a5568] max-w-[720px]">{s.offlineConversions.note}</p>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2 text-[14px]">
+                      <div><span className="text-[#5a6474]">Vormipäringud:</span> <strong className="text-[#17345a]">{s.offlineConversions.formSuccess} OK</strong>{s.offlineConversions.formErrors > 0 && <span className="text-red-700"> / {s.offlineConversions.formErrors} viga</span>}</div>
+                      <div><span className="text-[#5a6474]">Võidetud lepingud:</span> <strong className="text-[#17345a]">{s.offlineConversions.wonSuccess} OK</strong>{s.offlineConversions.wonErrors > 0 && <span className="text-red-700"> / {s.offlineConversions.wonErrors} viga</span>}</div>
+                      {s.offlineConversions.requestId && (
+                        <div className="col-span-2">
+                          <span className="text-[#5a6474]">Request ID:</span>{" "}
+                          <code className="text-[13px] text-[#17345a] bg-white px-1.5 py-0.5 rounded border border-[#d7e7fa]">{s.offlineConversions.requestId}</code>
+                        </div>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-[14px] text-[#4a5568]">
+                    Ühtegi üleslaadimist pole veel logitud. Igapäevane cron jooksutab seda 05:00 UTC.
+                    Kui soovid kohe näha, mis Google&apos;ile saadetaks, tee dry-run või laadi üles käsitsi.
+                  </p>
+                )}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  onClick={() => runOfflineConversions(true)}
+                  disabled={offlineRun.loading}
+                  className="bg-white border border-[#17345a] text-[#17345a] py-2 px-4 rounded-xl text-[14px] font-medium hover:bg-[#f8fafc] transition-colors disabled:opacity-60"
+                >
+                  {offlineRun.loading ? "Töötlen…" : "Dry-run"}
+                </button>
+                <button
+                  onClick={() => runOfflineConversions(false)}
+                  disabled={offlineRun.loading}
+                  className="bg-[#17345a] text-white py-2 px-4 rounded-xl text-[14px] font-medium hover:bg-[#1e4a7a] transition-colors disabled:opacity-60"
+                >
+                  {offlineRun.loading ? "Töötlen…" : "Laadi üles"}
+                </button>
+              </div>
+            </div>
+
+            {offlineRun.result && (
+              <div className={`mt-3 rounded-lg p-3 text-[14px] ${offlineRun.result.dryRun ? "bg-white border border-[#d7e7fa]" : offlineRun.result.status === "ok" ? "bg-green-50 border border-green-200" : offlineRun.result.status === "partial" ? "bg-amber-50 border border-amber-200" : "bg-red-50 border border-red-200"}`}>
+                <strong className="text-[#17345a]">{offlineRun.result.dryRun ? "Dry-run tulemus" : "Live-tulemus"}:</strong>{" "}
+                {offlineRun.result.note}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-1">
+                  <div>Vormipäringud: <strong>{offlineRun.result.formSuccess} OK</strong>{offlineRun.result.formErrors > 0 && <span className="text-red-700"> / {offlineRun.result.formErrors} viga</span>}</div>
+                  <div>Võidetud lepingud: <strong>{offlineRun.result.wonSuccess} OK</strong>{offlineRun.result.wonErrors > 0 && <span className="text-red-700"> / {offlineRun.result.wonErrors} viga</span>}</div>
+                  {offlineRun.result.requestId && <div className="col-span-2">Request ID: <code className="text-[13px]">{offlineRun.result.requestId}</code></div>}
+                </div>
+              </div>
+            )}
+            {offlineRun.error && (
+              <div className="mt-3 rounded-lg p-3 text-[14px] bg-red-50 border border-red-200 text-red-700">
+                {offlineRun.error}
+              </div>
+            )}
+          </div>
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
             <Card label="Kontaktpäringud" value={String(s.forms.current.contact)}>
               <span className="text-[#5a6474]">eelmine nädal: {s.forms.previous.contact}</span>
