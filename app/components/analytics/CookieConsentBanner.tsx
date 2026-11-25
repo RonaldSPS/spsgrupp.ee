@@ -30,6 +30,7 @@ export default function CookieConsentBanner() {
   const locale = useLocale() as Locale
   const stored = useSyncExternalStore(subscribeNoop, getStoredConsent, () => null)
   const [dismissed, setDismissed] = useState(false)
+  const [forceShow, setForceShow] = useState(false)
   const [visible, setVisible] = useState(false)
   const shownTracked = useRef(false)
   const privacyPath = localizePath("/andmekaitsetingimused", locale)
@@ -41,7 +42,18 @@ export default function CookieConsentBanner() {
     }
   }, [stored])
 
-  const show = stored === null && !dismissed
+  // Allow any part of the site (e.g. footer "Manage choices" link) to reopen
+  // the banner so users can change their consent later.
+  useEffect(() => {
+    const handleReopen = () => {
+      setDismissed(false)
+      setForceShow(true)
+    }
+    window.addEventListener("sps:reopen-consent", handleReopen)
+    return () => window.removeEventListener("sps:reopen-consent", handleReopen)
+  }, [])
+
+  const show = forceShow || (stored === null && !dismissed)
 
   // Slide-in on mount + one-time "shown" funnel event.
   useEffect(() => {
@@ -59,6 +71,7 @@ export default function CookieConsentBanner() {
     applyConsent(choice)
     pushConsentEvent(choice === "granted" ? "consent_accept" : "consent_decline", locale)
     setDismissed(true)
+    setForceShow(false)
   }
 
   if (!show) return null

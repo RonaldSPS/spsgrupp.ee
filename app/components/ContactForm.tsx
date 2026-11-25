@@ -19,6 +19,9 @@ const initialState = { success: false, error: undefined as string | undefined, f
 export default function ContactForm({ animDelay }: { animDelay?: number }) {
   const [state, formAction, pending] = useActionState(submitContactForm, initialState)
   const formRef = useRef<HTMLFormElement>(null)
+  // Captures the email at submit time so it is still available after the
+  // server action succeeds and React has re-rendered/cleared the input.
+  const submittedEmailRef = useRef<string>("")
   const t = useTranslations("contactForm")
   const locale = useLocale() as Locale
   const pathname = usePathname()
@@ -90,11 +93,10 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   useEffect(() => {
     if (state.success && formRef.current) {
       // Fire the GTM conversion event for real submissions only (the server
-      // flags honeypot/spam fake-successes with isSpam). The email is read
-      // before the form resets so GTM's Enhanced Conversions tag can hash it.
+      // flags honeypot/spam fake-successes with isSpam). The email was
+      // captured in handleSubmit before the input was reset by React.
       if (!state.isSpam) {
-        const emailInput = formRef.current.elements.namedItem("email") as HTMLInputElement | null
-        const email = emailInput?.value ?? ""
+        const email = submittedEmailRef.current
         // Hardcoded raw dataLayer push FIRST - the stable conversion signal
         // (form_submission_success) must fire even if the sendGTMEvent
         // wrapper below ever breaks in a refactor/upgrade.
@@ -107,6 +109,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
           user_data: { email },
         })
       }
+      submittedEmailRef.current = ""
       formRef.current.reset()
       fillHiddenFields()
     }
@@ -128,6 +131,13 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
     applyConsent(choice)
   }
 
+  // Capture the email before the form submits so the success effect can push
+  // it to GTM even after React resets the input on re-render.
+  const handleSubmit = () => {
+    const emailInput = formRef.current?.elements.namedItem("email") as HTMLInputElement | null
+    submittedEmailRef.current = emailInput?.value ?? ""
+  }
+
   const content = (
       <div className="max-w-[800px] mx-auto px-[5%]">
         <div className="form-card">
@@ -137,7 +147,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
             {formSubtitle}
           </p>
 
-          <form ref={formRef} action={formAction}>
+          <form ref={formRef} action={formAction} onSubmit={handleSubmit}>
             <div hidden aria-hidden="true" style={{ display: "none" }}>
               <label htmlFor="contact-website_url">Website</label>
               <input type="text" id="contact-website_url" name="website_url" tabIndex={-1} autoComplete="off" />
@@ -211,12 +221,13 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
             </div>
 
             <div className="flex flex-col gap-1.25 mb-3.5">
-              <label htmlFor="form-area-size" className="text-[15px] font-medium text-[#17345a]">{t("areaSizeLabel")}</label>
+              <label htmlFor="form-area-size" className="text-[15px] font-medium text-[#17345a]">{t("areaSizeLabel")} *</label>
               <input
                 id="form-area-size"
                 name="area_size"
                 type="text"
                 inputMode="decimal"
+                required
                 maxLength={12}
                 defaultValue={state.fields?.areaSize ?? ""}
                 className="px-3 py-2.75 border border-[rgba(23,52,90,0.12)] rounded-[10px] text-[15px] text-[#2d3748] bg-white outline-none transition-all focus:border-[#5ab5da] focus:shadow-[0_0_0_3px_rgba(133,203,233,0.15)]"

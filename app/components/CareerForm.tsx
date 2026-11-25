@@ -18,6 +18,9 @@ export default function CareerForm() {
   const locale = useLocale() as Locale
   const [state, formAction, pending] = useActionState(submitCareerForm, initialState)
   const formRef = useRef<HTMLFormElement>(null)
+  // Captures the email at submit time so it is still available after the
+  // server action succeeds and React has re-rendered/cleared the input.
+  const submittedEmailRef = useRef<string>("")
   const privacyPath = localizePath("/andmekaitsetingimused", locale)
   const pathname = usePathname()
   const etPath = getCurrentEtPath(pathname, locale)
@@ -42,14 +45,20 @@ export default function CareerForm() {
   // input inside the form and auto-refreshes the 300 s token.
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
 
+  // Capture the email before the form submits so the success effect can push
+  // it to GTM even after React resets the input on re-render.
+  const handleSubmit = () => {
+    const emailInput = formRef.current?.elements.namedItem("email") as HTMLInputElement | null
+    submittedEmailRef.current = emailInput?.value ?? ""
+  }
+
   useEffect(() => {
     if (state.success && formRef.current) {
       // Fire the GTM conversion event for real submissions only (the server
-      // flags honeypot/spam fake-successes with isSpam). The email is read
-      // before the form resets so GTM's Enhanced Conversions tag can hash it.
+      // flags honeypot/spam fake-successes with isSpam). The email was
+      // captured in handleSubmit before the input was reset by React.
       if (!state.isSpam) {
-        const emailInput = formRef.current.elements.namedItem("email") as HTMLInputElement | null
-        const email = emailInput?.value ?? ""
+        const email = submittedEmailRef.current
         // Hardcoded raw dataLayer push FIRST - the stable conversion signal
         // (form_submission_success) must fire even if the sendGTMEvent
         // wrapper below ever breaks in a refactor/upgrade.
@@ -62,6 +71,7 @@ export default function CareerForm() {
           user_data: { email },
         })
       }
+      submittedEmailRef.current = ""
       formRef.current.reset()
       fillHiddenFields()
     }
@@ -98,7 +108,7 @@ export default function CareerForm() {
             {t("subtitle")}
           </p>
 
-          <form ref={formRef} action={formAction}>
+          <form ref={formRef} action={formAction} onSubmit={handleSubmit}>
             <div hidden aria-hidden="true" style={{ display: "none" }}>
               <label htmlFor="career-website_url">Website</label>
               <input type="text" id="career-website_url" name="website_url" tabIndex={-1} autoComplete="off" />

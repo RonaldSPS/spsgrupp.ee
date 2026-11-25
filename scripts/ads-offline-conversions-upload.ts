@@ -39,6 +39,12 @@ async function main() {
   console.log(JSON.stringify(summary, null, 2))
   if (dryRun) {
     console.log("\n(dry-run — midagi ei laaditud üles)")
+  } else {
+    console.log(
+      `\nVormipäringud: ${summary.uploaded}/${summary.candidates}, ` +
+        `võidetud lepingud: ${summary.wonUploaded}/${summary.wonCandidates}` +
+        (summary.requestId ? ` (requestId: ${summary.requestId})` : ""),
+    )
   }
 }
 

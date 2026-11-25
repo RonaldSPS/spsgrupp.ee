@@ -226,7 +226,7 @@
     "attachmentHint": "Lubatud: JPG, PNG, PDF kuni 10 MB",
     "privacyConsent": "Olen tutvunud andmekaitsetingimustega ja nõustun oma andmete töötlemisega päringule vastamise eesmärgil. *",
     "privacyLink": "andmekaitsetingimustega",
-    "adsConsent": "Olen nõus jagama infot, kuidas SPS Grupi päringuni jõudsin. Salvestatakse lehele jõudmise allikas. Infot jagatakse Google platvormidega.",
+    "adsConsent": "Olen nõus jagama infot, kuidas SPS Grupi päringuni jõudsin. Salvestatakse lehele jõudmise allikas. Vormis esitatud infot jagatakse Google platvormidega.",
     "submitButton": "Saada päring",
     "submitting": "Saadan...",
     "successMessage": "Täname! Teie päring on saadetud. Võtame teiega üldjuhul ühe tööpäeva jooksul ühendust.",
@@ -285,6 +285,7 @@
     "viewJobs": "vaata tööpakkumisi",
     "address": "MUSTAMÄE TEE 46, 10621 TALLINN",
     "disclaimer": "Kõik õigused kaitstud",
+    "cookieSettings": "Küpsiste seaded",
     "logoAlt": "SPS Grupp - koristusfirma"
   },
   "notFound": {
@@ -309,8 +310,9 @@
     "text": "Otse sisu juurde"
   },
   "cookieConsent": {
-    "message": "Kasutame küpsiseid parima kogemuse pakkumiseks ja reklaamide tulemuslikkuse mõõtmiseks.",
+    "message": "Kasutame küpsiseid, et mõista, kust meie külastajad pärit on, ning saata päringu korral info Google platvormidele. Küpsised on seotud ainult SPSgrupp.ee lehega. Saad oma valikut igal ajal muuta valides jaluses \"Küpsiste seaded\". Vaata ka",
     "privacyLink": "Privaatsustingimused",
+    "manage": "Halda valikuid",
     "acceptAll": "Nõustun",
     "decline": "Keeldun"
   },

@@ -16,7 +16,7 @@ const CHANNEL_LABELS: Record<string, string> = {
 
 const SERVICE_KIND_LABELS: Record<string, string> = {
   maintenance: "Hoolduskoristus",
-  oneoff: "Ühekordne",
+  oneoff: "Eritööd",
   other: "Muu",
 }
 

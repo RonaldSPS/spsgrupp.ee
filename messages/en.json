@@ -226,7 +226,7 @@
     "attachmentHint": "Allowed: JPG, PNG, PDF up to 10 MB",
     "privacyConsent": "I have read the privacy policy and consent to the processing of my data. *",
     "privacyLink": "privacy policy",
-    "adsConsent": "I agree to share information on how I reached SPS Grupp's inquiry form. The source of the visit is stored. The information is shared with Google platforms.",
+    "adsConsent": "I agree to share information about how I reached the SPS Grupp inquiry. The source of how I reached the page is recorded. Information submitted in the form is shared with Google platforms.",
     "submitButton": "Send Inquiry",
     "submitting": "Sending...",
     "successMessage": "Thank you! Your inquiry has been sent. We will generally contact you within one business day.",
@@ -285,6 +285,7 @@
     "viewJobs": "view job openings",
     "address": "MUSTAMÄE TEE 46, 10621 TALLINN",
     "disclaimer": "All rights reserved",
+    "cookieSettings": "Cookie settings",
     "logoAlt": "SPS Grupp - cleaning company"
   },
   "notFound": {
@@ -309,8 +310,9 @@
     "text": "Skip to content"
   },
   "cookieConsent": {
-    "message": "We use cookies to provide the best experience and to measure ad performance.",
+    "message": "We use cookies to understand where our visitors come from and to send information to Google platforms when an inquiry is submitted. Cookies are associated only with the SPSgrupp.ee website. You can change your choice at any time by selecting \"Cookie settings\" in the footer. See also",
     "privacyLink": "Privacy Policy",
+    "manage": "Manage choices",
     "acceptAll": "Accept",
     "decline": "Decline"
   },

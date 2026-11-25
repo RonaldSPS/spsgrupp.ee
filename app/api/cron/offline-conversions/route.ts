@@ -48,11 +48,27 @@ export async function GET(request: Request) {
 
   try {
     const summary = await uploadOfflineConversions()
-    console.log("Offline conversions uploaded:", JSON.stringify(summary))
+    console.log(
+      "Offline conversions uploaded:",
+      `form=${summary.uploaded}/${summary.candidates} (errors: ${summary.formResults?.errors ?? 0}), ` +
+        `won=${summary.wonUploaded}/${summary.wonCandidates} (errors: ${summary.wonResults?.errors ?? 0}), ` +
+        `requestId=${summary.requestId ?? "n/a"}`,
+    )
+    if (summary.formResults && summary.formResults.errors > 0) {
+      console.error("Form conversion errors:", summary.formResults.details)
+    }
+    if (summary.wonResults && summary.wonResults.errors > 0) {
+      console.error("Won conversion errors:", summary.wonResults.details)
+    }
     if (summary.errors.length > 0) {
       await notifyFailure(
         "SPS: offline-konversioonide import — osalised vead",
-        `Kandidaate: ${summary.candidates}, üles laaditud: ${summary.uploaded}.\nVead:\n${summary.errors.join("\n")}`,
+        `Vormipäringud: ${summary.candidates} kandidaati, ${summary.uploaded} üles laaditud, ` +
+          `${summary.formResults?.errors ?? 0} viga.\n` +
+          `Võidetud lepingud: ${summary.wonCandidates} kandidaati, ${summary.wonUploaded} üles laaditud, ` +
+          `${summary.wonResults?.errors ?? 0} viga.\n` +
+          `Request ID: ${summary.requestId ?? "teadmata"}\n` +
+          `Esimed vead:\n${summary.errors.slice(0, 20).join("\n")}`,
       )
     }
     return NextResponse.json(
