@@ -907,257 +907,87 @@
     "form": "none",
     "title": "Privacy Policy",
     "intro": [
-      "This privacy policy has been prepared with regard to REGULATION (EU) 2016/679 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL.",
-      "We use security measures in our work related to the provision of services to SPS Grupp OÜ clients and the handling of personal data relating to employees.",
-      "This privacy policy applies to everyone who uses the company's website or other digital services, submits an enquiry about our services, or otherwise communicates with SPS Grupp OÜ.",
-      "SPS Grupp OÜ processes the data of its employees, clients and contact persons in connection with employment or contractual relationships, the provision of services and the other lawful purposes described in this policy."
+      "SPS Grupp OÜ processes personal data in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR). This document explains what data we collect, why, and how you can exercise your rights."
     ],
     "sections": [
       {
-        "title": "Definitions",
+        "title": "Controller and Contact",
         "blocks": [
           {
             "type": "paragraph",
-            "content": "<strong>Personal data</strong> – means information about a person, i.e., a natural person (data subject), by which they can be identified directly or indirectly: name, personal identification code, location information, network identifiers (identifiers that, in a communication network, help lead to a specific person), as well as physical, economic, cultural, and any other identifying characteristics and combinations thereof."
-          },
-          {
-            "type": "paragraph",
-            "content": "<strong>Processing of personal data</strong> – means any operation performed on data: collection, organisation, storage, modification, reading, use, transmission, combination, deletion, etc."
+            "content": "<strong>SPS Grupp OÜ</strong> is the data controller. Address: Mustamäe tee 46, 10621 Tallinn, Estonia. Email: info@spsgrupp.ee. Phone: +372 662 3328."
           }
         ]
       },
       {
-        "title": "Identification of the Controller and Processor",
+        "title": "What Data We Collect and Why",
         "blocks": [
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ is the controller when processing the personal data of its employees, website visitors and client representatives, and when developing its services. SPS Grupp OÜ's processors are service providers that process data on its behalf."
-          },
-          {
-            "type": "paragraph",
-            "content": "The processor must process personal data on behalf of and under the instructions of the controller in accordance with all applicable regulations."
-          },
-          {
-            "type": "paragraph",
-            "content": "The processor has the right to carry out processing operations only with respect to those personal data and to the extent that the controller has authorized the processor."
-          },
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ is a processor for its clients with respect to personal data entered/transmitted by its clients into SPS Grupp OÜ's business software (e.g., data of clients' clients). In this situation, the controller of personal data is the respective client of SPS Grupp OÜ."
-          }
-        ]
-      },
-      {
-        "title": "Purposes and Bases of Personal Data Processing",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "content": "When collecting client data, we limit collection to the minimum necessary to provide our services and improve customer service."
-          },
-          {
-            "type": "paragraph",
-            "content": "The basis for processing personal data is the conclusion of a contract, legitimate interest, or the consent of the data subject."
-          },
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ does not distribute, transmit, modify, or use personal data entrusted to us in any other way not disclosed at the time of data collection, except where there is a corresponding agreement with the data subject or where the need to disclose information arises from the legislation of the respective country."
-          },
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ collects personal data for:"
-          },
           {
             "type": "list",
             "items": [
-              "identifying the data subject;",
-              "fulfilling the employee's work duties and legal obligations (e.g., data submitted to the tax authority, data submitted to the occupational health physician, etc.);",
-              "preparing a client contract and/or invoice;",
-              "fulfilling the terms of the contract concluded with the client;",
-              "contacting the data subject for the provision of the service;",
-              "maintaining client relationships or resolving questions."
+              "<strong>Contact form:</strong> name, email, phone, company, message and area size. Purpose: responding to inquiries and providing services. Basis: legitimate interest and contract. Retention: up to 7 years.",
+              "<strong>Job application:</strong> name, email, phone, CV and cover letter. Purpose: entering into an employment relationship. Basis: contract. Retention: up to 10 years.",
+              "<strong>Visit statistics:</strong> anonymous page views, device, browser, country/city and referrer. Purpose: measuring website traffic. Basis: legitimate interest. Retention: up to 90 days."
             ]
           }
         ]
       },
       {
-        "title": "Personal Data Collected",
+        "title": "Cookies and Analytics",
         "blocks": [
           {
             "type": "paragraph",
-            "content": "The personal data we collect may include the following:"
-          },
-          {
-            "type": "list",
-            "items": [
-              "Your name;",
-              "Your personal identification code;",
-              "Your phone number;",
-              "Your email address;",
-              "Your address;",
-              "Your company name and your position;",
-              "Your bank account details;",
-              "The text of your inquiry;",
-              "other data necessary for the provision of the service."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "The categories of personal data processed may vary depending on the employment contract, applicable law, or the contract between SPS Grupp OÜ and the client."
+            "content": "The website does not require cookies or consent for normal operation. General visit statistics are collected on the basis of legitimate interest using privacy-friendly analytics that does not use cookies. IP addresses are used only momentarily to generate an anonymous daily hash and to determine country/city, after which they are discarded. Detailed analytics (Google Analytics) and advertising measurement (Google Ads) are used only with the visitor's explicit consent. With consent, Google Analytics provides more detailed visit analysis and form submission data is sent to Google Ads for conversion measurement. We do not use personalized or targeted advertising. Consent can be withdrawn at any time via the \"Cookie settings\" link in the footer."
           }
         ]
       },
       {
-        "title": "Data Retention",
+        "title": "Data Sharing",
         "blocks": [
           {
             "type": "paragraph",
-            "content": "We retain personal data for as long as necessary to achieve the purposes for which the data were collected. The retention period also depends on legal requirements for document retention."
+            "content": "Data is shared only when necessary and to the minimum extent:"
           },
           {
             "type": "list",
             "items": [
-              "Personal data related to SPS Grupp OÜ transactions are retained for at least seven (7) years from the end of the financial year, pursuant to the obligation under the Accounting Act to document transactions.",
-              "Data related to employees are retained for at least 10 years after the termination of the employment contract, and occupational health data for at least 55 years in accordance with the legal requirements of the Republic of Estonia.",
-              "Personal data of clients are retained for at least seven (7) years after the end of the client relationship where this is necessary to protect SPS Grupp OÜ's rights in a dispute or in connection with other legal claims."
+              "<strong>Google Analytics and Google Ads</strong> — only with consent, for visit analysis and conversion measurement.",
+              "<strong>Resend</strong> — for sending inquiry and auto-reply emails.",
+              "<strong>Supabase</strong> — for secure storage of inquiries and statistics."
             ]
           }
         ]
       },
       {
-        "title": "How We Share and Disclose Information",
+        "title": "Your Rights",
         "blocks": [
           {
             "type": "paragraph",
-            "content": "Personal data processed by SPS Grupp OÜ may be disclosed without the consent of the data subject only to an authority or person who has a justified need or a direct legal right to do so (e.g., a court or pre-trial investigator)."
-          },
-          {
-            "type": "paragraph",
-            "content": "We may transmit your data for processing to third parties who assist us in providing and managing the Services and who provide services related to the management of client inquiries. These parties may include, for example, transport companies, property managers, etc."
-          },
-          {
-            "type": "paragraph",
-            "content": "In all cases, we transmit to the data processor only the data necessary for the performance of a specific task or the provision of a specific service."
-          }
-        ]
-      },
-      {
-        "title": "Collection of Visitor Information on the Website",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "content": "The SPS Grupp OÜ website does not require cookies or consent for normal operation. General visit statistics are collected on the basis of legitimate interest using privacy-friendly analytics that does not use cookies. No cookies or persistent user identifiers are stored when collecting these statistics. IP addresses are used only momentarily to generate an anonymous daily hash and to determine country/city, after which they are discarded. Detailed analytics (Google Analytics) and advertising measurement (Google Ads) are used only with the visitor's explicit consent. With consent, Google Analytics provides more detailed visit analysis and form submission data is sent to Google Ads for conversion measurement. We do not use personalized or targeted advertising. Consent can be withdrawn at any time via the 'Cookie settings' link in the footer."
-          }
-        ]
-      },
-      {
-        "title": "Security of Personal Data",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ implements the necessary technical, physical (confidential documents are kept in locked storage) and organisational security measures (including confidentiality agreements with personnel) to protect client and employee personal data against loss and unlawful processing."
-          },
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ has established clear and mandatory requirements for everyone who processes personal data on the company's behalf and has communicated those requirements to them."
-          },
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ complies with applicable data protection legislation when processing personal data and implements appropriate technical and organisational security measures."
-          }
-        ]
-      },
-      {
-        "title": "Notification of Personal Data Breach to the Data Subject",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "content": "If a breach is likely to result in a high risk to the rights and freedoms of individuals, the controller shall notify the data subject without undue delay."
-          },
-          {
-            "type": "paragraph",
-            "content": "The purpose of the notification is to give the data subject the information needed to take reasonable precautions and mitigate possible risks."
-          },
-          {
-            "type": "paragraph",
-            "content": "In the notification, we provide essential information about the personal data breach, as well as recommendations to mitigate possible adverse effects."
-          },
-          {
-            "type": "paragraph",
-            "content": "The notification to the data subject shall include:"
+            "content": "You have the right to:"
           },
           {
             "type": "list",
             "items": [
-              "a clear and plain language description of the nature of the personal data breach;",
-              "the name and contact details of the contact person at SPS Grupp OÜ;",
-              "a description of the possible consequences of the personal data breach;",
-              "a description of the measures taken to address the personal data breach."
-            ]
-          }
-        ]
-      },
-      {
-        "title": "Rights of the Data Subject",
-        "blocks": [
-          {
-            "type": "paragraph",
-            "content": "<strong>Right to rectification</strong> – the right of the data subject to request that inaccurate or incomplete personal data concerning them be rectified without undue delay."
-          },
-          {
-            "type": "paragraph",
-            "content": "<strong>Right to erasure</strong> – the right of the data subject to request that their personal data be erased without undue delay, provided certain additional conditions are met."
-          },
-          {
-            "type": "paragraph",
-            "content": "If there is no longer a legal basis for processing or disclosing personal data, or for providing access to them, the data subject may request that the data no longer be used or be deleted and that their disclosure or accessibility cease. The request must be submitted in a manner that allows the applicant to be identified."
-          },
-          {
-            "type": "paragraph",
-            "content": "The request will not be granted if:"
-          },
-          {
-            "type": "list",
-            "items": [
-              "it may harm the rights and freedoms of another person;",
-              "it would conflict with a legal or contractual obligation;",
-              "it may hinder the work of law enforcement authorities;",
-              "the requested action is not technically feasible;",
-              "the requester is not legally connected to the data;",
-              "the requester cannot be identified."
+              "access your personal data and obtain a copy;",
+              "request correction of inaccurate data;",
+              "request deletion of data when the basis for processing no longer exists;",
+              "object to processing based on legitimate interest;",
+              "receive your data in a portable format (data portability);",
+              "withdraw consent at any time via the cookie settings."
             ]
           },
           {
             "type": "paragraph",
-            "content": "<strong>Right to restrict processing</strong> – the right of the data subject to temporarily or permanently restrict the processing of all or part of their personal data in certain cases."
-          },
-          {
-            "type": "paragraph",
-            "content": "<strong>Right of access</strong> – the right to be informed of personal data and to request access to the personal data we process about you."
-          },
-          {
-            "type": "paragraph",
-            "content": "If the processing of personal data is based on the consent of the data subject, the data subject has the right to withdraw that consent at any time by notifying us by email, without affecting the lawfulness of processing based on consent before its withdrawal."
+            "content": "To exercise your rights, contact: info@spsgrupp.ee."
           }
         ]
       },
       {
-        "title": "Privacy Policy and Changes",
+        "title": "Complaints",
         "blocks": [
           {
             "type": "paragraph",
-            "content": "Where consent is required for processing, it is obtained in a form that can be reproduced in writing, for example as an annex to a contract."
-          },
-          {
-            "type": "paragraph",
-            "content": "SPS Grupp OÜ reserves the right to amend or supplement this privacy policy where necessary. The current version is available on the SPS Grupp website at spsgrupp.ee/andmekaitsetingimused."
-          },
-          {
-            "type": "paragraph",
-            "content": "If you believe that SPS Grupp OÜ has infringed your rights when processing personal data, please contact us at our published email address. We will first seek to resolve the matter through discussion. You also have the right to contact the Estonian Data Protection Inspectorate (aki.ee, email: info@aki.ee) or a competent court."
-          },
-          {
-            "type": "paragraph",
-            "content": "The privacy policy is effective as of 08.12.2021."
+            "content": "If you believe your data has been processed unlawfully, you can file a complaint with the <strong>Estonian Data Protection Inspectorate</strong>: Tatari 39, 10134 Tallinn, info@aki.ee, +372 627 4135."
           }
         ]
       }
