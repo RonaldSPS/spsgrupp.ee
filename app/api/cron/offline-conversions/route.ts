@@ -4,11 +4,12 @@ import { sendEmail } from "@/lib/email"
 import { getReportRecipients } from "@/lib/reporting/store"
 
 /**
- * Daily offline-conversion upload to Google Ads (gclid-based, consent-proof).
+ * Daily offline-conversion upload to Google Ads (gclid + recorded Ads consent).
  * Replaces the manual CSV flow (scripts/ads-offline-conversions.ts): the daily
- * Vercel Cron uploads the trailing 14-day window of gclid-carrying contact
- * submissions with the admin-entered fee as the conversion value, so Smart
- * Bidding sees REAL inquiries instead of consent-starved browser signals.
+ * Vercel Cron uploads the trailing 60-day window of gclid-carrying contact
+ * submissions with ads_consent = 'granted' and the admin-entered fee as the
+ * conversion value, so Smart Bidding sees REAL inquiries instead of
+ * consent-starved browser signals.
  * Google dedupes repeated (transactionId = form-<id>) uploads — no state needed.
  *
  * Failures (and partial errors) are e-mailed to the report recipients so a

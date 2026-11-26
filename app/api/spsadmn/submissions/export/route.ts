@@ -69,6 +69,10 @@ const CSV_HEADER = [
   "Keel",
   "Leht",
   "Allikas",
+  "GA4 nõusolek",
+  "Ads nõusolek",
+  "Nõusoleku aeg",
+  "Nõusoleku versioon",
   "Teenus",
   "Staatus",
   "Kvaliteet",
@@ -85,6 +89,12 @@ function sourceLabel(source: string): string {
   if (source.startsWith("organic:")) return `Otsing: ${source.slice("organic:".length)}`
   if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
   if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
+  return "Teadmata"
+}
+
+function consentLabel(choice: "granted" | "denied" | ""): string {
+  if (choice === "granted") return "Lubatud"
+  if (choice === "denied") return "Keeldutud"
   return "Teadmata"
 }
 
@@ -119,6 +129,10 @@ function toRow(s: FormSubmission): string[] {
     LOCALE_LABELS[s.locale] ?? s.locale,
     s.pageUrl,
     sourceLabel(s.source),
+    consentLabel(s.analyticsConsent),
+    consentLabel(s.adsConsent),
+    s.consentRecordedAt ? formatDateTime(s.consentRecordedAt) : "",
+    s.consentVersion,
     SERVICE_KIND_LABELS[s.serviceKind] ?? "",
     SALES_STATUS_LABELS[s.salesStatus] ?? "",
     LEAD_QUALITY_LABELS[s.leadQuality] ?? "",

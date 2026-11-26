@@ -1,6 +1,267 @@
 {
- "generatedAt": "2026-11-25T19:32:35.301Z",
+ "generatedAt": "2026-11-25T19:45:44.382Z",
  "commits": [
+  {
+   "hash": "059a4c5",
+   "date": "2026-11-25T21:45:17+02:00",
+   "subject": "refactor: privaatsuspoliitika lühem ja konkreetsem (ET/EN/RU)",
+   "files": [
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    }
+   ]
+  },
+  {
+   "hash": "e036969",
+   "date": "2026-11-25T21:38:54+02:00",
+   "subject": "fix: statistika API raw SQL Date objektide asemel ISO-stringid (postgres-js ei aktsepteeri Date)",
+   "files": [
+    {
+     "s": "M",
+     "p": "app/api/spsadmn/statistika/route.ts"
+    }
+   ]
+  },
+  {
+   "hash": "56de25c",
+   "date": "2026-11-25T21:36:02+02:00",
+   "subject": "wip: offline-konversioonide ja raportite täiendused (varasem töö)",
+   "files": [
+    {
+     "s": "M",
+     "p": "ANALYTICS.md"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/offline-conversions/run/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/submissions/offline-status/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/paringud/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/raportid/[id]/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "drizzle/0018_submission_area_size.sql"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0021_offline_conversion_uploads.sql"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0022_offline_conversion_events.sql"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/reporting-offline-conversions.test.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/email-html.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/offline-conversions.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/snapshot.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/reporting/types.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/backfill-area-size.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/backfill-service-kind.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/linkedin-api.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/linkedin-leadgen-setup.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/linkedin-oauth-setup.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-ads-audit-part2.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-ads-deep-audit.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-ads-search-terms-agg.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-ahrefs-pull.mjs"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-apply-migration-0014.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-apply-migration-0017.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-asset-check.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-asset-links.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-audit-2026-10-26.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-audit-2026-10-26b.ts"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-blog-inventory.mjs"
+    },
+    {
+     "s": "A",
+     "p": "scripts/tmp-carrier-backfill.ts"
+    }
+   ],
+   "filesTruncated": true
+  },
+  {
+   "hash": "22fffd1",
+   "date": "2026-11-25T21:34:26+02:00",
+   "subject": "feat: privaatsussõbralik küpsisevaba analüütika + GA4/Ads range opt-in",
+   "files": [
+    {
+     "s": "M",
+     "p": "AGENTS.md"
+    },
+    {
+     "s": "M",
+     "p": "app/_shell/root-shell.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/api/analytics/pageview/route.ts"
+    },
+    {
+     "s": "A",
+     "p": "app/api/spsadmn/statistika/route.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/CareerForm.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/ContactForm.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/components/analytics/PageViewTracker.tsx"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/consent.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/components/analytics/form-conversion.ts"
+    },
+    {
+     "s": "M",
+     "p": "app/spsadmn/AdminShell.tsx"
+    },
+    {
+     "s": "A",
+     "p": "app/spsadmn/statistika/page.tsx"
+    },
+    {
+     "s": "M",
+     "p": "data/git-history.json"
+    },
+    {
+     "s": "A",
+     "p": "drizzle/0023_page_views.sql"
+    },
+    {
+     "s": "A",
+     "p": "lib/__tests__/analytics.test.ts"
+    },
+    {
+     "s": "A",
+     "p": "lib/analytics.ts"
+    },
+    {
+     "s": "M",
+     "p": "lib/db/schema.ts"
+    },
+    {
+     "s": "M",
+     "p": "messages/en.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/et.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/ru.json"
+    },
+    {
+     "s": "M",
+     "p": "messages/translation-metadata.json"
+    },
+    {
+     "s": "M",
+     "p": "package.json"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-en.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms-ru.txt"
+    },
+    {
+     "s": "M",
+     "p": "public/llms.txt"
+    }
+   ]
+  },
   {
    "hash": "ee533c2",
    "date": "2026-11-25T20:44:37+02:00",

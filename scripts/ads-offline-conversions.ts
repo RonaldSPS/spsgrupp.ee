@@ -4,8 +4,8 @@
  * Why: browser-side Ads conversion tags depend on ad_storage consent; on the
  * new site (since ~18.08.2026) Ads recorded 1 of 6 real gclid-carrying form
  * submissions in 30 days. Offline import uses the gclid stored in
- * form_submissions, so it works regardless of the visitor's cookie choice and
- * feeds the value-based bidding experiment with REAL inquiry signal.
+ * form_submissions only when the same inquiry has ads_consent = 'granted',
+ * so the value-based bidding experiment gets a REAL and consented inquiry signal.
  *
  * Prereq in Google Ads (one-time, Margus): create a conversion action of type
  * "Import from clicks" (offline), e.g. named exactly:
@@ -22,7 +22,7 @@
  * is deduped by Google, but keep the weekly cadence to stay clean.
  */
 
-import { readFileSync, existsSync, writeFileSync } from "node:fs"
+import { readFileSync, writeFileSync } from "node:fs"
 import postgres from "postgres"
 
 for (const line of readFileSync(".env.local", "utf-8").split(/\r?\n/)) {
@@ -62,6 +62,7 @@ async function main() {
     WHERE gclid IS NOT NULL AND gclid <> ''
       AND is_spam = false
       AND form = 'contact'
+      AND ads_consent = 'granted'
       AND created_at >= ${since}::date
     ORDER BY created_at
   `

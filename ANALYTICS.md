@@ -26,10 +26,10 @@ container. The site only loads the container and pushes events to the
   root layout since 27.10.2026 — admin traffic must not reach production
   GA4). When enabled it renders:
   - renders the Consent Mode v2 defaults inline script (`CONSENT_DEFAULT_SNIPPET`)
-    *before* GTM — only the Ads signals (`ad_storage`/`ad_user_data`/
-    `ad_personalization`) are denied until consent; `analytics_storage` and
-    functionality/personalization are granted by default (minimal-restriction
-    policy, see §6), `wait_for_update: 500`, `ads_data_redaction: true`
+    *before* GTM — Advanced Consent Mode: `analytics_storage`/`ad_storage`/
+    `ad_user_data` are denied until consent and Google tags may send limited
+    cookieless measurement pings before consent; `ad_personalization` stays
+    permanently denied, `wait_for_update: 500`, `ads_data_redaction: true`
   - renders `<GoogleTagManager gtmId=…>` from `@next/third-parties/google`
     (loads after hydration via next/script)
   - renders `<CookieConsentBanner />`
@@ -39,8 +39,9 @@ container. The site only loads the container and pushes events to the
   **Do not remove these** — a plain `script-src 'self'` blocks gtm.js and all
   collect calls (this silently killed all tracking 17–24.08.2026).
 - `app/components/analytics/consent.ts` — consent storage key
-  (`localStorage["sps_consent"]`), `applyConsent()` pushes
-  `gtag('consent','update',…)` onto the dataLayer, `pushConsentEvent()`
+  (`localStorage["sps_consent"]`), plus `sps_consent_recorded_at` and
+  `sps_consent_version` written only on an explicit choice. `applyConsent()`
+  pushes `gtag('consent','update',…)` onto the dataLayer; `pushConsentEvent()`
   pushes the consent-funnel events.
 - `app/components/analytics/CookieConsentBanner.tsx` — ET/EN/RU banner
   (messages namespace `cookieConsent`). Hidden in SSR HTML; appears after
@@ -86,10 +87,14 @@ container. The site only loads the container and pushes events to the
   paringud + CSV export. The notification e-mail always shows a localized
   `Allikas: …` label (`describeSource()` + `copy.sourceLabels` in
   `lib/actions.ts`; "Teadmata" when unknown) — never the raw gclid.
-- ContactForm carries a voluntary analytics/ads-cookie consent checkbox
-  (messages key `contactForm.adsConsent`) — unchecked by default, mirrors
-  the stored consent after mount; toggling calls `storeConsent` +
-  `applyConsent` (same mechanism as the banner, no funnel event).
+- ContactForm no longer has a separate Ads consent checkbox (removed 26.11):
+  consent is collected only through the central cookie banner. The form still
+  reads the stored banner choice but never changes it.
+  Hidden fields `analytics_consent`, `ads_consent`, `consent_recorded_at`
+  and `consent_version` are sanitized in `lib/actions.ts` and stored with the
+  inquiry (migration `drizzle/0024_submission_measurement_consent.sql`).
+  They appear in the paringud "Nõusolek" column and CSV export; legacy rows
+  have an empty/unknown state.
 
 ## 3. Environment variables
 
@@ -404,18 +409,20 @@ returns camelCase keys, normalized to snake_case by `snakeKeys()`;
 ### 6b. Offline conversions (gclid-based, automated daily)
 
 Why: consent-mode gating of `ad_storage` means the browser Ads tag records
-only a fraction of real inquiries; the gclid is stored in `form_submissions`
-consent-independently, so server-side upload restores the true signal for
-Smart Bidding (real inquiries + Tasu values instead of bare clicks).
+only a fraction of real inquiries. A server-side upload may restore the true
+signal for Smart Bidding **only for inquiries with `ads_consent = 'granted'`**.
+Each Data Manager event also carries `adUserData = CONSENT_GRANTED` and
+`adPersonalization = CONSENT_DENIED` (we do not run personalized ads).
 
-Two paths (both read `form_submissions` contact rows with a gclid, excluding
-spam, test submissions and job-seekers — `isTestSubmission`/`isJobSeeker`
-in `lib/reporting/forms.ts`; job-seekers excluded since 02.10.2026 per client
-request, they are not price inquiries):
+Two paths (both read `form_submissions` contact rows with a gclid **and granted
+Ads consent**, excluding spam, test submissions and job-seekers —
+`isTestSubmission`/`isJobSeeker` in `lib/reporting/forms.ts`; job-seekers
+excluded since 02.10.2026 per client request, they are not price inquiries;
+legacy rows with unknown consent are never uploaded):
 
 1. **Automated (primary):** `lib/reporting/offline-conversions.ts` → daily
    Vercel Cron `app/api/cron/offline-conversions/` (05:00 UTC, `vercel.json`,
-   CRON_SECRET) uploads the trailing 14-day window via the **Data Manager API**
+   CRON_SECRET) uploads the trailing 60-day window via the **Data Manager API**
    (`events:ingest`; `UploadClickConversions` is restricted to legacy users —
    verified 25.09.2026). Local run: `npm run report:offline-conversions-upload`
    (`--dry-run` supported). Idempotency: stable `transactionId = form-<id>`.
@@ -439,7 +446,7 @@ request, they are not price inquiries):
    (`✓ Vorm`, `✓ Võit`, `✓ Vorm + võit`, `✕ ...` or `–` when not eligible).
 2. **Manual fallback:** `npm run report:offline-conversions` writes
    `data/offline-conversions-<date>.csv` (gitignored) for Ads → Data manager
-   upload.
+   upload. The CSV query has the same `ads_consent = 'granted'` filter.
 
 Note: conversion values come from the admin-entered Tasu column in paringud;
 rows without a fee upload as count-only conversions.

@@ -10,7 +10,8 @@ function makeSubmission(over: Partial<FormSubmission>): FormSubmission {
     id: 1, form: "contact", locale: "et", name: "", email: "", phone: "", company: "",
     message: "", region: "", workload: "", workTime: "", attachmentName: "",
     attachmentUrl: "", fee: "", profit: "", notes: "", isSpam: false, pageUrl: "",
-    gclid: "", source: "", channel: "form", serviceKind: "", salesStatus: "",
+    gclid: "", source: "", analyticsConsent: "", adsConsent: "", consentRecordedAt: "", consentVersion: "",
+    channel: "form", serviceKind: "", salesStatus: "",
     leadQuality: "", areaSize: "", wonAt: "", createdAt: "2026-09-25T00:00:00.000Z",
     ...over,
   }

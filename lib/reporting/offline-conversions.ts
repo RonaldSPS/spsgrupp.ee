@@ -3,10 +3,11 @@
  * (events:ingest). UploadClickConversions is restricted to existing users —
  * new integrations must use the Data Manager API (verified 25.09.2026).
  *
- * Why: browser-side Ads conversion tags depend on ad_storage consent; the gclid
- * stored in form_submissions is consent-independent, so uploading it server-side
- * feeds Smart Bidding the REAL inquiry signal regardless of cookie choice. This
- * is the automated successor of scripts/ads-offline-conversions.ts (CSV export +
+ * Why: browser-side Ads conversion tags depend on ad_storage consent. The gclid
+ * stored in form_submissions lets us send an offline conversion only when the
+ * same inquiry also has ads_consent = 'granted'. Each event carries the matching
+ * DMA consent signals (ad_user_data granted, ad_personalization denied). This is
+ * the automated successor of scripts/ads-offline-conversions.ts (CSV export +
  * manual Data manager upload). Idempotency: each submission gets stable
  * transactionIds ("form-<id>" and "won-<id>"), so the daily cron can re-upload
  * a trailing window without state tracking.
@@ -176,7 +177,19 @@ async function resolveConversionAction(
   return { resourceName: created.results?.[0]?.resourceName ?? null, created: true }
 }
 
-function toFormEvent(row: FormSubmission): Record<string, unknown> {
+export function hasOfflineConversionConsent(row: Pick<FormSubmission, "adsConsent">): boolean {
+  return row.adsConsent === "granted"
+}
+
+/** Every uploaded event uses the consent captured with that specific inquiry. */
+function offlineEventConsent(): Record<string, string> {
+  return {
+    adUserData: "CONSENT_GRANTED",
+    adPersonalization: "CONSENT_DENIED",
+  }
+}
+
+export function toFormEvent(row: FormSubmission): Record<string, unknown> {
   const fee = Number(row.fee)
   // Always send conversionValue so a later re-upload with a cleared fee overwrites
   // any previously imported value in Google Ads (DM API adjustment semantics).
@@ -188,10 +201,11 @@ function toFormEvent(row: FormSubmission): Record<string, unknown> {
     eventSource: "WEB",
     conversionValue: value,
     currency: "EUR",
+    consent: offlineEventConsent(),
   }
 }
 
-function toWonEvent(row: FormSubmission): Record<string, unknown> | null {
+export function toWonEvent(row: FormSubmission): Record<string, unknown> | null {
   const fee = Number(row.fee)
   if (!Number.isFinite(fee) || fee <= 0) return null
   const timestamp = row.wonAt ? new Date(row.wonAt) : new Date(row.createdAt)
@@ -202,6 +216,7 @@ function toWonEvent(row: FormSubmission): Record<string, unknown> | null {
     eventSource: "WEB",
     conversionValue: Math.round(fee * 100) / 100,
     currency: "EUR",
+    consent: offlineEventConsent(),
   }
 }
 
@@ -230,12 +245,18 @@ export async function uploadOfflineConversions(options?: {
 
   const formCandidates = formRows.filter(
     // Tööotsingud ei ole päris hinnapäringud — neid Adsi konversioonina ei impordita (kliendi palve 02.10.2026).
-    (r) => r.form === "contact" && !r.isSpam && Boolean(r.gclid) && !isTestSubmission(r) && !isJobSeeker(r),
+    (r) => r.form === "contact"
+      && hasOfflineConversionConsent(r)
+      && !r.isSpam
+      && Boolean(r.gclid)
+      && !isTestSubmission(r)
+      && !isJobSeeker(r),
   )
 
   const wonCandidates = wonRows.filter(
     (r) =>
       r.form === "contact"
+      && hasOfflineConversionConsent(r)
       && r.salesStatus === "won"
       && Boolean(r.gclid)
       && Boolean(r.wonAt)

@@ -11,7 +11,7 @@ import { submitContactForm } from "@/lib/actions"
 import { getCurrentEtPath, localizePath, type Locale } from "@/lib/slug-map"
 import { getGclid } from "./analytics/gclid"
 import { getAttributionSource } from "./analytics/attribution"
-import { applyConsent, getStoredConsent, storeConsent, type ConsentChoice } from "./analytics/consent"
+import { getStoredConsent, getStoredConsentMetadata } from "./analytics/consent"
 import { pushFormSubmissionSuccess } from "./analytics/form-conversion"
 
 const initialState = { success: false, error: undefined as string | undefined, fields: undefined as Record<string, string> | undefined }
@@ -58,10 +58,11 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   // Classified lead source (google_ads / utm:.. / organic:.. / referral:.. /
   // direct / ""), same hidden-input pattern. Consent-independent.
   const sourceRef = useRef<HTMLInputElement>(null)
-  // Voluntary analytics/ads-cookie consent checkbox. Reflects the stored
-  // consent state (set after mount so SSR HTML stays stable); toggling it
-  // applies the choice immediately, same mechanism as the cookie banner.
-  const adsConsentRef = useRef<HTMLInputElement>(null)
+  // Consent evidence saved with the inquiry for the offline-conversion import.
+  const analyticsConsentRef = useRef<HTMLInputElement>(null)
+  const adsMeasurementConsentRef = useRef<HTMLInputElement>(null)
+  const consentRecordedAtRef = useRef<HTMLInputElement>(null)
+  const consentVersionRef = useRef<HTMLInputElement>(null)
   // Anti-bot time trap: mount timestamp. Bots that POST instantly are caught
   // server-side; stays empty without JS and the check is skipped then.
   const startedAtRef = useRef<HTMLInputElement>(null)
@@ -69,6 +70,15 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
   // is configured; the widget auto-fills the hidden `cf-turnstile-response`
   // input inside the form and auto-refreshes the 300 s token.
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
+
+  const fillConsentFields = () => {
+    const choice = getStoredConsent() ?? ""
+    const metadata = getStoredConsentMetadata()
+    if (analyticsConsentRef.current) analyticsConsentRef.current.value = choice
+    if (adsMeasurementConsentRef.current) adsMeasurementConsentRef.current.value = choice
+    if (consentRecordedAtRef.current) consentRecordedAtRef.current.value = metadata.recordedAt
+    if (consentVersionRef.current) consentVersionRef.current.value = metadata.version
+  }
 
   // Fills the hidden fields after mount and again after a successful submit
   // (form.reset() restores defaultValue="" and would otherwise wipe them).
@@ -85,9 +95,7 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
     if (startedAtRef.current) {
       startedAtRef.current.value = String(Date.now())
     }
-    if (adsConsentRef.current) {
-      adsConsentRef.current.checked = getStoredConsent() === "granted"
-    }
+    fillConsentFields()
   }
 
   useEffect(() => {
@@ -124,20 +132,12 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
     fillHiddenFields()
   }, [])
 
-  // Checking the box IS the consent act: store + apply immediately, so the
-  // Ads signals unlock even when the visitor never touched the banner.
-  // Unchecking withdraws (mirrors the banner, keeps the box truthful).
-  const handleAdsConsentToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const choice: ConsentChoice = e.target.checked ? "granted" : "denied"
-    storeConsent(choice)
-    applyConsent(choice)
-  }
-
   // Capture the email before the form submits so the success effect can push
   // it to GTM even after React resets the input on re-render.
   const handleSubmit = () => {
     const emailInput = formRef.current?.elements.namedItem("email") as HTMLInputElement | null
     submittedEmailRef.current = emailInput?.value ?? ""
+    fillConsentFields()
   }
 
   const content = (
@@ -157,6 +157,10 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
             <input type="hidden" name="page_url" ref={pageUrlRef} defaultValue="" />
             <input type="hidden" name="gclid" ref={gclidRef} defaultValue="" />
             <input type="hidden" name="source" ref={sourceRef} defaultValue="" />
+            <input type="hidden" name="analytics_consent" ref={analyticsConsentRef} defaultValue="" />
+            <input type="hidden" name="ads_consent" ref={adsMeasurementConsentRef} defaultValue="" />
+            <input type="hidden" name="consent_recorded_at" ref={consentRecordedAtRef} defaultValue="" />
+            <input type="hidden" name="consent_version" ref={consentVersionRef} defaultValue="" />
             <input type="hidden" name="form_started_at" ref={startedAtRef} defaultValue="" />
             {turnstileSiteKey && (
               <>
@@ -277,18 +281,6 @@ export default function ContactForm({ animDelay }: { animDelay?: number }) {
                   </a>
                   {t("privacyConsent").split(t("privacyLink"))[1] || ""}
                 </span>
-              </label>
-            </div>
-
-            <div className="mb-3.5">
-              <label className="flex items-start gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  ref={adsConsentRef}
-                  onChange={handleAdsConsentToggle}
-                  className="w-4 h-4 mt-0.5 accent-[#17345a] shrink-0"
-                />
-                <span className="text-[15px] text-[#5a6474]">{t("adsConsent")}</span>
               </label>
             </div>
 

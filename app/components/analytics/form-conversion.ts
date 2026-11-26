@@ -16,9 +16,10 @@
  * lead conversions.
  *
  * The caller is expected to check consent before invoking this helper (see
- * ContactForm/CareerForm). With Consent Mode v2 in basic/opt-in mode
- * (25.11.2026), no measurement data is sent to Google before the visitor
- * grants consent.
+ * ContactForm/CareerForm). With Advanced Consent Mode v2, form-conversion
+ * events and their email payload are pushed only after the visitor grants
+ * consent. Other Google tags may still send limited cookieless pings while
+ * consent is denied.
  */
 export function pushFormSubmissionSuccess(payload: {
   form_id: "contact" | "career"

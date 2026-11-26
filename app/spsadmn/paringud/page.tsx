@@ -23,6 +23,10 @@ interface Submission {
   pageUrl: string
   gclid: string
   source: string
+  analyticsConsent: "granted" | "denied" | ""
+  adsConsent: "granted" | "denied" | ""
+  consentRecordedAt: string
+  consentVersion: string
   channel: string
   serviceKind: string
   salesStatus: string
@@ -146,7 +150,7 @@ const AMOUNT_INPUT_RE = /^-?\d{1,10}([.,]\d{1,2})?$/
 const COL_WIDTHS_KEY = "sps_paringud_col_widths"
 const MIN_COL_WIDTH = 48
 const MAX_COL_WIDTH = 900
-const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 120, 140, 130, 130, 130, 110, 120, 120, 240]
+const DEFAULT_COL_WIDTHS = [44, 150, 140, 150, 190, 130, 190, 120, 300, 70, 220, 120, 190, 140, 130, 130, 130, 110, 120, 120, 240]
 const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "" }, // valiku-checkbox
   { label: "Kuupäev", headerClass: "whitespace-nowrap" },
@@ -160,6 +164,7 @@ const TABLE_COLUMNS: { label: string; headerClass?: string }[] = [
   { label: "Keel" },
   { label: "Leht" },
   { label: "Allikas" },
+  { label: "Nõusolek" },
   { label: "Google" },
   { label: "Teenus" },
   { label: "Staatus" },
@@ -213,6 +218,31 @@ function sourceLabel(source: string): string {
   if (source.startsWith("referral:")) return `Viide: ${source.slice("referral:".length)}`
   if (source.startsWith("utm:")) return `Kampaania: ${source.slice("utm:".length)}`
   return "Teadmata"
+}
+
+function consentLabel(choice: "granted" | "denied" | ""): string {
+  if (choice === "granted") return "Lubatud"
+  if (choice === "denied") return "Keeldutud"
+  return "Teadmata"
+}
+
+function ConsentCell({ submission }: { submission: Submission }) {
+  return (
+    <div className="text-[15px]">
+      <span className="block whitespace-nowrap">GA4: {consentLabel(submission.analyticsConsent)}</span>
+      <span className="block whitespace-nowrap">Ads: {consentLabel(submission.adsConsent)}</span>
+      {submission.consentRecordedAt && (
+        <span className="block text-[#5a6474] whitespace-nowrap" title="Nõusoleku andmise aeg">
+          {formatDateTime(submission.consentRecordedAt)}
+        </span>
+      )}
+      {submission.consentVersion && (
+        <span className="block text-[#5a6474] whitespace-nowrap" title="Nõusolekuteksti versioon">
+          v{submission.consentVersion}
+        </span>
+      )}
+    </div>
+  )
 }
 
 function GoogleStatusBadge({ status, loading }: { status?: SubmissionOfflineStatus | null; loading: boolean }) {
@@ -922,7 +952,7 @@ export default function AdminSubmissionsPage() {
                   ))}
                 </tr>
               <tr className="border-b border-[rgba(23,52,90,0.08)] bg-[#f8fafc] text-[#17345a]">
-                <th colSpan={17} className="px-4 py-2 font-medium text-right whitespace-nowrap">
+                <th colSpan={18} className="px-4 py-2 font-medium text-right whitespace-nowrap">
                   Kokku valitud perioodil ({submissions.length} päringut):
                 </th>
                 <th className="px-4 py-2 font-bold text-right whitespace-nowrap">{formatMoney(totalFee)}</th>
@@ -1033,8 +1063,15 @@ export default function AdminSubmissionsPage() {
                       </span>
                     </td>
                     <td className="px-4 py-3">
-                      {isContact && s.gclid ? (
+                      {isContact ? <ConsentCell submission={s} /> : <span className="text-[#8a94a3]">–</span>}
+                    </td>
+                    <td className="px-4 py-3">
+                      {isContact && s.gclid && s.adsConsent === "granted" ? (
                         <GoogleStatusBadge status={offlineStatuses[s.id]} loading={offlineStatusLoading} />
+                      ) : isContact && s.gclid ? (
+                        <span className="text-[#8a94a3]" title="Offline-import toimub ainult Ads-nõusolekuga päringutele">
+                          Ei impordi
+                        </span>
                       ) : (
                         <span className="text-[#8a94a3]">–</span>
                       )}
@@ -1134,7 +1171,6 @@ export default function AdminSubmissionsPage() {
                       </>
                     ) : (
                       <>
-                        <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>
                         <td className="px-4 py-3 text-[#5a6474]">–</td>

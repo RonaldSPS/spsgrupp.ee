@@ -123,6 +123,27 @@ function sanitizeSource(value: string | FormDataEntryValue | null): string {
   return value.toLowerCase().replace(/[^a-z0-9:._\/-]/g, "").slice(0, 120)
 }
 
+/** Only explicit consent states are accepted; anything else means unknown. */
+function sanitizeConsentChoice(value: string | FormDataEntryValue | null): "granted" | "denied" | "" {
+  return value === "granted" || value === "denied" ? value : ""
+}
+
+/** ISO timestamp of the user's actual choice. Never inferred from submission time. */
+function sanitizeConsentRecordedAt(value: string | FormDataEntryValue | null): string | null {
+  if (typeof value !== "string" || !value.trim()) return null
+  const time = new Date(value).getTime()
+  if (!Number.isFinite(time)) return null
+  const earliest = Date.parse("2026-01-01T00:00:00.000Z")
+  const latest = Date.now() + 5 * 60_000
+  if (time < earliest || time > latest) return null
+  return new Date(time).toISOString()
+}
+
+function sanitizeConsentVersion(value: string | FormDataEntryValue | null): string {
+  if (typeof value !== "string") return ""
+  return value.replace(/[^A-Za-z0-9._-]/g, "").slice(0, 40)
+}
+
 /**
  * Cleanable area from the contact form (m²). Attacker-controlled, so
  * only digits, comma and full stop are kept. Empty is allowed (optional field).
@@ -602,6 +623,10 @@ export async function submitContactForm(
   const pageUrl = sanitizePageUrl(formData.get("page_url"))
   const gclid = sanitizeGclid(formData.get("gclid"))
   const source = sanitizeSource(formData.get("source"))
+  const analyticsConsent = sanitizeConsentChoice(formData.get("analytics_consent"))
+  const adsConsent = sanitizeConsentChoice(formData.get("ads_consent"))
+  const consentRecordedAt = sanitizeConsentRecordedAt(formData.get("consent_recorded_at"))
+  const consentVersion = sanitizeConsentVersion(formData.get("consent_version"))
 
   const errors: string[] = []
 
@@ -665,6 +690,10 @@ export async function submitContactForm(
       pageUrl,
       gclid,
       source,
+      analyticsConsent,
+      adsConsent,
+      consentRecordedAt,
+      consentVersion,
       serviceKind: classifyServiceKindForFilter({ form: "contact", message, company, source }),
     })
     return { success: true, isSpam: true }
@@ -688,6 +717,10 @@ export async function submitContactForm(
     pageUrl,
     gclid,
     source,
+    analyticsConsent,
+    adsConsent,
+    consentRecordedAt,
+    consentVersion,
     serviceKind: classifyServiceKindForFilter({ form: "contact", message, company, source }),
   })
 

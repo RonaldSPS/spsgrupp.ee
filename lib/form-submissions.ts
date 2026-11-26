@@ -27,6 +27,13 @@ export interface FormSubmissionInput {
   gclid?: string
   /** Classified lead source code (google_ads / utm:.. / organic:.. / referral:.. / direct). "" when unknown. */
   source?: string
+  /** Consent states captured at submission time. Empty means unknown/not answered. */
+  analyticsConsent?: "granted" | "denied" | ""
+  adsConsent?: "granted" | "denied" | ""
+  /** When the visitor made the choice. Null for legacy choices without a timestamp. */
+  consentRecordedAt?: string | null
+  /** Consent text version shown when the choice was made. */
+  consentVersion?: string
   /** "form" (default) or "phone"/"email" for admin-entered inquiries (26.10.2026). */
   channel?: "form" | "phone" | "email"
   /** maintenance | oneoff | other | "" — teenuse liik (admin valib käsitsi ridadel). */
@@ -65,6 +72,10 @@ export interface FormSubmission {
   pageUrl: string
   gclid: string
   source: string
+  analyticsConsent: "granted" | "denied" | ""
+  adsConsent: "granted" | "denied" | ""
+  consentRecordedAt: string
+  consentVersion: string
   channel: string
   serviceKind: string
   salesStatus: string
@@ -110,6 +121,10 @@ function normalizeAmount(value: unknown): string {
   return String(Math.round(n * 100) / 100)
 }
 
+function normalizeConsent(value: unknown): "granted" | "denied" | "" {
+  return value === "granted" || value === "denied" ? value : ""
+}
+
 async function jsonFilePath(): Promise<string> {
   const path = await import("path")
   return path.join(process.cwd(), "data", "form-submissions.json")
@@ -132,6 +147,10 @@ async function readJsonRows(): Promise<FormSubmission[]> {
       pageUrl: typeof row.pageUrl === "string" ? row.pageUrl : "",
       gclid: typeof row.gclid === "string" ? row.gclid : "",
       source: typeof row.source === "string" ? row.source : "",
+      analyticsConsent: normalizeConsent(row.analyticsConsent),
+      adsConsent: normalizeConsent(row.adsConsent),
+      consentRecordedAt: typeof row.consentRecordedAt === "string" ? row.consentRecordedAt : "",
+      consentVersion: typeof row.consentVersion === "string" ? row.consentVersion : "",
       channel: typeof row.channel === "string" && row.channel ? row.channel : "form",
       serviceKind: typeof row.serviceKind === "string" ? row.serviceKind : "",
       salesStatus: typeof row.salesStatus === "string" ? row.salesStatus : "",
@@ -173,6 +192,10 @@ async function insertIntoDb(input: FormSubmissionInput): Promise<void> {
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
     source: input.source ?? "",
+    analyticsConsent: input.analyticsConsent ?? "",
+    adsConsent: input.adsConsent ?? "",
+    consentRecordedAt: input.consentRecordedAt ? new Date(input.consentRecordedAt) : null,
+    consentVersion: input.consentVersion ?? "",
     channel: input.channel ?? "form",
     serviceKind: input.serviceKind ?? "",
     salesStatus: input.salesStatus ?? "",
@@ -206,6 +229,10 @@ async function appendToJson(input: FormSubmissionInput): Promise<void> {
     pageUrl: input.pageUrl ?? "",
     gclid: input.gclid ?? "",
     source: input.source ?? "",
+    analyticsConsent: input.analyticsConsent ?? "",
+    adsConsent: input.adsConsent ?? "",
+    consentRecordedAt: input.consentRecordedAt ?? "",
+    consentVersion: input.consentVersion ?? "",
     channel: input.channel ?? "form",
     serviceKind: input.serviceKind ?? "",
     salesStatus: input.salesStatus ?? "",
@@ -282,7 +309,7 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     .orderBy(desc(formSubmissions.createdAt))
     .limit(MAX_ROWS)
 
-  const mapped = rows.map((row) => ({
+  const mapped: FormSubmission[] = rows.map((row) => ({
     id: row.id,
     form: row.form,
     locale: row.locale,
@@ -303,6 +330,10 @@ async function readFromDb(filter: FormSubmissionFilter): Promise<FormSubmission[
     pageUrl: row.pageUrl ?? "",
     gclid: row.gclid ?? "",
     source: row.source ?? "",
+    analyticsConsent: normalizeConsent(row.analyticsConsent),
+    adsConsent: normalizeConsent(row.adsConsent),
+    consentRecordedAt: row.consentRecordedAt ? row.consentRecordedAt.toISOString() : "",
+    consentVersion: row.consentVersion ?? "",
     channel: row.channel ?? "form",
     serviceKind: row.serviceKind ?? "",
     salesStatus: row.salesStatus ?? "",

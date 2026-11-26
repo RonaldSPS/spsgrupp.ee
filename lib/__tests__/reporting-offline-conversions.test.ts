@@ -2,7 +2,15 @@ import { describe, it, before, after } from "node:test"
 import assert from "node:assert"
 import { promises as fs } from "node:fs"
 import path from "node:path"
-import { buildOfflineUploadStatus, getSubmissionOfflineStatus, type PersistedOfflineUpload } from "../reporting/offline-conversions"
+import {
+  buildOfflineUploadStatus,
+  getSubmissionOfflineStatus,
+  hasOfflineConversionConsent,
+  toFormEvent,
+  toWonEvent,
+  type PersistedOfflineUpload,
+} from "../reporting/offline-conversions"
+import type { FormSubmission } from "../form-submissions"
 
 const UPLOADS_JSON_FILE = path.join(process.cwd(), "data", "offline-conversion-uploads.json")
 
@@ -172,5 +180,59 @@ describe("getSubmissionOfflineStatus", () => {
     assert.strictEqual(status.form, null)
     assert.strictEqual(status.won, null)
     assert.strictEqual(status.lastRequestId, null)
+  })
+})
+
+describe("offline conversion consent", () => {
+  function makeSubmission(over: Partial<FormSubmission> = {}): FormSubmission {
+    return {
+      id: 42,
+      form: "contact",
+      locale: "et",
+      name: "Test",
+      email: "test@example.ee",
+      phone: "",
+      company: "",
+      message: "",
+      region: "",
+      workload: "",
+      workTime: "",
+      attachmentName: "",
+      attachmentUrl: "",
+      fee: "1250",
+      profit: "",
+      notes: "",
+      isSpam: false,
+      pageUrl: "",
+      gclid: "test-gclid",
+      source: "google_ads",
+      analyticsConsent: "granted",
+      adsConsent: "granted",
+      consentRecordedAt: "2026-11-26T10:00:00.000Z",
+      consentVersion: "2026-11-25",
+      channel: "form",
+      serviceKind: "",
+      salesStatus: "won",
+      leadQuality: "",
+      areaSize: "",
+      wonAt: "2026-11-26T11:00:00.000Z",
+      createdAt: "2026-11-26T10:30:00.000Z",
+      ...over,
+    }
+  }
+
+  it("allows only an explicit granted Ads consent", () => {
+    assert.strictEqual(hasOfflineConversionConsent(makeSubmission()), true)
+    assert.strictEqual(hasOfflineConversionConsent(makeSubmission({ adsConsent: "denied" })), false)
+    assert.strictEqual(hasOfflineConversionConsent(makeSubmission({ adsConsent: "" })), false)
+  })
+
+  it("adds the inquiry's measurement consent to form and won events", () => {
+    const expected = {
+      adUserData: "CONSENT_GRANTED",
+      adPersonalization: "CONSENT_DENIED",
+    }
+    assert.deepStrictEqual(toFormEvent(makeSubmission()).consent, expected)
+    assert.deepStrictEqual(toWonEvent(makeSubmission())?.consent, expected)
   })
 })

@@ -2,25 +2,27 @@
  * Google Consent Mode v2 state, shared by the consent-default inline script
  * (rendered by RootShell before GTM loads) and the CookieConsentBanner.
  *
- * Strict opt-in policy (25.11.2026): all measurement signals
+ * Advanced Consent Mode v2 (25.11.2026): all measurement signals
  * (`analytics_storage`, `ad_storage`, `ad_user_data`) stay DENIED until the
  * visitor explicitly accepts. `ad_personalization` stays DENIED permanently
- * because we do not run personalized/retargeting ads. This is "basic"
- * Consent Mode v2 behavior: no analytics cookies, no ad cookies and no
- * conversion data is sent to Google before consent. Our own cookieless
- * page-view analytics runs independently and does not require consent.
+ * because we do not run personalized/retargeting ads. Google tags still load
+ * before the choice and may send limited cookieless measurement pings while
+ * consent is denied. Analytics and advertising cookies stay blocked until
+ * consent is granted.
  *
  * The banner flips state via gtag('consent', 'update', ...) which queues
  * onto dataLayer even when gtm.js has not finished loading yet.
  */
 
 export const CONSENT_STORAGE_KEY = "sps_consent"
+export const CONSENT_RECORDED_AT_STORAGE_KEY = "sps_consent_recorded_at"
+export const CONSENT_VERSION_STORAGE_KEY = "sps_consent_version"
+export const CONSENT_VERSION = "2026-11-25"
 
 export type ConsentChoice = "granted" | "denied"
 
-/** Consent defaults pushed before GTM loads. All measurement is denied until
- *  the visitor explicitly accepts. This is "basic" Consent Mode v2 behavior:
- *  no analytics cookies and no ad cookies are set before consent. */
+/** Consent defaults pushed before GTM loads (Advanced Consent Mode v2).
+ *  Measurement cookies stay denied until the visitor explicitly accepts. */
 export const CONSENT_DEFAULT_SNIPPET = `
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -56,8 +58,23 @@ export function getStoredConsent(): ConsentChoice | null {
 export function storeConsent(choice: ConsentChoice) {
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, choice)
+    window.localStorage.setItem(CONSENT_RECORDED_AT_STORAGE_KEY, new Date().toISOString())
+    window.localStorage.setItem(CONSENT_VERSION_STORAGE_KEY, CONSENT_VERSION)
   } catch {
     // private mode etc. - consent still applies for this page view
+  }
+}
+
+/** Metadata is written only on an explicit user choice, never on page load. */
+export function getStoredConsentMetadata(): { recordedAt: string; version: string } {
+  if (typeof window === "undefined") return { recordedAt: "", version: "" }
+  try {
+    return {
+      recordedAt: window.localStorage.getItem(CONSENT_RECORDED_AT_STORAGE_KEY) ?? "",
+      version: window.localStorage.getItem(CONSENT_VERSION_STORAGE_KEY) ?? "",
+    }
+  } catch {
+    return { recordedAt: "", version: "" }
   }
 }
 

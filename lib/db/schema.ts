@@ -260,6 +260,12 @@ export const formSubmissions = pgTable("form_submissions", {
   pageUrl: text("page_url").notNull().default(""),
   gclid: text("gclid").notNull().default(""),
   source: text("source").notNull().default(""),
+  /** granted | denied | "" (teadmata) — nõusolek päringu esitamise hetkel. */
+  analyticsConsent: text("analytics_consent").notNull().default(""),
+  adsConsent: text("ads_consent").notNull().default(""),
+  /** Nõusoleku tegelik andmise aeg; vanematel kirjetel võib puududa. */
+  consentRecordedAt: timestamp("consent_recorded_at", { withTimezone: true }),
+  consentVersion: text("consent_version").notNull().default(""),
   /** form = veebivorm (kontakt/karjäär); phone/email = admin käsitsi sisestatud päring. */
   channel: text("channel").notNull().default("form"),
   /** maintenance | oneoff | other | "" (teadmata). */
